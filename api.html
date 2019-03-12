@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>The ROSS project API &#8212; ross 1.0 documentation</title>
+    <link rel="stylesheet" href="_static/bootstrap-sphinx.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/language_data.js"></script>
+    <script type="text/javascript" src="_static/js/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="_static/js/jquery-fix.js"></script>
+    <script type="text/javascript" src="_static/bootstrap-3.3.7/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="_static/bootstrap-sphinx.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="How to contribute to ROSS using git" href="git_configuration.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+
+  </head><body>
+
+  <div id="navbar" class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="index.html">
+          ross</a>
+        <span class="navbar-text navbar-version pull-left"><b></b></span>
+      </div>
+
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            
+            
+              <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="index.html">Site <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"><p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="tutorial.html">A quick tutorial on how to use ROSS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="git_configuration.html">How to contribute to ROSS using git</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">The ROSS project API</a></li>
+</ul>
+</ul>
+</li>
+              
+                <li class="dropdown">
+  <a role="button"
+     id="dLabelLocalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="#">Page <b class="caret"></b></a>
+  <ul class="dropdown-menu localtoc"
+      role="menu"
+      aria-labelledby="dLabelLocalToc"><ul>
+<li><a class="reference internal" href="#">The ROSS project API</a><ul>
+<li><a class="reference internal" href="#the-rotor-module">The Rotor module</a></li>
+<li><a class="reference internal" href="#the-element-class">The “Element” class</a></li>
+<li><a class="reference internal" href="#module-ross.materials">The “Material” class</a><ul>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</ul>
+</li>
+              
+            
+            
+              
+                
+  <li>
+    <a href="git_configuration.html" title="Previous Chapter: How to contribute to ROSS using git"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm hidden-tablet">&laquo; How to contri...</span>
+    </a>
+  </li>
+              
+            
+            
+            
+            
+              <li class="hidden-sm">
+<div id="sourcelink">
+  <a href="_sources/api.rst.txt"
+     rel="nofollow">Source</a>
+</div></li>
+            
+          </ul>
+
+          
+            
+<form class="navbar-form navbar-right" action="search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+        </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 content">
+      
+  <div class="section" id="the-ross-project-api">
+<h1>The ROSS project API<a class="headerlink" href="#the-ross-project-api" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="the-rotor-module">
+<h2>The Rotor module<a class="headerlink" href="#the-rotor-module" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="the-element-class">
+<h2>The “Element” class<a class="headerlink" href="#the-element-class" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-ross.materials">
+<span id="the-material-class"></span><h2>The “Material” class<a class="headerlink" href="#module-ross.materials" title="Permalink to this headline">¶</a></h2>
+<p>Materials module.</p>
+<p>This module defines the Material class and defines
+some of the most common materials used in rotors.</p>
+<dl class="class">
+<dt id="ross.materials.Material">
+<em class="property">class </em><code class="descclassname">ross.materials.</code><code class="descname">Material</code><span class="sig-paren">(</span><em>name=None</em>, <em>rho=None</em>, <em>E=None</em>, <em>G_s=None</em>, <em>Poisson=None</em>, <em>color='#525252'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ross/materials.html#Material"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.materials.Material" title="Permalink to this definition">¶</a></dt>
+<dd><p>Material.</p>
+<p>Class used to create a material and define its properties.
+Density and at least at least 2 arguments from E, G_s and
+Poisson should be provided.</p>
+<p>See available_materials for materials already provided.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><dl class="first last docutils">
+<dt><strong>name</strong> <span class="classifier-delimiter">:</span> <span class="classifier">str</span></dt>
+<dd><p class="first last">Material name.</p>
+</dd>
+<dt><strong>E</strong> <span class="classifier-delimiter">:</span> <span class="classifier">float</span></dt>
+<dd><p class="first last">Young’s modulus.</p>
+</dd>
+<dt><strong>G_s</strong> <span class="classifier-delimiter">:</span> <span class="classifier">float</span></dt>
+<dd><p class="first last">Shear modulus.</p>
+</dd>
+<dt><strong>rho</strong> <span class="classifier-delimiter">:</span> <span class="classifier">float</span></dt>
+<dd><p class="first last">Density.</p>
+</dd>
+</dl>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Examples</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">AISI4140</span> <span class="o">=</span> <span class="n">Material</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;AISI4140&#39;</span><span class="p">,</span> <span class="n">rho</span><span class="o">=</span><span class="mi">7850</span><span class="p">,</span> <span class="n">E</span><span class="o">=</span><span class="mf">203.2e9</span><span class="p">,</span> <span class="n">G_s</span><span class="o">=</span><span class="mf">80e9</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">AISI4140</span><span class="o">.</span><span class="n">Poisson</span>
+<span class="go">0.27</span>
+</pre></div>
+</div>
+<p class="rubric">Methods</p>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">AvailableMaterials</span></code></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="class">
+<dt id="ross.materials.Oil">
+<em class="property">class </em><code class="descclassname">ross.materials.</code><code class="descname">Oil</code><span class="sig-paren">(</span><em>name=None</em>, <em>exp_coeff=0.00076</em>, <em>t_a=None</em>, <em>mu_a=None</em>, <em>rho_a=None</em>, <em>t_b=None</em>, <em>mu_b=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ross/materials.html#Oil"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.materials.Oil" title="Permalink to this definition">¶</a></dt>
+<dd><p>Oil.
+Class used to create an oil and define its properties.</p>
+<blockquote>
+<div>See available_oils for oils already provided.</div></blockquote>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><dl class="first last docutils">
+<dt><strong>name</strong> <span class="classifier-delimiter">:</span> <span class="classifier">str</span></dt>
+<dd><blockquote class="first">
+<div><p>Oil name.</p>
+</div></blockquote>
+<dl class="last docutils">
+<dt>exp_coeff <span class="classifier-delimiter">:</span> <span class="classifier">float</span></dt>
+<dd><p class="first last">Thermal expansion coefficient. Defaults to 0.00076</p>
+</dd>
+<dt>t_a <span class="classifier-delimiter">:</span> <span class="classifier">float</span></dt>
+<dd><p class="first last">Temperature at point a.</p>
+</dd>
+<dt>mu_a <span class="classifier-delimiter">:</span> <span class="classifier">float</span></dt>
+<dd><p class="first last">Viscosity at point a.</p>
+</dd>
+<dt>rho_a <span class="classifier-delimiter">:</span> <span class="classifier">float</span></dt>
+<dd><p class="first last">Density at point a.</p>
+</dd>
+<dt>t_b <span class="classifier-delimiter">:</span> <span class="classifier">float</span></dt>
+<dd><p class="first last">Temperature at point b.</p>
+</dd>
+<dt>mu_b <span class="classifier-delimiter">:</span> <span class="classifier">float</span></dt>
+<dd><p class="first last">Viscosity at point b.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Methods</p>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">AvailableOils</span></code></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#ross.materials.Oil.mu" title="ross.materials.Oil.mu"><code class="xref py py-obj docutils literal notranslate"><span class="pre">mu</span></code></a>(T)</td>
+<td>Viscosity (Dynamic).</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#ross.materials.Oil.rho" title="ross.materials.Oil.rho"><code class="xref py py-obj docutils literal notranslate"><span class="pre">rho</span></code></a>(T)</td>
+<td>Density.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#ross.materials.Oil.specific_heat" title="ross.materials.Oil.specific_heat"><code class="xref py py-obj docutils literal notranslate"><span class="pre">specific_heat</span></code></a>(T)</td>
+<td>Specific heat.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#ross.materials.Oil.thermal_conductivity" title="ross.materials.Oil.thermal_conductivity"><code class="xref py py-obj docutils literal notranslate"><span class="pre">thermal_conductivity</span></code></a>(T)</td>
+<td>Thermal conductivity.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#ross.materials.Oil.v" title="ross.materials.Oil.v"><code class="xref py py-obj docutils literal notranslate"><span class="pre">v</span></code></a>(T)</td>
+<td>Kinematic viscosity.</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="ross.materials.Oil.mu">
+<code class="descname">mu</code><span class="sig-paren">(</span><em>T</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ross/materials.html#Oil.mu"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.materials.Oil.mu" title="Permalink to this definition">¶</a></dt>
+<dd><p>Viscosity (Dynamic).</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="ross.materials.Oil.rho">
+<code class="descname">rho</code><span class="sig-paren">(</span><em>T</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ross/materials.html#Oil.rho"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.materials.Oil.rho" title="Permalink to this definition">¶</a></dt>
+<dd><p>Density.</p>
+</dd></dl>
+
+<dl class="staticmethod">
+<dt id="ross.materials.Oil.specific_heat">
+<em class="property">static </em><code class="descname">specific_heat</code><span class="sig-paren">(</span><em>T</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ross/materials.html#Oil.specific_heat"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.materials.Oil.specific_heat" title="Permalink to this definition">¶</a></dt>
+<dd><p>Specific heat.</p>
+<p>Specific heat approximation as per:
+Khonsari, Michael M., and E. Richard Booser.
+Applied tribology: bearing design and lubrication.
+pg. 52</p>
+</dd></dl>
+
+<dl class="staticmethod">
+<dt id="ross.materials.Oil.thermal_conductivity">
+<em class="property">static </em><code class="descname">thermal_conductivity</code><span class="sig-paren">(</span><em>T</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ross/materials.html#Oil.thermal_conductivity"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.materials.Oil.thermal_conductivity" title="Permalink to this definition">¶</a></dt>
+<dd><p>Thermal conductivity.</p>
+<p>Specific heat approximation as per:
+Khonsari, Michael M., and E. Richard Booser.
+Applied tribology: bearing design and lubrication.
+pg. 52</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="ross.materials.Oil.v">
+<code class="descname">v</code><span class="sig-paren">(</span><em>T</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ross/materials.html#Oil.v"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.materials.Oil.v" title="Permalink to this definition">¶</a></dt>
+<dd><p>Kinematic viscosity.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
+    </p>
+    <p>
+        &copy; Copyright 2019, Team Ross.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.5.<br/>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>
