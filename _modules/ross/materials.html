@@ -12,20 +12,20 @@
     <script type="text/javascript" src="../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
     <script type="text/javascript" src="../../_static/language_data.js"></script>
-    <script type="text/javascript" src="../../_static/js/jquery-1.11.0.min.js"></script>
-    <script type="text/javascript" src="../../_static/js/jquery-fix.js"></script>
-    <script type="text/javascript" src="../../_static/bootstrap-3.3.7/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="../../_static/bootstrap-sphinx.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
 <meta charset='utf-8'>
 <meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
 <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
 <meta name="apple-mobile-web-app-capable" content="yes">
+<script type="text/javascript" src="../../_static/js/jquery-1.11.0.min.js "></script>
+<script type="text/javascript" src="../../_static/js/jquery-fix.js "></script>
+<script type="text/javascript" src="../../_static/bootstrap-3.3.7/js/bootstrap.min.js "></script>
+<script type="text/javascript" src="../../_static/bootstrap-sphinx.js "></script>
 
   </head><body>
 
-  <div id="navbar" class="navbar navbar-default navbar-fixed-top">
+  <div id="navbar" class="navbar navbar-inverse navbar-default navbar-fixed-top">
     <div class="container">
       <div class="navbar-header">
         <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
@@ -35,12 +35,15 @@
           <span class="icon-bar"></span>
         </button>
         <a class="navbar-brand" href="../../index.html">
-          ross</a>
+          Demo</a>
         <span class="navbar-text navbar-version pull-left"><b></b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
           <ul class="nav navbar-nav">
+            
+                <li><a href="../../examples.html">Examples</a></li>
+                <li><a href="http://example.com">Link</a></li>
             
             
               <li class="dropdown globaltoc-container">
@@ -53,9 +56,31 @@
       role="menu"
       aria-labelledby="dLabelGlobalToc"><p class="caption"><span class="caption-text">Contents:</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../tutorial.html">A quick tutorial on how to use ROSS</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../git_configuration.html">How to contribute to ROSS using git</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../api.html">The ROSS project API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tutorial.html">A quick tutorial on how to use ROSS</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorial.html#downloading-ross">Downloading ROSS</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../git_configuration.html">How to contribute to ROSS using git</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../git_configuration.html#step-1-make-you-own-copy-fork-of-ross">Step 1: Make you own copy (fork) of ROSS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../git_configuration.html#step-2-keep-in-sync-with-changes-in-ross">Step 2: Keep in sync with changes in Ross</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../git_configuration.html#step-3-make-a-new-feature-branch">Step 3: Make a new feature branch</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../git_configuration.html#step-4-push-changes-to-your-git-repository">Step 4: Push changes to your git repository</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../git_configuration.html#step-5-push-changes-to-the-main-repo">Step 5: Push changes to the main repo</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../api.html">The ROSS project API</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../api.html#module-ross.rotor_assembly">The Rotor module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../api.html#module-ross.element">The “Element” class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../api.html#module-ross.materials">The “Material” class</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../introduction.html">What you need to do to start using ROSS</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../introduction.html#programming-language-python">Programming language: Python</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../introduction.html#version-control-system-git">Version-control system: Git</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../introduction.html#repository-hosting-service-github">Repository hosting service: Github</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../introduction.html#integrated-development-environment-pycharm">Integrated development environment: PyCharm</a></li>
+</ul>
+</li>
 </ul>
 </ul>
 </li>
@@ -100,7 +125,7 @@
 
 <div class="container">
   <div class="row">
-    <div class="col-md-12 content">
+    <div class="body col-md-12 content" role="main">
       
   <h1>Source code for ross.materials</h1><div class="highlight"><pre>
 <span></span><span class="sd">&quot;&quot;&quot;Materials module.</span>
@@ -108,77 +133,117 @@
 <span class="sd">This module defines the Material class and defines</span>
 <span class="sd">some of the most common materials used in rotors.</span>
 <span class="sd">&quot;&quot;&quot;</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">toml</span>
 
-<span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Material&quot;</span><span class="p">,</span> <span class="s2">&quot;Oil&quot;</span><span class="p">]</span>
+
+<span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Material&quot;</span><span class="p">,</span> <span class="s2">&quot;steel&quot;</span><span class="p">]</span>
 
 
 <div class="viewcode-block" id="Material"><a class="viewcode-back" href="../../api.html#ross.materials.Material">[docs]</a><span class="k">class</span> <span class="nc">Material</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;Material.</span>
 
 <span class="sd">    Class used to create a material and define its properties.</span>
-<span class="sd">    Density and at least at least 2 arguments from E, G_s and</span>
-<span class="sd">    Poisson should be provided.</span>
+<span class="sd">    Density and at least 2 arguments from E, G_s and Poisson</span>
+<span class="sd">    should be provided.</span>
 
-<span class="sd">    See available_materials for materials already provided.</span>
+<span class="sd">    Run Material.available_materials() for materials already provided.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
 <span class="sd">    name : str</span>
 <span class="sd">        Material name.</span>
 <span class="sd">    E : float</span>
-<span class="sd">        Young&#39;s modulus.</span>
+<span class="sd">        Young&#39;s modulus (N/m**2).</span>
 <span class="sd">    G_s : float</span>
-<span class="sd">        Shear modulus.</span>
+<span class="sd">        Shear modulus (N/m**2).</span>
 <span class="sd">    rho : float</span>
-<span class="sd">        Density.</span>
+<span class="sd">        Density (N/m**3).</span>
+<span class="sd">    color : str</span>
+<span class="sd">        Can be used on plots.</span>
 
 <span class="sd">    Examples</span>
 <span class="sd">    --------</span>
 <span class="sd">    &gt;&gt;&gt; AISI4140 = Material(name=&#39;AISI4140&#39;, rho=7850, E=203.2e9, G_s=80e9)</span>
+<span class="sd">    &gt;&gt;&gt; Steel = Material(name=&quot;Steel&quot;, rho=7810, E=211e9, G_s=81.2e9)</span>
 <span class="sd">    &gt;&gt;&gt; AISI4140.Poisson</span>
 <span class="sd">    0.27</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="c1"># class to hold created instances</span>
-    <span class="k">class</span> <span class="nc">AvailableMaterials</span><span class="p">:</span>
-        <span class="k">pass</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">rho</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
 
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span>
-        <span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">rho</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">E</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">G_s</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">Poisson</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;#525252&quot;</span>
-    <span class="p">):</span>
-        <span class="k">if</span> <span class="n">rho</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Density (rho) not provided.&quot;</span><span class="p">)</span>
-
-        <span class="k">if</span> <span class="n">name</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="s2">&quot; &quot;</span> <span class="ow">in</span> <span class="n">name</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Spaces are not allowed in Material name&quot;</span><span class="p">)</span>
-
-        <span class="n">none_args</span> <span class="o">=</span> <span class="p">[]</span>
-        <span class="k">for</span> <span class="n">arg</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;E&quot;</span><span class="p">,</span> <span class="s2">&quot;G_s&quot;</span><span class="p">,</span> <span class="s2">&quot;Poisson&quot;</span><span class="p">]:</span>
-            <span class="k">if</span> <span class="nb">locals</span><span class="p">()[</span><span class="n">arg</span><span class="p">]</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-                <span class="n">none_args</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">arg</span><span class="p">)</span>
-        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">none_args</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
-                <span class="s2">&quot;At least 2 arguments from E, G_s&quot;</span> <span class="s2">&quot;and Poisson should be provided &quot;</span>
-            <span class="p">)</span>
+        <span class="k">assert</span> <span class="n">name</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">,</span> <span class="s2">&quot;Name not provided&quot;</span>
+        <span class="k">assert</span> <span class="nb">type</span><span class="p">(</span><span class="n">name</span><span class="p">)</span> <span class="ow">is</span> <span class="nb">str</span><span class="p">,</span> <span class="s2">&quot;Name must be a string&quot;</span>
+        <span class="k">assert</span> <span class="s2">&quot; &quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">name</span><span class="p">,</span> <span class="s2">&quot;Spaces are not allowed in Material name&quot;</span>
+        <span class="k">assert</span> <span class="p">(</span>
+            <span class="nb">sum</span><span class="p">([</span><span class="mi">1</span> <span class="k">if</span> <span class="n">i</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;E&quot;</span><span class="p">,</span> <span class="s2">&quot;G_s&quot;</span><span class="p">,</span> <span class="s2">&quot;Poisson&quot;</span><span class="p">]</span> <span class="k">else</span> <span class="mi">0</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">])</span> <span class="o">&gt;</span> <span class="mi">1</span>
+        <span class="p">),</span> <span class="s2">&quot;At least 2 arguments from E, G_s and Poisson should be provided&quot;</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">rho</span> <span class="o">=</span> <span class="n">rho</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">E</span> <span class="o">=</span> <span class="n">E</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">G_s</span> <span class="o">=</span> <span class="n">G_s</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">Poisson</span> <span class="o">=</span> <span class="n">Poisson</span>
-        <span class="k">if</span> <span class="n">E</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">E</span> <span class="o">=</span> <span class="n">G_s</span> <span class="o">*</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">Poisson</span><span class="p">))</span>
-        <span class="k">elif</span> <span class="n">G_s</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">G_s</span> <span class="o">=</span> <span class="n">E</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">Poisson</span><span class="p">))</span>
-        <span class="k">elif</span> <span class="n">Poisson</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">Poisson</span> <span class="o">=</span> <span class="p">(</span><span class="n">E</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">G_s</span><span class="p">))</span> <span class="o">-</span> <span class="mi">1</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">E</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;E&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">Poisson</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;Poisson&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">G_s</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;G_s&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">color</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;color&quot;</span><span class="p">,</span> <span class="s2">&quot;#525252&quot;</span><span class="p">)</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">color</span> <span class="o">=</span> <span class="n">color</span>  <span class="c1"># this can be used in the plots</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">E</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">E</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">G_s</span> <span class="o">*</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">Poisson</span><span class="p">))</span>
+        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">G_s</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">G_s</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">E</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">Poisson</span><span class="p">))</span>
+        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">Poisson</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">Poisson</span> <span class="o">=</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">E</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">G_s</span><span class="p">))</span> <span class="o">-</span> <span class="mi">1</span>
 
-        <span class="k">if</span> <span class="n">name</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">AvailableMaterials</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">__eq__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span> <span class="o">==</span> <span class="n">other</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">True</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">False</span>
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">dump_data</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;available_materials.toml&quot;</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+            <span class="n">toml</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span>
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">load_data</span><span class="p">():</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;available_materials.toml&quot;</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+                <span class="n">data</span> <span class="o">=</span> <span class="n">toml</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">FileNotFoundError</span><span class="p">:</span>
+            <span class="n">data</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;Materials&quot;</span><span class="p">:</span> <span class="p">{}}</span>
+            <span class="n">Material</span><span class="o">.</span><span class="n">dump_data</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">data</span>
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">use_material</span><span class="p">(</span><span class="n">name</span><span class="p">):</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">Material</span><span class="o">.</span><span class="n">load_data</span><span class="p">()</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">material</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s2">&quot;Materials&quot;</span><span class="p">][</span><span class="n">name</span><span class="p">]</span>
+            <span class="k">return</span> <span class="n">Material</span><span class="p">(</span><span class="o">**</span><span class="n">material</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">KeyError</span><span class="p">(</span><span class="s2">&quot;There isn&#39;t a instanced material with this name.&quot;</span><span class="p">)</span>
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">remove_material</span><span class="p">(</span><span class="n">name</span><span class="p">):</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">Material</span><span class="o">.</span><span class="n">load_data</span><span class="p">()</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">del</span> <span class="n">data</span><span class="p">[</span><span class="s2">&quot;Materials&quot;</span><span class="p">][</span><span class="n">name</span><span class="p">]</span>
+        <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
+            <span class="k">return</span> <span class="s2">&quot;There isn&#39;t a saved material with this name.&quot;</span>
+        <span class="n">Material</span><span class="o">.</span><span class="n">dump_data</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">available_materials</span><span class="p">():</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">data</span> <span class="o">=</span> <span class="n">Material</span><span class="o">.</span><span class="n">load_data</span><span class="p">()</span>
+            <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;Materials&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+        <span class="k">except</span> <span class="ne">FileNotFoundError</span><span class="p">:</span>
+            <span class="k">return</span> <span class="s2">&quot;There is no saved materials.&quot;</span>
+
+    <span class="k">def</span> <span class="nf">save_material</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">Material</span><span class="o">.</span><span class="n">load_data</span><span class="p">()</span>
+        <span class="n">data</span><span class="p">[</span><span class="s2">&quot;Materials&quot;</span><span class="p">][</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span>
+        <span class="n">Material</span><span class="o">.</span><span class="n">dump_data</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="n">f</span><span class="s2">&quot;</span><span class="si">{self.name}</span><span class="s2">&quot;</span>
@@ -194,148 +259,7 @@
         <span class="p">)</span></div>
 
 
-<span class="c1">#####################################################################</span>
-<span class="c1"># Available materials</span>
-<span class="c1">#####################################################################</span>
-
 <span class="n">steel</span> <span class="o">=</span> <span class="n">Material</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;Steel&quot;</span><span class="p">,</span> <span class="n">rho</span><span class="o">=</span><span class="mi">7810</span><span class="p">,</span> <span class="n">E</span><span class="o">=</span><span class="mf">211e9</span><span class="p">,</span> <span class="n">G_s</span><span class="o">=</span><span class="mf">81.2e9</span><span class="p">)</span>
-<span class="n">AISI4140</span> <span class="o">=</span> <span class="n">Material</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;AISI4140&quot;</span><span class="p">,</span> <span class="n">rho</span><span class="o">=</span><span class="mi">7850</span><span class="p">,</span> <span class="n">E</span><span class="o">=</span><span class="mf">203.2e9</span><span class="p">,</span> <span class="n">G_s</span><span class="o">=</span><span class="mf">80e9</span><span class="p">)</span>
-
-<span class="c1">#####################################################################</span>
-
-
-<div class="viewcode-block" id="Oil"><a class="viewcode-back" href="../../api.html#ross.materials.Oil">[docs]</a><span class="k">class</span> <span class="nc">Oil</span><span class="p">:</span>
-    <span class="sd">&quot;&quot;&quot;Oil.</span>
-<span class="sd">Class used to create an oil and define its properties.</span>
-
-<span class="sd">    See available_oils for oils already provided.</span>
-
-<span class="sd">    Parameters</span>
-<span class="sd">    ----------</span>
-<span class="sd">    name : str</span>
-<span class="sd">        Oil name.</span>
-<span class="sd">    exp_coeff : float</span>
-<span class="sd">        Thermal expansion coefficient. Defaults to 0.00076</span>
-<span class="sd">    t_a : float</span>
-<span class="sd">        Temperature at point a.</span>
-<span class="sd">    mu_a : float</span>
-<span class="sd">        Viscosity at point a.</span>
-<span class="sd">    rho_a : float</span>
-<span class="sd">        Density at point a.</span>
-<span class="sd">    t_b : float</span>
-<span class="sd">        Temperature at point b.</span>
-<span class="sd">    mu_b : float</span>
-<span class="sd">        Viscosity at point b.</span>
-
-
-<span class="sd">    Examples</span>
-<span class="sd">    --------</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-
-    <span class="c1"># class to hold created instances</span>
-    <span class="k">class</span> <span class="nc">AvailableOils</span><span class="p">:</span>
-        <span class="k">pass</span>
-
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span>
-        <span class="bp">self</span><span class="p">,</span>
-        <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-        <span class="n">exp_coeff</span><span class="o">=</span><span class="mf">0.00076</span><span class="p">,</span>
-        <span class="n">t_a</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-        <span class="n">mu_a</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-        <span class="n">rho_a</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-        <span class="n">t_b</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-        <span class="n">mu_b</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-    <span class="p">):</span>
-
-        <span class="k">if</span> <span class="n">name</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="s2">&quot; &quot;</span> <span class="ow">in</span> <span class="n">name</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Spaces are not allowed in Oil name&quot;</span><span class="p">)</span>
-
-        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">exp_coeff</span> <span class="o">=</span> <span class="n">exp_coeff</span>
-
-        <span class="bp">self</span><span class="o">.</span><span class="n">t_a</span> <span class="o">=</span> <span class="n">t_a</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">mu_a</span> <span class="o">=</span> <span class="n">mu_a</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">rho_a</span> <span class="o">=</span> <span class="n">rho_a</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">v_a</span> <span class="o">=</span> <span class="n">mu_a</span> <span class="o">/</span> <span class="n">rho_a</span>
-
-        <span class="bp">self</span><span class="o">.</span><span class="n">t_b</span> <span class="o">=</span> <span class="n">t_b</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">mu_b</span> <span class="o">=</span> <span class="n">mu_b</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">rho_b</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">rho</span><span class="p">(</span><span class="n">t_b</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">v_b</span> <span class="o">=</span> <span class="n">mu_b</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">rho_b</span>
-
-        <span class="k">if</span> <span class="n">name</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">AvailableOils</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span>
-
-<div class="viewcode-block" id="Oil.rho"><a class="viewcode-back" href="../../api.html#ross.materials.Oil.rho">[docs]</a>    <span class="k">def</span> <span class="nf">rho</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">T</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Density.&quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">rho_a</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">exp_coeff</span> <span class="o">*</span> <span class="p">(</span><span class="n">T</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">t_a</span><span class="p">))</span></div>
-
-<div class="viewcode-block" id="Oil.v"><a class="viewcode-back" href="../../api.html#ross.materials.Oil.v">[docs]</a>    <span class="k">def</span> <span class="nf">v</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">T</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Kinematic viscosity.&quot;&quot;&quot;</span>
-        <span class="n">va</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">v_a</span>
-        <span class="n">vb</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">v_b</span>
-        <span class="n">ta</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">t_a</span>
-        <span class="n">tb</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">t_b</span>
-
-        <span class="n">v</span> <span class="o">=</span> <span class="n">va</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">((</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">vb</span> <span class="o">/</span> <span class="n">va</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">T</span> <span class="o">-</span> <span class="n">ta</span><span class="p">))</span> <span class="o">/</span> <span class="p">(</span><span class="n">tb</span> <span class="o">-</span> <span class="n">ta</span><span class="p">))</span>
-
-        <span class="k">return</span> <span class="n">v</span></div>
-
-<div class="viewcode-block" id="Oil.mu"><a class="viewcode-back" href="../../api.html#ross.materials.Oil.mu">[docs]</a>    <span class="k">def</span> <span class="nf">mu</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">T</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Viscosity (Dynamic).&quot;&quot;&quot;</span>
-        <span class="n">v</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">v</span><span class="p">(</span><span class="n">T</span><span class="p">)</span>
-        <span class="n">rho</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">rho</span><span class="p">(</span><span class="n">T</span><span class="p">)</span>
-
-        <span class="k">return</span> <span class="n">v</span> <span class="o">*</span> <span class="n">rho</span></div>
-
-<div class="viewcode-block" id="Oil.specific_heat"><a class="viewcode-back" href="../../api.html#ross.materials.Oil.specific_heat">[docs]</a>    <span class="nd">@staticmethod</span>
-    <span class="k">def</span> <span class="nf">specific_heat</span><span class="p">(</span><span class="n">T</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Specific heat.</span>
-
-<span class="sd">        Specific heat approximation as per:</span>
-<span class="sd">        Khonsari, Michael M., and E. Richard Booser.</span>
-<span class="sd">        Applied tribology: bearing design and lubrication.</span>
-<span class="sd">        pg. 52</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="mi">1800</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="mf">0.002</span> <span class="o">*</span> <span class="n">T</span><span class="p">)</span></div>
-
-<div class="viewcode-block" id="Oil.thermal_conductivity"><a class="viewcode-back" href="../../api.html#ross.materials.Oil.thermal_conductivity">[docs]</a>    <span class="nd">@staticmethod</span>
-    <span class="k">def</span> <span class="nf">thermal_conductivity</span><span class="p">(</span><span class="n">T</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Thermal conductivity.</span>
-
-<span class="sd">        Specific heat approximation as per:</span>
-<span class="sd">        Khonsari, Michael M., and E. Richard Booser.</span>
-<span class="sd">        Applied tribology: bearing design and lubrication.</span>
-<span class="sd">        pg. 52</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="mf">0.1312</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="p">(</span><span class="mf">6.3</span> <span class="o">*</span> <span class="mf">1e-4</span><span class="p">)</span> <span class="o">*</span> <span class="n">T</span><span class="p">)</span></div></div>
-
-
-<span class="c1"># TODO add better docstrings to methods.</span>
-
-<span class="c1">#####################################################################</span>
-<span class="c1"># Available oils</span>
-<span class="c1">#####################################################################</span>
-
-
-<span class="n">iso_vg32</span> <span class="o">=</span> <span class="n">Oil</span><span class="p">(</span>
-    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;ISO_VG32&quot;</span><span class="p">,</span>
-    <span class="n">t_a</span><span class="o">=</span><span class="mi">40</span><span class="p">,</span>
-    <span class="n">rho_a</span><span class="o">=</span><span class="mf">856.8</span><span class="p">,</span>
-    <span class="n">mu_a</span><span class="o">=</span><span class="mf">0.0255768159199483</span><span class="p">,</span>
-    <span class="n">t_b</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>
-    <span class="n">mu_b</span><span class="o">=</span><span class="mf">0.0042050707290448133</span><span class="p">,</span>
-<span class="p">)</span>
-<span class="n">iso_vg46</span> <span class="o">=</span> <span class="n">Oil</span><span class="p">(</span>
-    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;ISO_VG46&quot;</span><span class="p">,</span>
-    <span class="n">t_a</span><span class="o">=</span><span class="mi">40</span><span class="p">,</span>
-    <span class="n">rho_a</span><span class="o">=</span><span class="mf">855.7</span><span class="p">,</span>
-    <span class="n">mu_a</span><span class="o">=</span><span class="mf">0.0374733067635071</span><span class="p">,</span>
-    <span class="n">t_b</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>
-    <span class="n">mu_b</span><span class="o">=</span><span class="mf">0.00527934606479555</span><span class="p">,</span>
-<span class="p">)</span>
-
-<span class="c1">#####################################################################</span>
 </pre></div>
 
     </div>
