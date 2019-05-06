@@ -2,9 +2,8 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>What you need to do to start using ROSS &#8212; ross 1.0 documentation</title>
+    <meta charset="utf-8" />
+    <title>What you need to do to start using ross &#8212; ross 0.0.1 documentation</title>
     <link rel="stylesheet" href="_static/bootstrap-sphinx.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
@@ -14,6 +13,8 @@
     <script type="text/javascript" src="_static/language_data.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="A quick tutorial on how to use ROSS" href="tutorial.html" />
+    <link rel="prev" title="ross: rotordynamic open-source software" href="index.html" />
 <meta charset='utf-8'>
 <meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
 <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
@@ -25,7 +26,7 @@
 
   </head><body>
 
-  <div id="navbar" class="navbar navbar-inverse navbar-default navbar-fixed-top">
+  <div id="navbar" class="navbar navbar-default navbar-fixed-top">
     <div class="container">
       <div class="navbar-header">
         <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
@@ -35,15 +36,16 @@
           <span class="icon-bar"></span>
         </button>
         <a class="navbar-brand" href="index.html">
-          Demo</a>
-        <span class="navbar-text navbar-version pull-left"><b></b></span>
+          ross</a>
+        <span class="navbar-text navbar-version pull-left"><b>0.0.1</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
           <ul class="nav navbar-nav">
             
-                <li><a href="examples.html">Examples</a></li>
-                <li><a href="http://example.com">Link</a></li>
+                <li><a href="api/index.html">API</a></li>
+                <li><a href="tutorial/index.html">Tutorial</a></li>
+                <li><a href="gallery/index.html">Examples</a></li>
             
             
               <li class="dropdown globaltoc-container">
@@ -56,6 +58,10 @@
       role="menu"
       aria-labelledby="dLabelGlobalToc"><p class="caption"><span class="caption-text">Contents:</span></p>
 <ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">What you need to do to start using ross</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#programming-language-python">Programming language: Python</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="tutorial.html">A quick tutorial on how to use ROSS</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="tutorial.html#downloading-ross">Downloading ROSS</a></li>
 </ul>
@@ -74,13 +80,25 @@
 <li class="toctree-l2"><a class="reference internal" href="api.html#module-ross.materials">The “Material” class</a></li>
 </ul>
 </li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">What you need to do to start using ROSS</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#programming-language-python">Programming language: Python</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#version-control-system-git">Version-control system: Git</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#repository-hosting-service-github">Repository hosting service: Github</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#integrated-development-environment-pycharm">Integrated development environment: PyCharm</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples/Tutorial.html">ROSS Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples/Tutorial.html#materials">Materials</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="examples/Tutorial.html#saving-a-material">Saving a Material</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples/Tutorial.html#loading-a-material">Loading a Material</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples/Tutorial.html#element"># Element</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples/Tutorial.html#shaftelement"># ShaftElement</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples/Tutorial.html#diskelement"># DiskElement</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples/Tutorial.html#bearingelement"># BearingElement</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples/Tutorial.html#instantiating-bearings-from-excel-archives">Instantiating bearings from excel archives</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples/Tutorial.html#rotor"># Rotor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples/Tutorial.html#from-section-instantiation-of-a-rotor">From section instantiation of a Rotor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples/Tutorial.html#visualizing-the-rotor">Visualizing the Rotor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples/Tutorial.html#running-the-simulation">Running the simulation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples/Tutorial.html#obtaining-results"># Obtaining results</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples/Tutorial.html#static-analysis">## Static analysis</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="examples/Tutorial.html#campbell-diagram">Campbell Diagram</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples/Tutorial.html#frenquency-response">Frenquency Response</a></li>
 </ul>
 </ul>
 </li>
@@ -94,11 +112,8 @@
   <ul class="dropdown-menu localtoc"
       role="menu"
       aria-labelledby="dLabelLocalToc"><ul>
-<li><a class="reference internal" href="#">What you need to do to start using ROSS</a><ul>
+<li><a class="reference internal" href="#">What you need to do to start using ross</a><ul>
 <li><a class="reference internal" href="#programming-language-python">Programming language: Python</a></li>
-<li><a class="reference internal" href="#version-control-system-git">Version-control system: Git</a></li>
-<li><a class="reference internal" href="#repository-hosting-service-github">Repository hosting service: Github</a></li>
-<li><a class="reference internal" href="#integrated-development-environment-pycharm">Integrated development environment: PyCharm</a></li>
 </ul>
 </li>
 </ul>
@@ -106,10 +121,6 @@
 </li>
               
             
-            
-              
-                
-              
             
             
             
@@ -141,41 +152,21 @@
     <div class="body col-md-12 content" role="main">
       
   <div class="section" id="what-you-need-to-do-to-start-using-ross">
-<h1>What you need to do to start using ROSS<a class="headerlink" href="#what-you-need-to-do-to-start-using-ross" title="Permalink to this headline">¶</a></h1>
+<h1>What you need to do to start using ross<a class="headerlink" href="#what-you-need-to-do-to-start-using-ross" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="programming-language-python">
 <span id="introduction"></span><h2>Programming language: Python<a class="headerlink" href="#programming-language-python" title="Permalink to this headline">¶</a></h2>
-<p>ROSS is an application that runs in Python, a high level programming language.
-If you don’t have Python installed in your machine, the first thing you should do is install it.
-You may refer to the <a class="reference external" href="http://www.python.org/">Python website</a> to do so, but because ROSS requires a number of packages to be installed besides
-Python, such as numpy, we recommend installing Anaconda instead.
-<a class="reference external" href="https://www.anaconda.com/distribution/">Anaconda</a> is a distribution of Python for scientific computing
+<p>Ross - rotordynamic open-source software is an Python application for rotordynamic
+analysis. If you don’t have Python installed in your machine, the first thing you should do is install it.</p>
+<p>Since ross requires a number of packages to be installed besides
+Python, such as numpy, we recommend installing Anaconda
+<a class="reference external" href="https://www.anaconda.com/distribution/">Anaconda</a> which is a distribution of Python for scientific computing
 that aims to simplify package management and deployment. It contains Python and a large number
 of packages that are commonly used.
-ROSS’s code was tested in Python 3.6 and higher, so make sure you
+Alternativaly, you may refer to the <a class="reference external" href="http://www.python.org/">Python website</a>.
+Ross’s code was tested in Python 3.6 and higher, so make sure you
 get a similar version.
-Although you don’t need to know Python to run ROSS,
+Although you don’t need to know Python to run ross,
 you need to be able to follow the instructions in <a class="reference internal" href="tutorial.html#tutorial"><span class="std std-ref">Downloading ROSS</span></a>, some coding included.</p>
-</div>
-<div class="section" id="version-control-system-git">
-<h2>Version-control system: Git<a class="headerlink" href="#version-control-system-git" title="Permalink to this headline">¶</a></h2>
-<p>Git is a version-control system (VCS) for tracking changes in code during software development.
-In order to download the ROSS source code and contribute to its development,
-you need Git installed in your machine. Refer to the <a class="reference external" href="https://git-scm.com/">Git website</a> and follow the instructions to download and install it.
-Once you have Git installed, you will be able to follow the instructions in <span class="xref std std-ref">git-configuration</span>,
-which explains how to download and contribute to ROSS.</p>
-</div>
-<div class="section" id="repository-hosting-service-github">
-<h2>Repository hosting service: Github<a class="headerlink" href="#repository-hosting-service-github" title="Permalink to this headline">¶</a></h2>
-<p>ROSS source code is hosted in <a class="reference external" href="https://github.com/">Github</a>, a web-based hosting service for version control using Git.
-You don’t need a Github account to download and use ROSS, but you will need one in case you
-want to contribute to its development. Refer to <span class="xref std std-ref">git-configuration</span> if you want to
-know how to contribute to ROSS.</p>
-</div>
-<div class="section" id="integrated-development-environment-pycharm">
-<h2>Integrated development environment: PyCharm<a class="headerlink" href="#integrated-development-environment-pycharm" title="Permalink to this headline">¶</a></h2>
-<p>The ROSS development team adopted PyCharm as integrated development environment (IDE).
-You don’t need PyCharm to run or contribute to ROSS, as you can choose your preferred IDE or
-even no IDE at all. But in case you want to use PyCharm, go to the <a class="reference external" href="https://www.jetbrains.com/pycharm/">PyCharm website</a> to download and install it.</p>
 </div>
 </div>
 
@@ -192,7 +183,7 @@ even no IDE at all. But in case you want to use PyCharm, go to the <a class="ref
     </p>
     <p>
         &copy; Copyright 2019, Team Ross.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.5.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.0.1.<br/>
     </p>
   </div>
 </footer>

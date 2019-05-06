@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>ROSS Quick Start &#8212; ross 0.0.1 documentation</title>
+    <link rel="stylesheet" href="../_static/bootstrap-sphinx.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/language_data.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<script type="text/javascript" src="../_static/js/jquery-1.11.0.min.js "></script>
+<script type="text/javascript" src="../_static/js/jquery-fix.js "></script>
+<script type="text/javascript" src="../_static/bootstrap-3.3.7/js/bootstrap.min.js "></script>
+<script type="text/javascript" src="../_static/bootstrap-sphinx.js "></script>
+
+  </head><body>
+
+  <div id="navbar" class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="../index.html">
+          ross</a>
+        <span class="navbar-text navbar-version pull-left"><b>0.0.1</b></span>
+      </div>
+
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            
+                <li><a href="../api/index.html">API</a></li>
+                <li><a href="../tutorial/index.html">Tutorial</a></li>
+                <li><a href="../gallery/index.html">Examples</a></li>
+            
+            
+              <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="../index.html">Site <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"><p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../introduction.html">What you need to do to start using ross</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../introduction.html#programming-language-python">Programming language: Python</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial.html">A quick tutorial on how to use ROSS</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial.html#downloading-ross">Downloading ROSS</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../git_configuration.html">How to contribute to ROSS using git</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../git_configuration.html#step-1-make-you-own-copy-fork-of-ross">Step 1: Make you own copy (fork) of ROSS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../git_configuration.html#step-2-keep-in-sync-with-changes-in-ross">Step 2: Keep in sync with changes in Ross</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../git_configuration.html#step-3-make-a-new-feature-branch">Step 3: Make a new feature branch</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../git_configuration.html#step-4-push-changes-to-your-git-repository">Step 4: Push changes to your git repository</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../git_configuration.html#step-5-push-changes-to-the-main-repo">Step 5: Push changes to the main repo</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../api.html">The ROSS project API</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../api.html#module-ross.rotor_assembly">The Rotor module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api.html#module-ross.element">The “Element” class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api.html#module-ross.materials">The “Material” class</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">ROSS Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#materials">Materials</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#saving-a-material">Saving a Material</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#loading-a-material">Loading a Material</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#element"># Element</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#shaftelement"># ShaftElement</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#diskelement"># DiskElement</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#bearingelement"># BearingElement</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#instantiating-bearings-from-excel-archives">Instantiating bearings from excel archives</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#rotor"># Rotor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#from-section-instantiation-of-a-rotor">From section instantiation of a Rotor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#visualizing-the-rotor">Visualizing the Rotor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#running-the-simulation">Running the simulation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#obtaining-results"># Obtaining results</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#static-analysis">## Static analysis</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="#campbell-diagram">Campbell Diagram</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#frenquency-response">Frenquency Response</a></li>
+</ul>
+</ul>
+</li>
+              
+                <li class="dropdown">
+  <a role="button"
+     id="dLabelLocalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="#">Page <b class="caret"></b></a>
+  <ul class="dropdown-menu localtoc"
+      role="menu"
+      aria-labelledby="dLabelLocalToc"><ul>
+<li><a class="reference internal" href="#">ROSS Quick Start</a></li>
+<li><a class="reference internal" href="#materials">Materials</a><ul>
+<li><a class="reference internal" href="#saving-a-material">Saving a Material</a></li>
+<li><a class="reference internal" href="#loading-a-material">Loading a Material</a></li>
+<li><a class="reference internal" href="#element"># Element</a></li>
+<li><a class="reference internal" href="#shaftelement"># ShaftElement</a></li>
+<li><a class="reference internal" href="#diskelement"># DiskElement</a><ul>
+<li><a class="reference internal" href="#from-geometry-diskelement-instatiation">From geometry DiskElement instatiation</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#bearingelement"># BearingElement</a></li>
+<li><a class="reference internal" href="#instantiating-bearings-from-excel-archives">Instantiating bearings from excel archives</a></li>
+<li><a class="reference internal" href="#rotor"># Rotor</a></li>
+<li><a class="reference internal" href="#from-section-instantiation-of-a-rotor">From section instantiation of a Rotor</a></li>
+<li><a class="reference internal" href="#visualizing-the-rotor">Visualizing the Rotor</a></li>
+<li><a class="reference internal" href="#running-the-simulation">Running the simulation</a></li>
+<li><a class="reference internal" href="#obtaining-results"># Obtaining results</a></li>
+<li><a class="reference internal" href="#static-analysis">## Static analysis</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#campbell-diagram">Campbell Diagram</a></li>
+<li><a class="reference internal" href="#frenquency-response">Frenquency Response</a></li>
+</ul>
+</ul>
+</li>
+              
+            
+            
+            
+            
+            
+              <li class="hidden-sm">
+<div id="sourcelink">
+  <a href="../_sources/examples/Tutorial.rst.txt"
+     rel="nofollow">Source</a>
+</div></li>
+            
+          </ul>
+
+          
+            
+<form class="navbar-form navbar-right" action="../search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+        </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="body col-md-12 content" role="main">
+      
+  <div class="section" id="ross-quick-start">
+<h1>ROSS Quick Start<a class="headerlink" href="#ross-quick-start" title="Permalink to this headline">¶</a></h1>
+<div class="line-block">
+<div class="line">This is a basic tutorial on how to properly use ROSS (Rotordynamics
+open-source software), a simulator for rotating machinery. The
+majority of this code follows object-oriented coding, which is
+represented in this <a class="reference external" href="https://user-images.githubusercontent.com/32821252/50386686-131c5200-06d3-11e9-9806-f5746295be81.png">UML
+DIAGRAM</a>.</div>
+<div class="line">In the following topics we are going to discuss the most relevant
+classes for a quick start to use ROSS.</div>
+</div>
+</div>
+<div class="section" id="materials">
+<h1>Materials<a class="headerlink" href="#materials" title="Permalink to this headline">¶</a></h1>
+<p>There is a class called Material to hold material’s properties.</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">ross</span> <span class="k">as</span> <span class="nn">rs</span>
+<span class="kn">from</span> <span class="nn">bokeh.io</span> <span class="k">import</span> <span class="n">output_notebook</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="n">output_notebook</span><span class="p">()</span>
+
+<span class="n">Steel</span> <span class="o">=</span> <span class="n">rs</span><span class="o">.</span><span class="n">Material</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;Steel&quot;</span><span class="p">,</span> <span class="n">rho</span><span class="o">=</span><span class="mi">7810</span><span class="p">,</span> <span class="n">E</span><span class="o">=</span><span class="mf">211e9</span><span class="p">,</span> <span class="n">G_s</span><span class="o">=</span><span class="mf">81.2e9</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="bk-root">
+    <a href="https://bokeh.pydata.org" target="_blank" class="bk-logo bk-logo-small bk-logo-notebook"></a>
+    <span id="1001">Loading BokehJS ...</span>
+</div><div class="line-block">
+<div class="line">Where: - ‘name’ is a parameter used to identificate the material. -
+‘rho’ is the density of this material - ‘E’ is the Young’s modulus. -
+‘G_s’ is the Shear modulus.</div>
+<div class="line">Note that, to instatiate a Material class, you only need to give 2 out
+of the following parameters: ‘E’, ‘G_s’ ,‘rho’.</div>
+</div>
+<div class="section" id="saving-a-material">
+<h2>Saving a Material<a class="headerlink" href="#saving-a-material" title="Permalink to this headline">¶</a></h2>
+<p>To save an already instantiated Material object, you need to use the
+following method.</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Steel</span><span class="o">.</span><span class="n">save_material</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="loading-a-material">
+<h2>Loading a Material<a class="headerlink" href="#loading-a-material" title="Permalink to this headline">¶</a></h2>
+<p>To load a material, first of all, use the available_materials() method
+to check if your material is instantiated, then you should use the
+Material.use_material(‘name’) method with the name of the material as a
+parameter.</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rs</span><span class="o">.</span><span class="n">Material</span><span class="o">.</span><span class="n">available_materials</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="s1">&#39;Steel&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">steel</span> <span class="o">=</span> <span class="n">rs</span><span class="o">.</span><span class="n">Material</span><span class="o">.</span><span class="n">use_material</span><span class="p">(</span><span class="s1">&#39;Steel&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="element">
+<h2># Element<a class="headerlink" href="#element" title="Permalink to this headline">¶</a></h2>
+<div class="line-block">
+<div class="line">Element is an abstract class(not directly used in the program), this
+class is mainly used to organize the code and make it more intuitive.</div>
+<div class="line">- All the classes which derives from Element ends with Element in
+their respective names. - Every element is placed in a node, which is
+the junction of two elements.</div>
+</div>
+</div>
+<div class="section" id="shaftelement">
+<h2># ShaftElement<a class="headerlink" href="#shaftelement" title="Permalink to this headline">¶</a></h2>
+<div class="line-block">
+<div class="line">There are two methods that you could use to model this element:</div>
+<div class="line">* Euler–Bernoulli beam Theory * Timoshenko beam Theory (used as
+default)</div>
+</div>
+<div class="line-block">
+<div class="line">This Element represents the rotor’s shaft, all the other elements are
+correlated with this one.</div>
+<div class="line">This class can be instantiated as the code that follows.</div>
+<div class="line">Where: - ‘i_d’: the shaft’s internal diameter (zero when dealing with
+a solid shaft). - ‘o_d’: the shaft’s outter diameter. - ‘n’: the node
+where the shaft elements starts. - ‘L’: the length of the shaft
+element.</div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">i_d</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">o_d</span> <span class="o">=</span> <span class="mf">0.05</span>
+<span class="n">n</span> <span class="o">=</span> <span class="mi">6</span>
+<span class="n">l_list</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.25</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">)]</span>
+
+<span class="n">shaft_elements</span> <span class="o">=</span> <span class="p">[</span><span class="n">rs</span><span class="o">.</span><span class="n">ShaftElement</span><span class="p">(</span><span class="n">L</span><span class="o">=</span><span class="n">l</span><span class="p">,</span>
+                                  <span class="n">i_d</span><span class="o">=</span><span class="n">i_d</span><span class="p">,</span>
+                                  <span class="n">o_d</span><span class="o">=</span><span class="n">o_d</span><span class="p">,</span>
+                                  <span class="n">material</span><span class="o">=</span><span class="n">steel</span><span class="p">,</span>
+                                  <span class="n">shear_effects</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                                  <span class="n">rotary_inertia</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                                  <span class="n">gyroscopic</span><span class="o">=</span><span class="kc">True</span>
+                                  <span class="p">)</span> <span class="k">for</span> <span class="n">l</span> <span class="ow">in</span> <span class="n">l_list</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="diskelement">
+<h2># DiskElement<a class="headerlink" href="#diskelement" title="Permalink to this headline">¶</a></h2>
+<div class="line-block">
+<div class="line">As the name says this class represents a Disk.</div>
+<div class="line">We can see an example of instantiation of this class in the following
+lines of code.</div>
+</div>
+<p>Where: - ‘n’ is the node where this disk is stored. - ‘Id’ is the
+Diametral moment of inertia. - ‘Ip’ is the Polar moment of inertia. -
+‘m’ is the mass of the Disk.</p>
+<p>All the values are following the S.I. convention.</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Disk</span> <span class="o">=</span> <span class="n">rs</span><span class="o">.</span><span class="n">DiskElement</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">m</span><span class="o">=</span><span class="mf">32.58972765</span><span class="p">,</span> <span class="n">Id</span><span class="o">=</span><span class="mf">0.17808928</span><span class="p">,</span> <span class="n">Ip</span><span class="o">=</span><span class="mf">0.32956362</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">Disk</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">ross</span><span class="o">.</span><span class="n">disk_element</span><span class="o">.</span><span class="n">DiskElement</span> <span class="nb">object</span> <span class="n">at</span> <span class="mh">0x7fc50ef3e6a0</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<div class="section" id="from-geometry-diskelement-instatiation">
+<h3>From geometry DiskElement instatiation<a class="headerlink" href="#from-geometry-diskelement-instatiation" title="Permalink to this headline">¶</a></h3>
+<div class="line-block">
+<div class="line">Besides the instatiation previously explained, there is a way to
+instantiate a DiskElement with only geometrical parameters (for
+cylindrical disks) and the material which this disk is made of, as we
+can see in the following code.</div>
+<div class="line">- ‘n’ is the node where the disk is stored. - ‘i_d’ is the internal
+diameter of the disk(usually it’s the same as the outter diameter of
+the shaft where the disk is placed. - ‘o_d’ is the outter diameter of
+the disk. - ‘material’ is the material which the disk is made of. -
+‘width’ is the disk’s width</div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">disk0</span> <span class="o">=</span> <span class="n">rs</span><span class="o">.</span><span class="n">DiskElement</span><span class="o">.</span><span class="n">from_geometry</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+                                     <span class="n">material</span><span class="o">=</span><span class="n">steel</span><span class="p">,</span>
+                                   <span class="n">width</span><span class="o">=</span><span class="mf">0.07</span><span class="p">,</span>
+                                  <span class="n">i_d</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span>
+                                  <span class="n">o_d</span><span class="o">=</span><span class="mf">0.28</span>
+                                  <span class="p">)</span>
+<span class="n">disk1</span> <span class="o">=</span> <span class="n">rs</span><span class="o">.</span><span class="n">DiskElement</span><span class="o">.</span><span class="n">from_geometry</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span>
+                                  <span class="n">material</span><span class="o">=</span><span class="n">steel</span><span class="p">,</span>
+                                  <span class="n">width</span><span class="o">=</span><span class="mf">0.07</span><span class="p">,</span>
+                                  <span class="n">i_d</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span>
+                                  <span class="n">o_d</span><span class="o">=</span><span class="mf">0.28</span>
+                                  <span class="p">)</span>
+<span class="n">disks</span> <span class="o">=</span> <span class="p">[</span><span class="n">disk0</span><span class="p">,</span><span class="n">disk1</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="bearingelement">
+<h2># BearingElement<a class="headerlink" href="#bearingelement" title="Permalink to this headline">¶</a></h2>
+<div class="line-block">
+<div class="line">As it says on the name, this class is a bearing.</div>
+<div class="line">The following code demonstrate how to properly instantiate it. - ‘n’
+is the node in which the bearing is located. - ‘kxx’ is a stiffness
+coefficient that corresponds to the term from the stiffness matrix. -
+‘kyy’ is a stiffness coefficient that corresponds to the term from the
+stiffness matrix. - ‘cxx’ is a damping coefficient that corresponds to
+the term from the damping matrix.</div>
+</div>
+<p>P.S.: Note that the coefficients could be an array with different
+coefficients for different rotation speeds, in that case you only have
+to give a parameter ‘w’ which is a array with the same size as the
+coefficients array.</p>
+<p>P.S.2: The coefficients are not limitated by kxx and kyy, you can also
+give cross-coupled coefficients.</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">stfx</span> <span class="o">=</span> <span class="mf">1e6</span>
+<span class="n">stfy</span> <span class="o">=</span> <span class="mf">0.8e6</span>
+<span class="n">bearing0</span> <span class="o">=</span> <span class="n">rs</span><span class="o">.</span><span class="n">BearingElement</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">kxx</span><span class="o">=</span><span class="n">stfx</span><span class="p">,</span> <span class="n">kyy</span><span class="o">=</span><span class="n">stfy</span><span class="p">,</span> <span class="n">cxx</span><span class="o">=</span><span class="mf">1e3</span><span class="p">,</span> <span class="n">w</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">200</span><span class="p">,</span><span class="mi">101</span><span class="p">))</span>
+<span class="n">bearing1</span> <span class="o">=</span> <span class="n">rs</span><span class="o">.</span><span class="n">BearingElement</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span> <span class="n">kxx</span><span class="o">=</span><span class="n">stfx</span><span class="p">,</span> <span class="n">kyy</span><span class="o">=</span><span class="n">stfy</span><span class="p">,</span> <span class="n">cxx</span><span class="o">=</span><span class="mf">1e3</span><span class="p">,</span> <span class="n">w</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">200</span><span class="p">,</span><span class="mi">101</span><span class="p">))</span>
+<span class="n">bearings</span> <span class="o">=</span> <span class="p">[</span><span class="n">bearing0</span><span class="p">,</span> <span class="n">bearing1</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="instantiating-bearings-from-excel-archives">
+<h2>Instantiating bearings from excel archives<a class="headerlink" href="#instantiating-bearings-from-excel-archives" title="Permalink to this headline">¶</a></h2>
+<p>There’s a class method to instantiate a bearing from excel tables, as we
+can see in the following code.</p>
+</div>
+<div class="section" id="rotor">
+<h2># Rotor<a class="headerlink" href="#rotor" title="Permalink to this headline">¶</a></h2>
+<p>This class unifies all the Element classes in the program and assembles
+the mass, damping and stiffness matrices of each element, building up
+matrices for the global system. Apart from that, it also outputs all the
+results classes obtained by the simulation.</p>
+<p>To use this class you only have to give all the already instantiated
+elements in a list format, as it follows.</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rotor1</span> <span class="o">=</span> <span class="n">rs</span><span class="o">.</span><span class="n">Rotor</span><span class="p">(</span><span class="n">shaft_elements</span><span class="p">,</span>
+                  <span class="n">disks</span><span class="p">,</span>
+                  <span class="n">bearings</span>
+                  <span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">To</span> <span class="n">check</span> <span class="n">the</span> <span class="n">rotor</span> <span class="n">geometry</span><span class="p">,</span> <span class="n">use</span> <span class="n">the</span> <span class="n">method</span> <span class="n">plot_rotor</span><span class="p">()</span>
+<span class="n">To</span> <span class="n">calculate</span> <span class="n">the</span> <span class="n">rotor</span> <span class="n">state</span><span class="p">,</span> <span class="n">use</span> <span class="n">the</span> <span class="n">method</span> <span class="n">run</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="from-section-instantiation-of-a-rotor">
+<h2>From section instantiation of a Rotor<a class="headerlink" href="#from-section-instantiation-of-a-rotor" title="Permalink to this headline">¶</a></h2>
+<div class="line-block">
+<div class="line">In this form of instantiation, the number of shaft elements used in
+FEM are not fixed, instead, the program does a convergence analysis,
+testing the number of elements to a point where the relative error
+between iterations reaches a value that can be neglected.</div>
+<div class="line">To use this method, you should divide the rotor in a way where the
+number of shaft elements is minimal and place every element (except
+for the shaft elements) in the minimal nodes</div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">i_d</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">o_d</span> <span class="o">=</span> <span class="mf">0.05</span>
+
+<span class="n">i_ds_data</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">o_ds_data</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">]</span>
+<span class="n">leng_data</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">]</span>
+
+<span class="n">stfx</span> <span class="o">=</span> <span class="mf">1e6</span>
+<span class="n">stfy</span> <span class="o">=</span> <span class="mf">0.8e6</span>
+<span class="n">bearing0</span> <span class="o">=</span> <span class="n">rs</span><span class="o">.</span><span class="n">BearingElement</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">kxx</span><span class="o">=</span><span class="n">stfx</span><span class="p">,</span> <span class="n">kyy</span><span class="o">=</span><span class="n">stfy</span><span class="p">,</span> <span class="n">cxx</span><span class="o">=</span><span class="mf">1e3</span><span class="p">,</span> <span class="n">w</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">200</span><span class="p">,</span><span class="mi">101</span><span class="p">))</span>
+<span class="n">bearing1</span> <span class="o">=</span> <span class="n">rs</span><span class="o">.</span><span class="n">BearingElement</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">kxx</span><span class="o">=</span><span class="n">stfx</span><span class="p">,</span> <span class="n">kyy</span><span class="o">=</span><span class="n">stfy</span><span class="p">,</span> <span class="n">cxx</span><span class="o">=</span><span class="mf">1e3</span><span class="p">,</span> <span class="n">w</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">200</span><span class="p">,</span><span class="mi">101</span><span class="p">))</span>
+<span class="n">bearings</span> <span class="o">=</span> <span class="p">[</span><span class="n">bearing0</span><span class="p">,</span> <span class="n">bearing1</span><span class="p">]</span>
+
+<span class="n">disk0</span> <span class="o">=</span> <span class="n">rs</span><span class="o">.</span><span class="n">DiskElement</span><span class="o">.</span><span class="n">from_geometry</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+                                     <span class="n">material</span><span class="o">=</span><span class="n">steel</span><span class="p">,</span>
+                                     <span class="n">width</span><span class="o">=</span><span class="mf">0.07</span><span class="p">,</span>
+                                     <span class="n">i_d</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span>
+                                     <span class="n">o_d</span><span class="o">=</span><span class="mf">0.28</span>
+                                    <span class="p">)</span>
+<span class="n">disk1</span> <span class="o">=</span> <span class="n">rs</span><span class="o">.</span><span class="n">DiskElement</span><span class="o">.</span><span class="n">from_geometry</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+                                     <span class="n">material</span><span class="o">=</span><span class="n">steel</span><span class="p">,</span>
+                                     <span class="n">width</span><span class="o">=</span><span class="mf">0.07</span><span class="p">,</span>
+                                     <span class="n">i_d</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span>
+                                     <span class="n">o_d</span><span class="o">=</span><span class="mf">0.28</span>
+                                    <span class="p">)</span>
+<span class="n">disks</span> <span class="o">=</span> <span class="p">[</span><span class="n">disk0</span><span class="p">,</span><span class="n">disk1</span><span class="p">]</span>
+
+<span class="n">rotor2</span> <span class="o">=</span> <span class="n">rs</span><span class="o">.</span><span class="n">Rotor</span><span class="o">.</span><span class="n">from_section</span><span class="p">(</span><span class="n">brg_seal_data</span><span class="o">=</span><span class="n">bearings</span><span class="p">,</span>
+                               <span class="n">disk_data</span><span class="o">=</span><span class="n">disks</span><span class="p">,</span>
+                               <span class="n">i_ds_data</span><span class="o">=</span><span class="n">i_ds_data</span><span class="p">,</span>
+                               <span class="n">leng_data</span><span class="o">=</span><span class="n">leng_data</span><span class="p">,</span>
+                               <span class="n">o_ds_data</span><span class="o">=</span><span class="n">o_ds_data</span><span class="p">,</span>
+                              <span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">To</span> <span class="n">check</span> <span class="n">the</span> <span class="n">rotor</span> <span class="n">geometry</span><span class="p">,</span> <span class="n">use</span> <span class="n">the</span> <span class="n">method</span> <span class="n">plot_rotor</span><span class="p">()</span>
+<span class="n">To</span> <span class="n">calculate</span> <span class="n">the</span> <span class="n">rotor</span> <span class="n">state</span><span class="p">,</span> <span class="n">use</span> <span class="n">the</span> <span class="n">method</span> <span class="n">run</span><span class="p">()</span>
+<span class="n">To</span> <span class="n">check</span> <span class="n">the</span> <span class="n">rotor</span> <span class="n">geometry</span><span class="p">,</span> <span class="n">use</span> <span class="n">the</span> <span class="n">method</span> <span class="n">plot_rotor</span><span class="p">()</span>
+<span class="n">To</span> <span class="n">calculate</span> <span class="n">the</span> <span class="n">rotor</span> <span class="n">state</span><span class="p">,</span> <span class="n">use</span> <span class="n">the</span> <span class="n">method</span> <span class="n">run</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="bk-root" id="206dfaad-fb94-4d5b-8f5b-ef234632bef1" data-root-id="1117"></div><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">To</span> <span class="n">check</span> <span class="n">the</span> <span class="n">rotor</span> <span class="n">geometry</span><span class="p">,</span> <span class="n">use</span> <span class="n">the</span> <span class="n">method</span> <span class="n">plot_rotor</span><span class="p">()</span>
+<span class="n">To</span> <span class="n">calculate</span> <span class="n">the</span> <span class="n">rotor</span> <span class="n">state</span><span class="p">,</span> <span class="n">use</span> <span class="n">the</span> <span class="n">method</span> <span class="n">run</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="visualizing-the-rotor">
+<h2>Visualizing the Rotor<a class="headerlink" href="#visualizing-the-rotor" title="Permalink to this headline">¶</a></h2>
+<p>It is interesting to plot the rotor to check if it’s really what you
+wanted to instantiate, you can plot it with the following code.</p>
+<p>Note: There are two plots, one with bokeh plot and one with matplotlib,
+you can either turn on or off the matplotlib one.</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rotor1</span><span class="o">.</span><span class="n">plot_rotor</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="bk-root" id="8eaf358e-c331-4131-b620-aeee7d231d00" data-root-id="1320"></div><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">Figure</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s1">&#39;1320&#39;</span><span class="p">,</span> <span class="o">...</span><span class="p">),</span>
+ <span class="o">&lt;</span><span class="n">matplotlib</span><span class="o">.</span><span class="n">axes</span><span class="o">.</span><span class="n">_subplots</span><span class="o">.</span><span class="n">AxesSubplot</span> <span class="n">at</span> <span class="mh">0x7fc50ef3e4e0</span><span class="o">&gt;</span><span class="p">)</span>
+</pre></div>
+</div>
+<img alt="../_images/Tutorial_23_3.png" src="../_images/Tutorial_23_3.png" />
+</div>
+<div class="section" id="running-the-simulation">
+<h2>Running the simulation<a class="headerlink" href="#running-the-simulation" title="Permalink to this headline">¶</a></h2>
+<p>After you verify that everything is fine with the rotor, you should run
+the simulation and obtain results. To do that you only need to use the
+run() method like the code bellow.</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rotor1</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+<span class="n">rotor2</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="obtaining-results">
+<h2># Obtaining results<a class="headerlink" href="#obtaining-results" title="Permalink to this headline">¶</a></h2>
+<p>These are the following analysis you can do with the program: - Static
+analysis - Campbell Diagram - Frequency response - Forced response -
+Mode Shapes</p>
+</div>
+<div class="section" id="static-analysis">
+<h2>## Static analysis<a class="headerlink" href="#static-analysis" title="Permalink to this headline">¶</a></h2>
+<p>This method gives a free body diagram and a exagerated plot of the rotor
+response to gravity effects.</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rotor1</span><span class="o">.</span><span class="n">static</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="bk-root" id="14811fcf-5ee6-41df-8d18-e09c43f4aa59" data-root-id="2835"></div></div>
+</div>
+<div class="section" id="campbell-diagram">
+<h1>Campbell Diagram<a class="headerlink" href="#campbell-diagram" title="Permalink to this headline">¶</a></h1>
+<p>In this example we can see the campbell diagram from 0 to 4000 RPM.</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">campbell</span> <span class="o">=</span> <span class="n">rotor1</span><span class="o">.</span><span class="n">campbell</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">200</span><span class="p">,</span><span class="mi">101</span><span class="p">))</span>
+<span class="n">campbell</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="o">&lt;</span><span class="n">Figure</span> <span class="n">size</span> <span class="mi">432</span><span class="n">x288</span> <span class="k">with</span> <span class="mi">2</span> <span class="n">Axes</span><span class="o">&gt;</span><span class="p">,</span>
+ <span class="o">&lt;</span><span class="n">matplotlib</span><span class="o">.</span><span class="n">axes</span><span class="o">.</span><span class="n">_subplots</span><span class="o">.</span><span class="n">AxesSubplot</span> <span class="n">at</span> <span class="mh">0x7fc50d883b38</span><span class="o">&gt;</span><span class="p">)</span>
+</pre></div>
+</div>
+<img alt="../_images/Tutorial_29_1.png" src="../_images/Tutorial_29_1.png" />
+</div>
+<div class="section" id="frenquency-response">
+<h1>Frenquency Response<a class="headerlink" href="#frenquency-response" title="Permalink to this headline">¶</a></h1>
+<p>We can put the frequency response of</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rotor1</span><span class="o">.</span><span class="n">freq_response</span><span class="p">()</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">inp</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">out</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s2">&quot;figure.figsize&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">15</span><span class="p">,</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+<img alt="../_images/Tutorial_31_0.png" src="../_images/Tutorial_31_0.png" />
+</div>
+
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
+    </p>
+    <p>
+        &copy; Copyright 2019, Team Ross.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.0.1.<br/>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>

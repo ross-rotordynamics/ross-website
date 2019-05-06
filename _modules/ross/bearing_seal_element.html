@@ -2,9 +2,8 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>ross.bearing_seal_element &#8212; ross 1.0 documentation</title>
+    <meta charset="utf-8" />
+    <title>ross.bearing_seal_element &#8212; ross 0.0.1 documentation</title>
     <link rel="stylesheet" href="../../_static/bootstrap-sphinx.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
     <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
@@ -25,7 +24,7 @@
 
   </head><body>
 
-  <div id="navbar" class="navbar navbar-inverse navbar-default navbar-fixed-top">
+  <div id="navbar" class="navbar navbar-default navbar-fixed-top">
     <div class="container">
       <div class="navbar-header">
         <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
@@ -35,15 +34,16 @@
           <span class="icon-bar"></span>
         </button>
         <a class="navbar-brand" href="../../index.html">
-          Demo</a>
-        <span class="navbar-text navbar-version pull-left"><b></b></span>
+          ross</a>
+        <span class="navbar-text navbar-version pull-left"><b>0.0.1</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
           <ul class="nav navbar-nav">
             
-                <li><a href="../../examples.html">Examples</a></li>
-                <li><a href="http://example.com">Link</a></li>
+                <li><a href="../../api/index.html">API</a></li>
+                <li><a href="../../tutorial/index.html">Tutorial</a></li>
+                <li><a href="../../gallery/index.html">Examples</a></li>
             
             
               <li class="dropdown globaltoc-container">
@@ -56,6 +56,10 @@
       role="menu"
       aria-labelledby="dLabelGlobalToc"><p class="caption"><span class="caption-text">Contents:</span></p>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../introduction.html">What you need to do to start using ross</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../introduction.html#programming-language-python">Programming language: Python</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="../../tutorial.html">A quick tutorial on how to use ROSS</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../tutorial.html#downloading-ross">Downloading ROSS</a></li>
 </ul>
@@ -74,13 +78,25 @@
 <li class="toctree-l2"><a class="reference internal" href="../../api.html#module-ross.materials">The “Material” class</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../../introduction.html">What you need to do to start using ROSS</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../introduction.html#programming-language-python">Programming language: Python</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../introduction.html#version-control-system-git">Version-control system: Git</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../introduction.html#repository-hosting-service-github">Repository hosting service: Github</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../introduction.html#integrated-development-environment-pycharm">Integrated development environment: PyCharm</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples/Tutorial.html">ROSS Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples/Tutorial.html#materials">Materials</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/Tutorial.html#saving-a-material">Saving a Material</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/Tutorial.html#loading-a-material">Loading a Material</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/Tutorial.html#element"># Element</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/Tutorial.html#shaftelement"># ShaftElement</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/Tutorial.html#diskelement"># DiskElement</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/Tutorial.html#bearingelement"># BearingElement</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/Tutorial.html#instantiating-bearings-from-excel-archives">Instantiating bearings from excel archives</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/Tutorial.html#rotor"># Rotor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/Tutorial.html#from-section-instantiation-of-a-rotor">From section instantiation of a Rotor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/Tutorial.html#visualizing-the-rotor">Visualizing the Rotor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/Tutorial.html#running-the-simulation">Running the simulation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/Tutorial.html#obtaining-results"># Obtaining results</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/Tutorial.html#static-analysis">## Static analysis</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples/Tutorial.html#campbell-diagram">Campbell Diagram</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples/Tutorial.html#frenquency-response">Frenquency Response</a></li>
 </ul>
 </ul>
 </li>
@@ -97,10 +113,6 @@
 </li>
               
             
-            
-              
-                
-              
             
             
             
@@ -136,6 +148,9 @@
 <span class="kn">import</span> <span class="nn">bokeh.palettes</span> <span class="k">as</span> <span class="nn">bp</span>
 <span class="kn">from</span> <span class="nn">ross.element</span> <span class="k">import</span> <span class="n">Element</span>
 <span class="kn">import</span> <span class="nn">pytest</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">xlrd</span>
 
 <span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;BearingElement&quot;</span><span class="p">,</span> <span class="s2">&quot;SealElement&quot;</span><span class="p">]</span>
 <span class="n">bokeh_colors</span> <span class="o">=</span> <span class="n">bp</span><span class="o">.</span><span class="n">RdGy</span><span class="p">[</span><span class="mi">11</span><span class="p">]</span>
@@ -313,7 +328,55 @@
                 <span class="k">return</span> <span class="kc">True</span>
             <span class="k">else</span><span class="p">:</span>
                 <span class="k">return</span> <span class="kc">False</span>
+            
+    <span class="k">def</span> <span class="nf">save</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">file_name</span><span class="p">):</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">load_data</span><span class="p">(</span><span class="n">file_name</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">w</span><span class="p">)</span> <span class="o">==</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">w</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+                <span class="n">w</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">w</span><span class="p">)</span>
+            <span class="k">except</span> <span class="ne">IndexError</span><span class="p">:</span>
+                <span class="n">w</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="n">data</span><span class="p">[</span><span class="s2">&quot;BearingElement&quot;</span><span class="p">][</span><span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">n</span><span class="p">)]</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;n&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">n</span><span class="p">,</span>
+            <span class="s2">&quot;kxx&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">kxx</span><span class="o">.</span><span class="n">coefficient</span><span class="p">,</span>
+            <span class="s2">&quot;cxx&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">cxx</span><span class="o">.</span><span class="n">coefficient</span><span class="p">,</span>
+            <span class="s2">&quot;kyy&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">kyy</span><span class="o">.</span><span class="n">coefficient</span><span class="p">,</span>
+            <span class="s2">&quot;kxy&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">kxy</span><span class="o">.</span><span class="n">coefficient</span><span class="p">,</span>
+            <span class="s2">&quot;kyx&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">kyx</span><span class="o">.</span><span class="n">coefficient</span><span class="p">,</span>
+            <span class="s2">&quot;cyy&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">cyy</span><span class="o">.</span><span class="n">coefficient</span><span class="p">,</span>
+            <span class="s2">&quot;cxy&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">cxy</span><span class="o">.</span><span class="n">coefficient</span><span class="p">,</span>
+            <span class="s2">&quot;cyx&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">cyx</span><span class="o">.</span><span class="n">coefficient</span><span class="p">,</span>
+            <span class="s2">&quot;w&quot;</span><span class="p">:</span> <span class="n">w</span><span class="p">,</span>
+        <span class="p">}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">dump_data</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">file_name</span><span class="p">)</span>
 
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">load</span><span class="p">(</span><span class="n">file_name</span><span class="o">=</span><span class="s2">&quot;BearingElement&quot;</span><span class="p">):</span>
+        <span class="n">bearing_elements</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">bearing_elements_dict</span> <span class="o">=</span> <span class="n">BearingElement</span><span class="o">.</span><span class="n">load_data</span><span class="p">(</span><span class="n">file_name</span><span class="o">=</span><span class="s2">&quot;BearingElement.toml&quot;</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">element</span> <span class="ow">in</span> <span class="n">bearing_elements_dict</span><span class="p">[</span><span class="s2">&quot;BearingElement&quot;</span><span class="p">]:</span>
+            <span class="n">bearing</span> <span class="o">=</span> <span class="n">BearingElement</span><span class="p">(</span>
+                <span class="o">**</span><span class="n">bearing_elements_dict</span><span class="p">[</span><span class="s2">&quot;BearingElement&quot;</span><span class="p">][</span><span class="n">element</span><span class="p">]</span>
+            <span class="p">)</span>
+            <span class="n">bearing</span><span class="o">.</span><span class="n">kxx</span><span class="o">.</span><span class="n">coefficient</span> <span class="o">=</span> <span class="n">bearing_elements_dict</span><span class="p">[</span><span class="s2">&quot;BearingElement&quot;</span><span class="p">][</span><span class="n">element</span><span class="p">][</span><span class="s2">&quot;kxx&quot;</span><span class="p">]</span>
+
+            <span class="n">bearing</span><span class="o">.</span><span class="n">kxy</span><span class="o">.</span><span class="n">coefficient</span> <span class="o">=</span> <span class="n">bearing_elements_dict</span><span class="p">[</span><span class="s2">&quot;BearingElement&quot;</span><span class="p">][</span><span class="n">element</span><span class="p">][</span><span class="s2">&quot;kxy&quot;</span><span class="p">]</span>
+
+            <span class="n">bearing</span><span class="o">.</span><span class="n">kyx</span><span class="o">.</span><span class="n">coefficient</span> <span class="o">=</span> <span class="n">bearing_elements_dict</span><span class="p">[</span><span class="s2">&quot;BearingElement&quot;</span><span class="p">][</span><span class="n">element</span><span class="p">][</span><span class="s2">&quot;kyx&quot;</span><span class="p">]</span>
+
+            <span class="n">bearing</span><span class="o">.</span><span class="n">kyy</span><span class="o">.</span><span class="n">coefficient</span> <span class="o">=</span> <span class="n">bearing_elements_dict</span><span class="p">[</span><span class="s2">&quot;BearingElement&quot;</span><span class="p">][</span><span class="n">element</span><span class="p">][</span><span class="s2">&quot;kyy&quot;</span><span class="p">]</span>
+
+            <span class="n">bearing</span><span class="o">.</span><span class="n">cxx</span><span class="o">.</span><span class="n">coefficient</span> <span class="o">=</span> <span class="n">bearing_elements_dict</span><span class="p">[</span><span class="s2">&quot;BearingElement&quot;</span><span class="p">][</span><span class="n">element</span><span class="p">][</span><span class="s2">&quot;cxx&quot;</span><span class="p">]</span>
+
+            <span class="n">bearing</span><span class="o">.</span><span class="n">cxy</span><span class="o">.</span><span class="n">coefficient</span> <span class="o">=</span> <span class="n">bearing_elements_dict</span><span class="p">[</span><span class="s2">&quot;BearingElement&quot;</span><span class="p">][</span><span class="n">element</span><span class="p">][</span><span class="s2">&quot;cxy&quot;</span><span class="p">]</span>
+
+            <span class="n">bearing</span><span class="o">.</span><span class="n">cyx</span><span class="o">.</span><span class="n">coefficient</span> <span class="o">=</span> <span class="n">bearing_elements_dict</span><span class="p">[</span><span class="s2">&quot;BearingElement&quot;</span><span class="p">][</span><span class="n">element</span><span class="p">][</span><span class="s2">&quot;cyx&quot;</span><span class="p">]</span>
+
+            <span class="n">bearing</span><span class="o">.</span><span class="n">cyy</span><span class="o">.</span><span class="n">coefficient</span> <span class="o">=</span> <span class="n">bearing_elements_dict</span><span class="p">[</span><span class="s2">&quot;BearingElement&quot;</span><span class="p">][</span><span class="n">element</span><span class="p">][</span><span class="s2">&quot;cyy&quot;</span><span class="p">]</span>
+
+            <span class="n">bearing_elements</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">bearing</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">bearing_elements</span>
     <span class="k">def</span> <span class="nf">M</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">M</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
 
@@ -392,7 +455,66 @@
                    <span class="n">line_width</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
                    <span class="n">fill_alpha</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
                    <span class="n">fill_color</span><span class="o">=</span><span class="n">bokeh_colors</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
-                   <span class="p">)</span></div></div>
+                   <span class="p">)</span></div>
+
+<div class="viewcode-block" id="BearingElement.table_to_toml"><a class="viewcode-back" href="../../api.html#ross.bearing_seal_element.BearingElement.table_to_toml">[docs]</a>    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">table_to_toml</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">file</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Convert a table with parameters of a bearing element to a dictionary ready to save</span>
+<span class="sd">        to a toml file that can be later loaded by ross.</span>
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        :param n : int. The node in which the bearing will be located in the rotor.</span>
+<span class="sd">        :param file: str. Path to the file containing the bearing parameters.</span>
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        :return: dict that is ready to save to toml and readable by ross.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">b_elem</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">from_table</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">file</span><span class="p">)</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;n&quot;</span><span class="p">:</span> <span class="n">b_elem</span><span class="o">.</span><span class="n">n</span><span class="p">,</span>
+            <span class="s2">&quot;kxx&quot;</span><span class="p">:</span> <span class="n">b_elem</span><span class="o">.</span><span class="n">kxx</span><span class="o">.</span><span class="n">coefficient</span><span class="p">,</span>
+            <span class="s2">&quot;cxx&quot;</span><span class="p">:</span> <span class="n">b_elem</span><span class="o">.</span><span class="n">cxx</span><span class="o">.</span><span class="n">coefficient</span><span class="p">,</span>
+            <span class="s2">&quot;kyy&quot;</span><span class="p">:</span> <span class="n">b_elem</span><span class="o">.</span><span class="n">kyy</span><span class="o">.</span><span class="n">coefficient</span><span class="p">,</span>
+            <span class="s2">&quot;kxy&quot;</span><span class="p">:</span> <span class="n">b_elem</span><span class="o">.</span><span class="n">kxy</span><span class="o">.</span><span class="n">coefficient</span><span class="p">,</span>
+            <span class="s2">&quot;kyx&quot;</span><span class="p">:</span> <span class="n">b_elem</span><span class="o">.</span><span class="n">kyx</span><span class="o">.</span><span class="n">coefficient</span><span class="p">,</span>
+            <span class="s2">&quot;cyy&quot;</span><span class="p">:</span> <span class="n">b_elem</span><span class="o">.</span><span class="n">cyy</span><span class="o">.</span><span class="n">coefficient</span><span class="p">,</span>
+            <span class="s2">&quot;cxy&quot;</span><span class="p">:</span> <span class="n">b_elem</span><span class="o">.</span><span class="n">cxy</span><span class="o">.</span><span class="n">coefficient</span><span class="p">,</span>
+            <span class="s2">&quot;cyx&quot;</span><span class="p">:</span> <span class="n">b_elem</span><span class="o">.</span><span class="n">cyx</span><span class="o">.</span><span class="n">coefficient</span><span class="p">,</span>
+            <span class="s2">&quot;w&quot;</span><span class="p">:</span> <span class="n">b_elem</span><span class="o">.</span><span class="n">w</span><span class="p">,</span>
+        <span class="p">}</span>
+        <span class="k">return</span> <span class="n">data</span></div>
+
+<div class="viewcode-block" id="BearingElement.from_table"><a class="viewcode-back" href="../../api.html#ross.bearing_seal_element.BearingElement.from_table">[docs]</a>    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">from_table</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">file</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Instantiate a bearing using inputs from a table, either excel or csv.</span>
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        :param n : int. The node in which the bearing will be located in the rotor.</span>
+<span class="sd">        :param file: str. Path to the file containing the bearing parameters.</span>
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        :return: A bearing object.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="n">file</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">FileNotFoundError</span><span class="p">:</span>
+            <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="n">file</span> <span class="o">+</span> <span class="s2">&quot; not found.&quot;</span><span class="p">)</span>
+        <span class="k">except</span> <span class="n">xlrd</span><span class="o">.</span><span class="n">biffh</span><span class="o">.</span><span class="n">XLRDError</span><span class="p">:</span>
+            <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">file</span><span class="p">)</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">iterrows</span><span class="p">():</span>
+                <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">row</span><span class="o">.</span><span class="n">size</span><span class="p">):</span>
+                    <span class="k">if</span> <span class="n">pd</span><span class="o">.</span><span class="n">isna</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="n">i</span><span class="p">]):</span>
+                        <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s2">&quot;NaN found in row &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">index</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot; column &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;.</span><span class="se">\n</span><span class="s2">&quot;</span>
+                                      <span class="s2">&quot;It will be replaced with zero.&quot;</span><span class="p">)</span>
+                        <span class="n">row</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">kxx</span><span class="o">=</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;kxx&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">(),</span> <span class="n">cxx</span><span class="o">=</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;cxx&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">(),</span> <span class="n">kyy</span><span class="o">=</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;kyy&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">(),</span>
+                       <span class="n">kxy</span><span class="o">=</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;kxy&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">(),</span> <span class="n">kyx</span><span class="o">=</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;kyx&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">(),</span> <span class="n">cyy</span><span class="o">=</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;cyy&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">(),</span>
+                       <span class="n">cxy</span><span class="o">=</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;cxy&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">(),</span> <span class="n">cyx</span><span class="o">=</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;cyx&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">(),</span> <span class="n">w</span><span class="o">=</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;w&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">())</span>
+        <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
+            <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="s2">&quot;One or more column names did not match the expected. &quot;</span>
+                     <span class="s2">&quot;Make sure the table header contains the parameters for the &quot;</span>
+                     <span class="s2">&quot;BearingElement class.&quot;</span><span class="p">)</span></div></div>
 
 
 <div class="viewcode-block" id="SealElement"><a class="viewcode-back" href="../../api.html#ross.bearing_seal_element.SealElement">[docs]</a><span class="k">class</span> <span class="nc">SealElement</span><span class="p">(</span><span class="n">BearingElement</span><span class="p">):</span>
@@ -503,7 +625,7 @@
     </p>
     <p>
         &copy; Copyright 2019, Team Ross.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.5.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.0.1.<br/>
     </p>
   </div>
 </footer>
