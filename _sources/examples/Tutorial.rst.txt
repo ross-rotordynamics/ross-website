@@ -141,11 +141,11 @@ All the values are following the S.I. convention.
 
 .. parsed-literal::
 
-    <ross.disk_element.DiskElement object at 0x7f89ccaede10>
+    <ross.disk_element.DiskElement object at 0x7f1402f98e48>
 
 
 From geometry DiskElement instatiation
---------------------------------------
+======================================
 
 | Besides the instatiation previously explained, there is a way to
   instantiate a DiskElement with only geometrical parameters (for
@@ -173,8 +173,8 @@ From geometry DiskElement instatiation
                                       )
     disks = [disk0,disk1]
 
-BearingElement
-==============
+# BearingElement
+----------------
 
 | As it says on the name, this class is a bearing.
 | The following code demonstrate how to properly instantiate it. - ‘n’
@@ -209,8 +209,8 @@ can see in the following code.
 **There will be a class method to instantiate a bearing from excel
 tables. - work in progress**
 
-Rotor
-=====
+# Rotor
+-------
 
 This class unifies all the Element classes in the program and assembles
 the mass, damping and stiffness matrices of each element, building up
@@ -300,7 +300,7 @@ From section instantiation of a Rotor
     
     
     
-      <div class="bk-root" id="33c10674-1b0c-4e9f-a703-cc45da9236ec" data-root-id="1117"></div>
+      <div class="bk-root" id="e93417d1-c9de-46e8-bb2e-a7a77d855c64" data-root-id="1117"></div>
 
 
 
@@ -335,7 +335,7 @@ you can either turn on or off the matplotlib one.
     
     
     
-      <div class="bk-root" id="0af65a5f-818e-4f21-b5f2-c4b92047c57b" data-root-id="1320"></div>
+      <div class="bk-root" id="3a951c87-f7d3-4ccf-97a2-83a8428e52b8" data-root-id="1320"></div>
 
 
 
@@ -346,7 +346,7 @@ you can either turn on or off the matplotlib one.
 .. parsed-literal::
 
     (Figure(id='1320', ...),
-     <matplotlib.axes._subplots.AxesSubplot at 0x7f89ccaff860>)
+     <matplotlib.axes._subplots.AxesSubplot at 0x7f1402facb38>)
 
 
 
@@ -367,14 +367,14 @@ run() method like the code bellow.
     rotor2.run()
 
 Obtaining results
-=================
+-----------------
 
 These are the following analysis you can do with the program: - Static
 analysis - Campbell Diagram - Frequency response - Forced response -
 Mode Shapes
 
-Static analysis
----------------
+## Static analysis
+------------------
 
 This method gives a free body diagram and a exagerated plot of the rotor
 response to gravity effects.
@@ -394,7 +394,7 @@ response to gravity effects.
     
     
     
-      <div class="bk-root" id="a587ab33-8773-4864-a722-dbd00ea86940" data-root-id="2835"></div>
+      <div class="bk-root" id="700428f7-42dc-47d8-b608-d1f69767a94c" data-root-id="2835"></div>
 
 
 
@@ -416,7 +416,7 @@ In this example we can see the campbell diagram from 0 to 4000 RPM.
 .. parsed-literal::
 
     (<Figure size 432x288 with 2 Axes>,
-     <matplotlib.axes._subplots.AxesSubplot at 0x7f89cb43add8>)
+     <matplotlib.axes._subplots.AxesSubplot at 0x7f1401929d30>)
 
 
 

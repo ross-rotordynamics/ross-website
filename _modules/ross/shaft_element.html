@@ -11,6 +11,7 @@
     <script type="text/javascript" src="../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
     <script type="text/javascript" src="../../_static/language_data.js"></script>
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
 <meta charset='utf-8'>
@@ -33,7 +34,7 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="../../index.html">
+        <a class="navbar-brand" href="../../index.html"><span><img src="../../_static/ross-logo.svg"></span>
           ross</a>
         <span class="navbar-text navbar-version pull-left"><b>0.0.1</b></span>
       </div>
@@ -86,22 +87,16 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../examples/Tutorial.html#element">Element</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../examples/Tutorial.html#shaftelement">ShaftElement</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../examples/Tutorial.html#diskelement">DiskElement</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../examples/Tutorial.html#from-geometry-diskelement-instatiation">From geometry DiskElement instatiation</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="../../examples/Tutorial.html#bearingelement">BearingElement</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="../../examples/Tutorial.html#diskelement">DiskElement</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples/Tutorial.html#from-geometry-diskelement-instatiation">From geometry DiskElement instatiation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/Tutorial.html#bearingelement"># BearingElement</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../examples/Tutorial.html#instantiating-bearings-from-excel-archives">Instantiating bearings from excel archives</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="../../examples/Tutorial.html#rotor">Rotor</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/Tutorial.html#rotor"># Rotor</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../examples/Tutorial.html#from-section-instantiation-of-a-rotor">From section instantiation of a Rotor</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../examples/Tutorial.html#visualizing-the-rotor">Visualizing the Rotor</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../examples/Tutorial.html#running-the-simulation">Running the simulation</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="../../examples/Tutorial.html#obtaining-results">Obtaining results</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../examples/Tutorial.html#static-analysis">Static analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/Tutorial.html#obtaining-results">Obtaining results</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/Tutorial.html#static-analysis">## Static analysis</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../examples/Tutorial.html#campbell-diagram">Campbell Diagram</a></li>
@@ -340,7 +335,7 @@
             <span class="s2">&quot;L&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">L</span><span class="p">,</span>
             <span class="s2">&quot;i_d&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">i_d</span><span class="p">,</span>
             <span class="s2">&quot;o_d&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">o_d</span><span class="p">,</span>
-            <span class="s2">&quot;material&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">material</span><span class="p">,</span>
+            <span class="s2">&quot;material&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">material</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
             <span class="s2">&quot;n&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">n</span><span class="p">,</span>
             <span class="s2">&quot;axial_force&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">axial_force</span><span class="p">,</span>
             <span class="s2">&quot;torque&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">torque</span><span class="p">,</span>
@@ -377,7 +372,7 @@
         <span class="k">return</span> <span class="p">(</span>
             <span class="n">f</span><span class="s2">&quot;</span><span class="si">{self.__class__.__name__}</span><span class="s2">&quot;</span>
             <span class="n">f</span><span class="s2">&quot;(L={self.L:</span><span class="si">{0}</span><span class="s2">.</span><span class="si">{5}</span><span class="s2">}, i_d={self.i_d:</span><span class="si">{0}</span><span class="s2">.</span><span class="si">{5}</span><span class="s2">}, &quot;</span>
-            <span class="n">f</span><span class="s2">&quot;o_d={self.o_d:</span><span class="si">{0}</span><span class="s2">.</span><span class="si">{5}</span><span class="s2">}, material=</span><span class="si">{self.material!r}</span><span class="s2">, &quot;</span>
+            <span class="n">f</span><span class="s2">&quot;o_d={self.o_d:</span><span class="si">{0}</span><span class="s2">.</span><span class="si">{5}</span><span class="s2">}, material=</span><span class="si">{self.material.name!r}</span><span class="s2">, &quot;</span>
             <span class="n">f</span><span class="s2">&quot;n=</span><span class="si">{self.n}</span><span class="s2">)&quot;</span>
         <span class="p">)</span>
 
@@ -590,7 +585,7 @@
         <span class="p">)</span>
         <span class="c1"># bokeh plot - plot the shaft</span>
         <span class="n">bk_ax</span><span class="o">.</span><span class="n">quad</span><span class="p">(</span><span class="n">top</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">o_d</span><span class="p">,</span>
-                   <span class="n">bottom</span><span class="o">=-</span><span class="bp">self</span><span class="o">.</span><span class="n">o_d</span><span class="p">,</span>
+                   <span class="n">bottom</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">i_d</span><span class="p">,</span>
                    <span class="n">left</span><span class="o">=</span><span class="n">position</span><span class="p">,</span>
                    <span class="n">right</span><span class="o">=</span><span class="n">position</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">L</span><span class="p">,</span>
                    <span class="n">line_color</span><span class="o">=</span><span class="n">bokeh_colors</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
@@ -598,6 +593,15 @@
                    <span class="n">fill_alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span>
                    <span class="n">fill_color</span><span class="o">=</span><span class="n">bokeh_colors</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span>
                    <span class="n">legend</span><span class="o">=</span><span class="s2">&quot;Shaft&quot;</span>
+                   <span class="p">)</span>
+        <span class="n">bk_ax</span><span class="o">.</span><span class="n">quad</span><span class="p">(</span><span class="n">top</span><span class="o">=-</span><span class="bp">self</span><span class="o">.</span><span class="n">i_d</span><span class="p">,</span>
+                   <span class="n">bottom</span><span class="o">=-</span><span class="bp">self</span><span class="o">.</span><span class="n">o_d</span><span class="p">,</span>
+                   <span class="n">left</span><span class="o">=</span><span class="n">position</span><span class="p">,</span>
+                   <span class="n">right</span><span class="o">=</span><span class="n">position</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">L</span><span class="p">,</span>
+                   <span class="n">line_color</span><span class="o">=</span><span class="n">bokeh_colors</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+                   <span class="n">line_width</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+                   <span class="n">fill_alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span>
+                   <span class="n">fill_color</span><span class="o">=</span><span class="n">bokeh_colors</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span>
                    <span class="p">)</span></div>
 
 <div class="viewcode-block" id="ShaftElement.section"><a class="viewcode-back" href="../../api.html#ross.shaft_element.ShaftElement.section">[docs]</a>    <span class="nd">@classmethod</span>

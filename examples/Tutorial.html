@@ -11,6 +11,7 @@
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
     <script type="text/javascript" src="../_static/language_data.js"></script>
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
 <meta charset='utf-8'>
@@ -33,7 +34,7 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="../index.html">
+        <a class="navbar-brand" href="../index.html"><span><img src="../_static/ross-logo.svg"></span>
           ross</a>
         <span class="navbar-text navbar-version pull-left"><b>0.0.1</b></span>
       </div>
@@ -86,22 +87,16 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="#element">Element</a></li>
 <li class="toctree-l1"><a class="reference internal" href="#shaftelement">ShaftElement</a></li>
-<li class="toctree-l1"><a class="reference internal" href="#diskelement">DiskElement</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#from-geometry-diskelement-instatiation">From geometry DiskElement instatiation</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="#bearingelement">BearingElement</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="#diskelement">DiskElement</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#from-geometry-diskelement-instatiation">From geometry DiskElement instatiation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#bearingelement"># BearingElement</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#instantiating-bearings-from-excel-archives">Instantiating bearings from excel archives</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="#rotor">Rotor</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#rotor"># Rotor</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#from-section-instantiation-of-a-rotor">From section instantiation of a Rotor</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#visualizing-the-rotor">Visualizing the Rotor</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#running-the-simulation">Running the simulation</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="#obtaining-results">Obtaining results</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#static-analysis">Static analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#obtaining-results">Obtaining results</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#static-analysis">## Static analysis</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="#campbell-diagram">Campbell Diagram</a></li>
@@ -127,22 +122,16 @@
 </li>
 <li><a class="reference internal" href="#element">Element</a></li>
 <li><a class="reference internal" href="#shaftelement">ShaftElement</a></li>
-<li><a class="reference internal" href="#diskelement">DiskElement</a><ul>
-<li><a class="reference internal" href="#from-geometry-diskelement-instatiation">From geometry DiskElement instatiation</a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#bearingelement">BearingElement</a><ul>
+<li><a class="reference internal" href="#diskelement">DiskElement</a></li>
+<li><a class="reference internal" href="#from-geometry-diskelement-instatiation">From geometry DiskElement instatiation</a><ul>
+<li><a class="reference internal" href="#bearingelement"># BearingElement</a></li>
 <li><a class="reference internal" href="#instantiating-bearings-from-excel-archives">Instantiating bearings from excel archives</a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#rotor">Rotor</a><ul>
+<li><a class="reference internal" href="#rotor"># Rotor</a></li>
 <li><a class="reference internal" href="#from-section-instantiation-of-a-rotor">From section instantiation of a Rotor</a></li>
 <li><a class="reference internal" href="#visualizing-the-rotor">Visualizing the Rotor</a></li>
 <li><a class="reference internal" href="#running-the-simulation">Running the simulation</a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#obtaining-results">Obtaining results</a><ul>
-<li><a class="reference internal" href="#static-analysis">Static analysis</a></li>
+<li><a class="reference internal" href="#obtaining-results">Obtaining results</a></li>
+<li><a class="reference internal" href="#static-analysis">## Static analysis</a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#campbell-diagram">Campbell Diagram</a></li>
@@ -299,11 +288,12 @@ Diametral moment of inertia. - ‘Ip’ is the Polar moment of inertia. -
 <span class="nb">print</span><span class="p">(</span><span class="n">Disk</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">ross</span><span class="o">.</span><span class="n">disk_element</span><span class="o">.</span><span class="n">DiskElement</span> <span class="nb">object</span> <span class="n">at</span> <span class="mh">0x7f89ccaede10</span><span class="o">&gt;</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">ross</span><span class="o">.</span><span class="n">disk_element</span><span class="o">.</span><span class="n">DiskElement</span> <span class="nb">object</span> <span class="n">at</span> <span class="mh">0x7f1402f98e48</span><span class="o">&gt;</span>
 </pre></div>
 </div>
+</div>
 <div class="section" id="from-geometry-diskelement-instatiation">
-<h2>From geometry DiskElement instatiation<a class="headerlink" href="#from-geometry-diskelement-instatiation" title="Permalink to this headline">¶</a></h2>
+<h1>From geometry DiskElement instatiation<a class="headerlink" href="#from-geometry-diskelement-instatiation" title="Permalink to this headline">¶</a></h1>
 <div class="line-block">
 <div class="line">Besides the instatiation previously explained, there is a way to
 instantiate a DiskElement with only geometrical parameters (for
@@ -330,10 +320,8 @@ the disk. - ‘material’ is the material which the disk is made of. -
 <span class="n">disks</span> <span class="o">=</span> <span class="p">[</span><span class="n">disk0</span><span class="p">,</span><span class="n">disk1</span><span class="p">]</span>
 </pre></div>
 </div>
-</div>
-</div>
 <div class="section" id="bearingelement">
-<h1>BearingElement<a class="headerlink" href="#bearingelement" title="Permalink to this headline">¶</a></h1>
+<h2># BearingElement<a class="headerlink" href="#bearingelement" title="Permalink to this headline">¶</a></h2>
 <div class="line-block">
 <div class="line">As it says on the name, this class is a bearing.</div>
 <div class="line">The following code demonstrate how to properly instantiate it. - ‘n’
@@ -356,6 +344,7 @@ give cross-coupled coefficients.</p>
 <span class="n">bearings</span> <span class="o">=</span> <span class="p">[</span><span class="n">bearing0</span><span class="p">,</span> <span class="n">bearing1</span><span class="p">]</span>
 </pre></div>
 </div>
+</div>
 <div class="section" id="instantiating-bearings-from-excel-archives">
 <h2>Instantiating bearings from excel archives<a class="headerlink" href="#instantiating-bearings-from-excel-archives" title="Permalink to this headline">¶</a></h2>
 <p>There’s a class method to instantiate a bearing from excel tables, as we
@@ -363,9 +352,8 @@ can see in the following code.</p>
 <p><strong>There will be a class method to instantiate a bearing from excel
 tables. - work in progress</strong></p>
 </div>
-</div>
 <div class="section" id="rotor">
-<h1>Rotor<a class="headerlink" href="#rotor" title="Permalink to this headline">¶</a></h1>
+<h2># Rotor<a class="headerlink" href="#rotor" title="Permalink to this headline">¶</a></h2>
 <p>This class unifies all the Element classes in the program and assembles
 the mass, damping and stiffness matrices of each element, building up
 matrices for the global system. Apart from that, it also outputs all the
@@ -381,6 +369,7 @@ elements in a list format, as it follows.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">To</span> <span class="n">check</span> <span class="n">the</span> <span class="n">rotor</span> <span class="n">geometry</span><span class="p">,</span> <span class="n">use</span> <span class="n">the</span> <span class="n">method</span> <span class="n">plot_rotor</span><span class="p">()</span>
 <span class="n">To</span> <span class="n">calculate</span> <span class="n">the</span> <span class="n">rotor</span> <span class="n">state</span><span class="p">,</span> <span class="n">use</span> <span class="n">the</span> <span class="n">method</span> <span class="n">run</span><span class="p">()</span>
 </pre></div>
+</div>
 </div>
 <div class="section" id="from-section-instantiation-of-a-rotor">
 <h2>From section instantiation of a Rotor<a class="headerlink" href="#from-section-instantiation-of-a-rotor" title="Permalink to this headline">¶</a></h2>
@@ -434,7 +423,7 @@ for the shaft elements) in the minimal nodes</div>
 <span class="n">To</span> <span class="n">calculate</span> <span class="n">the</span> <span class="n">rotor</span> <span class="n">state</span><span class="p">,</span> <span class="n">use</span> <span class="n">the</span> <span class="n">method</span> <span class="n">run</span><span class="p">()</span>
 </pre></div>
 </div>
-<div class="bk-root" id="33c10674-1b0c-4e9f-a703-cc45da9236ec" data-root-id="1117"></div><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">To</span> <span class="n">check</span> <span class="n">the</span> <span class="n">rotor</span> <span class="n">geometry</span><span class="p">,</span> <span class="n">use</span> <span class="n">the</span> <span class="n">method</span> <span class="n">plot_rotor</span><span class="p">()</span>
+<div class="bk-root" id="e93417d1-c9de-46e8-bb2e-a7a77d855c64" data-root-id="1117"></div><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">To</span> <span class="n">check</span> <span class="n">the</span> <span class="n">rotor</span> <span class="n">geometry</span><span class="p">,</span> <span class="n">use</span> <span class="n">the</span> <span class="n">method</span> <span class="n">plot_rotor</span><span class="p">()</span>
 <span class="n">To</span> <span class="n">calculate</span> <span class="n">the</span> <span class="n">rotor</span> <span class="n">state</span><span class="p">,</span> <span class="n">use</span> <span class="n">the</span> <span class="n">method</span> <span class="n">run</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -448,8 +437,8 @@ you can either turn on or off the matplotlib one.</p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rotor1</span><span class="o">.</span><span class="n">plot_rotor</span><span class="p">()</span>
 </pre></div>
 </div>
-<div class="bk-root" id="0af65a5f-818e-4f21-b5f2-c4b92047c57b" data-root-id="1320"></div><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">Figure</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s1">&#39;1320&#39;</span><span class="p">,</span> <span class="o">...</span><span class="p">),</span>
- <span class="o">&lt;</span><span class="n">matplotlib</span><span class="o">.</span><span class="n">axes</span><span class="o">.</span><span class="n">_subplots</span><span class="o">.</span><span class="n">AxesSubplot</span> <span class="n">at</span> <span class="mh">0x7f89ccaff860</span><span class="o">&gt;</span><span class="p">)</span>
+<div class="bk-root" id="3a951c87-f7d3-4ccf-97a2-83a8428e52b8" data-root-id="1320"></div><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">Figure</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s1">&#39;1320&#39;</span><span class="p">,</span> <span class="o">...</span><span class="p">),</span>
+ <span class="o">&lt;</span><span class="n">matplotlib</span><span class="o">.</span><span class="n">axes</span><span class="o">.</span><span class="n">_subplots</span><span class="o">.</span><span class="n">AxesSubplot</span> <span class="n">at</span> <span class="mh">0x7f1402facb38</span><span class="o">&gt;</span><span class="p">)</span>
 </pre></div>
 </div>
 <img alt="../_images/Tutorial_23_3.png" src="../_images/Tutorial_23_3.png" />
@@ -464,20 +453,20 @@ run() method like the code bellow.</p>
 </pre></div>
 </div>
 </div>
-</div>
 <div class="section" id="obtaining-results">
-<h1>Obtaining results<a class="headerlink" href="#obtaining-results" title="Permalink to this headline">¶</a></h1>
+<h2>Obtaining results<a class="headerlink" href="#obtaining-results" title="Permalink to this headline">¶</a></h2>
 <p>These are the following analysis you can do with the program: - Static
 analysis - Campbell Diagram - Frequency response - Forced response -
 Mode Shapes</p>
+</div>
 <div class="section" id="static-analysis">
-<h2>Static analysis<a class="headerlink" href="#static-analysis" title="Permalink to this headline">¶</a></h2>
+<h2>## Static analysis<a class="headerlink" href="#static-analysis" title="Permalink to this headline">¶</a></h2>
 <p>This method gives a free body diagram and a exagerated plot of the rotor
 response to gravity effects.</p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rotor1</span><span class="o">.</span><span class="n">static</span><span class="p">()</span>
 </pre></div>
 </div>
-<div class="bk-root" id="a587ab33-8773-4864-a722-dbd00ea86940" data-root-id="2835"></div></div>
+<div class="bk-root" id="700428f7-42dc-47d8-b608-d1f69767a94c" data-root-id="2835"></div></div>
 </div>
 <div class="section" id="campbell-diagram">
 <h1>Campbell Diagram<a class="headerlink" href="#campbell-diagram" title="Permalink to this headline">¶</a></h1>
@@ -487,7 +476,7 @@ response to gravity effects.</p>
 </pre></div>
 </div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="o">&lt;</span><span class="n">Figure</span> <span class="n">size</span> <span class="mi">432</span><span class="n">x288</span> <span class="k">with</span> <span class="mi">2</span> <span class="n">Axes</span><span class="o">&gt;</span><span class="p">,</span>
- <span class="o">&lt;</span><span class="n">matplotlib</span><span class="o">.</span><span class="n">axes</span><span class="o">.</span><span class="n">_subplots</span><span class="o">.</span><span class="n">AxesSubplot</span> <span class="n">at</span> <span class="mh">0x7f89cb43add8</span><span class="o">&gt;</span><span class="p">)</span>
+ <span class="o">&lt;</span><span class="n">matplotlib</span><span class="o">.</span><span class="n">axes</span><span class="o">.</span><span class="n">_subplots</span><span class="o">.</span><span class="n">AxesSubplot</span> <span class="n">at</span> <span class="mh">0x7f1401929d30</span><span class="o">&gt;</span><span class="p">)</span>
 </pre></div>
 </div>
 <img alt="../_images/Tutorial_29_1.png" src="../_images/Tutorial_29_1.png" />

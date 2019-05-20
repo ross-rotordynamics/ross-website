@@ -11,6 +11,7 @@
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
     <script type="text/javascript" src="_static/language_data.js"></script>
+    <link rel="shortcut icon" href="_static/favicon.ico"/>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="prev" title="How to contribute to ROSS using git" href="git_configuration.html" />
@@ -34,7 +35,7 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="index.html">
+        <a class="navbar-brand" href="index.html"><span><img src="_static/ross-logo.svg"></span>
           ross</a>
         <span class="navbar-text navbar-version pull-left"><b>0.0.1</b></span>
       </div>
@@ -87,22 +88,16 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="examples/Tutorial.html#element">Element</a></li>
 <li class="toctree-l1"><a class="reference internal" href="examples/Tutorial.html#shaftelement">ShaftElement</a></li>
-<li class="toctree-l1"><a class="reference internal" href="examples/Tutorial.html#diskelement">DiskElement</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="examples/Tutorial.html#from-geometry-diskelement-instatiation">From geometry DiskElement instatiation</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="examples/Tutorial.html#bearingelement">BearingElement</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="examples/Tutorial.html#diskelement">DiskElement</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples/Tutorial.html#from-geometry-diskelement-instatiation">From geometry DiskElement instatiation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="examples/Tutorial.html#bearingelement"># BearingElement</a></li>
 <li class="toctree-l2"><a class="reference internal" href="examples/Tutorial.html#instantiating-bearings-from-excel-archives">Instantiating bearings from excel archives</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="examples/Tutorial.html#rotor">Rotor</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="examples/Tutorial.html#rotor"># Rotor</a></li>
 <li class="toctree-l2"><a class="reference internal" href="examples/Tutorial.html#from-section-instantiation-of-a-rotor">From section instantiation of a Rotor</a></li>
 <li class="toctree-l2"><a class="reference internal" href="examples/Tutorial.html#visualizing-the-rotor">Visualizing the Rotor</a></li>
 <li class="toctree-l2"><a class="reference internal" href="examples/Tutorial.html#running-the-simulation">Running the simulation</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="examples/Tutorial.html#obtaining-results">Obtaining results</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="examples/Tutorial.html#static-analysis">Static analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples/Tutorial.html#obtaining-results">Obtaining results</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples/Tutorial.html#static-analysis">## Static analysis</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="examples/Tutorial.html#campbell-diagram">Campbell Diagram</a></li>
@@ -267,49 +262,52 @@ Default is 12.</p>
 <tr class="row-odd"><td><p><a class="reference internal" href="#ross.rotor_assembly.Rotor.campbell" title="ross.rotor_assembly.Rotor.campbell"><code class="xref py py-obj docutils literal notranslate"><span class="pre">campbell</span></code></a>(self, speed_range[, frequencies, …])</p></td>
 <td><p>Calculates the Campbell diagram.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#ross.rotor_assembly.Rotor.freq_response" title="ross.rotor_assembly.Rotor.freq_response"><code class="xref py py-obj docutils literal notranslate"><span class="pre">freq_response</span></code></a>(self[, frequency_range, modes])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#ross.rotor_assembly.Rotor.convergence" title="ross.rotor_assembly.Rotor.convergence"><code class="xref py py-obj docutils literal notranslate"><span class="pre">convergence</span></code></a>(self[, n_eigval, err_max])</p></td>
+<td><p>Function to analyze the eigenvalues convergence through the number of shaft elements.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#ross.rotor_assembly.Rotor.freq_response" title="ross.rotor_assembly.Rotor.freq_response"><code class="xref py py-obj docutils literal notranslate"><span class="pre">freq_response</span></code></a>(self[, frequency_range, modes])</p></td>
 <td><p>Frequency response for a mdof system.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#ross.rotor_assembly.Rotor.from_section" title="ross.rotor_assembly.Rotor.from_section"><code class="xref py py-obj docutils literal notranslate"><span class="pre">from_section</span></code></a>(leng_data, o_ds_data, i_ds_data)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#ross.rotor_assembly.Rotor.from_section" title="ross.rotor_assembly.Rotor.from_section"><code class="xref py py-obj docutils literal notranslate"><span class="pre">from_section</span></code></a>(leng_data, o_ds_data, i_ds_data)</p></td>
 <td><p>This class is an alternative to build rotors from separated sections.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#ross.rotor_assembly.Rotor.kappa" title="ross.rotor_assembly.Rotor.kappa"><code class="xref py py-obj docutils literal notranslate"><span class="pre">kappa</span></code></a>(self, node, w[, wd])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#ross.rotor_assembly.Rotor.kappa" title="ross.rotor_assembly.Rotor.kappa"><code class="xref py py-obj docutils literal notranslate"><span class="pre">kappa</span></code></a>(self, node, w[, wd])</p></td>
 <td><p>Calculates kappa for a given node and natural frequency.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#ross.rotor_assembly.Rotor.kappa_mode" title="ross.rotor_assembly.Rotor.kappa_mode"><code class="xref py py-obj docutils literal notranslate"><span class="pre">kappa_mode</span></code></a>(self, w)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#ross.rotor_assembly.Rotor.kappa_mode" title="ross.rotor_assembly.Rotor.kappa_mode"><code class="xref py py-obj docutils literal notranslate"><span class="pre">kappa_mode</span></code></a>(self, w)</p></td>
 <td><p>This function evaluates kappa given the index of the natural frequency of interest.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#ross.rotor_assembly.Rotor.load" title="ross.rotor_assembly.Rotor.load"><code class="xref py py-obj docutils literal notranslate"><span class="pre">load</span></code></a>(file_name)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#ross.rotor_assembly.Rotor.load" title="ross.rotor_assembly.Rotor.load"><code class="xref py py-obj docutils literal notranslate"><span class="pre">load</span></code></a>(file_name)</p></td>
 <td><p>Load rotor from toml file.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#ross.rotor_assembly.Rotor.plot_level1" title="ross.rotor_assembly.Rotor.plot_level1"><code class="xref py py-obj docutils literal notranslate"><span class="pre">plot_level1</span></code></a>(self[, n, stiffness_range, num, ax])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#ross.rotor_assembly.Rotor.plot_level1" title="ross.rotor_assembly.Rotor.plot_level1"><code class="xref py py-obj docutils literal notranslate"><span class="pre">plot_level1</span></code></a>(self[, n, stiffness_range, num, ax])</p></td>
 <td><p>Plot level 1 stability analysis.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#ross.rotor_assembly.Rotor.plot_rotor" title="ross.rotor_assembly.Rotor.plot_rotor"><code class="xref py py-obj docutils literal notranslate"><span class="pre">plot_rotor</span></code></a>(self[, nodes, ax, bk_ax])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#ross.rotor_assembly.Rotor.plot_rotor" title="ross.rotor_assembly.Rotor.plot_rotor"><code class="xref py py-obj docutils literal notranslate"><span class="pre">plot_rotor</span></code></a>(self[, nodes, ax, bk_ax])</p></td>
 <td><p>Plots a rotor object.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#ross.rotor_assembly.Rotor.plot_time_response" title="ross.rotor_assembly.Rotor.plot_time_response"><code class="xref py py-obj docutils literal notranslate"><span class="pre">plot_time_response</span></code></a>(self, F, t, dof[, ax])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#ross.rotor_assembly.Rotor.plot_time_response" title="ross.rotor_assembly.Rotor.plot_time_response"><code class="xref py py-obj docutils literal notranslate"><span class="pre">plot_time_response</span></code></a>(self, F, t, dof[, ax])</p></td>
 <td><p>Plot the time response.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#ross.rotor_assembly.Rotor.plot_ucs" title="ross.rotor_assembly.Rotor.plot_ucs"><code class="xref py py-obj docutils literal notranslate"><span class="pre">plot_ucs</span></code></a>(self[, stiffness_range, num, ax])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#ross.rotor_assembly.Rotor.plot_ucs" title="ross.rotor_assembly.Rotor.plot_ucs"><code class="xref py py-obj docutils literal notranslate"><span class="pre">plot_ucs</span></code></a>(self[, stiffness_range, num, ax])</p></td>
 <td><p>Plot undamped critical speed map.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#ross.rotor_assembly.Rotor.save" title="ross.rotor_assembly.Rotor.save"><code class="xref py py-obj docutils literal notranslate"><span class="pre">save</span></code></a>(self, file_name)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#ross.rotor_assembly.Rotor.save" title="ross.rotor_assembly.Rotor.save"><code class="xref py py-obj docutils literal notranslate"><span class="pre">save</span></code></a>(self, file_name)</p></td>
 <td><p>Save rotor to toml file.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#ross.rotor_assembly.Rotor.save_mat" title="ross.rotor_assembly.Rotor.save_mat"><code class="xref py py-obj docutils literal notranslate"><span class="pre">save_mat</span></code></a>(self, file_name)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#ross.rotor_assembly.Rotor.save_mat" title="ross.rotor_assembly.Rotor.save_mat"><code class="xref py py-obj docutils literal notranslate"><span class="pre">save_mat</span></code></a>(self, file_name)</p></td>
 <td><p>Save matrices and rotor model to a .mat file.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#ross.rotor_assembly.Rotor.time_response" title="ross.rotor_assembly.Rotor.time_response"><code class="xref py py-obj docutils literal notranslate"><span class="pre">time_response</span></code></a>(self, F, t[, ic])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#ross.rotor_assembly.Rotor.time_response" title="ross.rotor_assembly.Rotor.time_response"><code class="xref py py-obj docutils literal notranslate"><span class="pre">time_response</span></code></a>(self, F, t[, ic])</p></td>
 <td><p>Time response for a rotor.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#ross.rotor_assembly.Rotor.unbalance_response" title="ross.rotor_assembly.Rotor.unbalance_response"><code class="xref py py-obj docutils literal notranslate"><span class="pre">unbalance_response</span></code></a>(self, node, magnitude, phase)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#ross.rotor_assembly.Rotor.unbalance_response" title="ross.rotor_assembly.Rotor.unbalance_response"><code class="xref py py-obj docutils literal notranslate"><span class="pre">unbalance_response</span></code></a>(self, node, magnitude, phase)</p></td>
 <td><p>frequency response for a mdof system.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#ross.rotor_assembly.Rotor.whirl_direction" title="ross.rotor_assembly.Rotor.whirl_direction"><code class="xref py py-obj docutils literal notranslate"><span class="pre">whirl_direction</span></code></a>(self)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#ross.rotor_assembly.Rotor.whirl_direction" title="ross.rotor_assembly.Rotor.whirl_direction"><code class="xref py py-obj docutils literal notranslate"><span class="pre">whirl_direction</span></code></a>(self)</p></td>
 <td><p>Get the whirl direction for each frequency.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#ross.rotor_assembly.Rotor.whirl_values" title="ross.rotor_assembly.Rotor.whirl_values"><code class="xref py py-obj docutils literal notranslate"><span class="pre">whirl_values</span></code></a>(self)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#ross.rotor_assembly.Rotor.whirl_values" title="ross.rotor_assembly.Rotor.whirl_values"><code class="xref py py-obj docutils literal notranslate"><span class="pre">whirl_values</span></code></a>(self)</p></td>
 <td><p>Get the whirl value (0., 0.5, or 1.) for each frequency.</p></td>
 </tr>
 </tbody>
@@ -570,6 +568,21 @@ of the speed_rad array. It will be returned if plot=False.</p>
 </dd></dl>
 
 <dl class="method">
+<dt id="ross.rotor_assembly.Rotor.convergence">
+<code class="descname">convergence</code><span class="sig-paren">(</span><em>self</em>, <em>n_eigval=0</em>, <em>err_max=0.01</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ross/rotor_assembly.html#Rotor.convergence"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.rotor_assembly.Rotor.convergence" title="Permalink to this definition">¶</a></dt>
+<dd><p>Function to analyze the eigenvalues convergence through the number of
+shaft elements. Every new run doubles the number os shaft elements.</p>
+<dl class="simple">
+<dt>n_eigval<span class="classifier">int</span></dt><dd><p>The nth eigenvalue which the convergence analysis will run.
+Default is 0 (the first eigenvalue).</p>
+</dd>
+<dt>err_max<span class="classifier">float</span></dt><dd><p>Maximum allowable convergence error.
+Default is 1e-02</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
 <dt id="ross.rotor_assembly.Rotor.freq_response">
 <code class="descname">freq_response</code><span class="sig-paren">(</span><em>self</em>, <em>frequency_range=None</em>, <em>modes=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ross/rotor_assembly.html#Rotor.freq_response"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.rotor_assembly.Rotor.freq_response" title="Permalink to this definition">¶</a></dt>
 <dd><p>Frequency response for a mdof system.</p>
@@ -608,11 +621,9 @@ The order of the array is: [output, input, phase]</p>
 
 <dl class="classmethod">
 <dt id="ross.rotor_assembly.Rotor.from_section">
-<em class="property">classmethod </em><code class="descname">from_section</code><span class="sig-paren">(</span><em>leng_data</em>, <em>o_ds_data</em>, <em>i_ds_data</em>, <em>disk_data=None</em>, <em>brg_seal_data=None</em>, <em>sparse=True</em>, <em>min_w=None</em>, <em>max_w=None</em>, <em>w=0</em>, <em>nel_r=1</em>, <em>n_eigval=1</em>, <em>err_max=0.01</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ross/rotor_assembly.html#Rotor.from_section"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.rotor_assembly.Rotor.from_section" title="Permalink to this definition">¶</a></dt>
+<em class="property">classmethod </em><code class="descname">from_section</code><span class="sig-paren">(</span><em>leng_data</em>, <em>o_ds_data</em>, <em>i_ds_data</em>, <em>disk_data=None</em>, <em>brg_seal_data=None</em>, <em>sparse=True</em>, <em>min_w=None</em>, <em>max_w=None</em>, <em>n_eigen=12</em>, <em>w=0</em>, <em>nel_r=1</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ross/rotor_assembly.html#Rotor.from_section"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.rotor_assembly.Rotor.from_section" title="Permalink to this definition">¶</a></dt>
 <dd><p>This class is an alternative to build rotors from separated
 sections. Each section has the same number (n) of shaft elements.</p>
-<p>This class will verify the eigenvalues calculation
-and check its convergence to minimize the numerical errors.</p>
 <dl class="field-list">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl>
@@ -622,30 +633,32 @@ and check its convergence to minimize the numerical errors.</p>
 </dd>
 <dt><strong>i_d_data</strong><span class="classifier">list</span></dt><dd><p>List with the inner diameters of rotor regions.</p>
 </dd>
-<dt><strong>disk_data</strong><span class="classifier">list, optional</span></dt><dd><p>List holding lists of disks datas.
-Example : disk_data = [[n, material, width, i_d, o_d], [n, …]]
-<strong>*See ‘disk_element.py’ docstring for more information*</strong></p>
-</dd>
-<dt><strong>brg_seal_data</strong><span class="classifier">list, optional</span></dt><dd><p>list holding lists of bearings and seals datas.
-Example : brg_seal_data=[[n, kxx, cxx, kyy=None, kxy=0, kyx=0,</p>
+<dt><strong>disk_data</strong><span class="classifier">dict, optional</span></dt><dd><p>Dict holding disks datas.
+Example : disk_data=DiskElement.from_geometry(n=2,</p>
 <blockquote>
-<div><blockquote>
-<div><p>cyy=None, cxy=0, cyx=0, w=None],</p>
+<div><p>material=steel,
+width=0.07,
+i_d=0,
+o_d=0.28
+)</p>
 </div></blockquote>
-<p>[n, …]]</p>
+<p><strong>*See ‘disk_element.py’ docstring for more information*</strong></p>
+</dd>
+<dt><strong>brg_seal_data</strong><span class="classifier">dict, optional</span></dt><dd><p>Dict holding lists of bearings and seals datas.
+Example : brg_seal_data=BearingElement(n=1, kxx=1e6, cxx=0,</p>
+<blockquote>
+<div><p>kyy=1e6, cyy=0, kxy=0,
+cxy=0, kyx=0, cyx=0)</p>
 </div></blockquote>
 <p><strong>*See ‘bearing_seal_element.py’ docstring for more information*</strong></p>
 </dd>
 <dt><strong>w</strong><span class="classifier">float, optional</span></dt><dd><p>Rotor speed.</p>
 </dd>
-<dt><strong>nel_r</strong><span class="classifier">int</span></dt><dd><p>Initial number or elements per shaft region.
+<dt><strong>nel_r</strong><span class="classifier">int, optional</span></dt><dd><p>Number or elements per shaft region.
 Default is 1</p>
 </dd>
-<dt><strong>eigval</strong><span class="classifier">int</span></dt><dd><p>Indicates which eingenvalue convergence to check.
-default is 1 (1st eigenvalue).</p>
-</dd>
-<dt><strong>err_max</strong><span class="classifier">float, optional</span></dt><dd><p>maximum allowed for eigenvalues calculation.
-default is 0.01 (or 1%).</p>
+<dt><strong>n_eigen</strong><span class="classifier">int, optional</span></dt><dd><p>Number of eigenvalues calculated by arpack.
+Default is 12.</p>
 </dd>
 </dl>
 </dd>
@@ -1050,11 +1063,13 @@ passed as an array.
 Values for each parameter will be interpolated for the speed.
 Parameters
 ———-
-kxx: float, array</p>
+n: int</p>
 <blockquote>
-<div><p>Direct stiffness in the x direction.</p>
+<div><p>Node which the bearing will be located in</p>
 </div></blockquote>
 <dl class="simple">
+<dt>kxx: float, array</dt><dd><p>Direct stiffness in the x direction.</p>
+</dd>
 <dt>cxx: float, array</dt><dd><p>Direct damping in the x direction.</p>
 </dd>
 <dt>kyy: float, array, optional</dt><dd><p>Direct stiffness in the y direction.
@@ -1078,6 +1093,21 @@ kxx: float, array</p>
 <dt>w: array, optional</dt><dd><p>Array with the speeds (rad/s).</p>
 </dd>
 </dl>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># A bearing element located in the first rotor node, with these</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># following stiffness and damping coefficients and speed range from</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># 0 to 200 rad/s</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Kxx</span> <span class="o">=</span> <span class="mf">1e6</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Kyy</span> <span class="o">=</span> <span class="mf">0.8e6</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Cxx</span> <span class="o">=</span> <span class="mf">2e2</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Cyy</span> <span class="o">=</span> <span class="mf">1.5e2</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">W</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">200</span><span class="p">,</span><span class="mi">11</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">bearing0</span> <span class="o">=</span> <span class="n">rs</span><span class="o">.</span><span class="n">BearingElement</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">kxx</span><span class="o">=</span><span class="n">Kxx</span><span class="p">,</span> <span class="n">kyy</span><span class="o">=</span><span class="n">Kyy</span><span class="p">,</span> <span class="n">cxx</span><span class="o">=</span><span class="n">Cxx</span><span class="p">,</span> <span class="n">cyy</span><span class="o">=</span><span class="n">Cyy</span><span class="p">,</span> <span class="n">w</span><span class="o">=</span><span class="n">W</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">bearing0</span><span class="o">.</span><span class="n">K</span><span class="p">(</span><span class="n">W</span><span class="p">)</span>
+<span class="go">array([[[1000000., 1000000., ... , 800000.,  800000.]]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">bearing0</span><span class="o">.</span><span class="n">C</span><span class="p">(</span><span class="n">W</span><span class="p">)</span>
+<span class="go">array([[[200., 200., ... , 150., 150.]]])</span>
+</pre></div>
+</div>
 <p class="rubric">Methods</p>
 <table class="longtable docutils align-center">
 <colgroup>

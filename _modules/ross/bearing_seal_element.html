@@ -11,6 +11,7 @@
     <script type="text/javascript" src="../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
     <script type="text/javascript" src="../../_static/language_data.js"></script>
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
 <meta charset='utf-8'>
@@ -33,7 +34,7 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="../../index.html">
+        <a class="navbar-brand" href="../../index.html"><span><img src="../../_static/ross-logo.svg"></span>
           ross</a>
         <span class="navbar-text navbar-version pull-left"><b>0.0.1</b></span>
       </div>
@@ -86,22 +87,16 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../examples/Tutorial.html#element">Element</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../examples/Tutorial.html#shaftelement">ShaftElement</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../examples/Tutorial.html#diskelement">DiskElement</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../examples/Tutorial.html#from-geometry-diskelement-instatiation">From geometry DiskElement instatiation</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="../../examples/Tutorial.html#bearingelement">BearingElement</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="../../examples/Tutorial.html#diskelement">DiskElement</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples/Tutorial.html#from-geometry-diskelement-instatiation">From geometry DiskElement instatiation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/Tutorial.html#bearingelement"># BearingElement</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../examples/Tutorial.html#instantiating-bearings-from-excel-archives">Instantiating bearings from excel archives</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="../../examples/Tutorial.html#rotor">Rotor</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/Tutorial.html#rotor"># Rotor</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../examples/Tutorial.html#from-section-instantiation-of-a-rotor">From section instantiation of a Rotor</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../examples/Tutorial.html#visualizing-the-rotor">Visualizing the Rotor</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../examples/Tutorial.html#running-the-simulation">Running the simulation</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="../../examples/Tutorial.html#obtaining-results">Obtaining results</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../examples/Tutorial.html#static-analysis">Static analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/Tutorial.html#obtaining-results">Obtaining results</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/Tutorial.html#static-analysis">## Static analysis</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../examples/Tutorial.html#campbell-diagram">Campbell Diagram</a></li>
@@ -198,6 +193,12 @@
         <span class="k">else</span><span class="p">:</span>
             <span class="k">return</span> <span class="kc">False</span>
 
+    <span class="k">def</span> <span class="nf">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">coef</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">coefficient</span><span class="p">:</span>
+            <span class="n">coef</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{:.2e}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">i</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">f</span><span class="s2">&quot;</span><span class="si">{coef}</span><span class="s2">&quot;</span>
+
     <span class="k">def</span> <span class="nf">plot</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="k">if</span> <span class="n">ax</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span>
@@ -237,6 +238,8 @@
 <span class="sd">    Values for each parameter will be interpolated for the speed.</span>
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
+<span class="sd">    n: int</span>
+<span class="sd">        Node which the bearing will be located in</span>
 <span class="sd">    kxx: float, array</span>
 <span class="sd">        Direct stiffness in the x direction.</span>
 <span class="sd">    cxx: float, array</span>
@@ -263,6 +266,19 @@
 <span class="sd">        Array with the speeds (rad/s).</span>
 <span class="sd">    Examples</span>
 <span class="sd">    --------</span>
+<span class="sd">    &gt;&gt;&gt; # A bearing element located in the first rotor node, with these</span>
+<span class="sd">    &gt;&gt;&gt; # following stiffness and damping coefficients and speed range from</span>
+<span class="sd">    &gt;&gt;&gt; # 0 to 200 rad/s</span>
+<span class="sd">    &gt;&gt;&gt; Kxx = 1e6</span>
+<span class="sd">    &gt;&gt;&gt; Kyy = 0.8e6</span>
+<span class="sd">    &gt;&gt;&gt; Cxx = 2e2</span>
+<span class="sd">    &gt;&gt;&gt; Cyy = 1.5e2</span>
+<span class="sd">    &gt;&gt;&gt; W = np.linspace(0,200,11)</span>
+<span class="sd">    &gt;&gt;&gt; bearing0 = rs.BearingElement(n=0, kxx=Kxx, kyy=Kyy, cxx=Cxx, cyy=Cyy, w=W)</span>
+<span class="sd">    &gt;&gt;&gt; bearing0.K(W)</span>
+<span class="sd">    array([[[1000000., 1000000., ... , 800000.,  800000.]]])</span>
+<span class="sd">    &gt;&gt;&gt; bearing0.C(W)</span>
+<span class="sd">    array([[[200., 200., ... , 150., 150.]]])</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span>
@@ -314,7 +330,15 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">color</span> <span class="o">=</span> <span class="s2">&quot;#355d7a&quot;</span>
 
     <span class="k">def</span> <span class="nf">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="s2">&quot;</span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span>
+        <span class="k">return</span> <span class="p">(</span>
+            <span class="n">f</span><span class="s2">&quot;</span><span class="si">{self.__class__.__name__}</span><span class="s2">&quot;</span>
+            <span class="n">f</span><span class="s2">&quot;(n=</span><span class="si">{self.n}</span><span class="s2">,</span><span class="se">\n</span><span class="s2">&quot;</span>
+            <span class="n">f</span><span class="s2">&quot; kxx=</span><span class="si">{self.kxx}</span><span class="s2">, kxy=</span><span class="si">{self.kxy}</span><span class="s2">,</span><span class="se">\n</span><span class="s2">&quot;</span>
+            <span class="n">f</span><span class="s2">&quot; kyx=</span><span class="si">{self.kyx}</span><span class="s2">, kyy=</span><span class="si">{self.kxy}</span><span class="s2">,</span><span class="se">\n</span><span class="s2">&quot;</span>
+            <span class="n">f</span><span class="s2">&quot; cxx=</span><span class="si">{self.cxx}</span><span class="s2">, cxy=</span><span class="si">{self.cxy}</span><span class="s2">,</span><span class="se">\n</span><span class="s2">&quot;</span>
+            <span class="n">f</span><span class="s2">&quot; cyx=</span><span class="si">{self.cyx}</span><span class="s2">, cyy=</span><span class="si">{self.cyy}</span><span class="s2">,</span><span class="se">\n</span><span class="s2">&quot;</span>
+            <span class="n">f</span><span class="s2">&quot; w=</span><span class="si">{self.w}</span><span class="s2">)&quot;</span>
+        <span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">__eq__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
         <span class="k">try</span><span class="p">:</span>
