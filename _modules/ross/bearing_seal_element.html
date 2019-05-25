@@ -2,7 +2,8 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
-    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>ross.bearing_seal_element &#8212; ross 0.0.1 documentation</title>
     <link rel="stylesheet" href="../../_static/bootstrap-sphinx.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
@@ -11,7 +12,7 @@
     <script type="text/javascript" src="../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
     <script type="text/javascript" src="../../_static/language_data.js"></script>
-    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+    <link rel="shortcut icon" href="../../_static/ross-logo.ico"/>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
 <meta charset='utf-8'>
@@ -155,6 +156,8 @@
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="kn">import</span> <span class="nn">sys</span>
 <span class="kn">import</span> <span class="nn">xlrd</span>
+<span class="kn">from</span> <span class="nn">ross.fluid_flow</span> <span class="k">import</span> <span class="n">fluid_flow</span> <span class="k">as</span> <span class="n">flow</span>
+
 
 <span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;BearingElement&quot;</span><span class="p">,</span> <span class="s2">&quot;SealElement&quot;</span><span class="p">]</span>
 <span class="n">bokeh_colors</span> <span class="o">=</span> <span class="n">bp</span><span class="o">.</span><span class="n">RdGy</span><span class="p">[</span><span class="mi">11</span><span class="p">]</span>
@@ -410,6 +413,7 @@
 
             <span class="n">bearing_elements</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">bearing</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">bearing_elements</span>
+
     <span class="k">def</span> <span class="nf">M</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">M</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
 
@@ -435,7 +439,7 @@
 
         <span class="k">return</span> <span class="n">C</span>
 
-<div class="viewcode-block" id="BearingElement.patch"><a class="viewcode-back" href="../../api.html#ross.bearing_seal_element.BearingElement.patch">[docs]</a>    <span class="k">def</span> <span class="nf">patch</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">position</span><span class="p">,</span> <span class="n">ax</span><span class="p">,</span> <span class="n">bk_ax</span><span class="p">):</span>
+<div class="viewcode-block" id="BearingElement.patch"><a class="viewcode-back" href="../../api.html#ross.bearing_seal_element.BearingElement.patch">[docs]</a>    <span class="k">def</span> <span class="nf">patch</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">position</span><span class="p">,</span> <span class="n">length</span><span class="p">,</span> <span class="n">ax</span><span class="p">,</span> <span class="n">bk_ax</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Bearing element patch.</span>
 <span class="sd">        Patch that will be used to draw the bearing element.</span>
 <span class="sd">        Parameters</span>
@@ -446,15 +450,13 @@
 <span class="sd">            Axes in which the plot will be drawn.</span>
 <span class="sd">        position : tuple</span>
 <span class="sd">            Position (z, y) in which the patch will be drawn.</span>
+<span class="sd">        length : float</span>
+<span class="sd">            minimum length of shaft elements</span>
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        ax : matplotlib axes</span>
-<span class="sd">            Returns the axes object with the plot.</span>
-<span class="sd">        bk_ax : bokeh plotting axes</span>
-<span class="sd">            Returns the axes object with the plot.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">zpos</span><span class="p">,</span> <span class="n">ypos</span> <span class="o">=</span> <span class="n">position</span>
-
+        <span class="n">le</span> <span class="o">=</span> <span class="n">length</span>
         <span class="n">h</span> <span class="o">=</span> <span class="o">-</span><span class="mf">0.5</span> <span class="o">*</span> <span class="n">ypos</span>  <span class="c1"># height</span>
 
         <span class="c1">#  node (x pos), outer diam. (y pos)</span>
@@ -469,10 +471,10 @@
         <span class="p">)</span>
 
         <span class="c1"># bokeh plot - upper bearing visual representarion</span>
-        <span class="n">bk_ax</span><span class="o">.</span><span class="n">quad</span><span class="p">(</span><span class="n">top</span><span class="o">=-</span><span class="n">ypos</span><span class="p">,</span>
-                   <span class="n">bottom</span><span class="o">=-</span><span class="mi">2</span> <span class="o">*</span> <span class="n">ypos</span><span class="p">,</span>
-                   <span class="n">left</span><span class="o">=</span><span class="n">zpos</span> <span class="o">-</span> <span class="n">ypos</span><span class="p">,</span>
-                   <span class="n">right</span><span class="o">=</span><span class="n">zpos</span> <span class="o">+</span> <span class="n">ypos</span><span class="p">,</span>
+        <span class="n">bk_ax</span><span class="o">.</span><span class="n">quad</span><span class="p">(</span><span class="n">top</span><span class="o">=-</span><span class="n">ypos</span><span class="o">+</span><span class="n">le</span><span class="o">/</span><span class="mi">3</span><span class="p">,</span>
+                   <span class="n">bottom</span><span class="o">=-</span><span class="n">ypos</span><span class="p">,</span>
+                   <span class="n">left</span><span class="o">=</span><span class="n">zpos</span> <span class="o">-</span> <span class="n">le</span><span class="o">/</span><span class="mi">6</span><span class="p">,</span>
+                   <span class="n">right</span><span class="o">=</span><span class="n">zpos</span> <span class="o">+</span> <span class="n">le</span><span class="o">/</span><span class="mi">6</span><span class="p">,</span>
                    <span class="n">line_color</span><span class="o">=</span><span class="n">bokeh_colors</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
                    <span class="n">line_width</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
                    <span class="n">fill_alpha</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
@@ -481,9 +483,9 @@
                    <span class="p">)</span>
         <span class="c1"># bokeh plot - lower bearing visual representation</span>
         <span class="n">bk_ax</span><span class="o">.</span><span class="n">quad</span><span class="p">(</span><span class="n">top</span><span class="o">=</span><span class="n">ypos</span><span class="p">,</span>
-                   <span class="n">bottom</span><span class="o">=</span><span class="mi">2</span> <span class="o">*</span> <span class="n">ypos</span><span class="p">,</span>
-                   <span class="n">left</span><span class="o">=</span><span class="n">zpos</span> <span class="o">-</span> <span class="n">ypos</span><span class="p">,</span>
-                   <span class="n">right</span><span class="o">=</span><span class="n">zpos</span> <span class="o">+</span> <span class="n">ypos</span><span class="p">,</span>
+                   <span class="n">bottom</span><span class="o">=</span><span class="n">ypos</span><span class="o">-</span><span class="n">le</span><span class="o">/</span><span class="mi">3</span><span class="p">,</span>
+                   <span class="n">left</span><span class="o">=</span><span class="n">zpos</span> <span class="o">-</span> <span class="n">le</span><span class="o">/</span><span class="mi">6</span><span class="p">,</span>
+                   <span class="n">right</span><span class="o">=</span><span class="n">zpos</span> <span class="o">+</span> <span class="n">le</span><span class="o">/</span><span class="mi">6</span><span class="p">,</span>
                    <span class="n">line_color</span><span class="o">=</span><span class="n">bokeh_colors</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
                    <span class="n">line_width</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
                    <span class="n">fill_alpha</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
@@ -496,11 +498,14 @@
 <span class="sd">        to a toml file that can be later loaded by ross.</span>
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-<span class="sd">        :param n : int. The node in which the bearing will be located in the rotor.</span>
-<span class="sd">        :param file: str. Path to the file containing the bearing parameters.</span>
+<span class="sd">        n : int</span>
+<span class="sd">            The node in which the bearing will be located in the rotor.</span>
+<span class="sd">        file: str</span>
+<span class="sd">            Path to the file containing the bearing parameters.</span>
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        :return: dict that is ready to save to toml and readable by ross.</span>
+<span class="sd">        dict</span>
+<span class="sd">            A dict that is ready to save to toml and readable by ross.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">b_elem</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">from_table</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">file</span><span class="p">)</span>
         <span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
@@ -522,11 +527,13 @@
         <span class="sd">&quot;&quot;&quot;Instantiate a bearing using inputs from a table, either excel or csv.</span>
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-<span class="sd">        :param n : int. The node in which the bearing will be located in the rotor.</span>
-<span class="sd">        :param file: str. Path to the file containing the bearing parameters.</span>
+<span class="sd">        n : int</span>
+<span class="sd">            The node in which the bearing will be located in the rotor.</span>
+<span class="sd">        file: str</span>
+<span class="sd">            Path to the file containing the bearing parameters.</span>
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        :return: A bearing object.</span>
+<span class="sd">        A bearing object.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="n">file</span><span class="p">)</span>
@@ -547,7 +554,71 @@
         <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
             <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="s2">&quot;One or more column names did not match the expected. &quot;</span>
                      <span class="s2">&quot;Make sure the table header contains the parameters for the &quot;</span>
-                     <span class="s2">&quot;BearingElement class.&quot;</span><span class="p">)</span></div></div>
+                     <span class="s2">&quot;BearingElement class.&quot;</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="BearingElement.from_fluid_flow"><a class="viewcode-back" href="../../api.html#ross.bearing_seal_element.BearingElement.from_fluid_flow">[docs]</a>    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">from_fluid_flow</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">nz</span><span class="p">,</span> <span class="n">ntheta</span><span class="p">,</span> <span class="n">nradius</span><span class="p">,</span> <span class="n">length</span><span class="p">,</span> <span class="n">omega</span><span class="p">,</span> <span class="n">p_in</span><span class="p">,</span>
+                        <span class="n">p_out</span><span class="p">,</span> <span class="n">radius_rotor</span><span class="p">,</span> <span class="n">radius_stator</span><span class="p">,</span> <span class="n">visc</span><span class="p">,</span> <span class="n">rho</span><span class="p">,</span>
+                        <span class="n">eccentricity</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">load</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Instantiate a bearing using inputs from its fluid flow.</span>
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        n : int</span>
+<span class="sd">            The node in which the bearing will be located in the rotor.</span>
+<span class="sd">        Grid related</span>
+<span class="sd">        ^^^^^^^^^^^^</span>
+<span class="sd">        Describes the discretization of the problem</span>
+<span class="sd">        nz: int</span>
+<span class="sd">            Number of points along the Z direction (direction of flow).</span>
+<span class="sd">        ntheta: int</span>
+<span class="sd">            Number of points along the direction theta. NOTE: ntheta must be odd.</span>
+<span class="sd">        nradius: int</span>
+<span class="sd">            Number of points along the direction r.</span>
+<span class="sd">        length: float</span>
+<span class="sd">            Length in the Z direction (m).</span>
+
+<span class="sd">        Operation conditions</span>
+<span class="sd">        ^^^^^^^^^^^^^^^^^^^^</span>
+<span class="sd">        Describes the operation conditions.</span>
+<span class="sd">        omega: float</span>
+<span class="sd">            Rotation of the rotor (rad/s).</span>
+<span class="sd">        p_in: float</span>
+<span class="sd">            Input Pressure (Pa).</span>
+<span class="sd">        p_out: float</span>
+<span class="sd">            Output Pressure (Pa).</span>
+<span class="sd">        load: float</span>
+<span class="sd">            Load applied to the rotor (N).</span>
+
+<span class="sd">        Geometric data of the problem</span>
+<span class="sd">        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^</span>
+<span class="sd">        Describes the geometric data of the problem.</span>
+<span class="sd">        radius_rotor: float</span>
+<span class="sd">            Rotor radius (m).</span>
+<span class="sd">        radius_stator: float</span>
+<span class="sd">            Stator Radius (m).</span>
+<span class="sd">        eccentricity: float</span>
+<span class="sd">            Eccentricity (m) is the euclidean distance between rotor and stator centers.</span>
+<span class="sd">            The center of the stator is in position (0,0).</span>
+
+<span class="sd">        Fluid characteristics</span>
+<span class="sd">        ^^^^^^^^^^^^^^^^^^^^^</span>
+<span class="sd">        Describes the fluid characteristics.</span>
+<span class="sd">        visc: float</span>
+<span class="sd">            Viscosity (Pa.s).</span>
+<span class="sd">        rho: float</span>
+<span class="sd">            Fluid density(Kg/m^3).</span>
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        A bearing object.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">fluid_flow</span> <span class="o">=</span> <span class="n">flow</span><span class="o">.</span><span class="n">PressureMatrix</span><span class="p">(</span><span class="n">nz</span><span class="p">,</span> <span class="n">ntheta</span><span class="p">,</span> <span class="n">nradius</span><span class="p">,</span> <span class="n">length</span><span class="p">,</span> <span class="n">omega</span><span class="p">,</span> <span class="n">p_in</span><span class="p">,</span>
+                                         <span class="n">p_out</span><span class="p">,</span> <span class="n">radius_rotor</span><span class="p">,</span> <span class="n">radius_stator</span><span class="p">,</span>
+                                         <span class="n">visc</span><span class="p">,</span> <span class="n">rho</span><span class="p">,</span> <span class="n">eccentricity</span><span class="o">=</span><span class="n">eccentricity</span><span class="p">,</span> <span class="n">load</span><span class="o">=</span><span class="n">load</span><span class="p">)</span>
+        <span class="n">k</span> <span class="o">=</span> <span class="n">fluid_flow</span><span class="o">.</span><span class="n">get_analytical_damping_matrix</span><span class="p">()</span>
+        <span class="n">c</span> <span class="o">=</span> <span class="n">fluid_flow</span><span class="o">.</span><span class="n">get_analytical_stiffness_matrix</span><span class="p">()</span>
+        <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">kxx</span><span class="o">=</span><span class="n">k</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">cxx</span><span class="o">=</span><span class="n">c</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">kyy</span><span class="o">=</span><span class="n">k</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span>
+                   <span class="n">kxy</span><span class="o">=</span><span class="n">k</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">kyx</span><span class="o">=</span><span class="n">k</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">cyy</span><span class="o">=</span><span class="n">c</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span>
+                   <span class="n">cxy</span><span class="o">=</span><span class="n">c</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">cyx</span><span class="o">=</span><span class="n">c</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">w</span><span class="o">=</span><span class="n">fluid_flow</span><span class="o">.</span><span class="n">omega</span><span class="p">)</span></div></div>
 
 
 <div class="viewcode-block" id="SealElement"><a class="viewcode-back" href="../../api.html#ross.bearing_seal_element.SealElement">[docs]</a><span class="k">class</span> <span class="nc">SealElement</span><span class="p">(</span><span class="n">BearingElement</span><span class="p">):</span>
@@ -658,7 +729,7 @@
     </p>
     <p>
         &copy; Copyright 2019, Team Ross.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.0.1.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.5.<br/>
     </p>
   </div>
 </footer>
