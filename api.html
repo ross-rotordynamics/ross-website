@@ -15,7 +15,7 @@
     <link rel="shortcut icon" href="_static/ross-logo.ico"/>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="prev" title="How to contribute to ROSS using git" href="git_configuration.html" />
+    <link rel="prev" title="Installation" href="installation.html" />
 <meta charset='utf-8'>
 <meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
 <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
@@ -59,20 +59,9 @@
       role="menu"
       aria-labelledby="dLabelGlobalToc"><p class="caption"><span class="caption-text">Contents:</span></p>
 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="introduction.html">What you need to do to start using ross</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="introduction.html#programming-language-python">Programming language: Python</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="tutorial.html">A quick tutorial on how to use ROSS</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="tutorial.html#downloading-ross">Downloading ROSS</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="git_configuration.html">How to contribute to ROSS using git</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="git_configuration.html#step-1-make-you-own-copy-fork-of-ross">Step 1: Make you own copy (fork) of ROSS</a></li>
-<li class="toctree-l2"><a class="reference internal" href="git_configuration.html#step-2-keep-in-sync-with-changes-in-ross">Step 2: Keep in sync with changes in Ross</a></li>
-<li class="toctree-l2"><a class="reference internal" href="git_configuration.html#step-3-make-a-new-feature-branch">Step 3: Make a new feature branch</a></li>
-<li class="toctree-l2"><a class="reference internal" href="git_configuration.html#step-4-push-changes-to-your-git-repository">Step 4: Push changes to your git repository</a></li>
-<li class="toctree-l2"><a class="reference internal" href="git_configuration.html#step-5-push-changes-to-the-main-repo">Step 5: Push changes to the main repo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#install-python">Install Python</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#install-ross">Install ross</a></li>
 </ul>
 </li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">The ROSS project API</a><ul>
@@ -81,28 +70,16 @@
 <li class="toctree-l2"><a class="reference internal" href="#module-ross.materials">The “Material” class</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="examples/Tutorial.html">ROSS Quick Start</a></li>
-<li class="toctree-l1"><a class="reference internal" href="examples/Tutorial.html#materials">Materials</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="examples/Tutorial.html#saving-a-material">Saving a Material</a></li>
-<li class="toctree-l2"><a class="reference internal" href="examples/Tutorial.html#loading-a-material">Loading a Material</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="examples/Tutorial.html#element">Element</a></li>
-<li class="toctree-l1"><a class="reference internal" href="examples/Tutorial.html#shaftelement">ShaftElement</a></li>
-<li class="toctree-l1"><a class="reference internal" href="examples/Tutorial.html#diskelement">DiskElement</a></li>
-<li class="toctree-l1"><a class="reference internal" href="examples/Tutorial.html#from-geometry-diskelement-instatiation">From geometry DiskElement instatiation</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="examples/Tutorial.html#bearingelement"># BearingElement</a></li>
-<li class="toctree-l2"><a class="reference internal" href="examples/Tutorial.html#instantiating-bearings-from-excel-archives">Instantiating bearings from excel archives</a></li>
-<li class="toctree-l2"><a class="reference internal" href="examples/Tutorial.html#rotor"># Rotor</a></li>
-<li class="toctree-l2"><a class="reference internal" href="examples/Tutorial.html#from-section-instantiation-of-a-rotor">From section instantiation of a Rotor</a></li>
-<li class="toctree-l2"><a class="reference internal" href="examples/Tutorial.html#visualizing-the-rotor">Visualizing the Rotor</a></li>
-<li class="toctree-l2"><a class="reference internal" href="examples/Tutorial.html#running-the-simulation">Running the simulation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples/Tutorial.html">ROSS Quick Start</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="examples/Tutorial.html#materials">Materials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples/Tutorial.html#element">Element</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples/Tutorial.html#shaftelement">ShaftElement</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples/Tutorial.html#diskelement">DiskElement</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples/Tutorial.html#bearingelement">BearingElement</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples/Tutorial.html#rotor">Rotor</a></li>
 <li class="toctree-l2"><a class="reference internal" href="examples/Tutorial.html#obtaining-results">Obtaining results</a></li>
-<li class="toctree-l2"><a class="reference internal" href="examples/Tutorial.html#static-analysis">## Static analysis</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="examples/Tutorial.html#campbell-diagram">Campbell Diagram</a></li>
-<li class="toctree-l1"><a class="reference internal" href="examples/Tutorial.html#frenquency-response">Frenquency Response</a></li>
 </ul>
 </ul>
 </li>
@@ -227,7 +204,7 @@ Default is 12.</p>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">bearing0</span> <span class="o">=</span> <span class="n">rs</span><span class="o">.</span><span class="n">BearingElement</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">kxx</span><span class="o">=</span><span class="n">stf</span><span class="p">,</span> <span class="n">cxx</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">bearing1</span> <span class="o">=</span> <span class="n">rs</span><span class="o">.</span><span class="n">BearingElement</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">kxx</span><span class="o">=</span><span class="n">stf</span><span class="p">,</span> <span class="n">cxx</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">rotor</span> <span class="o">=</span> <span class="n">rs</span><span class="o">.</span><span class="n">Rotor</span><span class="p">(</span><span class="n">shaft_elm</span><span class="p">,</span> <span class="p">[</span><span class="n">disk0</span><span class="p">],</span> <span class="p">[</span><span class="n">bearing0</span><span class="p">,</span> <span class="n">bearing1</span><span class="p">])</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">rotor</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">rotor</span><span class="o">.</span><span class="n">run_modal</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">rotor</span><span class="o">.</span><span class="n">wd</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="c1"># doctest: +ELLIPSIS</span>
 <span class="go">215.3707...</span>
 </pre></div>
@@ -285,32 +262,32 @@ Default is 12.</p>
 <tr class="row-even"><td><a class="reference internal" href="#ross.rotor_assembly.Rotor.convergence" title="ross.rotor_assembly.Rotor.convergence"><code class="xref py py-obj docutils literal notranslate"><span class="pre">convergence</span></code></a>([n_eigval,&nbsp;err_max])</td>
 <td>Function to analyze the eigenvalues convergence through the number of shaft elements.</td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="#ross.rotor_assembly.Rotor.freq_response" title="ross.rotor_assembly.Rotor.freq_response"><code class="xref py py-obj docutils literal notranslate"><span class="pre">freq_response</span></code></a>([frequency_range,&nbsp;modes])</td>
-<td>Frequency response for a mdof system.</td>
-</tr>
-<tr class="row-even"><td><a class="reference internal" href="#ross.rotor_assembly.Rotor.from_section" title="ross.rotor_assembly.Rotor.from_section"><code class="xref py py-obj docutils literal notranslate"><span class="pre">from_section</span></code></a>(leng_data,&nbsp;o_ds_data,&nbsp;i_ds_data)</td>
+<tr class="row-odd"><td><a class="reference internal" href="#ross.rotor_assembly.Rotor.from_section" title="ross.rotor_assembly.Rotor.from_section"><code class="xref py py-obj docutils literal notranslate"><span class="pre">from_section</span></code></a>(leng_data,&nbsp;o_ds_data,&nbsp;i_ds_data)</td>
 <td>This class is an alternative to build rotors from separated sections.</td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="#ross.rotor_assembly.Rotor.kappa" title="ross.rotor_assembly.Rotor.kappa"><code class="xref py py-obj docutils literal notranslate"><span class="pre">kappa</span></code></a>(node,&nbsp;w[,&nbsp;wd])</td>
+<tr class="row-even"><td><a class="reference internal" href="#ross.rotor_assembly.Rotor.kappa" title="ross.rotor_assembly.Rotor.kappa"><code class="xref py py-obj docutils literal notranslate"><span class="pre">kappa</span></code></a>(node,&nbsp;w[,&nbsp;wd])</td>
 <td>Calculates kappa for a given node and natural frequency.</td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="#ross.rotor_assembly.Rotor.kappa_mode" title="ross.rotor_assembly.Rotor.kappa_mode"><code class="xref py py-obj docutils literal notranslate"><span class="pre">kappa_mode</span></code></a>(w)</td>
+<tr class="row-odd"><td><a class="reference internal" href="#ross.rotor_assembly.Rotor.kappa_mode" title="ross.rotor_assembly.Rotor.kappa_mode"><code class="xref py py-obj docutils literal notranslate"><span class="pre">kappa_mode</span></code></a>(w)</td>
 <td>This function evaluates kappa given the index of the natural frequency of interest.</td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="#ross.rotor_assembly.Rotor.load" title="ross.rotor_assembly.Rotor.load"><code class="xref py py-obj docutils literal notranslate"><span class="pre">load</span></code></a>(file_name)</td>
+<tr class="row-even"><td><a class="reference internal" href="#ross.rotor_assembly.Rotor.load" title="ross.rotor_assembly.Rotor.load"><code class="xref py py-obj docutils literal notranslate"><span class="pre">load</span></code></a>(file_name)</td>
 <td>Load rotor from toml file.</td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="#ross.rotor_assembly.Rotor.plot_level1" title="ross.rotor_assembly.Rotor.plot_level1"><code class="xref py py-obj docutils literal notranslate"><span class="pre">plot_level1</span></code></a>([n,&nbsp;stiffness_range,&nbsp;num,&nbsp;ax])</td>
+<tr class="row-odd"><td><a class="reference internal" href="#ross.rotor_assembly.Rotor.plot_level1" title="ross.rotor_assembly.Rotor.plot_level1"><code class="xref py py-obj docutils literal notranslate"><span class="pre">plot_level1</span></code></a>([n,&nbsp;stiffness_range,&nbsp;num,&nbsp;ax])</td>
 <td>Plot level 1 stability analysis.</td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="#ross.rotor_assembly.Rotor.plot_rotor" title="ross.rotor_assembly.Rotor.plot_rotor"><code class="xref py py-obj docutils literal notranslate"><span class="pre">plot_rotor</span></code></a>([nodes,&nbsp;ax,&nbsp;bk_ax])</td>
+<tr class="row-even"><td><a class="reference internal" href="#ross.rotor_assembly.Rotor.plot_rotor" title="ross.rotor_assembly.Rotor.plot_rotor"><code class="xref py py-obj docutils literal notranslate"><span class="pre">plot_rotor</span></code></a>([nodes,&nbsp;ax,&nbsp;bk_ax])</td>
 <td>Plots a rotor object.</td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="#ross.rotor_assembly.Rotor.plot_time_response" title="ross.rotor_assembly.Rotor.plot_time_response"><code class="xref py py-obj docutils literal notranslate"><span class="pre">plot_time_response</span></code></a>(F,&nbsp;t,&nbsp;dof[,&nbsp;ax])</td>
+<tr class="row-odd"><td><a class="reference internal" href="#ross.rotor_assembly.Rotor.plot_time_response" title="ross.rotor_assembly.Rotor.plot_time_response"><code class="xref py py-obj docutils literal notranslate"><span class="pre">plot_time_response</span></code></a>(F,&nbsp;t,&nbsp;dof[,&nbsp;ax])</td>
 <td>Plot the time response.</td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="#ross.rotor_assembly.Rotor.plot_ucs" title="ross.rotor_assembly.Rotor.plot_ucs"><code class="xref py py-obj docutils literal notranslate"><span class="pre">plot_ucs</span></code></a>([stiffness_range,&nbsp;num,&nbsp;ax])</td>
+<tr class="row-even"><td><a class="reference internal" href="#ross.rotor_assembly.Rotor.plot_ucs" title="ross.rotor_assembly.Rotor.plot_ucs"><code class="xref py py-obj docutils literal notranslate"><span class="pre">plot_ucs</span></code></a>([stiffness_range,&nbsp;num,&nbsp;ax])</td>
 <td>Plot undamped critical speed map.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#ross.rotor_assembly.Rotor.run_freq_response" title="ross.rotor_assembly.Rotor.run_freq_response"><code class="xref py py-obj docutils literal notranslate"><span class="pre">run_freq_response</span></code></a>([frequency_range,&nbsp;modes])</td>
+<td>Frequency response for a mdof system.</td>
 </tr>
 <tr class="row-even"><td><a class="reference internal" href="#ross.rotor_assembly.Rotor.save" title="ross.rotor_assembly.Rotor.save"><code class="xref py py-obj docutils literal notranslate"><span class="pre">save</span></code></a>(file_name)</td>
 <td>Save rotor to toml file.</td>
@@ -353,7 +330,7 @@ Default is 12.</p>
 <tr class="row-odd"><td><strong>remove</strong></td>
 <td>&#160;</td>
 </tr>
-<tr class="row-even"><td><strong>run</strong></td>
+<tr class="row-even"><td><strong>run_modal</strong></td>
 <td>&#160;</td>
 </tr>
 <tr class="row-odd"><td><strong>static</strong></td>
@@ -641,54 +618,6 @@ Default is 0 (the first eigenvalue).</dd>
 <dd>Maximum allowable convergence error.
 Default is 1e-02</dd>
 </dl>
-</dd></dl>
-
-<dl class="method">
-<dt id="ross.rotor_assembly.Rotor.freq_response">
-<code class="descname">freq_response</code><span class="sig-paren">(</span><em>frequency_range=None</em>, <em>modes=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ross/rotor_assembly.html#Rotor.freq_response"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.rotor_assembly.Rotor.freq_response" title="Permalink to this definition">¶</a></dt>
-<dd><p>Frequency response for a mdof system.</p>
-<p>This method returns the frequency response for a mdof system
-given a range of frequencies and the modes that will be used.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><dl class="first docutils">
-<dt><strong>force</strong> <span class="classifier-delimiter">:</span> <span class="classifier">array, optional</span></dt>
-<dd><p class="first last">Force array (needs to have the same length as frequencies array).
-If not given the impulse response is calculated.</p>
-</dd>
-<dt><strong>omega</strong> <span class="classifier-delimiter">:</span> <span class="classifier">array, optional</span></dt>
-<dd><dl class="first last docutils">
-<dt>Array with the desired range of frequencies (the default</dt>
-<dd><p class="first last">is 0 to 1.5 x highest damped natural frequency.</p>
-</dd>
-</dl>
-</dd>
-<dt><strong>modes</strong> <span class="classifier-delimiter">:</span> <span class="classifier">list, optional</span></dt>
-<dd><p class="first last">Modes that will be used to calculate the frequency response
-(all modes will be used if a list is not given).</p>
-</dd>
-</dl>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><dl class="first last docutils">
-<dt><strong>omega</strong> <span class="classifier-delimiter">:</span> <span class="classifier">array</span></dt>
-<dd><p class="first last">Array with the frequencies</p>
-</dd>
-<dt><strong>magdb</strong> <span class="classifier-delimiter">:</span> <span class="classifier">array</span></dt>
-<dd><p class="first last">Magnitude (dB) of the frequency response for each pair input/output.
-The order of the array is: [output, input, magnitude]</p>
-</dd>
-<dt><strong>phase</strong> <span class="classifier-delimiter">:</span> <span class="classifier">array</span></dt>
-<dd><p class="first last">Phase of the frequency response for each pair input/output.
-The order of the array is: [output, input, phase]</p>
-</dd>
-</dl>
-</td>
-</tr>
-</tbody>
-</table>
 </dd></dl>
 
 <dl class="classmethod">
@@ -1015,6 +944,54 @@ Default is 20.</p>
 </dd>
 <dt><strong>bk_ax</strong> <span class="classifier-delimiter">:</span> <span class="classifier">bokeh plot axes</span></dt>
 <dd><p class="first last">Returns the axes object with the plot.</p>
+</dd>
+</dl>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="ross.rotor_assembly.Rotor.run_freq_response">
+<code class="descname">run_freq_response</code><span class="sig-paren">(</span><em>frequency_range=None</em>, <em>modes=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ross/rotor_assembly.html#Rotor.run_freq_response"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.rotor_assembly.Rotor.run_freq_response" title="Permalink to this definition">¶</a></dt>
+<dd><p>Frequency response for a mdof system.</p>
+<p>This method returns the frequency response for a mdof system
+given a range of frequencies and the modes that will be used.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><dl class="first docutils">
+<dt><strong>force</strong> <span class="classifier-delimiter">:</span> <span class="classifier">array, optional</span></dt>
+<dd><p class="first last">Force array (needs to have the same length as frequencies array).
+If not given the impulse response is calculated.</p>
+</dd>
+<dt><strong>omega</strong> <span class="classifier-delimiter">:</span> <span class="classifier">array, optional</span></dt>
+<dd><dl class="first last docutils">
+<dt>Array with the desired range of frequencies (the default</dt>
+<dd><p class="first last">is 0 to 1.5 x highest damped natural frequency.</p>
+</dd>
+</dl>
+</dd>
+<dt><strong>modes</strong> <span class="classifier-delimiter">:</span> <span class="classifier">list, optional</span></dt>
+<dd><p class="first last">Modes that will be used to calculate the frequency response
+(all modes will be used if a list is not given).</p>
+</dd>
+</dl>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><dl class="first last docutils">
+<dt><strong>omega</strong> <span class="classifier-delimiter">:</span> <span class="classifier">array</span></dt>
+<dd><p class="first last">Array with the frequencies</p>
+</dd>
+<dt><strong>magdb</strong> <span class="classifier-delimiter">:</span> <span class="classifier">array</span></dt>
+<dd><p class="first last">Magnitude (dB) of the frequency response for each pair input/output.
+The order of the array is: [output, input, magnitude]</p>
+</dd>
+<dt><strong>phase</strong> <span class="classifier-delimiter">:</span> <span class="classifier">array</span></dt>
+<dd><p class="first last">Phase of the frequency response for each pair input/output.
+The order of the array is: [output, input, phase]</p>
 </dd>
 </dl>
 </td>

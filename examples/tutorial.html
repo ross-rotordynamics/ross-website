@@ -15,6 +15,8 @@
     <link rel="shortcut icon" href="../_static/ross-logo.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="The ROSS project API" href="../api.html" />
+    <link rel="prev" title="Installation" href="../installation.html" />
 <meta charset='utf-8'>
 <meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
 <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
@@ -63,12 +65,6 @@
 <li class="toctree-l2"><a class="reference internal" href="../installation.html#install-ross">Install ross</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../api.html">The ROSS project API</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../api.html#module-ross.rotor_assembly">The Rotor module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../api.html#module-ross.element">The “Element” class</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../api.html#module-ross.materials">The “Material” class</a></li>
-</ul>
-</li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">ROSS Quick Start</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#materials">Materials</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#element">Element</a></li>
@@ -77,6 +73,12 @@
 <li class="toctree-l2"><a class="reference internal" href="#bearingelement">BearingElement</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#rotor">Rotor</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#obtaining-results">Obtaining results</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../api.html">The ROSS project API</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../api.html#module-ross.rotor_assembly">The Rotor module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api.html#module-ross.element">The “Element” class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api.html#module-ross.materials">The “Material” class</a></li>
 </ul>
 </li>
 </ul>
@@ -133,7 +135,7 @@
             
               <li class="hidden-sm">
 <div id="sourcelink">
-  <a href="../_sources/examples/Tutorial.rst.txt"
+  <a href="../_sources/examples/tutorial.rst.txt"
      rel="nofollow">Source</a>
 </div></li>
             
@@ -352,10 +354,6 @@ elements in a list format, as it follows.</p>
                   <span class="p">)</span>
 </pre></div>
 </div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">To</span> <span class="n">check</span> <span class="n">the</span> <span class="n">rotor</span> <span class="n">geometry</span><span class="p">,</span> <span class="n">use</span> <span class="n">the</span> <span class="n">method</span> <span class="n">plot_rotor</span><span class="p">()</span>
-<span class="n">To</span> <span class="n">calculate</span> <span class="n">the</span> <span class="n">rotor</span> <span class="n">state</span><span class="p">,</span> <span class="n">use</span> <span class="n">the</span> <span class="n">method</span> <span class="n">run</span><span class="p">()</span>
-</pre></div>
-</div>
 <div class="section" id="from-section-instantiation-of-a-rotor">
 <h3>From section instantiation of a Rotor<a class="headerlink" href="#from-section-instantiation-of-a-rotor" title="Permalink to this headline">¶</a></h3>
 <div class="line-block">
@@ -402,10 +400,6 @@ for the shaft elements) in the minimal nodes</div>
                               <span class="p">)</span>
 </pre></div>
 </div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">To</span> <span class="n">check</span> <span class="n">the</span> <span class="n">rotor</span> <span class="n">geometry</span><span class="p">,</span> <span class="n">use</span> <span class="n">the</span> <span class="n">method</span> <span class="n">plot_rotor</span><span class="p">()</span>
-<span class="n">To</span> <span class="n">calculate</span> <span class="n">the</span> <span class="n">rotor</span> <span class="n">state</span><span class="p">,</span> <span class="n">use</span> <span class="n">the</span> <span class="n">method</span> <span class="n">run</span><span class="p">()</span>
-</pre></div>
-</div>
 </div>
 <div class="section" id="visualizing-the-rotor">
 <h3>Visualizing the Rotor<a class="headerlink" href="#visualizing-the-rotor" title="Permalink to this headline">¶</a></h3>
@@ -416,19 +410,19 @@ you can either turn on or off the matplotlib one.</p>
 <div class="code ipython3 highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">rotor1</span><span class="o">.</span><span class="n">plot_rotor</span><span class="p">()</span>
 </pre></div>
 </div>
-<div class="bk-root" id="b83f1bbc-3fc3-470b-95a4-47765a656831" data-root-id="1003"></div><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">Figure</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s1">&#39;1003&#39;</span><span class="p">,</span> <span class="o">...</span><span class="p">),</span>
- <span class="o">&lt;</span><span class="n">matplotlib</span><span class="o">.</span><span class="n">axes</span><span class="o">.</span><span class="n">_subplots</span><span class="o">.</span><span class="n">AxesSubplot</span> <span class="n">at</span> <span class="mh">0x7f9c1c792358</span><span class="o">&gt;</span><span class="p">)</span>
+<div class="bk-root" id="f1c32c2a-e199-4a26-be2b-dc81ab682b6d" data-root-id="1003"></div><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">Figure</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s1">&#39;1003&#39;</span><span class="p">,</span> <span class="o">...</span><span class="p">),</span>
+ <span class="o">&lt;</span><span class="n">matplotlib</span><span class="o">.</span><span class="n">axes</span><span class="o">.</span><span class="n">_subplots</span><span class="o">.</span><span class="n">AxesSubplot</span> <span class="n">at</span> <span class="mh">0x7f4c376be668</span><span class="o">&gt;</span><span class="p">)</span>
 </pre></div>
 </div>
-<img alt="../_images/Tutorial_23_3.png" src="../_images/Tutorial_23_3.png" />
+<img alt="../_images/tutorial_23_3.png" src="../_images/tutorial_23_3.png" />
 </div>
 <div class="section" id="running-the-simulation">
 <h3>Running the simulation<a class="headerlink" href="#running-the-simulation" title="Permalink to this headline">¶</a></h3>
 <p>After you verify that everything is fine with the rotor, you should run
 the simulation and obtain results. To do that you only need to use the
 run() method like the code bellow.</p>
-<div class="code ipython3 highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">rotor1</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
-<span class="n">rotor2</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+<div class="code ipython3 highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">rotor1</span><span class="o">.</span><span class="n">run_modal</span><span class="p">()</span>
+<span class="n">rotor2</span><span class="o">.</span><span class="n">run_modal</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -445,7 +439,7 @@ response to gravity effects.</p>
 <div class="code ipython3 highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">rotor1</span><span class="o">.</span><span class="n">static</span><span class="p">()</span>
 </pre></div>
 </div>
-<div class="bk-root" id="561b1624-8381-47ca-a90f-a0194ded9af6" data-root-id="2618"></div></div>
+<div class="bk-root" id="0bf03278-3350-4728-b5cc-497caf3e68bf" data-root-id="2618"></div></div>
 <div class="section" id="campbell-diagram">
 <h3>Campbell Diagram<a class="headerlink" href="#campbell-diagram" title="Permalink to this headline">¶</a></h3>
 <p>In this example we can see the campbell diagram from 0 to 4000 RPM.</p>
@@ -453,20 +447,20 @@ response to gravity effects.</p>
 <span class="n">campbell</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
 </pre></div>
 </div>
-<div class="bk-root" id="9ae7e39e-cc6a-4004-9d1a-66d85ac8fdde" data-root-id="3448"></div><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="o">&lt;</span><span class="n">Figure</span> <span class="n">size</span> <span class="mi">432</span><span class="n">x288</span> <span class="k">with</span> <span class="mi">2</span> <span class="n">Axes</span><span class="o">&gt;</span><span class="p">,</span>
- <span class="o">&lt;</span><span class="n">matplotlib</span><span class="o">.</span><span class="n">axes</span><span class="o">.</span><span class="n">_subplots</span><span class="o">.</span><span class="n">AxesSubplot</span> <span class="n">at</span> <span class="mh">0x7f9bf0040cf8</span><span class="o">&gt;</span><span class="p">)</span>
+<div class="bk-root" id="883cdad2-d8b0-4078-83d0-216cd0e31257" data-root-id="3448"></div><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="o">&lt;</span><span class="n">Figure</span> <span class="n">size</span> <span class="mi">432</span><span class="n">x288</span> <span class="k">with</span> <span class="mi">2</span> <span class="n">Axes</span><span class="o">&gt;</span><span class="p">,</span>
+ <span class="o">&lt;</span><span class="n">matplotlib</span><span class="o">.</span><span class="n">axes</span><span class="o">.</span><span class="n">_subplots</span><span class="o">.</span><span class="n">AxesSubplot</span> <span class="n">at</span> <span class="mh">0x7f4c34867400</span><span class="o">&gt;</span><span class="p">)</span>
 </pre></div>
 </div>
-<img alt="../_images/Tutorial_29_3.png" src="../_images/Tutorial_29_3.png" />
+<img alt="../_images/tutorial_29_3.png" src="../_images/tutorial_29_3.png" />
 </div>
 <div class="section" id="frenquency-response">
 <h3>Frenquency Response<a class="headerlink" href="#frenquency-response" title="Permalink to this headline">¶</a></h3>
 <p>We can put the frequency response of</p>
-<div class="code ipython3 highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">rotor1</span><span class="o">.</span><span class="n">freq_response</span><span class="p">()</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">inp</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">out</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<div class="code ipython3 highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">rotor1</span><span class="o">.</span><span class="n">run_freq_response</span><span class="p">()</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">inp</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">out</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s2">&quot;figure.figsize&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">15</span><span class="p">,</span><span class="mi">10</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="bk-root" id="73d57aef-b024-4a27-b41a-f7f228ad5016" data-root-id="5116"></div><img alt="../_images/Tutorial_31_2.png" src="../_images/Tutorial_31_2.png" />
+<div class="bk-root" id="a9ea1b3b-8290-43d6-8f67-c43f7816d6f9" data-root-id="5116"></div><img alt="../_images/tutorial_31_2.png" src="../_images/tutorial_31_2.png" />
 </div>
 </div>
 </div>
