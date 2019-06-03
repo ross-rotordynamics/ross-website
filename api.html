@@ -15,7 +15,7 @@
     <link rel="shortcut icon" href="_static/ross-logo.ico"/>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="prev" title="Installation" href="installation.html" />
+    <link rel="prev" title="Example 5.9.9" href="examples/example_05_09_09.html" />
 <meta charset='utf-8'>
 <meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
 <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
@@ -64,20 +64,31 @@
 <li class="toctree-l2"><a class="reference internal" href="installation.html#install-ross">Install ross</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="examples/tutorial.html">ROSS Quick Start</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="examples/tutorial.html#materials">Materials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples/tutorial.html#element">Element</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples/tutorial.html#shaftelement">ShaftElement</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples/tutorial.html#diskelement">DiskElement</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples/tutorial.html#bearingelement">BearingElement</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples/tutorial.html#rotor">Rotor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples/tutorial.html#obtaining-results">Obtaining results</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="examples.html">Examples</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="examples/example_05_08_01.html">Example 5.8.1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples/example_05_08_02.html">Example 5.8.2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples/example_05_09_01.html">EXAMPLE 5.9.1.</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples/example_05_09_02.html">EXAMPLE 5.9.2.</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples/example_05_09_04.html">EXAMPLE 5.9.4.</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples/example_05_09_05.html">EXAMPLE 5.9.5.</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples/example_05_09_06.html">EXAMPLE 5.9.6.</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples/example_05_09_09.html">Example 5.9.9</a></li>
+</ul>
+</li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">The ROSS project API</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#module-ross.rotor_assembly">The Rotor module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#module-ross.element">The “Element” class</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#module-ross.materials">The “Material” class</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="examples/Tutorial.html">ROSS Quick Start</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="examples/Tutorial.html#materials">Materials</a></li>
-<li class="toctree-l2"><a class="reference internal" href="examples/Tutorial.html#element">Element</a></li>
-<li class="toctree-l2"><a class="reference internal" href="examples/Tutorial.html#shaftelement">ShaftElement</a></li>
-<li class="toctree-l2"><a class="reference internal" href="examples/Tutorial.html#diskelement">DiskElement</a></li>
-<li class="toctree-l2"><a class="reference internal" href="examples/Tutorial.html#bearingelement">BearingElement</a></li>
-<li class="toctree-l2"><a class="reference internal" href="examples/Tutorial.html#rotor">Rotor</a></li>
-<li class="toctree-l2"><a class="reference internal" href="examples/Tutorial.html#obtaining-results">Obtaining results</a></li>
 </ul>
 </li>
 </ul>
@@ -256,35 +267,35 @@ Default is 12.</p>
 <tr class="row-even"><td><a class="reference internal" href="#ross.rotor_assembly.Rotor.M" title="ross.rotor_assembly.Rotor.M"><code class="xref py py-obj docutils literal notranslate"><span class="pre">M</span></code></a>()</td>
 <td>Mass matrix for an instance of a rotor.</td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="#ross.rotor_assembly.Rotor.campbell" title="ross.rotor_assembly.Rotor.campbell"><code class="xref py py-obj docutils literal notranslate"><span class="pre">campbell</span></code></a>(speed_range[,&nbsp;frequencies,&nbsp;…])</td>
-<td>Calculates the Campbell diagram.</td>
-</tr>
-<tr class="row-even"><td><a class="reference internal" href="#ross.rotor_assembly.Rotor.convergence" title="ross.rotor_assembly.Rotor.convergence"><code class="xref py py-obj docutils literal notranslate"><span class="pre">convergence</span></code></a>([n_eigval,&nbsp;err_max])</td>
+<tr class="row-odd"><td><a class="reference internal" href="#ross.rotor_assembly.Rotor.convergence" title="ross.rotor_assembly.Rotor.convergence"><code class="xref py py-obj docutils literal notranslate"><span class="pre">convergence</span></code></a>([n_eigval,&nbsp;err_max])</td>
 <td>Function to analyze the eigenvalues convergence through the number of shaft elements.</td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="#ross.rotor_assembly.Rotor.from_section" title="ross.rotor_assembly.Rotor.from_section"><code class="xref py py-obj docutils literal notranslate"><span class="pre">from_section</span></code></a>(leng_data,&nbsp;o_ds_data,&nbsp;i_ds_data)</td>
+<tr class="row-even"><td><a class="reference internal" href="#ross.rotor_assembly.Rotor.from_section" title="ross.rotor_assembly.Rotor.from_section"><code class="xref py py-obj docutils literal notranslate"><span class="pre">from_section</span></code></a>(leng_data,&nbsp;o_ds_data,&nbsp;i_ds_data)</td>
 <td>This class is an alternative to build rotors from separated sections.</td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="#ross.rotor_assembly.Rotor.kappa" title="ross.rotor_assembly.Rotor.kappa"><code class="xref py py-obj docutils literal notranslate"><span class="pre">kappa</span></code></a>(node,&nbsp;w[,&nbsp;wd])</td>
+<tr class="row-odd"><td><a class="reference internal" href="#ross.rotor_assembly.Rotor.kappa" title="ross.rotor_assembly.Rotor.kappa"><code class="xref py py-obj docutils literal notranslate"><span class="pre">kappa</span></code></a>(node,&nbsp;w[,&nbsp;wd])</td>
 <td>Calculates kappa for a given node and natural frequency.</td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="#ross.rotor_assembly.Rotor.kappa_mode" title="ross.rotor_assembly.Rotor.kappa_mode"><code class="xref py py-obj docutils literal notranslate"><span class="pre">kappa_mode</span></code></a>(w)</td>
+<tr class="row-even"><td><a class="reference internal" href="#ross.rotor_assembly.Rotor.kappa_mode" title="ross.rotor_assembly.Rotor.kappa_mode"><code class="xref py py-obj docutils literal notranslate"><span class="pre">kappa_mode</span></code></a>(w)</td>
 <td>This function evaluates kappa given the index of the natural frequency of interest.</td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="#ross.rotor_assembly.Rotor.load" title="ross.rotor_assembly.Rotor.load"><code class="xref py py-obj docutils literal notranslate"><span class="pre">load</span></code></a>(file_name)</td>
+<tr class="row-odd"><td><a class="reference internal" href="#ross.rotor_assembly.Rotor.load" title="ross.rotor_assembly.Rotor.load"><code class="xref py py-obj docutils literal notranslate"><span class="pre">load</span></code></a>(file_name)</td>
 <td>Load rotor from toml file.</td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="#ross.rotor_assembly.Rotor.plot_level1" title="ross.rotor_assembly.Rotor.plot_level1"><code class="xref py py-obj docutils literal notranslate"><span class="pre">plot_level1</span></code></a>([n,&nbsp;stiffness_range,&nbsp;num,&nbsp;ax])</td>
+<tr class="row-even"><td><a class="reference internal" href="#ross.rotor_assembly.Rotor.plot_level1" title="ross.rotor_assembly.Rotor.plot_level1"><code class="xref py py-obj docutils literal notranslate"><span class="pre">plot_level1</span></code></a>([n,&nbsp;stiffness_range,&nbsp;num,&nbsp;ax])</td>
 <td>Plot level 1 stability analysis.</td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="#ross.rotor_assembly.Rotor.plot_rotor" title="ross.rotor_assembly.Rotor.plot_rotor"><code class="xref py py-obj docutils literal notranslate"><span class="pre">plot_rotor</span></code></a>([nodes,&nbsp;ax,&nbsp;bk_ax])</td>
+<tr class="row-odd"><td><a class="reference internal" href="#ross.rotor_assembly.Rotor.plot_rotor" title="ross.rotor_assembly.Rotor.plot_rotor"><code class="xref py py-obj docutils literal notranslate"><span class="pre">plot_rotor</span></code></a>([nodes,&nbsp;ax,&nbsp;bk_ax])</td>
 <td>Plots a rotor object.</td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="#ross.rotor_assembly.Rotor.plot_time_response" title="ross.rotor_assembly.Rotor.plot_time_response"><code class="xref py py-obj docutils literal notranslate"><span class="pre">plot_time_response</span></code></a>(F,&nbsp;t,&nbsp;dof[,&nbsp;ax])</td>
+<tr class="row-even"><td><a class="reference internal" href="#ross.rotor_assembly.Rotor.plot_time_response" title="ross.rotor_assembly.Rotor.plot_time_response"><code class="xref py py-obj docutils literal notranslate"><span class="pre">plot_time_response</span></code></a>(F,&nbsp;t,&nbsp;dof[,&nbsp;ax])</td>
 <td>Plot the time response.</td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="#ross.rotor_assembly.Rotor.plot_ucs" title="ross.rotor_assembly.Rotor.plot_ucs"><code class="xref py py-obj docutils literal notranslate"><span class="pre">plot_ucs</span></code></a>([stiffness_range,&nbsp;num,&nbsp;ax])</td>
+<tr class="row-odd"><td><a class="reference internal" href="#ross.rotor_assembly.Rotor.plot_ucs" title="ross.rotor_assembly.Rotor.plot_ucs"><code class="xref py py-obj docutils literal notranslate"><span class="pre">plot_ucs</span></code></a>([stiffness_range,&nbsp;num,&nbsp;ax])</td>
 <td>Plot undamped critical speed map.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#ross.rotor_assembly.Rotor.run_campbell" title="ross.rotor_assembly.Rotor.run_campbell"><code class="xref py py-obj docutils literal notranslate"><span class="pre">run_campbell</span></code></a>(speed_range[,&nbsp;frequencies,&nbsp;…])</td>
+<td>Calculates the Campbell diagram.</td>
 </tr>
 <tr class="row-odd"><td><a class="reference internal" href="#ross.rotor_assembly.Rotor.run_freq_response" title="ross.rotor_assembly.Rotor.run_freq_response"><code class="xref py py-obj docutils literal notranslate"><span class="pre">run_freq_response</span></code></a>([frequency_range,&nbsp;modes])</td>
 <td>Frequency response for a mdof system.</td>
@@ -311,17 +322,11 @@ Default is 12.</p>
 </table>
 <table border="1" class="docutils">
 <colgroup>
-<col width="67%" />
-<col width="33%" />
+<col width="70%" />
+<col width="30%" />
 </colgroup>
 <tbody valign="top">
 <tr class="row-odd"><td><strong>available_rotors</strong></td>
-<td>&#160;</td>
-</tr>
-<tr class="row-even"><td><strong>forced_response</strong></td>
-<td>&#160;</td>
-</tr>
-<tr class="row-odd"><td><strong>mode_shapes</strong></td>
 <td>&#160;</td>
 </tr>
 <tr class="row-even"><td><strong>orbit</strong></td>
@@ -330,10 +335,16 @@ Default is 12.</p>
 <tr class="row-odd"><td><strong>remove</strong></td>
 <td>&#160;</td>
 </tr>
-<tr class="row-even"><td><strong>run_modal</strong></td>
+<tr class="row-even"><td><strong>run_forced_response</strong></td>
 <td>&#160;</td>
 </tr>
-<tr class="row-odd"><td><strong>static</strong></td>
+<tr class="row-odd"><td><strong>run_modal</strong></td>
+<td>&#160;</td>
+</tr>
+<tr class="row-even"><td><strong>run_mode_shapes</strong></td>
+<td>&#160;</td>
+</tr>
+<tr class="row-odd"><td><strong>run_static</strong></td>
 <td>&#160;</td>
 </tr>
 <tr class="row-even"><td><strong>transfer_matrix</strong></td>
@@ -430,11 +441,11 @@ Default is 12.</p>
 <dd><p>Calculates the H matrix for a given node and natural frequency.</p>
 <p>The matrix H contains information about the whirl direction,
 the orbit minor and major axis and the orbit inclination.
-The matrix is calculated by <img class="math" src="_images/math/71e7ae1f07a76926276bc64c015fa37972bb06ec.png" alt="H = T.T^T"/> where the
+The matrix is calculated by <span class="math">H = T.T^T</span> where the
 matrix T is constructed using the eigenvector corresponding
 to the natural frequency of interest:</p>
 <div class="math">
-<p><img src="_images/math/894bb75646e19d6d08f2f793500035ee98368fd9.png" alt="\begin{eqnarray}
+<p><span class="math">\begin{eqnarray}
    \begin{bmatrix}
    u(t)\\
    v(t)
@@ -455,16 +466,16 @@ to the natural frequency of interest:</p>
    cos(\omega_i t)\\
    sin(\omega_i t)
    \end{bmatrix}
-\end{eqnarray}"/></p>
-</div><p>Where <img class="math" src="_images/math/ef836e7987d83dfd9b578a860ebc16e21629d366.png" alt="r_u e^{j\eta_u}"/> e <img class="math" src="_images/math/0c4e8a8decea39e29b3e4ccd00f9f12d1983b8c6.png" alt="r_v e^{j\eta_v}"/> are the
+\end{eqnarray}</span></p>
+</div><p>Where <span class="math">r_u e^{j\eta_u}</span> e <span class="math">r_v e^{j\eta_v}</span> are the
 elements of the <em>i</em>th eigenvector, corresponding to the node and
 natural frequency of interest (mode).</p>
 <div class="math">
-<p><img src="_images/math/742fcb2459f32cbb065b45d97384a1f81a1a1c48.png" alt="{\bf T} =
+<p><span class="math">{\bf T} =
 \begin{bmatrix}
 r_u cos(\eta_u) &amp; -r_u sin(\eta_u)\\
 r_u cos(\eta_u) &amp; -r_v sin(\eta_v)
-\end{bmatrix}"/></p>
+\end{bmatrix}</span></p>
 </div><table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -479,7 +490,7 @@ of interest.</p>
 </dd>
 <dt><strong>return_T: bool, optional</strong></dt>
 <dd><p class="first">If True, returns the H matrix and a dictionary with the
-values for <img class="math" src="_images/math/a442b6ec14838e75345e7fa84673f863fede97e1.png" alt="r_u, r_v, \eta_u, \eta_v"/>.</p>
+values for <span class="math">r_u, r_v, \eta_u, \eta_v</span>.</p>
 <p class="last">Default is false.</p>
 </dd>
 </dl>
@@ -490,7 +501,7 @@ values for <img class="math" src="_images/math/a442b6ec14838e75345e7fa84673f863f
 <dd><p class="first last">Matrix H.</p>
 </dd>
 <dt><strong>Tdic: dict</strong></dt>
-<dd><p class="first">Dictionary with values for <img class="math" src="_images/math/a442b6ec14838e75345e7fa84673f863fede97e1.png" alt="r_u, r_v, \eta_u, \eta_v"/>.</p>
+<dd><p class="first">Dictionary with values for <span class="math">r_u, r_v, \eta_u, \eta_v</span>.</p>
 <p class="last">It will be returned only if return_T is True.</p>
 </dd>
 </dl>
@@ -558,49 +569,6 @@ values for <img class="math" src="_images/math/a442b6ec14838e75345e7fa84673f863f
 <span class="go">       [ 0.        ,  1.42050794, -0.04931719,  0.        ],</span>
 <span class="go">       [ 0.        , -0.04931719,  0.00231392,  0.        ],</span>
 <span class="go">       [ 0.04931719,  0.        ,  0.        ,  0.00231392]])</span>
-</pre></div>
-</div>
-</dd></dl>
-
-<dl class="method">
-<dt id="ross.rotor_assembly.Rotor.campbell">
-<code class="descname">campbell</code><span class="sig-paren">(</span><em>speed_range</em>, <em>frequencies=6</em>, <em>frequency_type='wd'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ross/rotor_assembly.html#Rotor.campbell"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.rotor_assembly.Rotor.campbell" title="Permalink to this definition">¶</a></dt>
-<dd><p>Calculates the Campbell diagram.</p>
-<p>This function will calculate the damped natural frequencies
-for a speed range.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><dl class="first docutils">
-<dt><strong>speed_range</strong> <span class="classifier-delimiter">:</span> <span class="classifier">array</span></dt>
-<dd><p class="first last">Array with the speed range in rad/s.</p>
-</dd>
-<dt><strong>frequencies</strong> <span class="classifier-delimiter">:</span> <span class="classifier">int, optional</span></dt>
-<dd><p class="first last">Number of frequencies that will be calculated.
-Default is 6.</p>
-</dd>
-</dl>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><dl class="first last docutils">
-<dt><strong>results</strong> <span class="classifier-delimiter">:</span> <span class="classifier">array</span></dt>
-<dd><p class="first last">Array with the natural frequencies corresponding to each speed
-of the speed_rad array. It will be returned if plot=False.</p>
-</dd>
-</dl>
-</td>
-</tr>
-</tbody>
-</table>
-<p class="rubric">Examples</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">rotor1</span> <span class="o">=</span> <span class="n">rotor_example</span><span class="p">()</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">speed</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">400</span><span class="p">,</span> <span class="mi">101</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">camp</span> <span class="o">=</span> <span class="n">rotor1</span><span class="o">.</span><span class="n">campbell</span><span class="p">(</span><span class="n">speed</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">camp</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="mi">1</span><span class="p">)</span> <span class="c1">#  damped natural frequencies at the first rotor speed (0 rad/s)</span>
-<span class="go">array([  82.7,   86.7,  254.5,  274.3,  679.5,  716.8])</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">camp</span><span class="p">[:,</span> <span class="mi">10</span><span class="p">],</span> <span class="mi">1</span><span class="p">)</span> <span class="c1"># damped natural frequencies at 40 rad/s</span>
-<span class="go">array([  82.6,   86.7,  254.3,  274.5,  676.5,  719.7])</span>
 </pre></div>
 </div>
 </dd></dl>
@@ -683,13 +651,13 @@ Default is 12.</p>
 <code class="descname">kappa</code><span class="sig-paren">(</span><em>node</em>, <em>w</em>, <em>wd=True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ross/rotor_assembly.html#Rotor.kappa"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.rotor_assembly.Rotor.kappa" title="Permalink to this definition">¶</a></dt>
 <dd><p>Calculates kappa for a given node and natural frequency.</p>
 <p>w is the the index of the natural frequency of interest.
-The function calculates the orbit parameter <img class="math" src="_images/math/e18d839a0e889a07a4e7a17bed70fe453966c6df.png" alt="\kappa"/>:</p>
+The function calculates the orbit parameter <span class="math">\kappa</span>:</p>
 <div class="math">
-<p><img src="_images/math/d2ae5ede55793ea4a09436a5830f4bddda4b560e.png" alt="\kappa = \pm \sqrt{\lambda_2 / \lambda_1}"/></p>
-</div><p>Where <img class="math" src="_images/math/7d3342452ee8abc4b8abd25ef5897d44e576ea06.png" alt="\sqrt{\lambda_1}"/> is the length of the semiminor axes
-and <img class="math" src="_images/math/3efe3b1a3823dd9ee401a5fb4c67be1e5bf1c3fe.png" alt="\sqrt{\lambda_2}"/> is the length of the semimajor axes.</p>
-<p>If <img class="math" src="_images/math/fa3e357965d0985fcff4907ebafe71c3e414bd5b.png" alt="\kappa = \pm 1"/>, the orbit is circular.</p>
-<p>If <img class="math" src="_images/math/e18d839a0e889a07a4e7a17bed70fe453966c6df.png" alt="\kappa"/> is positive we have a forward rotating orbit
+<p><span class="math">\kappa = \pm \sqrt{\lambda_2 / \lambda_1}</span></p>
+</div><p>Where <span class="math">\sqrt{\lambda_1}</span> is the length of the semiminor axes
+and <span class="math">\sqrt{\lambda_2}</span> is the length of the semimajor axes.</p>
+<p>If <span class="math">\kappa = \pm 1</span>, the orbit is circular.</p>
+<p>If <span class="math">\kappa</span> is positive we have a forward rotating orbit
 and if it is negative we have a backward rotating orbit.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -950,6 +918,49 @@ Default is 20.</p>
 </tr>
 </tbody>
 </table>
+</dd></dl>
+
+<dl class="method">
+<dt id="ross.rotor_assembly.Rotor.run_campbell">
+<code class="descname">run_campbell</code><span class="sig-paren">(</span><em>speed_range</em>, <em>frequencies=6</em>, <em>frequency_type='wd'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ross/rotor_assembly.html#Rotor.run_campbell"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.rotor_assembly.Rotor.run_campbell" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculates the Campbell diagram.</p>
+<p>This function will calculate the damped natural frequencies
+for a speed range.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><dl class="first docutils">
+<dt><strong>speed_range</strong> <span class="classifier-delimiter">:</span> <span class="classifier">array</span></dt>
+<dd><p class="first last">Array with the speed range in rad/s.</p>
+</dd>
+<dt><strong>frequencies</strong> <span class="classifier-delimiter">:</span> <span class="classifier">int, optional</span></dt>
+<dd><p class="first last">Number of frequencies that will be calculated.
+Default is 6.</p>
+</dd>
+</dl>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><dl class="first last docutils">
+<dt><strong>results</strong> <span class="classifier-delimiter">:</span> <span class="classifier">array</span></dt>
+<dd><p class="first last">Array with the natural frequencies corresponding to each speed
+of the speed_rad array. It will be returned if plot=False.</p>
+</dd>
+</dl>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Examples</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">rotor1</span> <span class="o">=</span> <span class="n">rotor_example</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">speed</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">400</span><span class="p">,</span> <span class="mi">101</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">camp</span> <span class="o">=</span> <span class="n">rotor1</span><span class="o">.</span><span class="n">campbell</span><span class="p">(</span><span class="n">speed</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">camp</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="mi">1</span><span class="p">)</span> <span class="c1">#  damped natural frequencies at the first rotor speed (0 rad/s)</span>
+<span class="go">array([  82.7,   86.7,  254.5,  274.3,  679.5,  716.8])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">camp</span><span class="p">[:,</span> <span class="mi">10</span><span class="p">],</span> <span class="mi">1</span><span class="p">)</span> <span class="c1"># damped natural frequencies at 40 rad/s</span>
+<span class="go">array([  82.6,   86.7,  254.3,  274.5,  676.5,  719.7])</span>
+</pre></div>
+</div>
 </dd></dl>
 
 <dl class="method">
@@ -1714,8 +1725,8 @@ account shear, rotary inertia an gyroscopic effects.
 The matrices will be defined considering the following local
 coordinate vector:
 .. math:: [x_1, y_1, alpha_1, beta_1, x_2, y_2, alpha_2, beta_2]^T
-Where <img class="math" src="_images/math/fc7576763f2a846119d277c2d3aee7ed2539e5b8.png" alt="\alpha_1"/> and <img class="math" src="_images/math/bae508f8b90711a500281d854d959df50fb72da2.png" alt="\alpha_2"/> are the bending on the yz plane and
-<img class="math" src="_images/math/ac8d05ee097d1bf410fdbce62e0fc8d063cc9e9a.png" alt="\beta_1"/> and <img class="math" src="_images/math/ca73e539f1ca5df1f1839d40aabda51cbbfd5f4a.png" alt="\beta_2"/> are the bending on the xz plane.
+Where <span class="math">\alpha_1</span> and <span class="math">\alpha_2</span> are the bending on the yz plane and
+<span class="math">\beta_1</span> and <span class="math">\beta_2</span> are the bending on the xz plane.
 Parameters
 ———-
 L : float</p>
