@@ -2,9 +2,8 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>EXAMPLE 5.9.1. &#8212; ross 0.0.1 documentation</title>
+    <meta charset="utf-8" />
+    <title>EXAMPLE 5.9.1. &#8212; ross 0.0.2 documentation</title>
     <link rel="stylesheet" href="../_static/bootstrap-sphinx.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
@@ -39,15 +38,15 @@
         </button>
         <a class="navbar-brand" href="../index.html"><span><img src="../_static/ross-logo.svg"></span>
           ross</a>
-        <span class="navbar-text navbar-version pull-left"><b>0.0.1</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>0.0.2</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
           <ul class="nav navbar-nav">
             
-                <li><a href="../api/index.html">API</a></li>
-                <li><a href="../tutorial/index.html">Tutorial</a></li>
-                <li><a href="../gallery/index.html">Examples</a></li>
+                <li><a href="tutorial.html">Tutorial</a></li>
+                <li><a href="../examples.html">Examples</a></li>
+                <li><a href="../api.html">API</a></li>
             
             
               <li class="dropdown globaltoc-container">
@@ -65,7 +64,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../installation.html#install-ross">Install ross</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="tutorial.html">ROSS Quick Start</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="tutorial.html">Tutorial</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="tutorial.html#materials">Materials</a></li>
 <li class="toctree-l2"><a class="reference internal" href="tutorial.html#element">Element</a></li>
 <li class="toctree-l2"><a class="reference internal" href="tutorial.html#shaftelement">ShaftElement</a></li>
@@ -83,10 +82,9 @@
 <li class="toctree-l2"><a class="reference internal" href="example_05_09_04.html">EXAMPLE 5.9.4.</a></li>
 <li class="toctree-l2"><a class="reference internal" href="example_05_09_05.html">EXAMPLE 5.9.5.</a></li>
 <li class="toctree-l2"><a class="reference internal" href="example_05_09_06.html">EXAMPLE 5.9.6.</a></li>
-<li class="toctree-l2"><a class="reference internal" href="example_05_09_09.html">Example 5.9.9</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../api.html">The ROSS project API</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="../api.html">API reference</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../api.html#module-ross.rotor_assembly">The Rotor module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../api.html#module-ross.element">The “Element” class</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../api.html#module-ross.materials">The “Material” class</a></li>
@@ -146,9 +144,9 @@
 <p>A 1.5-m-long shaft, has a diameter of 0.05 m. The disks are keyed to the
 shaft at 0.5 and 1 m from one end. The left disk is 0.07 m thick with a
 diameter of 0.28 m; the right disk is 0.07 m thick with a diameter of
-0.35 m. For the shaft, <span class="math">E = 211 GN/m^2</span> and
-<span class="math">G = 81.2 GN/m^2</span>. There is no internal shaft damping. For both
-the shaft and the disks, <span class="math">\rho = 7,810 kg/m^3</span>. The shaft is
+0.35 m. For the shaft, <img class="math" src="../_images/math/0710676c41ac38af6e470788265c28a3659f66a1.png" alt="E = 211 GN/m^2"/> and
+<img class="math" src="../_images/math/1e4337d0b6f889d1280325ac92584fd14eb7bc71.png" alt="G = 81.2 GN/m^2"/>. There is no internal shaft damping. For both
+the shaft and the disks, <img class="math" src="../_images/math/30ecb67406b8cb78c9ca2b9c191d4dfed9f08cd8.png" alt="\rho = 7,810 kg/m^3"/>. The shaft is
 supported by identical bearings at its ends.</p>
 <p>These bearings are isotropic and have a stiffness of 1 MN/m in both the
 x and y directions. The bearings contribute no additional stiffness to
@@ -156,7 +154,7 @@ the rotational degrees of freedom and there is no damping or
 cross-coupling in the bearings. Create an FE model of the shaft using
 six Timoshenko beam elements and investigate the dynamics of the machine
 at 0 and 4,000 rev/min.</p>
-<div class="code ipython3 highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">bokeh.io</span> <span class="k">import</span> <span class="n">output_notebook</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">bokeh.io</span> <span class="k">import</span> <span class="n">output_notebook</span>
 <span class="kn">import</span> <span class="nn">ross</span> <span class="k">as</span> <span class="nn">rs</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="n">output_notebook</span><span class="p">()</span>
@@ -165,7 +163,7 @@ at 0 and 4,000 rev/min.</p>
 <div class="bk-root">
     <a href="https://bokeh.pydata.org" target="_blank" class="bk-logo bk-logo-small bk-logo-notebook"></a>
     <span id="1001">Loading BokehJS ...</span>
-</div><div class="code ipython3 highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#Classic Instantiation of the rotor</span>
+</div><div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Classic Instantiation of the rotor</span>
 <span class="n">shaft_elements</span> <span class="o">=</span> <span class="p">[]</span>
 <span class="n">bearing_seal_elements</span> <span class="o">=</span> <span class="p">[]</span>
 <span class="n">disk_elements</span> <span class="o">=</span> <span class="p">[]</span>
@@ -203,7 +201,7 @@ at 0 and 4,000 rev/min.</p>
 </pre></div>
 </div>
 <img alt="../_images/example_05_09_01_2_3.png" src="../_images/example_05_09_01_2_3.png" />
-<div class="code ipython3 highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#From_section class method instantiation.</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#From_section class method instantiation.</span>
 <span class="n">bearing_seal_elements</span> <span class="o">=</span> <span class="p">[]</span>
 <span class="n">disk_elements</span> <span class="o">=</span> <span class="p">[]</span>
 <span class="n">shaft_length_data</span> <span class="o">=</span> <span class="mi">3</span><span class="o">*</span><span class="p">[</span><span class="mf">0.5</span><span class="p">]</span>
@@ -240,7 +238,7 @@ at 0 and 4,000 rev/min.</p>
 </pre></div>
 </div>
 <img alt="../_images/example_05_09_01_3_3.png" src="../_images/example_05_09_01_3_3.png" />
-<div class="code ipython3 highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#Obtaining results (wn is in rad/s)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Obtaining results (wn is in rad/s)</span>
 <span class="n">rotor591c</span><span class="o">.</span><span class="n">run_campbell</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">4000</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mi">30</span><span class="p">,</span><span class="mi">250</span><span class="p">))</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Normal Instantiation =&#39;</span><span class="p">,</span> <span class="n">rotor591c</span><span class="o">.</span><span class="n">wn</span><span class="p">)</span>
@@ -257,7 +255,7 @@ at 0 and 4,000 rev/min.</p>
 </pre></div>
 </div>
 <img alt="../_images/example_05_09_01_4_3.png" src="../_images/example_05_09_01_4_3.png" />
-<div class="code ipython3 highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#Obtaining modal results for w=4000RPM (wn is in rad/s)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Obtaining modal results for w=4000RPM (wn is in rad/s)</span>
 <span class="n">rotor591c</span><span class="o">.</span><span class="n">w</span> <span class="o">=</span> <span class="mi">4000</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mi">30</span>
 <span class="n">rotor591c</span><span class="o">.</span><span class="n">run_modal</span><span class="p">()</span>
 
@@ -283,7 +281,7 @@ at 0 and 4,000 rev/min.</p>
     </p>
     <p>
         &copy; Copyright 2019, Team Ross.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.5.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.0.1.<br/>
     </p>
   </div>
 </footer>

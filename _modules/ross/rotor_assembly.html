@@ -2,9 +2,8 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>ross.rotor_assembly &#8212; ross 0.0.1 documentation</title>
+    <meta charset="utf-8" />
+    <title>ross.rotor_assembly &#8212; ross 0.0.2 documentation</title>
     <link rel="stylesheet" href="../../_static/bootstrap-sphinx.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
     <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
@@ -37,15 +36,15 @@
         </button>
         <a class="navbar-brand" href="../../index.html"><span><img src="../../_static/ross-logo.svg"></span>
           ross</a>
-        <span class="navbar-text navbar-version pull-left"><b>0.0.1</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>0.0.2</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
           <ul class="nav navbar-nav">
             
-                <li><a href="../../api/index.html">API</a></li>
-                <li><a href="../../tutorial/index.html">Tutorial</a></li>
-                <li><a href="../../gallery/index.html">Examples</a></li>
+                <li><a href="../../examples/tutorial.html">Tutorial</a></li>
+                <li><a href="../../examples.html">Examples</a></li>
+                <li><a href="../../api.html">API</a></li>
             
             
               <li class="dropdown globaltoc-container">
@@ -63,7 +62,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../../installation.html#install-ross">Install ross</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../../examples/tutorial.html">ROSS Quick Start</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="../../examples/tutorial.html">Tutorial</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../examples/tutorial.html#materials">Materials</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../examples/tutorial.html#element">Element</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../examples/tutorial.html#shaftelement">ShaftElement</a></li>
@@ -81,10 +80,9 @@
 <li class="toctree-l2"><a class="reference internal" href="../../examples/example_05_09_04.html">EXAMPLE 5.9.4.</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../examples/example_05_09_05.html">EXAMPLE 5.9.5.</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../examples/example_05_09_06.html">EXAMPLE 5.9.6.</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../examples/example_05_09_09.html">Example 5.9.9</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../../api.html">The ROSS project API</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="../../api.html">API reference</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../api.html#module-ross.rotor_assembly">The Rotor module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../api.html#module-ross.element">The “Element” class</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../api.html#module-ross.materials">The “Material” class</a></li>
@@ -134,29 +132,32 @@
       
   <h1>Source code for ross.rotor_assembly</h1><div class="highlight"><pre>
 <span></span><span class="kn">import</span> <span class="nn">os</span>
-<span class="kn">import</span> <span class="nn">warnings</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="kn">import</span> <span class="nn">scipy.linalg</span> <span class="k">as</span> <span class="nn">la</span>
-<span class="kn">import</span> <span class="nn">scipy.sparse.linalg</span> <span class="k">as</span> <span class="nn">las</span>
-<span class="kn">import</span> <span class="nn">scipy.signal</span> <span class="k">as</span> <span class="nn">signal</span>
-<span class="kn">import</span> <span class="nn">scipy.io</span> <span class="k">as</span> <span class="nn">sio</span>
-<span class="kn">from</span> <span class="nn">scipy</span> <span class="k">import</span> <span class="n">interpolate</span>
-<span class="kn">from</span> <span class="nn">copy</span> <span class="k">import</span> <span class="n">copy</span><span class="p">,</span> <span class="n">deepcopy</span>
-<span class="kn">from</span> <span class="nn">collections</span> <span class="k">import</span> <span class="n">Iterable</span>
 <span class="kn">import</span> <span class="nn">shutil</span>
+<span class="kn">import</span> <span class="nn">warnings</span>
+<span class="kn">from</span> <span class="nn">collections</span> <span class="k">import</span> <span class="n">Iterable</span>
+<span class="kn">from</span> <span class="nn">copy</span> <span class="k">import</span> <span class="n">copy</span><span class="p">,</span> <span class="n">deepcopy</span>
+<span class="kn">from</span> <span class="nn">pathlib</span> <span class="k">import</span> <span class="n">Path</span>
+
+<span class="kn">import</span> <span class="nn">bokeh.palettes</span> <span class="k">as</span> <span class="nn">bp</span>
 <span class="kn">import</span> <span class="nn">matplotlib</span> <span class="k">as</span> <span class="nn">mpl</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="kn">import</span> <span class="nn">bokeh.palettes</span> <span class="k">as</span> <span class="nn">bp</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">scipy.io</span> <span class="k">as</span> <span class="nn">sio</span>
+<span class="kn">import</span> <span class="nn">scipy.linalg</span> <span class="k">as</span> <span class="nn">la</span>
+<span class="kn">import</span> <span class="nn">scipy.signal</span> <span class="k">as</span> <span class="nn">signal</span>
+<span class="kn">import</span> <span class="nn">scipy.sparse.linalg</span> <span class="k">as</span> <span class="nn">las</span>
+<span class="kn">import</span> <span class="nn">toml</span>
+<span class="kn">from</span> <span class="nn">bokeh.layouts</span> <span class="k">import</span> <span class="n">gridplot</span>
 <span class="kn">from</span> <span class="nn">bokeh.models</span> <span class="k">import</span> <span class="n">ColumnDataSource</span><span class="p">,</span> <span class="n">Arrow</span><span class="p">,</span> <span class="n">NormalHead</span><span class="p">,</span> <span class="n">Label</span>
 <span class="kn">from</span> <span class="nn">bokeh.models.glyphs</span> <span class="k">import</span> <span class="n">Text</span>
-<span class="kn">from</span> <span class="nn">bokeh.layouts</span> <span class="k">import</span> <span class="n">gridplot</span>
 <span class="kn">from</span> <span class="nn">bokeh.plotting</span> <span class="k">import</span> <span class="n">figure</span><span class="p">,</span> <span class="n">output_file</span><span class="p">,</span> <span class="n">show</span>
 <span class="kn">from</span> <span class="nn">cycler</span> <span class="k">import</span> <span class="n">cycler</span>
-<span class="kn">from</span> <span class="nn">pathlib</span> <span class="k">import</span> <span class="n">Path</span>
+<span class="kn">from</span> <span class="nn">scipy</span> <span class="k">import</span> <span class="n">interpolate</span>
+
+<span class="kn">import</span> <span class="nn">ross</span>
 <span class="kn">from</span> <span class="nn">ross.bearing_seal_element</span> <span class="k">import</span> <span class="n">BearingElement</span>
 <span class="kn">from</span> <span class="nn">ross.disk_element</span> <span class="k">import</span> <span class="n">DiskElement</span>
-<span class="kn">from</span> <span class="nn">ross.shaft_element</span> <span class="k">import</span> <span class="n">ShaftElement</span>
 <span class="kn">from</span> <span class="nn">ross.materials</span> <span class="k">import</span> <span class="n">steel</span>
 <span class="kn">from</span> <span class="nn">ross.results</span> <span class="k">import</span> <span class="p">(</span>
     <span class="n">CampbellResults</span><span class="p">,</span>
@@ -164,8 +165,7 @@
     <span class="n">ForcedResponseResults</span><span class="p">,</span>
     <span class="n">ModeShapeResults</span><span class="p">,</span>
 <span class="p">)</span>
-<span class="kn">import</span> <span class="nn">toml</span>
-<span class="kn">import</span> <span class="nn">ross</span>
+<span class="kn">from</span> <span class="nn">ross.shaft_element</span> <span class="k">import</span> <span class="n">ShaftElement</span>
 
 <span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Rotor&quot;</span><span class="p">,</span> <span class="s2">&quot;rotor_example&quot;</span><span class="p">]</span>
 
@@ -439,40 +439,47 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">wn</span> <span class="o">=</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">absolute</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">evalues</span><span class="p">))[:</span><span class="n">wn_len</span><span class="p">]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">wd</span> <span class="o">=</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">imag</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">evalues</span><span class="p">))[:</span><span class="n">wn_len</span><span class="p">]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">damping_ratio</span> <span class="o">=</span> <span class="p">(</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">real</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">evalues</span><span class="p">)</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">absolute</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">evalues</span><span class="p">))[</span>
-                             <span class="p">:</span><span class="n">wn_len</span>
-                             <span class="p">]</span>
+            <span class="p">:</span><span class="n">wn_len</span>
+        <span class="p">]</span>
         <span class="k">with</span> <span class="n">warnings</span><span class="o">.</span><span class="n">catch_warnings</span><span class="p">():</span>
             <span class="n">warnings</span><span class="o">.</span><span class="n">simplefilter</span><span class="p">(</span><span class="s2">&quot;ignore&quot;</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">log_dec</span> <span class="o">=</span> <span class="p">(</span>
-                    <span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">damping_ratio</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">damping_ratio</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span>
+                <span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">damping_ratio</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">damping_ratio</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span>
             <span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">lti</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_lti</span><span class="p">()</span>
 
-<div class="viewcode-block" id="Rotor.convergence"><a class="viewcode-back" href="../../api.html#ross.rotor_assembly.Rotor.convergence">[docs]</a>    <span class="k">def</span> <span class="nf">convergence</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n_eigval</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">err_max</span><span class="o">=</span><span class="mf">1e-02</span><span class="p">):</span>
+<div class="viewcode-block" id="Rotor.convergence"><a class="viewcode-back" href="../../api.html#ross.rotor_assembly.Rotor.convergence">[docs]</a>    <span class="k">def</span> <span class="nf">convergence</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n_eigval</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">err_max</span><span class="o">=</span><span class="mf">1e-02</span><span class="p">,</span> <span class="n">output_html</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Function to analyze the eigenvalues convergence through the number of</span>
 <span class="sd">        shaft elements. Every new run doubles the number os shaft elements.</span>
 
-<span class="sd">        -----------</span>
-<span class="sd">        Parameters:</span>
-<span class="sd">        -----------</span>
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
 <span class="sd">        n_eigval : int</span>
 <span class="sd">            The nth eigenvalue which the convergence analysis will run.</span>
 <span class="sd">            Default is 0 (the first eigenvalue).</span>
 <span class="sd">        err_max : float</span>
 <span class="sd">            Maximum allowable convergence error.</span>
 <span class="sd">            Default is 1e-02</span>
+<span class="sd">        output_html : Boolean, optional</span>
+<span class="sd">            outputs a html file.</span>
+<span class="sd">            Default is False</span>
 
-<span class="sd">        Example:</span>
-<span class="sd">        --------</span>
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        p : bokeh.figure</span>
+<span class="sd">            Bokeh plot showing the results.</span>
+
+<span class="sd">        Example</span>
+<span class="sd">        -------</span>
+<span class="sd">        &gt;&gt;&gt; import ross as rs</span>
 <span class="sd">        &gt;&gt;&gt; i_d = 0</span>
 <span class="sd">        &gt;&gt;&gt; o_d = 0.05</span>
 <span class="sd">        &gt;&gt;&gt; n = 6</span>
 <span class="sd">        &gt;&gt;&gt; L = [0.25 for _ in range(n)]</span>
 <span class="sd">        ...</span>
 <span class="sd">        &gt;&gt;&gt; shaft_elem = [rs.ShaftElement(l, i_d, o_d, steel,</span>
-<span class="sd">        shear_effects=True, rotary_inertia=True, gyroscopic=True) for l in L]</span>
-<span class="sd">        ...</span>
+<span class="sd">        ... shear_effects=True, rotary_inertia=True, gyroscopic=True) for l in L]</span>
 <span class="sd">        &gt;&gt;&gt; disk0 = DiskElement.from_geometry(2, steel, 0.07, 0.05, 0.28)</span>
 <span class="sd">        &gt;&gt;&gt; disk1 = DiskElement.from_geometry(4, steel, 0.07, 0.05, 0.35)</span>
 <span class="sd">        &gt;&gt;&gt; bearing0 = BearingElement(0, kxx=1e6, kyy=8e5, cxx=2e3)</span>
@@ -480,7 +487,7 @@
 <span class="sd">        &gt;&gt;&gt; rotor0 = Rotor(shaft_elem, [disk0, disk1], [bearing0, bearing1])</span>
 <span class="sd">        &gt;&gt;&gt; len(rotor0.shaft_elements)</span>
 <span class="sd">        6</span>
-<span class="sd">        &gt;&gt;&gt; rotor0.convergence(n_eigval=0, err_max=1e-08)</span>
+<span class="sd">        &gt;&gt;&gt; convergence = rotor0.convergence(n_eigval=0, err_max=1e-08)</span>
 <span class="sd">        &gt;&gt;&gt; len(rotor0.shaft_elements)</span>
 <span class="sd">        96</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -545,8 +552,8 @@
 
         <span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span> <span class="o">=</span> <span class="n">rotor</span><span class="o">.</span><span class="vm">__dict__</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">error_arr</span> <span class="o">=</span> <span class="n">error_arr</span>
-
-        <span class="n">output_file</span><span class="p">(</span><span class="s2">&quot;convergence.html&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">output_html</span><span class="p">:</span>
+            <span class="n">output_file</span><span class="p">(</span><span class="s2">&quot;convergence.html&quot;</span><span class="p">)</span>
         <span class="n">source</span> <span class="o">=</span> <span class="n">ColumnDataSource</span><span class="p">(</span>
             <span class="n">data</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">x0</span><span class="o">=</span><span class="n">el_num</span><span class="p">[</span><span class="mi">1</span><span class="p">:],</span> <span class="n">y0</span><span class="o">=</span><span class="n">eigv_arr</span><span class="p">[</span><span class="mi">1</span><span class="p">:],</span> <span class="n">x1</span><span class="o">=</span><span class="n">el_num</span><span class="p">[</span><span class="mi">1</span><span class="p">:],</span> <span class="n">y1</span><span class="o">=</span><span class="n">error_arr</span><span class="p">[</span><span class="mi">1</span><span class="p">:])</span>
         <span class="p">)</span>
@@ -585,8 +592,7 @@
         <span class="c1"># put the subplots in a gridplot</span>
         <span class="n">p</span> <span class="o">=</span> <span class="n">gridplot</span><span class="p">([[</span><span class="n">freq_arr</span><span class="p">,</span> <span class="n">rel_error</span><span class="p">]])</span>
 
-        <span class="c1"># show the results</span>
-        <span class="n">show</span><span class="p">(</span><span class="n">p</span><span class="p">)</span></div>
+        <span class="k">return</span> <span class="n">p</span></div>
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">w</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -652,10 +658,10 @@
 <span class="sd">        --------</span>
 <span class="sd">        &gt;&gt;&gt; rotor = rotor_example()</span>
 <span class="sd">        &gt;&gt;&gt; np.round(rotor.K()[:4, :4]/1e6)</span>
-<span class="sd">        array([[ 47.,   0.,   0.,   6.],</span>
-<span class="sd">               [  0.,  46.,  -6.,   0.],</span>
-<span class="sd">               [  0.,  -6.,   1.,   0.],</span>
-<span class="sd">               [  6.,   0.,   0.,   1.]])</span>
+<span class="sd">        array([[47.,  0.,  0.,  6.],</span>
+<span class="sd">               [ 0., 46., -6.,  0.],</span>
+<span class="sd">               [ 0., -6.,  1.,  0.],</span>
+<span class="sd">               [ 6.,  0.,  0.,  1.]])</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">w</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">w</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">w</span>
@@ -685,10 +691,10 @@
 <span class="sd">        --------</span>
 <span class="sd">        &gt;&gt;&gt; rotor = rotor_example()</span>
 <span class="sd">        &gt;&gt;&gt; rotor.C()[:4, :4]</span>
-<span class="sd">        array([[ 0.,  0.,  0.,  0.],</span>
-<span class="sd">               [ 0.,  0.,  0.,  0.],</span>
-<span class="sd">               [ 0.,  0.,  0.,  0.],</span>
-<span class="sd">               [ 0.,  0.,  0.,  0.]])</span>
+<span class="sd">        array([[0., 0., 0., 0.],</span>
+<span class="sd">               [0., 0., 0., 0.],</span>
+<span class="sd">               [0., 0., 0., 0.],</span>
+<span class="sd">               [0., 0., 0., 0.]])</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">w</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">w</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">w</span>
@@ -741,12 +747,12 @@
 <span class="sd">        --------</span>
 <span class="sd">        &gt;&gt;&gt; rotor = rotor_example()</span>
 <span class="sd">        &gt;&gt;&gt; np.round(rotor.A()[50:56, :2])</span>
-<span class="sd">        array([[     0.,  11110.],</span>
-<span class="sd">               [-11106.,     -0.],</span>
-<span class="sd">               [  -169.,     -0.],</span>
-<span class="sd">               [    -0.,   -169.],</span>
-<span class="sd">               [    -0.,  10511.],</span>
-<span class="sd">               [-10507.,     -0.]])</span>
+<span class="sd">        array([[     0.,  10927.],</span>
+<span class="sd">               [-10924.,     -0.],</span>
+<span class="sd">               [  -174.,      0.],</span>
+<span class="sd">               [    -0.,   -174.],</span>
+<span class="sd">               [    -0.,  10723.],</span>
+<span class="sd">               [-10719.,     -0.]])</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">w</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">w</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">w</span>
@@ -783,10 +789,10 @@
 <span class="sd">        Examples</span>
 <span class="sd">        --------</span>
 <span class="sd">        &gt;&gt;&gt; rotor = rotor_example()</span>
-<span class="sd">        &gt;&gt;&gt; evalues, evectors = rotor._eigen(0, sorted_=False)</span>
+<span class="sd">        &gt;&gt;&gt; evalues, evectors = rotor._eigen(0, sorted_=True)</span>
 <span class="sd">        &gt;&gt;&gt; idx = rotor._index(evalues)</span>
 <span class="sd">        &gt;&gt;&gt; idx[:6] # doctest: +ELLIPSIS</span>
-<span class="sd">        array([ 1,  3,  5,  7,  9, 11]...</span>
+<span class="sd">        array([0, 1, 2, 3, 4, ...</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="c1"># avoid float point errors when sorting</span>
         <span class="n">evals_truncated</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">around</span><span class="p">(</span><span class="n">eigenvalues</span><span class="p">,</span> <span class="n">decimals</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
@@ -794,7 +800,7 @@
         <span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">absolute</span><span class="p">(</span><span class="n">evals_truncated</span><span class="p">)</span>  <span class="c1"># Second column</span>
         <span class="n">ind</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">lexsort</span><span class="p">((</span><span class="n">b</span><span class="p">,</span> <span class="n">a</span><span class="p">))</span>  <span class="c1"># Sort by imag, then by absolute</span>
         <span class="c1"># Positive eigenvalues first</span>
-        <span class="n">positive</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">ind</span><span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="o">//</span> <span class="mi">2</span><span class="p">:]]</span>
+        <span class="n">positive</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">ind</span><span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="o">//</span> <span class="mi">2</span> <span class="p">:]]</span>
         <span class="n">negative</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">ind</span><span class="p">[:</span> <span class="nb">len</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="o">//</span> <span class="mi">2</span><span class="p">]]</span>
 
         <span class="n">idx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">positive</span><span class="p">,</span> <span class="n">negative</span><span class="p">])</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span>
@@ -824,7 +830,7 @@
 <span class="sd">        &gt;&gt;&gt; rotor = rotor_example()</span>
 <span class="sd">        &gt;&gt;&gt; evalues, evectors = rotor._eigen(0)</span>
 <span class="sd">        &gt;&gt;&gt; evalues[0].imag # doctest: +ELLIPSIS</span>
-<span class="sd">        82.653...</span>
+<span class="sd">        91.796...</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">w</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">w</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">w</span>
@@ -929,11 +935,7 @@
 <span class="sd">        --------</span>
 <span class="sd">        &gt;&gt;&gt; rotor = rotor_example()</span>
 <span class="sd">        &gt;&gt;&gt; # H matrix for the 0th node</span>
-<span class="sd">        &gt;&gt;&gt; rotor.H_kappa(0, 0) # doctest: +ELLIPSIS</span>
-<span class="sd">        array([[  8.78547006e-30,  -4.30647963e-18],</span>
-<span class="sd">               [ -4.30647963e-18,   2.11429917e-06]])</span>
-
-
+<span class="sd">        &gt;&gt;&gt; h_kappa = rotor.H_kappa(0, 0)</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="c1"># get vector of interest based on freqs</span>
         <span class="n">vector</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">evectors</span><span class="p">[</span><span class="mi">4</span> <span class="o">*</span> <span class="n">node</span> <span class="p">:</span> <span class="mi">4</span> <span class="o">*</span> <span class="n">node</span> <span class="o">+</span> <span class="mi">2</span><span class="p">,</span> <span class="n">w</span><span class="p">]</span>
@@ -999,10 +1001,10 @@
 <span class="sd">        &gt;&gt;&gt; # kappa for each node of the first natural frequency</span>
 <span class="sd">        &gt;&gt;&gt; # Major axes for node 0 and natural frequency (mode) 0.</span>
 <span class="sd">        &gt;&gt;&gt; rotor.kappa(0, 0)[&#39;Major axes&#39;] # doctest: +ELLIPSIS</span>
-<span class="sd">        0.00145...</span>
+<span class="sd">        0.00141...</span>
 <span class="sd">        &gt;&gt;&gt; # kappa for node 2 and natural frequency (mode) 3.</span>
-<span class="sd">        &gt;&gt;&gt; rotor.kappa(2, 3)[&#39;kappa&#39;] # doctest: +ELLIPSIS</span>
-<span class="sd">        8.539...e-14</span>
+<span class="sd">        &gt;&gt;&gt; rotor.kappa(2, 3)[&#39;kappa&#39;].round(2) # doctest: +ELLIPSIS</span>
+<span class="sd">        -0.0</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">wd</span><span class="p">:</span>
             <span class="n">nat_freq</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">wd</span><span class="p">[</span><span class="n">w</span><span class="p">]</span>
@@ -1068,7 +1070,7 @@
 <span class="sd">        &gt;&gt;&gt; rotor = rotor_example()</span>
 <span class="sd">        &gt;&gt;&gt; # kappa for each node of the first natural frequency</span>
 <span class="sd">        &gt;&gt;&gt; rotor.kappa_mode(0) # doctest: +ELLIPSIS</span>
-<span class="sd">        [-0.0, -0.0, -0.0, -0.0, -1.153...e-08, -0.0, -1.239...e-08]</span>
+<span class="sd">        [...]</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">kappa_mode</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">kappa</span><span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="n">w</span><span class="p">)[</span><span class="s2">&quot;kappa&quot;</span><span class="p">]</span> <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">nodes</span><span class="p">]</span>
         <span class="k">return</span> <span class="n">kappa_mode</span></div>
@@ -1319,7 +1321,7 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="n">signal</span><span class="o">.</span><span class="n">lsim</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">lti</span><span class="p">,</span> <span class="n">F</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">X0</span><span class="o">=</span><span class="n">ic</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="Rotor.plot_rotor"><a class="viewcode-back" href="../../api.html#ross.rotor_assembly.Rotor.plot_rotor">[docs]</a>    <span class="k">def</span> <span class="nf">plot_rotor</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nodes</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">bk_ax</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="Rotor.plot_rotor"><a class="viewcode-back" href="../../api.html#ross.rotor_assembly.Rotor.plot_rotor">[docs]</a>    <span class="k">def</span> <span class="nf">plot_rotor</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nodes</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">output_html</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">bk_ax</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Plots a rotor object.</span>
 
 <span class="sd">        This function will take a rotor object and plot its shaft,</span>
@@ -1333,6 +1335,9 @@
 <span class="sd">            Axes in which the plot will be drawn.</span>
 <span class="sd">        bk_ax : bokeh plotting axes, optional</span>
 <span class="sd">            Axes in which the plot will be drawn.</span>
+<span class="sd">        output_html : Boolean, optional</span>
+<span class="sd">            outputs a html file.</span>
+<span class="sd">            Default is False</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
@@ -1376,7 +1381,8 @@
         <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;Shaft radius (m)&quot;</span><span class="p">)</span>
 
         <span class="c1"># bokeh plot - output to static HTML file</span>
-        <span class="n">output_file</span><span class="p">(</span><span class="s2">&quot;rotor.html&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">output_html</span><span class="p">:</span>
+            <span class="n">output_file</span><span class="p">(</span><span class="s2">&quot;rotor.html&quot;</span><span class="p">)</span>
 
         <span class="c1"># bokeh plot - create a new plot</span>
         <span class="n">bk_ax</span> <span class="o">=</span> <span class="n">figure</span><span class="p">(</span>
@@ -1494,11 +1500,9 @@
 <span class="sd">        --------</span>
 <span class="sd">        &gt;&gt;&gt; rotor1 = rotor_example()</span>
 <span class="sd">        &gt;&gt;&gt; speed = np.linspace(0, 400, 101)</span>
-<span class="sd">        &gt;&gt;&gt; camp = rotor1.campbell(speed)</span>
-<span class="sd">        &gt;&gt;&gt; np.round(camp[:, 0], 1) #  damped natural frequencies at the first rotor speed (0 rad/s)</span>
-<span class="sd">        array([  82.7,   86.7,  254.5,  274.3,  679.5,  716.8])</span>
-<span class="sd">        &gt;&gt;&gt; np.round(camp[:, 10], 1) # damped natural frequencies at 40 rad/s</span>
-<span class="sd">        array([  82.6,   86.7,  254.3,  274.5,  676.5,  719.7])</span>
+<span class="sd">        &gt;&gt;&gt; camp = rotor1.run_campbell(speed)</span>
+<span class="sd">        &gt;&gt;&gt; camp.plot() # doctest: +ELLIPSIS</span>
+<span class="sd">        (&lt;Figure ...</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">rotor_current_speed</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">w</span>
 
@@ -1562,7 +1566,7 @@
 
         <span class="k">return</span> <span class="n">mode_shapes</span>
 
-<div class="viewcode-block" id="Rotor.plot_ucs"><a class="viewcode-back" href="../../api.html#ross.rotor_assembly.Rotor.plot_ucs">[docs]</a>    <span class="k">def</span> <span class="nf">plot_ucs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">stiffness_range</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">num</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="Rotor.plot_ucs"><a class="viewcode-back" href="../../api.html#ross.rotor_assembly.Rotor.plot_ucs">[docs]</a>    <span class="k">def</span> <span class="nf">plot_ucs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">stiffness_range</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">num</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">output_html</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Plot undamped critical speed map.</span>
 
 <span class="sd">        This method will plot the undamped critical speed map for a given range</span>
@@ -1578,6 +1582,9 @@
 <span class="sd">            Default is 20.</span>
 <span class="sd">        ax : matplotlib axes, optional</span>
 <span class="sd">            Axes in which the plot will be drawn.</span>
+<span class="sd">        output_html : Boolean, optional</span>
+<span class="sd">            outputs a html file.</span>
+<span class="sd">            Default is False</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
@@ -1644,7 +1651,8 @@
         <span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
 
         <span class="c1"># bokeh plot - output to static HTML file</span>
-        <span class="n">output_file</span><span class="p">(</span><span class="s2">&quot;Plot_UCS.html&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">output_html</span><span class="p">:</span>
+            <span class="n">output_file</span><span class="p">(</span><span class="s2">&quot;Plot_UCS.html&quot;</span><span class="p">)</span>
 
         <span class="c1"># bokeh plot - create a new plot</span>
         <span class="n">bk_ax</span> <span class="o">=</span> <span class="n">figure</span><span class="p">(</span>
@@ -1660,33 +1668,35 @@
 
         <span class="c1"># bokeh plot - plot shaft centerline</span>
         <span class="n">bk_ax</span><span class="o">.</span><span class="n">circle</span><span class="p">(</span>
-                <span class="n">bearing0</span><span class="o">.</span><span class="n">kxx</span><span class="o">.</span><span class="n">interpolated</span><span class="p">(</span><span class="n">bearing0</span><span class="o">.</span><span class="n">w</span><span class="p">),</span>
-                <span class="n">bearing0</span><span class="o">.</span><span class="n">w</span><span class="p">,</span>
-                <span class="n">size</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>
-                <span class="n">fill_alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span>
-                <span class="n">fill_color</span><span class="o">=</span><span class="n">bokeh_colors</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
-                <span class="n">legend</span><span class="o">=</span><span class="s2">&quot;Kxx&quot;</span><span class="p">,</span>
+            <span class="n">bearing0</span><span class="o">.</span><span class="n">kxx</span><span class="o">.</span><span class="n">interpolated</span><span class="p">(</span><span class="n">bearing0</span><span class="o">.</span><span class="n">w</span><span class="p">),</span>
+            <span class="n">bearing0</span><span class="o">.</span><span class="n">w</span><span class="p">,</span>
+            <span class="n">size</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>
+            <span class="n">fill_alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span>
+            <span class="n">fill_color</span><span class="o">=</span><span class="n">bokeh_colors</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+            <span class="n">legend</span><span class="o">=</span><span class="s2">&quot;Kxx&quot;</span><span class="p">,</span>
         <span class="p">)</span>
         <span class="n">bk_ax</span><span class="o">.</span><span class="n">square</span><span class="p">(</span>
-                <span class="n">bearing0</span><span class="o">.</span><span class="n">kyy</span><span class="o">.</span><span class="n">interpolated</span><span class="p">(</span><span class="n">bearing0</span><span class="o">.</span><span class="n">w</span><span class="p">),</span>
-                <span class="n">bearing0</span><span class="o">.</span><span class="n">w</span><span class="p">,</span>
-                <span class="n">size</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>
-                <span class="n">fill_alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span>
-                <span class="n">fill_color</span><span class="o">=</span><span class="n">bokeh_colors</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
-                <span class="n">legend</span><span class="o">=</span><span class="s2">&quot;Kyy&quot;</span><span class="p">,</span>
+            <span class="n">bearing0</span><span class="o">.</span><span class="n">kyy</span><span class="o">.</span><span class="n">interpolated</span><span class="p">(</span><span class="n">bearing0</span><span class="o">.</span><span class="n">w</span><span class="p">),</span>
+            <span class="n">bearing0</span><span class="o">.</span><span class="n">w</span><span class="p">,</span>
+            <span class="n">size</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>
+            <span class="n">fill_alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span>
+            <span class="n">fill_color</span><span class="o">=</span><span class="n">bokeh_colors</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+            <span class="n">legend</span><span class="o">=</span><span class="s2">&quot;Kyy&quot;</span><span class="p">,</span>
         <span class="p">)</span>
         <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">rotor_wn</span><span class="o">.</span><span class="n">T</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]):</span>
             <span class="n">bk_ax</span><span class="o">.</span><span class="n">line</span><span class="p">(</span>
-                    <span class="n">stiffness_log</span><span class="p">,</span>
-                    <span class="n">np</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="n">rotor_wn</span><span class="o">.</span><span class="n">T</span><span class="p">)[</span><span class="n">j</span><span class="p">],</span>
-                    <span class="n">line_width</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
-                    <span class="n">line_color</span><span class="o">=</span><span class="n">bokeh_colors</span><span class="p">[</span><span class="o">-</span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">],</span>
+                <span class="n">stiffness_log</span><span class="p">,</span>
+                <span class="n">np</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="n">rotor_wn</span><span class="o">.</span><span class="n">T</span><span class="p">)[</span><span class="n">j</span><span class="p">],</span>
+                <span class="n">line_width</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
+                <span class="n">line_color</span><span class="o">=</span><span class="n">bokeh_colors</span><span class="p">[</span><span class="o">-</span><span class="n">j</span> <span class="o">+</span> <span class="mi">1</span><span class="p">],</span>
             <span class="p">)</span>
         <span class="n">show</span><span class="p">(</span><span class="n">bk_ax</span><span class="p">)</span>
 
         <span class="k">return</span> <span class="n">ax</span></div>
 
-<div class="viewcode-block" id="Rotor.plot_level1"><a class="viewcode-back" href="../../api.html#ross.rotor_assembly.Rotor.plot_level1">[docs]</a>    <span class="k">def</span> <span class="nf">plot_level1</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">stiffness_range</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">num</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<div class="viewcode-block" id="Rotor.plot_level1"><a class="viewcode-back" href="../../api.html#ross.rotor_assembly.Rotor.plot_level1">[docs]</a>    <span class="k">def</span> <span class="nf">plot_level1</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">stiffness_range</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">num</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">output_html</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span>
+    <span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Plot level 1 stability analysis.</span>
 
 <span class="sd">        This method will plot the stability 1 analysis for a</span>
@@ -1701,6 +1711,9 @@
 <span class="sd">            Default is 5.</span>
 <span class="sd">        ax : matplotlib axes, optional</span>
 <span class="sd">            Axes in which the plot will be drawn.</span>
+<span class="sd">        output_html : Boolean, optional</span>
+<span class="sd">            outputs a html file.</span>
+<span class="sd">            Default is False</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
@@ -1736,7 +1749,8 @@
         <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;Log Dec&quot;</span><span class="p">)</span>
 
         <span class="c1"># bokeh plot - output to static HTML file</span>
-        <span class="n">output_file</span><span class="p">(</span><span class="s2">&quot;Plot_level1.html&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">output_html</span><span class="p">:</span>
+            <span class="n">output_file</span><span class="p">(</span><span class="s2">&quot;Plot_level1.html&quot;</span><span class="p">)</span>
 
         <span class="c1"># bokeh plot - create a new plot</span>
         <span class="n">bk_ax</span> <span class="o">=</span> <span class="n">figure</span><span class="p">(</span>
@@ -1755,7 +1769,7 @@
 
         <span class="k">return</span> <span class="n">ax</span><span class="p">,</span> <span class="n">bk_ax</span></div>
 
-<div class="viewcode-block" id="Rotor.plot_time_response"><a class="viewcode-back" href="../../api.html#ross.rotor_assembly.Rotor.plot_time_response">[docs]</a>    <span class="k">def</span> <span class="nf">plot_time_response</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">F</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">dof</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="Rotor.plot_time_response"><a class="viewcode-back" href="../../api.html#ross.rotor_assembly.Rotor.plot_time_response">[docs]</a>    <span class="k">def</span> <span class="nf">plot_time_response</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">F</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">dof</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">output_html</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Plot the time response.</span>
 
 <span class="sd">        This function will take a rotor object and plot its time response</span>
@@ -1772,6 +1786,9 @@
 <span class="sd">            Degree of freedom that will be observed.</span>
 <span class="sd">        ax : matplotlib axes, optional</span>
 <span class="sd">            Axes in which the plot will be drawn.</span>
+<span class="sd">        output_html : Boolean, optional</span>
+<span class="sd">            outputs a html file.</span>
+<span class="sd">            Default is False</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
@@ -1810,7 +1827,8 @@
         <span class="p">)</span>
 
         <span class="c1"># bokeh plot - output to static HTML file</span>
-        <span class="n">output_file</span><span class="p">(</span><span class="s2">&quot;time_response.html&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">output_html</span><span class="p">:</span>
+            <span class="n">output_file</span><span class="p">(</span><span class="s2">&quot;time_response.html&quot;</span><span class="p">)</span>
 
         <span class="c1"># bokeh plot - create a new plot</span>
         <span class="n">bk_ax</span> <span class="o">=</span> <span class="n">figure</span><span class="p">(</span>
@@ -1877,7 +1895,7 @@
         <span class="n">os</span><span class="o">.</span><span class="n">chdir</span><span class="p">(</span><span class="n">current</span> <span class="o">/</span> <span class="s2">&quot;elements&quot;</span><span class="p">)</span>
 
         <span class="k">for</span> <span class="n">element</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">elements</span><span class="p">:</span>
-            <span class="n">element</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">element</span><span class="p">)</span><span class="o">.</span><span class="vm">__name__</span><span class="o">+</span><span class="s2">&quot;.toml&quot;</span><span class="p">)</span>
+            <span class="n">element</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">element</span><span class="p">)</span><span class="o">.</span><span class="vm">__name__</span> <span class="o">+</span> <span class="s2">&quot;.toml&quot;</span><span class="p">)</span>
 
         <span class="n">os</span><span class="o">.</span><span class="n">chdir</span><span class="p">(</span><span class="n">main_path</span><span class="p">)</span></div>
 
@@ -1927,7 +1945,22 @@
     <span class="k">def</span> <span class="nf">remove</span><span class="p">(</span><span class="n">rotor_name</span><span class="p">):</span>
         <span class="n">shutil</span><span class="o">.</span><span class="n">rmtree</span><span class="p">(</span><span class="n">Path</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">ross</span><span class="o">.</span><span class="vm">__file__</span><span class="p">))</span> <span class="o">/</span> <span class="s2">&quot;rotors&quot;</span> <span class="o">/</span> <span class="n">rotor_name</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">run_static</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Rotor.run_static"><a class="viewcode-back" href="../../api.html#ross.rotor_assembly.Rotor.run_static">[docs]</a>    <span class="k">def</span> <span class="nf">run_static</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">output_html</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Static analysis calculates free-body diagram, deformed shaft, shearing</span>
+<span class="sd">        force diagram and bending moment diagram.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        output_html : Boolean, optional</span>
+<span class="sd">            outputs a html file.</span>
+<span class="sd">            Default is False</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">            grid_plots : bokeh.gridplot</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="c1"># gravity aceleration vector</span>
         <span class="n">grav</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">M</span><span class="p">()),</span> <span class="mi">1</span><span class="p">))</span>
 
@@ -2004,8 +2037,8 @@
         <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">Mx</span><span class="p">)):</span>
             <span class="n">Bm</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">Bm</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="n">Mx</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">Bm</span> <span class="o">=</span> <span class="n">Bm</span>
-
-        <span class="n">output_file</span><span class="p">(</span><span class="s2">&quot;static.html&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">output_html</span><span class="p">:</span>
+            <span class="n">output_file</span><span class="p">(</span><span class="s2">&quot;static.html&quot;</span><span class="p">)</span>
         <span class="n">source</span> <span class="o">=</span> <span class="n">ColumnDataSource</span><span class="p">(</span>
             <span class="n">data</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">x0</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">nodes_pos</span><span class="p">,</span> <span class="n">y0</span><span class="o">=</span><span class="n">disp_y</span> <span class="o">*</span> <span class="mi">1000</span><span class="p">,</span> <span class="n">y1</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">nodes_pos</span><span class="p">))</span>
         <span class="p">)</span>
@@ -2028,16 +2061,18 @@
             <span class="n">y_axis_label</span><span class="o">=</span><span class="s2">&quot;lateral displacement&quot;</span><span class="p">,</span>
         <span class="p">)</span>
 
-        <span class="n">interpolated</span> <span class="o">=</span> <span class="n">interpolate</span><span class="o">.</span><span class="n">interp1d</span><span class="p">(</span><span class="n">source</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;x0&#39;</span><span class="p">],</span> <span class="n">source</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;y0&#39;</span><span class="p">],</span> <span class="n">kind</span><span class="o">=</span><span class="s1">&#39;cubic&#39;</span><span class="p">)</span>
-        <span class="n">xnew</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">source</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;x0&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span>
-                           <span class="n">source</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;x0&#39;</span><span class="p">][</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span>
-                           <span class="n">num</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">nodes_pos</span><span class="p">)</span> <span class="o">*</span> <span class="mi">20</span><span class="p">,</span>
-                           <span class="n">endpoint</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="n">interpolated</span> <span class="o">=</span> <span class="n">interpolate</span><span class="o">.</span><span class="n">interp1d</span><span class="p">(</span>
+            <span class="n">source</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;x0&quot;</span><span class="p">],</span> <span class="n">source</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;y0&quot;</span><span class="p">],</span> <span class="n">kind</span><span class="o">=</span><span class="s2">&quot;cubic&quot;</span>
+        <span class="p">)</span>
+        <span class="n">xnew</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span>
+            <span class="n">source</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;x0&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span>
+            <span class="n">source</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;x0&quot;</span><span class="p">][</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span>
+            <span class="n">num</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">nodes_pos</span><span class="p">)</span> <span class="o">*</span> <span class="mi">20</span><span class="p">,</span>
+            <span class="n">endpoint</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="p">)</span>
 
         <span class="n">ynew</span> <span class="o">=</span> <span class="n">interpolated</span><span class="p">(</span><span class="n">xnew</span><span class="p">)</span>
-        <span class="n">auxsource</span> <span class="o">=</span> <span class="n">ColumnDataSource</span><span class="p">(</span>
-            <span class="n">data</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">x0</span><span class="o">=</span><span class="n">xnew</span><span class="p">,</span> <span class="n">y0</span><span class="o">=</span><span class="n">ynew</span><span class="p">,</span> <span class="n">y1</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">xnew</span><span class="p">))</span>
-        <span class="p">)</span>
+        <span class="n">auxsource</span> <span class="o">=</span> <span class="n">ColumnDataSource</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">x0</span><span class="o">=</span><span class="n">xnew</span><span class="p">,</span> <span class="n">y0</span><span class="o">=</span><span class="n">ynew</span><span class="p">,</span> <span class="n">y1</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">xnew</span><span class="p">)))</span>
 
         <span class="n">disp_graph</span><span class="o">.</span><span class="n">line</span><span class="p">(</span>
             <span class="s2">&quot;x0&quot;</span><span class="p">,</span>
@@ -2232,22 +2267,23 @@
             <span class="n">y_axis_label</span><span class="o">=</span><span class="s2">&quot;Bending Moment&quot;</span><span class="p">,</span>
             <span class="n">x_range</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mf">0.1</span> <span class="o">*</span> <span class="n">shaft_end</span><span class="p">,</span> <span class="mf">1.1</span> <span class="o">*</span> <span class="n">shaft_end</span><span class="p">],</span>
         <span class="p">)</span>
-        <span class="n">i</span><span class="o">=</span><span class="mi">0</span>
+        <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
         <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
-            <span class="k">if</span> <span class="n">i</span><span class="o">+</span><span class="mi">3</span><span class="o">&gt;</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">nodes</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">3</span> <span class="o">&gt;</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">nodes</span><span class="p">):</span>
                 <span class="k">break</span>
 
-            <span class="n">interpolated_BM</span> <span class="o">=</span> <span class="n">interpolate</span><span class="o">.</span><span class="n">interp1d</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">nodes_pos</span><span class="p">[</span><span class="n">i</span><span class="p">:</span><span class="n">i</span><span class="o">+</span><span class="mi">3</span><span class="p">],</span> <span class="n">Bm</span><span class="p">[</span><span class="n">i</span><span class="p">:</span><span class="n">i</span><span class="o">+</span><span class="mi">3</span><span class="p">],</span> <span class="n">kind</span><span class="o">=</span><span class="s1">&#39;quadratic&#39;</span><span class="p">)</span>
-            <span class="n">xnew_BM</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">nodes_pos</span><span class="p">[</span><span class="n">i</span><span class="p">],</span>
-                                  <span class="bp">self</span><span class="o">.</span><span class="n">nodes_pos</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">2</span><span class="p">],</span>
-                                  <span class="n">num</span><span class="o">=</span><span class="mi">42</span><span class="p">,</span>
-                                  <span class="n">endpoint</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+            <span class="n">interpolated_BM</span> <span class="o">=</span> <span class="n">interpolate</span><span class="o">.</span><span class="n">interp1d</span><span class="p">(</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">nodes_pos</span><span class="p">[</span><span class="n">i</span> <span class="p">:</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">3</span><span class="p">],</span> <span class="n">Bm</span><span class="p">[</span><span class="n">i</span> <span class="p">:</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">3</span><span class="p">],</span> <span class="n">kind</span><span class="o">=</span><span class="s2">&quot;quadratic&quot;</span>
+            <span class="p">)</span>
+            <span class="n">xnew_BM</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">nodes_pos</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">nodes_pos</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">2</span><span class="p">],</span> <span class="n">num</span><span class="o">=</span><span class="mi">42</span><span class="p">,</span> <span class="n">endpoint</span><span class="o">=</span><span class="kc">True</span>
+            <span class="p">)</span>
 
             <span class="n">ynew_BM</span> <span class="o">=</span> <span class="n">interpolated_BM</span><span class="p">(</span><span class="n">xnew_BM</span><span class="p">)</span>
-            <span class="n">auxsource_BM</span> <span class="o">=</span> <span class="n">ColumnDataSource</span><span class="p">(</span>
-                <span class="n">data</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">xnew_BM</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">ynew_BM</span><span class="p">)</span>
-                                 <span class="p">)</span>
-            <span class="n">BM</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="s2">&quot;x&quot;</span><span class="p">,</span> <span class="s2">&quot;y&quot;</span><span class="p">,</span> <span class="n">source</span><span class="o">=</span><span class="n">auxsource_BM</span><span class="p">,</span> <span class="n">line_width</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">line_color</span><span class="o">=</span><span class="n">bokeh_colors</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+            <span class="n">auxsource_BM</span> <span class="o">=</span> <span class="n">ColumnDataSource</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">xnew_BM</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">ynew_BM</span><span class="p">))</span>
+            <span class="n">BM</span><span class="o">.</span><span class="n">line</span><span class="p">(</span>
+                <span class="s2">&quot;x&quot;</span><span class="p">,</span> <span class="s2">&quot;y&quot;</span><span class="p">,</span> <span class="n">source</span><span class="o">=</span><span class="n">auxsource_BM</span><span class="p">,</span> <span class="n">line_width</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">line_color</span><span class="o">=</span><span class="n">bokeh_colors</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="p">)</span>
             <span class="n">i</span> <span class="o">+=</span> <span class="mi">2</span>
         <span class="n">BM</span><span class="o">.</span><span class="n">circle</span><span class="p">(</span><span class="s2">&quot;x&quot;</span><span class="p">,</span> <span class="s2">&quot;y&quot;</span><span class="p">,</span> <span class="n">source</span><span class="o">=</span><span class="n">source_BM</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">fill_color</span><span class="o">=</span><span class="n">bokeh_colors</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
 
@@ -2260,9 +2296,9 @@
             <span class="n">line_color</span><span class="o">=</span><span class="n">bokeh_colors</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
         <span class="p">)</span>
 
-        <span class="c1"># show the results</span>
         <span class="n">grid_plots</span> <span class="o">=</span> <span class="n">gridplot</span><span class="p">([[</span><span class="n">FBD</span><span class="p">,</span> <span class="n">SF</span><span class="p">],</span> <span class="p">[</span><span class="n">disp_graph</span><span class="p">,</span> <span class="n">BM</span><span class="p">]])</span>
-        <span class="n">show</span><span class="p">(</span><span class="n">grid_plots</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">grid_plots</span></div>
 
 <div class="viewcode-block" id="Rotor.from_section"><a class="viewcode-back" href="../../api.html#ross.rotor_assembly.Rotor.from_section">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">from_section</span><span class="p">(</span>
@@ -2327,7 +2363,9 @@
 <span class="sd">        ...                            BearingElement(n=3, kxx=1e6, cxx=0, kyy=1e6, cyy=0, kxy=0, cxy=0, kyx=0, cyx=0)],</span>
 <span class="sd">        ...             w=0, nel_r=1)</span>
 <span class="sd">        &gt;&gt;&gt; rotor.run_modal()</span>
-<span class="sd">        &gt;&gt;&gt; rotor.wn[:]</span>
+<span class="sd">        &gt;&gt;&gt; rotor.wn.round(4)</span>
+<span class="sd">        array([ 85.7634,  85.7634, 271.9326, 271.9326, 718.58  , 718.58  ])</span>
+
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">leng_data</span><span class="p">)</span> <span class="o">!=</span> <span class="nb">len</span><span class="p">(</span><span class="n">o_ds_data</span><span class="p">)</span> <span class="ow">or</span> <span class="nb">len</span><span class="p">(</span><span class="n">leng_data</span><span class="p">)</span> <span class="o">!=</span> <span class="nb">len</span><span class="p">(</span><span class="n">i_ds_data</span><span class="p">):</span>
@@ -2414,9 +2452,9 @@
 <span class="sd">    --------</span>
 <span class="sd">    &gt;&gt;&gt; rotor = rotor_example()</span>
 <span class="sd">    &gt;&gt;&gt; np.round(rotor.wd[:4])</span>
-<span class="sd">    array([  83.,   87.,  255.,  274.])</span>
+<span class="sd">    array([ 92.,  96., 275., 297.])</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="c1">#  Rotor without damping with 2 shaft elements 1 disk and 2 bearings</span>
+    <span class="c1">#  Rotor without damping with 6 shaft elements 2 disks and 2 bearings</span>
     <span class="n">i_d</span> <span class="o">=</span> <span class="mi">0</span>
     <span class="n">o_d</span> <span class="o">=</span> <span class="mf">0.05</span>
     <span class="n">n</span> <span class="o">=</span> <span class="mi">6</span>
@@ -2525,7 +2563,7 @@
     </p>
     <p>
         &copy; Copyright 2019, Team Ross.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.5.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.0.1.<br/>
     </p>
   </div>
 </footer>
