@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>Release notes &#8212; ross 0.1.0 documentation</title>
+    <link rel="stylesheet" href="_static/bootstrap-sphinx.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/language_data.js"></script>
+    <link rel="shortcut icon" href="_static/ross-logo.ico"/>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<script type="text/javascript" src="_static/js/jquery-1.11.0.min.js "></script>
+<script type="text/javascript" src="_static/js/jquery-fix.js "></script>
+<script type="text/javascript" src="_static/bootstrap-3.3.7/js/bootstrap.min.js "></script>
+<script type="text/javascript" src="_static/bootstrap-sphinx.js "></script>
+
+  </head><body>
+
+  <div id="navbar" class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="index.html"><span><img src="_static/ross-logo.svg"></span>
+          ross</a>
+        <span class="navbar-text navbar-version pull-left"><b>0.1.0</b></span>
+      </div>
+
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            
+                <li><a href="examples/tutorial.html">Tutorial</a></li>
+                <li><a href="examples.html">Examples</a></li>
+                <li><a href="api.html">API</a></li>
+            
+            
+              <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="index.html">Site <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"><p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#install-python">Install Python</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#install-ross">Install ross</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="examples/tutorial.html">Tutorial</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="examples/tutorial.html#materials">Materials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples/tutorial.html#element">Element</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples/tutorial.html#shaftelement">ShaftElement</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples/tutorial.html#diskelement">DiskElement</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples/tutorial.html#bearingelement">BearingElement</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples/tutorial.html#rotor">Rotor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples/tutorial.html#obtaining-results">Obtaining results</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="examples.html">Examples</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="examples/example_05_08_01.html">Example 5.8.1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples/example_05_08_02.html">Example 5.8.2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples/example_05_09_01.html">EXAMPLE 5.9.1.</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples/example_05_09_02.html">EXAMPLE 5.9.2.</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples/example_05_09_04.html">EXAMPLE 5.9.4.</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples/example_05_09_05.html">EXAMPLE 5.9.5.</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples/example_05_09_06.html">EXAMPLE 5.9.6.</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="api.html">API reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="api.html#module-ross.rotor_assembly">The Rotor module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.html#module-ross.element">The “Element” class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.html#module-ross.materials">The “Material” class</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Release notes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#version-0-1-0-alpha-release">Version 0.1.0 (alpha release)</a></li>
+</ul>
+</li>
+</ul>
+</ul>
+</li>
+              
+                <li class="dropdown">
+  <a role="button"
+     id="dLabelLocalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="#">Page <b class="caret"></b></a>
+  <ul class="dropdown-menu localtoc"
+      role="menu"
+      aria-labelledby="dLabelLocalToc"><ul>
+<li><a class="reference internal" href="#">Release notes</a><ul>
+<li><a class="reference internal" href="#version-0-1-0-alpha-release">Version 0.1.0 (alpha release)</a><ul>
+<li><a class="reference internal" href="#enhancements">Enhancements</a><ul>
+<li><a class="reference internal" href="#implementation-of-the-material-class">Implementation of the Material class</a></li>
+<li><a class="reference internal" href="#create-shaftelement-diskelement-and-bearingsealelement">Create ShaftElement, DiskElement and BearingSealElement</a></li>
+<li><a class="reference internal" href="#add-rotor-assembly-and-results">Add rotor assembly and results</a></li>
+<li><a class="reference internal" href="#add-static-analysis-method">Add static analysis method</a></li>
+<li><a class="reference internal" href="#new-rotor-save-format">New rotor save format</a></li>
+<li><a class="reference internal" href="#add-convergence-analysis">Add convergence analysis</a></li>
+<li><a class="reference internal" href="#analytical-fluid-flow-short-bearings">Analytical fluid flow, short bearings</a></li>
+<li><a class="reference internal" href="#add-new-diagram-to-static-method">Add new diagram to static method</a></li>
+<li><a class="reference internal" href="#add-methods-to-allow-inputs-from-a-table-in-bearing-element">Add methods to allow inputs from a table in bearing element</a></li>
+<li><a class="reference internal" href="#interpolation-for-static-analysis-and-bending-moment-diagram">Interpolation for static analysis and Bending moment diagram</a></li>
+<li><a class="reference internal" href="#add-bokeh-plot-to-forcedresponse-class">Add bokeh plot to ForcedResponse() class</a></li>
+<li><a class="reference internal" href="#add-bokeh-plot-to-plot-level1-and-plot-ucs">Add bokeh plot to “plot_level1” and “plot_ucs”</a></li>
+<li><a class="reference internal" href="#benchmark-implementation-and-some-changes-in-imports">Benchmark implementation and some changes in imports</a></li>
+<li><a class="reference internal" href="#added-user-guide-on-how-to-use-ross">Added user guide on how to use ross</a></li>
+<li><a class="reference internal" href="#jupyter-examples">Jupyter examples</a></li>
+<li><a class="reference internal" href="#adds-a-binder-badge">Adds a binder badge</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#api-changes">API changes</a><ul>
+<li><a class="reference internal" href="#add-run-modal-method">Add run_modal method</a></li>
+<li><a class="reference internal" href="#change-methods-names">Change methods’ names</a></li>
+<li><a class="reference internal" href="#remove-show-from-convergence-and-static">Remove show() from convergence and static</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#bug-fixes">Bug fixes</a><ul>
+<li><a class="reference internal" href="#added-interpolate-to-rotor-assembly-py">Added interpolate to rotor_assembly.py</a></li>
+<li><a class="reference internal" href="#fix-eccentricity-ratio-function">Fix eccentricity ratio function</a></li>
+<li><a class="reference internal" href="#improving-plot-rotor">Improving plot_rotor</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</ul>
+</li>
+              
+            
+            
+            
+            
+            
+              <li class="hidden-sm">
+<div id="sourcelink">
+  <a href="_sources/release_notes.rst.txt"
+     rel="nofollow">Source</a>
+</div></li>
+            
+          </ul>
+
+          
+            
+<form class="navbar-form navbar-right" action="search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+        </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="body col-md-12 content" role="main">
+      
+  <div class="section" id="release-notes">
+<h1>Release notes<a class="headerlink" href="#release-notes" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="version-0-1-0-alpha-release">
+<h2>Version 0.1.0 (alpha release)<a class="headerlink" href="#version-0-1-0-alpha-release" title="Permalink to this headline">¶</a></h2>
+<p>For the alpha release, the main classes have been created and the more
+important analyses have been implemented.</p>
+<p>The following gives a list of enhancements, api changes and bug fixes that were
+implemented for this release:</p>
+<div class="section" id="enhancements">
+<h3>Enhancements<a class="headerlink" href="#enhancements" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="implementation-of-the-material-class">
+<h4>Implementation of the Material class<a class="headerlink" href="#implementation-of-the-material-class" title="Permalink to this headline">¶</a></h4>
+<p>A class has been implemented to represent any material that can be used when
+creating an element for the analysis.</p>
+</div>
+<div class="section" id="create-shaftelement-diskelement-and-bearingsealelement">
+<h4>Create ShaftElement, DiskElement and BearingSealElement<a class="headerlink" href="#create-shaftelement-diskelement-and-bearingsealelement" title="Permalink to this headline">¶</a></h4>
+<p>The main classes used to create shaft elements, disk elements and bearings/seals
+elements have been implemented.</p>
+</div>
+<div class="section" id="add-rotor-assembly-and-results">
+<h4>Add rotor assembly and results<a class="headerlink" href="#add-rotor-assembly-and-results" title="Permalink to this headline">¶</a></h4>
+<p>A Rotor class has been implemented to represent the rotor. A rotor object
+assembles the global matrices and provides methods to run the same analysis on
+the rotor. Results implemented are modal analysis, Campbell, frequency response
+and unbalance response.</p>
+</div>
+<div class="section" id="add-static-analysis-method">
+<h4>Add static analysis method<a class="headerlink" href="#add-static-analysis-method" title="Permalink to this headline">¶</a></h4>
+<p>A method to calculate the static displacement of a rotor due to
+disks’ weight has been added.</p>
+</div>
+<div class="section" id="new-rotor-save-format">
+<h4>New rotor save format<a class="headerlink" href="#new-rotor-save-format" title="Permalink to this headline">¶</a></h4>
+<p>A new format for saving rotors was implemented. It is based on the toml format.</p>
+</div>
+<div class="section" id="add-convergence-analysis">
+<h4>Add convergence analysis<a class="headerlink" href="#add-convergence-analysis" title="Permalink to this headline">¶</a></h4>
+<p>Add convergence analysis as a method to the class Rotor.</p>
+</div>
+<div class="section" id="analytical-fluid-flow-short-bearings">
+<h4>Analytical fluid flow, short bearings<a class="headerlink" href="#analytical-fluid-flow-short-bearings" title="Permalink to this headline">¶</a></h4>
+<p>Add analytical fluid flow routines for short bearings.</p>
+</div>
+<div class="section" id="add-new-diagram-to-static-method">
+<h4>Add new diagram to static method<a class="headerlink" href="#add-new-diagram-to-static-method" title="Permalink to this headline">¶</a></h4>
+<p>Add a new plot to the static method - shearing force and changes the name of some
+graphs to make it more readable.</p>
+</div>
+<div class="section" id="add-methods-to-allow-inputs-from-a-table-in-bearing-element">
+<h4>Add methods to allow inputs from a table in bearing element<a class="headerlink" href="#add-methods-to-allow-inputs-from-a-table-in-bearing-element" title="Permalink to this headline">¶</a></h4>
+<p>Two methods were added to bearing element. The first one allows instantiating
+a bearing object from a table (excel format). The second one converts from
+table to dictionary, that can be saved as a toml file.</p>
+</div>
+<div class="section" id="interpolation-for-static-analysis-and-bending-moment-diagram">
+<h4>Interpolation for static analysis and Bending moment diagram<a class="headerlink" href="#interpolation-for-static-analysis-and-bending-moment-diagram" title="Permalink to this headline">¶</a></h4>
+<p>An interpolation method has been added to give a more smooth curve on
+plots generated by the static analysis.</p>
+</div>
+<div class="section" id="add-bokeh-plot-to-forcedresponse-class">
+<h4>Add bokeh plot to ForcedResponse() class<a class="headerlink" href="#add-bokeh-plot-to-forcedresponse-class" title="Permalink to this headline">¶</a></h4>
+<p>Implements plotting using bokeh to generate magnitude and
+phase plot to ForcedResponse class.</p>
+</div>
+<div class="section" id="add-bokeh-plot-to-plot-level1-and-plot-ucs">
+<h4>Add bokeh plot to “plot_level1” and “plot_ucs”<a class="headerlink" href="#add-bokeh-plot-to-plot-level1-and-plot-ucs" title="Permalink to this headline">¶</a></h4>
+<p>Add bokeh plotting as alternative to matplotlib to plot graphs.</p>
+</div>
+<div class="section" id="benchmark-implementation-and-some-changes-in-imports">
+<h4>Benchmark implementation and some changes in imports<a class="headerlink" href="#benchmark-implementation-and-some-changes-in-imports" title="Permalink to this headline">¶</a></h4>
+<p>Add Benchmark folder to ross(__init__) folder.  To run the
+benchmarks you only need to:  * run <cite>run_benchmarks.py,</cite> the outputs
+will be saved into the version folder of benchmarking, which is placed
+inside Snakeviz_inputs folder. To visualize the results we recommend
+you to use snakeviz, you can easily install it with pip. * As an
+example, to run snakeviz on Convergence benchmarks, you only need to
+run(within the directory of saved Benchmarks) <cite>snakeviz
+Convergence.prof</cite>.
+Those changes are some import optimization and turning static() method
+into run_static() method.</p>
+</div>
+<div class="section" id="added-user-guide-on-how-to-use-ross">
+<h4>Added user guide on how to use ross<a class="headerlink" href="#added-user-guide-on-how-to-use-ross" title="Permalink to this headline">¶</a></h4>
+<p>A tutorial has been added to the documentation. This is available as a
+jupyter notebook and is also rendered in the <span class="xref std std-ref">tutorial</span>
+documentation page.</p>
+</div>
+<div class="section" id="jupyter-examples">
+<h4>Jupyter examples<a class="headerlink" href="#jupyter-examples" title="Permalink to this headline">¶</a></h4>
+<dl class="simple">
+<dt>Implementation of the following examples, taken from Frisswell:</dt><dd><ul class="simple">
+<li><p>5.9.1</p></li>
+<li><p>5.9.2</p></li>
+<li><p>5.9.4</p></li>
+<li><p>5.9.5</p></li>
+<li><p>5.9.6</p></li>
+<li><p>5.9.9</p></li>
+<li><p>5.9.10</p></li>
+</ul>
+</dd>
+</dl>
+</div>
+<div class="section" id="adds-a-binder-badge">
+<h4>Adds a binder badge<a class="headerlink" href="#adds-a-binder-badge" title="Permalink to this headline">¶</a></h4>
+<p>Binder is available to test the library in a cloud virtual environment.</p>
+</div>
+</div>
+<div class="section" id="api-changes">
+<h3>API changes<a class="headerlink" href="#api-changes" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="add-run-modal-method">
+<h4>Add run_modal method<a class="headerlink" href="#add-run-modal-method" title="Permalink to this headline">¶</a></h4>
+<p>The modal analysis changed from <code class="docutils literal notranslate"><span class="pre">.run()</span></code> to <code class="docutils literal notranslate"><span class="pre">.run_modal()</span></code>.</p>
+</div>
+<div class="section" id="change-methods-names">
+<h4>Change methods’ names<a class="headerlink" href="#change-methods-names" title="Permalink to this headline">¶</a></h4>
+<dl class="simple">
+<dt>This is mostly to add “<a href="#id1"><span class="problematic" id="id2">run_</span></a>” to some Rotor methods, like:</dt><dd><ul class="simple">
+<li><p>campbell;</p></li>
+<li><p>forced_response;</p></li>
+<li><p>mode_shape;</p></li>
+<li><p>static</p></li>
+</ul>
+</dd>
+</dl>
+<p>Also, change the value to evaluate the slenderness ratio (SR) to 1.6.
+Since our convergence analysis have shown good results even for SR &lt; 30,
+it was decided to change it to 1.6, which is equivalent to a
+length / diameter ratio of 0.5.</p>
+</div>
+<div class="section" id="remove-show-from-convergence-and-static">
+<h4>Remove show() from convergence and static<a class="headerlink" href="#remove-show-from-convergence-and-static" title="Permalink to this headline">¶</a></h4>
+<p>Removes bokeh show() from the convergence and static analysis.
+Automatically showing the plots is not expected when running tests or
+scripts. With this modification, the figure is returned and the user can
+plot that if wanted. As an example:</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">static_analysis</span> <span class="o">=</span> <span class="n">rotor</span><span class="o">.</span><span class="n">run_static</span><span class="p">()</span>
+<span class="n">show</span><span class="p">(</span><span class="n">static_analysis</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="bug-fixes">
+<h3>Bug fixes<a class="headerlink" href="#bug-fixes" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="added-interpolate-to-rotor-assembly-py">
+<h4>Added interpolate to rotor_assembly.py<a class="headerlink" href="#added-interpolate-to-rotor-assembly-py" title="Permalink to this headline">¶</a></h4>
+<p>The function interp1d was used but the interpolate function was not
+being  imported.</p>
+</div>
+<div class="section" id="fix-eccentricity-ratio-function">
+<h4>Fix eccentricity ratio function<a class="headerlink" href="#fix-eccentricity-ratio-function" title="Permalink to this headline">¶</a></h4>
+<p>The eccentricity ratio function was being calculated wrongly, using the
+sommerfeld number instead of the modified one, as it was supposed to
+use.</p>
+</div>
+<div class="section" id="improving-plot-rotor">
+<h4>Improving plot_rotor<a class="headerlink" href="#improving-plot-rotor" title="Permalink to this headline">¶</a></h4>
+<p>There was an error that shaft elements were plotting with 2 times their
+respective radius.  I enlarged the plot window size and distributed the
+axis size so that the rotor is presented with the correct proportions in
+relation to its dimensions.    Also, adds the slenderness ratio
+parameter (equation: G * A * L ** 2 / E * I ) to each shaft element. It
+calculates the ratio using some global distance measures, rather than
+basing it upon individual element dimensions. The user is returned an
+warning message if it’s lower than a certain value, which could affect
+the convergence analysis.</p>
+</div>
+</div>
+</div>
+</div>
+
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
+    </p>
+    <p>
+        &copy; Copyright 2019, Team Ross.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.0.1.<br/>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>
