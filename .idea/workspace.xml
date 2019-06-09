@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="d8f62045-6d98-4073-9e72-51178b89b794" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.doctrees/api.doctree" beforeDir="false" afterPath="$PROJECT_DIR$/.doctrees/api.doctree" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.doctrees/environment.pickle" beforeDir="false" afterPath="$PROJECT_DIR$/.doctrees/environment.pickle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.doctrees/examples/Tutorial.doctree" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.doctrees/git_configuration.doctree" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.doctrees/index.doctree" beforeDir="false" afterPath="$PROJECT_DIR$/.doctrees/index.doctree" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.doctrees/introduction.doctree" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.doctrees/tutorial.doctree" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/_images/Tutorial_23_3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/_images/Tutorial_29_1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/_images/Tutorial_29_3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/_images/Tutorial_31_0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/_images/Tutorial_31_2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/_images/example_05_08_01_5_0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/_images/example_05_08_02_4_0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/_images/math/0c4e8a8decea39e29b3e4ccd00f9f12d1983b8c6.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/_images/math/3efe3b1a3823dd9ee401a5fb4c67be1e5bf1c3fe.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/_images/math/71e7ae1f07a76926276bc64c015fa37972bb06ec.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/_images/math/742fcb2459f32cbb065b45d97384a1f81a1a1c48.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/_images/math/7d3342452ee8abc4b8abd25ef5897d44e576ea06.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/_images/math/894bb75646e19d6d08f2f793500035ee98368fd9.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/_images/math/a442b6ec14838e75345e7fa84673f863fede97e1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/_images/math/ac8d05ee097d1bf410fdbce62e0fc8d063cc9e9a.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/_images/math/bae508f8b90711a500281d854d959df50fb72da2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/_images/math/ca73e539f1ca5df1f1839d40aabda51cbbfd5f4a.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/_images/math/d2ae5ede55793ea4a09436a5830f4bddda4b560e.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/_images/math/e18d839a0e889a07a4e7a17bed70fe453966c6df.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/_images/math/ef836e7987d83dfd9b578a860ebc16e21629d366.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/_images/math/fa3e357965d0985fcff4907ebafe71c3e414bd5b.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/_images/math/fc7576763f2a846119d277c2d3aee7ed2539e5b8.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/_images/ross-logo.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/_modules/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/_modules/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_modules/ross/bearing_seal_element.html" beforeDir="false" afterPath="$PROJECT_DIR$/_modules/ross/bearing_seal_element.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_modules/ross/disk_element.html" beforeDir="false" afterPath="$PROJECT_DIR$/_modules/ross/disk_element.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_modules/ross/element.html" beforeDir="false" afterPath="$PROJECT_DIR$/_modules/ross/element.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_modules/ross/materials.html" beforeDir="false" afterPath="$PROJECT_DIR$/_modules/ross/materials.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_modules/ross/rotor_assembly.html" beforeDir="false" afterPath="$PROJECT_DIR$/_modules/ross/rotor_assembly.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_modules/ross/shaft_element.html" beforeDir="false" afterPath="$PROJECT_DIR$/_modules/ross/shaft_element.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_sources/examples.rst.txt" beforeDir="false" afterPath="$PROJECT_DIR$/_sources/examples.rst.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_sources/examples/Tutorial.rst.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/_sources/git_configuration.rst.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/_sources/introduction.rst.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/_sources/tutorial.rst.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/_static/alert_info_32.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/_static/alert_warning_32.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/_static/bg-page.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/_static/bullet_orange.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/_static/haiku.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api.html" beforeDir="false" afterPath="$PROJECT_DIR$/api.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/examples.html" beforeDir="false" afterPath="$PROJECT_DIR$/examples.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/examples/Tutorial.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/examples/example_05_08_01.html" beforeDir="false" afterPath="$PROJECT_DIR$/examples/example_05_08_01.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/examples/example_05_08_02.html" beforeDir="false" afterPath="$PROJECT_DIR$/examples/example_05_08_02.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/examples/tutorial.html" beforeDir="false" afterPath="$PROJECT_DIR$/examples/tutorial.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/genindex.html" beforeDir="false" afterPath="$PROJECT_DIR$/genindex.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/git_configuration.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/installation.html" beforeDir="false" afterPath="$PROJECT_DIR$/installation.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/introduction.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/objects.inv" beforeDir="false" afterPath="$PROJECT_DIR$/objects.inv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/py-modindex.html" beforeDir="false" afterPath="$PROJECT_DIR$/py-modindex.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/search.html" beforeDir="false" afterPath="$PROJECT_DIR$/search.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/searchindex.js" beforeDir="false" afterPath="$PROJECT_DIR$/searchindex.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tutorial.html" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/api.html">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GithubDefaultAccount">
+    <option name="defaultAccountId" value="e600c87f-9f1f-4a38-a974-7704efa9c89f" />
+  </component>
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="707" />
+    <option name="y" value="309" />
+    <option name="width" value="1119" />
+    <option name="height" value="706" />
+  </component>
+  <component name="ProjectView">
+    <navigator proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="Scope" />
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="ross-website" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ross-website" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ross-website" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ross-website" type="462c0819:PsiDirectoryNode" />
+              <item name=".doctrees" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="settings.editor.selected.configurable" value="settings.github" />
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <servers />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="-1" y="0" width="1922" height="1027" extended-state="6" />
+    <editor active="true" />
+    <layout>
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.1433843" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="bottom" id="Run" order="2" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Version Control" order="7" />
+      <window_info anchor="bottom" id="Terminal" order="8" />
+      <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
+      <window_info anchor="bottom" id="Python Console" order="10" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+    </layout>
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/api.html">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+  </component>
+</project>

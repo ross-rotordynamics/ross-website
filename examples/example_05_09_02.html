@@ -2,8 +2,12 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
+<<<<<<< HEAD
     <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+=======
+    <meta charset="utf-8" />
+>>>>>>> cb68fafc46fbef3908663eaac9e758c535fd36ec
     <title>EXAMPLE 5.9.2. &#8212; ross 0.1.0 documentation</title>
     <link rel="stylesheet" href="../_static/bootstrap-sphinx.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -95,7 +99,10 @@
 <li class="toctree-l2"><a class="reference internal" href="../release_notes.html#version-0-1-0-alpha-release">Version 0.1.0 (alpha release)</a></li>
 </ul>
 </li>
+<<<<<<< HEAD
 <li class="toctree-l1"><a class="reference external" href="| :download:`test &lt;https://raw.githubusercontent.com/ross-rotordynamics/ross/master/ross/available_materials.toml&gt;`">| :download:`test &lt;https://raw.githubusercontent.com/ross-rotordynamics/ross/master/ross/available_materials.toml&gt;`</a></li>
+=======
+>>>>>>> cb68fafc46fbef3908663eaac9e758c535fd36ec
 </ul>
 </ul>
 </li>
@@ -153,7 +160,11 @@ have a stiffness of 1 MN/m in the x direction and 0.8 MN/m in the y
 direction. Calculate the eigenvalues and mode shapes at 0 and 4,000
 rev/min and plot the natural frequency map for rotational speeds up to
 4,500 rev/min.</p>
+<<<<<<< HEAD
 <div class="code ipython3 highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">bokeh.io</span> <span class="k">import</span> <span class="n">output_notebook</span>
+=======
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">bokeh.io</span> <span class="k">import</span> <span class="n">output_notebook</span>
+>>>>>>> cb68fafc46fbef3908663eaac9e758c535fd36ec
 <span class="kn">import</span> <span class="nn">ross</span> <span class="k">as</span> <span class="nn">rs</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="n">output_notebook</span><span class="p">()</span>
@@ -162,7 +173,11 @@ rev/min and plot the natural frequency map for rotational speeds up to
 <div class="bk-root">
     <a href="https://bokeh.pydata.org" target="_blank" class="bk-logo bk-logo-small bk-logo-notebook"></a>
     <span id="1001">Loading BokehJS ...</span>
+<<<<<<< HEAD
 </div><div class="code ipython3 highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#Classic Instantiation of the rotor</span>
+=======
+</div><div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Classic Instantiation of the rotor</span>
+>>>>>>> cb68fafc46fbef3908663eaac9e758c535fd36ec
 <span class="n">shaft_elements</span> <span class="o">=</span> <span class="p">[]</span>
 <span class="n">bearing_seal_elements</span> <span class="o">=</span> <span class="p">[]</span>
 <span class="n">disk_elements</span> <span class="o">=</span> <span class="p">[]</span>
@@ -201,7 +216,11 @@ rev/min and plot the natural frequency map for rotational speeds up to
 </pre></div>
 </div>
 <img alt="../_images/example_05_09_02_2_3.png" src="../_images/example_05_09_02_2_3.png" />
+<<<<<<< HEAD
 <div class="code ipython3 highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#From_section class method instantiation.</span>
+=======
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#From_section class method instantiation.</span>
+>>>>>>> cb68fafc46fbef3908663eaac9e758c535fd36ec
 <span class="n">bearing_seal_elements</span> <span class="o">=</span> <span class="p">[]</span>
 <span class="n">disk_elements</span> <span class="o">=</span> <span class="p">[]</span>
 <span class="n">shaft_length_data</span> <span class="o">=</span> <span class="mi">3</span><span class="o">*</span><span class="p">[</span><span class="mf">0.5</span><span class="p">]</span>
@@ -237,7 +256,11 @@ rev/min and plot the natural frequency map for rotational speeds up to
 </pre></div>
 </div>
 <img alt="../_images/example_05_09_02_3_3.png" src="../_images/example_05_09_02_3_3.png" />
+<<<<<<< HEAD
 <div class="code ipython3 highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#Obtaining results (wn is in rad/s)</span>
+=======
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Obtaining results (wn is in rad/s)</span>
+>>>>>>> cb68fafc46fbef3908663eaac9e758c535fd36ec
 
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Normal Instantiation =&#39;</span><span class="p">,</span> <span class="n">rotor592c</span><span class="o">.</span><span class="n">wn</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
@@ -252,7 +275,11 @@ rev/min and plot the natural frequency map for rotational speeds up to
  <span class="mf">718.87267818</span><span class="p">]</span>
 </pre></div>
 </div>
+<<<<<<< HEAD
 <div class="code ipython3 highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#Obtaining results for w=4000RPM (wn is in rad/s)</span>
+=======
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Obtaining results for w=4000RPM (wn is in rad/s)</span>
+>>>>>>> cb68fafc46fbef3908663eaac9e758c535fd36ec
 
 <span class="n">rotor592c</span><span class="o">.</span><span class="n">w</span><span class="o">=</span><span class="mi">4000</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mi">30</span>
 
@@ -263,7 +290,11 @@ rev/min and plot the natural frequency map for rotational speeds up to
  <span class="mf">806.8872843</span> <span class="p">]</span>
 </pre></div>
 </div>
+<<<<<<< HEAD
 <div class="code ipython3 highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">rotor592c</span><span class="o">.</span><span class="n">run_campbell</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">4000</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mi">30</span><span class="p">,</span><span class="mi">100</span><span class="p">))</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+=======
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rotor592c</span><span class="o">.</span><span class="n">run_campbell</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">4000</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mi">30</span><span class="p">,</span><span class="mi">100</span><span class="p">))</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+>>>>>>> cb68fafc46fbef3908663eaac9e758c535fd36ec
 </pre></div>
 </div>
 <div class="bk-root" id="fb2e5533-a98a-447b-97f5-bf6812288947" data-root-id="3299"></div><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="o">&lt;</span><span class="n">Figure</span> <span class="n">size</span> <span class="mi">432</span><span class="n">x288</span> <span class="k">with</span> <span class="mi">2</span> <span class="n">Axes</span><span class="o">&gt;</span><span class="p">,</span>
@@ -286,7 +317,11 @@ rev/min and plot the natural frequency map for rotational speeds up to
     </p>
     <p>
         &copy; Copyright 2019, Team Ross.<br/>
+<<<<<<< HEAD
       Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.5.<br/>
+=======
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.0.1.<br/>
+>>>>>>> cb68fafc46fbef3908663eaac9e758c535fd36ec
     </p>
   </div>
 </footer>
