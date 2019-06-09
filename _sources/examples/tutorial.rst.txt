@@ -3,7 +3,7 @@ Tutorial
 ========
 
 `Download This
-Notebook <https://ross-rotordynamics.github.io/ross-website/_downloads/tutorial.ipynb>`__
+Notebook <https://ross-rotordynamics.github.io/ross-website/_downloads/51a7c8bd4026689b99005339576b2193/tutorial.ipynb>`__
 
 | This is a basic tutorial on how to properly use ROSS (Rotordynamics
   open-source software), a simulator for rotating machinery. The
@@ -299,7 +299,7 @@ you can either turn on or off the matplotlib one.
     
     
     
-      <div class="bk-root" id="549741d9-d1ab-4dce-89cf-7d4e368d296f" data-root-id="1003"></div>
+      <div class="bk-root" id="64e8712d-0845-4005-9ec3-53121ee43dbc" data-root-id="1003"></div>
 
 
 
@@ -310,7 +310,7 @@ you can either turn on or off the matplotlib one.
 .. parsed-literal::
 
     (Figure(id='1003', ...),
-     <matplotlib.axes._subplots.AxesSubplot at 0x7f87833eeda0>)
+     <matplotlib.axes._subplots.AxesSubplot at 0x7f8dd1ee3d68>)
 
 
 
@@ -392,7 +392,7 @@ In this example we can see the campbell diagram from 0 to 4000 RPM.
     
     
     
-      <div class="bk-root" id="a8f2e429-5d6b-4384-b69c-9033aa71b83b" data-root-id="2236"></div>
+      <div class="bk-root" id="5732b868-9bad-4e1b-9e22-3e258fd06638" data-root-id="2236"></div>
 
 
 
@@ -403,7 +403,7 @@ In this example we can see the campbell diagram from 0 to 4000 RPM.
 .. parsed-literal::
 
     (<Figure size 432x288 with 2 Axes>,
-     <matplotlib.axes._subplots.AxesSubplot at 0x7f8780e49908>)
+     <matplotlib.axes._subplots.AxesSubplot at 0x7f8dd014f940>)
 
 
 
@@ -431,7 +431,7 @@ We can put the frequency response of
     
     
     
-      <div class="bk-root" id="9a50c1b2-bc97-46a1-8dce-386120b683fa" data-root-id="3856"></div>
+      <div class="bk-root" id="ea651a0f-268a-45b3-ac5d-3c487de4955e" data-root-id="3856"></div>
 
 
 
