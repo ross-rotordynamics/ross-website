@@ -1,12 +1,9 @@
 
 Tutorial
 ========
-<<<<<<< HEAD
 
 `Download This
 Notebook <https://ross-rotordynamics.github.io/ross-website/_downloads/tutorial.ipynb>`__
-=======
->>>>>>> cb68fafc46fbef3908663eaac9e758c535fd36ec
 
 | This is a basic tutorial on how to properly use ROSS (Rotordynamics
   open-source software), a simulator for rotating machinery. The
@@ -302,11 +299,7 @@ you can either turn on or off the matplotlib one.
     
     
     
-<<<<<<< HEAD
-      <div class="bk-root" id="e9ef7e9b-8c16-4269-8021-7d2392f86463" data-root-id="1003"></div>
-=======
-      <div class="bk-root" id="da6c3615-7357-4b15-864f-f941966f2622" data-root-id="1003"></div>
->>>>>>> cb68fafc46fbef3908663eaac9e758c535fd36ec
+      <div class="bk-root" id="549741d9-d1ab-4dce-89cf-7d4e368d296f" data-root-id="1003"></div>
 
 
 
@@ -317,11 +310,7 @@ you can either turn on or off the matplotlib one.
 .. parsed-literal::
 
     (Figure(id='1003', ...),
-<<<<<<< HEAD
-     <matplotlib.axes._subplots.AxesSubplot at 0x7efde8bcfe48>)
-=======
-     <matplotlib.axes._subplots.AxesSubplot at 0x7f34165cff28>)
->>>>>>> cb68fafc46fbef3908663eaac9e758c535fd36ec
+     <matplotlib.axes._subplots.AxesSubplot at 0x7f87833eeda0>)
 
 
 
@@ -357,16 +346,12 @@ response to gravity effects.
 .. code:: ipython3
 
     rotor1.run_static()
-<<<<<<< HEAD
 
-=======
->>>>>>> cb68fafc46fbef3908663eaac9e758c535fd36ec
 
 
 
 .. raw:: html
 
-<<<<<<< HEAD
     <div style="display: table;"><div style="display: table-row;"><div style="display: table-cell;"><b title="bokeh.models.layouts.Column">Column</b>(</div><div style="display: table-cell;">id&nbsp;=&nbsp;'2232', <span id="2234" style="cursor: pointer;">&hellip;)</span></div></div><div class="2233" style="display: none;"><div style="display: table-cell;"></div><div style="display: table-cell;">children&nbsp;=&nbsp;[ToolbarBox(id='2231', ...), Column(id='2229', ...)],</div></div><div class="2233" style="display: none;"><div style="display: table-cell;"></div><div style="display: table-cell;">css_classes&nbsp;=&nbsp;[],</div></div><div class="2233" style="display: none;"><div style="display: table-cell;"></div><div style="display: table-cell;">disabled&nbsp;=&nbsp;False,</div></div><div class="2233" style="display: none;"><div style="display: table-cell;"></div><div style="display: table-cell;">height&nbsp;=&nbsp;None,</div></div><div class="2233" style="display: none;"><div style="display: table-cell;"></div><div style="display: table-cell;">js_event_callbacks&nbsp;=&nbsp;{},</div></div><div class="2233" style="display: none;"><div style="display: table-cell;"></div><div style="display: table-cell;">js_property_callbacks&nbsp;=&nbsp;{},</div></div><div class="2233" style="display: none;"><div style="display: table-cell;"></div><div style="display: table-cell;">name&nbsp;=&nbsp;None,</div></div><div class="2233" style="display: none;"><div style="display: table-cell;"></div><div style="display: table-cell;">sizing_mode&nbsp;=&nbsp;'fixed',</div></div><div class="2233" style="display: none;"><div style="display: table-cell;"></div><div style="display: table-cell;">subscribed_events&nbsp;=&nbsp;[],</div></div><div class="2233" style="display: none;"><div style="display: table-cell;"></div><div style="display: table-cell;">tags&nbsp;=&nbsp;[],</div></div><div class="2233" style="display: none;"><div style="display: table-cell;"></div><div style="display: table-cell;">width&nbsp;=&nbsp;None)</div></div></div>
     <script>
     (function() {
@@ -383,16 +368,6 @@ response to gravity effects.
       });
     })();
     </script>
-=======
-    
-    
-    
-    
-    
-    
-      <div class="bk-root" id="775aafcc-46f6-4754-b722-06fbc458588b" data-root-id="2618"></div>
-
->>>>>>> cb68fafc46fbef3908663eaac9e758c535fd36ec
 
 
 
@@ -417,11 +392,7 @@ In this example we can see the campbell diagram from 0 to 4000 RPM.
     
     
     
-<<<<<<< HEAD
-      <div class="bk-root" id="339131ae-de77-458b-b14b-777df4d9d437" data-root-id="2236"></div>
-=======
-      <div class="bk-root" id="f903cb73-51d6-4d43-830c-fc46154c68d0" data-root-id="3448"></div>
->>>>>>> cb68fafc46fbef3908663eaac9e758c535fd36ec
+      <div class="bk-root" id="a8f2e429-5d6b-4384-b69c-9033aa71b83b" data-root-id="2236"></div>
 
 
 
@@ -432,11 +403,7 @@ In this example we can see the campbell diagram from 0 to 4000 RPM.
 .. parsed-literal::
 
     (<Figure size 432x288 with 2 Axes>,
-<<<<<<< HEAD
-     <matplotlib.axes._subplots.AxesSubplot at 0x7efde5dac940>)
-=======
-     <matplotlib.axes._subplots.AxesSubplot at 0x7f340f7e9a90>)
->>>>>>> cb68fafc46fbef3908663eaac9e758c535fd36ec
+     <matplotlib.axes._subplots.AxesSubplot at 0x7f8780e49908>)
 
 
 
@@ -464,11 +431,7 @@ We can put the frequency response of
     
     
     
-<<<<<<< HEAD
-      <div class="bk-root" id="be82dbbf-c0f6-4bc5-a303-3dd553ef2fbc" data-root-id="3856"></div>
-=======
-      <div class="bk-root" id="db007bb9-7c0b-4bec-a2bb-3ecf8d0b281c" data-root-id="5116"></div>
->>>>>>> cb68fafc46fbef3908663eaac9e758c535fd36ec
+      <div class="bk-root" id="9a50c1b2-bc97-46a1-8dce-386120b683fa" data-root-id="3856"></div>
 
 
 
