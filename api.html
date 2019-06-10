@@ -2,15 +2,11 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
-<<<<<<< HEAD
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-=======
     <meta charset="utf-8" />
->>>>>>> cb68fafc46fbef3908663eaac9e758c535fd36ec
     <title>API reference &#8212; ross 0.1.0 documentation</title>
     <link rel="stylesheet" href="_static/bootstrap-sphinx.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/style.css" />
     <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
@@ -19,7 +15,7 @@
     <link rel="shortcut icon" href="_static/ross-logo.ico"/>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="prev" title="EXAMPLE 5.9.6." href="examples/example_05_09_06.html" />
+    <link rel="prev" title="Download notebooks" href="download.html" />
 <meta charset='utf-8'>
 <meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
 <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
@@ -88,6 +84,7 @@
 <li class="toctree-l2"><a class="reference internal" href="examples/example_05_09_06.html">EXAMPLE 5.9.6.</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="download.html">Download notebooks</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">API reference</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#module-ross.rotor_assembly">The Rotor module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#module-ross.element">The “Element” class</a></li>
@@ -98,7 +95,6 @@
 <li class="toctree-l2"><a class="reference internal" href="release_notes.html#version-0-1-0-alpha-release">Version 0.1.0 (alpha release)</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference external" href="| :download:`test &lt;https://raw.githubusercontent.com/ross-rotordynamics/ross/master/ross/available_materials.toml&gt;`">| :download:`test &lt;https://raw.githubusercontent.com/ross-rotordynamics/ross/master/ross/available_materials.toml&gt;`</a></li>
 </ul>
 </ul>
 </li>
@@ -259,61 +255,6 @@ Default is 12.</p>
 <tr class="row-odd"><td><p><a class="reference internal" href="#ross.rotor_assembly.Rotor.convergence" title="ross.rotor_assembly.Rotor.convergence"><code class="xref py py-obj docutils literal notranslate"><span class="pre">convergence</span></code></a>(self[, n_eigval, err_max, …])</p></td>
 <td><p>Function to analyze the eigenvalues convergence through the number of shaft elements.</p></td>
 </tr>
-<<<<<<< HEAD
-<tr class="row-odd"><td><a class="reference internal" href="#ross.rotor_assembly.Rotor.convergence" title="ross.rotor_assembly.Rotor.convergence"><code class="xref py py-obj docutils literal notranslate"><span class="pre">convergence</span></code></a>([n_eigval,&nbsp;err_max,&nbsp;output_html])</td>
-<td>Function to analyze the eigenvalues convergence through the number of shaft elements.</td>
-</tr>
-<tr class="row-even"><td><a class="reference internal" href="#ross.rotor_assembly.Rotor.from_section" title="ross.rotor_assembly.Rotor.from_section"><code class="xref py py-obj docutils literal notranslate"><span class="pre">from_section</span></code></a>(leng_data,&nbsp;o_ds_data,&nbsp;i_ds_data)</td>
-<td>This class is an alternative to build rotors from separated sections.</td>
-</tr>
-<tr class="row-odd"><td><a class="reference internal" href="#ross.rotor_assembly.Rotor.kappa" title="ross.rotor_assembly.Rotor.kappa"><code class="xref py py-obj docutils literal notranslate"><span class="pre">kappa</span></code></a>(node,&nbsp;w[,&nbsp;wd])</td>
-<td>Calculates kappa for a given node and natural frequency.</td>
-</tr>
-<tr class="row-even"><td><a class="reference internal" href="#ross.rotor_assembly.Rotor.kappa_mode" title="ross.rotor_assembly.Rotor.kappa_mode"><code class="xref py py-obj docutils literal notranslate"><span class="pre">kappa_mode</span></code></a>(w)</td>
-<td>This function evaluates kappa given the index of the natural frequency of interest.</td>
-</tr>
-<tr class="row-odd"><td><a class="reference internal" href="#ross.rotor_assembly.Rotor.load" title="ross.rotor_assembly.Rotor.load"><code class="xref py py-obj docutils literal notranslate"><span class="pre">load</span></code></a>(file_name)</td>
-<td>Load rotor from toml file.</td>
-</tr>
-<tr class="row-even"><td><a class="reference internal" href="#ross.rotor_assembly.Rotor.plot_level1" title="ross.rotor_assembly.Rotor.plot_level1"><code class="xref py py-obj docutils literal notranslate"><span class="pre">plot_level1</span></code></a>([n,&nbsp;stiffness_range,&nbsp;num,&nbsp;ax,&nbsp;…])</td>
-<td>Plot level 1 stability analysis.</td>
-</tr>
-<tr class="row-odd"><td><a class="reference internal" href="#ross.rotor_assembly.Rotor.plot_rotor" title="ross.rotor_assembly.Rotor.plot_rotor"><code class="xref py py-obj docutils literal notranslate"><span class="pre">plot_rotor</span></code></a>([nodes,&nbsp;ax,&nbsp;output_html,&nbsp;bk_ax])</td>
-<td>Plots a rotor object.</td>
-</tr>
-<tr class="row-even"><td><a class="reference internal" href="#ross.rotor_assembly.Rotor.plot_time_response" title="ross.rotor_assembly.Rotor.plot_time_response"><code class="xref py py-obj docutils literal notranslate"><span class="pre">plot_time_response</span></code></a>(F,&nbsp;t,&nbsp;dof[,&nbsp;ax,&nbsp;output_html])</td>
-<td>Plot the time response.</td>
-</tr>
-<tr class="row-odd"><td><a class="reference internal" href="#ross.rotor_assembly.Rotor.plot_ucs" title="ross.rotor_assembly.Rotor.plot_ucs"><code class="xref py py-obj docutils literal notranslate"><span class="pre">plot_ucs</span></code></a>([stiffness_range,&nbsp;num,&nbsp;ax,&nbsp;output_html])</td>
-<td>Plot undamped critical speed map.</td>
-</tr>
-<tr class="row-even"><td><a class="reference internal" href="#ross.rotor_assembly.Rotor.run_campbell" title="ross.rotor_assembly.Rotor.run_campbell"><code class="xref py py-obj docutils literal notranslate"><span class="pre">run_campbell</span></code></a>(speed_range[,&nbsp;frequencies,&nbsp;…])</td>
-<td>Calculates the Campbell diagram.</td>
-</tr>
-<tr class="row-odd"><td><a class="reference internal" href="#ross.rotor_assembly.Rotor.run_freq_response" title="ross.rotor_assembly.Rotor.run_freq_response"><code class="xref py py-obj docutils literal notranslate"><span class="pre">run_freq_response</span></code></a>([frequency_range,&nbsp;modes])</td>
-<td>Frequency response for a mdof system.</td>
-</tr>
-<tr class="row-even"><td><a class="reference internal" href="#ross.rotor_assembly.Rotor.run_static" title="ross.rotor_assembly.Rotor.run_static"><code class="xref py py-obj docutils literal notranslate"><span class="pre">run_static</span></code></a>([output_html])</td>
-<td>Static analysis calculates free-body diagram, deformed shaft, shearing force diagram and bending moment diagram.</td>
-</tr>
-<tr class="row-odd"><td><a class="reference internal" href="#ross.rotor_assembly.Rotor.save" title="ross.rotor_assembly.Rotor.save"><code class="xref py py-obj docutils literal notranslate"><span class="pre">save</span></code></a>(file_name)</td>
-<td>Save rotor to toml file.</td>
-</tr>
-<tr class="row-even"><td><a class="reference internal" href="#ross.rotor_assembly.Rotor.save_mat" title="ross.rotor_assembly.Rotor.save_mat"><code class="xref py py-obj docutils literal notranslate"><span class="pre">save_mat</span></code></a>(file_name)</td>
-<td>Save matrices and rotor model to a .mat file.</td>
-</tr>
-<tr class="row-odd"><td><a class="reference internal" href="#ross.rotor_assembly.Rotor.time_response" title="ross.rotor_assembly.Rotor.time_response"><code class="xref py py-obj docutils literal notranslate"><span class="pre">time_response</span></code></a>(F,&nbsp;t[,&nbsp;ic])</td>
-<td>Time response for a rotor.</td>
-</tr>
-<tr class="row-even"><td><a class="reference internal" href="#ross.rotor_assembly.Rotor.unbalance_response" title="ross.rotor_assembly.Rotor.unbalance_response"><code class="xref py py-obj docutils literal notranslate"><span class="pre">unbalance_response</span></code></a>(node,&nbsp;magnitude,&nbsp;phase[,&nbsp;…])</td>
-<td>frequency response for a mdof system.</td>
-</tr>
-<tr class="row-odd"><td><a class="reference internal" href="#ross.rotor_assembly.Rotor.whirl_direction" title="ross.rotor_assembly.Rotor.whirl_direction"><code class="xref py py-obj docutils literal notranslate"><span class="pre">whirl_direction</span></code></a>()</td>
-<td>Get the whirl direction for each frequency.</td>
-</tr>
-<tr class="row-even"><td><a class="reference internal" href="#ross.rotor_assembly.Rotor.whirl_values" title="ross.rotor_assembly.Rotor.whirl_values"><code class="xref py py-obj docutils literal notranslate"><span class="pre">whirl_values</span></code></a>()</td>
-<td>Get the whirl value (0., 0.5, or 1.) for each frequency.</td>
-=======
 <tr class="row-even"><td><p><a class="reference internal" href="#ross.rotor_assembly.Rotor.from_section" title="ross.rotor_assembly.Rotor.from_section"><code class="xref py py-obj docutils literal notranslate"><span class="pre">from_section</span></code></a>(leng_data, o_ds_data, i_ds_data)</p></td>
 <td><p>This class is an alternative to build rotors from separated sections.</p></td>
 </tr>
@@ -364,28 +305,18 @@ Default is 12.</p>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#ross.rotor_assembly.Rotor.whirl_values" title="ross.rotor_assembly.Rotor.whirl_values"><code class="xref py py-obj docutils literal notranslate"><span class="pre">whirl_values</span></code></a>(self)</p></td>
 <td><p>Get the whirl value (0., 0.5, or 1.) for each frequency.</p></td>
->>>>>>> cb68fafc46fbef3908663eaac9e758c535fd36ec
 </tr>
 </tbody>
 </table>
 <table class="docutils align-center">
 <colgroup>
-<<<<<<< HEAD
-<col width="70%" />
-<col width="30%" />
-=======
 <col style="width: 70%" />
 <col style="width: 30%" />
->>>>>>> cb68fafc46fbef3908663eaac9e758c535fd36ec
 </colgroup>
 <tbody>
 <tr class="row-odd"><td><p><strong>available_rotors</strong></p></td>
 <td></td>
 </tr>
-<<<<<<< HEAD
-<tr class="row-even"><td><strong>orbit</strong></td>
-<td>&#160;</td>
-=======
 <tr class="row-even"><td><p><strong>orbit</strong></p></td>
 <td></td>
 </tr>
@@ -394,30 +325,15 @@ Default is 12.</p>
 </tr>
 <tr class="row-even"><td><p><strong>run_forced_response</strong></p></td>
 <td></td>
->>>>>>> cb68fafc46fbef3908663eaac9e758c535fd36ec
 </tr>
 <tr class="row-odd"><td><p><strong>run_modal</strong></p></td>
 <td></td>
 </tr>
-<<<<<<< HEAD
-<tr class="row-even"><td><strong>run_forced_response</strong></td>
-<td>&#160;</td>
-</tr>
-<tr class="row-odd"><td><strong>run_modal</strong></td>
-<td>&#160;</td>
-</tr>
-<tr class="row-even"><td><strong>run_mode_shapes</strong></td>
-<td>&#160;</td>
-</tr>
-<tr class="row-odd"><td><strong>transfer_matrix</strong></td>
-<td>&#160;</td>
-=======
 <tr class="row-even"><td><p><strong>run_mode_shapes</strong></p></td>
 <td></td>
 </tr>
 <tr class="row-odd"><td><p><strong>transfer_matrix</strong></p></td>
 <td></td>
->>>>>>> cb68fafc46fbef3908663eaac9e758c535fd36ec
 </tr>
 </tbody>
 </table>
@@ -608,40 +524,6 @@ values for <img class="math" src="_images/math/a442b6ec14838e75345e7fa84673f863f
 
 <dl class="method">
 <dt id="ross.rotor_assembly.Rotor.convergence">
-<<<<<<< HEAD
-<code class="descname">convergence</code><span class="sig-paren">(</span><em>n_eigval=0</em>, <em>err_max=0.01</em>, <em>output_html=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ross/rotor_assembly.html#Rotor.convergence"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.rotor_assembly.Rotor.convergence" title="Permalink to this definition">¶</a></dt>
-<dd><p>Function to analyze the eigenvalues convergence through the number of
-shaft elements. Every new run doubles the number os shaft elements.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><dl class="first docutils">
-<dt><strong>n_eigval</strong> <span class="classifier-delimiter">:</span> <span class="classifier">int</span></dt>
-<dd><p class="first last">The nth eigenvalue which the convergence analysis will run.
-Default is 0 (the first eigenvalue).</p>
-</dd>
-<dt><strong>err_max</strong> <span class="classifier-delimiter">:</span> <span class="classifier">float</span></dt>
-<dd><p class="first last">Maximum allowable convergence error.
-Default is 1e-02</p>
-</dd>
-<dt><strong>output_html</strong> <span class="classifier-delimiter">:</span> <span class="classifier">Boolean, optional</span></dt>
-<dd><p class="first last">outputs a html file.
-Default is False</p>
-</dd>
-</dl>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><dl class="first last docutils">
-<dt><strong>p</strong> <span class="classifier-delimiter">:</span> <span class="classifier">bokeh.figure</span></dt>
-<dd><p class="first last">Bokeh plot showing the results.</p>
-</dd>
-</dl>
-</td>
-</tr>
-</tbody>
-</table>
-=======
 <code class="descname">convergence</code><span class="sig-paren">(</span><em>self</em>, <em>n_eigval=0</em>, <em>err_max=0.01</em>, <em>output_html=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ross/rotor_assembly.html#Rotor.convergence"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.rotor_assembly.Rotor.convergence" title="Permalink to this definition">¶</a></dt>
 <dd><p>Function to analyze the eigenvalues convergence through the number of
 shaft elements. Every new run doubles the number os shaft elements.</p>
@@ -666,7 +548,6 @@ Default is False</p>
 </dl>
 </dd>
 </dl>
->>>>>>> cb68fafc46fbef3908663eaac9e758c535fd36ec
 </dd></dl>
 
 <dl class="classmethod">
@@ -814,11 +695,7 @@ to the mode/natural frequency of interest.</p>
 
 <dl class="method">
 <dt id="ross.rotor_assembly.Rotor.plot_level1">
-<<<<<<< HEAD
-<code class="descname">plot_level1</code><span class="sig-paren">(</span><em>n=None</em>, <em>stiffness_range=None</em>, <em>num=5</em>, <em>ax=None</em>, <em>output_html=False</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ross/rotor_assembly.html#Rotor.plot_level1"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.rotor_assembly.Rotor.plot_level1" title="Permalink to this definition">¶</a></dt>
-=======
 <code class="descname">plot_level1</code><span class="sig-paren">(</span><em>self</em>, <em>n=None</em>, <em>stiffness_range=None</em>, <em>num=5</em>, <em>ax=None</em>, <em>output_html=False</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ross/rotor_assembly.html#Rotor.plot_level1"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.rotor_assembly.Rotor.plot_level1" title="Permalink to this definition">¶</a></dt>
->>>>>>> cb68fafc46fbef3908663eaac9e758c535fd36ec
 <dd><p>Plot level 1 stability analysis.</p>
 <p>This method will plot the stability 1 analysis for a
 given stiffness range.</p>
@@ -833,10 +710,6 @@ Default is 5.</p>
 <dt><strong>ax</strong><span class="classifier">matplotlib axes, optional</span></dt><dd><p>Axes in which the plot will be drawn.</p>
 </dd>
 <dt><strong>output_html</strong><span class="classifier">Boolean, optional</span></dt><dd><p>outputs a html file.
-Default is False</p>
-</dd>
-<dt><strong>output_html</strong> <span class="classifier-delimiter">:</span> <span class="classifier">Boolean, optional</span></dt>
-<dd><p class="first last">outputs a html file.
 Default is False</p>
 </dd>
 </dl>
@@ -854,11 +727,7 @@ Default is False</p>
 
 <dl class="method">
 <dt id="ross.rotor_assembly.Rotor.plot_rotor">
-<<<<<<< HEAD
-<code class="descname">plot_rotor</code><span class="sig-paren">(</span><em>nodes=1</em>, <em>ax=None</em>, <em>output_html=False</em>, <em>bk_ax=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ross/rotor_assembly.html#Rotor.plot_rotor"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.rotor_assembly.Rotor.plot_rotor" title="Permalink to this definition">¶</a></dt>
-=======
 <code class="descname">plot_rotor</code><span class="sig-paren">(</span><em>self</em>, <em>nodes=1</em>, <em>ax=None</em>, <em>output_html=False</em>, <em>bk_ax=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ross/rotor_assembly.html#Rotor.plot_rotor"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.rotor_assembly.Rotor.plot_rotor" title="Permalink to this definition">¶</a></dt>
->>>>>>> cb68fafc46fbef3908663eaac9e758c535fd36ec
 <dd><p>Plots a rotor object.</p>
 <p>This function will take a rotor object and plot its shaft,
 disks and bearing elements</p>
@@ -872,10 +741,6 @@ disks and bearing elements</p>
 <dt><strong>bk_ax</strong><span class="classifier">bokeh plotting axes, optional</span></dt><dd><p>Axes in which the plot will be drawn.</p>
 </dd>
 <dt><strong>output_html</strong><span class="classifier">Boolean, optional</span></dt><dd><p>outputs a html file.
-Default is False</p>
-</dd>
-<dt><strong>output_html</strong> <span class="classifier-delimiter">:</span> <span class="classifier">Boolean, optional</span></dt>
-<dd><p class="first last">outputs a html file.
 Default is False</p>
 </dd>
 </dl>
@@ -894,11 +759,7 @@ Default is False</p>
 
 <dl class="method">
 <dt id="ross.rotor_assembly.Rotor.plot_time_response">
-<<<<<<< HEAD
-<code class="descname">plot_time_response</code><span class="sig-paren">(</span><em>F</em>, <em>t</em>, <em>dof</em>, <em>ax=None</em>, <em>output_html=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ross/rotor_assembly.html#Rotor.plot_time_response"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.rotor_assembly.Rotor.plot_time_response" title="Permalink to this definition">¶</a></dt>
-=======
 <code class="descname">plot_time_response</code><span class="sig-paren">(</span><em>self</em>, <em>F</em>, <em>t</em>, <em>dof</em>, <em>ax=None</em>, <em>output_html=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ross/rotor_assembly.html#Rotor.plot_time_response"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.rotor_assembly.Rotor.plot_time_response" title="Permalink to this definition">¶</a></dt>
->>>>>>> cb68fafc46fbef3908663eaac9e758c535fd36ec
 <dd><p>Plot the time response.</p>
 <p>This function will take a rotor object and plot its time response
 given a force and a time.</p>
@@ -917,10 +778,6 @@ Each column corresponds to a dof and each row to a time.</p>
 <dt><strong>output_html</strong><span class="classifier">Boolean, optional</span></dt><dd><p>outputs a html file.
 Default is False</p>
 </dd>
-<dt><strong>output_html</strong> <span class="classifier-delimiter">:</span> <span class="classifier">Boolean, optional</span></dt>
-<dd><p class="first last">outputs a html file.
-Default is False</p>
-</dd>
 </dl>
 </dd>
 <dt class="field-even">Returns</dt>
@@ -936,11 +793,7 @@ Default is False</p>
 
 <dl class="method">
 <dt id="ross.rotor_assembly.Rotor.plot_ucs">
-<<<<<<< HEAD
-<code class="descname">plot_ucs</code><span class="sig-paren">(</span><em>stiffness_range=None</em>, <em>num=20</em>, <em>ax=None</em>, <em>output_html=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ross/rotor_assembly.html#Rotor.plot_ucs"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.rotor_assembly.Rotor.plot_ucs" title="Permalink to this definition">¶</a></dt>
-=======
 <code class="descname">plot_ucs</code><span class="sig-paren">(</span><em>self</em>, <em>stiffness_range=None</em>, <em>num=20</em>, <em>ax=None</em>, <em>output_html=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ross/rotor_assembly.html#Rotor.plot_ucs"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.rotor_assembly.Rotor.plot_ucs" title="Permalink to this definition">¶</a></dt>
->>>>>>> cb68fafc46fbef3908663eaac9e758c535fd36ec
 <dd><p>Plot undamped critical speed map.</p>
 <p>This method will plot the undamped critical speed map for a given range
 of stiffness values. If the range is not provided, the bearing
@@ -956,10 +809,6 @@ Default is 20.</p>
 <dt><strong>ax</strong><span class="classifier">matplotlib axes, optional</span></dt><dd><p>Axes in which the plot will be drawn.</p>
 </dd>
 <dt><strong>output_html</strong><span class="classifier">Boolean, optional</span></dt><dd><p>outputs a html file.
-Default is False</p>
-</dd>
-<dt><strong>output_html</strong> <span class="classifier-delimiter">:</span> <span class="classifier">Boolean, optional</span></dt>
-<dd><p class="first last">outputs a html file.
 Default is False</p>
 </dd>
 </dl>
@@ -999,47 +848,6 @@ of the speed_rad array. It will be returned if plot=False.</p>
 </dl>
 </dd>
 </dl>
-<p class="rubric">Examples</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">rotor1</span> <span class="o">=</span> <span class="n">rotor_example</span><span class="p">()</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">speed</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">400</span><span class="p">,</span> <span class="mi">101</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">camp</span> <span class="o">=</span> <span class="n">rotor1</span><span class="o">.</span><span class="n">run_campbell</span><span class="p">(</span><span class="n">speed</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">camp</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span> <span class="c1"># doctest: +ELLIPSIS</span>
-<span class="go">(&lt;Figure ...</span>
-</pre></div>
-</div>
-</dd></dl>
-
-<dl class="method">
-<dt id="ross.rotor_assembly.Rotor.run_campbell">
-<code class="descname">run_campbell</code><span class="sig-paren">(</span><em>speed_range</em>, <em>frequencies=6</em>, <em>frequency_type='wd'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ross/rotor_assembly.html#Rotor.run_campbell"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.rotor_assembly.Rotor.run_campbell" title="Permalink to this definition">¶</a></dt>
-<dd><p>Calculates the Campbell diagram.</p>
-<p>This function will calculate the damped natural frequencies
-for a speed range.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><dl class="first docutils">
-<dt><strong>speed_range</strong> <span class="classifier-delimiter">:</span> <span class="classifier">array</span></dt>
-<dd><p class="first last">Array with the speed range in rad/s.</p>
-</dd>
-<dt><strong>frequencies</strong> <span class="classifier-delimiter">:</span> <span class="classifier">int, optional</span></dt>
-<dd><p class="first last">Number of frequencies that will be calculated.
-Default is 6.</p>
-</dd>
-</dl>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><dl class="first last docutils">
-<dt><strong>results</strong> <span class="classifier-delimiter">:</span> <span class="classifier">array</span></dt>
-<dd><p class="first last">Array with the natural frequencies corresponding to each speed
-of the speed_rad array. It will be returned if plot=False.</p>
-</dd>
-</dl>
-</td>
-</tr>
-</tbody>
-</table>
 <p class="rubric">Examples</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">rotor1</span> <span class="o">=</span> <span class="n">rotor_example</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">speed</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">400</span><span class="p">,</span> <span class="mi">101</span><span class="p">)</span>
@@ -1102,37 +910,16 @@ Default is False</p>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><dl class="simple">
-<dt><strong>grid_plots</strong><span class="classifier">bokeh.gridplot</span></dt><dd></dd>
+<dt>A dictionary containing the information about:</dt><dd><p>Static displacement vector,
+Shearing force vector,
+Bending moment vector,
+Shaft total weight,
+Disks forces,
+Bearings reaction forces</p>
+</dd>
 </dl>
 </dd>
 </dl>
-</dd></dl>
-
-<dl class="method">
-<dt id="ross.rotor_assembly.Rotor.run_static">
-<code class="descname">run_static</code><span class="sig-paren">(</span><em>output_html=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ross/rotor_assembly.html#Rotor.run_static"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.rotor_assembly.Rotor.run_static" title="Permalink to this definition">¶</a></dt>
-<dd><p>Static analysis calculates free-body diagram, deformed shaft, shearing
-force diagram and bending moment diagram.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><dl class="first docutils">
-<dt><strong>output_html</strong> <span class="classifier-delimiter">:</span> <span class="classifier">Boolean, optional</span></dt>
-<dd><p class="first last">outputs a html file.
-Default is False</p>
-</dd>
-</dl>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><dl class="first last docutils">
-<dt><strong>grid_plots</strong> <span class="classifier-delimiter">:</span> <span class="classifier">bokeh.gridplot</span></dt>
-<dd></dd>
-</dl>
-</td>
-</tr>
-</tbody>
-</table>
 </dd></dl>
 
 <dl class="method">
@@ -1504,24 +1291,6 @@ n : int</p>
 <code class="descname">patch</code><span class="sig-paren">(</span><em>self</em>, <em>position</em>, <em>length</em>, <em>ax</em>, <em>bk_ax</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ross/bearing_seal_element.html#BearingElement.patch"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.bearing_seal_element.BearingElement.patch" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bearing element patch.
 Patch that will be used to draw the bearing element.</p>
-<<<<<<< HEAD
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><dl class="first last docutils">
-<dt><strong>ax</strong> <span class="classifier-delimiter">:</span> <span class="classifier">matplotlib axes, optional</span></dt>
-<dd><p class="first last">Axes in which the plot will be drawn.</p>
-</dd>
-<dt><strong>bk_ax</strong> <span class="classifier-delimiter">:</span> <span class="classifier">bokeh plotting axes, optional</span></dt>
-<dd><p class="first last">Axes in which the plot will be drawn.</p>
-</dd>
-<dt><strong>position</strong> <span class="classifier-delimiter">:</span> <span class="classifier">tuple</span></dt>
-<dd><p class="first last">Position (z, y) in which the patch will be drawn.</p>
-</dd>
-<dt><strong>length</strong> <span class="classifier-delimiter">:</span> <span class="classifier">float</span></dt>
-<dd><p class="first last">minimum length of shaft elements</p>
-=======
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
@@ -1534,13 +1303,8 @@ Patch that will be used to draw the bearing element.</p>
 <dt><strong>length</strong><span class="classifier">float</span></dt><dd><p>minimum length of shaft elements</p>
 </dd>
 </dl>
->>>>>>> cb68fafc46fbef3908663eaac9e758c535fd36ec
 </dd>
 </dl>
-</td>
-</tr>
-</tbody>
-</table>
 </dd></dl>
 
 <dl class="classmethod">
@@ -1769,16 +1533,10 @@ Examples
 &gt;&gt;&gt; disk.M()
 array([[32.58972765,  0.        ,  0.        ,  0.        ],</p>
 <blockquote>
-<<<<<<< HEAD
-<div>[ 0.        , 32.58972765,  0.        ,  0.        ],
-[ 0.        ,  0.        ,  0.17808928,  0.        ],
-[ 0.        ,  0.        ,  0.        ,  0.17808928]])</div></blockquote>
-=======
 <div><p>[ 0.        , 32.58972765,  0.        ,  0.        ],
 [ 0.        ,  0.        ,  0.17808928,  0.        ],
 [ 0.        ,  0.        ,  0.        ,  0.17808928]])</p>
 </div></blockquote>
->>>>>>> cb68fafc46fbef3908663eaac9e758c535fd36ec
 </dd></dl>
 
 <dl class="classmethod">
@@ -2040,16 +1798,10 @@ Examples
 &gt;&gt;&gt; Timoshenko_Element.K()[:4, :4]/1e6
 array([[45.69644273,  0.        ,  0.        ,  5.71205534],</p>
 <blockquote>
-<<<<<<< HEAD
-<div>[ 0.        , 45.69644273, -5.71205534,  0.        ],
-[ 0.        , -5.71205534,  0.97294287,  0.        ],
-[ 5.71205534,  0.        ,  0.        ,  0.97294287]])</div></blockquote>
-=======
 <div><p>[ 0.        , 45.69644273, -5.71205534,  0.        ],
 [ 0.        , -5.71205534,  0.97294287,  0.        ],
 [ 5.71205534,  0.        ,  0.        ,  0.97294287]])</p>
 </div></blockquote>
->>>>>>> cb68fafc46fbef3908663eaac9e758c535fd36ec
 </dd></dl>
 
 <dl class="method">
