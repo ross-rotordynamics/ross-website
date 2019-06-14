@@ -135,6 +135,7 @@
 <li><a class="reference internal" href="#static-analysis">Static analysis</a></li>
 <li><a class="reference internal" href="#campbell-diagram">Campbell Diagram</a></li>
 <li><a class="reference internal" href="#frenquency-response">Frenquency Response</a></li>
+<li><a class="reference internal" href="#mode-shapes">Mode Shapes</a></li>
 </ul>
 </li>
 </ul>
@@ -179,36 +180,42 @@
 <p><a class="reference external" href="https://ross-rotordynamics.github.io/ross-website/_downloads/51a7c8bd4026689b99005339576b2193/tutorial.ipynb">Download This
 Notebook</a></p>
 <div class="line-block">
-<div class="line">This is a basic tutorial on how to properly use ROSS (Rotordynamics
-open-source software), a simulator for rotating machinery. The
-majority of this code follows object-oriented coding, which is
-represented in this <a class="reference external" href="https://user-images.githubusercontent.com/32821252/50386686-131c5200-06d3-11e9-9806-f5746295be81.png">UML
+<div class="line">This is a basic tutorial on how to use ross (rotordynamics open-source
+software), a Python library for rotordynamic analysis. The majority of
+this code follows object-oriented coding, which is represented in this
+<a class="reference external" href="https://user-images.githubusercontent.com/32821252/50386686-131c5200-06d3-11e9-9806-f5746295be81.png">UML
 DIAGRAM</a>.</div>
 <div class="line">In the following topics we are going to discuss the most relevant
 classes for a quick start to use ROSS.</div>
 </div>
-<div class="section" id="materials">
-<h2>Materials<a class="headerlink" href="#materials" title="Permalink to this headline">¶</a></h2>
-<p>There is a class called Material to hold material’s properties.</p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">ross</span> <span class="k">as</span> <span class="nn">rs</span>
 <span class="kn">from</span> <span class="nn">bokeh.io</span> <span class="k">import</span> <span class="n">output_notebook</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 
 <span class="n">output_notebook</span><span class="p">()</span>
-
-<span class="n">Steel</span> <span class="o">=</span> <span class="n">rs</span><span class="o">.</span><span class="n">Material</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;Steel&quot;</span><span class="p">,</span> <span class="n">rho</span><span class="o">=</span><span class="mi">7810</span><span class="p">,</span> <span class="n">E</span><span class="o">=</span><span class="mf">211e9</span><span class="p">,</span> <span class="n">G_s</span><span class="o">=</span><span class="mf">81.2e9</span><span class="p">)</span>
 </pre></div>
 </div>
 <div class="bk-root">
     <a href="https://bokeh.pydata.org" target="_blank" class="bk-logo bk-logo-small bk-logo-notebook"></a>
     <span id="1001">Loading BokehJS ...</span>
-</div><div class="line-block">
-<div class="line">Where: - ‘name’ is a parameter used to identificate the material. -
-‘rho’ is the density of this material - ‘E’ is the Young’s modulus. -
-‘G_s’ is the Shear modulus.</div>
-<div class="line">Note that, to instatiate a Material class, you only need to give 2 out
-of the following parameters: ‘E’, ‘G_s’ ,‘rho’.</div>
+</div><div class="section" id="materials">
+<h2>Materials<a class="headerlink" href="#materials" title="Permalink to this headline">¶</a></h2>
+<p>There is a class called Material to hold material’s properties, where:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>name : str
+    Material name.
+E : float
+    Young&#39;s modulus (N/m**2).
+G_s : float
+    Shear modulus (N/m**2).
+rho : float
+    Density (N/m**3).
+</pre></div>
+</div>
+<p>Note that, to instatiate a Material class, you only need to give 2 out
+of the following parameters: ‘E’, ‘G_s’ ,‘Poisson’.</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Steel</span> <span class="o">=</span> <span class="n">rs</span><span class="o">.</span><span class="n">Material</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;Steel&quot;</span><span class="p">,</span> <span class="n">rho</span><span class="o">=</span><span class="mi">7810</span><span class="p">,</span> <span class="n">E</span><span class="o">=</span><span class="mf">211e9</span><span class="p">,</span> <span class="n">G_s</span><span class="o">=</span><span class="mf">81.2e9</span><span class="p">)</span>
+</pre></div>
 </div>
 <div class="section" id="saving-a-material">
 <h3>Saving a Material<a class="headerlink" href="#saving-a-material" title="Permalink to this headline">¶</a></h3>
@@ -221,9 +228,9 @@ following method.</p>
 <div class="section" id="loading-a-material">
 <h3>Loading a Material<a class="headerlink" href="#loading-a-material" title="Permalink to this headline">¶</a></h3>
 <p>To load a material, first of all, use the available_materials() method
-to check if your material is instantiated, then you should use the
-Material.use_material(‘name’) method with the name of the material as a
-parameter.</p>
+to check if your material is available in the database, then you should
+use the Material.use_material(‘name’) method with the name of the
+material as a parameter.</p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rs</span><span class="o">.</span><span class="n">Material</span><span class="o">.</span><span class="n">available_materials</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -237,29 +244,42 @@ parameter.</p>
 </div>
 <div class="section" id="element">
 <h2>Element<a class="headerlink" href="#element" title="Permalink to this headline">¶</a></h2>
-<div class="line-block">
-<div class="line">Element is an abstract class(not directly used in the program), this
-class is mainly used to organize the code and make it more intuitive.</div>
-<div class="line">- All the classes which derives from Element ends with Element in
-their respective names. - Every element is placed in a node, which is
-the junction of two elements.</div>
-</div>
+<p>Element is an abstract class (not directly used in the program), this
+class is mainly used to organize the code and make it more intuitive.</p>
+<ul class="simple">
+<li><p>All the classes which derives from Element ends with Element in their
+respective names.</p></li>
+<li><p>Every element is placed in a node, which is the junction of two
+elements.</p></li>
+</ul>
 </div>
 <div class="section" id="shaftelement">
 <h2>ShaftElement<a class="headerlink" href="#shaftelement" title="Permalink to this headline">¶</a></h2>
-<div class="line-block">
-<div class="line">There are two methods that you could use to model this element:</div>
-<div class="line">* Euler–Bernoulli beam Theory * Timoshenko beam Theory (used as
-default)</div>
-</div>
+<p>There are two methods that you could use to model this element:</p>
+<ul class="simple">
+<li><p>Euler–Bernoulli beam Theory</p></li>
+<li><p>Timoshenko beam Theory (used as default)</p></li>
+</ul>
 <div class="line-block">
 <div class="line">This Element represents the rotor’s shaft, all the other elements are
 correlated with this one.</div>
-<div class="line">This class can be instantiated as the code that follows.</div>
-<div class="line">Where: - ‘i_d’: the shaft’s internal diameter (zero when dealing with
-a solid shaft). - ‘o_d’: the shaft’s outter diameter. - ‘n’: the node
-where the shaft elements starts. - ‘L’: the length of the shaft
-element.</div>
+<div class="line">This class can be instantiated as the code that follows. Where (as per
+the documentation):</div>
+</div>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>L : float
+    Element length.
+i_d : float
+    Inner diameter of the element.
+o_d : float
+    Outer diameter of the element.
+material : ross.material
+    Shaft material.
+n : int, optional
+    Element number (coincident with it&#39;s first node).
+    If not given, it will be set when the rotor is assembled
+    according to the element&#39;s position in the list supplied to
+    the rotor constructor.
+</pre></div>
 </div>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">i_d</span> <span class="o">=</span> <span class="mi">0</span>
 <span class="n">o_d</span> <span class="o">=</span> <span class="mf">0.05</span>
@@ -279,15 +299,21 @@ element.</div>
 </div>
 <div class="section" id="diskelement">
 <h2>DiskElement<a class="headerlink" href="#diskelement" title="Permalink to this headline">¶</a></h2>
-<div class="line-block">
-<div class="line">As the name says this class represents a Disk.</div>
-<div class="line">We can see an example of instantiation of this class in the following
-lines of code.</div>
+<p>This class represents a Disk element. We can see an example of
+instantiation of this class in the following lines of code.</p>
+<p>Where:</p>
+<p>This class can be instantiated as the code that follows.</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>n: int
+    Node in which the disk will be inserted.
+m : float
+    Mass of the disk element.
+Id : float
+    Diametral moment of inertia.
+Ip : float
+    Polar moment of inertia
+</pre></div>
 </div>
-<p>Where: - ‘n’ is the node where this disk is stored. - ‘Id’ is the
-Diametral moment of inertia. - ‘Ip’ is the Polar moment of inertia. -
-‘m’ is the mass of the Disk.</p>
-<p>All the values are following the S.I. convention.</p>
+<p>All the values are following the S.I. convention for the units.</p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Disk</span> <span class="o">=</span> <span class="n">rs</span><span class="o">.</span><span class="n">DiskElement</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">m</span><span class="o">=</span><span class="mf">32.58972765</span><span class="p">,</span> <span class="n">Id</span><span class="o">=</span><span class="mf">0.17808928</span><span class="p">,</span> <span class="n">Ip</span><span class="o">=</span><span class="mf">0.32956362</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">Disk</span><span class="p">)</span>
 </pre></div>
@@ -297,16 +323,21 @@ Diametral moment of inertia. - ‘Ip’ is the Polar moment of inertia. -
 </div>
 <div class="section" id="from-geometry-diskelement-instantiation">
 <h3>From geometry DiskElement instantiation<a class="headerlink" href="#from-geometry-diskelement-instantiation" title="Permalink to this headline">¶</a></h3>
-<div class="line-block">
-<div class="line">Besides the instatiation previously explained, there is a way to
+<p>Besides the instatiation previously explained, there is a way to
 instantiate a DiskElement with only geometrical parameters (for
 cylindrical disks) and the material which this disk is made of, as we
-can see in the following code.</div>
-<div class="line">- ‘n’ is the node where the disk is stored. - ‘i_d’ is the internal
-diameter of the disk(usually it’s the same as the outter diameter of
-the shaft where the disk is placed. - ‘o_d’ is the outter diameter of
-the disk. - ‘material’ is the material which the disk is made of. -
-‘width’ is the disk’s width</div>
+can see in the following code.</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>n: int
+    Node in which the disk will be inserted.
+material : lavirot.Material
+     Shaft material.
+width: float
+    The disk width.
+i_d: float
+    Inner diameter.
+o_d: float
+    Outer diameter.
+</pre></div>
 </div>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">disk0</span> <span class="o">=</span> <span class="n">rs</span><span class="o">.</span><span class="n">DiskElement</span><span class="o">.</span><span class="n">from_geometry</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
                                      <span class="n">material</span><span class="o">=</span><span class="n">steel</span><span class="p">,</span>
@@ -327,19 +358,40 @@ the disk. - ‘material’ is the material which the disk is made of. -
 <h2>BearingElement<a class="headerlink" href="#bearingelement" title="Permalink to this headline">¶</a></h2>
 <div class="line-block">
 <div class="line">As it says on the name, this class is a bearing.</div>
-<div class="line">The following code demonstrate how to properly instantiate it. - ‘n’
-is the node in which the bearing is located. - ‘kxx’ is a stiffness
-coefficient that corresponds to the term from the stiffness matrix. -
-‘kyy’ is a stiffness coefficient that corresponds to the term from the
-stiffness matrix. - ‘cxx’ is a damping coefficient that corresponds to
-the term from the damping matrix.</div>
+<div class="line">The following code demonstrate how to properly instantiate it.</div>
+</div>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>n: int
+    Node which the bearing will be located in
+kxx: float, array
+    Direct stiffness in the x direction.
+cxx: float, array
+    Direct damping in the x direction.
+kyy: float, array, optional
+    Direct stiffness in the y direction.
+    (defaults to kxx)
+cyy: float, array, optional
+    Direct damping in the y direction.
+    (defaults to cxx)
+kxy: float, array, optional
+    Cross coupled stiffness in the x direction.
+    (defaults to 0)
+cxy: float, array, optional
+    Cross coupled damping in the x direction.
+    (defaults to 0)
+kyx: float, array, optional
+    Cross coupled stiffness in the y direction.
+    (defaults to 0)
+cyx: float, array, optional
+    Cross coupled damping in the y direction.
+    (defaults to 0)
+w: array, optional
+    Array with the speeds (rad/s).
+</pre></div>
 </div>
 <p>P.S.: Note that the coefficients could be an array with different
 coefficients for different rotation speeds, in that case you only have
 to give a parameter ‘w’ which is a array with the same size as the
 coefficients array.</p>
-<p>P.S.2: The coefficients are not limitated by kxx and kyy, you can also
-give cross-coupled coefficients.</p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">stfx</span> <span class="o">=</span> <span class="mf">1e6</span>
 <span class="n">stfy</span> <span class="o">=</span> <span class="mf">0.8e6</span>
 <span class="n">bearing0</span> <span class="o">=</span> <span class="n">rs</span><span class="o">.</span><span class="n">BearingElement</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">kxx</span><span class="o">=</span><span class="n">stfx</span><span class="p">,</span> <span class="n">kyy</span><span class="o">=</span><span class="n">stfy</span><span class="p">,</span> <span class="n">cxx</span><span class="o">=</span><span class="mf">1e3</span><span class="p">,</span> <span class="n">w</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">200</span><span class="p">,</span><span class="mi">101</span><span class="p">))</span>
@@ -357,11 +409,11 @@ tables. - work in progress</strong></p>
 </div>
 <div class="section" id="rotor">
 <h2>Rotor<a class="headerlink" href="#rotor" title="Permalink to this headline">¶</a></h2>
-<p>This class unifies all the Element classes in the program and assembles
-the mass, damping and stiffness matrices of each element, building up
-matrices for the global system. Apart from that, it also outputs all the
-results classes obtained by the simulation.</p>
-<p>To use this class you only have to give all the already instantiated
+<p>This class takes as argument lists with all elements program and
+assembles the mass, damping and stiffness global matrices for the
+system. It also outputs all the results classes obtained by the
+simulation.</p>
+<p>To use this class, you only have to give all the already instantiated
 elements in a list format, as it follows.</p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rotor1</span> <span class="o">=</span> <span class="n">rs</span><span class="o">.</span><span class="n">Rotor</span><span class="p">(</span><span class="n">shaft_elements</span><span class="p">,</span>
                   <span class="n">disks</span><span class="p">,</span>
@@ -418,24 +470,24 @@ for the shaft elements) in the minimal nodes</div>
 </div>
 <div class="section" id="visualizing-the-rotor">
 <h3>Visualizing the Rotor<a class="headerlink" href="#visualizing-the-rotor" title="Permalink to this headline">¶</a></h3>
-<p>It is interesting to plot the rotor to check if it’s really what you
-wanted to instantiate, you can plot it with the following code.</p>
-<p>Note: There are two plots, one with bokeh plot and one with matplotlib,
-you can either turn on or off the matplotlib one.</p>
+<p>It is interesting to plot the rotor to check if the geometry checks with
+what you wanted to instantiate, you can plot it with the following code.</p>
+<p>Note: For almost every plot functions, there are two options for plots,
+one with bokeh library and one with matplotlib.</p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rotor1</span><span class="o">.</span><span class="n">plot_rotor</span><span class="p">()</span>
 </pre></div>
 </div>
-<div class="bk-root" id="e35e0b01-b5b2-4ff2-ac8f-786cacfef798" data-root-id="1003"></div><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">Figure</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s1">&#39;1003&#39;</span><span class="p">,</span> <span class="o">...</span><span class="p">),</span>
- <span class="o">&lt;</span><span class="n">matplotlib</span><span class="o">.</span><span class="n">axes</span><span class="o">.</span><span class="n">_subplots</span><span class="o">.</span><span class="n">AxesSubplot</span> <span class="n">at</span> <span class="mh">0x7f5ac9c67a20</span><span class="o">&gt;</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">matplotlib</span><span class="o">.</span><span class="n">axes</span><span class="o">.</span><span class="n">_subplots</span><span class="o">.</span><span class="n">AxesSubplot</span> <span class="n">at</span> <span class="mh">0x7f2be30dd240</span><span class="o">&gt;</span>
 </pre></div>
 </div>
-<img alt="../_images/tutorial_25_3.png" src="../_images/tutorial_25_3.png" />
+<img alt="../_images/tutorial_36_1.png" src="../_images/tutorial_36_1.png" />
 </div>
 <div class="section" id="running-the-simulation">
 <h3>Running the simulation<a class="headerlink" href="#running-the-simulation" title="Permalink to this headline">¶</a></h3>
 <p>After you verify that everything is fine with the rotor, you should run
 the simulation and obtain results. To do that you only need to use the
-run() method like the code bellow.</p>
+one of the <code class="docutils literal notranslate"><span class="pre">run_()</span></code> methods available, as shown in like the code
+bellow.</p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rotor1</span><span class="o">.</span><span class="n">run_modal</span><span class="p">()</span>
 <span class="n">rotor2</span><span class="o">.</span><span class="n">run_modal</span><span class="p">()</span>
 </pre></div>
@@ -449,20 +501,9 @@ analysis - Campbell Diagram - Frequency response - Forced response -
 Mode Shapes</p>
 <div class="section" id="static-analysis">
 <h3>Static analysis<a class="headerlink" href="#static-analysis" title="Permalink to this headline">¶</a></h3>
-<p>This method gives a free body diagram and a exagerated plot of the rotor
-response to gravity effects.</p>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rotor1</span><span class="o">.</span><span class="n">run_static</span><span class="p">()</span>
-</pre></div>
-</div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">StaticResults</span><span class="p">([</span><span class="n">array</span><span class="p">([</span><span class="o">-</span><span class="mf">0.00054047</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.00091442</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.00118923</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.00128644</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.00118923</span><span class="p">,</span>
-       <span class="o">-</span><span class="mf">0.00091442</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.00054047</span><span class="p">]),</span>
-               <span class="n">array</span><span class="p">([</span> <span class="mf">2.94875235e-12</span><span class="p">,</span> <span class="o">-</span><span class="mf">4.32377431e+02</span><span class="p">,</span> <span class="o">-</span><span class="mf">3.94782008e+02</span><span class="p">,</span> <span class="o">-</span><span class="mf">3.57186586e+02</span><span class="p">,</span>
-       <span class="o">-</span><span class="mf">3.75954221e+01</span><span class="p">,</span> <span class="o">-</span><span class="mf">2.74269496e-12</span><span class="p">,</span>  <span class="mf">3.75954221e+01</span><span class="p">,</span>  <span class="mf">3.57186586e+02</span><span class="p">,</span>
-        <span class="mf">3.94782008e+02</span><span class="p">,</span>  <span class="mf">4.32377431e+02</span><span class="p">,</span>  <span class="mf">2.94875235e-12</span><span class="p">]),</span>
-               <span class="n">array</span><span class="p">([</span> <span class="mf">0.00000000e+00</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.03394930e+02</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.97391004e+02</span><span class="p">,</span> <span class="o">-</span><span class="mf">2.02090432e+02</span><span class="p">,</span>
-       <span class="o">-</span><span class="mf">1.97391004e+02</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.03394930e+02</span><span class="p">,</span> <span class="o">-</span><span class="mf">3.97903932e-12</span><span class="p">]),</span>
-               <span class="p">{</span><span class="s1">&#39;Shaft Total Weight&#39;</span><span class="p">:</span> <span class="s1">&#39;225.6&#39;</span><span class="p">,</span> <span class="s1">&#39;Disks Forces&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;-319.6&#39;</span><span class="p">,</span> <span class="s1">&#39;-319.6&#39;</span><span class="p">],</span> <span class="s1">&#39;Bearings Reaction Forces&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;432.4&#39;</span><span class="p">,</span> <span class="s1">&#39;432.4&#39;</span><span class="p">]}],</span>
-              <span class="n">dtype</span><span class="o">=</span><span class="nb">object</span><span class="p">)</span>
+<p>This method gives a free body diagram and a amplificated plot of the
+rotor response to gravity effects.</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">static</span> <span class="o">=</span> <span class="n">rotor1</span><span class="o">.</span><span class="n">run_static</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -473,20 +514,34 @@ response to gravity effects.</p>
 <span class="n">campbell</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
 </pre></div>
 </div>
-<div class="bk-root" id="424f5d69-1213-400d-9e54-ea8ab3451912" data-root-id="1858"></div><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="o">&lt;</span><span class="n">Figure</span> <span class="n">size</span> <span class="mi">432</span><span class="n">x288</span> <span class="k">with</span> <span class="mi">2</span> <span class="n">Axes</span><span class="o">&gt;</span><span class="p">,</span>
- <span class="o">&lt;</span><span class="n">matplotlib</span><span class="o">.</span><span class="n">axes</span><span class="o">.</span><span class="n">_subplots</span><span class="o">.</span><span class="n">AxesSubplot</span> <span class="n">at</span> <span class="mh">0x7f5ac8b36278</span><span class="o">&gt;</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="o">&lt;</span><span class="n">Figure</span> <span class="n">size</span> <span class="mi">432</span><span class="n">x288</span> <span class="k">with</span> <span class="mi">2</span> <span class="n">Axes</span><span class="o">&gt;</span><span class="p">,</span>
+ <span class="o">&lt;</span><span class="n">matplotlib</span><span class="o">.</span><span class="n">axes</span><span class="o">.</span><span class="n">_subplots</span><span class="o">.</span><span class="n">AxesSubplot</span> <span class="n">at</span> <span class="mh">0x7f2be2054ef0</span><span class="o">&gt;</span><span class="p">)</span>
 </pre></div>
 </div>
-<img alt="../_images/tutorial_31_3.png" src="../_images/tutorial_31_3.png" />
+<img alt="../_images/tutorial_42_1.png" src="../_images/tutorial_42_1.png" />
 </div>
 <div class="section" id="frenquency-response">
 <h3>Frenquency Response<a class="headerlink" href="#frenquency-response" title="Permalink to this headline">¶</a></h3>
-<p>We can put the frequency response of</p>
+<p>We can put the frequency response of selecting the input and output
+node.</p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rotor1</span><span class="o">.</span><span class="n">run_freq_response</span><span class="p">()</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">inp</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">out</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s2">&quot;figure.figsize&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">15</span><span class="p">,</span><span class="mi">10</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="bk-root" id="9e18a974-9a62-4916-96a5-4d693d503956" data-root-id="3478"></div><img alt="../_images/tutorial_33_2.png" src="../_images/tutorial_33_2.png" />
+<img alt="../_images/tutorial_44_0.png" src="../_images/tutorial_44_0.png" />
+</div>
+<div class="section" id="mode-shapes">
+<h3>Mode Shapes<a class="headerlink" href="#mode-shapes" title="Permalink to this headline">¶</a></h3>
+<p>You can also generate the plot for each mode shape.</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">modes</span> <span class="o">=</span> <span class="n">rotor1</span><span class="o">.</span><span class="n">run_mode_shapes</span><span class="p">()</span>
+<span class="n">modes</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="o">&lt;</span><span class="n">Figure</span> <span class="n">size</span> <span class="mi">1080</span><span class="n">x720</span> <span class="k">with</span> <span class="mi">1</span> <span class="n">Axes</span><span class="o">&gt;</span><span class="p">,</span>
+ <span class="o">&lt;</span><span class="n">matplotlib</span><span class="o">.</span><span class="n">axes</span><span class="o">.</span><span class="n">_subplots</span><span class="o">.</span><span class="n">Axes3DSubplot</span> <span class="n">at</span> <span class="mh">0x7f2be1efd828</span><span class="o">&gt;</span><span class="p">)</span>
+</pre></div>
+</div>
+<img alt="../_images/tutorial_46_1.png" src="../_images/tutorial_46_1.png" />
 </div>
 </div>
 </div>

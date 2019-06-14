@@ -252,7 +252,7 @@ Default is 12.</p>
 <tr class="row-even"><td><p><a class="reference internal" href="#ross.rotor_assembly.Rotor.M" title="ross.rotor_assembly.Rotor.M"><code class="xref py py-obj docutils literal notranslate"><span class="pre">M</span></code></a>(self)</p></td>
 <td><p>Mass matrix for an instance of a rotor.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#ross.rotor_assembly.Rotor.convergence" title="ross.rotor_assembly.Rotor.convergence"><code class="xref py py-obj docutils literal notranslate"><span class="pre">convergence</span></code></a>(self[, n_eigval, err_max, …])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#ross.rotor_assembly.Rotor.convergence" title="ross.rotor_assembly.Rotor.convergence"><code class="xref py py-obj docutils literal notranslate"><span class="pre">convergence</span></code></a>(self[, n_eigval, err_max])</p></td>
 <td><p>Function to analyze the eigenvalues convergence through the number of shaft elements.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#ross.rotor_assembly.Rotor.from_section" title="ross.rotor_assembly.Rotor.from_section"><code class="xref py py-obj docutils literal notranslate"><span class="pre">from_section</span></code></a>(leng_data, o_ds_data, i_ds_data)</p></td>
@@ -270,7 +270,7 @@ Default is 12.</p>
 <tr class="row-even"><td><p><a class="reference internal" href="#ross.rotor_assembly.Rotor.plot_level1" title="ross.rotor_assembly.Rotor.plot_level1"><code class="xref py py-obj docutils literal notranslate"><span class="pre">plot_level1</span></code></a>(self[, n, stiffness_range, num, …])</p></td>
 <td><p>Plot level 1 stability analysis.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#ross.rotor_assembly.Rotor.plot_rotor" title="ross.rotor_assembly.Rotor.plot_rotor"><code class="xref py py-obj docutils literal notranslate"><span class="pre">plot_rotor</span></code></a>(self[, nodes, ax, output_html, bk_ax])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#ross.rotor_assembly.Rotor.plot_rotor" title="ross.rotor_assembly.Rotor.plot_rotor"><code class="xref py py-obj docutils literal notranslate"><span class="pre">plot_rotor</span></code></a>(self, \*args[, plot_type])</p></td>
 <td><p>Plots a rotor object.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#ross.rotor_assembly.Rotor.plot_time_response" title="ross.rotor_assembly.Rotor.plot_time_response"><code class="xref py py-obj docutils literal notranslate"><span class="pre">plot_time_response</span></code></a>(self, F, t, dof[, ax, …])</p></td>
@@ -282,10 +282,10 @@ Default is 12.</p>
 <tr class="row-even"><td><p><a class="reference internal" href="#ross.rotor_assembly.Rotor.run_campbell" title="ross.rotor_assembly.Rotor.run_campbell"><code class="xref py py-obj docutils literal notranslate"><span class="pre">run_campbell</span></code></a>(self, speed_range[, …])</p></td>
 <td><p>Calculates the Campbell diagram.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#ross.rotor_assembly.Rotor.run_freq_response" title="ross.rotor_assembly.Rotor.run_freq_response"><code class="xref py py-obj docutils literal notranslate"><span class="pre">run_freq_response</span></code></a>(self[, frequency_range, modes])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#ross.rotor_assembly.Rotor.run_freq_response" title="ross.rotor_assembly.Rotor.run_freq_response"><code class="xref py py-obj docutils literal notranslate"><span class="pre">run_freq_response</span></code></a>(self[, speed_range, modes])</p></td>
 <td><p>Frequency response for a mdof system.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#ross.rotor_assembly.Rotor.run_static" title="ross.rotor_assembly.Rotor.run_static"><code class="xref py py-obj docutils literal notranslate"><span class="pre">run_static</span></code></a>(self[, output_html])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#ross.rotor_assembly.Rotor.run_static" title="ross.rotor_assembly.Rotor.run_static"><code class="xref py py-obj docutils literal notranslate"><span class="pre">run_static</span></code></a>(self)</p></td>
 <td><p>Static analysis calculates free-body diagram, deformed shaft, shearing force diagram and bending moment diagram.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#ross.rotor_assembly.Rotor.save" title="ross.rotor_assembly.Rotor.save"><code class="xref py py-obj docutils literal notranslate"><span class="pre">save</span></code></a>(self, file_name)</p></td>
@@ -524,7 +524,7 @@ values for <img class="math" src="_images/math/a442b6ec14838e75345e7fa84673f863f
 
 <dl class="method">
 <dt id="ross.rotor_assembly.Rotor.convergence">
-<code class="descname">convergence</code><span class="sig-paren">(</span><em>self</em>, <em>n_eigval=0</em>, <em>err_max=0.01</em>, <em>output_html=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ross/rotor_assembly.html#Rotor.convergence"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.rotor_assembly.Rotor.convergence" title="Permalink to this definition">¶</a></dt>
+<code class="descname">convergence</code><span class="sig-paren">(</span><em>self</em>, <em>n_eigval=0</em>, <em>err_max=0.01</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ross/rotor_assembly.html#Rotor.convergence"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.rotor_assembly.Rotor.convergence" title="Permalink to this definition">¶</a></dt>
 <dd><p>Function to analyze the eigenvalues convergence through the number of
 shaft elements. Every new run doubles the number os shaft elements.</p>
 <dl class="field-list simple">
@@ -536,14 +536,13 @@ Default is 0 (the first eigenvalue).</p>
 <dt><strong>err_max</strong><span class="classifier">float</span></dt><dd><p>Maximum allowable convergence error.
 Default is 1e-02</p>
 </dd>
-<dt><strong>output_html</strong><span class="classifier">Boolean, optional</span></dt><dd><p>outputs a html file.
-Default is False</p>
-</dd>
 </dl>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><dl class="simple">
-<dt><strong>p</strong><span class="classifier">bokeh.figure</span></dt><dd><p>Bokeh plot showing the results.</p>
+<dt>Lists containing the information about:</dt><dd><p>The number or elements in each run;
+The relative error calculated in each run;
+The natural frequency calculated in each run.</p>
 </dd>
 </dl>
 </dd>
@@ -637,8 +636,7 @@ major axis, minor axis and kappa.</p>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">rotor</span><span class="o">.</span><span class="n">kappa</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)[</span><span class="s1">&#39;Major axes&#39;</span><span class="p">]</span> <span class="c1"># doctest: +ELLIPSIS</span>
 <span class="go">0.00141...</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="c1"># kappa for node 2 and natural frequency (mode) 3.</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">rotor</span><span class="o">.</span><span class="n">kappa</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)[</span><span class="s1">&#39;kappa&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="c1"># doctest: +ELLIPSIS</span>
-<span class="go">-0.0</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">kappa</span> <span class="o">=</span> <span class="n">rotor</span><span class="o">.</span><span class="n">kappa</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)[</span><span class="s1">&#39;kappa&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="c1"># doctest: +ELLIPSIS</span>
 </pre></div>
 </div>
 </dd></dl>
@@ -727,21 +725,21 @@ Default is False</p>
 
 <dl class="method">
 <dt id="ross.rotor_assembly.Rotor.plot_rotor">
-<code class="descname">plot_rotor</code><span class="sig-paren">(</span><em>self</em>, <em>nodes=1</em>, <em>ax=None</em>, <em>output_html=False</em>, <em>bk_ax=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ross/rotor_assembly.html#Rotor.plot_rotor"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.rotor_assembly.Rotor.plot_rotor" title="Permalink to this definition">¶</a></dt>
+<code class="descname">plot_rotor</code><span class="sig-paren">(</span><em>self</em>, <em>*args</em>, <em>plot_type='matplotlib'</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ross/rotor_assembly.html#Rotor.plot_rotor"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.rotor_assembly.Rotor.plot_rotor" title="Permalink to this definition">¶</a></dt>
 <dd><p>Plots a rotor object.</p>
 <p>This function will take a rotor object and plot its shaft,
 disks and bearing elements</p>
-<dl class="field-list simple">
+<dl class="field-list">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>nodes</strong><span class="classifier">int, optional</span></dt><dd><p>Increment that will be used to plot nodes label.</p>
 </dd>
+<dt><strong>plot_type</strong><span class="classifier">str</span></dt><dd><p>Matplotlib or bokeh.
+Default is matplotlib.</p>
+</dd>
 <dt><strong>ax</strong><span class="classifier">matplotlib axes, optional</span></dt><dd><p>Axes in which the plot will be drawn.</p>
 </dd>
 <dt><strong>bk_ax</strong><span class="classifier">bokeh plotting axes, optional</span></dt><dd><p>Axes in which the plot will be drawn.</p>
-</dd>
-<dt><strong>output_html</strong><span class="classifier">Boolean, optional</span></dt><dd><p>outputs a html file.
-Default is False</p>
 </dd>
 </dl>
 </dd>
@@ -752,6 +750,21 @@ Default is False</p>
 <dt><strong>bk_ax</strong><span class="classifier">bokeh plotting axes</span></dt><dd><p>Returns the axes object with the plot.</p>
 </dd>
 <dt>Examples:</dt><dd></dd>
+</dl>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">ross</span> <span class="k">as</span> <span class="nn">rs</span>
+<span class="go">    ..</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">rotor</span> <span class="o">=</span> <span class="n">rs</span><span class="o">.</span><span class="n">rotor_example</span><span class="p">()</span>
+<span class="go">    ..</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">rotor</span><span class="o">.</span><span class="n">plot_rotor</span><span class="p">()</span> <span class="c1"># doctest: +ELLIPSIS</span>
+<span class="go">    ..</span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt>&lt;matplotlib.axes…</dt><dd></dd>
 </dl>
 </dd>
 </dl>
@@ -842,8 +855,9 @@ Default is 6.</p>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><dl class="simple">
-<dt><strong>results</strong><span class="classifier">array</span></dt><dd><p>Array with the natural frequencies corresponding to each speed
-of the speed_rad array. It will be returned if plot=False.</p>
+<dt><strong>results</strong><span class="classifier">array</span></dt><dd><p>Array with the damped natural frequencies, log dec and precessions
+corresponding to each speed of the speed_rad array.
+It will be returned if plot=False.</p>
 </dd>
 </dl>
 </dd>
@@ -860,7 +874,7 @@ of the speed_rad array. It will be returned if plot=False.</p>
 
 <dl class="method">
 <dt id="ross.rotor_assembly.Rotor.run_freq_response">
-<code class="descname">run_freq_response</code><span class="sig-paren">(</span><em>self</em>, <em>frequency_range=None</em>, <em>modes=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ross/rotor_assembly.html#Rotor.run_freq_response"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.rotor_assembly.Rotor.run_freq_response" title="Permalink to this definition">¶</a></dt>
+<code class="descname">run_freq_response</code><span class="sig-paren">(</span><em>self</em>, <em>speed_range=None</em>, <em>modes=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ross/rotor_assembly.html#Rotor.run_freq_response"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.rotor_assembly.Rotor.run_freq_response" title="Permalink to this definition">¶</a></dt>
 <dd><p>Frequency response for a mdof system.</p>
 <p>This method returns the frequency response for a mdof system
 given a range of frequencies and the modes that will be used.</p>
@@ -897,19 +911,12 @@ The order of the array is: [output, input, phase]</p>
 
 <dl class="method">
 <dt id="ross.rotor_assembly.Rotor.run_static">
-<code class="descname">run_static</code><span class="sig-paren">(</span><em>self</em>, <em>output_html=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ross/rotor_assembly.html#Rotor.run_static"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.rotor_assembly.Rotor.run_static" title="Permalink to this definition">¶</a></dt>
+<code class="descname">run_static</code><span class="sig-paren">(</span><em>self</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ross/rotor_assembly.html#Rotor.run_static"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.rotor_assembly.Rotor.run_static" title="Permalink to this definition">¶</a></dt>
 <dd><p>Static analysis calculates free-body diagram, deformed shaft, shearing
 force diagram and bending moment diagram.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Returns</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>output_html</strong><span class="classifier">Boolean, optional</span></dt><dd><p>outputs a html file.
-Default is False</p>
-</dd>
-</dl>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><dl class="simple">
 <dt>A dictionary containing the information about:</dt><dd><p>Static displacement vector,
 Shearing force vector,
 Bending moment vector,
@@ -1163,19 +1170,22 @@ n: int</p>
 <col style="width: 90%" />
 </colgroup>
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#ross.bearing_seal_element.BearingElement.from_fluid_flow" title="ross.bearing_seal_element.BearingElement.from_fluid_flow"><code class="xref py py-obj docutils literal notranslate"><span class="pre">from_fluid_flow</span></code></a>(n, nz, ntheta, nradius, …)</p></td>
-<td><p>Instantiate a bearing using inputs from its fluid flow.</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#ross.bearing_seal_element.BearingElement.from_table" title="ross.bearing_seal_element.BearingElement.from_table"><code class="xref py py-obj docutils literal notranslate"><span class="pre">from_table</span></code></a>(n, file)</p></td>
-<td><p>Instantiate a bearing using inputs from a table, either excel or csv.</p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#ross.bearing_seal_element.BearingElement.patch" title="ross.bearing_seal_element.BearingElement.patch"><code class="xref py py-obj docutils literal notranslate"><span class="pre">patch</span></code></a>(self, position, length, ax, bk_ax)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#ross.bearing_seal_element.BearingElement.bokeh_patch" title="ross.bearing_seal_element.BearingElement.bokeh_patch"><code class="xref py py-obj docutils literal notranslate"><span class="pre">bokeh_patch</span></code></a>(self, position, length, bk_ax)</p></td>
 <td><p>Bearing element patch.</p></td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">summary</span></code>(self)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#ross.bearing_seal_element.BearingElement.from_fluid_flow" title="ross.bearing_seal_element.BearingElement.from_fluid_flow"><code class="xref py py-obj docutils literal notranslate"><span class="pre">from_fluid_flow</span></code></a>(n, nz, ntheta, nradius, …)</p></td>
+<td><p>Instantiate a bearing using inputs from its fluid flow.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#ross.bearing_seal_element.BearingElement.from_table" title="ross.bearing_seal_element.BearingElement.from_table"><code class="xref py py-obj docutils literal notranslate"><span class="pre">from_table</span></code></a>(n, file)</p></td>
+<td><p>Instantiate a bearing using inputs from a table, either excel or csv.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#ross.bearing_seal_element.BearingElement.patch" title="ross.bearing_seal_element.BearingElement.patch"><code class="xref py py-obj docutils literal notranslate"><span class="pre">patch</span></code></a>(self, position, length, ax)</p></td>
+<td><p>Bearing element patch.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">summary</span></code>(self)</p></td>
 <td><p>A summary for the element.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#ross.bearing_seal_element.BearingElement.table_to_toml" title="ross.bearing_seal_element.BearingElement.table_to_toml"><code class="xref py py-obj docutils literal notranslate"><span class="pre">table_to_toml</span></code></a>(n, file)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#ross.bearing_seal_element.BearingElement.table_to_toml" title="ross.bearing_seal_element.BearingElement.table_to_toml"><code class="xref py py-obj docutils literal notranslate"><span class="pre">table_to_toml</span></code></a>(n, file)</p></td>
 <td><p>Convert a table with parameters of a bearing element to a dictionary ready to save to a toml file that can be later loaded by ross.</p></td>
 </tr>
 </tbody>
@@ -1209,6 +1219,27 @@ n: int</p>
 </tr>
 </tbody>
 </table>
+<dl class="method">
+<dt id="ross.bearing_seal_element.BearingElement.bokeh_patch">
+<code class="descname">bokeh_patch</code><span class="sig-paren">(</span><em>self</em>, <em>position</em>, <em>length</em>, <em>bk_ax</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ross/bearing_seal_element.html#BearingElement.bokeh_patch"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.bearing_seal_element.BearingElement.bokeh_patch" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bearing element patch.
+Patch that will be used to draw the bearing element.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>ax</strong><span class="classifier">matplotlib axes, optional</span></dt><dd><p>Axes in which the plot will be drawn.</p>
+</dd>
+<dt><strong>bk_ax</strong><span class="classifier">bokeh plotting axes, optional</span></dt><dd><p>Axes in which the plot will be drawn.</p>
+</dd>
+<dt><strong>position</strong><span class="classifier">tuple</span></dt><dd><p>Position (z, y) in which the patch will be drawn.</p>
+</dd>
+<dt><strong>length</strong><span class="classifier">float</span></dt><dd><p>minimum length of shaft elements</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
 <dl class="classmethod">
 <dt id="ross.bearing_seal_element.BearingElement.from_fluid_flow">
 <em class="property">classmethod </em><code class="descname">from_fluid_flow</code><span class="sig-paren">(</span><em>n</em>, <em>nz</em>, <em>ntheta</em>, <em>nradius</em>, <em>length</em>, <em>omega</em>, <em>p_in</em>, <em>p_out</em>, <em>radius_rotor</em>, <em>radius_stator</em>, <em>visc</em>, <em>rho</em>, <em>eccentricity=None</em>, <em>load=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ross/bearing_seal_element.html#BearingElement.from_fluid_flow"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.bearing_seal_element.BearingElement.from_fluid_flow" title="Permalink to this definition">¶</a></dt>
@@ -1288,7 +1319,7 @@ n : int</p>
 
 <dl class="method">
 <dt id="ross.bearing_seal_element.BearingElement.patch">
-<code class="descname">patch</code><span class="sig-paren">(</span><em>self</em>, <em>position</em>, <em>length</em>, <em>ax</em>, <em>bk_ax</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ross/bearing_seal_element.html#BearingElement.patch"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.bearing_seal_element.BearingElement.patch" title="Permalink to this definition">¶</a></dt>
+<code class="descname">patch</code><span class="sig-paren">(</span><em>self</em>, <em>position</em>, <em>length</em>, <em>ax</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ross/bearing_seal_element.html#BearingElement.patch"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.bearing_seal_element.BearingElement.patch" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bearing element patch.
 Patch that will be used to draw the bearing element.</p>
 <dl class="field-list simple">
@@ -1340,19 +1371,22 @@ n : int</p>
 <col style="width: 90%" />
 </colgroup>
 <tbody>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">from_fluid_flow</span></code>(n, nz, ntheta, nradius, …)</p></td>
-<td><p>Instantiate a bearing using inputs from its fluid flow.</p></td>
-</tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">from_table</span></code>(n, file)</p></td>
-<td><p>Instantiate a bearing using inputs from a table, either excel or csv.</p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#ross.bearing_seal_element.SealElement.patch" title="ross.bearing_seal_element.SealElement.patch"><code class="xref py py-obj docutils literal notranslate"><span class="pre">patch</span></code></a>(self, position, ax, bk_ax)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#ross.bearing_seal_element.SealElement.bokeh_patch" title="ross.bearing_seal_element.SealElement.bokeh_patch"><code class="xref py py-obj docutils literal notranslate"><span class="pre">bokeh_patch</span></code></a>(self, position, bk_ax)</p></td>
 <td><p>Seal element patch.</p></td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">summary</span></code>(self)</p></td>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">from_fluid_flow</span></code>(n, nz, ntheta, nradius, …)</p></td>
+<td><p>Instantiate a bearing using inputs from its fluid flow.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">from_table</span></code>(n, file)</p></td>
+<td><p>Instantiate a bearing using inputs from a table, either excel or csv.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#ross.bearing_seal_element.SealElement.patch" title="ross.bearing_seal_element.SealElement.patch"><code class="xref py py-obj docutils literal notranslate"><span class="pre">patch</span></code></a>(self, position, ax)</p></td>
+<td><p>Seal element patch.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">summary</span></code>(self)</p></td>
 <td><p>A summary for the element.</p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">table_to_toml</span></code>(n, file)</p></td>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">table_to_toml</span></code>(n, file)</p></td>
 <td><p>Convert a table with parameters of a bearing element to a dictionary ready to save to a toml file that can be later loaded by ross.</p></td>
 </tr>
 </tbody>
@@ -1387,8 +1421,33 @@ n : int</p>
 </tbody>
 </table>
 <dl class="method">
+<dt id="ross.bearing_seal_element.SealElement.bokeh_patch">
+<code class="descname">bokeh_patch</code><span class="sig-paren">(</span><em>self</em>, <em>position</em>, <em>bk_ax</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ross/bearing_seal_element.html#SealElement.bokeh_patch"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.bearing_seal_element.SealElement.bokeh_patch" title="Permalink to this definition">¶</a></dt>
+<dd><p>Seal element patch.
+Patch that will be used to draw the seal element.
+Parameters
+———-
+ax : matplotlib axes, optional</p>
+<blockquote>
+<div><p>Axes in which the plot will be drawn.</p>
+</div></blockquote>
+<dl class="simple">
+<dt>bk_ax<span class="classifier">bokeh plotting axes, optional</span></dt><dd><p>Axes in which the plot will be drawn.</p>
+</dd>
+<dt>position<span class="classifier">tuple</span></dt><dd><p>Position in which the patch will be drawn.</p>
+</dd>
+</dl>
+<dl class="simple">
+<dt>ax<span class="classifier">matplotlib axes</span></dt><dd><p>Returns the axes object with the plot.</p>
+</dd>
+<dt>bk_ax<span class="classifier">bokeh plotting axes</span></dt><dd><p>Returns the axes object with the plot.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
 <dt id="ross.bearing_seal_element.SealElement.patch">
-<code class="descname">patch</code><span class="sig-paren">(</span><em>self</em>, <em>position</em>, <em>ax</em>, <em>bk_ax</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ross/bearing_seal_element.html#SealElement.patch"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.bearing_seal_element.SealElement.patch" title="Permalink to this definition">¶</a></dt>
+<code class="descname">patch</code><span class="sig-paren">(</span><em>self</em>, <em>position</em>, <em>ax</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ross/bearing_seal_element.html#SealElement.patch"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.bearing_seal_element.SealElement.patch" title="Permalink to this definition">¶</a></dt>
 <dd><p>Seal element patch.
 Patch that will be used to draw the seal element.
 Parameters
@@ -1456,13 +1515,16 @@ n: int</p>
 <tr class="row-even"><td><p><a class="reference internal" href="#ross.disk_element.DiskElement.M" title="ross.disk_element.DiskElement.M"><code class="xref py py-obj docutils literal notranslate"><span class="pre">M</span></code></a>(self)</p></td>
 <td><p>This method will return the mass matrix for an instance of a disk element.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#ross.disk_element.DiskElement.from_geometry" title="ross.disk_element.DiskElement.from_geometry"><code class="xref py py-obj docutils literal notranslate"><span class="pre">from_geometry</span></code></a>(n, material, width, i_d, o_d)</p></td>
-<td><p>A disk element.</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#ross.disk_element.DiskElement.patch" title="ross.disk_element.DiskElement.patch"><code class="xref py py-obj docutils literal notranslate"><span class="pre">patch</span></code></a>(self, position, length, ax, bk_ax)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#ross.disk_element.DiskElement.bokeh_patch" title="ross.disk_element.DiskElement.bokeh_patch"><code class="xref py py-obj docutils literal notranslate"><span class="pre">bokeh_patch</span></code></a>(self, position, length, bk_ax)</p></td>
 <td><p>Disk element patch.</p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">summary</span></code>(self)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#ross.disk_element.DiskElement.from_geometry" title="ross.disk_element.DiskElement.from_geometry"><code class="xref py py-obj docutils literal notranslate"><span class="pre">from_geometry</span></code></a>(n, material, width, i_d, o_d)</p></td>
+<td><p>A disk element.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#ross.disk_element.DiskElement.patch" title="ross.disk_element.DiskElement.patch"><code class="xref py py-obj docutils literal notranslate"><span class="pre">patch</span></code></a>(self, position, length, ax)</p></td>
+<td><p>Disk element patch.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">summary</span></code>(self)</p></td>
 <td><p>A summary for the element.</p></td>
 </tr>
 </tbody>
@@ -1539,6 +1601,33 @@ array([[32.58972765,  0.        ,  0.        ,  0.        ],</p>
 </div></blockquote>
 </dd></dl>
 
+<dl class="method">
+<dt id="ross.disk_element.DiskElement.bokeh_patch">
+<code class="descname">bokeh_patch</code><span class="sig-paren">(</span><em>self</em>, <em>position</em>, <em>length</em>, <em>bk_ax</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ross/disk_element.html#DiskElement.bokeh_patch"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.disk_element.DiskElement.bokeh_patch" title="Permalink to this definition">¶</a></dt>
+<dd><p>Disk element patch.
+Patch that will be used to draw the disk element.
+Parameters
+———-
+ax : matplotlib axes, optional</p>
+<blockquote>
+<div><p>Axes in which the plot will be drawn.</p>
+</div></blockquote>
+<dl class="simple">
+<dt>bk_ax<span class="classifier">bokeh plotting axes, optional</span></dt><dd><p>Axes in which the plot will be drawn.</p>
+</dd>
+<dt>position<span class="classifier">float</span></dt><dd><p>Position in which the patch will be drawn.</p>
+</dd>
+<dt>length<span class="classifier">float</span></dt><dd><p>minimum length of shaft elements</p>
+</dd>
+</dl>
+<dl class="simple">
+<dt>ax<span class="classifier">matplotlib axes</span></dt><dd><p>Returns the axes object with the plot.</p>
+</dd>
+<dt>bk_ax<span class="classifier">bokeh plotting axes</span></dt><dd><p>Returns the axes object with the plot.</p>
+</dd>
+</dl>
+</dd></dl>
+
 <dl class="classmethod">
 <dt id="ross.disk_element.DiskElement.from_geometry">
 <em class="property">classmethod </em><code class="descname">from_geometry</code><span class="sig-paren">(</span><em>n</em>, <em>material</em>, <em>width</em>, <em>i_d</em>, <em>o_d</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ross/disk_element.html#DiskElement.from_geometry"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.disk_element.DiskElement.from_geometry" title="Permalink to this definition">¶</a></dt>
@@ -1584,7 +1673,7 @@ n: int</p>
 
 <dl class="method">
 <dt id="ross.disk_element.DiskElement.patch">
-<code class="descname">patch</code><span class="sig-paren">(</span><em>self</em>, <em>position</em>, <em>length</em>, <em>ax</em>, <em>bk_ax</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ross/disk_element.html#DiskElement.patch"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.disk_element.DiskElement.patch" title="Permalink to this definition">¶</a></dt>
+<code class="descname">patch</code><span class="sig-paren">(</span><em>self</em>, <em>position</em>, <em>length</em>, <em>ax</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ross/disk_element.html#DiskElement.patch"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.disk_element.DiskElement.patch" title="Permalink to this definition">¶</a></dt>
 <dd><p>Disk element patch.
 Patch that will be used to draw the disk element.
 Parameters
@@ -1716,13 +1805,16 @@ inertia and shear effects. If these are not considered phi=0.</p>
 <tr class="row-even"><td><p><a class="reference internal" href="#ross.shaft_element.ShaftElement.M" title="ross.shaft_element.ShaftElement.M"><code class="xref py py-obj docutils literal notranslate"><span class="pre">M</span></code></a>(self)</p></td>
 <td><p>Mass matrix for an instance of a shaft element.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#ross.shaft_element.ShaftElement.patch" title="ross.shaft_element.ShaftElement.patch"><code class="xref py py-obj docutils literal notranslate"><span class="pre">patch</span></code></a>(self, position, SR, ax, bk_ax)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#ross.shaft_element.ShaftElement.bokeh_patch" title="ross.shaft_element.ShaftElement.bokeh_patch"><code class="xref py py-obj docutils literal notranslate"><span class="pre">bokeh_patch</span></code></a>(self, position, SR, bk_ax)</p></td>
 <td><p>Shaft element patch.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#ross.shaft_element.ShaftElement.section" title="ross.shaft_element.ShaftElement.section"><code class="xref py py-obj docutils literal notranslate"><span class="pre">section</span></code></a>(L, ne, si_d, so_d, material[, n, …])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#ross.shaft_element.ShaftElement.patch" title="ross.shaft_element.ShaftElement.patch"><code class="xref py py-obj docutils literal notranslate"><span class="pre">patch</span></code></a>(self, position, SR, ax)</p></td>
+<td><p>Shaft element patch.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#ross.shaft_element.ShaftElement.section" title="ross.shaft_element.ShaftElement.section"><code class="xref py py-obj docutils literal notranslate"><span class="pre">section</span></code></a>(L, ne, si_d, so_d, material[, n, …])</p></td>
 <td><p>Shaft section constructor.</p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">summary</span></code>(self)</p></td>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">summary</span></code>(self)</p></td>
 <td><p>A summary for the element.</p></td>
 </tr>
 </tbody>
@@ -1826,8 +1918,25 @@ array([[ 1.42050794,  0.        ,  0.        ,  0.04931719],</p>
 </dd></dl>
 
 <dl class="method">
+<dt id="ross.shaft_element.ShaftElement.bokeh_patch">
+<code class="descname">bokeh_patch</code><span class="sig-paren">(</span><em>self</em>, <em>position</em>, <em>SR</em>, <em>bk_ax</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ross/shaft_element.html#ShaftElement.bokeh_patch"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.shaft_element.ShaftElement.bokeh_patch" title="Permalink to this definition">¶</a></dt>
+<dd><p>Shaft element patch.
+Patch that will be used to draw the shaft element.
+Parameters
+———-
+bk_ax : bokeh plotting axes, optional</p>
+<blockquote>
+<div><p>Axes in which the plot will be drawn.</p>
+</div></blockquote>
+<dl class="simple">
+<dt>position<span class="classifier">float</span></dt><dd><p>Position in which the patch will be drawn.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
 <dt id="ross.shaft_element.ShaftElement.patch">
-<code class="descname">patch</code><span class="sig-paren">(</span><em>self</em>, <em>position</em>, <em>SR</em>, <em>ax</em>, <em>bk_ax</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ross/shaft_element.html#ShaftElement.patch"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.shaft_element.ShaftElement.patch" title="Permalink to this definition">¶</a></dt>
+<code class="descname">patch</code><span class="sig-paren">(</span><em>self</em>, <em>position</em>, <em>SR</em>, <em>ax</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ross/shaft_element.html#ShaftElement.patch"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.shaft_element.ShaftElement.patch" title="Permalink to this definition">¶</a></dt>
 <dd><p>Shaft element patch.
 Patch that will be used to draw the shaft element.
 Parameters

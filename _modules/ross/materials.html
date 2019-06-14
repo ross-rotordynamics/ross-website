@@ -296,8 +296,8 @@
 
         <span class="n">data</span> <span class="o">=</span> <span class="n">Material</span><span class="o">.</span><span class="n">load_data</span><span class="p">()</span>
         <span class="n">data</span><span class="p">[</span><span class="s2">&quot;Materials&quot;</span><span class="p">][</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span>
-        <span class="n">Material</span><span class="o">.</span><span class="n">dump_data</span><span class="p">(</span><span class="n">data</span><span class="p">)</span></div>
-
+        <span class="n">Material</span><span class="o">.</span><span class="n">dump_data</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+        <span class="n">os</span><span class="o">.</span><span class="n">chdir</span><span class="p">(</span><span class="n">run_path</span><span class="p">)</span></div>
 
 <span class="n">steel</span> <span class="o">=</span> <span class="n">Material</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;Steel&quot;</span><span class="p">,</span> <span class="n">rho</span><span class="o">=</span><span class="mi">7810</span><span class="p">,</span> <span class="n">E</span><span class="o">=</span><span class="mf">211e9</span><span class="p">,</span> <span class="n">G_s</span><span class="o">=</span><span class="mf">81.2e9</span><span class="p">)</span>
 </pre></div>
