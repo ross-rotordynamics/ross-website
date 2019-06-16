@@ -7,6 +7,7 @@
     <title>ross.materials &#8212; ross 0.1.0 documentation</title>
     <link rel="stylesheet" href="../../_static/bootstrap-sphinx.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/style.css" />
     <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
     <script type="text/javascript" src="../../_static/jquery.js"></script>
     <script type="text/javascript" src="../../_static/underscore.js"></script>
@@ -81,6 +82,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../../examples/example_05_09_04.html">EXAMPLE 5.9.4.</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../examples/example_05_09_05.html">EXAMPLE 5.9.5.</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../examples/example_05_09_06.html">EXAMPLE 5.9.6.</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/example_05_09_09.html">Example 5.9.9</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../download.html">Download notebooks</a></li>
@@ -296,8 +298,8 @@
 
         <span class="n">data</span> <span class="o">=</span> <span class="n">Material</span><span class="o">.</span><span class="n">load_data</span><span class="p">()</span>
         <span class="n">data</span><span class="p">[</span><span class="s2">&quot;Materials&quot;</span><span class="p">][</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span>
-        <span class="n">Material</span><span class="o">.</span><span class="n">dump_data</span><span class="p">(</span><span class="n">data</span><span class="p">)</span></div>
-
+        <span class="n">Material</span><span class="o">.</span><span class="n">dump_data</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+        <span class="n">os</span><span class="o">.</span><span class="n">chdir</span><span class="p">(</span><span class="n">run_path</span><span class="p">)</span></div>
 
 <span class="n">steel</span> <span class="o">=</span> <span class="n">Material</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;Steel&quot;</span><span class="p">,</span> <span class="n">rho</span><span class="o">=</span><span class="mi">7810</span><span class="p">,</span> <span class="n">E</span><span class="o">=</span><span class="mf">211e9</span><span class="p">,</span> <span class="n">G_s</span><span class="o">=</span><span class="mf">81.2e9</span><span class="p">)</span>
 </pre></div>

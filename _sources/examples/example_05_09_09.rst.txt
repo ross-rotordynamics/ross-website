@@ -62,31 +62,15 @@ six natural frequencies and mode shapes between 0 and 4,000 rev/min.
 
 
 
-.. raw:: html
 
-    
-    
-    
-    
-    
-    
-      <div class="bk-root" id="23032569-16f7-424b-9ef9-6020c813c007" data-root-id="1003"></div>
+.. code-block:: python
+
+    <matplotlib.axes._subplots.AxesSubplot at 0x7f906461d5c0>
 
 
 
 
-
-
-
-.. parsed-literal::
-
-    (Figure(id='1003', ...),
-     <matplotlib.axes._subplots.AxesSubplot at 0x7ff6bca902b0>)
-
-
-
-
-.. image:: example_05_09_09_files/example_05_09_09_2_3.png
+.. image:: example_05_09_09_files/example_05_09_09_2_1.png
 
 
 .. code:: ipython3
@@ -95,7 +79,7 @@ six natural frequencies and mode shapes between 0 and 4,000 rev/min.
     print('From section approach =',overhung_from_section_rotor.wn/(2*np.pi))
 
 
-.. parsed-literal::
+.. code-block:: python
 
     From section approach = [ 14.34690401  14.34690401 109.31683436 109.31683436 134.05186826
      134.05186826]
@@ -107,29 +91,14 @@ six natural frequencies and mode shapes between 0 and 4,000 rev/min.
 
 
 
-.. raw:: html
 
-    
-    
-    
-    
-    
-    
-      <div class="bk-root" id="14e58f2f-d4d1-4b38-8362-38c7b679a9a9" data-root-id="1674"></div>
-
-
-
-
-
-
-
-.. parsed-literal::
+.. code-block:: python
 
     (<Figure size 432x288 with 2 Axes>,
-     <matplotlib.axes._subplots.AxesSubplot at 0x7ff6bc2a6ba8>)
+     <matplotlib.axes._subplots.AxesSubplot at 0x7f9063e473c8>)
 
 
 
 
-.. image:: example_05_09_09_files/example_05_09_09_4_3.png
+.. image:: example_05_09_09_files/example_05_09_09_4_1.png
 

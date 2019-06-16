@@ -7,6 +7,7 @@
     <title>ross.shaft_element &#8212; ross 0.1.0 documentation</title>
     <link rel="stylesheet" href="../../_static/bootstrap-sphinx.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/style.css" />
     <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
     <script type="text/javascript" src="../../_static/jquery.js"></script>
     <script type="text/javascript" src="../../_static/underscore.js"></script>
@@ -81,6 +82,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../../examples/example_05_09_04.html">EXAMPLE 5.9.4.</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../examples/example_05_09_05.html">EXAMPLE 5.9.5.</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../examples/example_05_09_06.html">EXAMPLE 5.9.6.</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/example_05_09_09.html">Example 5.9.9</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../download.html">Download notebooks</a></li>
@@ -533,7 +535,7 @@
 
         <span class="k">return</span> <span class="n">G</span></div>
 
-<div class="viewcode-block" id="ShaftElement.patch"><a class="viewcode-back" href="../../api.html#ross.shaft_element.ShaftElement.patch">[docs]</a>    <span class="k">def</span> <span class="nf">patch</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">position</span><span class="p">,</span> <span class="n">SR</span><span class="p">,</span> <span class="n">ax</span><span class="p">,</span> <span class="n">bk_ax</span><span class="p">):</span>
+<div class="viewcode-block" id="ShaftElement.patch"><a class="viewcode-back" href="../../api.html#ross.shaft_element.ShaftElement.patch">[docs]</a>    <span class="k">def</span> <span class="nf">patch</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">position</span><span class="p">,</span> <span class="n">SR</span><span class="p">,</span> <span class="n">ax</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Shaft element patch.</span>
 <span class="sd">        Patch that will be used to draw the shaft element.</span>
 <span class="sd">        Parameters</span>
@@ -586,7 +588,30 @@
                 <span class="n">fc</span><span class="o">=</span><span class="n">mpl_color</span><span class="p">,</span>
                 <span class="n">alpha</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span>
             <span class="p">)</span>
-        <span class="p">)</span>
+        <span class="p">)</span></div>
+
+<div class="viewcode-block" id="ShaftElement.bokeh_patch"><a class="viewcode-back" href="../../api.html#ross.shaft_element.ShaftElement.bokeh_patch">[docs]</a>    <span class="k">def</span> <span class="nf">bokeh_patch</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">position</span><span class="p">,</span> <span class="n">SR</span><span class="p">,</span> <span class="n">bk_ax</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Shaft element patch.</span>
+<span class="sd">        Patch that will be used to draw the shaft element.</span>
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        bk_ax : bokeh plotting axes, optional</span>
+<span class="sd">            Axes in which the plot will be drawn.</span>
+<span class="sd">        position : float</span>
+<span class="sd">            Position in which the patch will be drawn.</span>
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">position_u</span> <span class="o">=</span> <span class="p">[</span><span class="n">position</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">i_d</span> <span class="o">/</span> <span class="mi">2</span><span class="p">]</span>  <span class="c1"># upper</span>
+        <span class="n">position_l</span> <span class="o">=</span> <span class="p">[</span><span class="n">position</span><span class="p">,</span> <span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">o_d</span> <span class="o">/</span> <span class="mi">2</span><span class="p">]</span>  <span class="c1"># lower</span>
+        <span class="n">width</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">L</span>
+        <span class="n">height</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">o_d</span> <span class="o">/</span> <span class="mi">2</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">i_d</span> <span class="o">/</span> <span class="mi">2</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">n</span> <span class="ow">in</span> <span class="n">SR</span><span class="p">:</span>
+            <span class="n">bk_color</span> <span class="o">=</span> <span class="s2">&quot;yellow&quot;</span>
+            <span class="n">legend</span> <span class="o">=</span> <span class="s2">&quot;Shaft - Slenderness Ratio &lt; 30&quot;</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">bk_color</span> <span class="o">=</span> <span class="n">bokeh_colors</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+            <span class="n">legend</span> <span class="o">=</span> <span class="s2">&quot;Shaft&quot;</span>
 
         <span class="c1"># bokeh plot - plot the shaft</span>
         <span class="n">bk_ax</span><span class="o">.</span><span class="n">quad</span><span class="p">(</span>
