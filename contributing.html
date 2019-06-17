@@ -98,6 +98,7 @@
 <li class="toctree-l2"><a class="reference internal" href="#version-control-system-git">Version-control system: Git</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#code-style-black">Code style: Black</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#tests">Tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#documentation">Documentation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#integrated-development-environment-pycharm">Integrated development environment: PyCharm</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#how-to-contribute-to-ross-using-git">How to contribute to ross using git</a></li>
 </ul>
@@ -124,9 +125,10 @@
 <li><a class="reference internal" href="#version-control-system-git">Version-control system: Git</a></li>
 <li><a class="reference internal" href="#code-style-black">Code style: Black</a></li>
 <li><a class="reference internal" href="#tests">Tests</a></li>
+<li><a class="reference internal" href="#documentation">Documentation</a></li>
 <li><a class="reference internal" href="#integrated-development-environment-pycharm">Integrated development environment: PyCharm</a></li>
 <li><a class="reference internal" href="#how-to-contribute-to-ross-using-git">How to contribute to ross using git</a><ul>
-<li><a class="reference internal" href="#step-1-make-you-own-copy-fork-of-ross">Step 1: Make you own copy (fork) of ROSS</a></li>
+<li><a class="reference internal" href="#step-1-make-your-copy-fork-of-ross">Step 1: Make your copy (fork) of ross</a></li>
 <li><a class="reference internal" href="#step-2-keep-in-sync-with-changes-in-ross">Step 2: Keep in sync with changes in Ross</a></li>
 <li><a class="reference internal" href="#step-3-make-a-new-feature-branch">Step 3: Make a new feature branch</a></li>
 <li><a class="reference internal" href="#step-4-push-changes-to-your-git-repository">Step 4: Push changes to your git repository</a></li>
@@ -180,27 +182,45 @@
 <h2>Feedback and Contribution<a class="headerlink" href="#feedback-and-contribution" title="Permalink to this headline">¶</a></h2>
 <p>We welcome any contribution via <a class="reference external" href="https://github.com/ross-rotordynamics/ross/issues">ross’s issue tracker</a>.
 These include bug reports, problems on the documentation, feedback, enhancement proposals etc.
-The issue tracker can also be used for questions and further information, since the project does not use a mailing list.</p>
+The issue tracker can also be used for questions and further information since the project does not use a mailing list.</p>
 </div>
 <div class="section" id="version-control-system-git">
 <h2>Version-control system: Git<a class="headerlink" href="#version-control-system-git" title="Permalink to this headline">¶</a></h2>
-<p>Git is a version-control system (VCS) for tracking changes in code during software development.
-In order to download the ross source code and contribute to its development,
+<p>Git is a version control system (VCS) for tracking changes in code during software development.
+To download the ross source code and contribute to its development,
 you need Git installed in your machine. Refer to the <a class="reference external" href="https://git-scm.com/">Git website</a> and follow the instructions to download and install it.
-Once you have Git installed, you will be able to follow the instructions in <a class="reference internal" href="#how-to-contribute-to-ross-using-git">How to contribute to ross using git</a>
+Once you have Git installed, you will be able to follow the instructions in <a class="reference internal" href="#how-to-contribute-to-ross-using-git">How to contribute to ross using git</a>,
 which explains how to download and contribute to ross.</p>
 </div>
 <div class="section" id="code-style-black">
 <h2>Code style: Black<a class="headerlink" href="#code-style-black" title="Permalink to this headline">¶</a></h2>
-<p>Code formatting is done with <a class="reference external" href="https://black.readthedocs.io/en/stable/">Black</a>, which is the <em>“uncompromising Python
+<p>To format our code we use <a class="reference external" href="https://black.readthedocs.io/en/stable/">Black</a>, which is the <em>“uncompromising Python
 code formatter”</em>. You can configure your development environment to use Black before a commit. More information on how
-to set this is given at <a href="#id1"><span class="problematic" id="id2">`Black's documentation&lt;https://black.readthedocs.io/en/stable/editor_integration.html&gt;`_</span></a>.</p>
+to set this is given at <a class="reference external" href="https://black.readthedocs.io/en/stable/editor_integration.html">Black’s documentation</a>.</p>
 </div>
 <div class="section" id="tests">
 <h2>Tests<a class="headerlink" href="#tests" title="Permalink to this headline">¶</a></h2>
 <p>We use pytest to test the code. Unit tests are placed in the <cite>~/ross/ross/tests</cite> folder. We also test our docstrings to
 assure that the examples are working.
 If you want to run all the tests you can do it with (from the <cite>~/ross/ross</cite> folder):</p>
+<p>Code is only merged to master if tests pass. This is checked by services such as Travis CI and Appveyor, so make sure
+tests are passing before pushing your code to github.</p>
+</div>
+<div class="section" id="documentation">
+<h2>Documentation<a class="headerlink" href="#documentation" title="Permalink to this headline">¶</a></h2>
+<p>We use <a class="reference external" href="http://www.sphinx-doc.org/en/master/">sphinx</a> to generate the project’s documentation. We keep the source
+files at ~/ross/docs, and we keep the html files used to build the website in a
+<a class="reference external" href="https://github.com/ross-rotordynamics/ross-website">separate repository</a>. If you want to modify the documentation,
+modify the source files and them do the following to modify the website:</p>
+<ul class="simple">
+<li>Clone the ross-website to ~/ross-website/html:</li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">git</span> <span class="pre">clone</span> <span class="pre">https://github.com/ross-rotordynamics/ross-website</span> <span class="pre">~/ross-website/html</span></code></p>
+<ul class="simple">
+<li>From the docs source directory &lt;~/ross/docs/&gt; run sphinx:</li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">make</span> <span class="pre">html</span> <span class="pre">BUILDDIR=~/ross-website</span></code></p>
+<p>After that you can push the updated html files to the ross-website repository.</p>
 </div>
 <div class="section" id="integrated-development-environment-pycharm">
 <h2>Integrated development environment: PyCharm<a class="headerlink" href="#integrated-development-environment-pycharm" title="Permalink to this headline">¶</a></h2>
@@ -210,10 +230,10 @@ even no IDE at all. But in case you want to use PyCharm, go to the <a class="ref
 </div>
 <div class="section" id="how-to-contribute-to-ross-using-git">
 <h2>How to contribute to ross using git<a class="headerlink" href="#how-to-contribute-to-ross-using-git" title="Permalink to this headline">¶</a></h2>
-<p id="git-configuration">In order to use git to contribute to ROSS project, follow the steps bellow:
+<p id="git-configuration">To use git to contribute to ross project, follow the steps below:
 <em>For Windows users: commands provided here can be executed using Git Bash instead of Git GUI.</em></p>
-<div class="section" id="step-1-make-you-own-copy-fork-of-ross">
-<h3>Step 1: Make you own copy (fork) of ROSS<a class="headerlink" href="#step-1-make-you-own-copy-fork-of-ross" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="step-1-make-your-copy-fork-of-ross">
+<h3>Step 1: Make your copy (fork) of ross<a class="headerlink" href="#step-1-make-your-copy-fork-of-ross" title="Permalink to this headline">¶</a></h3>
 <p>Go to <a class="reference external" href="https://github.com/ross-rotordynamics/ross">https://github.com/ross-rotordynamics/ross</a>
 In the top-right corner of the page, click Fork, to fork it to your GitHub account.</p>
 <p>From the command line:</p>
@@ -225,7 +245,7 @@ In the top-right corner of the page, click Fork, to fork it to your GitHub accou
 </div>
 <div class="section" id="step-2-keep-in-sync-with-changes-in-ross">
 <h3>Step 2: Keep in sync with changes in Ross<a class="headerlink" href="#step-2-keep-in-sync-with-changes-in-ross" title="Permalink to this headline">¶</a></h3>
-<p>Setup your local repository so it pulls from upstream by default:</p>
+<p>Setup your local repository, so it pulls from upstream by default:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">config</span> <span class="n">branch</span><span class="o">.</span><span class="n">master</span><span class="o">.</span><span class="n">remote</span> <span class="n">upstream</span>
 <span class="n">git</span> <span class="n">config</span> <span class="n">branch</span><span class="o">.</span><span class="n">master</span><span class="o">.</span><span class="n">merge</span> <span class="n">refs</span><span class="o">/</span><span class="n">heads</span><span class="o">/</span><span class="n">master</span>
 </pre></div>
@@ -274,7 +294,7 @@ It should look like this:</p>
 <h3>Step 5: Push changes to the main repo<a class="headerlink" href="#step-5-push-changes-to-the-main-repo" title="Permalink to this headline">¶</a></h3>
 <div class="section" id="for-contributors">
 <h4>For contributors<a class="headerlink" href="#for-contributors" title="Permalink to this headline">¶</a></h4>
-<p>To create a Pull Request (PR), refer to <a class="reference external" href="https://help.github.com/articles/about-pull-requests/">https://help.github.com/articles/about-pull-requests/</a></p>
+<p>To create a Pull Request (PR), refer to <a class="reference external" href="https://help.github.com/articles/about-pull-requests/">the github PR guide</a>.</p>
 </div>
 <div class="section" id="for-core-developers">
 <h4>For core developers<a class="headerlink" href="#for-core-developers" title="Permalink to this headline">¶</a></h4>
