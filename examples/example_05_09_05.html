@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta charset="utf-8" />
-    <title>EXAMPLE 5.9.5. &#8212; ross 0.1.0 documentation</title>
+    <title>Example 6 - Isotropic bearings with damping. &#8212; ross 0.1.0 documentation</title>
     <link rel="stylesheet" href="../_static/bootstrap-sphinx.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/style.css" />
@@ -15,8 +15,8 @@
     <link rel="shortcut icon" href="../_static/ross-logo.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="EXAMPLE 5.9.6." href="example_05_09_06.html" />
-    <link rel="prev" title="EXAMPLE 5.9.4." href="example_05_09_04.html" />
+    <link rel="next" title="Example 7 - Hydrodinamic Bearings" href="example_05_09_06.html" />
+    <link rel="prev" title="Example 5 - Cross-coupled bearings." href="example_05_09_04.html" />
 <meta charset='utf-8'>
 <meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
 <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
@@ -76,14 +76,14 @@
 </ul>
 </li>
 <li class="toctree-l1 current"><a class="reference internal" href="../examples.html">Examples</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="example_05_08_01.html">Example 5.8.1</a></li>
-<li class="toctree-l2"><a class="reference internal" href="example_05_08_02.html">Example 5.8.2</a></li>
-<li class="toctree-l2"><a class="reference internal" href="example_05_09_01.html">EXAMPLE 5.9.1.</a></li>
-<li class="toctree-l2"><a class="reference internal" href="example_05_09_02.html">EXAMPLE 5.9.2.</a></li>
-<li class="toctree-l2"><a class="reference internal" href="example_05_09_04.html">EXAMPLE 5.9.4.</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">EXAMPLE 5.9.5.</a></li>
-<li class="toctree-l2"><a class="reference internal" href="example_05_09_06.html">EXAMPLE 5.9.6.</a></li>
-<li class="toctree-l2"><a class="reference internal" href="example_05_09_09.html">Example 5.9.9</a></li>
+<li class="toctree-l2"><a class="reference internal" href="example_05_08_01.html">Example 1 - Number of DOF influence in Natural Frequency</a></li>
+<li class="toctree-l2"><a class="reference internal" href="example_05_08_02.html">Example 2 - Effect of varying slenderness ratio</a></li>
+<li class="toctree-l2"><a class="reference internal" href="example_05_09_01.html">Example 3 - Isotropic Bearings, asymmetrical rotor.</a></li>
+<li class="toctree-l2"><a class="reference internal" href="example_05_09_02.html">Example 4 - Anisotropic Bearings.</a></li>
+<li class="toctree-l2"><a class="reference internal" href="example_05_09_04.html">Example 5 - Cross-coupled bearings.</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Example 6 - Isotropic bearings with damping.</a></li>
+<li class="toctree-l2"><a class="reference internal" href="example_05_09_06.html">Example 7 - Hydrodinamic Bearings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="example_05_09_09.html">Example 8 - Overhung rotor.</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../download.html">Download notebooks</a></li>
@@ -120,7 +120,7 @@
   <ul class="dropdown-menu localtoc"
       role="menu"
       aria-labelledby="dLabelLocalToc"><ul>
-<li><a class="reference internal" href="#">EXAMPLE 5.9.5.</a></li>
+<li><a class="reference internal" href="#">Example 6 - Isotropic bearings with damping.</a></li>
 </ul>
 </ul>
 </li>
@@ -156,12 +156,14 @@
   <div class="row">
     <div class="body col-md-12 content" role="main">
       
-  <div class="section" id="example-5-9-5">
-<h1>EXAMPLE 5.9.5.<a class="headerlink" href="#example-5-9-5" title="Permalink to this headline">¶</a></h1>
-<p>Isotropic Bearings with Damping. The isotropic bearing Example 5.9.1 is
-repeated but with damping in the bearings. The, x and y directions are
-uncoupled, with a translational stiffness of 1 MN/m and a damping of 3
-kNs/m in each direction.</p>
+  <div class="section" id="example-6-isotropic-bearings-with-damping">
+<h1>Example 6 - Isotropic bearings with damping.<a class="headerlink" href="#example-6-isotropic-bearings-with-damping" title="Permalink to this headline">¶</a></h1>
+<p>In this example, we use the rotor seen in Example 5.9.5 from ‘Dynamics
+of Rotating Machinery’ by MI Friswell, JET Penny, SD Garvey &amp; AW Lees,
+published by Cambridge University Press, 2010.</p>
+<p>The isotropic bearing Example 3 is repeated but with damping in the
+bearings. The, x and y directions are uncoupled, with a translational
+stiffness of 1 MN/m and a damping of 3 kNs/m in each direction.</p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">bokeh.io</span> <span class="k">import</span> <span class="n">output_notebook</span>
 <span class="kn">import</span> <span class="nn">ross</span> <span class="k">as</span> <span class="nn">rs</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -204,10 +206,10 @@ kNs/m in each direction.</p>
 <span class="n">rotor595c</span><span class="o">.</span><span class="n">plot_rotor</span><span class="p">()</span>
 </pre></div>
 </div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">matplotlib</span><span class="o">.</span><span class="n">axes</span><span class="o">.</span><span class="n">_subplots</span><span class="o">.</span><span class="n">AxesSubplot</span> <span class="n">at</span> <span class="mh">0x7f66b2c60208</span><span class="o">&gt;</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">matplotlib</span><span class="o">.</span><span class="n">axes</span><span class="o">.</span><span class="n">_subplots</span><span class="o">.</span><span class="n">AxesSubplot</span> <span class="n">at</span> <span class="mh">0x7fe07b24af98</span><span class="o">&gt;</span>
 </pre></div>
 </div>
-<img alt="examples/example_05_09_05_files/example_05_09_05_2_1.png" src="examples/example_05_09_05_files/example_05_09_05_2_1.png" />
+<img alt="../_images/example_05_09_05_2_1.png" src="../_images/example_05_09_05_2_1.png" />
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#From_section class method instantiation.</span>
 <span class="n">bearing_seal_elements</span> <span class="o">=</span> <span class="p">[]</span>
 <span class="n">disk_elements</span> <span class="o">=</span> <span class="p">[]</span>
@@ -240,10 +242,10 @@ kNs/m in each direction.</p>
 <span class="n">rotor595fs</span><span class="o">.</span><span class="n">plot_rotor</span><span class="p">()</span>
 </pre></div>
 </div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">matplotlib</span><span class="o">.</span><span class="n">axes</span><span class="o">.</span><span class="n">_subplots</span><span class="o">.</span><span class="n">AxesSubplot</span> <span class="n">at</span> <span class="mh">0x7f66b002ef28</span><span class="o">&gt;</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">matplotlib</span><span class="o">.</span><span class="n">axes</span><span class="o">.</span><span class="n">_subplots</span><span class="o">.</span><span class="n">AxesSubplot</span> <span class="n">at</span> <span class="mh">0x7fe07a1eac18</span><span class="o">&gt;</span>
 </pre></div>
 </div>
-<img alt="examples/example_05_09_05_files/example_05_09_05_3_1.png" src="examples/example_05_09_05_files/example_05_09_05_3_1.png" />
+<img alt="../_images/example_05_09_05_3_1.png" src="../_images/example_05_09_05_3_1.png" />
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Obtaining results for w=0</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Normal Instantiation =&#39;</span><span class="p">,</span> <span class="n">rotor595c</span><span class="o">.</span><span class="n">wn</span><span class="o">/</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">),</span><span class="s1">&#39;[RPM]&#39;</span><span class="p">)</span>
@@ -274,10 +276,10 @@ kNs/m in each direction.</p>
 </pre></div>
 </div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="o">&lt;</span><span class="n">Figure</span> <span class="n">size</span> <span class="mi">432</span><span class="n">x288</span> <span class="k">with</span> <span class="mi">2</span> <span class="n">Axes</span><span class="o">&gt;</span><span class="p">,</span>
- <span class="o">&lt;</span><span class="n">matplotlib</span><span class="o">.</span><span class="n">axes</span><span class="o">.</span><span class="n">_subplots</span><span class="o">.</span><span class="n">AxesSubplot</span> <span class="n">at</span> <span class="mh">0x7f66a3f9a668</span><span class="o">&gt;</span><span class="p">)</span>
+ <span class="o">&lt;</span><span class="n">matplotlib</span><span class="o">.</span><span class="n">axes</span><span class="o">.</span><span class="n">_subplots</span><span class="o">.</span><span class="n">AxesSubplot</span> <span class="n">at</span> <span class="mh">0x7fe07a15e9e8</span><span class="o">&gt;</span><span class="p">)</span>
 </pre></div>
 </div>
-<img alt="examples/example_05_09_05_files/example_05_09_05_6_1.png" src="examples/example_05_09_05_files/example_05_09_05_6_1.png" />
+<img alt="../_images/example_05_09_05_6_1.png" src="../_images/example_05_09_05_6_1.png" />
 </div>
 
 
