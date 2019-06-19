@@ -2,8 +2,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
     <title>Version 0.1.0 (alpha release) &#8212; ross 0.1.0 documentation</title>
     <link rel="stylesheet" href="../_static/bootstrap-sphinx.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -90,6 +89,16 @@
 <li class="toctree-l2"><a class="reference internal" href="../api.html#module-ross.rotor_assembly">The Rotor module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../api.html#module-ross.element">The “Element” class</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../api.html#module-ross.materials">The “Material” class</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing.html">Contributing</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../contributing.html#feedback-and-contribution">Feedback and Contribution</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../contributing.html#version-control-system-git">Version-control system: Git</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../contributing.html#code-style-black">Code style: Black</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../contributing.html#tests">Tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../contributing.html#documentation">Documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../contributing.html#integrated-development-environment-pycharm">Integrated development environment: PyCharm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../contributing.html#how-to-contribute-to-ross-using-git">How to contribute to ross using git</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../release_notes.html">Release notes</a><ul>
@@ -266,16 +275,15 @@ documentation page.</p>
 </div>
 <div class="section" id="jupyter-examples">
 <h3>Jupyter examples<a class="headerlink" href="#jupyter-examples" title="Permalink to this headline">¶</a></h3>
-<dl class="docutils">
-<dt>Implementation of the following examples, taken from Frisswell:</dt>
-<dd><ul class="first last simple">
-<li>5.9.1</li>
-<li>5.9.2</li>
-<li>5.9.4</li>
-<li>5.9.5</li>
-<li>5.9.6</li>
-<li>5.9.9</li>
-<li>5.9.10</li>
+<dl class="simple">
+<dt>Implementation of the following examples, taken from Frisswell:</dt><dd><ul class="simple">
+<li><p>5.9.1</p></li>
+<li><p>5.9.2</p></li>
+<li><p>5.9.4</p></li>
+<li><p>5.9.5</p></li>
+<li><p>5.9.6</p></li>
+<li><p>5.9.9</p></li>
+<li><p>5.9.10</p></li>
 </ul>
 </dd>
 </dl>
@@ -293,13 +301,12 @@ documentation page.</p>
 </div>
 <div class="section" id="change-methods-names">
 <h3>Change methods’ names<a class="headerlink" href="#change-methods-names" title="Permalink to this headline">¶</a></h3>
-<dl class="docutils">
-<dt>This is mostly to add “<a href="#id1"><span class="problematic" id="id2">run_</span></a>” to some Rotor methods, like:</dt>
-<dd><ul class="first last simple">
-<li>campbell;</li>
-<li>forced_response;</li>
-<li>mode_shape;</li>
-<li>static</li>
+<dl class="simple">
+<dt>This is mostly to add “<a href="#id1"><span class="problematic" id="id2">run_</span></a>” to some Rotor methods, like:</dt><dd><ul class="simple">
+<li><p>campbell;</p></li>
+<li><p>forced_response;</p></li>
+<li><p>mode_shape;</p></li>
+<li><p>static</p></li>
 </ul>
 </dd>
 </dl>
@@ -314,7 +321,7 @@ length / diameter ratio of 0.5.</p>
 Automatically showing the plots is not expected when running tests or
 scripts. With this modification, the figure is returned and the user can
 plot that if wanted. As an example:</p>
-<div class="code ipython3 highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">static_analysis</span> <span class="o">=</span> <span class="n">rotor</span><span class="o">.</span><span class="n">run_static</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">static_analysis</span> <span class="o">=</span> <span class="n">rotor</span><span class="o">.</span><span class="n">run_static</span><span class="p">()</span>
 <span class="n">show</span><span class="p">(</span><span class="n">static_analysis</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -361,7 +368,7 @@ the convergence analysis.</p>
     </p>
     <p>
         &copy; Copyright 2019, Team Ross.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.5.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.0.1.<br/>
     </p>
   </div>
 </footer>

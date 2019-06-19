@@ -2,8 +2,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
     <title>Example 5.8.2 &#8212; ross 0.1.0 documentation</title>
     <link rel="stylesheet" href="../_static/bootstrap-sphinx.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -94,6 +93,16 @@
 <li class="toctree-l2"><a class="reference internal" href="../api.html#module-ross.materials">The “Material” class</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing.html">Contributing</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../contributing.html#feedback-and-contribution">Feedback and Contribution</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../contributing.html#version-control-system-git">Version-control system: Git</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../contributing.html#code-style-black">Code style: Black</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../contributing.html#tests">Tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../contributing.html#documentation">Documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../contributing.html#integrated-development-environment-pycharm">Integrated development environment: PyCharm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../contributing.html#how-to-contribute-to-ross-using-git">How to contribute to ross using git</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="../release_notes.html">Release notes</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../release_notes.html#version-0-1-0-alpha-release">Version 0.1.0 (alpha release)</a></li>
 </ul>
@@ -149,18 +158,18 @@
       
   <div class="section" id="example-5-8-2">
 <h1>Example 5.8.2<a class="headerlink" href="#example-5-8-2" title="Permalink to this headline">¶</a></h1>
-<div class="code ipython3 highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="kn">import</span> <span class="nn">ross</span> <span class="k">as</span> <span class="nn">rs</span>
 </pre></div>
 </div>
-<div class="code ipython3 highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">steel</span> <span class="o">=</span> <span class="n">rs</span><span class="o">.</span><span class="n">materials</span><span class="o">.</span><span class="n">steel</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">steel</span> <span class="o">=</span> <span class="n">rs</span><span class="o">.</span><span class="n">materials</span><span class="o">.</span><span class="n">steel</span>
 </pre></div>
 </div>
-<div class="code ipython3 highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">number_of_elements</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">number_of_elements</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">]</span>
 </pre></div>
 </div>
-<div class="code ipython3 highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">create_rotor</span><span class="p">(</span><span class="n">n_el</span><span class="p">,</span> <span class="n">R</span><span class="p">,</span> <span class="n">shear_effects</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">rotary_inertia</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">create_rotor</span><span class="p">(</span><span class="n">n_el</span><span class="p">,</span> <span class="n">R</span><span class="p">,</span> <span class="n">shear_effects</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">rotary_inertia</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Create example rotor with given number of elements and R ration.&quot;&quot;&quot;</span>
     <span class="n">L_total</span> <span class="o">=</span> <span class="mi">1</span>
     <span class="n">D</span> <span class="o">=</span> <span class="n">R</span> <span class="o">*</span> <span class="n">L_total</span>
@@ -180,7 +189,7 @@
     <span class="k">return</span> <span class="n">rs</span><span class="o">.</span><span class="n">Rotor</span><span class="p">(</span><span class="n">shaft_elements</span><span class="o">=</span><span class="n">shaft</span><span class="p">,</span> <span class="n">bearing_seal_elements</span><span class="o">=</span><span class="n">bearings</span><span class="p">,</span> <span class="n">sparse</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="code ipython3 highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># create reference rotor with 80 elements</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># create reference rotor with 80 elements</span>
 <span class="n">R</span> <span class="o">=</span> <span class="mf">0.04</span>
 <span class="n">rotor_80</span> <span class="o">=</span> <span class="n">create_rotor</span><span class="p">(</span><span class="mi">80</span><span class="p">,</span> <span class="n">R</span><span class="p">)</span>
 <span class="n">rotor_80</span><span class="o">.</span><span class="n">run_modal</span><span class="p">()</span>
@@ -200,8 +209,8 @@
     <span class="n">ax</span><span class="o">.</span><span class="n">semilogy</span><span class="p">(</span><span class="n">number_of_elements</span><span class="p">,</span> <span class="n">errors</span><span class="p">[:,</span> <span class="n">i</span><span class="p">])</span>
 </pre></div>
 </div>
-<img alt="../_images/example_05_08_02_5_0.png" src="../_images/example_05_08_02_5_0.png" />
-<div class="code ipython3 highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># create reference rotor with 80 elements</span>
+<img alt="examples/example_05_08_02_files/example_05_08_02_5_0.png" src="examples/example_05_08_02_files/example_05_08_02_5_0.png" />
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># create reference rotor with 80 elements</span>
 <span class="n">n_el</span> <span class="o">=</span> <span class="mi">6</span>
 <span class="n">R_list</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">1e-4</span><span class="p">,</span> <span class="mf">0.15</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
 
@@ -224,7 +233,7 @@
     <span class="n">ax</span><span class="o">.</span><span class="n">semilogy</span><span class="p">(</span><span class="n">R_list</span><span class="p">,</span> <span class="n">errors</span><span class="p">[:,</span> <span class="n">i</span><span class="p">])</span>
 </pre></div>
 </div>
-<img alt="../_images/example_05_08_02_6_0.png" src="../_images/example_05_08_02_6_0.png" />
+<img alt="examples/example_05_08_02_files/example_05_08_02_6_0.png" src="examples/example_05_08_02_files/example_05_08_02_6_0.png" />
 </div>
 
 
@@ -240,7 +249,7 @@
     </p>
     <p>
         &copy; Copyright 2019, Team Ross.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.5.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.0.1.<br/>
     </p>
   </div>
 </footer>

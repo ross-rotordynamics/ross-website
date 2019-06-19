@@ -2,8 +2,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
     <title>EXAMPLE 5.9.4. &#8212; ross 0.1.0 documentation</title>
     <link rel="stylesheet" href="../_static/bootstrap-sphinx.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -94,6 +93,16 @@
 <li class="toctree-l2"><a class="reference internal" href="../api.html#module-ross.materials">The “Material” class</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing.html">Contributing</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../contributing.html#feedback-and-contribution">Feedback and Contribution</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../contributing.html#version-control-system-git">Version-control system: Git</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../contributing.html#code-style-black">Code style: Black</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../contributing.html#tests">Tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../contributing.html#documentation">Documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../contributing.html#integrated-development-environment-pycharm">Integrated development environment: PyCharm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../contributing.html#how-to-contribute-to-ross-using-git">How to contribute to ross using git</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="../release_notes.html">Release notes</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../release_notes.html#version-0-1-0-alpha-release">Version 0.1.0 (alpha release)</a></li>
 </ul>
@@ -153,7 +162,7 @@
 Example 5.9.1 except that some coupling is introduced in the bearings
 between the x and y directions. The bearings have direct stiffnesses of
 1 MN/m and cross-coupling stiffnesses of 0.5 MN/m.</p>
-<div class="code ipython3 highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">bokeh.io</span> <span class="k">import</span> <span class="n">output_notebook</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">bokeh.io</span> <span class="k">import</span> <span class="n">output_notebook</span>
 <span class="kn">import</span> <span class="nn">ross</span> <span class="k">as</span> <span class="nn">rs</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="n">output_notebook</span><span class="p">()</span>
@@ -162,7 +171,7 @@ between the x and y directions. The bearings have direct stiffnesses of
 <div class="bk-root">
     <a href="https://bokeh.pydata.org" target="_blank" class="bk-logo bk-logo-small bk-logo-notebook"></a>
     <span id="1001">Loading BokehJS ...</span>
-</div><div class="code ipython3 highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#Classic Instantiation of the rotor</span>
+</div><div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Classic Instantiation of the rotor</span>
 <span class="n">shaft_elements</span> <span class="o">=</span> <span class="p">[]</span>
 <span class="n">bearing_seal_elements</span> <span class="o">=</span> <span class="p">[]</span>
 <span class="n">disk_elements</span> <span class="o">=</span> <span class="p">[]</span>
@@ -199,8 +208,8 @@ between the x and y directions. The bearings have direct stiffnesses of
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">matplotlib</span><span class="o">.</span><span class="n">axes</span><span class="o">.</span><span class="n">_subplots</span><span class="o">.</span><span class="n">AxesSubplot</span> <span class="n">at</span> <span class="mh">0x7fe0b7682390</span><span class="o">&gt;</span>
 </pre></div>
 </div>
-<img alt="../_images/example_05_09_04_2_1.png" src="../_images/example_05_09_04_2_1.png" />
-<div class="code ipython3 highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#From_section class method instantiation.</span>
+<img alt="examples/example_05_09_04_files/example_05_09_04_2_1.png" src="examples/example_05_09_04_files/example_05_09_04_2_1.png" />
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#From_section class method instantiation.</span>
 <span class="n">bearing_seal_elements</span> <span class="o">=</span> <span class="p">[]</span>
 <span class="n">disk_elements</span> <span class="o">=</span> <span class="p">[]</span>
 <span class="n">shaft_length_data</span> <span class="o">=</span> <span class="mi">3</span><span class="o">*</span><span class="p">[</span><span class="mf">0.5</span><span class="p">]</span>
@@ -235,8 +244,8 @@ between the x and y directions. The bearings have direct stiffnesses of
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">matplotlib</span><span class="o">.</span><span class="n">axes</span><span class="o">.</span><span class="n">_subplots</span><span class="o">.</span><span class="n">AxesSubplot</span> <span class="n">at</span> <span class="mh">0x7fe0b5256b00</span><span class="o">&gt;</span>
 </pre></div>
 </div>
-<img alt="../_images/example_05_09_04_3_1.png" src="../_images/example_05_09_04_3_1.png" />
-<div class="code ipython3 highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#Obtaining results for w=0 (wn is in rad/s)</span>
+<img alt="examples/example_05_09_04_files/example_05_09_04_3_1.png" src="examples/example_05_09_04_files/example_05_09_04_3_1.png" />
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Obtaining results for w=0 (wn is in rad/s)</span>
 
 
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Normal Instantiation =&#39;</span><span class="p">,</span> <span class="n">rotor594c</span><span class="o">.</span><span class="n">wn</span><span class="p">)</span>
@@ -252,7 +261,7 @@ between the x and y directions. The bearings have direct stiffnesses of
  <span class="mf">718.87267818</span><span class="p">]</span>
 </pre></div>
 </div>
-<div class="code ipython3 highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#Obtaining results for w=4000RPM (wn is in rad/s)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Obtaining results for w=4000RPM (wn is in rad/s)</span>
 
 <span class="n">rotor594c</span><span class="o">.</span><span class="n">w</span><span class="o">=</span><span class="mi">4000</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mi">30</span>
 
@@ -278,7 +287,7 @@ between the x and y directions. The bearings have direct stiffnesses of
     </p>
     <p>
         &copy; Copyright 2019, Team Ross.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.5.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.0.1.<br/>
     </p>
   </div>
 </footer>
