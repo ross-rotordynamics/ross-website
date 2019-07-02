@@ -6,12 +6,15 @@
     <title>Example 3 - Isotropic Bearings, asymmetrical rotor. &#8212; ross 0.1.1 documentation</title>
     <link rel="stylesheet" href="../_static/bootstrap-sphinx.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx_copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/style.css" />
     <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
     <script type="text/javascript" src="../_static/language_data.js"></script>
+    <script type="text/javascript" src="../_static/sphinx_copybutton.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js"></script>
     <link rel="shortcut icon" href="../_static/ross-logo.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -215,7 +218,7 @@ or cross-coupling in the bearings.</p>
 <span class="n">rotor591c</span><span class="o">.</span><span class="n">plot_rotor</span><span class="p">()</span>
 </pre></div>
 </div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">matplotlib</span><span class="o">.</span><span class="n">axes</span><span class="o">.</span><span class="n">_subplots</span><span class="o">.</span><span class="n">AxesSubplot</span> <span class="n">at</span> <span class="mh">0x7f9d7a899128</span><span class="o">&gt;</span>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.axes._subplots.AxesSubplot at 0x...&gt;
 </pre></div>
 </div>
 <img alt="../_images/example_05_09_01_2_1.png" src="../_images/example_05_09_01_2_1.png" />
@@ -251,7 +254,7 @@ or cross-coupling in the bearings.</p>
 <span class="n">rotor591fs</span><span class="o">.</span><span class="n">plot_rotor</span><span class="p">()</span>
 </pre></div>
 </div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">matplotlib</span><span class="o">.</span><span class="n">axes</span><span class="o">.</span><span class="n">_subplots</span><span class="o">.</span><span class="n">AxesSubplot</span> <span class="n">at</span> <span class="mh">0x7f9d79866b38</span><span class="o">&gt;</span>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.axes._subplots.AxesSubplot at 0x...&gt;
 </pre></div>
 </div>
 <img alt="../_images/example_05_09_01_3_1.png" src="../_images/example_05_09_01_3_1.png" />
@@ -263,12 +266,12 @@ or cross-coupling in the bearings.</p>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;From Section Instantiation =&#39;</span><span class="p">,</span> <span class="n">rotor591fs</span><span class="o">.</span><span class="n">wn</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">Normal</span> <span class="n">Instantiation</span> <span class="o">=</span> <span class="p">[</span> <span class="mf">86.65811435</span>  <span class="mf">86.65811435</span> <span class="mf">274.31285391</span> <span class="mf">274.31285391</span> <span class="mf">716.78631221</span>
- <span class="mf">716.78631221</span><span class="p">]</span>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Normal Instantiation = [ 86.65811435  86.65811435 274.31285391 274.31285391 716.78631221
+ 716.78631221]
 
 
-<span class="n">From</span> <span class="n">Section</span> <span class="n">Instantiation</span> <span class="o">=</span> <span class="p">[</span> <span class="mf">86.65926451</span>  <span class="mf">86.65926451</span> <span class="mf">274.37573752</span> <span class="mf">274.37573752</span> <span class="mf">718.87267817</span>
- <span class="mf">718.87267818</span><span class="p">]</span>
+From Section Instantiation = [ 86.65926451  86.65926451 274.37573752 274.37573752 718.87267817
+ 718.87267818]
 </pre></div>
 </div>
 <img alt="../_images/example_05_09_01_4_1.png" src="../_images/example_05_09_01_4_1.png" />
@@ -279,8 +282,8 @@ or cross-coupling in the bearings.</p>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Normal Instantiation =&#39;</span><span class="p">,</span> <span class="n">rotor591c</span><span class="o">.</span><span class="n">wn</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">Normal</span> <span class="n">Instantiation</span> <span class="o">=</span> <span class="p">[</span> <span class="mf">85.389467</span>    <span class="mf">87.7958637</span>  <span class="mf">251.78460413</span> <span class="mf">294.71333087</span> <span class="mf">600.17936195</span>
- <span class="mf">827.07536193</span><span class="p">]</span>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Normal Instantiation = [ 85.389467    87.7958637  251.78460413 294.71333087 600.17936195
+ 827.07536193]
 </pre></div>
 </div>
 </div>

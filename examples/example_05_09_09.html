@@ -6,12 +6,15 @@
     <title>Example 8 - Overhung rotor. &#8212; ross 0.1.1 documentation</title>
     <link rel="stylesheet" href="../_static/bootstrap-sphinx.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx_copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/style.css" />
     <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
     <script type="text/javascript" src="../_static/language_data.js"></script>
+    <script type="text/javascript" src="../_static/sphinx_copybutton.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js"></script>
     <link rel="shortcut icon" href="../_static/ross-logo.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -203,22 +206,22 @@ shaft and disk are made of steel. Damping is neglected.</p>
 <span class="n">overhung_from_section_rotor</span><span class="o">.</span><span class="n">plot_rotor</span><span class="p">()</span>
 </pre></div>
 </div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">matplotlib</span><span class="o">.</span><span class="n">axes</span><span class="o">.</span><span class="n">_subplots</span><span class="o">.</span><span class="n">AxesSubplot</span> <span class="n">at</span> <span class="mh">0x7fad358a7c88</span><span class="o">&gt;</span>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.axes._subplots.AxesSubplot at 0x...&gt;
 </pre></div>
 </div>
 <img alt="../_images/example_05_09_09_2_1.png" src="../_images/example_05_09_09_2_1.png" />
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;From section approach =&#39;</span><span class="p">,</span><span class="n">overhung_from_section_rotor</span><span class="o">.</span><span class="n">wn</span><span class="o">/</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">))</span>
 </pre></div>
 </div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">From</span> <span class="n">section</span> <span class="n">approach</span> <span class="o">=</span> <span class="p">[</span> <span class="mf">14.34690401</span>  <span class="mf">14.34690401</span> <span class="mf">109.31683436</span> <span class="mf">109.31683436</span> <span class="mf">134.05186826</span>
- <span class="mf">134.05186826</span><span class="p">]</span>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>From section approach = [ 14.34690401  14.34690401 109.31683436 109.31683436 134.05186826
+ 134.05186826]
 </pre></div>
 </div>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">overhung_from_section_rotor</span><span class="o">.</span><span class="n">run_campbell</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">4000</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mi">30</span><span class="p">,</span><span class="mi">100</span><span class="p">))</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
 </pre></div>
 </div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="o">&lt;</span><span class="n">Figure</span> <span class="n">size</span> <span class="mi">432</span><span class="n">x288</span> <span class="k">with</span> <span class="mi">2</span> <span class="n">Axes</span><span class="o">&gt;</span><span class="p">,</span>
- <span class="o">&lt;</span><span class="n">matplotlib</span><span class="o">.</span><span class="n">axes</span><span class="o">.</span><span class="n">_subplots</span><span class="o">.</span><span class="n">AxesSubplot</span> <span class="n">at</span> <span class="mh">0x7fad350ca6d8</span><span class="o">&gt;</span><span class="p">)</span>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>(&lt;Figure size 432x288 with 2 Axes&gt;,
+ &lt;matplotlib.axes._subplots.AxesSubplot at 0x...&gt;)
 </pre></div>
 </div>
 <img alt="../_images/example_05_09_09_4_1.png" src="../_images/example_05_09_09_4_1.png" />

@@ -6,12 +6,15 @@
     <title>Example 6 - Isotropic bearings with damping. &#8212; ross 0.1.1 documentation</title>
     <link rel="stylesheet" href="../_static/bootstrap-sphinx.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx_copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/style.css" />
     <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
     <script type="text/javascript" src="../_static/language_data.js"></script>
+    <script type="text/javascript" src="../_static/sphinx_copybutton.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js"></script>
     <link rel="shortcut icon" href="../_static/ross-logo.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -206,7 +209,7 @@ stiffness of 1 MN/m and a damping of 3 kNs/m in each direction.</p>
 <span class="n">rotor595c</span><span class="o">.</span><span class="n">plot_rotor</span><span class="p">()</span>
 </pre></div>
 </div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">matplotlib</span><span class="o">.</span><span class="n">axes</span><span class="o">.</span><span class="n">_subplots</span><span class="o">.</span><span class="n">AxesSubplot</span> <span class="n">at</span> <span class="mh">0x7fe07b24af98</span><span class="o">&gt;</span>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.axes._subplots.AxesSubplot at 0x...&gt;
 </pre></div>
 </div>
 <img alt="../_images/example_05_09_05_2_1.png" src="../_images/example_05_09_05_2_1.png" />
@@ -242,7 +245,7 @@ stiffness of 1 MN/m and a damping of 3 kNs/m in each direction.</p>
 <span class="n">rotor595fs</span><span class="o">.</span><span class="n">plot_rotor</span><span class="p">()</span>
 </pre></div>
 </div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">matplotlib</span><span class="o">.</span><span class="n">axes</span><span class="o">.</span><span class="n">_subplots</span><span class="o">.</span><span class="n">AxesSubplot</span> <span class="n">at</span> <span class="mh">0x7fe07a1eac18</span><span class="o">&gt;</span>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.axes._subplots.AxesSubplot at 0x...&gt;
 </pre></div>
 </div>
 <img alt="../_images/example_05_09_05_3_1.png" src="../_images/example_05_09_05_3_1.png" />
@@ -253,12 +256,12 @@ stiffness of 1 MN/m and a damping of 3 kNs/m in each direction.</p>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;From Section Instantiation =&#39;</span><span class="p">,</span> <span class="n">rotor595fs</span><span class="o">.</span><span class="n">wn</span><span class="o">/</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">),</span><span class="s1">&#39;[RPM]&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">Normal</span> <span class="n">Instantiation</span> <span class="o">=</span> <span class="p">[</span> <span class="mf">13.90536812</span>  <span class="mf">13.90536812</span>  <span class="mf">48.17762373</span>  <span class="mf">48.17762373</span> <span class="mf">137.06057752</span>
- <span class="mf">137.06057752</span><span class="p">]</span> <span class="p">[</span><span class="n">RPM</span><span class="p">]</span>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Normal Instantiation = [ 13.90536812  13.90536812  48.17762373  48.17762373 137.06057752
+ 137.06057752] [RPM]
 
 
-<span class="n">From</span> <span class="n">Section</span> <span class="n">Instantiation</span> <span class="o">=</span> <span class="p">[</span> <span class="mf">13.90555699</span>  <span class="mf">13.90555699</span>  <span class="mf">48.19287648</span>  <span class="mf">48.19287648</span> <span class="mf">136.24363053</span>
- <span class="mf">136.24363053</span><span class="p">]</span> <span class="p">[</span><span class="n">RPM</span><span class="p">]</span>
+From Section Instantiation = [ 13.90555699  13.90555699  48.19287648  48.19287648 136.24363053
+ 136.24363053] [RPM]
 </pre></div>
 </div>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Obtaining results for w=4000RPM</span>
@@ -268,15 +271,15 @@ stiffness of 1 MN/m and a damping of 3 kNs/m in each direction.</p>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Normal Instantiation =&#39;</span><span class="p">,</span> <span class="n">rotor595c</span><span class="o">.</span><span class="n">wn</span><span class="o">/</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">))</span>
 </pre></div>
 </div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">Normal</span> <span class="n">Instantiation</span> <span class="o">=</span> <span class="p">[</span> <span class="mf">13.69730748</span>  <span class="mf">14.09185971</span>  <span class="mf">43.60796387</span>  <span class="mf">52.17870498</span> <span class="mf">122.36522778</span>
- <span class="mf">149.80603898</span><span class="p">]</span>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Normal Instantiation = [ 13.69730748  14.09185971  43.60796387  52.17870498 122.36522778
+ 149.80603898]
 </pre></div>
 </div>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rotor595c</span><span class="o">.</span><span class="n">run_campbell</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">4000</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mi">30</span><span class="p">,</span><span class="mi">100</span><span class="p">))</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
 </pre></div>
 </div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="o">&lt;</span><span class="n">Figure</span> <span class="n">size</span> <span class="mi">432</span><span class="n">x288</span> <span class="k">with</span> <span class="mi">2</span> <span class="n">Axes</span><span class="o">&gt;</span><span class="p">,</span>
- <span class="o">&lt;</span><span class="n">matplotlib</span><span class="o">.</span><span class="n">axes</span><span class="o">.</span><span class="n">_subplots</span><span class="o">.</span><span class="n">AxesSubplot</span> <span class="n">at</span> <span class="mh">0x7fe07a15e9e8</span><span class="o">&gt;</span><span class="p">)</span>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>(&lt;Figure size 432x288 with 2 Axes&gt;,
+ &lt;matplotlib.axes._subplots.AxesSubplot at 0x...&gt;)
 </pre></div>
 </div>
 <img alt="../_images/example_05_09_05_6_1.png" src="../_images/example_05_09_05_6_1.png" />

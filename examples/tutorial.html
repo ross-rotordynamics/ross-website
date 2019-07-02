@@ -6,12 +6,15 @@
     <title>Tutorial &#8212; ross 0.1.1 documentation</title>
     <link rel="stylesheet" href="../_static/bootstrap-sphinx.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx_copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/style.css" />
     <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
     <script type="text/javascript" src="../_static/language_data.js"></script>
+    <script type="text/javascript" src="../_static/sphinx_copybutton.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js"></script>
     <link rel="shortcut icon" href="../_static/ross-logo.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -245,7 +248,7 @@ material as a parameter.</p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rs</span><span class="o">.</span><span class="n">Material</span><span class="o">.</span><span class="n">available_materials</span><span class="p">()</span>
 </pre></div>
 </div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="s1">&#39;AISI4140&#39;</span><span class="p">,</span> <span class="s1">&#39;Steel&#39;</span><span class="p">]</span>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>[&#39;AISI4140&#39;, &#39;Steel&#39;]
 </pre></div>
 </div>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">steel</span> <span class="o">=</span> <span class="n">rs</span><span class="o">.</span><span class="n">Material</span><span class="o">.</span><span class="n">use_material</span><span class="p">(</span><span class="s1">&#39;Steel&#39;</span><span class="p">)</span>
@@ -329,7 +332,7 @@ Ip : float
 <span class="nb">print</span><span class="p">(</span><span class="n">Disk</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">DiskElement</span><span class="p">(</span><span class="n">Id</span><span class="o">=</span><span class="mf">0.17809</span><span class="p">,</span> <span class="n">Ip</span><span class="o">=</span><span class="mf">0.32956</span><span class="p">,</span> <span class="n">m</span><span class="o">=</span><span class="mf">32.59</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;#bc625b&#39;</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>DiskElement(Id=0.17809, Ip=0.32956, m=32.59, color=&#39;#bc625b&#39;, n=0)
 </pre></div>
 </div>
 <div class="section" id="from-geometry-diskelement-instantiation">
@@ -488,7 +491,7 @@ one with bokeh library and one with matplotlib.</p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rotor1</span><span class="o">.</span><span class="n">plot_rotor</span><span class="p">()</span>
 </pre></div>
 </div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">matplotlib</span><span class="o">.</span><span class="n">axes</span><span class="o">.</span><span class="n">_subplots</span><span class="o">.</span><span class="n">AxesSubplot</span> <span class="n">at</span> <span class="mh">0x7fc323db8320</span><span class="o">&gt;</span>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.axes._subplots.AxesSubplot at 0x...&gt;
 </pre></div>
 </div>
 <img alt="../_images/tutorial_36_1.png" src="../_images/tutorial_36_1.png" />
@@ -525,8 +528,8 @@ rotor response to gravity effects.</p>
 <span class="n">campbell</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
 </pre></div>
 </div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="o">&lt;</span><span class="n">Figure</span> <span class="n">size</span> <span class="mi">432</span><span class="n">x288</span> <span class="k">with</span> <span class="mi">2</span> <span class="n">Axes</span><span class="o">&gt;</span><span class="p">,</span>
- <span class="o">&lt;</span><span class="n">matplotlib</span><span class="o">.</span><span class="n">axes</span><span class="o">.</span><span class="n">_subplots</span><span class="o">.</span><span class="n">AxesSubplot</span> <span class="n">at</span> <span class="mh">0x7fc322d7a978</span><span class="o">&gt;</span><span class="p">)</span>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>(&lt;Figure size 432x288 with 2 Axes&gt;,
+ &lt;matplotlib.axes._subplots.AxesSubplot at 0x...&gt;)
 </pre></div>
 </div>
 <img alt="../_images/tutorial_42_1.png" src="../_images/tutorial_42_1.png" />
@@ -548,8 +551,8 @@ node.</p>
 <span class="n">modes</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="o">&lt;</span><span class="n">Figure</span> <span class="n">size</span> <span class="mi">1080</span><span class="n">x720</span> <span class="k">with</span> <span class="mi">1</span> <span class="n">Axes</span><span class="o">&gt;</span><span class="p">,</span>
- <span class="o">&lt;</span><span class="n">matplotlib</span><span class="o">.</span><span class="n">axes</span><span class="o">.</span><span class="n">_subplots</span><span class="o">.</span><span class="n">Axes3DSubplot</span> <span class="n">at</span> <span class="mh">0x7fc322b7c240</span><span class="o">&gt;</span><span class="p">)</span>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>(&lt;Figure size 1080x...xes&gt;,
+ &lt;matplotlib.axes._subplots.Axes3DSubplot at 0x...&gt;)
 </pre></div>
 </div>
 <img alt="../_images/tutorial_46_1.png" src="../_images/tutorial_46_1.png" />

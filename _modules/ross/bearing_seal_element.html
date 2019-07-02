@@ -6,12 +6,15 @@
     <title>ross.bearing_seal_element &#8212; ross 0.1.1 documentation</title>
     <link rel="stylesheet" href="../../_static/bootstrap-sphinx.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx_copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/style.css" />
     <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
     <script type="text/javascript" src="../../_static/jquery.js"></script>
     <script type="text/javascript" src="../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
     <script type="text/javascript" src="../../_static/language_data.js"></script>
+    <script type="text/javascript" src="../../_static/sphinx_copybutton.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js"></script>
     <link rel="shortcut icon" href="../../_static/ross-logo.ico"/>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -435,12 +438,15 @@
             <span class="n">bearing_elements</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">bearing</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">bearing_elements</span>
 
-    <span class="k">def</span> <span class="nf">M</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="n">M</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<div class="viewcode-block" id="BearingElement.dof_mapping"><a class="viewcode-back" href="../../api.html#ross.bearing_seal_element.BearingElement.dof_mapping">[docs]</a>    <span class="k">def</span> <span class="nf">dof_mapping</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">dict</span><span class="p">(</span><span class="n">x0</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">y0</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span></div>
 
-        <span class="k">return</span> <span class="n">M</span>
+<div class="viewcode-block" id="BearingElement.M"><a class="viewcode-back" href="../../api.html#ross.bearing_seal_element.BearingElement.M">[docs]</a>    <span class="k">def</span> <span class="nf">M</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">M</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
 
-    <span class="k">def</span> <span class="nf">K</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">w</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">M</span></div>
+
+<div class="viewcode-block" id="BearingElement.K"><a class="viewcode-back" href="../../api.html#ross.bearing_seal_element.BearingElement.K">[docs]</a>    <span class="k">def</span> <span class="nf">K</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">w</span><span class="p">):</span>
         <span class="n">kxx</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">kxx</span><span class="o">.</span><span class="n">interpolated</span><span class="p">(</span><span class="n">w</span><span class="p">)</span>
         <span class="n">kyy</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">kyy</span><span class="o">.</span><span class="n">interpolated</span><span class="p">(</span><span class="n">w</span><span class="p">)</span>
         <span class="n">kxy</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">kxy</span><span class="o">.</span><span class="n">interpolated</span><span class="p">(</span><span class="n">w</span><span class="p">)</span>
@@ -448,9 +454,9 @@
 
         <span class="n">K</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="n">kxx</span><span class="p">,</span> <span class="n">kxy</span><span class="p">],</span> <span class="p">[</span><span class="n">kyx</span><span class="p">,</span> <span class="n">kyy</span><span class="p">]])</span>
 
-        <span class="k">return</span> <span class="n">K</span>
+        <span class="k">return</span> <span class="n">K</span></div>
 
-    <span class="k">def</span> <span class="nf">C</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">w</span><span class="p">):</span>
+<div class="viewcode-block" id="BearingElement.C"><a class="viewcode-back" href="../../api.html#ross.bearing_seal_element.BearingElement.C">[docs]</a>    <span class="k">def</span> <span class="nf">C</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">w</span><span class="p">):</span>
         <span class="n">cxx</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">cxx</span><span class="o">.</span><span class="n">interpolated</span><span class="p">(</span><span class="n">w</span><span class="p">)</span>
         <span class="n">cyy</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">cyy</span><span class="o">.</span><span class="n">interpolated</span><span class="p">(</span><span class="n">w</span><span class="p">)</span>
         <span class="n">cxy</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">cxy</span><span class="o">.</span><span class="n">interpolated</span><span class="p">(</span><span class="n">w</span><span class="p">)</span>
@@ -458,7 +464,12 @@
 
         <span class="n">C</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="n">cxx</span><span class="p">,</span> <span class="n">cxy</span><span class="p">],</span> <span class="p">[</span><span class="n">cyx</span><span class="p">,</span> <span class="n">cyy</span><span class="p">]])</span>
 
-        <span class="k">return</span> <span class="n">C</span>
+        <span class="k">return</span> <span class="n">C</span></div>
+
+<div class="viewcode-block" id="BearingElement.G"><a class="viewcode-back" href="../../api.html#ross.bearing_seal_element.BearingElement.G">[docs]</a>    <span class="k">def</span> <span class="nf">G</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">G</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+
+        <span class="k">return</span> <span class="n">G</span></div>
 
 <div class="viewcode-block" id="BearingElement.patch"><a class="viewcode-back" href="../../api.html#ross.bearing_seal_element.BearingElement.patch">[docs]</a>    <span class="k">def</span> <span class="nf">patch</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">position</span><span class="p">,</span> <span class="n">length</span><span class="p">,</span> <span class="n">ax</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Bearing element patch.</span>

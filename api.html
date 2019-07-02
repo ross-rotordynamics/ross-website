@@ -6,12 +6,15 @@
     <title>API reference &#8212; ross 0.1.1 documentation</title>
     <link rel="stylesheet" href="_static/bootstrap-sphinx.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx_copybutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/style.css" />
     <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
     <script type="text/javascript" src="_static/language_data.js"></script>
+    <script type="text/javascript" src="_static/sphinx_copybutton.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js"></script>
     <link rel="shortcut icon" href="_static/ross-logo.ico"/>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -245,10 +248,10 @@ Default is 12.</p>
 <col style="width: 90%" />
 </colgroup>
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#ross.rotor_assembly.Rotor.A" title="ross.rotor_assembly.Rotor.A"><code class="xref py py-obj docutils literal notranslate"><span class="pre">A</span></code></a>(self[, w])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#ross.rotor_assembly.Rotor.A" title="ross.rotor_assembly.Rotor.A"><code class="xref py py-obj docutils literal notranslate"><span class="pre">A</span></code></a>(self[, frequency, speed])</p></td>
 <td><p>State space matrix for an instance of a rotor.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#ross.rotor_assembly.Rotor.C" title="ross.rotor_assembly.Rotor.C"><code class="xref py py-obj docutils literal notranslate"><span class="pre">C</span></code></a>(self[, w])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#ross.rotor_assembly.Rotor.C" title="ross.rotor_assembly.Rotor.C"><code class="xref py py-obj docutils literal notranslate"><span class="pre">C</span></code></a>(self[, frequency])</p></td>
 <td><p>Damping matrix for an instance of a rotor.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#ross.rotor_assembly.Rotor.G" title="ross.rotor_assembly.Rotor.G"><code class="xref py py-obj docutils literal notranslate"><span class="pre">G</span></code></a>(self)</p></td>
@@ -257,7 +260,7 @@ Default is 12.</p>
 <tr class="row-even"><td><p><a class="reference internal" href="#ross.rotor_assembly.Rotor.H_kappa" title="ross.rotor_assembly.Rotor.H_kappa"><code class="xref py py-obj docutils literal notranslate"><span class="pre">H_kappa</span></code></a>(self, node, w[, return_T])</p></td>
 <td><p>Calculates the H matrix for a given node and natural frequency.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#ross.rotor_assembly.Rotor.K" title="ross.rotor_assembly.Rotor.K"><code class="xref py py-obj docutils literal notranslate"><span class="pre">K</span></code></a>(self[, w])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#ross.rotor_assembly.Rotor.K" title="ross.rotor_assembly.Rotor.K"><code class="xref py py-obj docutils literal notranslate"><span class="pre">K</span></code></a>(self[, frequency])</p></td>
 <td><p>Stiffness matrix for an instance of a rotor.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#ross.rotor_assembly.Rotor.M" title="ross.rotor_assembly.Rotor.M"><code class="xref py py-obj docutils literal notranslate"><span class="pre">M</span></code></a>(self)</p></td>
@@ -350,11 +353,17 @@ Default is 12.</p>
 </table>
 <dl class="method">
 <dt id="ross.rotor_assembly.Rotor.A">
-<code class="descname">A</code><span class="sig-paren">(</span><em>self</em>, <em>w=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ross/rotor_assembly.html#Rotor.A"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.rotor_assembly.Rotor.A" title="Permalink to this definition">¶</a></dt>
+<code class="descname">A</code><span class="sig-paren">(</span><em>self</em>, <em>frequency=None</em>, <em>speed=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ross/rotor_assembly.html#Rotor.A"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.rotor_assembly.Rotor.A" title="Permalink to this definition">¶</a></dt>
 <dd><p>State space matrix for an instance of a rotor.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
+<dt><strong>frequency</strong><span class="classifier">float, optional</span></dt><dd><p>Excitation frequency. Default is rotor speed.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
 <dt>State space matrix for the rotor.</dt><dd></dd>
 </dl>
 </dd>
@@ -374,11 +383,17 @@ Default is 12.</p>
 
 <dl class="method">
 <dt id="ross.rotor_assembly.Rotor.C">
-<code class="descname">C</code><span class="sig-paren">(</span><em>self</em>, <em>w=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ross/rotor_assembly.html#Rotor.C"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.rotor_assembly.Rotor.C" title="Permalink to this definition">¶</a></dt>
+<code class="descname">C</code><span class="sig-paren">(</span><em>self</em>, <em>frequency=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ross/rotor_assembly.html#Rotor.C"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.rotor_assembly.Rotor.C" title="Permalink to this definition">¶</a></dt>
 <dd><p>Damping matrix for an instance of a rotor.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
+<dt><strong>frequency</strong><span class="classifier">float, optional</span></dt><dd><p>Excitation frequency. Default is rotor speed.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
 <dt>Damping matrix for the rotor.</dt><dd></dd>
 </dl>
 </dd>
@@ -491,11 +506,17 @@ values for <img class="math" src="_images/math/a442b6ec14838e75345e7fa84673f863f
 
 <dl class="method">
 <dt id="ross.rotor_assembly.Rotor.K">
-<code class="descname">K</code><span class="sig-paren">(</span><em>self</em>, <em>w=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ross/rotor_assembly.html#Rotor.K"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.rotor_assembly.Rotor.K" title="Permalink to this definition">¶</a></dt>
+<code class="descname">K</code><span class="sig-paren">(</span><em>self</em>, <em>frequency=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ross/rotor_assembly.html#Rotor.K"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.rotor_assembly.Rotor.K" title="Permalink to this definition">¶</a></dt>
 <dd><p>Stiffness matrix for an instance of a rotor.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
+<dt><strong>frequency</strong><span class="classifier">float, optional</span></dt><dd><p>Excitation frequency. Default is rotor speed.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
 <dt>Stiffness matrix for the rotor.</dt><dd></dd>
 </dl>
 </dd>
@@ -895,7 +916,7 @@ given a range of frequencies and the modes that will be used.</p>
 <dt><strong>force</strong><span class="classifier">array, optional</span></dt><dd><p>Force array (needs to have the same length as frequencies array).
 If not given the impulse response is calculated.</p>
 </dd>
-<dt><strong>omega</strong><span class="classifier">array, optional</span></dt><dd><dl class="simple">
+<dt><strong>speed_range</strong><span class="classifier">array, optional</span></dt><dd><dl class="simple">
 <dt>Array with the desired range of frequencies (the default</dt><dd><p>is 0 to 1.5 x highest damped natural frequency.</p>
 </dd>
 </dl>
@@ -1062,7 +1083,7 @@ so that doctest can be written using this.</p>
 <span id="the-element-class"></span><h2>The “Element” class<a class="headerlink" href="#module-ross.element" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="ross.element.Element">
-<em class="property">class </em><code class="descclassname">ross.element.</code><code class="descname">Element</code><a class="reference internal" href="_modules/ross/element.html#Element"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.element.Element" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">ross.element.</code><code class="descname">Element</code><span class="sig-paren">(</span><em>n</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ross/element.html#Element"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.element.Element" title="Permalink to this definition">¶</a></dt>
 <dd><p>Element class.
 This class is a general class to be called for other files which
 create specific elements for the user</p>
@@ -1073,7 +1094,28 @@ create specific elements for the user</p>
 <col style="width: 90%" />
 </colgroup>
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#ross.element.Element.summary" title="ross.element.Element.summary"><code class="xref py py-obj docutils literal notranslate"><span class="pre">summary</span></code></a>(self)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#ross.element.Element.C" title="ross.element.Element.C"><code class="xref py py-obj docutils literal notranslate"><span class="pre">C</span></code></a>(self, frequency)</p></td>
+<td><p>Frequency dependent damping coefficients matrix.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#ross.element.Element.G" title="ross.element.Element.G"><code class="xref py py-obj docutils literal notranslate"><span class="pre">G</span></code></a>(self)</p></td>
+<td><p>Giroscopic matrix.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#ross.element.Element.K" title="ross.element.Element.K"><code class="xref py py-obj docutils literal notranslate"><span class="pre">K</span></code></a>(self, frequency)</p></td>
+<td><p>Frequency dependent stiffness coefficients matrix.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#ross.element.Element.M" title="ross.element.Element.M"><code class="xref py py-obj docutils literal notranslate"><span class="pre">M</span></code></a>(self)</p></td>
+<td><p>Mass matrix.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#ross.element.Element.dof_global_index" title="ross.element.Element.dof_global_index"><code class="xref py py-obj docutils literal notranslate"><span class="pre">dof_global_index</span></code></a>(self)</p></td>
+<td><p>Get the global index for a element specific degree of freedom.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#ross.element.Element.dof_local_index" title="ross.element.Element.dof_local_index"><code class="xref py py-obj docutils literal notranslate"><span class="pre">dof_local_index</span></code></a>(self)</p></td>
+<td><p>Get the local index for a element specific degree of freedom.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#ross.element.Element.dof_mapping" title="ross.element.Element.dof_mapping"><code class="xref py py-obj docutils literal notranslate"><span class="pre">dof_mapping</span></code></a>(self)</p></td>
+<td><p>Should return a dictionary with a mapping between degree of freedom and its index.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#ross.element.Element.summary" title="ross.element.Element.summary"><code class="xref py py-obj docutils literal notranslate"><span class="pre">summary</span></code></a>(self)</p></td>
 <td><p>A summary for the element.</p></td>
 </tr>
 </tbody>
@@ -1084,29 +1126,79 @@ create specific elements for the user</p>
 <col style="width: 43%" />
 </colgroup>
 <tbody>
-<tr class="row-odd"><td><p><strong>C</strong></p></td>
+<tr class="row-odd"><td><p><strong>dump_data</strong></p></td>
 <td></td>
 </tr>
-<tr class="row-even"><td><p><strong>K</strong></p></td>
+<tr class="row-even"><td><p><strong>load</strong></p></td>
 <td></td>
 </tr>
-<tr class="row-odd"><td><p><strong>M</strong></p></td>
+<tr class="row-odd"><td><p><strong>load_data</strong></p></td>
 <td></td>
 </tr>
-<tr class="row-even"><td><p><strong>dump_data</strong></p></td>
-<td></td>
-</tr>
-<tr class="row-odd"><td><p><strong>load</strong></p></td>
-<td></td>
-</tr>
-<tr class="row-even"><td><p><strong>load_data</strong></p></td>
-<td></td>
-</tr>
-<tr class="row-odd"><td><p><strong>save</strong></p></td>
+<tr class="row-even"><td><p><strong>save</strong></p></td>
 <td></td>
 </tr>
 </tbody>
 </table>
+<dl class="method">
+<dt id="ross.element.Element.C">
+<code class="descname">C</code><span class="sig-paren">(</span><em>self</em>, <em>frequency</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ross/element.html#Element.C"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.element.Element.C" title="Permalink to this definition">¶</a></dt>
+<dd><p>Frequency dependent damping coefficients matrix.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="ross.element.Element.G">
+<code class="descname">G</code><span class="sig-paren">(</span><em>self</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ross/element.html#Element.G"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.element.Element.G" title="Permalink to this definition">¶</a></dt>
+<dd><p>Giroscopic matrix.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="ross.element.Element.K">
+<code class="descname">K</code><span class="sig-paren">(</span><em>self</em>, <em>frequency</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ross/element.html#Element.K"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.element.Element.K" title="Permalink to this definition">¶</a></dt>
+<dd><p>Frequency dependent stiffness coefficients matrix.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="ross.element.Element.M">
+<code class="descname">M</code><span class="sig-paren">(</span><em>self</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ross/element.html#Element.M"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.element.Element.M" title="Permalink to this definition">¶</a></dt>
+<dd><p>Mass matrix.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="ross.element.Element.dof_global_index">
+<code class="descname">dof_global_index</code><span class="sig-paren">(</span><em>self</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ross/element.html#Element.dof_global_index"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.element.Element.dof_global_index" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the global index for a element specific degree of freedom.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="ross.element.Element.dof_local_index">
+<code class="descname">dof_local_index</code><span class="sig-paren">(</span><em>self</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ross/element.html#Element.dof_local_index"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.element.Element.dof_local_index" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the local index for a element specific degree of freedom.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="ross.element.Element.dof_mapping">
+<code class="descname">dof_mapping</code><span class="sig-paren">(</span><em>self</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ross/element.html#Element.dof_mapping"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.element.Element.dof_mapping" title="Permalink to this definition">¶</a></dt>
+<dd><p>Should return a dictionary with a mapping between degree of freedom
+and its index.</p>
+<p>Example considering a shaft element:
+def dof_mapping(self):</p>
+<blockquote>
+<div><dl class="simple">
+<dt>return dict(</dt><dd><p>x0=0,
+y0=1,
+alpha0=2,
+beta0=3,
+x1=4,
+y1=5,
+alpha1=6,
+beta1=7,</p>
+</dd>
+</dl>
+<p>)</p>
+</div></blockquote>
+</dd></dl>
+
 <dl class="method">
 <dt id="ross.element.Element.summary">
 <code class="descname">summary</code><span class="sig-paren">(</span><em>self</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ross/element.html#Element.summary"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.element.Element.summary" title="Permalink to this definition">¶</a></dt>
@@ -1181,22 +1273,43 @@ n: int</p>
 <col style="width: 90%" />
 </colgroup>
 <tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#ross.bearing_seal_element.BearingElement.C" title="ross.bearing_seal_element.BearingElement.C"><code class="xref py py-obj docutils literal notranslate"><span class="pre">C</span></code></a>(self, w)</p></td>
+<td><p>Frequency dependent damping coefficients matrix.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#ross.bearing_seal_element.BearingElement.G" title="ross.bearing_seal_element.BearingElement.G"><code class="xref py py-obj docutils literal notranslate"><span class="pre">G</span></code></a>(self)</p></td>
+<td><p>Giroscopic matrix.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#ross.bearing_seal_element.BearingElement.K" title="ross.bearing_seal_element.BearingElement.K"><code class="xref py py-obj docutils literal notranslate"><span class="pre">K</span></code></a>(self, w)</p></td>
+<td><p>Frequency dependent stiffness coefficients matrix.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#ross.bearing_seal_element.BearingElement.M" title="ross.bearing_seal_element.BearingElement.M"><code class="xref py py-obj docutils literal notranslate"><span class="pre">M</span></code></a>(self)</p></td>
+<td><p>Mass matrix.</p></td>
+</tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#ross.bearing_seal_element.BearingElement.bokeh_patch" title="ross.bearing_seal_element.BearingElement.bokeh_patch"><code class="xref py py-obj docutils literal notranslate"><span class="pre">bokeh_patch</span></code></a>(self, position, length, bk_ax)</p></td>
 <td><p>Bearing element patch.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#ross.bearing_seal_element.BearingElement.from_fluid_flow" title="ross.bearing_seal_element.BearingElement.from_fluid_flow"><code class="xref py py-obj docutils literal notranslate"><span class="pre">from_fluid_flow</span></code></a>(n, nz, ntheta, nradius, …)</p></td>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">dof_global_index</span></code>(self)</p></td>
+<td><p>Get the global index for a element specific degree of freedom.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">dof_local_index</span></code>(self)</p></td>
+<td><p>Get the local index for a element specific degree of freedom.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#ross.bearing_seal_element.BearingElement.dof_mapping" title="ross.bearing_seal_element.BearingElement.dof_mapping"><code class="xref py py-obj docutils literal notranslate"><span class="pre">dof_mapping</span></code></a>(self)</p></td>
+<td><p>Should return a dictionary with a mapping between degree of freedom and its index.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#ross.bearing_seal_element.BearingElement.from_fluid_flow" title="ross.bearing_seal_element.BearingElement.from_fluid_flow"><code class="xref py py-obj docutils literal notranslate"><span class="pre">from_fluid_flow</span></code></a>(n, nz, ntheta, nradius, …)</p></td>
 <td><p>Instantiate a bearing using inputs from its fluid flow.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#ross.bearing_seal_element.BearingElement.from_table" title="ross.bearing_seal_element.BearingElement.from_table"><code class="xref py py-obj docutils literal notranslate"><span class="pre">from_table</span></code></a>(n, file)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#ross.bearing_seal_element.BearingElement.from_table" title="ross.bearing_seal_element.BearingElement.from_table"><code class="xref py py-obj docutils literal notranslate"><span class="pre">from_table</span></code></a>(n, file)</p></td>
 <td><p>Instantiate a bearing using inputs from a table, either excel or csv.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#ross.bearing_seal_element.BearingElement.patch" title="ross.bearing_seal_element.BearingElement.patch"><code class="xref py py-obj docutils literal notranslate"><span class="pre">patch</span></code></a>(self, position, length, ax)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#ross.bearing_seal_element.BearingElement.patch" title="ross.bearing_seal_element.BearingElement.patch"><code class="xref py py-obj docutils literal notranslate"><span class="pre">patch</span></code></a>(self, position, length, ax)</p></td>
 <td><p>Bearing element patch.</p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">summary</span></code>(self)</p></td>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">summary</span></code>(self)</p></td>
 <td><p>A summary for the element.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#ross.bearing_seal_element.BearingElement.table_to_toml" title="ross.bearing_seal_element.BearingElement.table_to_toml"><code class="xref py py-obj docutils literal notranslate"><span class="pre">table_to_toml</span></code></a>(n, file)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#ross.bearing_seal_element.BearingElement.table_to_toml" title="ross.bearing_seal_element.BearingElement.table_to_toml"><code class="xref py py-obj docutils literal notranslate"><span class="pre">table_to_toml</span></code></a>(n, file)</p></td>
 <td><p>Convert a table with parameters of a bearing element to a dictionary ready to save to a toml file that can be later loaded by ross.</p></td>
 </tr>
 </tbody>
@@ -1207,29 +1320,44 @@ n: int</p>
 <col style="width: 43%" />
 </colgroup>
 <tbody>
-<tr class="row-odd"><td><p><strong>C</strong></p></td>
+<tr class="row-odd"><td><p><strong>dump_data</strong></p></td>
 <td></td>
 </tr>
-<tr class="row-even"><td><p><strong>K</strong></p></td>
+<tr class="row-even"><td><p><strong>load</strong></p></td>
 <td></td>
 </tr>
-<tr class="row-odd"><td><p><strong>M</strong></p></td>
+<tr class="row-odd"><td><p><strong>load_data</strong></p></td>
 <td></td>
 </tr>
-<tr class="row-even"><td><p><strong>dump_data</strong></p></td>
-<td></td>
-</tr>
-<tr class="row-odd"><td><p><strong>load</strong></p></td>
-<td></td>
-</tr>
-<tr class="row-even"><td><p><strong>load_data</strong></p></td>
-<td></td>
-</tr>
-<tr class="row-odd"><td><p><strong>save</strong></p></td>
+<tr class="row-even"><td><p><strong>save</strong></p></td>
 <td></td>
 </tr>
 </tbody>
 </table>
+<dl class="method">
+<dt id="ross.bearing_seal_element.BearingElement.C">
+<code class="descname">C</code><span class="sig-paren">(</span><em>self</em>, <em>w</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ross/bearing_seal_element.html#BearingElement.C"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.bearing_seal_element.BearingElement.C" title="Permalink to this definition">¶</a></dt>
+<dd><p>Frequency dependent damping coefficients matrix.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="ross.bearing_seal_element.BearingElement.G">
+<code class="descname">G</code><span class="sig-paren">(</span><em>self</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ross/bearing_seal_element.html#BearingElement.G"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.bearing_seal_element.BearingElement.G" title="Permalink to this definition">¶</a></dt>
+<dd><p>Giroscopic matrix.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="ross.bearing_seal_element.BearingElement.K">
+<code class="descname">K</code><span class="sig-paren">(</span><em>self</em>, <em>w</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ross/bearing_seal_element.html#BearingElement.K"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.bearing_seal_element.BearingElement.K" title="Permalink to this definition">¶</a></dt>
+<dd><p>Frequency dependent stiffness coefficients matrix.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="ross.bearing_seal_element.BearingElement.M">
+<code class="descname">M</code><span class="sig-paren">(</span><em>self</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ross/bearing_seal_element.html#BearingElement.M"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.bearing_seal_element.BearingElement.M" title="Permalink to this definition">¶</a></dt>
+<dd><p>Mass matrix.</p>
+</dd></dl>
+
 <dl class="method">
 <dt id="ross.bearing_seal_element.BearingElement.bokeh_patch">
 <code class="descname">bokeh_patch</code><span class="sig-paren">(</span><em>self</em>, <em>position</em>, <em>length</em>, <em>bk_ax</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ross/bearing_seal_element.html#BearingElement.bokeh_patch"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.bearing_seal_element.BearingElement.bokeh_patch" title="Permalink to this definition">¶</a></dt>
@@ -1249,6 +1377,29 @@ Patch that will be used to draw the bearing element.</p>
 </dl>
 </dd>
 </dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="ross.bearing_seal_element.BearingElement.dof_mapping">
+<code class="descname">dof_mapping</code><span class="sig-paren">(</span><em>self</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ross/bearing_seal_element.html#BearingElement.dof_mapping"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.bearing_seal_element.BearingElement.dof_mapping" title="Permalink to this definition">¶</a></dt>
+<dd><p>Should return a dictionary with a mapping between degree of freedom
+and its index.</p>
+<p>Example considering a shaft element:
+def dof_mapping(self):</p>
+<blockquote>
+<div><dl class="simple">
+<dt>return dict(</dt><dd><p>x0=0,
+y0=1,
+alpha0=2,
+beta0=3,
+x1=4,
+y1=5,
+alpha1=6,
+beta1=7,</p>
+</dd>
+</dl>
+<p>)</p>
+</div></blockquote>
 </dd></dl>
 
 <dl class="classmethod">
@@ -1382,22 +1533,43 @@ n : int</p>
 <col style="width: 90%" />
 </colgroup>
 <tbody>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">C</span></code>(self, w)</p></td>
+<td><p>Frequency dependent damping coefficients matrix.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">G</span></code>(self)</p></td>
+<td><p>Giroscopic matrix.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">K</span></code>(self, w)</p></td>
+<td><p>Frequency dependent stiffness coefficients matrix.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">M</span></code>(self)</p></td>
+<td><p>Mass matrix.</p></td>
+</tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#ross.bearing_seal_element.SealElement.bokeh_patch" title="ross.bearing_seal_element.SealElement.bokeh_patch"><code class="xref py py-obj docutils literal notranslate"><span class="pre">bokeh_patch</span></code></a>(self, position, bk_ax)</p></td>
 <td><p>Seal element patch.</p></td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">from_fluid_flow</span></code>(n, nz, ntheta, nradius, …)</p></td>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">dof_global_index</span></code>(self)</p></td>
+<td><p>Get the global index for a element specific degree of freedom.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">dof_local_index</span></code>(self)</p></td>
+<td><p>Get the local index for a element specific degree of freedom.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">dof_mapping</span></code>(self)</p></td>
+<td><p>Should return a dictionary with a mapping between degree of freedom and its index.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">from_fluid_flow</span></code>(n, nz, ntheta, nradius, …)</p></td>
 <td><p>Instantiate a bearing using inputs from its fluid flow.</p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">from_table</span></code>(n, file)</p></td>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">from_table</span></code>(n, file)</p></td>
 <td><p>Instantiate a bearing using inputs from a table, either excel or csv.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#ross.bearing_seal_element.SealElement.patch" title="ross.bearing_seal_element.SealElement.patch"><code class="xref py py-obj docutils literal notranslate"><span class="pre">patch</span></code></a>(self, position, ax)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#ross.bearing_seal_element.SealElement.patch" title="ross.bearing_seal_element.SealElement.patch"><code class="xref py py-obj docutils literal notranslate"><span class="pre">patch</span></code></a>(self, position, ax)</p></td>
 <td><p>Seal element patch.</p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">summary</span></code>(self)</p></td>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">summary</span></code>(self)</p></td>
 <td><p>A summary for the element.</p></td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">table_to_toml</span></code>(n, file)</p></td>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">table_to_toml</span></code>(n, file)</p></td>
 <td><p>Convert a table with parameters of a bearing element to a dictionary ready to save to a toml file that can be later loaded by ross.</p></td>
 </tr>
 </tbody>
@@ -1408,25 +1580,16 @@ n : int</p>
 <col style="width: 43%" />
 </colgroup>
 <tbody>
-<tr class="row-odd"><td><p><strong>C</strong></p></td>
+<tr class="row-odd"><td><p><strong>dump_data</strong></p></td>
 <td></td>
 </tr>
-<tr class="row-even"><td><p><strong>K</strong></p></td>
+<tr class="row-even"><td><p><strong>load</strong></p></td>
 <td></td>
 </tr>
-<tr class="row-odd"><td><p><strong>M</strong></p></td>
+<tr class="row-odd"><td><p><strong>load_data</strong></p></td>
 <td></td>
 </tr>
-<tr class="row-even"><td><p><strong>dump_data</strong></p></td>
-<td></td>
-</tr>
-<tr class="row-odd"><td><p><strong>load</strong></p></td>
-<td></td>
-</tr>
-<tr class="row-even"><td><p><strong>load_data</strong></p></td>
-<td></td>
-</tr>
-<tr class="row-odd"><td><p><strong>save</strong></p></td>
+<tr class="row-even"><td><p><strong>save</strong></p></td>
 <td></td>
 </tr>
 </tbody>
@@ -1520,8 +1683,14 @@ n: int</p>
 <col style="width: 90%" />
 </colgroup>
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#ross.disk_element.DiskElement.G" title="ross.disk_element.DiskElement.G"><code class="xref py py-obj docutils literal notranslate"><span class="pre">G</span></code></a>(self)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#ross.disk_element.DiskElement.C" title="ross.disk_element.DiskElement.C"><code class="xref py py-obj docutils literal notranslate"><span class="pre">C</span></code></a>(self)</p></td>
+<td><p>Frequency dependent damping coefficients matrix.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#ross.disk_element.DiskElement.G" title="ross.disk_element.DiskElement.G"><code class="xref py py-obj docutils literal notranslate"><span class="pre">G</span></code></a>(self)</p></td>
 <td><p>This method will return the gyroscopic matrix for an instance of a disk element.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#ross.disk_element.DiskElement.K" title="ross.disk_element.DiskElement.K"><code class="xref py py-obj docutils literal notranslate"><span class="pre">K</span></code></a>(self)</p></td>
+<td><p>Frequency dependent stiffness coefficients matrix.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#ross.disk_element.DiskElement.M" title="ross.disk_element.DiskElement.M"><code class="xref py py-obj docutils literal notranslate"><span class="pre">M</span></code></a>(self)</p></td>
 <td><p>This method will return the mass matrix for an instance of a disk element.</p></td>
@@ -1529,13 +1698,22 @@ n: int</p>
 <tr class="row-odd"><td><p><a class="reference internal" href="#ross.disk_element.DiskElement.bokeh_patch" title="ross.disk_element.DiskElement.bokeh_patch"><code class="xref py py-obj docutils literal notranslate"><span class="pre">bokeh_patch</span></code></a>(self, position, length, bk_ax)</p></td>
 <td><p>Disk element patch.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#ross.disk_element.DiskElement.from_geometry" title="ross.disk_element.DiskElement.from_geometry"><code class="xref py py-obj docutils literal notranslate"><span class="pre">from_geometry</span></code></a>(n, material, width, i_d, o_d)</p></td>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">dof_global_index</span></code>(self)</p></td>
+<td><p>Get the global index for a element specific degree of freedom.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">dof_local_index</span></code>(self)</p></td>
+<td><p>Get the local index for a element specific degree of freedom.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#ross.disk_element.DiskElement.dof_mapping" title="ross.disk_element.DiskElement.dof_mapping"><code class="xref py py-obj docutils literal notranslate"><span class="pre">dof_mapping</span></code></a>(self)</p></td>
+<td><p>Should return a dictionary with a mapping between degree of freedom and its index.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#ross.disk_element.DiskElement.from_geometry" title="ross.disk_element.DiskElement.from_geometry"><code class="xref py py-obj docutils literal notranslate"><span class="pre">from_geometry</span></code></a>(n, material, width, i_d, o_d)</p></td>
 <td><p>A disk element.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#ross.disk_element.DiskElement.patch" title="ross.disk_element.DiskElement.patch"><code class="xref py py-obj docutils literal notranslate"><span class="pre">patch</span></code></a>(self, position, length, ax)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#ross.disk_element.DiskElement.patch" title="ross.disk_element.DiskElement.patch"><code class="xref py py-obj docutils literal notranslate"><span class="pre">patch</span></code></a>(self, position, length, ax)</p></td>
 <td><p>Disk element patch.</p></td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">summary</span></code>(self)</p></td>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">summary</span></code>(self)</p></td>
 <td><p>A summary for the element.</p></td>
 </tr>
 </tbody>
@@ -1546,12 +1724,6 @@ n: int</p>
 <col style="width: 43%" />
 </colgroup>
 <tbody>
-<tr class="row-odd"><td><p><strong>C</strong></p></td>
-<td></td>
-</tr>
-<tr class="row-even"><td><p><strong>K</strong></p></td>
-<td></td>
-</tr>
 <tr class="row-odd"><td><p><strong>dump_data</strong></p></td>
 <td></td>
 </tr>
@@ -1566,6 +1738,12 @@ n: int</p>
 </tr>
 </tbody>
 </table>
+<dl class="method">
+<dt id="ross.disk_element.DiskElement.C">
+<code class="descname">C</code><span class="sig-paren">(</span><em>self</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ross/disk_element.html#DiskElement.C"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.disk_element.DiskElement.C" title="Permalink to this definition">¶</a></dt>
+<dd><p>Frequency dependent damping coefficients matrix.</p>
+</dd></dl>
+
 <dl class="method">
 <dt id="ross.disk_element.DiskElement.G">
 <code class="descname">G</code><span class="sig-paren">(</span><em>self</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ross/disk_element.html#DiskElement.G"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.disk_element.DiskElement.G" title="Permalink to this definition">¶</a></dt>
@@ -1587,6 +1765,12 @@ array([[ 0.        ,  0.        ,  0.        ,  0.        ],</p>
 [ 0.        ,  0.        ,  0.        ,  0.32956362],
 [ 0.        ,  0.        , -0.32956362,  0.        ]])</p>
 </div></blockquote>
+</dd></dl>
+
+<dl class="method">
+<dt id="ross.disk_element.DiskElement.K">
+<code class="descname">K</code><span class="sig-paren">(</span><em>self</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ross/disk_element.html#DiskElement.K"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.disk_element.DiskElement.K" title="Permalink to this definition">¶</a></dt>
+<dd><p>Frequency dependent stiffness coefficients matrix.</p>
 </dd></dl>
 
 <dl class="method">
@@ -1632,11 +1816,32 @@ ax : matplotlib axes, optional</p>
 </dd>
 </dl>
 <dl class="simple">
-<dt>ax<span class="classifier">matplotlib axes</span></dt><dd><p>Returns the axes object with the plot.</p>
-</dd>
 <dt>bk_ax<span class="classifier">bokeh plotting axes</span></dt><dd><p>Returns the axes object with the plot.</p>
 </dd>
 </dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="ross.disk_element.DiskElement.dof_mapping">
+<code class="descname">dof_mapping</code><span class="sig-paren">(</span><em>self</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ross/disk_element.html#DiskElement.dof_mapping"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.disk_element.DiskElement.dof_mapping" title="Permalink to this definition">¶</a></dt>
+<dd><p>Should return a dictionary with a mapping between degree of freedom
+and its index.</p>
+<p>Example considering a shaft element:
+def dof_mapping(self):</p>
+<blockquote>
+<div><dl class="simple">
+<dt>return dict(</dt><dd><p>x0=0,
+y0=1,
+alpha0=2,
+beta0=3,
+x1=4,
+y1=5,
+alpha1=6,
+beta1=7,</p>
+</dd>
+</dl>
+<p>)</p>
+</div></blockquote>
 </dd></dl>
 
 <dl class="classmethod">
@@ -1704,8 +1909,6 @@ ax : matplotlib axes, optional</p>
 <dl class="simple">
 <dt>ax<span class="classifier">matplotlib axes</span></dt><dd><p>Returns the axes object with the plot.</p>
 </dd>
-<dt>bk_ax<span class="classifier">bokeh plotting axes</span></dt><dd><p>Returns the axes object with the plot.</p>
-</dd>
 </dl>
 </dd></dl>
 
@@ -1719,9 +1922,9 @@ This class will create a shaft element that may take into
 account shear, rotary inertia an gyroscopic effects.
 The matrices will be defined considering the following local
 coordinate vector:
-.. math:: [x_1, y_1, alpha_1, beta_1, x_2, y_2, alpha_2, beta_2]^T
-Where <img class="math" src="_images/math/fc7576763f2a846119d277c2d3aee7ed2539e5b8.png" alt="\alpha_1"/> and <img class="math" src="_images/math/bae508f8b90711a500281d854d959df50fb72da2.png" alt="\alpha_2"/> are the bending on the yz plane and
-<img class="math" src="_images/math/ac8d05ee097d1bf410fdbce62e0fc8d063cc9e9a.png" alt="\beta_1"/> and <img class="math" src="_images/math/ca73e539f1ca5df1f1839d40aabda51cbbfd5f4a.png" alt="\beta_2"/> are the bending on the xz plane.
+.. math:: [x_0, y_0, alpha_0, beta_0, x_1, y_1, alpha_1, beta_1]^T
+Where <img class="math" src="_images/math/e89765431934c995d7d6a5545dbd4dbf64122339.png" alt="\alpha_0"/> and <img class="math" src="_images/math/fc7576763f2a846119d277c2d3aee7ed2539e5b8.png" alt="\alpha_1"/> are the bending on the yz plane and
+<img class="math" src="_images/math/8ecb1fee83d40575dfd2b2ba283fc19003ad7bb4.png" alt="\beta_0"/> and <img class="math" src="_images/math/ac8d05ee097d1bf410fdbce62e0fc8d063cc9e9a.png" alt="\beta_1"/> are the bending on the xz plane.
 Parameters
 ———-
 L : float</p>
@@ -1819,13 +2022,22 @@ inertia and shear effects. If these are not considered phi=0.</p>
 <tr class="row-odd"><td><p><a class="reference internal" href="#ross.shaft_element.ShaftElement.bokeh_patch" title="ross.shaft_element.ShaftElement.bokeh_patch"><code class="xref py py-obj docutils literal notranslate"><span class="pre">bokeh_patch</span></code></a>(self, position, SR, bk_ax)</p></td>
 <td><p>Shaft element patch.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#ross.shaft_element.ShaftElement.patch" title="ross.shaft_element.ShaftElement.patch"><code class="xref py py-obj docutils literal notranslate"><span class="pre">patch</span></code></a>(self, position, SR, ax)</p></td>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">dof_global_index</span></code>(self)</p></td>
+<td><p>Get the global index for a element specific degree of freedom.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">dof_local_index</span></code>(self)</p></td>
+<td><p>Get the local index for a element specific degree of freedom.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#ross.shaft_element.ShaftElement.dof_mapping" title="ross.shaft_element.ShaftElement.dof_mapping"><code class="xref py py-obj docutils literal notranslate"><span class="pre">dof_mapping</span></code></a>(self)</p></td>
+<td><p>Should return a dictionary with a mapping between degree of freedom and its index.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#ross.shaft_element.ShaftElement.patch" title="ross.shaft_element.ShaftElement.patch"><code class="xref py py-obj docutils literal notranslate"><span class="pre">patch</span></code></a>(self, position, SR, ax)</p></td>
 <td><p>Shaft element patch.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#ross.shaft_element.ShaftElement.section" title="ross.shaft_element.ShaftElement.section"><code class="xref py py-obj docutils literal notranslate"><span class="pre">section</span></code></a>(L, ne, si_d, so_d, material[, n, …])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#ross.shaft_element.ShaftElement.section" title="ross.shaft_element.ShaftElement.section"><code class="xref py py-obj docutils literal notranslate"><span class="pre">section</span></code></a>(L, ne, si_d, so_d, material[, n, …])</p></td>
 <td><p>Shaft section constructor.</p></td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">summary</span></code>(self)</p></td>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">summary</span></code>(self)</p></td>
 <td><p>A summary for the element.</p></td>
 </tr>
 </tbody>
@@ -1943,6 +2155,29 @@ bk_ax : bokeh plotting axes, optional</p>
 <dt>position<span class="classifier">float</span></dt><dd><p>Position in which the patch will be drawn.</p>
 </dd>
 </dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="ross.shaft_element.ShaftElement.dof_mapping">
+<code class="descname">dof_mapping</code><span class="sig-paren">(</span><em>self</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ross/shaft_element.html#ShaftElement.dof_mapping"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.shaft_element.ShaftElement.dof_mapping" title="Permalink to this definition">¶</a></dt>
+<dd><p>Should return a dictionary with a mapping between degree of freedom
+and its index.</p>
+<p>Example considering a shaft element:
+def dof_mapping(self):</p>
+<blockquote>
+<div><dl class="simple">
+<dt>return dict(</dt><dd><p>x0=0,
+y0=1,
+alpha0=2,
+beta0=3,
+x1=4,
+y1=5,
+alpha1=6,
+beta1=7,</p>
+</dd>
+</dl>
+<p>)</p>
+</div></blockquote>
 </dd></dl>
 
 <dl class="method">

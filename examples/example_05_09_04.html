@@ -6,12 +6,15 @@
     <title>Example 5 - Cross-coupled bearings. &#8212; ross 0.1.1 documentation</title>
     <link rel="stylesheet" href="../_static/bootstrap-sphinx.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx_copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/style.css" />
     <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
     <script type="text/javascript" src="../_static/language_data.js"></script>
+    <script type="text/javascript" src="../_static/sphinx_copybutton.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js"></script>
     <link rel="shortcut icon" href="../_static/ross-logo.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -208,7 +211,7 @@ stiffnesses of <img class="math" src="../_images/math/2d43dca270077efa9a722dac62
 <span class="n">rotor594c</span><span class="o">.</span><span class="n">plot_rotor</span><span class="p">()</span>
 </pre></div>
 </div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">matplotlib</span><span class="o">.</span><span class="n">axes</span><span class="o">.</span><span class="n">_subplots</span><span class="o">.</span><span class="n">AxesSubplot</span> <span class="n">at</span> <span class="mh">0x7fc98fed70f0</span><span class="o">&gt;</span>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.axes._subplots.AxesSubplot at 0x...&gt;
 </pre></div>
 </div>
 <img alt="../_images/example_05_09_04_2_1.png" src="../_images/example_05_09_04_2_1.png" />
@@ -244,7 +247,7 @@ stiffnesses of <img class="math" src="../_images/math/2d43dca270077efa9a722dac62
 <span class="n">rotor594fs</span><span class="o">.</span><span class="n">plot_rotor</span><span class="p">()</span>
 </pre></div>
 </div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">matplotlib</span><span class="o">.</span><span class="n">axes</span><span class="o">.</span><span class="n">_subplots</span><span class="o">.</span><span class="n">AxesSubplot</span> <span class="n">at</span> <span class="mh">0x7fc98eeb7ba8</span><span class="o">&gt;</span>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.axes._subplots.AxesSubplot at 0x...&gt;
 </pre></div>
 </div>
 <img alt="../_images/example_05_09_04_3_1.png" src="../_images/example_05_09_04_3_1.png" />
@@ -256,12 +259,12 @@ stiffnesses of <img class="math" src="../_images/math/2d43dca270077efa9a722dac62
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;From Section Instantiation =&#39;</span><span class="p">,</span> <span class="n">rotor594fs</span><span class="o">.</span><span class="n">wn</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">Normal</span> <span class="n">Instantiation</span> <span class="o">=</span> <span class="p">[</span> <span class="mf">86.65808619</span>  <span class="mf">86.65814251</span> <span class="mf">274.31285373</span> <span class="mf">274.31285411</span> <span class="mf">716.78471745</span>
- <span class="mf">716.78790695</span><span class="p">]</span>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Normal Instantiation = [ 86.65808619  86.65814251 274.31285373 274.31285411 716.78471745
+ 716.78790695]
 
 
-<span class="n">From</span> <span class="n">Section</span> <span class="n">Instantiation</span> <span class="o">=</span> <span class="p">[</span> <span class="mf">86.65926451</span>  <span class="mf">86.65926451</span> <span class="mf">274.37573752</span> <span class="mf">274.37573752</span> <span class="mf">718.87267817</span>
- <span class="mf">718.87267818</span><span class="p">]</span>
+From Section Instantiation = [ 86.65926451  86.65926451 274.37573752 274.37573752 718.87267817
+ 718.87267818]
 </pre></div>
 </div>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Obtaining results for w=4000RPM (wn is in rad/s)</span>
@@ -271,8 +274,8 @@ stiffnesses of <img class="math" src="../_images/math/2d43dca270077efa9a722dac62
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Normal Instantiation =&#39;</span><span class="p">,</span> <span class="n">rotor594c</span><span class="o">.</span><span class="n">wn</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">Normal</span> <span class="n">Instantiation</span> <span class="o">=</span> <span class="p">[</span> <span class="mf">84.19790045</span>  <span class="mf">89.03269396</span> <span class="mf">246.44121183</span> <span class="mf">301.08623205</span> <span class="mf">594.81950178</span>
- <span class="mf">834.0420378</span> <span class="p">]</span>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Normal Instantiation = [ 84.19790045  89.03269396 246.44121183 301.08623205 594.81950178
+ 834.0420378 ]
 </pre></div>
 </div>
 </div>
