@@ -1145,9 +1145,6 @@
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-<span class="sd">        force : array, optional</span>
-<span class="sd">            Force array (needs to have the same length as frequencies array).</span>
-<span class="sd">            If not given the impulse response is calculated.</span>
 <span class="sd">        speed_range : array, optional</span>
 <span class="sd">            Array with the desired range of frequencies (the default</span>
 <span class="sd">             is 0 to 1.5 x highest damped natural frequency.</span>
@@ -1157,15 +1154,10 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        omega : array</span>
-<span class="sd">            Array with the frequencies</span>
-<span class="sd">        magdb : array</span>
-<span class="sd">            Magnitude (dB) of the frequency response for each pair input/output.</span>
-<span class="sd">            The order of the array is: [output, input, magnitude]</span>
-<span class="sd">        phase : array</span>
-<span class="sd">            Phase of the frequency response for each pair input/output.</span>
-<span class="sd">            The order of the array is: [output, input, phase]</span>
-
+<span class="sd">        results : array</span>
+<span class="sd">            Array with the frequencies, magnitude (dB) of the frequency response for each</span>
+<span class="sd">            pair input/output, phase of the frequency response for each pair input/output..</span>
+<span class="sd">            It will be returned if plot=False.</span>
 <span class="sd">        Examples</span>
 <span class="sd">        --------</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -1231,10 +1223,11 @@
         <span class="k">return</span> <span class="n">F0</span>
 
 <div class="viewcode-block" id="Rotor.unbalance_response"><a class="viewcode-back" href="../../api.html#ross.rotor_assembly.Rotor.unbalance_response">[docs]</a>    <span class="k">def</span> <span class="nf">unbalance_response</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">node</span><span class="p">,</span> <span class="n">magnitude</span><span class="p">,</span> <span class="n">phase</span><span class="p">,</span> <span class="n">frequency_range</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;frequency response for a mdof system.</span>
+        <span class="sd">&quot;&quot;&quot;Unbalanced response for a mdof system.</span>
 
-<span class="sd">        This method returns the frequency response for a mdof system</span>
-<span class="sd">        given a range of frequencies and the modes that will be used.</span>
+<span class="sd">        This method returns the unbalanced response for a mdof system</span>
+<span class="sd">        given magnitide and phase of the unbalance, the node where it&#39;s</span>
+<span class="sd">        applied and a frequency range.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -1244,6 +1237,8 @@
 <span class="sd">            Unbalance magnitude (kg.m)</span>
 <span class="sd">        phase : list, float</span>
 <span class="sd">            Unbalance phase (rad)</span>
+<span class="sd">        frequency_range : list, float</span>
+<span class="sd">            Array with the desired range of frequencies</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>

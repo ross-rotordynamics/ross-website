@@ -214,14 +214,18 @@ tests are passing before pushing your code to github.</p>
 files at ~/ross/docs, and we keep the html files used to build the website in a
 <a class="reference external" href="https://github.com/ross-rotordynamics/ross-website">separate repository</a>. If you want to modify the documentation,
 modify the source files and them do the following to modify the website:</p>
-<ul class="simple">
-<li><p>Clone the ross-website to ~/ross-website/html:</p></li>
+<ul>
+<li><p>Clone the ross-website to <code class="docutils literal notranslate"><span class="pre">~/ross-website/html</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ git clone https://github.com/ross-rotordynamics/ross-website ~/ross-website/html
+</pre></div>
+</div>
+</li>
+<li><p>From the docs source directory &lt;~/ross/docs/&gt; run sphinx:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ make html BUILDDIR=~/ross-website
+</pre></div>
+</div>
+</li>
 </ul>
-<p><code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">git</span> <span class="pre">clone</span> <span class="pre">https://github.com/ross-rotordynamics/ross-website</span> <span class="pre">~/ross-website/html</span></code></p>
-<ul class="simple">
-<li><p>From the docs source directory &lt;~/ross/docs/&gt; run sphinx:</p></li>
-</ul>
-<p><code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">make</span> <span class="pre">html</span> <span class="pre">BUILDDIR=~/ross-website</span></code></p>
 <p>After that you can push the updated html files to the ross-website repository.</p>
 </div>
 <div class="section" id="integrated-development-environment-pycharm">
