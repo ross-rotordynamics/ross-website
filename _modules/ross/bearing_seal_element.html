@@ -88,10 +88,8 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../download.html">Download notebooks</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../api.html">API reference</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../api.html#module-ross.rotor_assembly">The Rotor module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../api.html#module-ross.element">The “Element” class</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../api.html#module-ross.materials">The “Material” class</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../api.html">API Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../api.html#module-ross.materials">Material</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../contributing.html">Contributing</a><ul>
@@ -159,7 +157,6 @@
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="kn">import</span> <span class="nn">pytest</span>
 <span class="kn">import</span> <span class="nn">scipy.interpolate</span> <span class="k">as</span> <span class="nn">interpolate</span>
 <span class="kn">import</span> <span class="nn">xlrd</span>
 
@@ -198,7 +195,7 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">interpolated</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">coefficient</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
 
     <span class="k">def</span> <span class="nf">__eq__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
-        <span class="k">if</span> <span class="n">pytest</span><span class="o">.</span><span class="n">approx</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">[</span><span class="s2">&quot;coefficient&quot;</span><span class="p">])</span> <span class="o">==</span> <span class="n">other</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">[</span><span class="s2">&quot;coefficient&quot;</span><span class="p">]:</span>
+        <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">allclose</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">[</span><span class="s2">&quot;coefficient&quot;</span><span class="p">],</span><span class="n">other</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">[</span><span class="s2">&quot;coefficient&quot;</span><span class="p">]):</span>
             <span class="k">return</span> <span class="kc">True</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="k">return</span> <span class="kc">False</span>
@@ -591,42 +588,72 @@
 <span class="sd">        A bearing object.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">try</span><span class="p">:</span>
-            <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="n">file</span><span class="p">)</span>
+            <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="n">file</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
         <span class="k">except</span> <span class="ne">FileNotFoundError</span><span class="p">:</span>
             <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="n">file</span> <span class="o">+</span> <span class="s2">&quot; not found.&quot;</span><span class="p">)</span>
         <span class="k">except</span> <span class="n">xlrd</span><span class="o">.</span><span class="n">biffh</span><span class="o">.</span><span class="n">XLRDError</span><span class="p">:</span>
-            <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">file</span><span class="p">)</span>
+            <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">file</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+        <span class="n">header_index</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+        <span class="n">header_found</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">iterrows</span><span class="p">():</span>
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">row</span><span class="o">.</span><span class="n">size</span><span class="p">):</span>
+                <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="nb">str</span><span class="p">):</span>
+                    <span class="k">if</span> <span class="n">row</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="s1">&#39;kxx&#39;</span><span class="p">:</span>
+                        <span class="n">header_index</span> <span class="o">=</span> <span class="n">index</span>
+                        <span class="n">header_found</span> <span class="o">=</span> <span class="kc">True</span>
+                        <span class="k">break</span>
+            <span class="k">if</span> <span class="n">header_found</span><span class="p">:</span>
+                <span class="k">break</span>
+        <span class="k">if</span> <span class="n">header_index</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="s2">&quot;Could not find the header. Make sure the sheet has a header &quot;</span>
+                     <span class="s2">&quot;containing the names of the columns.&quot;</span><span class="p">)</span>
         <span class="k">try</span><span class="p">:</span>
-            <span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">iterrows</span><span class="p">():</span>
-                <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">row</span><span class="o">.</span><span class="n">size</span><span class="p">):</span>
-                    <span class="k">if</span> <span class="n">pd</span><span class="o">.</span><span class="n">isna</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="n">i</span><span class="p">]):</span>
-                        <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span>
-                            <span class="s2">&quot;NaN found in row &quot;</span>
-                            <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">index</span><span class="p">)</span>
-                            <span class="o">+</span> <span class="s2">&quot; column &quot;</span>
-                            <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
-                            <span class="o">+</span> <span class="s2">&quot;.</span><span class="se">\n</span><span class="s2">&quot;</span>
-                            <span class="s2">&quot;It will be replaced with zero.&quot;</span>
-                        <span class="p">)</span>
-                        <span class="n">row</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
-            <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span>
-                <span class="n">n</span><span class="p">,</span>
-                <span class="n">kxx</span><span class="o">=</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;kxx&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">(),</span>
-                <span class="n">cxx</span><span class="o">=</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;cxx&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">(),</span>
-                <span class="n">kyy</span><span class="o">=</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;kyy&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">(),</span>
-                <span class="n">kxy</span><span class="o">=</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;kxy&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">(),</span>
-                <span class="n">kyx</span><span class="o">=</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;kyx&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">(),</span>
-                <span class="n">cyy</span><span class="o">=</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;cyy&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">(),</span>
-                <span class="n">cxy</span><span class="o">=</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;cxy&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">(),</span>
-                <span class="n">cyx</span><span class="o">=</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;cyx&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">(),</span>
-                <span class="n">w</span><span class="o">=</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;w&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">(),</span>
-            <span class="p">)</span>
-        <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
-            <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span>
-                <span class="s2">&quot;One or more column names did not match the expected. &quot;</span>
-                <span class="s2">&quot;Make sure the table header contains the parameters for the &quot;</span>
-                <span class="s2">&quot;BearingElement class.&quot;</span>
-            <span class="p">)</span></div>
+            <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="n">file</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="n">header_index</span><span class="p">)</span>
+        <span class="k">except</span> <span class="n">xlrd</span><span class="o">.</span><span class="n">biffh</span><span class="o">.</span><span class="n">XLRDError</span><span class="p">:</span>
+            <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">file</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="n">header_index</span><span class="p">)</span>
+        <span class="n">first_data_row</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+        <span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">iterrows</span><span class="p">():</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="nb">int</span><span class="p">)</span> <span class="ow">or</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="nb">float</span><span class="p">):</span>
+                <span class="n">first_data_row</span> <span class="o">=</span> <span class="n">index</span>
+                <span class="k">break</span>
+        <span class="k">if</span> <span class="n">first_data_row</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="s2">&quot;Could not find the data. Make sure you have at least one row containing &quot;</span>
+                     <span class="s2">&quot;data below the header.&quot;</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">first_data_row</span><span class="p">):</span>
+            <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+        <span class="n">nan_found</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">iterrows</span><span class="p">():</span>
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">first_data_row</span><span class="p">,</span> <span class="n">row</span><span class="o">.</span><span class="n">size</span><span class="p">):</span>
+                <span class="k">if</span> <span class="n">pd</span><span class="o">.</span><span class="n">isna</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="n">i</span><span class="p">]):</span>
+                    <span class="n">nan_found</span> <span class="o">=</span> <span class="kc">True</span>
+                    <span class="n">row</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">if</span> <span class="n">nan_found</span><span class="p">:</span>
+            <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s2">&quot;One or more NaN found. They were replaced with zeros.&quot;</span><span class="p">)</span>
+        <span class="n">parameters</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">possible_names</span> <span class="o">=</span> <span class="p">[[</span><span class="s2">&quot;kxx&quot;</span><span class="p">,</span> <span class="s2">&quot;Kxx&quot;</span><span class="p">,</span> <span class="s2">&quot;KXX&quot;</span><span class="p">],</span> <span class="p">[</span><span class="s2">&quot;cxx&quot;</span><span class="p">,</span> <span class="s2">&quot;Cxx&quot;</span><span class="p">,</span> <span class="s2">&quot;CXX&quot;</span><span class="p">],</span> <span class="p">[</span><span class="s2">&quot;kyy&quot;</span><span class="p">,</span> <span class="s2">&quot;Kyy&quot;</span><span class="p">,</span> <span class="s2">&quot;KYY&quot;</span><span class="p">],</span>
+                          <span class="p">[</span><span class="s2">&quot;kxy&quot;</span><span class="p">,</span> <span class="s2">&quot;Kxy&quot;</span><span class="p">,</span> <span class="s2">&quot;KXY&quot;</span><span class="p">],</span> <span class="p">[</span><span class="s2">&quot;kyx&quot;</span><span class="p">,</span> <span class="s2">&quot;Kyx&quot;</span><span class="p">,</span> <span class="s2">&quot;KYX&quot;</span><span class="p">],</span> <span class="p">[</span><span class="s2">&quot;cyy&quot;</span><span class="p">,</span> <span class="s2">&quot;Cyy&quot;</span><span class="p">,</span> <span class="s2">&quot;CYY&quot;</span><span class="p">],</span>
+                          <span class="p">[</span><span class="s2">&quot;cxy&quot;</span><span class="p">,</span> <span class="s2">&quot;Cxy&quot;</span><span class="p">,</span> <span class="s2">&quot;CXY&quot;</span><span class="p">],</span> <span class="p">[</span><span class="s2">&quot;cyx&quot;</span><span class="p">,</span> <span class="s2">&quot;Cyx&quot;</span><span class="p">,</span> <span class="s2">&quot;CYX&quot;</span><span class="p">],</span>
+                          <span class="p">[</span><span class="s2">&quot;w&quot;</span><span class="p">,</span> <span class="s2">&quot;W&quot;</span><span class="p">,</span> <span class="s2">&quot;speed&quot;</span><span class="p">,</span> <span class="s2">&quot;Speed&quot;</span><span class="p">,</span> <span class="s2">&quot;SPEED&quot;</span><span class="p">]]</span>
+        <span class="k">for</span> <span class="n">name_group</span> <span class="ow">in</span> <span class="n">possible_names</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">name_group</span><span class="p">:</span>
+                <span class="k">try</span><span class="p">:</span>
+                    <span class="n">parameter</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">name</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+                    <span class="n">parameters</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">parameter</span><span class="p">)</span>
+                    <span class="k">break</span>
+                <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
+                    <span class="k">continue</span>
+        <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span>
+            <span class="n">n</span><span class="p">,</span>
+            <span class="n">kxx</span><span class="o">=</span><span class="n">parameters</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+            <span class="n">cxx</span><span class="o">=</span><span class="n">parameters</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
+            <span class="n">kyy</span><span class="o">=</span><span class="n">parameters</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span>
+            <span class="n">kxy</span><span class="o">=</span><span class="n">parameters</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span>
+            <span class="n">kyx</span><span class="o">=</span><span class="n">parameters</span><span class="p">[</span><span class="mi">4</span><span class="p">],</span>
+            <span class="n">cyy</span><span class="o">=</span><span class="n">parameters</span><span class="p">[</span><span class="mi">5</span><span class="p">],</span>
+            <span class="n">cxy</span><span class="o">=</span><span class="n">parameters</span><span class="p">[</span><span class="mi">6</span><span class="p">],</span>
+            <span class="n">cyx</span><span class="o">=</span><span class="n">parameters</span><span class="p">[</span><span class="mi">7</span><span class="p">],</span>
+            <span class="n">w</span><span class="o">=</span><span class="n">parameters</span><span class="p">[</span><span class="mi">8</span><span class="p">],</span>
+        <span class="p">)</span></div>
 
 <div class="viewcode-block" id="BearingElement.from_fluid_flow"><a class="viewcode-back" href="../../api.html#ross.bearing_seal_element.BearingElement.from_fluid_flow">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">from_fluid_flow</span><span class="p">(</span>

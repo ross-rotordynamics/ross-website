@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta charset="utf-8" />
-    <title>Example 1 - Number of DOF influence in Natural Frequency &#8212; ross 0.1.1 documentation</title>
+    <title>Example 1 - Number of DOF influence in Natural Frequency &#8212; ross 0.1.2 documentation</title>
     <link rel="stylesheet" href="../_static/bootstrap-sphinx.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx_copybutton.css" />
@@ -42,7 +42,7 @@
         </button>
         <a class="navbar-brand" href="../index.html"><span><img src="../_static/ross-logo.svg"></span>
           ross</a>
-        <span class="navbar-text navbar-version pull-left"><b>0.1.1</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>0.1.2</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -69,13 +69,13 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="tutorial.html">Tutorial</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="tutorial.html#materials">Materials</a></li>
-<li class="toctree-l2"><a class="reference internal" href="tutorial.html#element">Element</a></li>
-<li class="toctree-l2"><a class="reference internal" href="tutorial.html#shaftelement">ShaftElement</a></li>
-<li class="toctree-l2"><a class="reference internal" href="tutorial.html#diskelement">DiskElement</a></li>
-<li class="toctree-l2"><a class="reference internal" href="tutorial.html#bearingelement">BearingElement</a></li>
-<li class="toctree-l2"><a class="reference internal" href="tutorial.html#rotor">Rotor</a></li>
-<li class="toctree-l2"><a class="reference internal" href="tutorial.html#obtaining-results">Obtaining results</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorial.html#Materials">Materials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorial.html#Element">Element</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorial.html#ShaftElement">ShaftElement</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorial.html#DiskElement">DiskElement</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorial.html#BearingElement">BearingElement</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorial.html#Rotor">Rotor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorial.html#Obtaining-results">Obtaining results</a></li>
 </ul>
 </li>
 <li class="toctree-l1 current"><a class="reference internal" href="../examples.html">Examples</a><ul class="current">
@@ -90,10 +90,8 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../download.html">Download notebooks</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../api.html">API reference</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../api.html#module-ross.rotor_assembly">The Rotor module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../api.html#module-ross.element">The “Element” class</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../api.html#module-ross.materials">The “Material” class</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api.html">API Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../api.html#module-ross.materials">Material</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../contributing.html">Contributing</a><ul>
@@ -135,7 +133,7 @@
             
               <li class="hidden-sm">
 <div id="sourcelink">
-  <a href="../_sources/examples/example_05_08_01.rst.txt"
+  <a href="../_sources/examples/example_05_08_01.ipynb.txt"
      rel="nofollow">Source</a>
 </div></li>
             
@@ -159,18 +157,216 @@
   <div class="row">
     <div class="body col-md-12 content" role="main">
       
-  <div class="section" id="example-1-number-of-dof-influence-in-natural-frequency">
-<h1>Example 1 - Number of DOF influence in Natural Frequency<a class="headerlink" href="#example-1-number-of-dof-influence-in-natural-frequency" title="Permalink to this headline">¶</a></h1>
-<p>In this example, we use the rotor seen in Example 5.8.1 from ‘Dynamics
-of Rotating Machinery’ by MI Friswell, JET Penny, SD Garvey &amp; AW Lees,
-published by Cambridge University Press, 2010. Which is a symmetric
-rotor with a single disk in the center. The shaft is hollow with an
-outside diameter of <img class="math" src="../_images/math/6780993d8c9a2d1a090bba3977041daeae3ccc88.png" alt="80 mm"/>, an inside diameter of <img class="math" src="../_images/math/d5405f3f1250c15ea4630db1b3e6b94f7ed77151.png" alt="30 mm"/>,
-and a length of <img class="math" src="../_images/math/deea17230fc3ad9173834e1002206e8e32951040.png" alt="1.2 m"/> and it is modeled using Euler-Bernoulli
-elements, with no internal shaft damping. The bearings are rigid and
-short and the disk has a diameter of <img class="math" src="../_images/math/ef783044dcf8e2b77019aa8e64cb2690611c76fb.png" alt="400 mm"/> and a thickness of
-<img class="math" src="../_images/math/6780993d8c9a2d1a090bba3977041daeae3ccc88.png" alt="80 mm"/>. The disk and shaft elements are made of steel.</p>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+  
+<style>
+/* CSS for nbsphinx extension */
+
+/* remove conflicting styling from Sphinx themes */
+div.nbinput,
+div.nbinput div.prompt,
+div.nbinput div.input_area,
+div.nbinput div[class*=highlight],
+div.nbinput div[class*=highlight] pre,
+div.nboutput,
+div.nbinput div.prompt,
+div.nbinput div.output_area,
+div.nboutput div[class*=highlight],
+div.nboutput div[class*=highlight] pre {
+    background: none;
+    border: none;
+    padding: 0 0;
+    margin: 0;
+    box-shadow: none;
+}
+
+/* avoid gaps between output lines */
+div.nboutput div[class*=highlight] pre {
+    line-height: normal;
+}
+
+/* input/output containers */
+div.nbinput,
+div.nboutput {
+    display: -webkit-flex;
+    display: flex;
+    align-items: flex-start;
+    margin: 0;
+    width: 100%;
+}
+@media (max-width: 540px) {
+    div.nbinput,
+    div.nboutput {
+        flex-direction: column;
+    }
+}
+
+/* input container */
+div.nbinput {
+    padding-top: 5px;
+}
+
+/* last container */
+div.nblast {
+    padding-bottom: 5px;
+}
+
+/* input prompt */
+div.nbinput div.prompt pre {
+    color: #307FC1;
+}
+
+/* output prompt */
+div.nboutput div.prompt pre {
+    color: #BF5B3D;
+}
+
+/* all prompts */
+div.nbinput div.prompt,
+div.nboutput div.prompt {
+    min-width: 7ex;
+    padding-top: 0.4em;
+    padding-right: 0.4em;
+    text-align: right;
+    flex: 0;
+}
+@media (max-width: 540px) {
+    div.nbinput div.prompt,
+    div.nboutput div.prompt {
+        text-align: left;
+        padding: 0.4em;
+    }
+    div.nboutput div.prompt.empty {
+        padding: 0;
+    }
+}
+
+/* disable scrollbars on prompts */
+div.nbinput div.prompt pre,
+div.nboutput div.prompt pre {
+    overflow: hidden;
+}
+
+/* input/output area */
+div.nbinput div.input_area,
+div.nboutput div.output_area {
+    padding: 0.4em;
+    -webkit-flex: 1;
+    flex: 1;
+    overflow: auto;
+}
+@media (max-width: 540px) {
+    div.nbinput div.input_area,
+    div.nboutput div.output_area {
+        width: 100%;
+    }
+}
+
+/* input area */
+div.nbinput div.input_area {
+    border: 1px solid #e0e0e0;
+    border-radius: 2px;
+    background: #f5f5f5;
+}
+
+/* override MathJax center alignment in output cells */
+div.nboutput div[class*=MathJax] {
+    text-align: left !important;
+}
+
+/* override sphinx.ext.imgmath center alignment in output cells */
+div.nboutput div.math p {
+    text-align: left;
+}
+
+/* standard error */
+div.nboutput div.output_area.stderr {
+    background: #fdd;
+}
+
+/* ANSI colors */
+.ansi-black-fg { color: #3E424D; }
+.ansi-black-bg { background-color: #3E424D; }
+.ansi-black-intense-fg { color: #282C36; }
+.ansi-black-intense-bg { background-color: #282C36; }
+.ansi-red-fg { color: #E75C58; }
+.ansi-red-bg { background-color: #E75C58; }
+.ansi-red-intense-fg { color: #B22B31; }
+.ansi-red-intense-bg { background-color: #B22B31; }
+.ansi-green-fg { color: #00A250; }
+.ansi-green-bg { background-color: #00A250; }
+.ansi-green-intense-fg { color: #007427; }
+.ansi-green-intense-bg { background-color: #007427; }
+.ansi-yellow-fg { color: #DDB62B; }
+.ansi-yellow-bg { background-color: #DDB62B; }
+.ansi-yellow-intense-fg { color: #B27D12; }
+.ansi-yellow-intense-bg { background-color: #B27D12; }
+.ansi-blue-fg { color: #208FFB; }
+.ansi-blue-bg { background-color: #208FFB; }
+.ansi-blue-intense-fg { color: #0065CA; }
+.ansi-blue-intense-bg { background-color: #0065CA; }
+.ansi-magenta-fg { color: #D160C4; }
+.ansi-magenta-bg { background-color: #D160C4; }
+.ansi-magenta-intense-fg { color: #A03196; }
+.ansi-magenta-intense-bg { background-color: #A03196; }
+.ansi-cyan-fg { color: #60C6C8; }
+.ansi-cyan-bg { background-color: #60C6C8; }
+.ansi-cyan-intense-fg { color: #258F8F; }
+.ansi-cyan-intense-bg { background-color: #258F8F; }
+.ansi-white-fg { color: #C5C1B4; }
+.ansi-white-bg { background-color: #C5C1B4; }
+.ansi-white-intense-fg { color: #A1A6B2; }
+.ansi-white-intense-bg { background-color: #A1A6B2; }
+
+.ansi-default-inverse-fg { color: #FFFFFF; }
+.ansi-default-inverse-bg { background-color: #000000; }
+
+.ansi-bold { font-weight: bold; }
+.ansi-underline { text-decoration: underline; }
+
+/* Some additional styling taken form the Jupyter notebook CSS */
+div.rendered_html table {
+  border: none;
+  border-collapse: collapse;
+  border-spacing: 0;
+  color: black;
+  font-size: 12px;
+  table-layout: fixed;
+}
+div.rendered_html thead {
+  border-bottom: 1px solid black;
+  vertical-align: bottom;
+}
+div.rendered_html tr,
+div.rendered_html th,
+div.rendered_html td {
+  text-align: right;
+  vertical-align: middle;
+  padding: 0.5em 0.5em;
+  line-height: normal;
+  white-space: normal;
+  max-width: none;
+  border: none;
+}
+div.rendered_html th {
+  font-weight: bold;
+}
+div.rendered_html tbody tr:nth-child(odd) {
+  background: #f5f5f5;
+}
+div.rendered_html tbody tr:hover {
+  background: rgba(66, 165, 245, 0.2);
+}
+</style>
+<div class="section" id="Example-1---Number-of-DOF-influence-in-Natural-Frequency">
+<h1>Example 1 - Number of DOF influence in Natural Frequency<a class="headerlink" href="#Example-1---Number-of-DOF-influence-in-Natural-Frequency" title="Permalink to this headline">¶</a></h1>
+<p>In this example, we use the rotor seen in Example 5.8.1 from ‘Dynamics of Rotating Machinery’ by MI Friswell, JET Penny, SD Garvey &amp; AW Lees, published by Cambridge University Press, 2010. Which is a symmetric rotor with a single disk in the center. The shaft is hollow with an outside diameter of <img class="math" src="../_images/math/6780993d8c9a2d1a090bba3977041daeae3ccc88.png" alt="80 mm"/>, an inside diameter of <img class="math" src="../_images/math/d5405f3f1250c15ea4630db1b3e6b94f7ed77151.png" alt="30 mm"/>, and a length of <img class="math" src="../_images/math/deea17230fc3ad9173834e1002206e8e32951040.png" alt="1.2 m"/> and it is modeled using Euler-Bernoulli elements, with no internal shaft damping. The bearings are rigid and short and
+the disk has a diameter of <img class="math" src="../_images/math/ef783044dcf8e2b77019aa8e64cb2690611c76fb.png" alt="400 mm"/> and a thickness of <img class="math" src="../_images/math/6780993d8c9a2d1a090bba3977041daeae3ccc88.png" alt="80 mm"/>. The disk and shaft elements are made of steel.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="kn">import</span> <span class="nn">ross</span> <span class="k">as</span> <span class="nn">rs</span>
 <span class="kn">from</span> <span class="nn">bokeh.io</span> <span class="k">import</span> <span class="n">output_notebook</span>
@@ -178,16 +374,339 @@ short and the disk has a diameter of <img class="math" src="../_images/math/ef78
 <span class="kn">from</span> <span class="nn">bokeh.io.showing</span> <span class="k">import</span> <span class="n">show</span>
 </pre></div>
 </div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area rendered_html docutils container">
 <div class="bk-root">
     <a href="https://bokeh.pydata.org" target="_blank" class="bk-logo bk-logo-small bk-logo-notebook"></a>
     <span id="1001">Loading BokehJS ...</span>
-</div><div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">steel</span> <span class="o">=</span> <span class="n">rs</span><span class="o">.</span><span class="n">materials</span><span class="o">.</span><span class="n">steel</span>
+</div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div></div>
+<script type="text/javascript">
+var element = document.currentScript.previousSibling.previousSibling;
+
+(function(root) {
+  function now() {
+    return new Date();
+  }
+
+  var force = true;
+
+  if (typeof root._bokeh_onload_callbacks === "undefined" || force === true) {
+    root._bokeh_onload_callbacks = [];
+    root._bokeh_is_loading = undefined;
+  }
+
+  var JS_MIME_TYPE = 'application/javascript';
+  var HTML_MIME_TYPE = 'text/html';
+  var EXEC_MIME_TYPE = 'application/vnd.bokehjs_exec.v0+json';
+  var CLASS_NAME = 'output_bokeh rendered_html';
+
+  /**
+   * Render data to the DOM node
+   */
+  function render(props, node) {
+    var script = document.createElement("script");
+    node.appendChild(script);
+  }
+
+  /**
+   * Handle when an output is cleared or removed
+   */
+  function handleClearOutput(event, handle) {
+    var cell = handle.cell;
+
+    var id = cell.output_area._bokeh_element_id;
+    var server_id = cell.output_area._bokeh_server_id;
+    // Clean up Bokeh references
+    if (id != null && id in Bokeh.index) {
+      Bokeh.index[id].model.document.clear();
+      delete Bokeh.index[id];
+    }
+
+    if (server_id !== undefined) {
+      // Clean up Bokeh references
+      var cmd = "from bokeh.io.state import curstate; print(curstate().uuid_to_server['" + server_id + "'].get_sessions()[0].document.roots[0]._id)";
+      cell.notebook.kernel.execute(cmd, {
+        iopub: {
+          output: function(msg) {
+            var id = msg.content.text.trim();
+            if (id in Bokeh.index) {
+              Bokeh.index[id].model.document.clear();
+              delete Bokeh.index[id];
+            }
+          }
+        }
+      });
+      // Destroy server and session
+      var cmd = "import bokeh.io.notebook as ion; ion.destroy_server('" + server_id + "')";
+      cell.notebook.kernel.execute(cmd);
+    }
+  }
+
+  /**
+   * Handle when a new output is added
+   */
+  function handleAddOutput(event, handle) {
+    var output_area = handle.output_area;
+    var output = handle.output;
+
+    // limit handleAddOutput to display_data with EXEC_MIME_TYPE content only
+    if ((output.output_type != "display_data") || (!output.data.hasOwnProperty(EXEC_MIME_TYPE))) {
+      return
+    }
+
+    var toinsert = output_area.element.find("." + CLASS_NAME.split(' ')[0]);
+
+    if (output.metadata[EXEC_MIME_TYPE]["id"] !== undefined) {
+      toinsert[toinsert.length - 1].firstChild.textContent = output.data[JS_MIME_TYPE];
+      // store reference to embed id on output_area
+      output_area._bokeh_element_id = output.metadata[EXEC_MIME_TYPE]["id"];
+    }
+    if (output.metadata[EXEC_MIME_TYPE]["server_id"] !== undefined) {
+      var bk_div = document.createElement("div");
+      bk_div.innerHTML = output.data[HTML_MIME_TYPE];
+      var script_attrs = bk_div.children[0].attributes;
+      for (var i = 0; i < script_attrs.length; i++) {
+        toinsert[toinsert.length - 1].firstChild.setAttribute(script_attrs[i].name, script_attrs[i].value);
+      }
+      // store reference to server id on output_area
+      output_area._bokeh_server_id = output.metadata[EXEC_MIME_TYPE]["server_id"];
+    }
+  }
+
+  function register_renderer(events, OutputArea) {
+
+    function append_mime(data, metadata, element) {
+      // create a DOM node to render to
+      var toinsert = this.create_output_subarea(
+        metadata,
+        CLASS_NAME,
+        EXEC_MIME_TYPE
+      );
+      this.keyboard_manager.register_events(toinsert);
+      // Render to node
+      var props = {data: data, metadata: metadata[EXEC_MIME_TYPE]};
+      render(props, toinsert[toinsert.length - 1]);
+      element.append(toinsert);
+      return toinsert
+    }
+
+    /* Handle when an output is cleared or removed */
+    events.on('clear_output.CodeCell', handleClearOutput);
+    events.on('delete.Cell', handleClearOutput);
+
+    /* Handle when a new output is added */
+    events.on('output_added.OutputArea', handleAddOutput);
+
+    /**
+     * Register the mime type and append_mime function with output_area
+     */
+    OutputArea.prototype.register_mime_type(EXEC_MIME_TYPE, append_mime, {
+      /* Is output safe? */
+      safe: true,
+      /* Index of renderer in `output_area.display_order` */
+      index: 0
+    });
+  }
+
+  // register the mime type if in Jupyter Notebook environment and previously unregistered
+  if (root.Jupyter !== undefined) {
+    var events = require('base/js/events');
+    var OutputArea = require('notebook/js/outputarea').OutputArea;
+
+    if (OutputArea.prototype.mime_types().indexOf(EXEC_MIME_TYPE) == -1) {
+      register_renderer(events, OutputArea);
+    }
+  }
+
+
+  if (typeof (root._bokeh_timeout) === "undefined" || force === true) {
+    root._bokeh_timeout = Date.now() + 5000;
+    root._bokeh_failed_load = false;
+  }
+
+  var NB_LOAD_WARNING = {'data': {'text/html':
+     "<div style='background-color: #fdd'>\n"+
+     "<p>\n"+
+     "BokehJS does not appear to have successfully loaded. If loading BokehJS from CDN, this \n"+
+     "may be due to a slow or bad network connection. Possible fixes:\n"+
+     "</p>\n"+
+     "<ul>\n"+
+     "<li>re-rerun `output_notebook()` to attempt to load from CDN again, or</li>\n"+
+     "<li>use INLINE resources instead, as so:</li>\n"+
+     "</ul>\n"+
+     "<code>\n"+
+     "from bokeh.resources import INLINE\n"+
+     "output_notebook(resources=INLINE)\n"+
+     "</code>\n"+
+     "</div>"}};
+
+  function display_loaded() {
+    var el = document.getElementById("1001");
+    if (el != null) {
+      el.textContent = "BokehJS is loading...";
+    }
+    if (root.Bokeh !== undefined) {
+      if (el != null) {
+        el.textContent = "BokehJS " + root.Bokeh.version + " successfully loaded.";
+      }
+    } else if (Date.now() < root._bokeh_timeout) {
+      setTimeout(display_loaded, 100)
+    }
+  }
+
+
+  function run_callbacks() {
+    try {
+      root._bokeh_onload_callbacks.forEach(function(callback) {
+        if (callback != null)
+          callback();
+      });
+    } finally {
+      delete root._bokeh_onload_callbacks
+    }
+    console.debug("Bokeh: all callbacks have finished");
+  }
+
+  function load_libs(css_urls, js_urls, callback) {
+    if (css_urls == null) css_urls = [];
+    if (js_urls == null) js_urls = [];
+
+    root._bokeh_onload_callbacks.push(callback);
+    if (root._bokeh_is_loading > 0) {
+      console.debug("Bokeh: BokehJS is being loaded, scheduling callback at", now());
+      return null;
+    }
+    if (js_urls == null || js_urls.length === 0) {
+      run_callbacks();
+      return null;
+    }
+    console.debug("Bokeh: BokehJS not loaded, scheduling load and callback at", now());
+    root._bokeh_is_loading = css_urls.length + js_urls.length;
+
+    function on_load() {
+      root._bokeh_is_loading--;
+      if (root._bokeh_is_loading === 0) {
+        console.debug("Bokeh: all BokehJS libraries/stylesheets loaded");
+        run_callbacks()
+      }
+    }
+
+    function on_error() {
+      console.error("failed to load " + url);
+    }
+
+    for (var i = 0; i < css_urls.length; i++) {
+      var url = css_urls[i];
+      const element = document.createElement("link");
+      element.onload = on_load;
+      element.onerror = on_error;
+      element.rel = "stylesheet";
+      element.type = "text/css";
+      element.href = url;
+      console.debug("Bokeh: injecting link tag for BokehJS stylesheet: ", url);
+      document.body.appendChild(element);
+    }
+
+    for (var i = 0; i < js_urls.length; i++) {
+      var url = js_urls[i];
+      var element = document.createElement('script');
+      element.onload = on_load;
+      element.onerror = on_error;
+      element.async = false;
+      element.src = url;
+      console.debug("Bokeh: injecting script tag for BokehJS library: ", url);
+      document.head.appendChild(element);
+    }
+  };var element = document.getElementById("1001");
+  if (element == null) {
+    console.error("Bokeh: ERROR: autoload.js configured with elementid '1001' but no matching script tag was found. ")
+    return false;
+  }
+
+  function inject_raw_css(css) {
+    const element = document.createElement("style");
+    element.appendChild(document.createTextNode(css));
+    document.body.appendChild(element);
+  }
+
+  var js_urls = ["https://cdn.pydata.org/bokeh/release/bokeh-1.2.0.min.js", "https://cdn.pydata.org/bokeh/release/bokeh-widgets-1.2.0.min.js", "https://cdn.pydata.org/bokeh/release/bokeh-tables-1.2.0.min.js", "https://cdn.pydata.org/bokeh/release/bokeh-gl-1.2.0.min.js"];
+  var css_urls = ["https://cdn.pydata.org/bokeh/release/bokeh-1.2.0.min.css", "https://cdn.pydata.org/bokeh/release/bokeh-widgets-1.2.0.min.css", "https://cdn.pydata.org/bokeh/release/bokeh-tables-1.2.0.min.css"];
+
+  var inline_js = [
+    function(Bokeh) {
+      Bokeh.set_log_level("info");
+    },
+
+    function(Bokeh) {
+
+    },
+    function(Bokeh) {} // ensure no trailing comma for IE
+  ];
+
+  function run_inline_js() {
+
+    if ((root.Bokeh !== undefined) || (force === true)) {
+      for (var i = 0; i < inline_js.length; i++) {
+        inline_js[i].call(root, root.Bokeh);
+      }if (force === true) {
+        display_loaded();
+      }} else if (Date.now() < root._bokeh_timeout) {
+      setTimeout(run_inline_js, 100);
+    } else if (!root._bokeh_failed_load) {
+      console.log("Bokeh: BokehJS failed to load within specified timeout.");
+      root._bokeh_failed_load = true;
+    } else if (force !== true) {
+      var cell = $(document.getElementById("1001")).parents('.cell').data().cell;
+      cell.output_area.append_execute_result(NB_LOAD_WARNING)
+    }
+
+  }
+
+  if (root._bokeh_is_loading === 0) {
+    console.debug("Bokeh: BokehJS loaded, going straight to plotting");
+    run_inline_js();
+  } else {
+    load_libs(css_urls, js_urls, function() {
+      console.debug("Bokeh: BokehJS plotting callback run at", now());
+      run_inline_js();
+    });
+  }
+}(window));
+</script></div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
 </pre></div>
 </div>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">number_of_elements</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">14</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">18</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span> <span class="mi">60</span><span class="p">]</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">steel</span> <span class="o">=</span> <span class="n">rs</span><span class="o">.</span><span class="n">materials</span><span class="o">.</span><span class="n">steel</span>
 </pre></div>
 </div>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">create_rotor</span><span class="p">(</span><span class="n">n_el</span><span class="p">):</span>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">number_of_elements</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">14</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">18</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span> <span class="mi">60</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="k">def</span> <span class="nf">create_rotor</span><span class="p">(</span><span class="n">n_el</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Create example rotor with given number of elements.&quot;&quot;&quot;</span>
     <span class="n">shaft</span> <span class="o">=</span> <span class="p">[</span>
         <span class="n">rs</span><span class="o">.</span><span class="n">ShaftElement</span><span class="p">(</span><span class="mf">1.2</span><span class="o">/</span><span class="p">(</span><span class="n">n_el</span><span class="p">),</span> <span class="n">i_d</span><span class="o">=</span><span class="mf">0.03</span><span class="p">,</span> <span class="n">o_d</span><span class="o">=</span><span class="mf">0.08</span><span class="p">,</span> <span class="n">material</span><span class="o">=</span><span class="n">steel</span><span class="p">)</span>
@@ -207,7 +726,13 @@ short and the disk has a diameter of <img class="math" src="../_images/math/ef78
     <span class="k">return</span> <span class="n">rs</span><span class="o">.</span><span class="n">Rotor</span><span class="p">(</span><span class="n">shaft</span><span class="p">,</span> <span class="n">disks</span><span class="p">,</span> <span class="n">bearings</span><span class="p">,</span> <span class="n">sparse</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">analysis</span><span class="p">(</span><span class="n">speed</span><span class="p">):</span>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="k">def</span> <span class="nf">analysis</span><span class="p">(</span><span class="n">speed</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Perform convergence analysis for a given speed.&quot;&quot;&quot;</span>
     <span class="c1"># create reference rotor with 80 elements</span>
     <span class="n">rotor_80</span> <span class="o">=</span> <span class="n">create_rotor</span><span class="p">(</span><span class="mi">80</span><span class="p">)</span>
@@ -232,32 +757,113 @@ short and the disk has a diameter of <img class="math" src="../_images/math/ef78
         <span class="n">ax</span><span class="o">.</span><span class="n">semilogy</span><span class="p">(</span><span class="n">number_of_elements</span><span class="p">,</span> <span class="n">errors</span><span class="p">[:,</span> <span class="n">i</span><span class="p">])</span>
 </pre></div>
 </div>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">analysis</span><span class="p">(</span><span class="n">speed</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
 </pre></div>
 </div>
-<img alt="../_images/example_05_08_01_6_0.png" src="../_images/example_05_08_01_6_0.png" />
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">analysis</span><span class="p">(</span><span class="n">speed</span><span class="o">=</span><span class="mi">5000</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mi">30</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">analysis</span><span class="p">(</span><span class="n">speed</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 </pre></div>
 </div>
-<img alt="../_images/example_05_08_01_7_0.png" src="../_images/example_05_08_01_7_0.png" />
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rotor_10</span> <span class="o">=</span> <span class="n">create_rotor</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/examples_example_05_08_01_6_0.png" src="../_images/examples_example_05_08_01_6_0.png" />
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">analysis</span><span class="p">(</span><span class="n">speed</span><span class="o">=</span><span class="mi">5000</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mi">30</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/examples_example_05_08_01_7_0.png" src="../_images/examples_example_05_08_01_7_0.png" />
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">rotor_10</span> <span class="o">=</span> <span class="n">create_rotor</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
 <span class="n">rotor_10</span><span class="o">.</span><span class="n">w</span> <span class="o">=</span> <span class="mi">4000</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mi">30</span>
 <span class="n">rotor_10</span><span class="o">.</span><span class="n">run_modal</span><span class="p">()</span>
 </pre></div>
 </div>
+</div>
 <ul class="simple">
 <li><p>Campbell Diagram</p></li>
 </ul>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">speed_range</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">4000</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mi">30</span><span class="p">,</span><span class="mi">100</span><span class="p">)</span>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">speed_range</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">4000</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mi">30</span><span class="p">,</span><span class="mi">100</span><span class="p">)</span>
 <span class="n">campbell</span> <span class="o">=</span> <span class="n">rotor_10</span><span class="o">.</span><span class="n">run_campbell</span><span class="p">(</span><span class="n">speed_range</span><span class="p">)</span>
-<span class="n">campbell</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+<span class="n">show</span><span class="p">(</span><span class="n">campbell</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">plot_type</span><span class="o">=</span><span class="s1">&#39;bokeh&#39;</span><span class="p">))</span>
 </pre></div>
 </div>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>(&lt;Figure size 432x288 with 2 Axes&gt;,
- &lt;matplotlib.axes._subplots.AxesSubplot at 0x...&gt;)
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area rendered_html docutils container">
+<div class="bk-root" id="ccf08258-4561-4740-92dc-3e445eaede50" data-root-id="1649"></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div></div>
+<script type="text/javascript">
+var element = document.currentScript.previousSibling.previousSibling;
+(function(root) {
+  function embed_document(root) {
+
+  var docs_json = {"1f8252c4-062a-4da0-b37a-5a91bdaeee8c":{"roots":{"references":[{"attributes":{"below":[{"id":"1660","type":"LinearAxis"}],"center":[{"id":"1664","type":"Grid"},{"id":"1669","type":"Grid"},{"id":"1695","type":"Legend"}],"left":[{"id":"1665","type":"LinearAxis"}],"renderers":[{"id":"1687","type":"GlyphRenderer"},{"id":"1703","type":"GlyphRenderer"},{"id":"1719","type":"GlyphRenderer"},{"id":"1737","type":"GlyphRenderer"},{"id":"1757","type":"GlyphRenderer"},{"id":"1779","type":"GlyphRenderer"},{"id":"1803","type":"GlyphRenderer"},{"id":"1830","type":"GlyphRenderer"},{"id":"1858","type":"GlyphRenderer"},{"id":"1888","type":"GlyphRenderer"},{"id":"1920","type":"GlyphRenderer"},{"id":"1954","type":"GlyphRenderer"},{"id":"1990","type":"GlyphRenderer"},{"id":"2029","type":"GlyphRenderer"},{"id":"2069","type":"GlyphRenderer"},{"id":"2111","type":"GlyphRenderer"},{"id":"2155","type":"GlyphRenderer"},{"id":"2201","type":"GlyphRenderer"},{"id":"2247","type":"GlyphRenderer"}],"right":[{"id":"2292","type":"ColorBar"}],"title":{"id":"1650","type":"Title"},"toolbar":{"id":"1675","type":"Toolbar"},"x_range":{"id":"1652","type":"DataRange1d"},"x_scale":{"id":"1656","type":"LinearScale"},"y_range":{"id":"1654","type":"DataRange1d"},"y_scale":{"id":"1658","type":"LinearScale"}},"id":"1649","subtype":"Figure","type":"Plot"},{"attributes":{},"id":"1771","type":"UnionRenderers"},{"attributes":{},"id":"2192","type":"Selection"},{"attributes":{"fill_alpha":{"value":0.1},"fill_color":{"value":"#1f77b4"},"line_alpha":{"value":0.1},"line_color":{"value":"#1f77b4"},"marker":{"value":"triangle"},"size":{"units":"screen","value":9},"x":{"field":"x"},"y":{"field":"y"}},"id":"1777","type":"Scatter"},{"attributes":{},"id":"2193","type":"UnionRenderers"},{"attributes":{"fill_alpha":{"value":0.2},"fill_color":{"field":"color","transform":{"id":"1774","type":"LinearColorMapper"}},"line_alpha":{"value":0.2},"line_color":{"field":"color","transform":{"id":"1774","type":"LinearColorMapper"}},"marker":{"value":"triangle"},"size":{"units":"screen","value":9},"x":{"field":"x"},"y":{"field":"y"}},"id":"1778","type":"Scatter"},{"attributes":{"callback":null,"data":{"color":{"__ndarray__":"","dtype":"float64","shape":[0]},"x":{"__ndarray__":"","dtype":"float64","shape":[0]},"y":{"__ndarray__":"","dtype":"float64","shape":[0]}},"selected":{"id":"2288","type":"Selection"},"selection_policy":{"id":"2289","type":"UnionRenderers"}},"id":"2195","type":"ColumnDataSource"},{"attributes":{"data_source":{"id":"1773","type":"ColumnDataSource"},"glyph":{"id":"1776","type":"Scatter"},"hover_glyph":null,"muted_glyph":{"id":"1778","type":"Scatter"},"nonselection_glyph":{"id":"1777","type":"Scatter"},"selection_glyph":null,"view":{"id":"1780","type":"CDSView"}},"id":"1779","type":"GlyphRenderer"},{"attributes":{"high":9.845346187337482e-11,"low":-9.987520139123421e-11,"palette":["#440154","#440255","#440357","#450558","#45065A","#45085B","#46095C","#460B5E","#460C5F","#460E61","#470F62","#471163","#471265","#471466","#471567","#471669","#47186A","#48196B","#481A6C","#481C6E","#481D6F","#481E70","#482071","#482172","#482273","#482374","#472575","#472676","#472777","#472878","#472A79","#472B7A","#472C7B","#462D7C","#462F7C","#46307D","#46317E","#45327F","#45347F","#453580","#453681","#443781","#443982","#433A83","#433B83","#433C84","#423D84","#423E85","#424085","#414186","#414286","#404387","#404487","#3F4587","#3F4788","#3E4888","#3E4989","#3D4A89","#3D4B89","#3D4C89","#3C4D8A","#3C4E8A","#3B508A","#3B518A","#3A528B","#3A538B","#39548B","#39558B","#38568B","#38578C","#37588C","#37598C","#365A8C","#365B8C","#355C8C","#355D8C","#345E8D","#345F8D","#33608D","#33618D","#32628D","#32638D","#31648D","#31658D","#31668D","#30678D","#30688D","#2F698D","#2F6A8D","#2E6B8E","#2E6C8E","#2E6D8E","#2D6E8E","#2D6F8E","#2C708E","#2C718E","#2C728E","#2B738E","#2B748E","#2A758E","#2A768E","#2A778E","#29788E","#29798E","#287A8E","#287A8E","#287B8E","#277C8E","#277D8E","#277E8E","#267F8E","#26808E","#26818E","#25828E","#25838D","#24848D","#24858D","#24868D","#23878D","#23888D","#23898D","#22898D","#228A8D","#228B8D","#218C8D","#218D8C","#218E8C","#208F8C","#20908C","#20918C","#1F928C","#1F938B","#1F948B","#1F958B","#1F968B","#1E978A","#1E988A","#1E998A","#1E998A","#1E9A89","#1E9B89","#1E9C89","#1E9D88","#1E9E88","#1E9F88","#1EA087","#1FA187","#1FA286","#1FA386","#20A485","#20A585","#21A685","#21A784","#22A784","#23A883","#23A982","#24AA82","#25AB81","#26AC81","#27AD80","#28AE7F","#29AF7F","#2AB07E","#2BB17D","#2CB17D","#2EB27C","#2FB37B","#30B47A","#32B57A","#33B679","#35B778","#36B877","#38B976","#39B976","#3BBA75","#3DBB74","#3EBC73","#40BD72","#42BE71","#44BE70","#45BF6F","#47C06E","#49C16D","#4BC26C","#4DC26B","#4FC369","#51C468","#53C567","#55C666","#57C665","#59C764","#5BC862","#5EC961","#60C960","#62CA5F","#64CB5D","#67CC5C","#69CC5B","#6BCD59","#6DCE58","#70CE56","#72CF55","#74D054","#77D052","#79D151","#7CD24F","#7ED24E","#81D34C","#83D34B","#86D449","#88D547","#8BD546","#8DD644","#90D643","#92D741","#95D73F","#97D83E","#9AD83C","#9DD93A","#9FD938","#A2DA37","#A5DA35","#A7DB33","#AADB32","#ADDC30","#AFDC2E","#B2DD2C","#B5DD2B","#B7DD29","#BADE27","#BDDE26","#BFDF24","#C2DF22","#C5DF21","#C7E01F","#CAE01E","#CDE01D","#CFE11C","#D2E11B","#D4E11A","#D7E219","#DAE218","#DCE218","#DFE318","#E1E318","#E4E318","#E7E419","#E9E419","#ECE41A","#EEE51B","#F1E51C","#F3E51E","#F6E61F","#F8E621","#FAE622","#FDE724"]},"id":"1682","type":"LinearColorMapper"},{"attributes":{"source":{"id":"1773","type":"ColumnDataSource"}},"id":"1780","type":"CDSView"},{"attributes":{},"id":"2298","type":"BasicTickFormatter"},{"attributes":{"fill_color":{"field":"color","transform":{"id":"2196","type":"LinearColorMapper"}},"line_color":{"field":"color","transform":{"id":"2196","type":"LinearColorMapper"}},"marker":{"value":"inverted_triangle"},"size":{"units":"screen","value":9},"x":{"field":"x"},"y":{"field":"y"}},"id":"2198","type":"Scatter"},{"attributes":{},"id":"1794","type":"Selection"},{"attributes":{},"id":"1656","type":"LinearScale"},{"attributes":{"fill_alpha":{"value":0.1},"fill_color":{"value":"#1f77b4"},"line_alpha":{"value":0.1},"line_color":{"value":"#1f77b4"},"marker":{"value":"inverted_triangle"},"size":{"units":"screen","value":9},"x":{"field":"x"},"y":{"field":"y"}},"id":"2199","type":"Scatter"},{"attributes":{},"id":"1795","type":"UnionRenderers"},{"attributes":{"callback":null},"id":"1654","type":"DataRange1d"},{"attributes":{"axis_label":"Rotor speed (rad/s)","formatter":{"id":"1690","type":"BasicTickFormatter"},"ticker":{"id":"1661","type":"BasicTicker"}},"id":"1660","type":"LinearAxis"},{"attributes":{"callback":null,"data":{"color":{"__ndarray__":"","dtype":"float64","shape":[0]},"x":{"__ndarray__":"","dtype":"float64","shape":[0]},"y":{"__ndarray__":"","dtype":"float64","shape":[0]}},"selected":{"id":"1849","type":"Selection"},"selection_policy":{"id":"1850","type":"UnionRenderers"}},"id":"1797","type":"ColumnDataSource"},{"attributes":{"fill_alpha":{"value":0.2},"fill_color":{"field":"color","transform":{"id":"2196","type":"LinearColorMapper"}},"line_alpha":{"value":0.2},"line_color":{"field":"color","transform":{"id":"2196","type":"LinearColorMapper"}},"marker":{"value":"inverted_triangle"},"size":{"units":"screen","value":9},"x":{"field":"x"},"y":{"field":"y"}},"id":"2200","type":"Scatter"},{"attributes":{},"id":"1658","type":"LinearScale"},{"attributes":{"data_source":{"id":"2195","type":"ColumnDataSource"},"glyph":{"id":"2198","type":"Scatter"},"hover_glyph":null,"muted_glyph":{"id":"2200","type":"Scatter"},"nonselection_glyph":{"id":"2199","type":"Scatter"},"selection_glyph":null,"view":{"id":"2202","type":"CDSView"}},"id":"2201","type":"GlyphRenderer"},{"attributes":{"high":9.845346187337482e-11,"low":-9.987520139123421e-11,"palette":["#440154","#440255","#440357","#450558","#45065A","#45085B","#46095C","#460B5E","#460C5F","#460E61","#470F62","#471163","#471265","#471466","#471567","#471669","#47186A","#48196B","#481A6C","#481C6E","#481D6F","#481E70","#482071","#482172","#482273","#482374","#472575","#472676","#472777","#472878","#472A79","#472B7A","#472C7B","#462D7C","#462F7C","#46307D","#46317E","#45327F","#45347F","#453580","#453681","#443781","#443982","#433A83","#433B83","#433C84","#423D84","#423E85","#424085","#414186","#414286","#404387","#404487","#3F4587","#3F4788","#3E4888","#3E4989","#3D4A89","#3D4B89","#3D4C89","#3C4D8A","#3C4E8A","#3B508A","#3B518A","#3A528B","#3A538B","#39548B","#39558B","#38568B","#38578C","#37588C","#37598C","#365A8C","#365B8C","#355C8C","#355D8C","#345E8D","#345F8D","#33608D","#33618D","#32628D","#32638D","#31648D","#31658D","#31668D","#30678D","#30688D","#2F698D","#2F6A8D","#2E6B8E","#2E6C8E","#2E6D8E","#2D6E8E","#2D6F8E","#2C708E","#2C718E","#2C728E","#2B738E","#2B748E","#2A758E","#2A768E","#2A778E","#29788E","#29798E","#287A8E","#287A8E","#287B8E","#277C8E","#277D8E","#277E8E","#267F8E","#26808E","#26818E","#25828E","#25838D","#24848D","#24858D","#24868D","#23878D","#23888D","#23898D","#22898D","#228A8D","#228B8D","#218C8D","#218D8C","#218E8C","#208F8C","#20908C","#20918C","#1F928C","#1F938B","#1F948B","#1F958B","#1F968B","#1E978A","#1E988A","#1E998A","#1E998A","#1E9A89","#1E9B89","#1E9C89","#1E9D88","#1E9E88","#1E9F88","#1EA087","#1FA187","#1FA286","#1FA386","#20A485","#20A585","#21A685","#21A784","#22A784","#23A883","#23A982","#24AA82","#25AB81","#26AC81","#27AD80","#28AE7F","#29AF7F","#2AB07E","#2BB17D","#2CB17D","#2EB27C","#2FB37B","#30B47A","#32B57A","#33B679","#35B778","#36B877","#38B976","#39B976","#3BBA75","#3DBB74","#3EBC73","#40BD72","#42BE71","#44BE70","#45BF6F","#47C06E","#49C16D","#4BC26C","#4DC26B","#4FC369","#51C468","#53C567","#55C666","#57C665","#59C764","#5BC862","#5EC961","#60C960","#62CA5F","#64CB5D","#67CC5C","#69CC5B","#6BCD59","#6DCE58","#70CE56","#72CF55","#74D054","#77D052","#79D151","#7CD24F","#7ED24E","#81D34C","#83D34B","#86D449","#88D547","#8BD546","#8DD644","#90D643","#92D741","#95D73F","#97D83E","#9AD83C","#9DD93A","#9FD938","#A2DA37","#A5DA35","#A7DB33","#AADB32","#ADDC30","#AFDC2E","#B2DD2C","#B5DD2B","#B7DD29","#BADE27","#BDDE26","#BFDF24","#C2DF22","#C5DF21","#C7E01F","#CAE01E","#CDE01D","#CFE11C","#D2E11B","#D4E11A","#D7E219","#DAE218","#DCE218","#DFE318","#E1E318","#E4E318","#E7E419","#E9E419","#ECE41A","#EEE51B","#F1E51C","#F3E51E","#F6E61F","#F8E621","#FAE622","#FDE724"]},"id":"1825","type":"LinearColorMapper"},{"attributes":{"color_mapper":{"id":"2196","type":"LinearColorMapper"},"formatter":{"id":"2298","type":"BasicTickFormatter"},"location":[0,0],"ticker":{"id":"2299","type":"BasicTicker"},"title":"log dec","title_text_align":"center","title_text_font_style":"bold italic","width":8},"id":"2292","type":"ColorBar"},{"attributes":{"source":{"id":"1882","type":"ColumnDataSource"}},"id":"1889","type":"CDSView"},{"attributes":{"source":{"id":"2195","type":"ColumnDataSource"}},"id":"2202","type":"CDSView"},{"attributes":{"axis_label":"Damped natural frequencies (rad/s)","formatter":{"id":"1692","type":"BasicTickFormatter"},"ticker":{"id":"1666","type":"BasicTicker"}},"id":"1665","type":"LinearAxis"},{"attributes":{"fill_color":{"field":"color","transform":{"id":"1798","type":"LinearColorMapper"}},"line_color":{"field":"color","transform":{"id":"1798","type":"LinearColorMapper"}},"size":{"units":"screen","value":9},"x":{"field":"x"},"y":{"field":"y"}},"id":"1800","type":"Scatter"},{"attributes":{},"id":"2240","type":"Selection"},{"attributes":{"callback":null},"id":"1652","type":"DataRange1d"},{"attributes":{"fill_alpha":{"value":0.1},"fill_color":{"value":"#1f77b4"},"line_alpha":{"value":0.1},"line_color":{"value":"#1f77b4"},"size":{"units":"screen","value":9},"x":{"field":"x"},"y":{"field":"y"}},"id":"1801","type":"Scatter"},{"attributes":{},"id":"2241","type":"UnionRenderers"},{"attributes":{"fill_alpha":{"value":0.2},"fill_color":{"field":"color","transform":{"id":"1798","type":"LinearColorMapper"}},"line_alpha":{"value":0.2},"line_color":{"field":"color","transform":{"id":"1798","type":"LinearColorMapper"}},"size":{"units":"screen","value":9},"x":{"field":"x"},"y":{"field":"y"}},"id":"1802","type":"Scatter"},{"attributes":{"line_alpha":0.75,"line_color":"#1a1a1a","line_dash":[2,4,6,4],"line_width":3,"x":{"field":"x"},"y":{"field":"y"}},"id":"2244","type":"Line"},{"attributes":{"ticker":{"id":"1661","type":"BasicTicker"}},"id":"1664","type":"Grid"},{"attributes":{"data_source":{"id":"1797","type":"ColumnDataSource"},"glyph":{"id":"1800","type":"Scatter"},"hover_glyph":null,"muted_glyph":{"id":"1802","type":"Scatter"},"nonselection_glyph":{"id":"1801","type":"Scatter"},"selection_glyph":null,"view":{"id":"1804","type":"CDSView"}},"id":"1803","type":"GlyphRenderer"},{"attributes":{"line_alpha":0.1,"line_color":"#1f77b4","line_dash":[2,4,6,4],"line_width":3,"x":{"field":"x"},"y":{"field":"y"}},"id":"2245","type":"Line"},{"attributes":{"active_drag":"auto","active_inspect":"auto","active_multi":null,"active_scroll":"auto","active_tap":"auto","tools":[{"id":"1670","type":"PanTool"},{"id":"1671","type":"BoxZoomTool"},{"id":"1672","type":"WheelZoomTool"},{"id":"1673","type":"ResetTool"},{"id":"1674","type":"SaveTool"}]},"id":"1675","type":"Toolbar"},{"attributes":{"source":{"id":"1797","type":"ColumnDataSource"}},"id":"1804","type":"CDSView"},{"attributes":{"line_alpha":0.2,"line_color":"#1a1a1a","line_dash":[2,4,6,4],"line_width":3,"x":{"field":"x"},"y":{"field":"y"}},"id":"2246","type":"Line"},{"attributes":{},"id":"1670","type":"PanTool"},{"attributes":{"data_source":{"id":"2243","type":"ColumnDataSource"},"glyph":{"id":"2244","type":"Line"},"hover_glyph":null,"muted_glyph":{"id":"2246","type":"Line"},"nonselection_glyph":{"id":"2245","type":"Line"},"selection_glyph":null,"view":{"id":"2248","type":"CDSView"}},"id":"2247","type":"GlyphRenderer"},{"attributes":{"callback":null,"data":{"x":{"__ndarray__":"AAAAAAAAAAABkSPMpewQQAGRI8yl7CBAglk1svhiKUABkSPMpewwQEF1LD/PJzVAglk1svhiOUDCPT4lIp49QAGRI8yl7EBAIQOohToKQ0BBdSw/zydFQGHnsPhjRUdAglk1svhiSUCiy7lrjYBLQMI9PiUink1A4q/C3ra7T0ABkSPMpexQQBHK5Shw+1FAIQOohToKU0AxPGriBBlUQEF1LD/PJ1VAUa7um5k2VkBh57D4Y0VXQHEgc1UuVFhAglk1svhiWUCSkvcOw3FaQKLLuWuNgFtAsgR8yFePXEDCPT4lIp5dQNJ2AILsrF5A4q/C3ra7X0B5dMKdQGVgQAGRI8yl7GBAia2E+gp0YUARyuUocPthQJnmRlfVgmJAIQOohToKY0CpHwm0n5FjQDE8auIEGWRAuVjLEGqgZEBBdSw/zydlQMmRjW00r2VAUa7um5k2ZkDZyk/K/r1mQGHnsPhjRWdA6QMSJ8nMZ0BxIHNVLlRoQPk81IOT22hAglk1svhiaUAKdpbgXeppQJKS9w7DcWpAGq9YPSj5akCiy7lrjYBrQCroGpryB2xAsgR8yFePbEA6Id32vBZtQMI9PiUinm1ASlqfU4clbkDSdgCC7KxuQFqTYbBRNG9A4q/C3ra7b0A15pEGjiFwQHl0wp1AZXBAvQLzNPOocEABkSPMpexwQEUfVGNYMHFAia2E+gp0cUDNO7WRvbdxQBHK5Shw+3FAVVgWwCI/ckCZ5kZX1YJyQN10d+6HxnJAIQOohToKc0Blkdgc7U1zQKkfCbSfkXNA7a05S1LVc0AxPGriBBl0QHXKmnm3XHRAuVjLEGqgdED95vunHOR0QEF1LD/PJ3VAhQNd1oFrdUDJkY1tNK91QA0gvgTn8nVAUa7um5k2dkCVPB8zTHp2QNnKT8r+vXZAHVmAYbEBd0Bh57D4Y0V3QKV14Y8WiXdA6QMSJ8nMd0AtkkK+exB4QHEgc1UuVHhAta6j7OCXeED5PNSDk9t4QD3LBBtGH3lAglk1svhieUDG52VJq6Z5QAp2luBd6nlATgTHdxAuekA=","dtype":"float64","shape":[100]},"y":{"__ndarray__":"AAAAAAAAAAABkSPMpewQQAGRI8yl7CBAglk1svhiKUABkSPMpewwQEF1LD/PJzVAglk1svhiOUDCPT4lIp49QAGRI8yl7EBAIQOohToKQ0BBdSw/zydFQGHnsPhjRUdAglk1svhiSUCiy7lrjYBLQMI9PiUink1A4q/C3ra7T0ABkSPMpexQQBHK5Shw+1FAIQOohToKU0AxPGriBBlUQEF1LD/PJ1VAUa7um5k2VkBh57D4Y0VXQHEgc1UuVFhAglk1svhiWUCSkvcOw3FaQKLLuWuNgFtAsgR8yFePXEDCPT4lIp5dQNJ2AILsrF5A4q/C3ra7X0B5dMKdQGVgQAGRI8yl7GBAia2E+gp0YUARyuUocPthQJnmRlfVgmJAIQOohToKY0CpHwm0n5FjQDE8auIEGWRAuVjLEGqgZEBBdSw/zydlQMmRjW00r2VAUa7um5k2ZkDZyk/K/r1mQGHnsPhjRWdA6QMSJ8nMZ0BxIHNVLlRoQPk81IOT22hAglk1svhiaUAKdpbgXeppQJKS9w7DcWpAGq9YPSj5akCiy7lrjYBrQCroGpryB2xAsgR8yFePbEA6Id32vBZtQMI9PiUinm1ASlqfU4clbkDSdgCC7KxuQFqTYbBRNG9A4q/C3ra7b0A15pEGjiFwQHl0wp1AZXBAvQLzNPOocEABkSPMpexwQEUfVGNYMHFAia2E+gp0cUDNO7WRvbdxQBHK5Shw+3FAVVgWwCI/ckCZ5kZX1YJyQN10d+6HxnJAIQOohToKc0Blkdgc7U1zQKkfCbSfkXNA7a05S1LVc0AxPGriBBl0QHXKmnm3XHRAuVjLEGqgdED95vunHOR0QEF1LD/PJ3VAhQNd1oFrdUDJkY1tNK91QA0gvgTn8nVAUa7um5k2dkCVPB8zTHp2QNnKT8r+vXZAHVmAYbEBd0Bh57D4Y0V3QKV14Y8WiXdA6QMSJ8nMd0AtkkK+exB4QHEgc1UuVHhAta6j7OCXeED5PNSDk9t4QD3LBBtGH3lAglk1svhieUDG52VJq6Z5QAp2luBd6nlATgTHdxAuekA=","dtype":"float64","shape":[100]}},"selected":{"id":"2336","type":"Selection"},"selection_policy":{"id":"2337","type":"UnionRenderers"}},"id":"2243","type":"ColumnDataSource"},{"attributes":{},"id":"1820","type":"Selection"},{"attributes":{},"id":"1821","type":"UnionRenderers"},{"attributes":{"label":{"value":"Mixed"},"renderers":[{"id":"1803","type":"GlyphRenderer"},{"id":"1830","type":"GlyphRenderer"},{"id":"1858","type":"GlyphRenderer"},{"id":"1888","type":"GlyphRenderer"},{"id":"1920","type":"GlyphRenderer"},{"id":"1954","type":"GlyphRenderer"}]},"id":"1823","type":"LegendItem"},{"attributes":{},"id":"1661","type":"BasicTicker"},{"attributes":{},"id":"2299","type":"BasicTicker"},{"attributes":{"text":"Campbell Diagram - Damped Natural Frequency Map"},"id":"1650","type":"Title"},{"attributes":{"callback":null,"data":{"color":{"__ndarray__":"","dtype":"float64","shape":[0]},"x":{"__ndarray__":"","dtype":"float64","shape":[0]},"y":{"__ndarray__":"","dtype":"float64","shape":[0]}},"selected":{"id":"1879","type":"Selection"},"selection_policy":{"id":"1880","type":"UnionRenderers"}},"id":"1824","type":"ColumnDataSource"},{"attributes":{},"id":"2336","type":"Selection"},{"attributes":{"callback":null,"data":{"color":{"__ndarray__":"","dtype":"float64","shape":[0]},"x":{"__ndarray__":"","dtype":"float64","shape":[0]},"y":{"__ndarray__":"","dtype":"float64","shape":[0]}},"selected":{"id":"1710","type":"Selection"},"selection_policy":{"id":"1711","type":"UnionRenderers"}},"id":"1681","type":"ColumnDataSource"},{"attributes":{},"id":"1666","type":"BasicTicker"},{"attributes":{"high":9.845346187337482e-11,"low":-9.987520139123421e-11,"palette":["#440154","#440255","#440357","#450558","#45065A","#45085B","#46095C","#460B5E","#460C5F","#460E61","#470F62","#471163","#471265","#471466","#471567","#471669","#47186A","#48196B","#481A6C","#481C6E","#481D6F","#481E70","#482071","#482172","#482273","#482374","#472575","#472676","#472777","#472878","#472A79","#472B7A","#472C7B","#462D7C","#462F7C","#46307D","#46317E","#45327F","#45347F","#453580","#453681","#443781","#443982","#433A83","#433B83","#433C84","#423D84","#423E85","#424085","#414186","#414286","#404387","#404487","#3F4587","#3F4788","#3E4888","#3E4989","#3D4A89","#3D4B89","#3D4C89","#3C4D8A","#3C4E8A","#3B508A","#3B518A","#3A528B","#3A538B","#39548B","#39558B","#38568B","#38578C","#37588C","#37598C","#365A8C","#365B8C","#355C8C","#355D8C","#345E8D","#345F8D","#33608D","#33618D","#32628D","#32638D","#31648D","#31658D","#31668D","#30678D","#30688D","#2F698D","#2F6A8D","#2E6B8E","#2E6C8E","#2E6D8E","#2D6E8E","#2D6F8E","#2C708E","#2C718E","#2C728E","#2B738E","#2B748E","#2A758E","#2A768E","#2A778E","#29788E","#29798E","#287A8E","#287A8E","#287B8E","#277C8E","#277D8E","#277E8E","#267F8E","#26808E","#26818E","#25828E","#25838D","#24848D","#24858D","#24868D","#23878D","#23888D","#23898D","#22898D","#228A8D","#228B8D","#218C8D","#218D8C","#218E8C","#208F8C","#20908C","#20918C","#1F928C","#1F938B","#1F948B","#1F958B","#1F968B","#1E978A","#1E988A","#1E998A","#1E998A","#1E9A89","#1E9B89","#1E9C89","#1E9D88","#1E9E88","#1E9F88","#1EA087","#1FA187","#1FA286","#1FA386","#20A485","#20A585","#21A685","#21A784","#22A784","#23A883","#23A982","#24AA82","#25AB81","#26AC81","#27AD80","#28AE7F","#29AF7F","#2AB07E","#2BB17D","#2CB17D","#2EB27C","#2FB37B","#30B47A","#32B57A","#33B679","#35B778","#36B877","#38B976","#39B976","#3BBA75","#3DBB74","#3EBC73","#40BD72","#42BE71","#44BE70","#45BF6F","#47C06E","#49C16D","#4BC26C","#4DC26B","#4FC369","#51C468","#53C567","#55C666","#57C665","#59C764","#5BC862","#5EC961","#60C960","#62CA5F","#64CB5D","#67CC5C","#69CC5B","#6BCD59","#6DCE58","#70CE56","#72CF55","#74D054","#77D052","#79D151","#7CD24F","#7ED24E","#81D34C","#83D34B","#86D449","#88D547","#8BD546","#8DD644","#90D643","#92D741","#95D73F","#97D83E","#9AD83C","#9DD93A","#9FD938","#A2DA37","#A5DA35","#A7DB33","#AADB32","#ADDC30","#AFDC2E","#B2DD2C","#B5DD2B","#B7DD29","#BADE27","#BDDE26","#BFDF24","#C2DF22","#C5DF21","#C7E01F","#CAE01E","#CDE01D","#CFE11C","#D2E11B","#D4E11A","#D7E219","#DAE218","#DCE218","#DFE318","#E1E318","#E4E318","#E7E419","#E9E419","#ECE41A","#EEE51B","#F1E51C","#F3E51E","#F6E61F","#F8E621","#FAE622","#FDE724"]},"id":"1853","type":"LinearColorMapper"},{"attributes":{},"id":"2337","type":"UnionRenderers"},{"attributes":{"dimension":1,"ticker":{"id":"1666","type":"BasicTicker"}},"id":"1669","type":"Grid"},{"attributes":{"data_source":{"id":"1882","type":"ColumnDataSource"},"glyph":{"id":"1885","type":"Scatter"},"hover_glyph":null,"muted_glyph":{"id":"1887","type":"Scatter"},"nonselection_glyph":{"id":"1886","type":"Scatter"},"selection_glyph":null,"view":{"id":"1889","type":"CDSView"}},"id":"1888","type":"GlyphRenderer"},{"attributes":{"fill_color":{"field":"color","transform":{"id":"1825","type":"LinearColorMapper"}},"line_color":{"field":"color","transform":{"id":"1825","type":"LinearColorMapper"}},"size":{"units":"screen","value":9},"x":{"field":"x"},"y":{"field":"y"}},"id":"1827","type":"Scatter"},{"attributes":{"overlay":{"id":"1694","type":"BoxAnnotation"}},"id":"1671","type":"BoxZoomTool"},{"attributes":{"fill_alpha":{"value":0.1},"fill_color":{"value":"#1f77b4"},"line_alpha":{"value":0.1},"line_color":{"value":"#1f77b4"},"size":{"units":"screen","value":9},"x":{"field":"x"},"y":{"field":"y"}},"id":"1828","type":"Scatter"},{"attributes":{},"id":"1672","type":"WheelZoomTool"},{"attributes":{"fill_alpha":{"value":0.2},"fill_color":{"field":"color","transform":{"id":"1825","type":"LinearColorMapper"}},"line_alpha":{"value":0.2},"line_color":{"field":"color","transform":{"id":"1825","type":"LinearColorMapper"}},"size":{"units":"screen","value":9},"x":{"field":"x"},"y":{"field":"y"}},"id":"1829","type":"Scatter"},{"attributes":{},"id":"1673","type":"ResetTool"},{"attributes":{"background_fill_alpha":{"value":0.1},"click_policy":"mute","items":[{"id":"1696","type":"LegendItem"},{"id":"1823","type":"LegendItem"},{"id":"2022","type":"LegendItem"},{"id":"2291","type":"LegendItem"}],"location":"top_left"},"id":"1695","type":"Legend"},{"attributes":{"data_source":{"id":"1824","type":"ColumnDataSource"},"glyph":{"id":"1827","type":"Scatter"},"hover_glyph":null,"muted_glyph":{"id":"1829","type":"Scatter"},"nonselection_glyph":{"id":"1828","type":"Scatter"},"selection_glyph":null,"view":{"id":"1831","type":"CDSView"}},"id":"1830","type":"GlyphRenderer"},{"attributes":{},"id":"1674","type":"SaveTool"},{"attributes":{"source":{"id":"1824","type":"ColumnDataSource"}},"id":"1831","type":"CDSView"},{"attributes":{},"id":"1711","type":"UnionRenderers"},{"attributes":{},"id":"1849","type":"Selection"},{"attributes":{"high":9.845346187337482e-11,"low":-9.987520139123421e-11,"palette":["#440154","#440255","#440357","#450558","#45065A","#45085B","#46095C","#460B5E","#460C5F","#460E61","#470F62","#471163","#471265","#471466","#471567","#471669","#47186A","#48196B","#481A6C","#481C6E","#481D6F","#481E70","#482071","#482172","#482273","#482374","#472575","#472676","#472777","#472878","#472A79","#472B7A","#472C7B","#462D7C","#462F7C","#46307D","#46317E","#45327F","#45347F","#453580","#453681","#443781","#443982","#433A83","#433B83","#433C84","#423D84","#423E85","#424085","#414186","#414286","#404387","#404487","#3F4587","#3F4788","#3E4888","#3E4989","#3D4A89","#3D4B89","#3D4C89","#3C4D8A","#3C4E8A","#3B508A","#3B518A","#3A528B","#3A538B","#39548B","#39558B","#38568B","#38578C","#37588C","#37598C","#365A8C","#365B8C","#355C8C","#355D8C","#345E8D","#345F8D","#33608D","#33618D","#32628D","#32638D","#31648D","#31658D","#31668D","#30678D","#30688D","#2F698D","#2F6A8D","#2E6B8E","#2E6C8E","#2E6D8E","#2D6E8E","#2D6F8E","#2C708E","#2C718E","#2C728E","#2B738E","#2B748E","#2A758E","#2A768E","#2A778E","#29788E","#29798E","#287A8E","#287A8E","#287B8E","#277C8E","#277D8E","#277E8E","#267F8E","#26808E","#26818E","#25828E","#25838D","#24848D","#24858D","#24868D","#23878D","#23888D","#23898D","#22898D","#228A8D","#228B8D","#218C8D","#218D8C","#218E8C","#208F8C","#20908C","#20918C","#1F928C","#1F938B","#1F948B","#1F958B","#1F968B","#1E978A","#1E988A","#1E998A","#1E998A","#1E9A89","#1E9B89","#1E9C89","#1E9D88","#1E9E88","#1E9F88","#1EA087","#1FA187","#1FA286","#1FA386","#20A485","#20A585","#21A685","#21A784","#22A784","#23A883","#23A982","#24AA82","#25AB81","#26AC81","#27AD80","#28AE7F","#29AF7F","#2AB07E","#2BB17D","#2CB17D","#2EB27C","#2FB37B","#30B47A","#32B57A","#33B679","#35B778","#36B877","#38B976","#39B976","#3BBA75","#3DBB74","#3EBC73","#40BD72","#42BE71","#44BE70","#45BF6F","#47C06E","#49C16D","#4BC26C","#4DC26B","#4FC369","#51C468","#53C567","#55C666","#57C665","#59C764","#5BC862","#5EC961","#60C960","#62CA5F","#64CB5D","#67CC5C","#69CC5B","#6BCD59","#6DCE58","#70CE56","#72CF55","#74D054","#77D052","#79D151","#7CD24F","#7ED24E","#81D34C","#83D34B","#86D449","#88D547","#8BD546","#8DD644","#90D643","#92D741","#95D73F","#97D83E","#9AD83C","#9DD93A","#9FD938","#A2DA37","#A5DA35","#A7DB33","#AADB32","#ADDC30","#AFDC2E","#B2DD2C","#B5DD2B","#B7DD29","#BADE27","#BDDE26","#BFDF24","#C2DF22","#C5DF21","#C7E01F","#CAE01E","#CDE01D","#CFE11C","#D2E11B","#D4E11A","#D7E219","#DAE218","#DCE218","#DFE318","#E1E318","#E4E318","#E7E419","#E9E419","#ECE41A","#EEE51B","#F1E51C","#F3E51E","#F6E61F","#F8E621","#FAE622","#FDE724"]},"id":"1698","type":"LinearColorMapper"},{"attributes":{},"id":"1850","type":"UnionRenderers"},{"attributes":{"high":9.845346187337482e-11,"low":-9.987520139123421e-11,"palette":["#440154","#440255","#440357","#450558","#45065A","#45085B","#46095C","#460B5E","#460C5F","#460E61","#470F62","#471163","#471265","#471466","#471567","#471669","#47186A","#48196B","#481A6C","#481C6E","#481D6F","#481E70","#482071","#482172","#482273","#482374","#472575","#472676","#472777","#472878","#472A79","#472B7A","#472C7B","#462D7C","#462F7C","#46307D","#46317E","#45327F","#45347F","#453580","#453681","#443781","#443982","#433A83","#433B83","#433C84","#423D84","#423E85","#424085","#414186","#414286","#404387","#404487","#3F4587","#3F4788","#3E4888","#3E4989","#3D4A89","#3D4B89","#3D4C89","#3C4D8A","#3C4E8A","#3B508A","#3B518A","#3A528B","#3A538B","#39548B","#39558B","#38568B","#38578C","#37588C","#37598C","#365A8C","#365B8C","#355C8C","#355D8C","#345E8D","#345F8D","#33608D","#33618D","#32628D","#32638D","#31648D","#31658D","#31668D","#30678D","#30688D","#2F698D","#2F6A8D","#2E6B8E","#2E6C8E","#2E6D8E","#2D6E8E","#2D6F8E","#2C708E","#2C718E","#2C728E","#2B738E","#2B748E","#2A758E","#2A768E","#2A778E","#29788E","#29798E","#287A8E","#287A8E","#287B8E","#277C8E","#277D8E","#277E8E","#267F8E","#26808E","#26818E","#25828E","#25838D","#24848D","#24858D","#24868D","#23878D","#23888D","#23898D","#22898D","#228A8D","#228B8D","#218C8D","#218D8C","#218E8C","#208F8C","#20908C","#20918C","#1F928C","#1F938B","#1F948B","#1F958B","#1F968B","#1E978A","#1E988A","#1E998A","#1E998A","#1E9A89","#1E9B89","#1E9C89","#1E9D88","#1E9E88","#1E9F88","#1EA087","#1FA187","#1FA286","#1FA386","#20A485","#20A585","#21A685","#21A784","#22A784","#23A883","#23A982","#24AA82","#25AB81","#26AC81","#27AD80","#28AE7F","#29AF7F","#2AB07E","#2BB17D","#2CB17D","#2EB27C","#2FB37B","#30B47A","#32B57A","#33B679","#35B778","#36B877","#38B976","#39B976","#3BBA75","#3DBB74","#3EBC73","#40BD72","#42BE71","#44BE70","#45BF6F","#47C06E","#49C16D","#4BC26C","#4DC26B","#4FC369","#51C468","#53C567","#55C666","#57C665","#59C764","#5BC862","#5EC961","#60C960","#62CA5F","#64CB5D","#67CC5C","#69CC5B","#6BCD59","#6DCE58","#70CE56","#72CF55","#74D054","#77D052","#79D151","#7CD24F","#7ED24E","#81D34C","#83D34B","#86D449","#88D547","#8BD546","#8DD644","#90D643","#92D741","#95D73F","#97D83E","#9AD83C","#9DD93A","#9FD938","#A2DA37","#A5DA35","#A7DB33","#AADB32","#ADDC30","#AFDC2E","#B2DD2C","#B5DD2B","#B7DD29","#BADE27","#BDDE26","#BFDF24","#C2DF22","#C5DF21","#C7E01F","#CAE01E","#CDE01D","#CFE11C","#D2E11B","#D4E11A","#D7E219","#DAE218","#DCE218","#DFE318","#E1E318","#E4E318","#E7E419","#E9E419","#ECE41A","#EEE51B","#F1E51C","#F3E51E","#F6E61F","#F8E621","#FAE622","#FDE724"]},"id":"1714","type":"LinearColorMapper"},{"attributes":{"fill_color":{"field":"color","transform":{"id":"1682","type":"LinearColorMapper"}},"line_color":{"field":"color","transform":{"id":"1682","type":"LinearColorMapper"}},"marker":{"value":"triangle"},"size":{"units":"screen","value":9},"x":{"field":"x"},"y":{"field":"y"}},"id":"1684","type":"Scatter"},{"attributes":{"callback":null,"data":{"color":{"__ndarray__":"CG4fMgS0Z711dV1W4liAPQnL+Xg4BHC99A17EXKMeL26tA576a1OPScAqa+d+Hq99JR7MMmqcr3lP5v+kQtwPdLoRDQuHEc9Pn+mMYKeQT2pDkETikluPccPs/2QVGk9A94KPst+YT0o8F3jN3RtvVKaLn7J+m29fKvGLVEtfz17VfX50SZgPTrq/uttnGs9S5FqQ5ALgL3gBgsU9MSAPYtiBE50Gm+90frynxvFcb1LrNyrtGBtvdagzlxdgTY97hw69HX5fD30/0qCPOFCvfR3Cw79V1u9OJtWE+dgYL17//7wU8NqvRkn/lRIIXw9jwVWZSKZU71LrnOunmNCPe3HdV9GdYY9EpYXXyZ5d700lK/xom5QPWR7ocLC/Xw9NlG1w4zTjz0rnwH9qD93vRamTLb7s3I9QIvrhYRKdz0KvpIEHyF5vZS+dUv6Mns9HHQIJ2qrUT39+w9Dbzp0va2PKPsO33E901q8W5jfej2oyCEi+2BbPeQvZWaB43Y9ofLWcZKajb1Qp+cZ5fJ7PbIOiolFp0Q9zuvsiP2Acj0=","dtype":"float64","shape":[52]},"x":{"__ndarray__":"AZEjzKXsEEABkSPMpewgQIJZNbL4YilAQXUsP88nNUDCPT4lIp49QAGRI8yl7EBAIQOohToKQ0Bh57D4Y0VHQIJZNbL4YklAosu5a42AS0DCPT4lIp5NQCEDqIU6ClNAMTxq4gQZVECCWTWy+GJZQKLLuWuNgFtAsgR8yFePXEDCPT4lIp5dQOKvwt62u19AAZEjzKXsYECJrYT6CnRhQBHK5Shw+2FAIQOohToKY0CpHwm0n5FjQLlYyxBqoGRAQXUsP88nZUBRru6bmTZmQNnKT8r+vWZAYeew+GNFZ0BxIHNVLlRoQAp2luBd6mlAosu5a42Aa0Aq6Bqa8gdsQLIEfMhXj2xAwj0+JSKebUB5dMKdQGVwQAGRI8yl7HBAia2E+gp0cUARyuUocPtxQFVYFsAiP3JAIQOohToKc0CpHwm0n5FzQO2tOUtS1XNAMTxq4gQZdEBBdSw/zyd1QMmRjW00r3VAHVmAYbEBd0CldeGPFol3QOkDEifJzHdAcSBzVS5UeEA9ywQbRh95QAp2luBd6nlATgTHdxAuekA=","dtype":"float64","shape":[52]},"y":{"__ndarray__":"mvCX9a9wnUD4OHfgvGWdQMHt/trMWp1AMLXfCPZEnUCVTrqSKy+dQAVfKABLJJ1A4fXBi20ZnUCs5twGvAOdQGyRBPvn+JxA7LmkFhfunEBcfQRcSeOcQIH96D8yuJxAO72Ld3StnEBhm8bx73ecQL3TqXieYpxAFhaXo/pXnEA1kjMWWk2cQBDidNoiOJxAZr8y1fginEA4dNnLaBicQOzz5hXcDZxA7MK/q8z4m0AzwEP7Se6bQPaxpaxO2ZtA+FkgEtbOm0DocI3/7rmbQBrBAIuAr5tANGvqexWlm0Cgc++USZCbQEMhf10xcZtAL07MEDhSm0CeUHrd60ebQEl23h+jPZtA+FnfCxwpm0CA7Ql02uuaQNNS60iL15pAC1vlM0rDmkCadY8/F6+aQLaG4hQDpZpAktnu4duGmkAjJnGM03KaQH8xObzUaJpA7A4+f9lemkBb1FBiEDeaQLUSNmRBI5pARjctEfvxmUANb4GuXt6ZQMMYS++V1JlArUmrWQ/BmUACl2jM4KOZQDk/kR3ThplAFlbrNCt9mUA=","dtype":"float64","shape":[52]}},"selected":{"id":"1911","type":"Selection"},"selection_policy":{"id":"1912","type":"UnionRenderers"}},"id":"1852","type":"ColumnDataSource"},{"attributes":{"bottom_units":"screen","fill_alpha":{"value":0.5},"fill_color":{"value":"lightgrey"},"left_units":"screen","level":"overlay","line_alpha":{"value":1.0},"line_color":{"value":"black"},"line_dash":[4,4],"line_width":{"value":2},"render_mode":"css","right_units":"screen","top_units":"screen"},"id":"1694","type":"BoxAnnotation"},{"attributes":{"fill_alpha":{"value":0.1},"fill_color":{"value":"#1f77b4"},"line_alpha":{"value":0.1},"line_color":{"value":"#1f77b4"},"marker":{"value":"triangle"},"size":{"units":"screen","value":9},"x":{"field":"x"},"y":{"field":"y"}},"id":"1685","type":"Scatter"},{"attributes":{"high":9.845346187337482e-11,"low":-9.987520139123421e-11,"palette":["#440154","#440255","#440357","#450558","#45065A","#45085B","#46095C","#460B5E","#460C5F","#460E61","#470F62","#471163","#471265","#471466","#471567","#471669","#47186A","#48196B","#481A6C","#481C6E","#481D6F","#481E70","#482071","#482172","#482273","#482374","#472575","#472676","#472777","#472878","#472A79","#472B7A","#472C7B","#462D7C","#462F7C","#46307D","#46317E","#45327F","#45347F","#453580","#453681","#443781","#443982","#433A83","#433B83","#433C84","#423D84","#423E85","#424085","#414186","#414286","#404387","#404487","#3F4587","#3F4788","#3E4888","#3E4989","#3D4A89","#3D4B89","#3D4C89","#3C4D8A","#3C4E8A","#3B508A","#3B518A","#3A528B","#3A538B","#39548B","#39558B","#38568B","#38578C","#37588C","#37598C","#365A8C","#365B8C","#355C8C","#355D8C","#345E8D","#345F8D","#33608D","#33618D","#32628D","#32638D","#31648D","#31658D","#31668D","#30678D","#30688D","#2F698D","#2F6A8D","#2E6B8E","#2E6C8E","#2E6D8E","#2D6E8E","#2D6F8E","#2C708E","#2C718E","#2C728E","#2B738E","#2B748E","#2A758E","#2A768E","#2A778E","#29788E","#29798E","#287A8E","#287A8E","#287B8E","#277C8E","#277D8E","#277E8E","#267F8E","#26808E","#26818E","#25828E","#25838D","#24848D","#24858D","#24868D","#23878D","#23888D","#23898D","#22898D","#228A8D","#228B8D","#218C8D","#218D8C","#218E8C","#208F8C","#20908C","#20918C","#1F928C","#1F938B","#1F948B","#1F958B","#1F968B","#1E978A","#1E988A","#1E998A","#1E998A","#1E9A89","#1E9B89","#1E9C89","#1E9D88","#1E9E88","#1E9F88","#1EA087","#1FA187","#1FA286","#1FA386","#20A485","#20A585","#21A685","#21A784","#22A784","#23A883","#23A982","#24AA82","#25AB81","#26AC81","#27AD80","#28AE7F","#29AF7F","#2AB07E","#2BB17D","#2CB17D","#2EB27C","#2FB37B","#30B47A","#32B57A","#33B679","#35B778","#36B877","#38B976","#39B976","#3BBA75","#3DBB74","#3EBC73","#40BD72","#42BE71","#44BE70","#45BF6F","#47C06E","#49C16D","#4BC26C","#4DC26B","#4FC369","#51C468","#53C567","#55C666","#57C665","#59C764","#5BC862","#5EC961","#60C960","#62CA5F","#64CB5D","#67CC5C","#69CC5B","#6BCD59","#6DCE58","#70CE56","#72CF55","#74D054","#77D052","#79D151","#7CD24F","#7ED24E","#81D34C","#83D34B","#86D449","#88D547","#8BD546","#8DD644","#90D643","#92D741","#95D73F","#97D83E","#9AD83C","#9DD93A","#9FD938","#A2DA37","#A5DA35","#A7DB33","#AADB32","#ADDC30","#AFDC2E","#B2DD2C","#B5DD2B","#B7DD29","#BADE27","#BDDE26","#BFDF24","#C2DF22","#C5DF21","#C7E01F","#CAE01E","#CDE01D","#CFE11C","#D2E11B","#D4E11A","#D7E219","#DAE218","#DCE218","#DFE318","#E1E318","#E4E318","#E7E419","#E9E419","#ECE41A","#EEE51B","#F1E51C","#F3E51E","#F6E61F","#F8E621","#FAE622","#FDE724"]},"id":"1883","type":"LinearColorMapper"},{"attributes":{"fill_alpha":{"value":0.2},"fill_color":{"field":"color","transform":{"id":"1682","type":"LinearColorMapper"}},"line_alpha":{"value":0.2},"line_color":{"field":"color","transform":{"id":"1682","type":"LinearColorMapper"}},"marker":{"value":"triangle"},"size":{"units":"screen","value":9},"x":{"field":"x"},"y":{"field":"y"}},"id":"1686","type":"Scatter"},{"attributes":{"fill_alpha":{"value":0.2},"fill_color":{"field":"color","transform":{"id":"1883","type":"LinearColorMapper"}},"line_alpha":{"value":0.2},"line_color":{"field":"color","transform":{"id":"1883","type":"LinearColorMapper"}},"size":{"units":"screen","value":9},"x":{"field":"x"},"y":{"field":"y"}},"id":"1887","type":"Scatter"},{"attributes":{"data_source":{"id":"1681","type":"ColumnDataSource"},"glyph":{"id":"1684","type":"Scatter"},"hover_glyph":null,"muted_glyph":{"id":"1686","type":"Scatter"},"nonselection_glyph":{"id":"1685","type":"Scatter"},"selection_glyph":null,"view":{"id":"1688","type":"CDSView"}},"id":"1687","type":"GlyphRenderer"},{"attributes":{"fill_color":{"field":"color","transform":{"id":"1853","type":"LinearColorMapper"}},"line_color":{"field":"color","transform":{"id":"1853","type":"LinearColorMapper"}},"size":{"units":"screen","value":9},"x":{"field":"x"},"y":{"field":"y"}},"id":"1855","type":"Scatter"},{"attributes":{"source":{"id":"1681","type":"ColumnDataSource"}},"id":"1688","type":"CDSView"},{"attributes":{"fill_alpha":{"value":0.1},"fill_color":{"value":"#1f77b4"},"line_alpha":{"value":0.1},"line_color":{"value":"#1f77b4"},"size":{"units":"screen","value":9},"x":{"field":"x"},"y":{"field":"y"}},"id":"1856","type":"Scatter"},{"attributes":{"fill_alpha":{"value":0.2},"fill_color":{"field":"color","transform":{"id":"1853","type":"LinearColorMapper"}},"line_alpha":{"value":0.2},"line_color":{"field":"color","transform":{"id":"1853","type":"LinearColorMapper"}},"size":{"units":"screen","value":9},"x":{"field":"x"},"y":{"field":"y"}},"id":"1857","type":"Scatter"},{"attributes":{},"id":"1690","type":"BasicTickFormatter"},{"attributes":{"data_source":{"id":"1852","type":"ColumnDataSource"},"glyph":{"id":"1855","type":"Scatter"},"hover_glyph":null,"muted_glyph":{"id":"1857","type":"Scatter"},"nonselection_glyph":{"id":"1856","type":"Scatter"},"selection_glyph":null,"view":{"id":"1859","type":"CDSView"}},"id":"1858","type":"GlyphRenderer"},{"attributes":{},"id":"1692","type":"BasicTickFormatter"},{"attributes":{"source":{"id":"1852","type":"ColumnDataSource"}},"id":"1859","type":"CDSView"},{"attributes":{"callback":null,"data":{"color":{"__ndarray__":"9aRsK4pzWz2CxsVAWEBcvT2DfJLs0ji9XmV5gvkFaz0fkxRLzV9RPXCiZpQCs2A9F9nkUu4FYT36mOoohU5tPb3vDu34yl89j3lY65PAVD2K6v9gSTd4vbTgR9mp+Ee9AiaI0M3ZYT20GCyqUQo8PaOGhwfC+nQ9vEYT+6gZZr06k11mWyRwvTmD++XI5WE9WpEti1YFQT3A1McjtNRTPXz2Uv8nD3g9zP7zPog4Ur2Bwik88ekgvRwPr50lGRa9hQwyhDUfVD2zLU0gXbR5PcQF4Fc/SWQ9ORfa8wm4Qr3xGNoy3ERbPYcaEYGf0Wo9RcOk5n8OZj26hMhrjXJ9PZ9tk1JoSks9VOUtCUJxZb0sysBWNXBUPTc0XvJ84Fk9AuD01Gk2Wr0lIJwtAq9qPWYmOrRB2Wa9kjEm7j8rVD02N6VP/aBXPfTak6xrtWW9I+GQb8tpbT2uTYl5RYNWPbp3t8cNBGG9jqUpo5V3dr2fu4RvzoIqvcQtafO11Bk9ov2Jf/NsUL1yirJdwXhuPeCdDiQhg1I9/FZlRGIhSD3Jh4aI+GFjvWVINZnuVXS9U4WM2968QD3Lp/vJ1cszva9Zk3sJgjo9Ms0+XodoRr1C8O/nUj5mvc+ToROs8Fa9kV+G8OiXRr3XbSSzOD01PXHsfhbsalY92/Lf/IFpYz1wO1vvxrJfPSCaOUAqqGG94RyqsgvCa70yCMSn8blyvQpJdCo9xFa9fWYWR+qyWD37BxM4Gb1fPTA8kXLT3As9xERUvPatTz1N5E9kKG9XPdhRFQRYIVK979fAS4LkY71ed5c1RARnPU9fvIcuFkU9rGq33kAuVj3ynY5ZRVNtvUnEQHHhrG29utbRnW7yg730oPLgKQowvdWNcBVtslc9NwC7MDpIUr0jb2ukALxkvWH1LXc0/GA9EE1aCj9jYj1xCzRnrY5yParK4Vk+9HC9EunmniFRcD1Zt5MFzc9MvbpRV2Y/CG49I4uKjkJ4ZL3oWgSf4N1vPekrV5h0wgY9PYjFN5Lk/bySa4hNcX4xvdtif/9CiWE9yH8f4zUFdT0=","dtype":"float64","shape":[100]},"x":{"__ndarray__":"AAAAAAAAAAABkSPMpewQQAGRI8yl7CBAglk1svhiKUABkSPMpewwQEF1LD/PJzVAglk1svhiOUDCPT4lIp49QAGRI8yl7EBAIQOohToKQ0BBdSw/zydFQGHnsPhjRUdAglk1svhiSUCiy7lrjYBLQMI9PiUink1A4q/C3ra7T0ABkSPMpexQQBHK5Shw+1FAIQOohToKU0AxPGriBBlUQEF1LD/PJ1VAUa7um5k2VkBh57D4Y0VXQHEgc1UuVFhAglk1svhiWUCSkvcOw3FaQKLLuWuNgFtAsgR8yFePXEDCPT4lIp5dQNJ2AILsrF5A4q/C3ra7X0B5dMKdQGVgQAGRI8yl7GBAia2E+gp0YUARyuUocPthQJnmRlfVgmJAIQOohToKY0CpHwm0n5FjQDE8auIEGWRAuVjLEGqgZEBBdSw/zydlQMmRjW00r2VAUa7um5k2ZkDZyk/K/r1mQGHnsPhjRWdA6QMSJ8nMZ0BxIHNVLlRoQPk81IOT22hAglk1svhiaUAKdpbgXeppQJKS9w7DcWpAGq9YPSj5akCiy7lrjYBrQCroGpryB2xAsgR8yFePbEA6Id32vBZtQMI9PiUinm1ASlqfU4clbkDSdgCC7KxuQFqTYbBRNG9A4q/C3ra7b0A15pEGjiFwQHl0wp1AZXBAvQLzNPOocEABkSPMpexwQEUfVGNYMHFAia2E+gp0cUDNO7WRvbdxQBHK5Shw+3FAVVgWwCI/ckCZ5kZX1YJyQN10d+6HxnJAIQOohToKc0Blkdgc7U1zQKkfCbSfkXNA7a05S1LVc0AxPGriBBl0QHXKmnm3XHRAuVjLEGqgdED95vunHOR0QEF1LD/PJ3VAhQNd1oFrdUDJkY1tNK91QA0gvgTn8nVAUa7um5k2dkCVPB8zTHp2QNnKT8r+vXZAHVmAYbEBd0Bh57D4Y0V3QKV14Y8WiXdA6QMSJ8nMd0AtkkK+exB4QHEgc1UuVHhAta6j7OCXeED5PNSDk9t4QD3LBBtGH3lAglk1svhieUDG52VJq6Z5QAp2luBd6nlATgTHdxAuekA=","dtype":"float64","shape":[100]},"y":{"__ndarray__":"3FO2oAN6skCe8Y1bEXqyQOeBbBYferJAPwRS0Sx6skAAeT6MOnqyQIXlMUdIerJAYD8sAlZ6skAOkC29Y3qyQLTLNXhxerJAsQRFM396skB1KFvujHqyQLxBeKmaerJA0UucZKh6skCjSMcftnqyQP05+drDerJARB8yltF6skCc73FR33qyQLC0uAzterJAenMGyPp6skBDHVuDCHuyQJe6tj4We7JABUgZ+iN7skCwyYK1MXuyQGJA83A/e7JAMaVqLE17skB5/ujnWnuyQHVFbqNoe7JAB3/6XnZ7skAYsY0ahHuyQGnAJ9aRe7JA7tvIkZ97skC223BNrXuyQEjMHwm7e7JArbLVxMh7skCVhpKA1nuyQANPVjzke7JAxwgh+PF7skB7r/Kz/3uyQD1Ny28NfLJAw9SqKxt8skCVU5HnKHyyQBTAfqM2fLJARxxzX0R8skBqaW4bUnyyQFatcNdffLJAbNd5k218skB3AYpPe3yyQCcNoQuJfLJABxu/x5Z8skB+C+SDpHyyQCDtD0CyfLJA3MRC/L98skD8gny4zXyyQHM2vXTbfLJAhN4EMel8skCkdFPt9nyyQGcBqakEfbJA5XMFZhJ9skAf3WgiIH2yQP4u094tfbJAvHxEmzt9skDsrbxXSX2yQHbZOxRXfbJACvHB0GR9skCF7k6Ncn2yQJfo4kmAfbJAgMt9Bo59skCloR/Dm32yQCtpyH+pfbJAUBZ4PLd9skBfvy75xH2yQHJW7LXSfbJA8NiwcuB9skCtS3wv7n2yQFOpTuz7fbJAMvgnqQl+skCIPQhmF36yQLlr7yIlfrJAdoTd3zJ+skAmk9KcQH6yQMWSzllOfrJAZ3XRFlx+skALV9vTaX6yQIIc7JB3frJAU9UDToV+skDqfCILk36yQNwMSMigfrJAj5d0ha5+skCpBqhCvH6yQIZo4v/JfrJAXLAjvdd+skB782t65X6yQIgkuzfzfrJAhzwR9QB/skAkQW6yDn+yQPY20m8cf7JAkBk9LSp/skBx767qN3+yQFGvJ6hFf7JATF+nZVN/skA=","dtype":"float64","shape":[100]}},"selected":{"id":"1820","type":"Selection"},"selection_policy":{"id":"1821","type":"UnionRenderers"}},"id":"1773","type":"ColumnDataSource"},{"attributes":{},"id":"1879","type":"Selection"},{"attributes":{},"id":"2020","type":"UnionRenderers"},{"attributes":{"fill_color":{"field":"color","transform":{"id":"1698","type":"LinearColorMapper"}},"line_color":{"field":"color","transform":{"id":"1698","type":"LinearColorMapper"}},"marker":{"value":"triangle"},"size":{"units":"screen","value":9},"x":{"field":"x"},"y":{"field":"y"}},"id":"1700","type":"Scatter"},{"attributes":{"label":{"value":"Backward"},"renderers":[{"id":"1990","type":"GlyphRenderer"},{"id":"2029","type":"GlyphRenderer"},{"id":"2069","type":"GlyphRenderer"},{"id":"2111","type":"GlyphRenderer"},{"id":"2155","type":"GlyphRenderer"},{"id":"2201","type":"GlyphRenderer"}]},"id":"2022","type":"LegendItem"},{"attributes":{},"id":"1880","type":"UnionRenderers"},{"attributes":{},"id":"1770","type":"Selection"},{"attributes":{"fill_alpha":{"value":0.1},"fill_color":{"value":"#1f77b4"},"line_alpha":{"value":0.1},"line_color":{"value":"#1f77b4"},"marker":{"value":"triangle"},"size":{"units":"screen","value":9},"x":{"field":"x"},"y":{"field":"y"}},"id":"1701","type":"Scatter"},{"attributes":{"callback":null,"data":{"color":{"__ndarray__":"QvKJiycFbD1GN6tLe/B2vT8ZhQtUnGs9nQWPqLEJdT03nV02DgQ7PSEsXiu8L3Q99e9nfZqtZj3mw9pd6k51vfHoyGwPm+u8Dy1g/ud3b72dEfIT1iZuvamgqzpTZ249dZjtI97BXD2Lf08YNjF1PWvAkHGssDQ9bfLxg7zsZ71SQQFM+hR6Pe/R5oMsE3u9WkseFcftZj1zEl82aJ9wPaUOHiR7hy+90CJt0E61bb31kCfGnXhjPXixmUC2Vkg9BWPpQFuaYT06xq4YRKtIvaDXjpGRpGc9aVD6YAAbSr2n65TkAc1iPf9LU21lZ1K9TJE494zeg73HX2zS+6x7vWCp0bzHkHA9bQTsAY/JX719HRWtgU5/PWtg3aH2JHS9rFvD9Krxd73gVSZWRqhOveZ1l0BH6WC9ktdijBeSdj3KoBROvCV1vYzNwMG+93e9l+jE/td4dr2J2j3qlgyGPcRINgR8W3o92LdlGml+db0VxeAqxQNOvd/0K7DAtW69","dtype":"float64","shape":[48]},"x":{"__ndarray__":"AZEjzKXsEEABkSPMpewgQIJZNbL4YilAQXUsP88nNUDCPT4lIp49QAGRI8yl7EBAIQOohToKQ0Bh57D4Y0VHQKLLuWuNgEtAwj0+JSKeTUAhA6iFOgpTQIJZNbL4YllAkpL3DsNxWkCiy7lrjYBbQMI9PiUinl1A4q/C3ra7X0ABkSPMpexgQImthPoKdGFAEcrlKHD7YUAhA6iFOgpjQLlYyxBqoGRAQXUsP88nZUBRru6bmTZmQNnKT8r+vWZAYeew+GNFZ0DpAxInycxnQHEgc1UuVGhAglk1svhiaUCiy7lrjYBrQCroGpryB2xAsgR8yFePbEABkSPMpexwQBHK5Shw+3FAVVgWwCI/ckDddHfuh8ZyQCEDqIU6CnNA7a05S1LVc0AxPGriBBl0QHXKmnm3XHRAQXUsP88ndUDJkY1tNK91QA0gvgTn8nVAHVmAYbEBd0BxIHNVLlR4QPk81IOT23hAPcsEG0YfeUAKdpbgXep5QE4Ex3cQLnpA","dtype":"float64","shape":[48]},"y":{"__ndarray__":"rtHdRJ+GnUD8j/x5m5GdQG7JtrSanJ1AtRC8MKKynUDX7zmktcidQGkCOdTD051AH+kv+tTenUC3XVAdAPWdQArxAPg2C55A1wtaw1YWnkDDTVfN8kKeQOudIjoyhp5A2cRtR3GRnkBJRbcas5yeQEf+Sgc/s55AaTO559XJnkC6H5Gjd+CeQMLtDIzM655A85EWIiT3nkBdbUFK2w2fQP21HM0BMJ9A01nuMWk7n0Db3+e9P1KfQAXYgt6uXZ9AU5F2jCBpn0CC6HDElHSfQFccG4MLgJ9AMh8MhwCXn0AGwTtKCMWfQPK5r1iQ0J9AKFF20hrcn0Agw/jLAiigQCFbrttRP6BATcV5ZihFoEA4W/bD2FCgQI923ZKyVqBAjUtMaUZooEAP2kR4JG6gQN3CbJIDdKBAiB93EKeFoEAY2XN4bpGgQA9afKxTl6BAvM8jTvKuoEDuRY4XjsygQAfeNn1s2KBA3MpYC13eoEBTQcsJNPCgQDDxQR4o9qBA","dtype":"float64","shape":[48]}},"selected":{"id":"1945","type":"Selection"},"selection_policy":{"id":"1946","type":"UnionRenderers"}},"id":"1882","type":"ColumnDataSource"},{"attributes":{"callback":null,"data":{"color":{"__ndarray__":"","dtype":"float64","shape":[0]},"x":{"__ndarray__":"","dtype":"float64","shape":[0]},"y":{"__ndarray__":"","dtype":"float64","shape":[0]}},"selected":{"id":"2102","type":"Selection"},"selection_policy":{"id":"2103","type":"UnionRenderers"}},"id":"2023","type":"ColumnDataSource"},{"attributes":{"fill_alpha":{"value":0.2},"fill_color":{"field":"color","transform":{"id":"1698","type":"LinearColorMapper"}},"line_alpha":{"value":0.2},"line_color":{"field":"color","transform":{"id":"1698","type":"LinearColorMapper"}},"marker":{"value":"triangle"},"size":{"units":"screen","value":9},"x":{"field":"x"},"y":{"field":"y"}},"id":"1702","type":"Scatter"},{"attributes":{"high":9.845346187337482e-11,"low":-9.987520139123421e-11,"palette":["#440154","#440255","#440357","#450558","#45065A","#45085B","#46095C","#460B5E","#460C5F","#460E61","#470F62","#471163","#471265","#471466","#471567","#471669","#47186A","#48196B","#481A6C","#481C6E","#481D6F","#481E70","#482071","#482172","#482273","#482374","#472575","#472676","#472777","#472878","#472A79","#472B7A","#472C7B","#462D7C","#462F7C","#46307D","#46317E","#45327F","#45347F","#453580","#453681","#443781","#443982","#433A83","#433B83","#433C84","#423D84","#423E85","#424085","#414186","#414286","#404387","#404487","#3F4587","#3F4788","#3E4888","#3E4989","#3D4A89","#3D4B89","#3D4C89","#3C4D8A","#3C4E8A","#3B508A","#3B518A","#3A528B","#3A538B","#39548B","#39558B","#38568B","#38578C","#37588C","#37598C","#365A8C","#365B8C","#355C8C","#355D8C","#345E8D","#345F8D","#33608D","#33618D","#32628D","#32638D","#31648D","#31658D","#31668D","#30678D","#30688D","#2F698D","#2F6A8D","#2E6B8E","#2E6C8E","#2E6D8E","#2D6E8E","#2D6F8E","#2C708E","#2C718E","#2C728E","#2B738E","#2B748E","#2A758E","#2A768E","#2A778E","#29788E","#29798E","#287A8E","#287A8E","#287B8E","#277C8E","#277D8E","#277E8E","#267F8E","#26808E","#26818E","#25828E","#25838D","#24848D","#24858D","#24868D","#23878D","#23888D","#23898D","#22898D","#228A8D","#228B8D","#218C8D","#218D8C","#218E8C","#208F8C","#20908C","#20918C","#1F928C","#1F938B","#1F948B","#1F958B","#1F968B","#1E978A","#1E988A","#1E998A","#1E998A","#1E9A89","#1E9B89","#1E9C89","#1E9D88","#1E9E88","#1E9F88","#1EA087","#1FA187","#1FA286","#1FA386","#20A485","#20A585","#21A685","#21A784","#22A784","#23A883","#23A982","#24AA82","#25AB81","#26AC81","#27AD80","#28AE7F","#29AF7F","#2AB07E","#2BB17D","#2CB17D","#2EB27C","#2FB37B","#30B47A","#32B57A","#33B679","#35B778","#36B877","#38B976","#39B976","#3BBA75","#3DBB74","#3EBC73","#40BD72","#42BE71","#44BE70","#45BF6F","#47C06E","#49C16D","#4BC26C","#4DC26B","#4FC369","#51C468","#53C567","#55C666","#57C665","#59C764","#5BC862","#5EC961","#60C960","#62CA5F","#64CB5D","#67CC5C","#69CC5B","#6BCD59","#6DCE58","#70CE56","#72CF55","#74D054","#77D052","#79D151","#7CD24F","#7ED24E","#81D34C","#83D34B","#86D449","#88D547","#8BD546","#8DD644","#90D643","#92D741","#95D73F","#97D83E","#9AD83C","#9DD93A","#9FD938","#A2DA37","#A5DA35","#A7DB33","#AADB32","#ADDC30","#AFDC2E","#B2DD2C","#B5DD2B","#B7DD29","#BADE27","#BDDE26","#BFDF24","#C2DF22","#C5DF21","#C7E01F","#CAE01E","#CDE01D","#CFE11C","#D2E11B","#D4E11A","#D7E219","#DAE218","#DCE218","#DFE318","#E1E318","#E4E318","#E7E419","#E9E419","#ECE41A","#EEE51B","#F1E51C","#F3E51E","#F6E61F","#F8E621","#FAE622","#FDE724"]},"id":"1915","type":"LinearColorMapper"},{"attributes":{},"id":"2289","type":"UnionRenderers"},{"attributes":{"data_source":{"id":"1697","type":"ColumnDataSource"},"glyph":{"id":"1700","type":"Scatter"},"hover_glyph":null,"muted_glyph":{"id":"1702","type":"Scatter"},"nonselection_glyph":{"id":"1701","type":"Scatter"},"selection_glyph":null,"view":{"id":"1704","type":"CDSView"}},"id":"1703","type":"GlyphRenderer"},{"attributes":{"fill_color":{"field":"color","transform":{"id":"2064","type":"LinearColorMapper"}},"line_color":{"field":"color","transform":{"id":"2064","type":"LinearColorMapper"}},"marker":{"value":"inverted_triangle"},"size":{"units":"screen","value":9},"x":{"field":"x"},"y":{"field":"y"}},"id":"2066","type":"Scatter"},{"attributes":{"source":{"id":"1697","type":"ColumnDataSource"}},"id":"1704","type":"CDSView"},{"attributes":{"callback":null,"data":{"color":{"__ndarray__":"","dtype":"float64","shape":[0]},"x":{"__ndarray__":"","dtype":"float64","shape":[0]},"y":{"__ndarray__":"","dtype":"float64","shape":[0]}},"selected":{"id":"1981","type":"Selection"},"selection_policy":{"id":"1982","type":"UnionRenderers"}},"id":"1914","type":"ColumnDataSource"},{"attributes":{"fill_color":{"field":"color","transform":{"id":"1883","type":"LinearColorMapper"}},"line_color":{"field":"color","transform":{"id":"1883","type":"LinearColorMapper"}},"size":{"units":"screen","value":9},"x":{"field":"x"},"y":{"field":"y"}},"id":"1885","type":"Scatter"},{"attributes":{"fill_color":{"field":"color","transform":{"id":"2024","type":"LinearColorMapper"}},"line_color":{"field":"color","transform":{"id":"2024","type":"LinearColorMapper"}},"marker":{"value":"inverted_triangle"},"size":{"units":"screen","value":9},"x":{"field":"x"},"y":{"field":"y"}},"id":"2026","type":"Scatter"},{"attributes":{},"id":"1710","type":"Selection"},{"attributes":{"fill_alpha":{"value":0.1},"fill_color":{"value":"#1f77b4"},"line_alpha":{"value":0.1},"line_color":{"value":"#1f77b4"},"size":{"units":"screen","value":9},"x":{"field":"x"},"y":{"field":"y"}},"id":"1886","type":"Scatter"},{"attributes":{"fill_alpha":{"value":0.1},"fill_color":{"value":"#1f77b4"},"line_alpha":{"value":0.1},"line_color":{"value":"#1f77b4"},"marker":{"value":"inverted_triangle"},"size":{"units":"screen","value":9},"x":{"field":"x"},"y":{"field":"y"}},"id":"2027","type":"Scatter"},{"attributes":{"callback":null,"data":{"color":{"__ndarray__":"","dtype":"float64","shape":[0]},"x":{"__ndarray__":"","dtype":"float64","shape":[0]},"y":{"__ndarray__":"","dtype":"float64","shape":[0]}},"selected":{"id":"1748","type":"Selection"},"selection_policy":{"id":"1749","type":"UnionRenderers"}},"id":"1713","type":"ColumnDataSource"},{"attributes":{"fill_alpha":{"value":0.2},"fill_color":{"field":"color","transform":{"id":"2024","type":"LinearColorMapper"}},"line_alpha":{"value":0.2},"line_color":{"field":"color","transform":{"id":"2024","type":"LinearColorMapper"}},"marker":{"value":"inverted_triangle"},"size":{"units":"screen","value":9},"x":{"field":"x"},"y":{"field":"y"}},"id":"2028","type":"Scatter"},{"attributes":{},"id":"1912","type":"UnionRenderers"},{"attributes":{"data_source":{"id":"2023","type":"ColumnDataSource"},"glyph":{"id":"2026","type":"Scatter"},"hover_glyph":null,"muted_glyph":{"id":"2028","type":"Scatter"},"nonselection_glyph":{"id":"2027","type":"Scatter"},"selection_glyph":null,"view":{"id":"2030","type":"CDSView"}},"id":"2029","type":"GlyphRenderer"},{"attributes":{"high":9.845346187337482e-11,"low":-9.987520139123421e-11,"palette":["#440154","#440255","#440357","#450558","#45065A","#45085B","#46095C","#460B5E","#460C5F","#460E61","#470F62","#471163","#471265","#471466","#471567","#471669","#47186A","#48196B","#481A6C","#481C6E","#481D6F","#481E70","#482071","#482172","#482273","#482374","#472575","#472676","#472777","#472878","#472A79","#472B7A","#472C7B","#462D7C","#462F7C","#46307D","#46317E","#45327F","#45347F","#453580","#453681","#443781","#443982","#433A83","#433B83","#433C84","#423D84","#423E85","#424085","#414186","#414286","#404387","#404487","#3F4587","#3F4788","#3E4888","#3E4989","#3D4A89","#3D4B89","#3D4C89","#3C4D8A","#3C4E8A","#3B508A","#3B518A","#3A528B","#3A538B","#39548B","#39558B","#38568B","#38578C","#37588C","#37598C","#365A8C","#365B8C","#355C8C","#355D8C","#345E8D","#345F8D","#33608D","#33618D","#32628D","#32638D","#31648D","#31658D","#31668D","#30678D","#30688D","#2F698D","#2F6A8D","#2E6B8E","#2E6C8E","#2E6D8E","#2D6E8E","#2D6F8E","#2C708E","#2C718E","#2C728E","#2B738E","#2B748E","#2A758E","#2A768E","#2A778E","#29788E","#29798E","#287A8E","#287A8E","#287B8E","#277C8E","#277D8E","#277E8E","#267F8E","#26808E","#26818E","#25828E","#25838D","#24848D","#24858D","#24868D","#23878D","#23888D","#23898D","#22898D","#228A8D","#228B8D","#218C8D","#218D8C","#218E8C","#208F8C","#20908C","#20918C","#1F928C","#1F938B","#1F948B","#1F958B","#1F968B","#1E978A","#1E988A","#1E998A","#1E998A","#1E9A89","#1E9B89","#1E9C89","#1E9D88","#1E9E88","#1E9F88","#1EA087","#1FA187","#1FA286","#1FA386","#20A485","#20A585","#21A685","#21A784","#22A784","#23A883","#23A982","#24AA82","#25AB81","#26AC81","#27AD80","#28AE7F","#29AF7F","#2AB07E","#2BB17D","#2CB17D","#2EB27C","#2FB37B","#30B47A","#32B57A","#33B679","#35B778","#36B877","#38B976","#39B976","#3BBA75","#3DBB74","#3EBC73","#40BD72","#42BE71","#44BE70","#45BF6F","#47C06E","#49C16D","#4BC26C","#4DC26B","#4FC369","#51C468","#53C567","#55C666","#57C665","#59C764","#5BC862","#5EC961","#60C960","#62CA5F","#64CB5D","#67CC5C","#69CC5B","#6BCD59","#6DCE58","#70CE56","#72CF55","#74D054","#77D052","#79D151","#7CD24F","#7ED24E","#81D34C","#83D34B","#86D449","#88D547","#8BD546","#8DD644","#90D643","#92D741","#95D73F","#97D83E","#9AD83C","#9DD93A","#9FD938","#A2DA37","#A5DA35","#A7DB33","#AADB32","#ADDC30","#AFDC2E","#B2DD2C","#B5DD2B","#B7DD29","#BADE27","#BDDE26","#BFDF24","#C2DF22","#C5DF21","#C7E01F","#CAE01E","#CDE01D","#CFE11C","#D2E11B","#D4E11A","#D7E219","#DAE218","#DCE218","#DFE318","#E1E318","#E4E318","#E7E419","#E9E419","#ECE41A","#EEE51B","#F1E51C","#F3E51E","#F6E61F","#F8E621","#FAE622","#FDE724"]},"id":"1732","type":"LinearColorMapper"},{"attributes":{"high":9.845346187337482e-11,"low":-9.987520139123421e-11,"palette":["#440154","#440255","#440357","#450558","#45065A","#45085B","#46095C","#460B5E","#460C5F","#460E61","#470F62","#471163","#471265","#471466","#471567","#471669","#47186A","#48196B","#481A6C","#481C6E","#481D6F","#481E70","#482071","#482172","#482273","#482374","#472575","#472676","#472777","#472878","#472A79","#472B7A","#472C7B","#462D7C","#462F7C","#46307D","#46317E","#45327F","#45347F","#453580","#453681","#443781","#443982","#433A83","#433B83","#433C84","#423D84","#423E85","#424085","#414186","#414286","#404387","#404487","#3F4587","#3F4788","#3E4888","#3E4989","#3D4A89","#3D4B89","#3D4C89","#3C4D8A","#3C4E8A","#3B508A","#3B518A","#3A528B","#3A538B","#39548B","#39558B","#38568B","#38578C","#37588C","#37598C","#365A8C","#365B8C","#355C8C","#355D8C","#345E8D","#345F8D","#33608D","#33618D","#32628D","#32638D","#31648D","#31658D","#31668D","#30678D","#30688D","#2F698D","#2F6A8D","#2E6B8E","#2E6C8E","#2E6D8E","#2D6E8E","#2D6F8E","#2C708E","#2C718E","#2C728E","#2B738E","#2B748E","#2A758E","#2A768E","#2A778E","#29788E","#29798E","#287A8E","#287A8E","#287B8E","#277C8E","#277D8E","#277E8E","#267F8E","#26808E","#26818E","#25828E","#25838D","#24848D","#24858D","#24868D","#23878D","#23888D","#23898D","#22898D","#228A8D","#228B8D","#218C8D","#218D8C","#218E8C","#208F8C","#20908C","#20918C","#1F928C","#1F938B","#1F948B","#1F958B","#1F968B","#1E978A","#1E988A","#1E998A","#1E998A","#1E9A89","#1E9B89","#1E9C89","#1E9D88","#1E9E88","#1E9F88","#1EA087","#1FA187","#1FA286","#1FA386","#20A485","#20A585","#21A685","#21A784","#22A784","#23A883","#23A982","#24AA82","#25AB81","#26AC81","#27AD80","#28AE7F","#29AF7F","#2AB07E","#2BB17D","#2CB17D","#2EB27C","#2FB37B","#30B47A","#32B57A","#33B679","#35B778","#36B877","#38B976","#39B976","#3BBA75","#3DBB74","#3EBC73","#40BD72","#42BE71","#44BE70","#45BF6F","#47C06E","#49C16D","#4BC26C","#4DC26B","#4FC369","#51C468","#53C567","#55C666","#57C665","#59C764","#5BC862","#5EC961","#60C960","#62CA5F","#64CB5D","#67CC5C","#69CC5B","#6BCD59","#6DCE58","#70CE56","#72CF55","#74D054","#77D052","#79D151","#7CD24F","#7ED24E","#81D34C","#83D34B","#86D449","#88D547","#8BD546","#8DD644","#90D643","#92D741","#95D73F","#97D83E","#9AD83C","#9DD93A","#9FD938","#A2DA37","#A5DA35","#A7DB33","#AADB32","#ADDC30","#AFDC2E","#B2DD2C","#B5DD2B","#B7DD29","#BADE27","#BDDE26","#BFDF24","#C2DF22","#C5DF21","#C7E01F","#CAE01E","#CDE01D","#CFE11C","#D2E11B","#D4E11A","#D7E219","#DAE218","#DCE218","#DFE318","#E1E318","#E4E318","#E7E419","#E9E419","#ECE41A","#EEE51B","#F1E51C","#F3E51E","#F6E61F","#F8E621","#FAE622","#FDE724"]},"id":"1949","type":"LinearColorMapper"},{"attributes":{"source":{"id":"2023","type":"ColumnDataSource"}},"id":"2030","type":"CDSView"},{"attributes":{"high":9.845346187337482e-11,"low":-9.987520139123421e-11,"palette":["#440154","#440255","#440357","#450558","#45065A","#45085B","#46095C","#460B5E","#460C5F","#460E61","#470F62","#471163","#471265","#471466","#471567","#471669","#47186A","#48196B","#481A6C","#481C6E","#481D6F","#481E70","#482071","#482172","#482273","#482374","#472575","#472676","#472777","#472878","#472A79","#472B7A","#472C7B","#462D7C","#462F7C","#46307D","#46317E","#45327F","#45347F","#453580","#453681","#443781","#443982","#433A83","#433B83","#433C84","#423D84","#423E85","#424085","#414186","#414286","#404387","#404487","#3F4587","#3F4788","#3E4888","#3E4989","#3D4A89","#3D4B89","#3D4C89","#3C4D8A","#3C4E8A","#3B508A","#3B518A","#3A528B","#3A538B","#39548B","#39558B","#38568B","#38578C","#37588C","#37598C","#365A8C","#365B8C","#355C8C","#355D8C","#345E8D","#345F8D","#33608D","#33618D","#32628D","#32638D","#31648D","#31658D","#31668D","#30678D","#30688D","#2F698D","#2F6A8D","#2E6B8E","#2E6C8E","#2E6D8E","#2D6E8E","#2D6F8E","#2C708E","#2C718E","#2C728E","#2B738E","#2B748E","#2A758E","#2A768E","#2A778E","#29788E","#29798E","#287A8E","#287A8E","#287B8E","#277C8E","#277D8E","#277E8E","#267F8E","#26808E","#26818E","#25828E","#25838D","#24848D","#24858D","#24868D","#23878D","#23888D","#23898D","#22898D","#228A8D","#228B8D","#218C8D","#218D8C","#218E8C","#208F8C","#20908C","#20918C","#1F928C","#1F938B","#1F948B","#1F958B","#1F968B","#1E978A","#1E988A","#1E998A","#1E998A","#1E9A89","#1E9B89","#1E9C89","#1E9D88","#1E9E88","#1E9F88","#1EA087","#1FA187","#1FA286","#1FA386","#20A485","#20A585","#21A685","#21A784","#22A784","#23A883","#23A982","#24AA82","#25AB81","#26AC81","#27AD80","#28AE7F","#29AF7F","#2AB07E","#2BB17D","#2CB17D","#2EB27C","#2FB37B","#30B47A","#32B57A","#33B679","#35B778","#36B877","#38B976","#39B976","#3BBA75","#3DBB74","#3EBC73","#40BD72","#42BE71","#44BE70","#45BF6F","#47C06E","#49C16D","#4BC26C","#4DC26B","#4FC369","#51C468","#53C567","#55C666","#57C665","#59C764","#5BC862","#5EC961","#60C960","#62CA5F","#64CB5D","#67CC5C","#69CC5B","#6BCD59","#6DCE58","#70CE56","#72CF55","#74D054","#77D052","#79D151","#7CD24F","#7ED24E","#81D34C","#83D34B","#86D449","#88D547","#8BD546","#8DD644","#90D643","#92D741","#95D73F","#97D83E","#9AD83C","#9DD93A","#9FD938","#A2DA37","#A5DA35","#A7DB33","#AADB32","#ADDC30","#AFDC2E","#B2DD2C","#B5DD2B","#B7DD29","#BADE27","#BDDE26","#BFDF24","#C2DF22","#C5DF21","#C7E01F","#CAE01E","#CDE01D","#CFE11C","#D2E11B","#D4E11A","#D7E219","#DAE218","#DCE218","#DFE318","#E1E318","#E4E318","#E7E419","#E9E419","#ECE41A","#EEE51B","#F1E51C","#F3E51E","#F6E61F","#F8E621","#FAE622","#FDE724"]},"id":"2064","type":"LinearColorMapper"},{"attributes":{"fill_color":{"field":"color","transform":{"id":"1774","type":"LinearColorMapper"}},"line_color":{"field":"color","transform":{"id":"1774","type":"LinearColorMapper"}},"marker":{"value":"triangle"},"size":{"units":"screen","value":9},"x":{"field":"x"},"y":{"field":"y"}},"id":"1776","type":"Scatter"},{"attributes":{"fill_color":{"field":"color","transform":{"id":"1714","type":"LinearColorMapper"}},"line_color":{"field":"color","transform":{"id":"1714","type":"LinearColorMapper"}},"marker":{"value":"triangle"},"size":{"units":"screen","value":9},"x":{"field":"x"},"y":{"field":"y"}},"id":"1716","type":"Scatter"},{"attributes":{"fill_color":{"field":"color","transform":{"id":"1915","type":"LinearColorMapper"}},"line_color":{"field":"color","transform":{"id":"1915","type":"LinearColorMapper"}},"size":{"units":"screen","value":9},"x":{"field":"x"},"y":{"field":"y"}},"id":"1917","type":"Scatter"},{"attributes":{},"id":"2060","type":"Selection"},{"attributes":{"fill_alpha":{"value":0.1},"fill_color":{"value":"#1f77b4"},"line_alpha":{"value":0.1},"line_color":{"value":"#1f77b4"},"marker":{"value":"triangle"},"size":{"units":"screen","value":9},"x":{"field":"x"},"y":{"field":"y"}},"id":"1717","type":"Scatter"},{"attributes":{"fill_alpha":{"value":0.1},"fill_color":{"value":"#1f77b4"},"line_alpha":{"value":0.1},"line_color":{"value":"#1f77b4"},"size":{"units":"screen","value":9},"x":{"field":"x"},"y":{"field":"y"}},"id":"1918","type":"Scatter"},{"attributes":{},"id":"2061","type":"UnionRenderers"},{"attributes":{"fill_alpha":{"value":0.2},"fill_color":{"field":"color","transform":{"id":"1714","type":"LinearColorMapper"}},"line_alpha":{"value":0.2},"line_color":{"field":"color","transform":{"id":"1714","type":"LinearColorMapper"}},"marker":{"value":"triangle"},"size":{"units":"screen","value":9},"x":{"field":"x"},"y":{"field":"y"}},"id":"1718","type":"Scatter"},{"attributes":{"fill_alpha":{"value":0.2},"fill_color":{"field":"color","transform":{"id":"1915","type":"LinearColorMapper"}},"line_alpha":{"value":0.2},"line_color":{"field":"color","transform":{"id":"1915","type":"LinearColorMapper"}},"size":{"units":"screen","value":9},"x":{"field":"x"},"y":{"field":"y"}},"id":"1919","type":"Scatter"},{"attributes":{"fill_alpha":{"value":0.1},"fill_color":{"value":"#1f77b4"},"line_alpha":{"value":0.1},"line_color":{"value":"#1f77b4"},"marker":{"value":"inverted_triangle"},"size":{"units":"screen","value":9},"x":{"field":"x"},"y":{"field":"y"}},"id":"2067","type":"Scatter"},{"attributes":{"data_source":{"id":"1914","type":"ColumnDataSource"},"glyph":{"id":"1917","type":"Scatter"},"hover_glyph":null,"muted_glyph":{"id":"1919","type":"Scatter"},"nonselection_glyph":{"id":"1918","type":"Scatter"},"selection_glyph":null,"view":{"id":"1921","type":"CDSView"}},"id":"1920","type":"GlyphRenderer"},{"attributes":{"data_source":{"id":"1713","type":"ColumnDataSource"},"glyph":{"id":"1716","type":"Scatter"},"hover_glyph":null,"muted_glyph":{"id":"1718","type":"Scatter"},"nonselection_glyph":{"id":"1717","type":"Scatter"},"selection_glyph":null,"view":{"id":"1720","type":"CDSView"}},"id":"1719","type":"GlyphRenderer"},{"attributes":{"fill_alpha":{"value":0.2},"fill_color":{"field":"color","transform":{"id":"2064","type":"LinearColorMapper"}},"line_alpha":{"value":0.2},"line_color":{"field":"color","transform":{"id":"2064","type":"LinearColorMapper"}},"marker":{"value":"inverted_triangle"},"size":{"units":"screen","value":9},"x":{"field":"x"},"y":{"field":"y"}},"id":"2068","type":"Scatter"},{"attributes":{"data_source":{"id":"2063","type":"ColumnDataSource"},"glyph":{"id":"2066","type":"Scatter"},"hover_glyph":null,"muted_glyph":{"id":"2068","type":"Scatter"},"nonselection_glyph":{"id":"2067","type":"Scatter"},"selection_glyph":null,"view":{"id":"2070","type":"CDSView"}},"id":"2069","type":"GlyphRenderer"},{"attributes":{"source":{"id":"1713","type":"ColumnDataSource"}},"id":"1720","type":"CDSView"},{"attributes":{"source":{"id":"1914","type":"ColumnDataSource"}},"id":"1921","type":"CDSView"},{"attributes":{"source":{"id":"2063","type":"ColumnDataSource"}},"id":"2070","type":"CDSView"},{"attributes":{},"id":"1728","type":"Selection"},{"attributes":{},"id":"1945","type":"Selection"},{"attributes":{},"id":"1729","type":"UnionRenderers"},{"attributes":{},"id":"1946","type":"UnionRenderers"},{"attributes":{},"id":"2102","type":"Selection"},{"attributes":{"callback":null,"data":{"color":{"__ndarray__":"GWhXwIsrY73tmIlUj/5bPcLoLNfuhYA9tOd5n/mTUb0fDfAVpiBPPWu9fIL/JFo9rTqvG0e/Yr3N2JVB8ppfPe4rSNFVfmG9/27JpnJlcz0XrTtK69dfPX89InM9WnS9J1IFTFZtZL28/p8PjGl4vchdvzHkyng9UvGAoFwNgz2HdoN5zzR3PR0jC36ME2I91tRk3yr2cr1KZ+xmA8BDPfGqNShDxGK9hSNjzPs+eb0I3xPRD1povZiWuTfBA3o9nIS2vIJ6a71v5t2Tf7N0PShVPddMGmQ9TyfOjp18gr1BDWbelLeDvUpQr42JlnA93hmXp4nsUz3HXyoVOv9HvX2wcpAEmok9jz/KMtJAYL07C8TGoc+OvcGE+wI+FVi9IWAzWMpiTD3GZRgilOCAPfSD+YJ1jHE9VJfByu9jQr3gNiNmFOV8Pdx/a2CiZWM9DLz0cHKTer0wnIFo85NkvVri3KSU7Wm9YGmcKVvZgT3knMW7JNtlvT9gkvjlf269lFYX9sCoXb2Bh2cWKT0nPTUqqskgjEk9rfYVO0VSdD0=","dtype":"float64","shape":[52]},"x":{"__ndarray__":"AAAAAAAAAAABkSPMpewwQIJZNbL4YjlAQXUsP88nRUCCWTWy+GJJQOKvwt62u09AAZEjzKXsUEARyuUocPtRQDE8auIEGVRAQXUsP88nVUBRru6bmTZWQGHnsPhjRVdAcSBzVS5UWECyBHzIV49cQNJ2AILsrF5AeXTCnUBlYECZ5kZX1YJiQKkfCbSfkWNAMTxq4gQZZEDJkY1tNK9lQPk81IOT22hACnaW4F3qaUCSkvcOw3FqQBqvWD0o+WpAOiHd9rwWbUDCPT4lIp5tQEpan1OHJW5A0nYAguysbkBak2GwUTRvQOKvwt62u29ANeaRBo4hcEB5dMKdQGVwQL0C8zTzqHBARR9UY1gwcUCJrYT6CnRxQM07tZG9t3FAmeZGV9WCckBlkdgc7U1zQKkfCbSfkXNAuVjLEGqgdED95vunHOR0QIUDXdaBa3VAUa7um5k2dkCVPB8zTHp2QNnKT8r+vXZAYeew+GNFd0CldeGPFol3QOkDEifJzHdALZJCvnsQeEC1rqPs4Jd4QIJZNbL4YnlAxudlSaumeUA=","dtype":"float64","shape":[52]},"y":{"__ndarray__":"pxzlF6Z7nUBhV33ynKedQHMr2myqvZ1A+ahyE+npnUC6RBMVGgCeQG2UWnR5IZ5AVI85CJ8snkCfUCl8xzeeQD5p7PggTp5A6XsM/FFZnkDMxtbThWSeQOuYZX28b55ARZzO9fV6nkAOzQGx96eeQGoTjBqJvp5A+fDBayXVnkCExopifgKfQEfADdY6GZ9AYzS+Ap0kn0AUcvMt00afQC+cGcWEi59Aox+OxX6in0DlLDZ9/62fQM9KlqqCuZ9A5zkPtKfnn0DVjvX5NvOfQAkZoKDI/p9ACGZAUi4FoEAIlQKB+QqgQPIky9rFEKBAPFzMXZMWoECTLjYIYhygQPKDNtgxIqBAGE6m4dQtoEB2N2YXqDOgQDdQXWt8OaBAeb3dCQBLoEC546p0jVygQHUKdGdpYqBA6/nQteN5oECnMXzgxH+gQD87yEOKi6BA+vXh3TmdoEAJv6IKIaOgQNDAujAJqaBAZenVYNy0oEC148Zmx7qgQLV26l2zwKBApFoyRKDGoEAj2+vVfNKgQHx0OX5O5KBAUFu+00DqoEA=","dtype":"float64","shape":[52]}},"selected":{"id":"1770","type":"Selection"},"selection_policy":{"id":"1771","type":"UnionRenderers"}},"id":"1731","type":"ColumnDataSource"},{"attributes":{"callback":null,"data":{"color":{"__ndarray__":"","dtype":"float64","shape":[0]},"x":{"__ndarray__":"","dtype":"float64","shape":[0]},"y":{"__ndarray__":"","dtype":"float64","shape":[0]}},"selected":{"id":"2019","type":"Selection"},"selection_policy":{"id":"2020","type":"UnionRenderers"}},"id":"1948","type":"ColumnDataSource"},{"attributes":{},"id":"2103","type":"UnionRenderers"},{"attributes":{"high":9.845346187337482e-11,"low":-9.987520139123421e-11,"palette":["#440154","#440255","#440357","#450558","#45065A","#45085B","#46095C","#460B5E","#460C5F","#460E61","#470F62","#471163","#471265","#471466","#471567","#471669","#47186A","#48196B","#481A6C","#481C6E","#481D6F","#481E70","#482071","#482172","#482273","#482374","#472575","#472676","#472777","#472878","#472A79","#472B7A","#472C7B","#462D7C","#462F7C","#46307D","#46317E","#45327F","#45347F","#453580","#453681","#443781","#443982","#433A83","#433B83","#433C84","#423D84","#423E85","#424085","#414186","#414286","#404387","#404487","#3F4587","#3F4788","#3E4888","#3E4989","#3D4A89","#3D4B89","#3D4C89","#3C4D8A","#3C4E8A","#3B508A","#3B518A","#3A528B","#3A538B","#39548B","#39558B","#38568B","#38578C","#37588C","#37598C","#365A8C","#365B8C","#355C8C","#355D8C","#345E8D","#345F8D","#33608D","#33618D","#32628D","#32638D","#31648D","#31658D","#31668D","#30678D","#30688D","#2F698D","#2F6A8D","#2E6B8E","#2E6C8E","#2E6D8E","#2D6E8E","#2D6F8E","#2C708E","#2C718E","#2C728E","#2B738E","#2B748E","#2A758E","#2A768E","#2A778E","#29788E","#29798E","#287A8E","#287A8E","#287B8E","#277C8E","#277D8E","#277E8E","#267F8E","#26808E","#26818E","#25828E","#25838D","#24848D","#24858D","#24868D","#23878D","#23888D","#23898D","#22898D","#228A8D","#228B8D","#218C8D","#218D8C","#218E8C","#208F8C","#20908C","#20918C","#1F928C","#1F938B","#1F948B","#1F958B","#1F968B","#1E978A","#1E988A","#1E998A","#1E998A","#1E9A89","#1E9B89","#1E9C89","#1E9D88","#1E9E88","#1E9F88","#1EA087","#1FA187","#1FA286","#1FA386","#20A485","#20A585","#21A685","#21A784","#22A784","#23A883","#23A982","#24AA82","#25AB81","#26AC81","#27AD80","#28AE7F","#29AF7F","#2AB07E","#2BB17D","#2CB17D","#2EB27C","#2FB37B","#30B47A","#32B57A","#33B679","#35B778","#36B877","#38B976","#39B976","#3BBA75","#3DBB74","#3EBC73","#40BD72","#42BE71","#44BE70","#45BF6F","#47C06E","#49C16D","#4BC26C","#4DC26B","#4FC369","#51C468","#53C567","#55C666","#57C665","#59C764","#5BC862","#5EC961","#60C960","#62CA5F","#64CB5D","#67CC5C","#69CC5B","#6BCD59","#6DCE58","#70CE56","#72CF55","#74D054","#77D052","#79D151","#7CD24F","#7ED24E","#81D34C","#83D34B","#86D449","#88D547","#8BD546","#8DD644","#90D643","#92D741","#95D73F","#97D83E","#9AD83C","#9DD93A","#9FD938","#A2DA37","#A5DA35","#A7DB33","#AADB32","#ADDC30","#AFDC2E","#B2DD2C","#B5DD2B","#B7DD29","#BADE27","#BDDE26","#BFDF24","#C2DF22","#C5DF21","#C7E01F","#CAE01E","#CDE01D","#CFE11C","#D2E11B","#D4E11A","#D7E219","#DAE218","#DCE218","#DFE318","#E1E318","#E4E318","#E7E419","#E9E419","#ECE41A","#EEE51B","#F1E51C","#F3E51E","#F6E61F","#F8E621","#FAE622","#FDE724"]},"id":"1985","type":"LinearColorMapper"},{"attributes":{"callback":null,"data":{"color":{"__ndarray__":"","dtype":"float64","shape":[0]},"x":{"__ndarray__":"","dtype":"float64","shape":[0]},"y":{"__ndarray__":"","dtype":"float64","shape":[0]}},"selected":{"id":"2192","type":"Selection"},"selection_policy":{"id":"2193","type":"UnionRenderers"}},"id":"2105","type":"ColumnDataSource"},{"attributes":{"high":9.845346187337482e-11,"low":-9.987520139123421e-11,"palette":["#440154","#440255","#440357","#450558","#45065A","#45085B","#46095C","#460B5E","#460C5F","#460E61","#470F62","#471163","#471265","#471466","#471567","#471669","#47186A","#48196B","#481A6C","#481C6E","#481D6F","#481E70","#482071","#482172","#482273","#482374","#472575","#472676","#472777","#472878","#472A79","#472B7A","#472C7B","#462D7C","#462F7C","#46307D","#46317E","#45327F","#45347F","#453580","#453681","#443781","#443982","#433A83","#433B83","#433C84","#423D84","#423E85","#424085","#414186","#414286","#404387","#404487","#3F4587","#3F4788","#3E4888","#3E4989","#3D4A89","#3D4B89","#3D4C89","#3C4D8A","#3C4E8A","#3B508A","#3B518A","#3A528B","#3A538B","#39548B","#39558B","#38568B","#38578C","#37588C","#37598C","#365A8C","#365B8C","#355C8C","#355D8C","#345E8D","#345F8D","#33608D","#33618D","#32628D","#32638D","#31648D","#31658D","#31668D","#30678D","#30688D","#2F698D","#2F6A8D","#2E6B8E","#2E6C8E","#2E6D8E","#2D6E8E","#2D6F8E","#2C708E","#2C718E","#2C728E","#2B738E","#2B748E","#2A758E","#2A768E","#2A778E","#29788E","#29798E","#287A8E","#287A8E","#287B8E","#277C8E","#277D8E","#277E8E","#267F8E","#26808E","#26818E","#25828E","#25838D","#24848D","#24858D","#24868D","#23878D","#23888D","#23898D","#22898D","#228A8D","#228B8D","#218C8D","#218D8C","#218E8C","#208F8C","#20908C","#20918C","#1F928C","#1F938B","#1F948B","#1F958B","#1F968B","#1E978A","#1E988A","#1E998A","#1E998A","#1E9A89","#1E9B89","#1E9C89","#1E9D88","#1E9E88","#1E9F88","#1EA087","#1FA187","#1FA286","#1FA386","#20A485","#20A585","#21A685","#21A784","#22A784","#23A883","#23A982","#24AA82","#25AB81","#26AC81","#27AD80","#28AE7F","#29AF7F","#2AB07E","#2BB17D","#2CB17D","#2EB27C","#2FB37B","#30B47A","#32B57A","#33B679","#35B778","#36B877","#38B976","#39B976","#3BBA75","#3DBB74","#3EBC73","#40BD72","#42BE71","#44BE70","#45BF6F","#47C06E","#49C16D","#4BC26C","#4DC26B","#4FC369","#51C468","#53C567","#55C666","#57C665","#59C764","#5BC862","#5EC961","#60C960","#62CA5F","#64CB5D","#67CC5C","#69CC5B","#6BCD59","#6DCE58","#70CE56","#72CF55","#74D054","#77D052","#79D151","#7CD24F","#7ED24E","#81D34C","#83D34B","#86D449","#88D547","#8BD546","#8DD644","#90D643","#92D741","#95D73F","#97D83E","#9AD83C","#9DD93A","#9FD938","#A2DA37","#A5DA35","#A7DB33","#AADB32","#ADDC30","#AFDC2E","#B2DD2C","#B5DD2B","#B7DD29","#BADE27","#BDDE26","#BFDF24","#C2DF22","#C5DF21","#C7E01F","#CAE01E","#CDE01D","#CFE11C","#D2E11B","#D4E11A","#D7E219","#DAE218","#DCE218","#DFE318","#E1E318","#E4E318","#E7E419","#E9E419","#ECE41A","#EEE51B","#F1E51C","#F3E51E","#F6E61F","#F8E621","#FAE622","#FDE724"]},"id":"1752","type":"LinearColorMapper"},{"attributes":{"high":9.845346187337482e-11,"low":-9.987520139123421e-11,"palette":["#440154","#440255","#440357","#450558","#45065A","#45085B","#46095C","#460B5E","#460C5F","#460E61","#470F62","#471163","#471265","#471466","#471567","#471669","#47186A","#48196B","#481A6C","#481C6E","#481D6F","#481E70","#482071","#482172","#482273","#482374","#472575","#472676","#472777","#472878","#472A79","#472B7A","#472C7B","#462D7C","#462F7C","#46307D","#46317E","#45327F","#45347F","#453580","#453681","#443781","#443982","#433A83","#433B83","#433C84","#423D84","#423E85","#424085","#414186","#414286","#404387","#404487","#3F4587","#3F4788","#3E4888","#3E4989","#3D4A89","#3D4B89","#3D4C89","#3C4D8A","#3C4E8A","#3B508A","#3B518A","#3A528B","#3A538B","#39548B","#39558B","#38568B","#38578C","#37588C","#37598C","#365A8C","#365B8C","#355C8C","#355D8C","#345E8D","#345F8D","#33608D","#33618D","#32628D","#32638D","#31648D","#31658D","#31668D","#30678D","#30688D","#2F698D","#2F6A8D","#2E6B8E","#2E6C8E","#2E6D8E","#2D6E8E","#2D6F8E","#2C708E","#2C718E","#2C728E","#2B738E","#2B748E","#2A758E","#2A768E","#2A778E","#29788E","#29798E","#287A8E","#287A8E","#287B8E","#277C8E","#277D8E","#277E8E","#267F8E","#26808E","#26818E","#25828E","#25838D","#24848D","#24858D","#24868D","#23878D","#23888D","#23898D","#22898D","#228A8D","#228B8D","#218C8D","#218D8C","#218E8C","#208F8C","#20908C","#20918C","#1F928C","#1F938B","#1F948B","#1F958B","#1F968B","#1E978A","#1E988A","#1E998A","#1E998A","#1E9A89","#1E9B89","#1E9C89","#1E9D88","#1E9E88","#1E9F88","#1EA087","#1FA187","#1FA286","#1FA386","#20A485","#20A585","#21A685","#21A784","#22A784","#23A883","#23A982","#24AA82","#25AB81","#26AC81","#27AD80","#28AE7F","#29AF7F","#2AB07E","#2BB17D","#2CB17D","#2EB27C","#2FB37B","#30B47A","#32B57A","#33B679","#35B778","#36B877","#38B976","#39B976","#3BBA75","#3DBB74","#3EBC73","#40BD72","#42BE71","#44BE70","#45BF6F","#47C06E","#49C16D","#4BC26C","#4DC26B","#4FC369","#51C468","#53C567","#55C666","#57C665","#59C764","#5BC862","#5EC961","#60C960","#62CA5F","#64CB5D","#67CC5C","#69CC5B","#6BCD59","#6DCE58","#70CE56","#72CF55","#74D054","#77D052","#79D151","#7CD24F","#7ED24E","#81D34C","#83D34B","#86D449","#88D547","#8BD546","#8DD644","#90D643","#92D741","#95D73F","#97D83E","#9AD83C","#9DD93A","#9FD938","#A2DA37","#A5DA35","#A7DB33","#AADB32","#ADDC30","#AFDC2E","#B2DD2C","#B5DD2B","#B7DD29","#BADE27","#BDDE26","#BFDF24","#C2DF22","#C5DF21","#C7E01F","#CAE01E","#CDE01D","#CFE11C","#D2E11B","#D4E11A","#D7E219","#DAE218","#DCE218","#DFE318","#E1E318","#E4E318","#E7E419","#E9E419","#ECE41A","#EEE51B","#F1E51C","#F3E51E","#F6E61F","#F8E621","#FAE622","#FDE724"]},"id":"2150","type":"LinearColorMapper"},{"attributes":{},"id":"1911","type":"Selection"},{"attributes":{"high":9.845346187337482e-11,"low":-9.987520139123421e-11,"palette":["#440154","#440255","#440357","#450558","#45065A","#45085B","#46095C","#460B5E","#460C5F","#460E61","#470F62","#471163","#471265","#471466","#471567","#471669","#47186A","#48196B","#481A6C","#481C6E","#481D6F","#481E70","#482071","#482172","#482273","#482374","#472575","#472676","#472777","#472878","#472A79","#472B7A","#472C7B","#462D7C","#462F7C","#46307D","#46317E","#45327F","#45347F","#453580","#453681","#443781","#443982","#433A83","#433B83","#433C84","#423D84","#423E85","#424085","#414186","#414286","#404387","#404487","#3F4587","#3F4788","#3E4888","#3E4989","#3D4A89","#3D4B89","#3D4C89","#3C4D8A","#3C4E8A","#3B508A","#3B518A","#3A528B","#3A538B","#39548B","#39558B","#38568B","#38578C","#37588C","#37598C","#365A8C","#365B8C","#355C8C","#355D8C","#345E8D","#345F8D","#33608D","#33618D","#32628D","#32638D","#31648D","#31658D","#31668D","#30678D","#30688D","#2F698D","#2F6A8D","#2E6B8E","#2E6C8E","#2E6D8E","#2D6E8E","#2D6F8E","#2C708E","#2C718E","#2C728E","#2B738E","#2B748E","#2A758E","#2A768E","#2A778E","#29788E","#29798E","#287A8E","#287A8E","#287B8E","#277C8E","#277D8E","#277E8E","#267F8E","#26808E","#26818E","#25828E","#25838D","#24848D","#24858D","#24868D","#23878D","#23888D","#23898D","#22898D","#228A8D","#228B8D","#218C8D","#218D8C","#218E8C","#208F8C","#20908C","#20918C","#1F928C","#1F938B","#1F948B","#1F958B","#1F968B","#1E978A","#1E988A","#1E998A","#1E998A","#1E9A89","#1E9B89","#1E9C89","#1E9D88","#1E9E88","#1E9F88","#1EA087","#1FA187","#1FA286","#1FA386","#20A485","#20A585","#21A685","#21A784","#22A784","#23A883","#23A982","#24AA82","#25AB81","#26AC81","#27AD80","#28AE7F","#29AF7F","#2AB07E","#2BB17D","#2CB17D","#2EB27C","#2FB37B","#30B47A","#32B57A","#33B679","#35B778","#36B877","#38B976","#39B976","#3BBA75","#3DBB74","#3EBC73","#40BD72","#42BE71","#44BE70","#45BF6F","#47C06E","#49C16D","#4BC26C","#4DC26B","#4FC369","#51C468","#53C567","#55C666","#57C665","#59C764","#5BC862","#5EC961","#60C960","#62CA5F","#64CB5D","#67CC5C","#69CC5B","#6BCD59","#6DCE58","#70CE56","#72CF55","#74D054","#77D052","#79D151","#7CD24F","#7ED24E","#81D34C","#83D34B","#86D449","#88D547","#8BD546","#8DD644","#90D643","#92D741","#95D73F","#97D83E","#9AD83C","#9DD93A","#9FD938","#A2DA37","#A5DA35","#A7DB33","#AADB32","#ADDC30","#AFDC2E","#B2DD2C","#B5DD2B","#B7DD29","#BADE27","#BDDE26","#BFDF24","#C2DF22","#C5DF21","#C7E01F","#CAE01E","#CDE01D","#CFE11C","#D2E11B","#D4E11A","#D7E219","#DAE218","#DCE218","#DFE318","#E1E318","#E4E318","#E7E419","#E9E419","#ECE41A","#EEE51B","#F1E51C","#F3E51E","#F6E61F","#F8E621","#FAE622","#FDE724"]},"id":"2106","type":"LinearColorMapper"},{"attributes":{"fill_color":{"field":"color","transform":{"id":"1732","type":"LinearColorMapper"}},"line_color":{"field":"color","transform":{"id":"1732","type":"LinearColorMapper"}},"marker":{"value":"triangle"},"size":{"units":"screen","value":9},"x":{"field":"x"},"y":{"field":"y"}},"id":"1734","type":"Scatter"},{"attributes":{"fill_color":{"field":"color","transform":{"id":"1949","type":"LinearColorMapper"}},"line_color":{"field":"color","transform":{"id":"1949","type":"LinearColorMapper"}},"size":{"units":"screen","value":9},"x":{"field":"x"},"y":{"field":"y"}},"id":"1951","type":"Scatter"},{"attributes":{},"id":"2288","type":"Selection"},{"attributes":{"fill_alpha":{"value":0.1},"fill_color":{"value":"#1f77b4"},"line_alpha":{"value":0.1},"line_color":{"value":"#1f77b4"},"marker":{"value":"triangle"},"size":{"units":"screen","value":9},"x":{"field":"x"},"y":{"field":"y"}},"id":"1735","type":"Scatter"},{"attributes":{"fill_alpha":{"value":0.1},"fill_color":{"value":"#1f77b4"},"line_alpha":{"value":0.1},"line_color":{"value":"#1f77b4"},"size":{"units":"screen","value":9},"x":{"field":"x"},"y":{"field":"y"}},"id":"1952","type":"Scatter"},{"attributes":{"fill_color":{"field":"color","transform":{"id":"2106","type":"LinearColorMapper"}},"line_color":{"field":"color","transform":{"id":"2106","type":"LinearColorMapper"}},"marker":{"value":"inverted_triangle"},"size":{"units":"screen","value":9},"x":{"field":"x"},"y":{"field":"y"}},"id":"2108","type":"Scatter"},{"attributes":{"fill_alpha":{"value":0.2},"fill_color":{"field":"color","transform":{"id":"1732","type":"LinearColorMapper"}},"line_alpha":{"value":0.2},"line_color":{"field":"color","transform":{"id":"1732","type":"LinearColorMapper"}},"marker":{"value":"triangle"},"size":{"units":"screen","value":9},"x":{"field":"x"},"y":{"field":"y"}},"id":"1736","type":"Scatter"},{"attributes":{"fill_alpha":{"value":0.2},"fill_color":{"field":"color","transform":{"id":"1949","type":"LinearColorMapper"}},"line_alpha":{"value":0.2},"line_color":{"field":"color","transform":{"id":"1949","type":"LinearColorMapper"}},"size":{"units":"screen","value":9},"x":{"field":"x"},"y":{"field":"y"}},"id":"1953","type":"Scatter"},{"attributes":{"fill_alpha":{"value":0.1},"fill_color":{"value":"#1f77b4"},"line_alpha":{"value":0.1},"line_color":{"value":"#1f77b4"},"marker":{"value":"inverted_triangle"},"size":{"units":"screen","value":9},"x":{"field":"x"},"y":{"field":"y"}},"id":"2109","type":"Scatter"},{"attributes":{"data_source":{"id":"1731","type":"ColumnDataSource"},"glyph":{"id":"1734","type":"Scatter"},"hover_glyph":null,"muted_glyph":{"id":"1736","type":"Scatter"},"nonselection_glyph":{"id":"1735","type":"Scatter"},"selection_glyph":null,"view":{"id":"1738","type":"CDSView"}},"id":"1737","type":"GlyphRenderer"},{"attributes":{"data_source":{"id":"1948","type":"ColumnDataSource"},"glyph":{"id":"1951","type":"Scatter"},"hover_glyph":null,"muted_glyph":{"id":"1953","type":"Scatter"},"nonselection_glyph":{"id":"1952","type":"Scatter"},"selection_glyph":null,"view":{"id":"1955","type":"CDSView"}},"id":"1954","type":"GlyphRenderer"},{"attributes":{"fill_alpha":{"value":0.2},"fill_color":{"field":"color","transform":{"id":"2106","type":"LinearColorMapper"}},"line_alpha":{"value":0.2},"line_color":{"field":"color","transform":{"id":"2106","type":"LinearColorMapper"}},"marker":{"value":"inverted_triangle"},"size":{"units":"screen","value":9},"x":{"field":"x"},"y":{"field":"y"}},"id":"2110","type":"Scatter"},{"attributes":{"data_source":{"id":"2105","type":"ColumnDataSource"},"glyph":{"id":"2108","type":"Scatter"},"hover_glyph":null,"muted_glyph":{"id":"2110","type":"Scatter"},"nonselection_glyph":{"id":"2109","type":"Scatter"},"selection_glyph":null,"view":{"id":"2112","type":"CDSView"}},"id":"2111","type":"GlyphRenderer"},{"attributes":{"source":{"id":"1731","type":"ColumnDataSource"}},"id":"1738","type":"CDSView"},{"attributes":{"source":{"id":"1948","type":"ColumnDataSource"}},"id":"1955","type":"CDSView"},{"attributes":{"label":{"value":"Rotor speed"},"renderers":[{"id":"2247","type":"GlyphRenderer"}]},"id":"2291","type":"LegendItem"},{"attributes":{"source":{"id":"2105","type":"ColumnDataSource"}},"id":"2112","type":"CDSView"},{"attributes":{},"id":"1748","type":"Selection"},{"attributes":{},"id":"1981","type":"Selection"},{"attributes":{},"id":"1749","type":"UnionRenderers"},{"attributes":{},"id":"1982","type":"UnionRenderers"},{"attributes":{},"id":"2146","type":"Selection"},{"attributes":{"callback":null,"data":{"color":{"__ndarray__":"","dtype":"float64","shape":[0]},"x":{"__ndarray__":"","dtype":"float64","shape":[0]},"y":{"__ndarray__":"","dtype":"float64","shape":[0]}},"selected":{"id":"1794","type":"Selection"},"selection_policy":{"id":"1795","type":"UnionRenderers"}},"id":"1751","type":"ColumnDataSource"},{"attributes":{"callback":null,"data":{"color":{"__ndarray__":"+j4jFqt5az34MCOdjWOcPdgpvE+ZTKK9GV020GpwQz3hmh0S2FKyvdKhdNjw06E9o+JG/OHxYj0mEfsSppu/vQKfIniuca09RJbvbT1zzb3FYa92drKnvdNInGnBusa97RhjRgCkwr3c+UjmVc2+vSJGdME0v6S9mFP0GmhHxr2GEhZlkmfRvRY8svS7z8O9ixpLVmLnx70sI7A7PrShvckFl9fz1si9uOB1mJxRnT2TggabtCSxvfJQRuzF5NE9PLuG5lOtuz2ZwPygFNPDPc+aiixevbE96hPSrGqzyD1gZ0ornVSqvaGsQ5oB/7a90aFVO7Gavz0CfYhC7uOgPRcftg3K+pi9GPT05uxrsz3olfFyghTAvSvhPgdMk8W9cxsJVsSNtz1OPKeV+i64vaebj8f/TcG9y/zD9zBZtr2N0kLbv1XAPeqMGaJLcLC9/d9vb3zRlT24pM4WcRvGvff8lbIDOba9mCQW8y2Rvr1kMI4rR6ihPafYlANaW8C9nH4uK7ONu71IMFRWAKNfPQV1GMjE1qO9zUI9wxpErD1+9NetF3TbvbvJRxBYYbM9fqYvV2ERtT1RkJ7dSri4vfCLI8f5vbu9XGm2+5TOqT2kaugmC/XBPYWNZrILW7s9s19vBfQJoT00Ssf7+RiSPYBVU/N7y589dSCM7YwS1L2HeRk3sfa6PclBfUESPp+9u0ex8ysMtz0qaIBzgqu6vbPF9I6Oi5k9GjCBj5qrtr0wGTEJ9HW9vZieH+BvnZm95pIR+rTAv73hto5kz7G5vczRD6MSuoK9w4iWNGjgyz3CrAnmgRDQvT4bx9eXUrq9SXq9c38+wj1C6c+2hWmkPWi0QI+8/rE9tkigykToyj3aWx/xePqsvYHT2vw6qJe9eiWRpzP2zj3z4kHUz3ayPVajZ+sHatc9iv0BMCqvor3pzhllDGXHvfSuXcsoQkE98mU4xbmIwj3ci68AgTHQPVZNsKA8ZdK9fVs9koTdwT2T3LghNezNvXVMs5UrUrI9Qe43f6920b2nUJTt/S7DPaasajEXIL09OA2tERBo0j0=","dtype":"float64","shape":[100]},"x":{"__ndarray__":"AAAAAAAAAAABkSPMpewQQAGRI8yl7CBAglk1svhiKUABkSPMpewwQEF1LD/PJzVAglk1svhiOUDCPT4lIp49QAGRI8yl7EBAIQOohToKQ0BBdSw/zydFQGHnsPhjRUdAglk1svhiSUCiy7lrjYBLQMI9PiUink1A4q/C3ra7T0ABkSPMpexQQBHK5Shw+1FAIQOohToKU0AxPGriBBlUQEF1LD/PJ1VAUa7um5k2VkBh57D4Y0VXQHEgc1UuVFhAglk1svhiWUCSkvcOw3FaQKLLuWuNgFtAsgR8yFePXEDCPT4lIp5dQNJ2AILsrF5A4q/C3ra7X0B5dMKdQGVgQAGRI8yl7GBAia2E+gp0YUARyuUocPthQJnmRlfVgmJAIQOohToKY0CpHwm0n5FjQDE8auIEGWRAuVjLEGqgZEBBdSw/zydlQMmRjW00r2VAUa7um5k2ZkDZyk/K/r1mQGHnsPhjRWdA6QMSJ8nMZ0BxIHNVLlRoQPk81IOT22hAglk1svhiaUAKdpbgXeppQJKS9w7DcWpAGq9YPSj5akCiy7lrjYBrQCroGpryB2xAsgR8yFePbEA6Id32vBZtQMI9PiUinm1ASlqfU4clbkDSdgCC7KxuQFqTYbBRNG9A4q/C3ra7b0A15pEGjiFwQHl0wp1AZXBAvQLzNPOocEABkSPMpexwQEUfVGNYMHFAia2E+gp0cUDNO7WRvbdxQBHK5Shw+3FAVVgWwCI/ckCZ5kZX1YJyQN10d+6HxnJAIQOohToKc0Blkdgc7U1zQKkfCbSfkXNA7a05S1LVc0AxPGriBBl0QHXKmnm3XHRAuVjLEGqgdED95vunHOR0QEF1LD/PJ3VAhQNd1oFrdUDJkY1tNK91QA0gvgTn8nVAUa7um5k2dkCVPB8zTHp2QNnKT8r+vXZAHVmAYbEBd0Bh57D4Y0V3QKV14Y8WiXdA6QMSJ8nMd0AtkkK+exB4QHEgc1UuVHhAta6j7OCXeED5PNSDk9t4QD3LBBtGH3lAglk1svhieUDG52VJq6Z5QAp2luBd6nlATgTHdxAuekA=","dtype":"float64","shape":[100]},"y":{"__ndarray__":"HcftV5ihdUChPzlfjaF1QJJuiWaCoXVADXfebXehdUAPpDl1bKF1QEzEmHxhoXVA5aH9g1ahdUAIemiLS6F1QLsy2JJAoXVADuZMmjWhdUDLX8ehKqF1QKTlRKkfoXVAGV7KsBShdUDHJlO4CaF1QEk64r/+oHVAm5Z1x/OgdUCkzg7P6KB1QOLsrNbdoHVAYalQ3tKgdUAU9vnlx6B1QJbSpu28oHVAEDBa9bGgdUCA4BH9pqB1QJffzwScoHVAw52SDJGgdUDXr1oUhqB1QNVQKBx7oHVADVr6I3CgdUBUG9IrZaB1QN2KrjNaoHVApASQO0+gdUBEDHdDRKB1QC8IZEs5oHVAQdFVUy6gdUA94ExbI6B1QAkoSGMYoHVAI+NJaw2gdUB2jU9zAqB1QMRtXHv3n3VAsqpsg+yfdUDixYKL4Z91QKYmnpPWn3VAmX6+m8ufdUBRDuSjwJ91QB3YDqy1n3VAxOw/tKqfdUBnlnS8n591QDXfrsSUn3VAnLLtzImfdUCdETPVfp91QLkpfd1zn3VA7LDM5WifdUC7XCHuXZ91QLDZe/ZSn3VAzkPZ/kefdUAV+T0HPZ91QI2SqA8yn3VA4bYWGCefdUCF/4kgHJ91QLi5AykRn3VAzo6AMQafdUAFRgQ6+551QNlVjULwnnVAkNIZS+WedUABxq1T2p51QKcdRVzPnnVAzxbkZMSedUA2dYVtuZ51QJL5LnaunnVA0RfbfqOedUCJgo2HmJ51QMHgRJCNnnVAG64BmYKedUBOr8Khd551QLWOiapsnnVA/LpWs2GedUBscCi8Vp51QOFa/sRLnnVATinbzUCedUD2+LvWNZ51QFBGot8qnnVACVyN6B+edUC8yn7xFJ51QEtvc/oJnnVAlNZwA/+ddUCYmG8M9J11QAcSdRXpnXVAabyBHt6ddUC40Y8n0511QDNZpTDInXVAor2/Ob2ddUBfst9Csp11QJwvBEynnXVAFxUuVZyddUCDDF5ekZ11QDOBk2eGnXVA1DrMcHuddUBYAQt6cJ11QFiKToNlnXVA1+aYjFqddUA=","dtype":"float64","shape":[100]}},"selected":{"id":"2060","type":"Selection"},"selection_policy":{"id":"2061","type":"UnionRenderers"}},"id":"1984","type":"ColumnDataSource"},{"attributes":{},"id":"2147","type":"UnionRenderers"},{"attributes":{"label":{"value":"Foward"},"renderers":[{"id":"1687","type":"GlyphRenderer"},{"id":"1703","type":"GlyphRenderer"},{"id":"1719","type":"GlyphRenderer"},{"id":"1737","type":"GlyphRenderer"},{"id":"1757","type":"GlyphRenderer"},{"id":"1779","type":"GlyphRenderer"}]},"id":"1696","type":"LegendItem"},{"attributes":{"callback":null,"data":{"color":{"__ndarray__":"gHHB6vncQb2OGWF/2LZnPc/X9d2TFUU9siOwy9eGab1P2bpHQO5UvbrIBmVRkF+9IQk+7rcUZL3bQ4BTRzZmvdt1wmKpvGK9rNMjag1pYr3etdZhCTZ1Pf7IKsqC9Eg9B4xUkjNCU71XmOWmltIuPSnD+UhK/nK9inkgzXTpaj2g7HBKBOBxPRPsUQaKtGS9FMx1A0mEMb1SzxYL1pNbvZRX+Rz0Lna9RfIFV1t+RD2YmPHiHcQ5PYKuE6kW5iO9nVneXKLMWL16D2pgXKB8vU4P/yr+iWC9d3x0xBPFRj2BxhuNATldvfdyg6gYrWS9alWmVL8CXb24LDEBXIl+vWw0IpqT9UO9geIqj+VhXz1Lm4Qra5hPvWmemZBRZGK9u7T7AISMUj1EKCuFsKlrvY8gcZoS9GY9/C55bOMhVr3RaKkgui1JvbmGxnnA62U9kJI/I/LMar0cBNjNrSFQvSVu9MzD9GQ9bnxn10QNcz3TUtegnpUUPYLu2V3Ju0S9WHEbO6ZpOD0Kb3zFvO1ovU0asbzJ4D69WBRRYH6MTr0x837DLWpmPZlQxevUWnQ9bcgM+NIXHb0F/BtnrrVOPQGMnJ0a0U29OTWFfNppTD1H8QknKpljPQl443QBXk09dvvLMDysFD2i2tPgCMc5vav/N6B7aFK9w3mq64rJXb0yjzADgXxgvTAhJ68Pul09a2ofUryeZz2zeMiUSHZzPQAnd2T90U89aDTXDzdwTb3icTspN7VRvTPU9FCLskE9z0cjtWJvPr0yoJDmK5dFvW4TEe7lrEc9RI0Ree4WXD1J6xNeI8NhvZRuWqikvUO9M0cqfBLNWb1+iduwfDJsPQeV1KXmYGs9m1/PfBY5hD1mSXZID2xIvRrOWEM4XVa99rnJMCRsSj0wPVWckXpoPSxyq1AJK2a92pjuhIVhaL2Zo2rGRvdtvaSOwufXGmk90G3CpyfJbb042KFV+FZCPR8ycboV/Wu9amcz04R8Yz3j26Oh8q5tvQDfpBLHs1E9wD5BCOIVJD2NCzX+TYghPRN1PRTYfFe9JjmpTgzHcb0=","dtype":"float64","shape":[100]},"x":{"__ndarray__":"AAAAAAAAAAABkSPMpewQQAGRI8yl7CBAglk1svhiKUABkSPMpewwQEF1LD/PJzVAglk1svhiOUDCPT4lIp49QAGRI8yl7EBAIQOohToKQ0BBdSw/zydFQGHnsPhjRUdAglk1svhiSUCiy7lrjYBLQMI9PiUink1A4q/C3ra7T0ABkSPMpexQQBHK5Shw+1FAIQOohToKU0AxPGriBBlUQEF1LD/PJ1VAUa7um5k2VkBh57D4Y0VXQHEgc1UuVFhAglk1svhiWUCSkvcOw3FaQKLLuWuNgFtAsgR8yFePXEDCPT4lIp5dQNJ2AILsrF5A4q/C3ra7X0B5dMKdQGVgQAGRI8yl7GBAia2E+gp0YUARyuUocPthQJnmRlfVgmJAIQOohToKY0CpHwm0n5FjQDE8auIEGWRAuVjLEGqgZEBBdSw/zydlQMmRjW00r2VAUa7um5k2ZkDZyk/K/r1mQGHnsPhjRWdA6QMSJ8nMZ0BxIHNVLlRoQPk81IOT22hAglk1svhiaUAKdpbgXeppQJKS9w7DcWpAGq9YPSj5akCiy7lrjYBrQCroGpryB2xAsgR8yFePbEA6Id32vBZtQMI9PiUinm1ASlqfU4clbkDSdgCC7KxuQFqTYbBRNG9A4q/C3ra7b0A15pEGjiFwQHl0wp1AZXBAvQLzNPOocEABkSPMpexwQEUfVGNYMHFAia2E+gp0cUDNO7WRvbdxQBHK5Shw+3FAVVgWwCI/ckCZ5kZX1YJyQN10d+6HxnJAIQOohToKc0Blkdgc7U1zQKkfCbSfkXNA7a05S1LVc0AxPGriBBl0QHXKmnm3XHRAuVjLEGqgdED95vunHOR0QEF1LD/PJ3VAhQNd1oFrdUDJkY1tNK91QA0gvgTn8nVAUa7um5k2dkCVPB8zTHp2QNnKT8r+vXZAHVmAYbEBd0Bh57D4Y0V3QKV14Y8WiXdA6QMSJ8nMd0AtkkK+exB4QHEgc1UuVHhAta6j7OCXeED5PNSDk9t4QD3LBBtGH3lAglk1svhieUDG52VJq6Z5QAp2luBd6nlATgTHdxAuekA=","dtype":"float64","shape":[100]},"y":{"__ndarray__":"KVC2oAN6skDWqeXl9XmyQPbzGyvoebJAwzBZcNp5skANXp21zHmyQGWE6Pq+ebJAbJk6QLF5skD8pZOFo3myQISe88qVebJAVJRaEIh5skDJdchVenmyQAxNPZtsebJAdhW54F55skBM1TsmUXmyQHCJxWtDebJAKTBWsTV5skDAxu32J3myQIRQjDwaebJA390xggx5skCiSt7H/niyQPK7kQ3xeLJAXBZMU+N4skD1Zw2Z1XiyQNu01d7HeLJANuqkJLp4skAjH3tqrHiyQF1DWLCeeLJAJFg89pB4skC+aCc8g3iyQMZgGYJ1eLJAml8SyGd4skCkSBIOWniyQPAnGVRMeLJAwvwmmj54skALwTvgMHiyQNKBVyYjeLJAazV6bBV4skCj2KOyB3iyQFh31Pj5d7JA/gYMP+x3skCrjkqF3neyQKAIkMvQd7JAYHncEcN3skCC3S9YtXeyQHY8ip6nd7JAnIrr5Jl3skAZ1VMrjHeyQE0Fw3F+d7JATEI5uHB3skCIaLb+YneyQHuBOkVVd7JAE5TFi0d3skBRmlfSOXeyQE2R8Bgsd7JAJYiQXx53skAddDemEHeyQE5W5ewCd7JA/SmaM/V2skAJ91V653ayQNuzGMHZdrJALXHiB8x2skAUF7NOvnayQFy/ipWwdrJAzFpp3KJ2skAr5k4jlXayQHltO2qHdrJAiOgusXl2skD0YCn4a3ayQCzLKj9edrJAaCUzhlB2skCRgELNQnayQL/RWBQ1drJA5Rd2Wyd2skDOU5qiGXayQP1/xekLdrJA4Kr3MP51skCa0DB48HWyQIDpcL/idbJAoPG3BtV1skD2+QVOx3WyQO/0WpW5dbJATeK23Kt1skBp1BkknnWyQFezg2uQdbJABY/0soJ1skB2ZWz6dHWyQOMl60FndbJA1+1wiVl1skCio/3QS3WyQGtWkRg+dbJAUPYrYDB1skBims2nInWyQPsydu8UdbJAWL8lNwd1skBhQNx++XSyQGTBmcbrdLJA1jNeDt50skCppSlW0HSyQL0L/J3CdLJAZ2rV5bR0skA=","dtype":"float64","shape":[100]}},"selected":{"id":"2240","type":"Selection"},"selection_policy":{"id":"2241","type":"UnionRenderers"}},"id":"2149","type":"ColumnDataSource"},{"attributes":{"high":9.845346187337482e-11,"low":-9.987520139123421e-11,"palette":["#440154","#440255","#440357","#450558","#45065A","#45085B","#46095C","#460B5E","#460C5F","#460E61","#470F62","#471163","#471265","#471466","#471567","#471669","#47186A","#48196B","#481A6C","#481C6E","#481D6F","#481E70","#482071","#482172","#482273","#482374","#472575","#472676","#472777","#472878","#472A79","#472B7A","#472C7B","#462D7C","#462F7C","#46307D","#46317E","#45327F","#45347F","#453580","#453681","#443781","#443982","#433A83","#433B83","#433C84","#423D84","#423E85","#424085","#414186","#414286","#404387","#404487","#3F4587","#3F4788","#3E4888","#3E4989","#3D4A89","#3D4B89","#3D4C89","#3C4D8A","#3C4E8A","#3B508A","#3B518A","#3A528B","#3A538B","#39548B","#39558B","#38568B","#38578C","#37588C","#37598C","#365A8C","#365B8C","#355C8C","#355D8C","#345E8D","#345F8D","#33608D","#33618D","#32628D","#32638D","#31648D","#31658D","#31668D","#30678D","#30688D","#2F698D","#2F6A8D","#2E6B8E","#2E6C8E","#2E6D8E","#2D6E8E","#2D6F8E","#2C708E","#2C718E","#2C728E","#2B738E","#2B748E","#2A758E","#2A768E","#2A778E","#29788E","#29798E","#287A8E","#287A8E","#287B8E","#277C8E","#277D8E","#277E8E","#267F8E","#26808E","#26818E","#25828E","#25838D","#24848D","#24858D","#24868D","#23878D","#23888D","#23898D","#22898D","#228A8D","#228B8D","#218C8D","#218D8C","#218E8C","#208F8C","#20908C","#20918C","#1F928C","#1F938B","#1F948B","#1F958B","#1F968B","#1E978A","#1E988A","#1E998A","#1E998A","#1E9A89","#1E9B89","#1E9C89","#1E9D88","#1E9E88","#1E9F88","#1EA087","#1FA187","#1FA286","#1FA386","#20A485","#20A585","#21A685","#21A784","#22A784","#23A883","#23A982","#24AA82","#25AB81","#26AC81","#27AD80","#28AE7F","#29AF7F","#2AB07E","#2BB17D","#2CB17D","#2EB27C","#2FB37B","#30B47A","#32B57A","#33B679","#35B778","#36B877","#38B976","#39B976","#3BBA75","#3DBB74","#3EBC73","#40BD72","#42BE71","#44BE70","#45BF6F","#47C06E","#49C16D","#4BC26C","#4DC26B","#4FC369","#51C468","#53C567","#55C666","#57C665","#59C764","#5BC862","#5EC961","#60C960","#62CA5F","#64CB5D","#67CC5C","#69CC5B","#6BCD59","#6DCE58","#70CE56","#72CF55","#74D054","#77D052","#79D151","#7CD24F","#7ED24E","#81D34C","#83D34B","#86D449","#88D547","#8BD546","#8DD644","#90D643","#92D741","#95D73F","#97D83E","#9AD83C","#9DD93A","#9FD938","#A2DA37","#A5DA35","#A7DB33","#AADB32","#ADDC30","#AFDC2E","#B2DD2C","#B5DD2B","#B7DD29","#BADE27","#BDDE26","#BFDF24","#C2DF22","#C5DF21","#C7E01F","#CAE01E","#CDE01D","#CFE11C","#D2E11B","#D4E11A","#D7E219","#DAE218","#DCE218","#DFE318","#E1E318","#E4E318","#E7E419","#E9E419","#ECE41A","#EEE51B","#F1E51C","#F3E51E","#F6E61F","#F8E621","#FAE622","#FDE724"]},"id":"1774","type":"LinearColorMapper"},{"attributes":{"high":9.845346187337482e-11,"low":-9.987520139123421e-11,"palette":["#440154","#440255","#440357","#450558","#45065A","#45085B","#46095C","#460B5E","#460C5F","#460E61","#470F62","#471163","#471265","#471466","#471567","#471669","#47186A","#48196B","#481A6C","#481C6E","#481D6F","#481E70","#482071","#482172","#482273","#482374","#472575","#472676","#472777","#472878","#472A79","#472B7A","#472C7B","#462D7C","#462F7C","#46307D","#46317E","#45327F","#45347F","#453580","#453681","#443781","#443982","#433A83","#433B83","#433C84","#423D84","#423E85","#424085","#414186","#414286","#404387","#404487","#3F4587","#3F4788","#3E4888","#3E4989","#3D4A89","#3D4B89","#3D4C89","#3C4D8A","#3C4E8A","#3B508A","#3B518A","#3A528B","#3A538B","#39548B","#39558B","#38568B","#38578C","#37588C","#37598C","#365A8C","#365B8C","#355C8C","#355D8C","#345E8D","#345F8D","#33608D","#33618D","#32628D","#32638D","#31648D","#31658D","#31668D","#30678D","#30688D","#2F698D","#2F6A8D","#2E6B8E","#2E6C8E","#2E6D8E","#2D6E8E","#2D6F8E","#2C708E","#2C718E","#2C728E","#2B738E","#2B748E","#2A758E","#2A768E","#2A778E","#29788E","#29798E","#287A8E","#287A8E","#287B8E","#277C8E","#277D8E","#277E8E","#267F8E","#26808E","#26818E","#25828E","#25838D","#24848D","#24858D","#24868D","#23878D","#23888D","#23898D","#22898D","#228A8D","#228B8D","#218C8D","#218D8C","#218E8C","#208F8C","#20908C","#20918C","#1F928C","#1F938B","#1F948B","#1F958B","#1F968B","#1E978A","#1E988A","#1E998A","#1E998A","#1E9A89","#1E9B89","#1E9C89","#1E9D88","#1E9E88","#1E9F88","#1EA087","#1FA187","#1FA286","#1FA386","#20A485","#20A585","#21A685","#21A784","#22A784","#23A883","#23A982","#24AA82","#25AB81","#26AC81","#27AD80","#28AE7F","#29AF7F","#2AB07E","#2BB17D","#2CB17D","#2EB27C","#2FB37B","#30B47A","#32B57A","#33B679","#35B778","#36B877","#38B976","#39B976","#3BBA75","#3DBB74","#3EBC73","#40BD72","#42BE71","#44BE70","#45BF6F","#47C06E","#49C16D","#4BC26C","#4DC26B","#4FC369","#51C468","#53C567","#55C666","#57C665","#59C764","#5BC862","#5EC961","#60C960","#62CA5F","#64CB5D","#67CC5C","#69CC5B","#6BCD59","#6DCE58","#70CE56","#72CF55","#74D054","#77D052","#79D151","#7CD24F","#7ED24E","#81D34C","#83D34B","#86D449","#88D547","#8BD546","#8DD644","#90D643","#92D741","#95D73F","#97D83E","#9AD83C","#9DD93A","#9FD938","#A2DA37","#A5DA35","#A7DB33","#AADB32","#ADDC30","#AFDC2E","#B2DD2C","#B5DD2B","#B7DD29","#BADE27","#BDDE26","#BFDF24","#C2DF22","#C5DF21","#C7E01F","#CAE01E","#CDE01D","#CFE11C","#D2E11B","#D4E11A","#D7E219","#DAE218","#DCE218","#DFE318","#E1E318","#E4E318","#E7E419","#E9E419","#ECE41A","#EEE51B","#F1E51C","#F3E51E","#F6E61F","#F8E621","#FAE622","#FDE724"]},"id":"2024","type":"LinearColorMapper"},{"attributes":{"high":9.845346187337482e-11,"low":-9.987520139123421e-11,"palette":["#440154","#440255","#440357","#450558","#45065A","#45085B","#46095C","#460B5E","#460C5F","#460E61","#470F62","#471163","#471265","#471466","#471567","#471669","#47186A","#48196B","#481A6C","#481C6E","#481D6F","#481E70","#482071","#482172","#482273","#482374","#472575","#472676","#472777","#472878","#472A79","#472B7A","#472C7B","#462D7C","#462F7C","#46307D","#46317E","#45327F","#45347F","#453580","#453681","#443781","#443982","#433A83","#433B83","#433C84","#423D84","#423E85","#424085","#414186","#414286","#404387","#404487","#3F4587","#3F4788","#3E4888","#3E4989","#3D4A89","#3D4B89","#3D4C89","#3C4D8A","#3C4E8A","#3B508A","#3B518A","#3A528B","#3A538B","#39548B","#39558B","#38568B","#38578C","#37588C","#37598C","#365A8C","#365B8C","#355C8C","#355D8C","#345E8D","#345F8D","#33608D","#33618D","#32628D","#32638D","#31648D","#31658D","#31668D","#30678D","#30688D","#2F698D","#2F6A8D","#2E6B8E","#2E6C8E","#2E6D8E","#2D6E8E","#2D6F8E","#2C708E","#2C718E","#2C728E","#2B738E","#2B748E","#2A758E","#2A768E","#2A778E","#29788E","#29798E","#287A8E","#287A8E","#287B8E","#277C8E","#277D8E","#277E8E","#267F8E","#26808E","#26818E","#25828E","#25838D","#24848D","#24858D","#24868D","#23878D","#23888D","#23898D","#22898D","#228A8D","#228B8D","#218C8D","#218D8C","#218E8C","#208F8C","#20908C","#20918C","#1F928C","#1F938B","#1F948B","#1F958B","#1F968B","#1E978A","#1E988A","#1E998A","#1E998A","#1E9A89","#1E9B89","#1E9C89","#1E9D88","#1E9E88","#1E9F88","#1EA087","#1FA187","#1FA286","#1FA386","#20A485","#20A585","#21A685","#21A784","#22A784","#23A883","#23A982","#24AA82","#25AB81","#26AC81","#27AD80","#28AE7F","#29AF7F","#2AB07E","#2BB17D","#2CB17D","#2EB27C","#2FB37B","#30B47A","#32B57A","#33B679","#35B778","#36B877","#38B976","#39B976","#3BBA75","#3DBB74","#3EBC73","#40BD72","#42BE71","#44BE70","#45BF6F","#47C06E","#49C16D","#4BC26C","#4DC26B","#4FC369","#51C468","#53C567","#55C666","#57C665","#59C764","#5BC862","#5EC961","#60C960","#62CA5F","#64CB5D","#67CC5C","#69CC5B","#6BCD59","#6DCE58","#70CE56","#72CF55","#74D054","#77D052","#79D151","#7CD24F","#7ED24E","#81D34C","#83D34B","#86D449","#88D547","#8BD546","#8DD644","#90D643","#92D741","#95D73F","#97D83E","#9AD83C","#9DD93A","#9FD938","#A2DA37","#A5DA35","#A7DB33","#AADB32","#ADDC30","#AFDC2E","#B2DD2C","#B5DD2B","#B7DD29","#BADE27","#BDDE26","#BFDF24","#C2DF22","#C5DF21","#C7E01F","#CAE01E","#CDE01D","#CFE11C","#D2E11B","#D4E11A","#D7E219","#DAE218","#DCE218","#DFE318","#E1E318","#E4E318","#E7E419","#E9E419","#ECE41A","#EEE51B","#F1E51C","#F3E51E","#F6E61F","#F8E621","#FAE622","#FDE724"]},"id":"2196","type":"LinearColorMapper"},{"attributes":{"high":9.845346187337482e-11,"low":-9.987520139123421e-11,"palette":["#440154","#440255","#440357","#450558","#45065A","#45085B","#46095C","#460B5E","#460C5F","#460E61","#470F62","#471163","#471265","#471466","#471567","#471669","#47186A","#48196B","#481A6C","#481C6E","#481D6F","#481E70","#482071","#482172","#482273","#482374","#472575","#472676","#472777","#472878","#472A79","#472B7A","#472C7B","#462D7C","#462F7C","#46307D","#46317E","#45327F","#45347F","#453580","#453681","#443781","#443982","#433A83","#433B83","#433C84","#423D84","#423E85","#424085","#414186","#414286","#404387","#404487","#3F4587","#3F4788","#3E4888","#3E4989","#3D4A89","#3D4B89","#3D4C89","#3C4D8A","#3C4E8A","#3B508A","#3B518A","#3A528B","#3A538B","#39548B","#39558B","#38568B","#38578C","#37588C","#37598C","#365A8C","#365B8C","#355C8C","#355D8C","#345E8D","#345F8D","#33608D","#33618D","#32628D","#32638D","#31648D","#31658D","#31668D","#30678D","#30688D","#2F698D","#2F6A8D","#2E6B8E","#2E6C8E","#2E6D8E","#2D6E8E","#2D6F8E","#2C708E","#2C718E","#2C728E","#2B738E","#2B748E","#2A758E","#2A768E","#2A778E","#29788E","#29798E","#287A8E","#287A8E","#287B8E","#277C8E","#277D8E","#277E8E","#267F8E","#26808E","#26818E","#25828E","#25838D","#24848D","#24858D","#24868D","#23878D","#23888D","#23898D","#22898D","#228A8D","#228B8D","#218C8D","#218D8C","#218E8C","#208F8C","#20908C","#20918C","#1F928C","#1F938B","#1F948B","#1F958B","#1F968B","#1E978A","#1E988A","#1E998A","#1E998A","#1E9A89","#1E9B89","#1E9C89","#1E9D88","#1E9E88","#1E9F88","#1EA087","#1FA187","#1FA286","#1FA386","#20A485","#20A585","#21A685","#21A784","#22A784","#23A883","#23A982","#24AA82","#25AB81","#26AC81","#27AD80","#28AE7F","#29AF7F","#2AB07E","#2BB17D","#2CB17D","#2EB27C","#2FB37B","#30B47A","#32B57A","#33B679","#35B778","#36B877","#38B976","#39B976","#3BBA75","#3DBB74","#3EBC73","#40BD72","#42BE71","#44BE70","#45BF6F","#47C06E","#49C16D","#4BC26C","#4DC26B","#4FC369","#51C468","#53C567","#55C666","#57C665","#59C764","#5BC862","#5EC961","#60C960","#62CA5F","#64CB5D","#67CC5C","#69CC5B","#6BCD59","#6DCE58","#70CE56","#72CF55","#74D054","#77D052","#79D151","#7CD24F","#7ED24E","#81D34C","#83D34B","#86D449","#88D547","#8BD546","#8DD644","#90D643","#92D741","#95D73F","#97D83E","#9AD83C","#9DD93A","#9FD938","#A2DA37","#A5DA35","#A7DB33","#AADB32","#ADDC30","#AFDC2E","#B2DD2C","#B5DD2B","#B7DD29","#BADE27","#BDDE26","#BFDF24","#C2DF22","#C5DF21","#C7E01F","#CAE01E","#CDE01D","#CFE11C","#D2E11B","#D4E11A","#D7E219","#DAE218","#DCE218","#DFE318","#E1E318","#E4E318","#E7E419","#E9E419","#ECE41A","#EEE51B","#F1E51C","#F3E51E","#F6E61F","#F8E621","#FAE622","#FDE724"]},"id":"1798","type":"LinearColorMapper"},{"attributes":{"callback":null,"data":{"color":{"__ndarray__":"0Efe8Luccj14UrOjLrA9vY2MQP0Sb4O9W+d1A10HUr04ATqyGUpcveUxPQ+vO3Y9C63ovJQ4ZL1l/5y3Hd5zvfpsDAUzwGW9wO4S1Jrrfj12MlGNikFDPewahlNUZVq96hMFK73Geb13Y69U9+OHvXezOQ9ex3q9yAISVFn+dT2mM3NzEgQ1PcRG6NDKwj29n9jN9MSuYz1jejTW2lhCPRpaZD8miWY9Ll1L6eAmgb2DiZtIkgVvPUZJQzf72mi9LDaRfebggT35MjIN8CCEPWh0sIa1GHC9iO5bxiP7Yb2nJFMLNU6NvTS7RZUX7Uc9ld6wHKKyXj3a2B7+NjM2vZxlLh8ySXy9bjmkxr81gb3EMfZEV4ZiPX3vphwNa189KjXYKoHzgL1xzQ5cKmNxvWiaJ/9C93A9d/FWrLF7ej2nBgr5L1RuPe8QLxcKkGU93CipLDW7h72UDLWy2XFoPRJVvYHw6U695g4T6VGGfL1x9UeamQ5YvT8GXch+IXm9","dtype":"float64","shape":[48]},"x":{"__ndarray__":"AAAAAAAAAAABkSPMpewwQIJZNbL4YjlAQXUsP88nRUDir8LetrtPQAGRI8yl7FBAEcrlKHD7UUBBdSw/zydVQFGu7puZNlZAYeew+GNFV0BxIHNVLlRYQJKS9w7DcVpA0nYAguysXkB5dMKdQGVgQJnmRlfVgmJAMTxq4gQZZEDJkY1tNK9lQOkDEifJzGdA+TzUg5PbaECCWTWy+GJpQJKS9w7DcWpAGq9YPSj5akA6Id32vBZtQEpan1OHJW5A0nYAguysbkBak2GwUTRvQOKvwt62u29ANeaRBo4hcEC9AvM086hwQEUfVGNYMHFAzTu1kb23cUCZ5kZX1YJyQN10d+6HxnJAZZHYHO1Nc0B1ypp5t1x0QLlYyxBqoHRA/eb7pxzkdECFA13WgWt1QA0gvgTn8nVAUa7um5k2dkCVPB8zTHp2QNnKT8r+vXZAYeew+GNFd0AtkkK+exB4QLWuo+zgl3hA+TzUg5PbeECCWTWy+GJ5QMbnZUmrpnlA","dtype":"float64","shape":[48]},"y":{"__ndarray__":"kBflF6Z7nUCLTabn30+dQF7HGEEPOp1AdZvhN5MOnUDNYGbNfticQKUECG23zZxAGjQiPfPCnEAUCDXmuaKcQKSMCo4CmJxAvEktcU6NnEB0hLmRnYKcQFBxZ5NFbZxAgj1/0rxCnED53gowjC2cQDLbPrVSA5xAXSCgpcrjm0CRVtfXYMSbQFRE/9OtmptAzmFmwOiFm0CLzApYi3ubQKzsYNLaZptANTJJuIdcm0AHbn/ZXTObQLMQfLjdHptAqYrO4KIUm0C5VkuGawqbQCmLYqo3AJtARMF/Tgf2mkAu1GMcseGaQLga+vpozZpAeaz99C65mkCJKjp28pqaQNlr1WTlkJpA+OG87tV8mkDyk6TW4VSaQHU5jcPtSppAYwQUR/1AmkD5KlcWJy2aQI+e+ExfGZpAWY2l0YAPmkCcOz/zpQWaQOjcw7LO+5lATjVxDyvomUBXYbfS0MqZQBOjB4VRt5lAYE+pVZetmUBnOhrqLZqZQARRjq9+kJlA","dtype":"float64","shape":[48]}},"selected":{"id":"2146","type":"Selection"},"selection_policy":{"id":"2147","type":"UnionRenderers"}},"id":"2063","type":"ColumnDataSource"},{"attributes":{"fill_color":{"field":"color","transform":{"id":"1752","type":"LinearColorMapper"}},"line_color":{"field":"color","transform":{"id":"1752","type":"LinearColorMapper"}},"marker":{"value":"triangle"},"size":{"units":"screen","value":9},"x":{"field":"x"},"y":{"field":"y"}},"id":"1754","type":"Scatter"},{"attributes":{"fill_color":{"field":"color","transform":{"id":"1985","type":"LinearColorMapper"}},"line_color":{"field":"color","transform":{"id":"1985","type":"LinearColorMapper"}},"marker":{"value":"inverted_triangle"},"size":{"units":"screen","value":9},"x":{"field":"x"},"y":{"field":"y"}},"id":"1987","type":"Scatter"},{"attributes":{"source":{"id":"2243","type":"ColumnDataSource"}},"id":"2248","type":"CDSView"},{"attributes":{"fill_alpha":{"value":0.1},"fill_color":{"value":"#1f77b4"},"line_alpha":{"value":0.1},"line_color":{"value":"#1f77b4"},"marker":{"value":"triangle"},"size":{"units":"screen","value":9},"x":{"field":"x"},"y":{"field":"y"}},"id":"1755","type":"Scatter"},{"attributes":{"fill_alpha":{"value":0.1},"fill_color":{"value":"#1f77b4"},"line_alpha":{"value":0.1},"line_color":{"value":"#1f77b4"},"marker":{"value":"inverted_triangle"},"size":{"units":"screen","value":9},"x":{"field":"x"},"y":{"field":"y"}},"id":"1988","type":"Scatter"},{"attributes":{"fill_color":{"field":"color","transform":{"id":"2150","type":"LinearColorMapper"}},"line_color":{"field":"color","transform":{"id":"2150","type":"LinearColorMapper"}},"marker":{"value":"inverted_triangle"},"size":{"units":"screen","value":9},"x":{"field":"x"},"y":{"field":"y"}},"id":"2152","type":"Scatter"},{"attributes":{},"id":"2019","type":"Selection"},{"attributes":{"fill_alpha":{"value":0.2},"fill_color":{"field":"color","transform":{"id":"1752","type":"LinearColorMapper"}},"line_alpha":{"value":0.2},"line_color":{"field":"color","transform":{"id":"1752","type":"LinearColorMapper"}},"marker":{"value":"triangle"},"size":{"units":"screen","value":9},"x":{"field":"x"},"y":{"field":"y"}},"id":"1756","type":"Scatter"},{"attributes":{"fill_alpha":{"value":0.2},"fill_color":{"field":"color","transform":{"id":"1985","type":"LinearColorMapper"}},"line_alpha":{"value":0.2},"line_color":{"field":"color","transform":{"id":"1985","type":"LinearColorMapper"}},"marker":{"value":"inverted_triangle"},"size":{"units":"screen","value":9},"x":{"field":"x"},"y":{"field":"y"}},"id":"1989","type":"Scatter"},{"attributes":{"fill_alpha":{"value":0.1},"fill_color":{"value":"#1f77b4"},"line_alpha":{"value":0.1},"line_color":{"value":"#1f77b4"},"marker":{"value":"inverted_triangle"},"size":{"units":"screen","value":9},"x":{"field":"x"},"y":{"field":"y"}},"id":"2153","type":"Scatter"},{"attributes":{"data_source":{"id":"1751","type":"ColumnDataSource"},"glyph":{"id":"1754","type":"Scatter"},"hover_glyph":null,"muted_glyph":{"id":"1756","type":"Scatter"},"nonselection_glyph":{"id":"1755","type":"Scatter"},"selection_glyph":null,"view":{"id":"1758","type":"CDSView"}},"id":"1757","type":"GlyphRenderer"},{"attributes":{"data_source":{"id":"1984","type":"ColumnDataSource"},"glyph":{"id":"1987","type":"Scatter"},"hover_glyph":null,"muted_glyph":{"id":"1989","type":"Scatter"},"nonselection_glyph":{"id":"1988","type":"Scatter"},"selection_glyph":null,"view":{"id":"1991","type":"CDSView"}},"id":"1990","type":"GlyphRenderer"},{"attributes":{"fill_alpha":{"value":0.2},"fill_color":{"field":"color","transform":{"id":"2150","type":"LinearColorMapper"}},"line_alpha":{"value":0.2},"line_color":{"field":"color","transform":{"id":"2150","type":"LinearColorMapper"}},"marker":{"value":"inverted_triangle"},"size":{"units":"screen","value":9},"x":{"field":"x"},"y":{"field":"y"}},"id":"2154","type":"Scatter"},{"attributes":{"callback":null,"data":{"color":{"__ndarray__":"KwIrnENMLT2T+7/lZB2fvQ9z+KU+ZaE9APZE3GWTb73vUqku0EWzPciVfrcqs6K9RPHLnle1N722MMVYpJ+9Pbeo1UmhLq69o+4Eh1YPzj1slCcdJtGrPWo075V7FcY9Z+qJ9qkkwj1tN9e/YZO9PeT7fpNZbKM9QODJ65G3xT0IS2itURDRPYww2h9H98M9w+jEEN6Xxz2fqV0FfReiPYInqKJ5Bsg92F3J0cVZnb1aRnWkdAawPdaslkOA29G9i2z+MuVVvL3Cl1CTYKTCvYzB6r2bZ7K9D8dOVdW4yL0D3uDt3MWpPaN8ndcS2LU9iClCdOxRwL1iJ9mzyAKevXNkNIqpl5c9Sl33nLWosb2ObqSzxYS/PelxbE0bKMY92SK+ZWxmtr1NjOnVldO4Pa2ehr9//cA9IH94Y4sqtj1J/6Zc91LBvQnnKvmTGrA9v0Ie8nNOk70H/R8Em9vFPRtQGYWc67M98wBKSDLuvz2lO3fM30GfvR37+IvvCcE9TCWUivuxuz2BrTk6nuOIvUa9WWHKQKM9lSS4VO+rqL3TU5blCxDbPeC6DMWVRLK9vZpD5SLxtr1jF5XG6iq4PcJ7xj3N2bw9xrDqtR4Nq71y5+5ECQrBvTyuU1TBF7u9DqtMs7Ucm71jvP/Uld2TvSzuOkj5CaG9k1dGjqDn0z0mbLEWcLq6vWP2ZWaJXp49W0ij30+Etb18m7zYCE27PXjEPnJxupW98vRADX3EtT3vVajK9Ja6PdmsnqHQVZQ9gvfha7movj32ZZQKZh+5Pc7lJ2+fxn89H3cKI+1ny71Vzcv1kkvPPeIyl0bwPbo9sr26s1YMwr3mXnzI+MmkvazE4cuXJbO9C8HeA0LWyr3BaRKsO0WvPYb8k/ngD5k9hd3GD+4mzr18r0ETHjyzvTjt4Mmb5da9qnmL9BkrpT0xeeQEL9rGPedju/++gEs9R7j2tywew713WD16OODPvS7bLtEWMtI9lfp+u0Hjwb2RVVbMSt/NPdtt6Do+7rO9QZYLhGyK0T2Pkefaz/TCvQn/FjMji729nVQMc9l/0r0=","dtype":"float64","shape":[100]},"x":{"__ndarray__":"AAAAAAAAAAABkSPMpewQQAGRI8yl7CBAglk1svhiKUABkSPMpewwQEF1LD/PJzVAglk1svhiOUDCPT4lIp49QAGRI8yl7EBAIQOohToKQ0BBdSw/zydFQGHnsPhjRUdAglk1svhiSUCiy7lrjYBLQMI9PiUink1A4q/C3ra7T0ABkSPMpexQQBHK5Shw+1FAIQOohToKU0AxPGriBBlUQEF1LD/PJ1VAUa7um5k2VkBh57D4Y0VXQHEgc1UuVFhAglk1svhiWUCSkvcOw3FaQKLLuWuNgFtAsgR8yFePXEDCPT4lIp5dQNJ2AILsrF5A4q/C3ra7X0B5dMKdQGVgQAGRI8yl7GBAia2E+gp0YUARyuUocPthQJnmRlfVgmJAIQOohToKY0CpHwm0n5FjQDE8auIEGWRAuVjLEGqgZEBBdSw/zydlQMmRjW00r2VAUa7um5k2ZkDZyk/K/r1mQGHnsPhjRWdA6QMSJ8nMZ0BxIHNVLlRoQPk81IOT22hAglk1svhiaUAKdpbgXeppQJKS9w7DcWpAGq9YPSj5akCiy7lrjYBrQCroGpryB2xAsgR8yFePbEA6Id32vBZtQMI9PiUinm1ASlqfU4clbkDSdgCC7KxuQFqTYbBRNG9A4q/C3ra7b0A15pEGjiFwQHl0wp1AZXBAvQLzNPOocEABkSPMpexwQEUfVGNYMHFAia2E+gp0cUDNO7WRvbdxQBHK5Shw+3FAVVgWwCI/ckCZ5kZX1YJyQN10d+6HxnJAIQOohToKc0Blkdgc7U1zQKkfCbSfkXNA7a05S1LVc0AxPGriBBl0QHXKmnm3XHRAuVjLEGqgdED95vunHOR0QEF1LD/PJ3VAhQNd1oFrdUDJkY1tNK91QA0gvgTn8nVAUa7um5k2dkCVPB8zTHp2QNnKT8r+vXZAHVmAYbEBd0Bh57D4Y0V3QKV14Y8WiXdA6QMSJ8nMd0AtkkK+exB4QHEgc1UuVHhAta6j7OCXeED5PNSDk9t4QD3LBBtGH3lAglk1svhieUDG52VJq6Z5QAp2luBd6nlATgTHdxAuekA=","dtype":"float64","shape":[100]},"y":{"__ndarray__":"g9/vV5ihdUADdqhQo6F1QKHtZ0muoXVA4zgsQrmhdUACnvY6xKF1QCMCxTPPoXVABBuZLNqhdUD+LHMl5aF1QF8rUh7woXVAhxk2F/uhdUBj0R8QBqJ1QE+WDAkRonVAzE0BAhyidUDSUPn6JqJ1QK6h9/MxonVA90D67DyidUDBuQLmR6J1QC8aEN9SonVAAAIj2F2idUCxnTvRaKJ1QJWsV8pzonVAmkt6w36idUA7PKG8iaJ1QERzzrWUonVArXkAr5+idUDDvDeoqqJ1QOWSdKG1onVAFN61msCidUAD3vyTy6J1QDSBSI3WonVAdzWZhuGidUCRde9/7KJ1QNOxS3n3onVAC7OscgKjdUDfBhNsDaN1QGiBfWUYo3VA13buXiOjdUBNXGNYLqN1QGx631E5o3VA7+9eS0SjdUCKReRET6N1QFrebj5ao3VA5mz+N2WjdUB0LJMxcKN1QCgsLSt7o3VAi3XNJIajdUCVUHEekaN1QJLjGhico3VAB+zIEaejdUBtd30LsqN1QJPHNgW9o3VAWob1/sejdUDVWrn40qN1QBURg/Ldo3VA1blP7OijdUClkyPm86N1QNth/d/+o3VAurba2QmkdUAfKr3TFKR1QFIbps0fpHVAeSCSxyqkdUAyEIXBNaR1QI1OfbtApHVAMPV4tUukdUADFnyvVqR1QPSegqlhpHVAysGQo2ykdUDJRKGdd6R1QETzuZeCpHVAEEvVkY2kdUBJ4vaLmKR1QHZnHYajpHVAgGJJgK6kdUDViHl6uaR1QJqTr3TEpHVAOOPrbs+kdUA0wCxp2qR1QFPNcWPlpHVAjca9XfCkdUA3uQ1Y+6R1QIczY1IGpXVAf3S9TBGldUAE+h1HHKV1QJHHgUEnpXVALFPuOzKldUBWMFw2PaV1QPzQ0DBIpXVAxJhMK1OldUB5ycklXqV1QEpvTiBppXVAsfPXGnSldUCKCGcVf6V1QMCs+g+KpXVAQ6uTCpWldUBOwzIFoKV1QPBK1/+qpXVAuhx/+rWldUC+BC31wKV1QFuc3+/LpXVAURWZ6taldUA=","dtype":"float64","shape":[100]}},"selected":{"id":"1728","type":"Selection"},"selection_policy":{"id":"1729","type":"UnionRenderers"}},"id":"1697","type":"ColumnDataSource"},{"attributes":{"data_source":{"id":"2149","type":"ColumnDataSource"},"glyph":{"id":"2152","type":"Scatter"},"hover_glyph":null,"muted_glyph":{"id":"2154","type":"Scatter"},"nonselection_glyph":{"id":"2153","type":"Scatter"},"selection_glyph":null,"view":{"id":"2156","type":"CDSView"}},"id":"2155","type":"GlyphRenderer"},{"attributes":{"source":{"id":"1751","type":"ColumnDataSource"}},"id":"1758","type":"CDSView"},{"attributes":{"source":{"id":"1984","type":"ColumnDataSource"}},"id":"1991","type":"CDSView"},{"attributes":{"source":{"id":"2149","type":"ColumnDataSource"}},"id":"2156","type":"CDSView"}],"root_ids":["1649"]},"title":"Bokeh Application","version":"1.2.0"}};
+  var render_items = [{"docid":"1f8252c4-062a-4da0-b37a-5a91bdaeee8c","roots":{"1649":"ccf08258-4561-4740-92dc-3e445eaede50"}}];
+  root.Bokeh.embed.embed_items_notebook(docs_json, render_items);
+
+  }
+  if (root.Bokeh !== undefined) {
+    embed_document(root);
+  } else {
+    var attempts = 0;
+    var timer = setInterval(function(root) {
+      if (root.Bokeh !== undefined) {
+        embed_document(root);
+        clearInterval(timer);
+      }
+      attempts++;
+      if (attempts > 100) {
+        console.log("Bokeh: ERROR: Unable to run BokehJS code because BokehJS library is missing");
+        clearInterval(timer);
+      }
+    }, 10, root)
+  }
+})(window);
+</script></div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
-<img alt="../_images/example_05_08_01_10_1.png" src="../_images/example_05_08_01_10_1.png" />
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span>
+</pre></div>
+</div>
+</div>
 </div>
 
 

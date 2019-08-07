@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta charset="utf-8" />
-    <title>Example 7 - Hydrodinamic Bearings &#8212; ross 0.1.1 documentation</title>
+    <title>Example 7 - Hydrodinamic Bearings &#8212; ross 0.1.2 documentation</title>
     <link rel="stylesheet" href="../_static/bootstrap-sphinx.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx_copybutton.css" />
@@ -42,7 +42,7 @@
         </button>
         <a class="navbar-brand" href="../index.html"><span><img src="../_static/ross-logo.svg"></span>
           ross</a>
-        <span class="navbar-text navbar-version pull-left"><b>0.1.1</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>0.1.2</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -69,13 +69,13 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="tutorial.html">Tutorial</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="tutorial.html#materials">Materials</a></li>
-<li class="toctree-l2"><a class="reference internal" href="tutorial.html#element">Element</a></li>
-<li class="toctree-l2"><a class="reference internal" href="tutorial.html#shaftelement">ShaftElement</a></li>
-<li class="toctree-l2"><a class="reference internal" href="tutorial.html#diskelement">DiskElement</a></li>
-<li class="toctree-l2"><a class="reference internal" href="tutorial.html#bearingelement">BearingElement</a></li>
-<li class="toctree-l2"><a class="reference internal" href="tutorial.html#rotor">Rotor</a></li>
-<li class="toctree-l2"><a class="reference internal" href="tutorial.html#obtaining-results">Obtaining results</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorial.html#Materials">Materials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorial.html#Element">Element</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorial.html#ShaftElement">ShaftElement</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorial.html#DiskElement">DiskElement</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorial.html#BearingElement">BearingElement</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorial.html#Rotor">Rotor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorial.html#Obtaining-results">Obtaining results</a></li>
 </ul>
 </li>
 <li class="toctree-l1 current"><a class="reference internal" href="../examples.html">Examples</a><ul class="current">
@@ -90,10 +90,8 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../download.html">Download notebooks</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../api.html">API reference</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../api.html#module-ross.rotor_assembly">The Rotor module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../api.html#module-ross.element">The “Element” class</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../api.html#module-ross.materials">The “Material” class</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api.html">API Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../api.html#module-ross.materials">Material</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../contributing.html">Contributing</a><ul>
@@ -135,7 +133,7 @@
             
               <li class="hidden-sm">
 <div id="sourcelink">
-  <a href="../_sources/examples/example_05_09_06.rst.txt"
+  <a href="../_sources/examples/example_05_09_06.ipynb.txt"
      rel="nofollow">Source</a>
 </div></li>
             
@@ -159,29 +157,538 @@
   <div class="row">
     <div class="body col-md-12 content" role="main">
       
-  <div class="section" id="example-7-hydrodinamic-bearings">
-<h1>Example 7 - Hydrodinamic Bearings<a class="headerlink" href="#example-7-hydrodinamic-bearings" title="Permalink to this headline">¶</a></h1>
-<p>In this example, we use the rotor seen in Example 5.9.6 from ‘Dynamics
-of Rotating Machinery’ by MI Friswell, JET Penny, SD Garvey &amp; AW Lees,
-published by Cambridge University Press, 2010.</p>
-<p>Same rotor of Example 3, but the bearings are replaced with hydrodynamic
-bearings. In order to instantiate them, rather than giving the stiffness
-and damping data, we will calculate them using their hydrodinamic data,
-as provided by Example 5.5.1 from the book: The oil-film bearings have a
-diameter of 100 mm, are 30 mm long, and each supports a static load of
-525 N, which represents half of the weight of the rotor. The radial
-clearance in the bearings is 0.1 mm and the oil film has a viscosity of
-0.1 Pa s.</p>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">bokeh.io</span> <span class="k">import</span> <span class="n">output_notebook</span>
+  
+<style>
+/* CSS for nbsphinx extension */
+
+/* remove conflicting styling from Sphinx themes */
+div.nbinput,
+div.nbinput div.prompt,
+div.nbinput div.input_area,
+div.nbinput div[class*=highlight],
+div.nbinput div[class*=highlight] pre,
+div.nboutput,
+div.nbinput div.prompt,
+div.nbinput div.output_area,
+div.nboutput div[class*=highlight],
+div.nboutput div[class*=highlight] pre {
+    background: none;
+    border: none;
+    padding: 0 0;
+    margin: 0;
+    box-shadow: none;
+}
+
+/* avoid gaps between output lines */
+div.nboutput div[class*=highlight] pre {
+    line-height: normal;
+}
+
+/* input/output containers */
+div.nbinput,
+div.nboutput {
+    display: -webkit-flex;
+    display: flex;
+    align-items: flex-start;
+    margin: 0;
+    width: 100%;
+}
+@media (max-width: 540px) {
+    div.nbinput,
+    div.nboutput {
+        flex-direction: column;
+    }
+}
+
+/* input container */
+div.nbinput {
+    padding-top: 5px;
+}
+
+/* last container */
+div.nblast {
+    padding-bottom: 5px;
+}
+
+/* input prompt */
+div.nbinput div.prompt pre {
+    color: #307FC1;
+}
+
+/* output prompt */
+div.nboutput div.prompt pre {
+    color: #BF5B3D;
+}
+
+/* all prompts */
+div.nbinput div.prompt,
+div.nboutput div.prompt {
+    min-width: 7ex;
+    padding-top: 0.4em;
+    padding-right: 0.4em;
+    text-align: right;
+    flex: 0;
+}
+@media (max-width: 540px) {
+    div.nbinput div.prompt,
+    div.nboutput div.prompt {
+        text-align: left;
+        padding: 0.4em;
+    }
+    div.nboutput div.prompt.empty {
+        padding: 0;
+    }
+}
+
+/* disable scrollbars on prompts */
+div.nbinput div.prompt pre,
+div.nboutput div.prompt pre {
+    overflow: hidden;
+}
+
+/* input/output area */
+div.nbinput div.input_area,
+div.nboutput div.output_area {
+    padding: 0.4em;
+    -webkit-flex: 1;
+    flex: 1;
+    overflow: auto;
+}
+@media (max-width: 540px) {
+    div.nbinput div.input_area,
+    div.nboutput div.output_area {
+        width: 100%;
+    }
+}
+
+/* input area */
+div.nbinput div.input_area {
+    border: 1px solid #e0e0e0;
+    border-radius: 2px;
+    background: #f5f5f5;
+}
+
+/* override MathJax center alignment in output cells */
+div.nboutput div[class*=MathJax] {
+    text-align: left !important;
+}
+
+/* override sphinx.ext.imgmath center alignment in output cells */
+div.nboutput div.math p {
+    text-align: left;
+}
+
+/* standard error */
+div.nboutput div.output_area.stderr {
+    background: #fdd;
+}
+
+/* ANSI colors */
+.ansi-black-fg { color: #3E424D; }
+.ansi-black-bg { background-color: #3E424D; }
+.ansi-black-intense-fg { color: #282C36; }
+.ansi-black-intense-bg { background-color: #282C36; }
+.ansi-red-fg { color: #E75C58; }
+.ansi-red-bg { background-color: #E75C58; }
+.ansi-red-intense-fg { color: #B22B31; }
+.ansi-red-intense-bg { background-color: #B22B31; }
+.ansi-green-fg { color: #00A250; }
+.ansi-green-bg { background-color: #00A250; }
+.ansi-green-intense-fg { color: #007427; }
+.ansi-green-intense-bg { background-color: #007427; }
+.ansi-yellow-fg { color: #DDB62B; }
+.ansi-yellow-bg { background-color: #DDB62B; }
+.ansi-yellow-intense-fg { color: #B27D12; }
+.ansi-yellow-intense-bg { background-color: #B27D12; }
+.ansi-blue-fg { color: #208FFB; }
+.ansi-blue-bg { background-color: #208FFB; }
+.ansi-blue-intense-fg { color: #0065CA; }
+.ansi-blue-intense-bg { background-color: #0065CA; }
+.ansi-magenta-fg { color: #D160C4; }
+.ansi-magenta-bg { background-color: #D160C4; }
+.ansi-magenta-intense-fg { color: #A03196; }
+.ansi-magenta-intense-bg { background-color: #A03196; }
+.ansi-cyan-fg { color: #60C6C8; }
+.ansi-cyan-bg { background-color: #60C6C8; }
+.ansi-cyan-intense-fg { color: #258F8F; }
+.ansi-cyan-intense-bg { background-color: #258F8F; }
+.ansi-white-fg { color: #C5C1B4; }
+.ansi-white-bg { background-color: #C5C1B4; }
+.ansi-white-intense-fg { color: #A1A6B2; }
+.ansi-white-intense-bg { background-color: #A1A6B2; }
+
+.ansi-default-inverse-fg { color: #FFFFFF; }
+.ansi-default-inverse-bg { background-color: #000000; }
+
+.ansi-bold { font-weight: bold; }
+.ansi-underline { text-decoration: underline; }
+
+/* Some additional styling taken form the Jupyter notebook CSS */
+div.rendered_html table {
+  border: none;
+  border-collapse: collapse;
+  border-spacing: 0;
+  color: black;
+  font-size: 12px;
+  table-layout: fixed;
+}
+div.rendered_html thead {
+  border-bottom: 1px solid black;
+  vertical-align: bottom;
+}
+div.rendered_html tr,
+div.rendered_html th,
+div.rendered_html td {
+  text-align: right;
+  vertical-align: middle;
+  padding: 0.5em 0.5em;
+  line-height: normal;
+  white-space: normal;
+  max-width: none;
+  border: none;
+}
+div.rendered_html th {
+  font-weight: bold;
+}
+div.rendered_html tbody tr:nth-child(odd) {
+  background: #f5f5f5;
+}
+div.rendered_html tbody tr:hover {
+  background: rgba(66, 165, 245, 0.2);
+}
+</style>
+<div class="section" id="Example-7---Hydrodinamic-Bearings">
+<h1>Example 7 - Hydrodinamic Bearings<a class="headerlink" href="#Example-7---Hydrodinamic-Bearings" title="Permalink to this headline">¶</a></h1>
+<p>In this example, we use the rotor seen in Example 5.9.6 from ‘Dynamics of Rotating Machinery’ by MI Friswell, JET Penny, SD Garvey &amp; AW Lees, published by Cambridge University Press, 2010.</p>
+<p>Same rotor of Example 3, but the bearings are replaced with hydrodynamic bearings. In order to instantiate them, rather than giving the stiffness and damping data, we will calculate them using their hydrodinamic data, as provided by Example 5.5.1 from the book: The oil-film bearings have a diameter of 100 mm, are 30 mm long, and each supports a static load of 525 N, which represents half of the weight of the rotor. The radial clearance in the bearings is 0.1 mm and the oil film has a viscosity
+of 0.1 Pa s.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">bokeh.io</span> <span class="k">import</span> <span class="n">output_notebook</span><span class="p">,</span> <span class="n">show</span>
 <span class="kn">import</span> <span class="nn">ross</span> <span class="k">as</span> <span class="nn">rs</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="n">output_notebook</span><span class="p">()</span>
+
 </pre></div>
 </div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area rendered_html docutils container">
 <div class="bk-root">
     <a href="https://bokeh.pydata.org" target="_blank" class="bk-logo bk-logo-small bk-logo-notebook"></a>
-    <span id="1001">Loading BokehJS ...</span>
-</div><div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Classic Instantiation of the rotor</span>
+    <span id="1002">Loading BokehJS ...</span>
+</div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div></div>
+<script type="text/javascript">
+var element = document.currentScript.previousSibling.previousSibling;
+
+(function(root) {
+  function now() {
+    return new Date();
+  }
+
+  var force = true;
+
+  if (typeof root._bokeh_onload_callbacks === "undefined" || force === true) {
+    root._bokeh_onload_callbacks = [];
+    root._bokeh_is_loading = undefined;
+  }
+
+  var JS_MIME_TYPE = 'application/javascript';
+  var HTML_MIME_TYPE = 'text/html';
+  var EXEC_MIME_TYPE = 'application/vnd.bokehjs_exec.v0+json';
+  var CLASS_NAME = 'output_bokeh rendered_html';
+
+  /**
+   * Render data to the DOM node
+   */
+  function render(props, node) {
+    var script = document.createElement("script");
+    node.appendChild(script);
+  }
+
+  /**
+   * Handle when an output is cleared or removed
+   */
+  function handleClearOutput(event, handle) {
+    var cell = handle.cell;
+
+    var id = cell.output_area._bokeh_element_id;
+    var server_id = cell.output_area._bokeh_server_id;
+    // Clean up Bokeh references
+    if (id != null && id in Bokeh.index) {
+      Bokeh.index[id].model.document.clear();
+      delete Bokeh.index[id];
+    }
+
+    if (server_id !== undefined) {
+      // Clean up Bokeh references
+      var cmd = "from bokeh.io.state import curstate; print(curstate().uuid_to_server['" + server_id + "'].get_sessions()[0].document.roots[0]._id)";
+      cell.notebook.kernel.execute(cmd, {
+        iopub: {
+          output: function(msg) {
+            var id = msg.content.text.trim();
+            if (id in Bokeh.index) {
+              Bokeh.index[id].model.document.clear();
+              delete Bokeh.index[id];
+            }
+          }
+        }
+      });
+      // Destroy server and session
+      var cmd = "import bokeh.io.notebook as ion; ion.destroy_server('" + server_id + "')";
+      cell.notebook.kernel.execute(cmd);
+    }
+  }
+
+  /**
+   * Handle when a new output is added
+   */
+  function handleAddOutput(event, handle) {
+    var output_area = handle.output_area;
+    var output = handle.output;
+
+    // limit handleAddOutput to display_data with EXEC_MIME_TYPE content only
+    if ((output.output_type != "display_data") || (!output.data.hasOwnProperty(EXEC_MIME_TYPE))) {
+      return
+    }
+
+    var toinsert = output_area.element.find("." + CLASS_NAME.split(' ')[0]);
+
+    if (output.metadata[EXEC_MIME_TYPE]["id"] !== undefined) {
+      toinsert[toinsert.length - 1].firstChild.textContent = output.data[JS_MIME_TYPE];
+      // store reference to embed id on output_area
+      output_area._bokeh_element_id = output.metadata[EXEC_MIME_TYPE]["id"];
+    }
+    if (output.metadata[EXEC_MIME_TYPE]["server_id"] !== undefined) {
+      var bk_div = document.createElement("div");
+      bk_div.innerHTML = output.data[HTML_MIME_TYPE];
+      var script_attrs = bk_div.children[0].attributes;
+      for (var i = 0; i < script_attrs.length; i++) {
+        toinsert[toinsert.length - 1].firstChild.setAttribute(script_attrs[i].name, script_attrs[i].value);
+      }
+      // store reference to server id on output_area
+      output_area._bokeh_server_id = output.metadata[EXEC_MIME_TYPE]["server_id"];
+    }
+  }
+
+  function register_renderer(events, OutputArea) {
+
+    function append_mime(data, metadata, element) {
+      // create a DOM node to render to
+      var toinsert = this.create_output_subarea(
+        metadata,
+        CLASS_NAME,
+        EXEC_MIME_TYPE
+      );
+      this.keyboard_manager.register_events(toinsert);
+      // Render to node
+      var props = {data: data, metadata: metadata[EXEC_MIME_TYPE]};
+      render(props, toinsert[toinsert.length - 1]);
+      element.append(toinsert);
+      return toinsert
+    }
+
+    /* Handle when an output is cleared or removed */
+    events.on('clear_output.CodeCell', handleClearOutput);
+    events.on('delete.Cell', handleClearOutput);
+
+    /* Handle when a new output is added */
+    events.on('output_added.OutputArea', handleAddOutput);
+
+    /**
+     * Register the mime type and append_mime function with output_area
+     */
+    OutputArea.prototype.register_mime_type(EXEC_MIME_TYPE, append_mime, {
+      /* Is output safe? */
+      safe: true,
+      /* Index of renderer in `output_area.display_order` */
+      index: 0
+    });
+  }
+
+  // register the mime type if in Jupyter Notebook environment and previously unregistered
+  if (root.Jupyter !== undefined) {
+    var events = require('base/js/events');
+    var OutputArea = require('notebook/js/outputarea').OutputArea;
+
+    if (OutputArea.prototype.mime_types().indexOf(EXEC_MIME_TYPE) == -1) {
+      register_renderer(events, OutputArea);
+    }
+  }
+
+
+  if (typeof (root._bokeh_timeout) === "undefined" || force === true) {
+    root._bokeh_timeout = Date.now() + 5000;
+    root._bokeh_failed_load = false;
+  }
+
+  var NB_LOAD_WARNING = {'data': {'text/html':
+     "<div style='background-color: #fdd'>\n"+
+     "<p>\n"+
+     "BokehJS does not appear to have successfully loaded. If loading BokehJS from CDN, this \n"+
+     "may be due to a slow or bad network connection. Possible fixes:\n"+
+     "</p>\n"+
+     "<ul>\n"+
+     "<li>re-rerun `output_notebook()` to attempt to load from CDN again, or</li>\n"+
+     "<li>use INLINE resources instead, as so:</li>\n"+
+     "</ul>\n"+
+     "<code>\n"+
+     "from bokeh.resources import INLINE\n"+
+     "output_notebook(resources=INLINE)\n"+
+     "</code>\n"+
+     "</div>"}};
+
+  function display_loaded() {
+    var el = document.getElementById("1002");
+    if (el != null) {
+      el.textContent = "BokehJS is loading...";
+    }
+    if (root.Bokeh !== undefined) {
+      if (el != null) {
+        el.textContent = "BokehJS " + root.Bokeh.version + " successfully loaded.";
+      }
+    } else if (Date.now() < root._bokeh_timeout) {
+      setTimeout(display_loaded, 100)
+    }
+  }
+
+
+  function run_callbacks() {
+    try {
+      root._bokeh_onload_callbacks.forEach(function(callback) {
+        if (callback != null)
+          callback();
+      });
+    } finally {
+      delete root._bokeh_onload_callbacks
+    }
+    console.debug("Bokeh: all callbacks have finished");
+  }
+
+  function load_libs(css_urls, js_urls, callback) {
+    if (css_urls == null) css_urls = [];
+    if (js_urls == null) js_urls = [];
+
+    root._bokeh_onload_callbacks.push(callback);
+    if (root._bokeh_is_loading > 0) {
+      console.debug("Bokeh: BokehJS is being loaded, scheduling callback at", now());
+      return null;
+    }
+    if (js_urls == null || js_urls.length === 0) {
+      run_callbacks();
+      return null;
+    }
+    console.debug("Bokeh: BokehJS not loaded, scheduling load and callback at", now());
+    root._bokeh_is_loading = css_urls.length + js_urls.length;
+
+    function on_load() {
+      root._bokeh_is_loading--;
+      if (root._bokeh_is_loading === 0) {
+        console.debug("Bokeh: all BokehJS libraries/stylesheets loaded");
+        run_callbacks()
+      }
+    }
+
+    function on_error() {
+      console.error("failed to load " + url);
+    }
+
+    for (var i = 0; i < css_urls.length; i++) {
+      var url = css_urls[i];
+      const element = document.createElement("link");
+      element.onload = on_load;
+      element.onerror = on_error;
+      element.rel = "stylesheet";
+      element.type = "text/css";
+      element.href = url;
+      console.debug("Bokeh: injecting link tag for BokehJS stylesheet: ", url);
+      document.body.appendChild(element);
+    }
+
+    for (var i = 0; i < js_urls.length; i++) {
+      var url = js_urls[i];
+      var element = document.createElement('script');
+      element.onload = on_load;
+      element.onerror = on_error;
+      element.async = false;
+      element.src = url;
+      console.debug("Bokeh: injecting script tag for BokehJS library: ", url);
+      document.head.appendChild(element);
+    }
+  };var element = document.getElementById("1002");
+  if (element == null) {
+    console.error("Bokeh: ERROR: autoload.js configured with elementid '1002' but no matching script tag was found. ")
+    return false;
+  }
+
+  function inject_raw_css(css) {
+    const element = document.createElement("style");
+    element.appendChild(document.createTextNode(css));
+    document.body.appendChild(element);
+  }
+
+  var js_urls = ["https://cdn.pydata.org/bokeh/release/bokeh-1.2.0.min.js", "https://cdn.pydata.org/bokeh/release/bokeh-widgets-1.2.0.min.js", "https://cdn.pydata.org/bokeh/release/bokeh-tables-1.2.0.min.js", "https://cdn.pydata.org/bokeh/release/bokeh-gl-1.2.0.min.js"];
+  var css_urls = ["https://cdn.pydata.org/bokeh/release/bokeh-1.2.0.min.css", "https://cdn.pydata.org/bokeh/release/bokeh-widgets-1.2.0.min.css", "https://cdn.pydata.org/bokeh/release/bokeh-tables-1.2.0.min.css"];
+
+  var inline_js = [
+    function(Bokeh) {
+      Bokeh.set_log_level("info");
+    },
+
+    function(Bokeh) {
+
+    },
+    function(Bokeh) {} // ensure no trailing comma for IE
+  ];
+
+  function run_inline_js() {
+
+    if ((root.Bokeh !== undefined) || (force === true)) {
+      for (var i = 0; i < inline_js.length; i++) {
+        inline_js[i].call(root, root.Bokeh);
+      }if (force === true) {
+        display_loaded();
+      }} else if (Date.now() < root._bokeh_timeout) {
+      setTimeout(run_inline_js, 100);
+    } else if (!root._bokeh_failed_load) {
+      console.log("Bokeh: BokehJS failed to load within specified timeout.");
+      root._bokeh_failed_load = true;
+    } else if (force !== true) {
+      var cell = $(document.getElementById("1002")).parents('.cell').data().cell;
+      cell.output_area.append_execute_result(NB_LOAD_WARNING)
+    }
+
+  }
+
+  if (root._bokeh_is_loading === 0) {
+    console.debug("Bokeh: BokehJS loaded, going straight to plotting");
+    run_inline_js();
+  } else {
+    load_libs(css_urls, js_urls, function() {
+      console.debug("Bokeh: BokehJS plotting callback run at", now());
+      run_inline_js();
+    });
+  }
+}(window));
+</script></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="c1"># Classic Instantiation of the rotor</span>
 <span class="n">shaft_elements</span> <span class="o">=</span> <span class="p">[]</span>
 <span class="n">bearing_seal_elements</span> <span class="o">=</span> <span class="p">[]</span>
 <span class="n">disk_elements</span> <span class="o">=</span> <span class="p">[]</span>
@@ -221,23 +728,54 @@ clearance in the bearings is 0.1 mm and the oil film has a viscosity of
                      <span class="n">disk_elements</span><span class="o">=</span><span class="n">disk_elements</span><span class="p">,</span> <span class="n">n_eigen</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
 
 <span class="n">rotor596c</span><span class="o">.</span><span class="n">plot_rotor</span><span class="p">()</span>
+
 </pre></div>
 </div>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>/home/raphael/ross/ross/fluid_flow/fluid_flow.py:519: UserWarning: Function calculate_eccentricity_ratio suitable only for short bearings. The ratio between the bearing length and its radius should be less or equal to 0.25. Currently we have 0.6.
-  + &quot;.&quot;
-/home/raphael/ross/ross/fluid_flow/fluid_flow.py:583: UserWarning: Function get_analytical_damping_matrix suitable only for short bearings. The ratio between the bearing length and its radius should be less or equal to 0.25. Currently we have 0.6.
-  + &quot;.&quot;
-/home/raphael/ross/ross/fluid_flow/fluid_flow.py:465: UserWarning: Function get_rotor_load suitable only for short bearings. The ratio between the bearing length and its radius should be less or equal to 0.25. Currently we have 0.6.
-  + &quot;.&quot;
-/home/raphael/ross/ross/fluid_flow/fluid_flow.py:549: UserWarning: Function get_analytical_stiffness_matrix suitable only for short bearings. The ratio between the bearing length and its radius should be less or equal to 0.25. Currently we have 0.6.
-  + &quot;.&quot;
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">TypeError</span>                                 Traceback (most recent call last)
+<span class="ansi-green-fg">&lt;ipython-input-6-1b2cae4417dd&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
+<span class="ansi-green-intense-fg ansi-bold">     27</span>                                                                p_out<span class="ansi-blue-fg">=</span><span class="ansi-cyan-fg">0</span><span class="ansi-blue-fg">,</span> radius_rotor<span class="ansi-blue-fg">=</span><span class="ansi-cyan-fg">0.0499</span><span class="ansi-blue-fg">,</span>
+<span class="ansi-green-intense-fg ansi-bold">     28</span>                                                                radius_stator<span class="ansi-blue-fg">=</span><span class="ansi-cyan-fg">0.05</span><span class="ansi-blue-fg">,</span> visc<span class="ansi-blue-fg">=</span><span class="ansi-cyan-fg">0.1</span><span class="ansi-blue-fg">,</span>
+<span class="ansi-green-fg">---&gt; 29</span><span class="ansi-red-fg">                                                                rho=860., load=525))
+</span><span class="ansi-green-intense-fg ansi-bold">     30</span> bearing_seal_elements.append(rs.BearingElement.from_fluid_flow(n=6, nz=30, ntheta=20, nradius=11,
+<span class="ansi-green-intense-fg ansi-bold">     31</span>                                                                length<span class="ansi-blue-fg">=</span><span class="ansi-cyan-fg">0.03</span><span class="ansi-blue-fg">,</span> omega<span class="ansi-blue-fg">=</span><span class="ansi-cyan-fg">157.1</span><span class="ansi-blue-fg">,</span> p_in<span class="ansi-blue-fg">=</span><span class="ansi-cyan-fg">0</span><span class="ansi-blue-fg">,</span>
+
+<span class="ansi-green-fg">~/anaconda3/lib/python3.7/site-packages/ross/bearing_seal_element.py</span> in <span class="ansi-cyan-fg">from_fluid_flow</span><span class="ansi-blue-fg">(cls, n, nz, ntheta, nradius, length, omega, p_in, p_out, radius_rotor, radius_stator, visc, rho, eccentricity, load)</span>
+<span class="ansi-green-intense-fg ansi-bold">    564</span>             cxy<span class="ansi-blue-fg">=</span>c<span class="ansi-blue-fg">[</span><span class="ansi-cyan-fg">1</span><span class="ansi-blue-fg">]</span><span class="ansi-blue-fg">,</span>
+<span class="ansi-green-intense-fg ansi-bold">    565</span>             cyx<span class="ansi-blue-fg">=</span>c<span class="ansi-blue-fg">[</span><span class="ansi-cyan-fg">2</span><span class="ansi-blue-fg">]</span><span class="ansi-blue-fg">,</span>
+<span class="ansi-green-fg">--&gt; 566</span><span class="ansi-red-fg">             </span>w<span class="ansi-blue-fg">=</span>fluid_flow<span class="ansi-blue-fg">.</span>omega<span class="ansi-blue-fg">,</span>
+<span class="ansi-green-intense-fg ansi-bold">    567</span>         )
+<span class="ansi-green-intense-fg ansi-bold">    568</span>
+
+<span class="ansi-green-fg">~/anaconda3/lib/python3.7/site-packages/ross/bearing_seal_element.py</span> in <span class="ansi-cyan-fg">__init__</span><span class="ansi-blue-fg">(self, n, kxx, cxx, kyy, kxy, kyx, cyy, cxy, cyx, w)</span>
+<span class="ansi-green-intense-fg ansi-bold">    158</span>             <span class="ansi-green-fg">if</span> arg<span class="ansi-blue-fg">[</span><span class="ansi-cyan-fg">0</span><span class="ansi-blue-fg">]</span> <span class="ansi-blue-fg">==</span> <span class="ansi-blue-fg">&#34;k&#34;</span><span class="ansi-blue-fg">:</span>
+<span class="ansi-green-intense-fg ansi-bold">    159</span>                 coefficients[arg] = _Stiffness_Coefficient(
+<span class="ansi-green-fg">--&gt; 160</span><span class="ansi-red-fg">                     </span>coefficient<span class="ansi-blue-fg">=</span>args_dict<span class="ansi-blue-fg">[</span>arg<span class="ansi-blue-fg">]</span><span class="ansi-blue-fg">,</span> w<span class="ansi-blue-fg">=</span>args_dict<span class="ansi-blue-fg">[</span><span class="ansi-blue-fg">&#34;w&#34;</span><span class="ansi-blue-fg">]</span>
+<span class="ansi-green-intense-fg ansi-bold">    161</span>                 )
+<span class="ansi-green-intense-fg ansi-bold">    162</span>             <span class="ansi-green-fg">else</span><span class="ansi-blue-fg">:</span>
+
+<span class="ansi-green-fg">~/anaconda3/lib/python3.7/site-packages/ross/bearing_seal_element.py</span> in <span class="ansi-cyan-fg">__init__</span><span class="ansi-blue-fg">(self, coefficient, w, interpolated)</span>
+<span class="ansi-green-intense-fg ansi-bold">     29</span>         self<span class="ansi-blue-fg">.</span>w <span class="ansi-blue-fg">=</span> w
+<span class="ansi-green-intense-fg ansi-bold">     30</span>
+<span class="ansi-green-fg">---&gt; 31</span><span class="ansi-red-fg">         </span><span class="ansi-green-fg">if</span> len<span class="ansi-blue-fg">(</span>self<span class="ansi-blue-fg">.</span>coefficient<span class="ansi-blue-fg">)</span> <span class="ansi-blue-fg">&gt;</span> <span class="ansi-cyan-fg">1</span><span class="ansi-blue-fg">:</span>
+<span class="ansi-green-intense-fg ansi-bold">     32</span>             <span class="ansi-green-fg">try</span><span class="ansi-blue-fg">:</span>
+<span class="ansi-green-intense-fg ansi-bold">     33</span>                 <span class="ansi-green-fg">with</span> warnings<span class="ansi-blue-fg">.</span>catch_warnings<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">:</span>
+
+<span class="ansi-red-fg">TypeError</span>: object of type &#39;numpy.complex128&#39; has no len()
+</pre></div></div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.axes._subplots.AxesSubplot at 0x...&gt;
-</pre></div>
-</div>
-<img alt="../_images/example_05_09_06_2_2.png" src="../_images/example_05_09_06_2_2.png" />
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># From_section class method instantiation</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="c1"># From_section class method instantiation</span>
 <span class="n">bearing_seal_elements</span> <span class="o">=</span> <span class="p">[]</span>
 <span class="n">disk_elements</span> <span class="o">=</span> <span class="p">[]</span>
 <span class="n">shaft_length_data</span> <span class="o">=</span> <span class="mi">3</span><span class="o">*</span><span class="p">[</span><span class="mf">0.5</span><span class="p">]</span>
@@ -267,48 +805,85 @@ clearance in the bearings is 0.1 mm and the oil film has a viscosity of
                                    <span class="n">i_ds_data</span><span class="o">=</span><span class="n">i_d</span><span class="p">,</span><span class="n">o_ds_data</span><span class="o">=</span><span class="n">o_d</span>
                                    <span class="p">)</span>
 <span class="n">rotor596fs</span><span class="o">.</span><span class="n">plot_rotor</span><span class="p">()</span>
+
 </pre></div>
 </div>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.axes._subplots.AxesSubplot at 0x...&gt;
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
 </pre></div>
 </div>
-<img alt="../_images/example_05_09_06_3_1.png" src="../_images/example_05_09_06_3_1.png" />
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Obtaining results for w = 200 rpm</span>
-<span class="n">rotor596c</span><span class="o">.</span><span class="n">w</span> <span class="o">=</span> <span class="mi">200</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mi">30</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="c1"># Obtaining results for w = 200 rpm</span>
+
 <span class="n">rotor596fs</span><span class="o">.</span><span class="n">w</span> <span class="o">=</span> <span class="mi">200</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mi">30</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Normal Instantiation =&#39;</span><span class="p">,</span> <span class="n">rotor596c</span><span class="o">.</span><span class="n">wn</span><span class="o">/</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">),</span> <span class="s1">&#39;[Hz]&#39;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;From Section Instantiation =&#39;</span><span class="p">,</span> <span class="n">rotor596fs</span><span class="o">.</span><span class="n">wn</span><span class="o">/</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">),</span> <span class="s1">&#39;[Hz]&#39;</span><span class="p">)</span>
+
 </pre></div>
 </div>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Normal Instantiation = [1.73108570e-03 1.73108714e-03 1.76540732e+01 1.77044354e+01
- 6.93663844e+01 6.95687817e+01] [Hz]
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
+<span class="ansi-green-fg">&lt;ipython-input-8-907f9d408bf9&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
+<span class="ansi-green-intense-fg ansi-bold">      1</span> <span class="ansi-red-fg"># Obtaining results for w = 200 rpm</span>
+<span class="ansi-green-intense-fg ansi-bold">      2</span>
+<span class="ansi-green-fg">----&gt; 3</span><span class="ansi-red-fg"> </span>rotor596fs<span class="ansi-blue-fg">.</span>w <span class="ansi-blue-fg">=</span> <span class="ansi-cyan-fg">200</span><span class="ansi-blue-fg">*</span>np<span class="ansi-blue-fg">.</span>pi<span class="ansi-blue-fg">/</span><span class="ansi-cyan-fg">30</span>
+<span class="ansi-green-intense-fg ansi-bold">      4</span>
+<span class="ansi-green-intense-fg ansi-bold">      5</span> print<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">&#39;Normal Instantiation =&#39;</span><span class="ansi-blue-fg">,</span> rotor596c<span class="ansi-blue-fg">.</span>wn<span class="ansi-blue-fg">/</span><span class="ansi-blue-fg">(</span><span class="ansi-cyan-fg">2</span><span class="ansi-blue-fg">*</span>np<span class="ansi-blue-fg">.</span>pi<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">&#39;[Hz]&#39;</span><span class="ansi-blue-fg">)</span>
 
-
-From Section Instantiation = [ 13.89569397  13.9153662   47.97597062  48.40830101 136.87265681
- 135.61510191] [Hz]
+<span class="ansi-red-fg">NameError</span>: name &#39;rotor596fs&#39; is not defined
+</pre></div></div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Obtaining results for w=4000RPM</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="c1"># Obtaining results for w=4000RPM</span>
 
 <span class="n">rotor596c</span><span class="o">.</span><span class="n">w</span> <span class="o">=</span> <span class="mi">4000</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mi">30</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Normal Instantiation =&#39;</span><span class="p">,</span> <span class="n">rotor596c</span><span class="o">.</span><span class="n">wn</span><span class="o">/</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">))</span>
+
 </pre></div>
 </div>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Normal Instantiation = [1.73105804e-03 1.73108714e-03 1.71209738e+01 1.82032508e+01
- 6.70984963e+01 7.13507303e+01]
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rotor596c</span><span class="o">.</span><span class="n">run_campbell</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">4000</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mi">30</span><span class="p">,</span> <span class="mi">100</span><span class="p">))</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">rotor596c</span><span class="o">.</span><span class="n">run_campbell</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">4000</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mi">30</span><span class="p">,</span> <span class="mi">100</span><span class="p">))</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+
 </pre></div>
 </div>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>(&lt;Figure size 432x288 with 2 Axes&gt;,
- &lt;matplotlib.axes._subplots.AxesSubplot at 0x...&gt;)
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
-<img alt="../_images/example_05_09_06_6_1.png" src="../_images/example_05_09_06_6_1.png" />
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span>
+</pre></div>
+</div>
+</div>
 </div>
 
 

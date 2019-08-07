@@ -88,10 +88,8 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../download.html">Download notebooks</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../api.html">API reference</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../api.html#module-ross.rotor_assembly">The Rotor module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../api.html#module-ross.element">The “Element” class</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../api.html#module-ross.materials">The “Material” class</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../api.html">API Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../api.html#module-ross.materials">Material</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../contributing.html">Contributing</a><ul>
@@ -151,7 +149,9 @@
     <div class="body col-md-12 content" role="main">
       
   <h1>Source code for ross.shaft_element</h1><div class="highlight"><pre>
-<span></span><span class="kn">import</span> <span class="nn">os</span>
+<span></span><span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">warnings</span>
+<span class="kn">import</span> <span class="nn">os</span>
 <span class="kn">from</span> <span class="nn">pathlib</span> <span class="k">import</span> <span class="n">Path</span>
 
 <span class="kn">import</span> <span class="nn">bokeh.palettes</span> <span class="k">as</span> <span class="nn">bp</span>
@@ -159,6 +159,8 @@
 <span class="kn">import</span> <span class="nn">matplotlib.patches</span> <span class="k">as</span> <span class="nn">mpatches</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">toml</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">xlrd</span>
 
 <span class="kn">import</span> <span class="nn">ross</span>
 <span class="kn">from</span> <span class="nn">ross.element</span> <span class="k">import</span> <span class="n">Element</span>
@@ -194,22 +196,22 @@
 <span class="sd">        If not given, it will be set when the rotor is assembled</span>
 <span class="sd">        according to the element&#39;s position in the list supplied to</span>
 <span class="sd">        the rotor constructor.</span>
-<span class="sd">    axial_force : float</span>
+<span class="sd">    axial_force : float, optional</span>
 <span class="sd">        Axial force.</span>
-<span class="sd">    torque : float</span>
+<span class="sd">    torque : float, optional</span>
 <span class="sd">        Torque.</span>
-<span class="sd">    shear_effects : bool</span>
+<span class="sd">    shear_effects : bool, optional</span>
 <span class="sd">        Determine if shear effects are taken into account.</span>
-<span class="sd">        Default is False.</span>
-<span class="sd">    rotary_inertia : bool</span>
+<span class="sd">        Default is True.</span>
+<span class="sd">    rotary_inertia : bool, optional</span>
 <span class="sd">        Determine if rotary_inertia effects are taken into account.</span>
-<span class="sd">        Default is False.</span>
-<span class="sd">    gyroscopic : bool</span>
+<span class="sd">        Default is True.</span>
+<span class="sd">    gyroscopic : bool, optional</span>
 <span class="sd">        Determine if gyroscopic effects are taken into account.</span>
-<span class="sd">        Default is False.</span>
-<span class="sd">    shear_method_calc : string</span>
+<span class="sd">        Default is True.</span>
+<span class="sd">    shear_method_calc : string, optional</span>
 <span class="sd">        Determines which shear calculation method the user will adopt</span>
-<span class="sd">        Default is &#39;hutchinson&#39;</span>
+<span class="sd">        Default is &#39;cowper&#39;</span>
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
 <span class="sd">    Attributes</span>
@@ -370,6 +372,167 @@
                     <span class="n">ShaftElement</span><span class="p">(</span><span class="o">**</span><span class="n">shaft_elements_dict</span><span class="p">[</span><span class="s2">&quot;ShaftElement&quot;</span><span class="p">][</span><span class="n">element</span><span class="p">])</span>
                 <span class="p">)</span>
         <span class="k">return</span> <span class="n">shaft_elements</span>
+
+<div class="viewcode-block" id="ShaftElement.from_table"><a class="viewcode-back" href="../../api.html#ross.shaft_element.ShaftElement.from_table">[docs]</a>    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">from_table</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">file</span><span class="p">,</span> <span class="n">sheet</span><span class="o">=</span><span class="s2">&quot;Simple&quot;</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Instantiate one or more shafts using inputs from a table, either excel or csv.</span>
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        file: str</span>
+<span class="sd">            Path to the file containing the shaft parameters.</span>
+<span class="sd">        sheet: str, optional</span>
+<span class="sd">            Describes the kind of sheet the function should expect:</span>
+<span class="sd">                Simple: The input table should contain a header with column names equal</span>
+<span class="sd">                to parameter names in the ShaftElement class, except for</span>
+<span class="sd">                shear_effects, rotary_inertia, gyroscopic, and shear_method_calc.</span>
+<span class="sd">                Model: The sheet must follow the expected format. The function will look</span>
+<span class="sd">                for the parameters according to this format, in the positions they are supposed</span>
+<span class="sd">                to be found. Headers should be in rows 4 and 20, just before parameters.</span>
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        shaft : list</span>
+<span class="sd">            A list of shaft objects.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">sheet</span> <span class="o">==</span> <span class="s2">&quot;Simple&quot;</span><span class="p">:</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="n">file</span><span class="p">)</span>
+            <span class="k">except</span> <span class="ne">FileNotFoundError</span><span class="p">:</span>
+                <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="n">file</span> <span class="o">+</span> <span class="s2">&quot; not found.&quot;</span><span class="p">)</span>
+            <span class="k">except</span> <span class="n">xlrd</span><span class="o">.</span><span class="n">biffh</span><span class="o">.</span><span class="n">XLRDError</span><span class="p">:</span>
+                <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">file</span><span class="p">)</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">iterrows</span><span class="p">():</span>
+                    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">row</span><span class="o">.</span><span class="n">size</span><span class="p">):</span>
+                        <span class="k">if</span> <span class="n">pd</span><span class="o">.</span><span class="n">isna</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="n">i</span><span class="p">]):</span>
+                            <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span>
+                                <span class="s2">&quot;NaN found in row &quot;</span>
+                                <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">index</span><span class="p">)</span>
+                                <span class="o">+</span> <span class="s2">&quot; column &quot;</span>
+                                <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+                                <span class="o">+</span> <span class="s2">&quot;.</span><span class="se">\n</span><span class="s2">&quot;</span>
+                                <span class="s2">&quot;It will be replaced with zero.&quot;</span>
+                            <span class="p">)</span>
+                            <span class="n">row</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+                <span class="n">list_of_shafts</span> <span class="o">=</span> <span class="p">[]</span>
+                <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">iterrows</span><span class="p">():</span>
+                    <span class="n">shear_effects</span> <span class="o">=</span> <span class="kc">True</span>
+                    <span class="n">rotary_inertia</span> <span class="o">=</span> <span class="kc">True</span>
+                    <span class="n">gyroscopic</span> <span class="o">=</span> <span class="kc">True</span>
+                    <span class="n">shear_method_calc</span> <span class="o">=</span> <span class="s2">&quot;cowper&quot;</span>
+                    <span class="k">try</span><span class="p">:</span>
+                        <span class="n">shear_effects</span> <span class="o">=</span> <span class="nb">bool</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s2">&quot;shear_effects&quot;</span><span class="p">])</span>
+                    <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
+                        <span class="k">pass</span>
+                    <span class="k">try</span><span class="p">:</span>
+                        <span class="n">rotary_inertia</span> <span class="o">=</span> <span class="nb">bool</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s2">&quot;rotary_inertia&quot;</span><span class="p">])</span>
+                    <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
+                        <span class="k">pass</span>
+                    <span class="k">try</span><span class="p">:</span>
+                        <span class="n">gyroscopic</span> <span class="o">=</span> <span class="nb">bool</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s2">&quot;gyroscopic&quot;</span><span class="p">])</span>
+                    <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
+                        <span class="k">pass</span>
+                    <span class="k">try</span><span class="p">:</span>
+                        <span class="n">shear_method_calc</span> <span class="o">=</span> <span class="n">row</span><span class="p">[</span><span class="s2">&quot;shear_method_calc&quot;</span><span class="p">]</span>
+                    <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
+                        <span class="k">pass</span>
+                    <span class="n">list_of_shafts</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+                        <span class="bp">cls</span><span class="p">(</span>
+                            <span class="n">row</span><span class="o">.</span><span class="n">L</span><span class="p">,</span>
+                            <span class="n">row</span><span class="o">.</span><span class="n">i_d</span><span class="p">,</span>
+                            <span class="n">row</span><span class="o">.</span><span class="n">o_d</span><span class="p">,</span>
+                            <span class="n">Material</span><span class="o">.</span><span class="n">use_material</span><span class="p">(</span><span class="n">row</span><span class="o">.</span><span class="n">material</span><span class="p">),</span>
+                            <span class="n">n</span><span class="o">=</span><span class="n">row</span><span class="o">.</span><span class="n">n</span><span class="p">,</span>
+                            <span class="n">axial_force</span><span class="o">=</span><span class="n">row</span><span class="o">.</span><span class="n">axial_force</span><span class="p">,</span>
+                            <span class="n">torque</span><span class="o">=</span><span class="n">row</span><span class="o">.</span><span class="n">torque</span><span class="p">,</span>
+                            <span class="n">shear_effects</span><span class="o">=</span><span class="n">shear_effects</span><span class="p">,</span>
+                            <span class="n">rotary_inertia</span><span class="o">=</span><span class="n">rotary_inertia</span><span class="p">,</span>
+                            <span class="n">gyroscopic</span><span class="o">=</span><span class="n">gyroscopic</span><span class="p">,</span>
+                            <span class="n">shear_method_calc</span><span class="o">=</span><span class="n">shear_method_calc</span><span class="p">,</span>
+                        <span class="p">)</span>
+                    <span class="p">)</span>
+                <span class="k">return</span> <span class="n">list_of_shafts</span>
+            <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
+                <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span>
+                    <span class="s2">&quot;One or more column names did not match the expected. &quot;</span>
+                    <span class="s2">&quot;Make sure the table header contains the parameters for the &quot;</span>
+                    <span class="s2">&quot;ShaftElement class. Also, make sure you have a material &quot;</span>
+                    <span class="s2">&quot;with the given name.&quot;</span>
+                <span class="p">)</span>
+        <span class="k">elif</span> <span class="n">sheet</span> <span class="o">==</span> <span class="s2">&quot;Model&quot;</span><span class="p">:</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">df1</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="n">file</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">nrows</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+                <span class="n">df2</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="n">file</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="mi">19</span><span class="p">)</span>
+                <span class="n">df_unit</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="n">file</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="mi">16</span><span class="p">,</span> <span class="n">nrows</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+            <span class="k">except</span> <span class="ne">FileNotFoundError</span><span class="p">:</span>
+                <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="n">file</span> <span class="o">+</span> <span class="s2">&quot; not found.&quot;</span><span class="p">)</span>
+            <span class="k">except</span> <span class="n">xlrd</span><span class="o">.</span><span class="n">biffh</span><span class="o">.</span><span class="n">XLRDError</span><span class="p">:</span>
+                <span class="n">df1</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">file</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">nrows</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+                <span class="n">df2</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">file</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="mi">19</span><span class="p">)</span>
+                <span class="n">df_unit</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">file</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="mi">16</span><span class="p">,</span> <span class="n">nrows</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+            <span class="n">convert_to_metric</span> <span class="o">=</span> <span class="kc">False</span>
+            <span class="k">if</span> <span class="n">df_unit</span><span class="p">[</span><span class="s2">&quot;Length&quot;</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span> <span class="o">!=</span> <span class="s2">&quot;meters&quot;</span><span class="p">:</span>
+                <span class="n">convert_to_metric</span> <span class="o">=</span> <span class="kc">True</span>
+            <span class="n">material_name</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="n">material_rho</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="n">material_e</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="n">material_g_s</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="n">new_materials</span> <span class="o">=</span> <span class="p">{}</span>
+            <span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">df1</span><span class="o">.</span><span class="n">iterrows</span><span class="p">():</span>
+                <span class="k">if</span> <span class="ow">not</span> <span class="n">pd</span><span class="o">.</span><span class="n">isna</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s2">&quot;matno&quot;</span><span class="p">]):</span>
+                    <span class="n">material_name</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s2">&quot;matno&quot;</span><span class="p">]))</span>
+                    <span class="n">material_rho</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s2">&quot;rhoa&quot;</span><span class="p">])</span>
+                    <span class="n">material_e</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s2">&quot;ea&quot;</span><span class="p">])</span>
+                    <span class="n">material_g_s</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s2">&quot;ga&quot;</span><span class="p">])</span>
+            <span class="k">if</span> <span class="n">convert_to_metric</span><span class="p">:</span>
+                <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">material_name</span><span class="p">)):</span>
+                    <span class="n">material_rho</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">material_rho</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">*</span> <span class="mf">27679.904</span>
+                    <span class="n">material_e</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">material_e</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">*</span> <span class="mf">6894.757</span>
+                    <span class="n">material_g_s</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">material_g_s</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">*</span> <span class="mf">6894.757</span>
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">material_name</span><span class="p">)):</span>
+                <span class="n">new_material</span> <span class="o">=</span> <span class="n">Material</span><span class="p">(</span>
+                    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;shaft_mat_&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">material_name</span><span class="p">[</span><span class="n">i</span><span class="p">]),</span>
+                    <span class="n">rho</span><span class="o">=</span><span class="n">material_rho</span><span class="p">[</span><span class="n">i</span><span class="p">],</span>
+                    <span class="n">E</span><span class="o">=</span><span class="n">material_e</span><span class="p">[</span><span class="n">i</span><span class="p">],</span>
+                    <span class="n">G_s</span><span class="o">=</span><span class="n">material_g_s</span><span class="p">[</span><span class="n">i</span><span class="p">],</span>
+                <span class="p">)</span>
+                <span class="n">new_materials</span><span class="p">[</span><span class="s2">&quot;shaft_mat_&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">material_name</span><span class="p">[</span><span class="n">i</span><span class="p">])]</span> <span class="o">=</span> <span class="n">new_material</span>
+            <span class="n">shaft_l</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="n">shaft_i_d</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="n">shaft_o_d</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="n">shaft_material</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="n">shaft_n</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="n">shaft_axial_force</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">df2</span><span class="o">.</span><span class="n">iterrows</span><span class="p">():</span>
+                <span class="n">shaft_l</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s2">&quot;length&quot;</span><span class="p">])</span>
+                <span class="n">shaft_i_d</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s2">&quot;id_Left&quot;</span><span class="p">])</span>
+                <span class="n">shaft_o_d</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s2">&quot;od_Left&quot;</span><span class="p">])</span>
+                <span class="n">shaft_material</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s2">&quot;matnum&quot;</span><span class="p">]))</span>
+                <span class="n">shaft_n</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s2">&quot;elemnum&quot;</span><span class="p">]</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+                <span class="n">shaft_axial_force</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s2">&quot;axial&quot;</span><span class="p">])</span>
+            <span class="k">if</span> <span class="n">convert_to_metric</span><span class="p">:</span>
+                <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">shaft_n</span><span class="p">)):</span>
+                    <span class="n">shaft_l</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">shaft_l</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">*</span> <span class="mf">0.0254</span>
+                    <span class="n">shaft_i_d</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">shaft_i_d</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">*</span> <span class="mf">0.0254</span>
+                    <span class="n">shaft_o_d</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">shaft_o_d</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">*</span> <span class="mf">0.0254</span>
+                    <span class="n">shaft_axial_force</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">shaft_axial_force</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">*</span> <span class="mf">4.448_221_61</span>
+            <span class="n">list_of_shafts</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">shaft_n</span><span class="p">)):</span>
+                <span class="n">list_of_shafts</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+                    <span class="bp">cls</span><span class="p">(</span>
+                        <span class="n">shaft_l</span><span class="p">[</span><span class="n">i</span><span class="p">],</span>
+                        <span class="n">shaft_i_d</span><span class="p">[</span><span class="n">i</span><span class="p">],</span>
+                        <span class="n">shaft_o_d</span><span class="p">[</span><span class="n">i</span><span class="p">],</span>
+                        <span class="n">new_materials</span><span class="p">[</span><span class="s2">&quot;shaft_mat_&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">shaft_material</span><span class="p">[</span><span class="n">i</span><span class="p">])],</span>
+                        <span class="n">n</span><span class="o">=</span><span class="n">shaft_n</span><span class="p">[</span><span class="n">i</span><span class="p">],</span>
+                        <span class="n">axial_force</span><span class="o">=</span><span class="n">shaft_axial_force</span><span class="p">[</span><span class="n">i</span><span class="p">],</span>
+                    <span class="p">)</span>
+                <span class="p">)</span>
+            <span class="k">return</span> <span class="n">list_of_shafts</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span>
+                <span class="s2">&quot;A valid choice must be given for the parameter &#39;sheet&#39;. Either &#39;Simple&#39; or &#39;Model&#39; &quot;</span>
+                <span class="s2">&quot;were expected. It was given &quot;</span> <span class="o">+</span> <span class="n">sheet</span> <span class="o">+</span> <span class="s2">&quot;.&quot;</span>
+            <span class="p">)</span></div>
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">n</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -626,7 +789,8 @@
             <span class="n">bk_color</span> <span class="o">=</span> <span class="n">bokeh_colors</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
             <span class="n">legend</span> <span class="o">=</span> <span class="s2">&quot;Shaft&quot;</span>
 
-        <span class="n">source_u</span> <span class="o">=</span> <span class="n">ColumnDataSource</span><span class="p">(</span><span class="nb">dict</span><span class="p">(</span>
+        <span class="n">source_u</span> <span class="o">=</span> <span class="n">ColumnDataSource</span><span class="p">(</span>
+            <span class="nb">dict</span><span class="p">(</span>
                 <span class="n">top</span><span class="o">=</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">o_d</span> <span class="o">/</span> <span class="mi">2</span><span class="p">],</span>
                 <span class="n">bottom</span><span class="o">=</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">i_d</span> <span class="o">/</span> <span class="mi">2</span><span class="p">],</span>
                 <span class="n">left</span><span class="o">=</span><span class="p">[</span><span class="n">position</span><span class="p">],</span>
@@ -635,11 +799,12 @@
                 <span class="n">out_d</span><span class="o">=</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">o_d</span><span class="p">],</span>
                 <span class="n">in_d</span><span class="o">=</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">i_d</span><span class="p">],</span>
                 <span class="n">length</span><span class="o">=</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">L</span><span class="p">],</span>
-                <span class="n">mat</span><span class="o">=</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">material</span><span class="o">.</span><span class="n">name</span><span class="p">]</span>
+                <span class="n">mat</span><span class="o">=</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">material</span><span class="o">.</span><span class="n">name</span><span class="p">],</span>
             <span class="p">)</span>
         <span class="p">)</span>
 
-        <span class="n">source_l</span> <span class="o">=</span> <span class="n">ColumnDataSource</span><span class="p">(</span><span class="nb">dict</span><span class="p">(</span>
+        <span class="n">source_l</span> <span class="o">=</span> <span class="n">ColumnDataSource</span><span class="p">(</span>
+            <span class="nb">dict</span><span class="p">(</span>
                 <span class="n">top</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">o_d</span> <span class="o">/</span> <span class="mi">2</span><span class="p">],</span>
                 <span class="n">bottom</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">i_d</span> <span class="o">/</span> <span class="mi">2</span><span class="p">],</span>
                 <span class="n">left</span><span class="o">=</span><span class="p">[</span><span class="n">position</span><span class="p">],</span>
@@ -648,7 +813,7 @@
                 <span class="n">out_d</span><span class="o">=</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">o_d</span><span class="p">],</span>
                 <span class="n">in_d</span><span class="o">=</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">i_d</span><span class="p">],</span>
                 <span class="n">length</span><span class="o">=</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">L</span><span class="p">],</span>
-                <span class="n">mat</span><span class="o">=</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">material</span><span class="o">.</span><span class="n">name</span><span class="p">]</span>
+                <span class="n">mat</span><span class="o">=</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">material</span><span class="o">.</span><span class="n">name</span><span class="p">],</span>
             <span class="p">)</span>
         <span class="p">)</span>
 
@@ -680,11 +845,11 @@
         <span class="p">)</span>
         <span class="n">hover</span> <span class="o">=</span> <span class="n">HoverTool</span><span class="p">(</span><span class="n">names</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;u_shaft&quot;</span><span class="p">,</span> <span class="s2">&quot;l_shaft&quot;</span><span class="p">])</span>
         <span class="n">hover</span><span class="o">.</span><span class="n">tooltips</span> <span class="o">=</span> <span class="p">[</span>
-                <span class="p">(</span><span class="s2">&quot;Element Number :&quot;</span><span class="p">,</span> <span class="s2">&quot;@elnum&quot;</span><span class="p">),</span>
-                <span class="p">(</span><span class="s2">&quot;Outer Diameter :&quot;</span><span class="p">,</span> <span class="s2">&quot;@out_d&quot;</span><span class="p">),</span>
-                <span class="p">(</span><span class="s2">&quot;Internal Diameter :&quot;</span><span class="p">,</span> <span class="s2">&quot;@in_d&quot;</span><span class="p">),</span>
-                <span class="p">(</span><span class="s2">&quot;Element Length :&quot;</span><span class="p">,</span> <span class="s2">&quot;@length&quot;</span><span class="p">),</span>
-                <span class="p">(</span><span class="s2">&quot;Material :&quot;</span><span class="p">,</span> <span class="s2">&quot;@mat&quot;</span><span class="p">),</span>
+            <span class="p">(</span><span class="s2">&quot;Element Number :&quot;</span><span class="p">,</span> <span class="s2">&quot;@elnum&quot;</span><span class="p">),</span>
+            <span class="p">(</span><span class="s2">&quot;Outer Diameter :&quot;</span><span class="p">,</span> <span class="s2">&quot;@out_d&quot;</span><span class="p">),</span>
+            <span class="p">(</span><span class="s2">&quot;Internal Diameter :&quot;</span><span class="p">,</span> <span class="s2">&quot;@in_d&quot;</span><span class="p">),</span>
+            <span class="p">(</span><span class="s2">&quot;Element Length :&quot;</span><span class="p">,</span> <span class="s2">&quot;@length&quot;</span><span class="p">),</span>
+            <span class="p">(</span><span class="s2">&quot;Material :&quot;</span><span class="p">,</span> <span class="s2">&quot;@mat&quot;</span><span class="p">),</span>
         <span class="p">]</span>
         <span class="n">hover</span><span class="o">.</span><span class="n">mode</span> <span class="o">=</span> <span class="s2">&quot;mouse&quot;</span>
 
