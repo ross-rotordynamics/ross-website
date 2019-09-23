@@ -18,7 +18,7 @@
     <link rel="shortcut icon" href="_static/ross-logo.ico"/>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Contributing" href="contributing.html" />
+    <link rel="next" title="ross.Material" href="generated/material/ross.Material.html" />
     <link rel="prev" title="Download notebooks" href="download.html" />
 <meta charset='utf-8'>
 <meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
@@ -91,7 +91,9 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="download.html">Download notebooks</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">API Reference</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#module-ross.materials">Material</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#material">Material</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#elements">Elements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#rotor">Rotor</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing</a><ul>
@@ -122,7 +124,9 @@
       role="menu"
       aria-labelledby="dLabelLocalToc"><ul>
 <li><a class="reference internal" href="#">API Reference</a><ul>
-<li><a class="reference internal" href="#module-ross.materials">Material</a></li>
+<li><a class="reference internal" href="#material">Material</a></li>
+<li><a class="reference internal" href="#elements">Elements</a></li>
+<li><a class="reference internal" href="#rotor">Rotor</a></li>
 </ul>
 </li>
 </ul>
@@ -161,72 +165,57 @@
     <div class="body col-md-12 content" role="main">
       
   <div class="section" id="api-reference">
-<h1>API Reference<a class="headerlink" href="#api-reference" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="module-ross.materials">
-<span id="material"></span><h2>Material<a class="headerlink" href="#module-ross.materials" title="Permalink to this headline">¶</a></h2>
-<p>Materials module.</p>
-<p>This module defines the Material class and defines
-some of the most common materials used in rotors.</p>
-<dl class="class">
-<dt id="ross.materials.Material">
-<em class="property">class </em><code class="descclassname">ross.materials.</code><code class="descname">Material</code><span class="sig-paren">(</span><em>name</em>, <em>rho</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ross/materials.html#Material"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.materials.Material" title="Permalink to this definition">¶</a></dt>
-<dd><p>Material.</p>
-<p>Class used to create a material and define its properties.
-Density and at least 2 arguments from E, G_s and Poisson
-should be provided.</p>
-<p>Run Material.available_materials() for materials already provided.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>name</strong><span class="classifier">str</span></dt><dd><p>Material name.</p>
-</dd>
-<dt><strong>E</strong><span class="classifier">float</span></dt><dd><p>Young’s modulus (N/m**2).</p>
-</dd>
-<dt><strong>G_s</strong><span class="classifier">float</span></dt><dd><p>Shear modulus (N/m**2).</p>
-</dd>
-<dt><strong>rho</strong><span class="classifier">float</span></dt><dd><p>Density (N/m**3).</p>
-</dd>
-<dt><strong>color</strong><span class="classifier">str</span></dt><dd><p>Can be used on plots.</p>
-</dd>
-</dl>
-</dd>
-</dl>
-<p class="rubric">Examples</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">AISI4140</span> <span class="o">=</span> <span class="n">Material</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;AISI4140&#39;</span><span class="p">,</span> <span class="n">rho</span><span class="o">=</span><span class="mi">7850</span><span class="p">,</span> <span class="n">E</span><span class="o">=</span><span class="mf">203.2e9</span><span class="p">,</span> <span class="n">G_s</span><span class="o">=</span><span class="mf">80e9</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">Steel</span> <span class="o">=</span> <span class="n">Material</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;Steel&quot;</span><span class="p">,</span> <span class="n">rho</span><span class="o">=</span><span class="mi">7810</span><span class="p">,</span> <span class="n">E</span><span class="o">=</span><span class="mf">211e9</span><span class="p">,</span> <span class="n">G_s</span><span class="o">=</span><span class="mf">81.2e9</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">AISI4140</span><span class="o">.</span><span class="n">Poisson</span>
-<span class="go">0.27</span>
-</pre></div>
-</div>
-<p class="rubric">Methods</p>
-<table class="docutils align-center">
+<span id="api"></span><h1>API Reference<a class="headerlink" href="#api-reference" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="material">
+<h2>Material<a class="headerlink" href="#material" title="Permalink to this headline">¶</a></h2>
+<table class="longtable docutils align-default">
 <colgroup>
-<col style="width: 70%" />
-<col style="width: 30%" />
+<col style="width: 10%" />
+<col style="width: 90%" />
 </colgroup>
 <tbody>
-<tr class="row-odd"><td><p><strong>available_materials</strong></p></td>
-<td></td>
-</tr>
-<tr class="row-even"><td><p><strong>dump_data</strong></p></td>
-<td></td>
-</tr>
-<tr class="row-odd"><td><p><strong>load_data</strong></p></td>
-<td></td>
-</tr>
-<tr class="row-even"><td><p><strong>remove_material</strong></p></td>
-<td></td>
-</tr>
-<tr class="row-odd"><td><p><strong>save_material</strong></p></td>
-<td></td>
-</tr>
-<tr class="row-even"><td><p><strong>use_material</strong></p></td>
-<td></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/material/ross.Material.html#ross.Material" title="ross.Material"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Material</span></code></a>(name, rho, **kwargs)</p></td>
+<td><p>Material.</p></td>
 </tr>
 </tbody>
 </table>
-</dd></dl>
-
+</div>
+<div class="section" id="elements">
+<h2>Elements<a class="headerlink" href="#elements" title="Permalink to this headline">¶</a></h2>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/elements/ross.ShaftElement.html#ross.ShaftElement" title="ross.ShaftElement"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ShaftElement</span></code></a>(L, i_d, o_d, material[, n, …])</p></td>
+<td><p>A shaft element.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/elements/ross.DiskElement.html#ross.DiskElement" title="ross.DiskElement"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DiskElement</span></code></a>(n, m, Id, Ip[, tag])</p></td>
+<td><p>A disk element.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/elements/ross.BearingElement.html#ross.BearingElement" title="ross.BearingElement"><code class="xref py py-obj docutils literal notranslate"><span class="pre">BearingElement</span></code></a>(n, kxx, cxx[, kyy, kxy, kyx, …])</p></td>
+<td><p>A bearing element.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/elements/ross.SealElement.html#ross.SealElement" title="ross.SealElement"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SealElement</span></code></a>(n, kxx, cxx[, kyy, kxy, kyx, …])</p></td>
+<td><p>A seal element.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="rotor">
+<h2>Rotor<a class="headerlink" href="#rotor" title="Permalink to this headline">¶</a></h2>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/results/ross.Rotor.html#ross.Rotor" title="ross.Rotor"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Rotor</span></code></a>(shaft_elements[, disk_elements, …])</p></td>
+<td><p>A rotor object.</p></td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
 
@@ -243,7 +232,7 @@ should be provided.</p>
     </p>
     <p>
         &copy; Copyright 2019, Team Ross.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.0.1.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.1.2.<br/>
     </p>
   </div>
 </footer>

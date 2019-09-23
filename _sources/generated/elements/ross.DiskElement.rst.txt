@@ -1,0 +1,41 @@
+.. raw:: html
+
+    </div>
+    <div class=col-md-9 content>
+
+ross.DiskElement
+================
+
+.. currentmodule:: ross
+
+.. autoclass:: DiskElement
+
+   
+   .. automethod:: __init__
+   
+   .. rubric:: Methods
+
+   
+   .. automethod:: C
+   .. automethod:: G
+   .. automethod:: K
+   .. automethod:: M
+   .. automethod:: __init__
+   .. automethod:: bokeh_patch
+   .. automethod:: dof_global_index
+   .. automethod:: dof_local_index
+   .. automethod:: dof_mapping
+   .. automethod:: dump_data
+   .. automethod:: from_geometry
+   .. automethod:: from_table
+   .. automethod:: load
+   .. automethod:: load_data
+   .. automethod:: patch
+   .. automethod:: save
+   .. automethod:: summary
+   
+   
+
+   
+   
+   

@@ -1,0 +1,44 @@
+ross.ShaftElement
+=================
+
+.. currentmodule:: ross
+
+.. autoclass:: ShaftElement
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~ShaftElement.C
+      ~ShaftElement.G
+      ~ShaftElement.K
+      ~ShaftElement.M
+      ~ShaftElement.__init__
+      ~ShaftElement.bokeh_patch
+      ~ShaftElement.dof_global_index
+      ~ShaftElement.dof_local_index
+      ~ShaftElement.dof_mapping
+      ~ShaftElement.dump_data
+      ~ShaftElement.from_table
+      ~ShaftElement.load
+      ~ShaftElement.load_data
+      ~ShaftElement.patch
+      ~ShaftElement.save
+      ~ShaftElement.section
+      ~ShaftElement.summary
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~ShaftElement.n
+   
+   

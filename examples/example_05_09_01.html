@@ -91,7 +91,9 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../download.html">Download notebooks</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../api.html">API Reference</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../api.html#module-ross.materials">Material</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api.html#material">Material</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api.html#elements">Elements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api.html#rotor">Rotor</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../contributing.html">Contributing</a><ul>
@@ -359,9 +361,9 @@ div.rendered_html tbody tr:hover {
 </style>
 <div class="section" id="Example-3---Isotropic-Bearings,-asymmetrical-rotor.">
 <h1>Example 3 - Isotropic Bearings, asymmetrical rotor.<a class="headerlink" href="#Example-3---Isotropic-Bearings,-asymmetrical-rotor." title="Permalink to this headline">¶</a></h1>
-<p>In this example, we use the rotor seen in Example 5.9.1 from ‘Dynamics of Rotating Machinery’ by MI Friswell, JET Penny, SD Garvey &amp; AW Lees, published by Cambridge University Press, 2010. A 1.5-m-long shaft, with a diameter of <img class="math" src="../_images/math/afda40ef8a5ab16e43915bf0c1915e7715853d95.png" alt="0.05 m"/>. The disks are keyed to the shaft at <img class="math" src="../_images/math/e42f9359918eae0301e59f831a7908e650bf126b.png" alt="0.5"/> and <img class="math" src="../_images/math/96fc100bed84677eaee925344911851cce8cdb01.png" alt="1 m"/> from one end. The left disk is <img class="math" src="../_images/math/401b4b2f08406ed282ef9022a6c479016d9475a9.png" alt="0.07 m"/> thick with a diameter of <img class="math" src="../_images/math/cd026c0954e81fed7dac1f1e7168b2aa02af5882.png" alt="0.28 m"/>; the right disk is <img class="math" src="../_images/math/401b4b2f08406ed282ef9022a6c479016d9475a9.png" alt="0.07 m"/> thick with a diameter of <img class="math" src="../_images/math/b93ffefe387c879b3e6b0fd7b413dee024c8555d.png" alt="0.35 m"/>. For the shaft,
-<img class="math" src="../_images/math/0710676c41ac38af6e470788265c28a3659f66a1.png" alt="E = 211 GN/m^2"/> and <img class="math" src="../_images/math/1e4337d0b6f889d1280325ac92584fd14eb7bc71.png" alt="G = 81.2 GN/m^2"/>. There is no internal shaft damping. For both the shaft and the disks, <img class="math" src="../_images/math/30ecb67406b8cb78c9ca2b9c191d4dfed9f08cd8.png" alt="\rho = 7,810 kg/m^3"/>. The shaft is supported by identical bearings at its ends.</p>
-<p>These bearings are isotropic and have a stiffness of <img class="math" src="../_images/math/c9088429adc1482ea343b9cade8f5d8c25e51908.png" alt="1 MN/m"/> in both the x and y directions. The bearings contribute no additional stiffness to the rotational degrees of freedom and there is no damping or cross-coupling in the bearings.</p>
+<p>In this example, we use the rotor seen in Example 5.9.1 from ‘Dynamics of Rotating Machinery’ by MI Friswell, JET Penny, SD Garvey &amp; AW Lees, published by Cambridge University Press, 2010. A 1.5-m-long shaft, with a diameter of <img class="math" src="../_images/math/b6a838645ef92a97e0bbb2cc48453c1958f1e0b0.png" alt="0.05 m"/>. The disks are keyed to the shaft at <img class="math" src="../_images/math/b44fd1b6dc8c77975b68a57eb25231239a15d7b5.png" alt="0.5"/> and <img class="math" src="../_images/math/c08fb88342de6a308cce1ed37d750636a50738e1.png" alt="1 m"/> from one end. The left disk is <img class="math" src="../_images/math/e5a4d79bf7d809c38d742e7a8c6bda14dac98748.png" alt="0.07 m"/> thick with a diameter of <img class="math" src="../_images/math/7a36822c0dcb9c0a936162ebcd888bb9af8be4ee.png" alt="0.28 m"/>; the right disk is <img class="math" src="../_images/math/e5a4d79bf7d809c38d742e7a8c6bda14dac98748.png" alt="0.07 m"/> thick with a diameter of <img class="math" src="../_images/math/842e73ab8962fddf69e555678aef10d929a76923.png" alt="0.35 m"/>. For the shaft,
+<img class="math" src="../_images/math/9dc28cb9011dd98431f99c956e44f0f0ab74b9b2.png" alt="E = 211 GN/m^2"/> and <img class="math" src="../_images/math/9295a08b753cea3ce4b9fd75e44f839bd0f43571.png" alt="G = 81.2 GN/m^2"/>. There is no internal shaft damping. For both the shaft and the disks, <img class="math" src="../_images/math/a2d54b421ecc0e7f5e77443d765b82514c61eab9.png" alt="\rho = 7,810 kg/m^3"/>. The shaft is supported by identical bearings at its ends.</p>
+<p>These bearings are isotropic and have a stiffness of <img class="math" src="../_images/math/df663cf4255e568d994292a8c91bf8c6718673b4.png" alt="1 MN/m"/> in both the x and y directions. The bearings contribute no additional stiffness to the rotational degrees of freedom and there is no damping or cross-coupling in the bearings.</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
 </pre></div>
@@ -969,7 +971,7 @@ Normal Instantiation = [ 85.389467    87.7958637  251.78460413 294.71333087 600.
     </p>
     <p>
         &copy; Copyright 2019, Team Ross.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.0.1.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.1.2.<br/>
     </p>
   </div>
 </footer>

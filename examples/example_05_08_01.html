@@ -91,7 +91,9 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../download.html">Download notebooks</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../api.html">API Reference</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../api.html#module-ross.materials">Material</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api.html#material">Material</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api.html#elements">Elements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api.html#rotor">Rotor</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../contributing.html">Contributing</a><ul>
@@ -359,8 +361,8 @@ div.rendered_html tbody tr:hover {
 </style>
 <div class="section" id="Example-1---Number-of-DOF-influence-in-Natural-Frequency">
 <h1>Example 1 - Number of DOF influence in Natural Frequency<a class="headerlink" href="#Example-1---Number-of-DOF-influence-in-Natural-Frequency" title="Permalink to this headline">¶</a></h1>
-<p>In this example, we use the rotor seen in Example 5.8.1 from ‘Dynamics of Rotating Machinery’ by MI Friswell, JET Penny, SD Garvey &amp; AW Lees, published by Cambridge University Press, 2010. Which is a symmetric rotor with a single disk in the center. The shaft is hollow with an outside diameter of <img class="math" src="../_images/math/6780993d8c9a2d1a090bba3977041daeae3ccc88.png" alt="80 mm"/>, an inside diameter of <img class="math" src="../_images/math/d5405f3f1250c15ea4630db1b3e6b94f7ed77151.png" alt="30 mm"/>, and a length of <img class="math" src="../_images/math/deea17230fc3ad9173834e1002206e8e32951040.png" alt="1.2 m"/> and it is modeled using Euler-Bernoulli elements, with no internal shaft damping. The bearings are rigid and short and
-the disk has a diameter of <img class="math" src="../_images/math/ef783044dcf8e2b77019aa8e64cb2690611c76fb.png" alt="400 mm"/> and a thickness of <img class="math" src="../_images/math/6780993d8c9a2d1a090bba3977041daeae3ccc88.png" alt="80 mm"/>. The disk and shaft elements are made of steel.</p>
+<p>In this example, we use the rotor seen in Example 5.8.1 from ‘Dynamics of Rotating Machinery’ by MI Friswell, JET Penny, SD Garvey &amp; AW Lees, published by Cambridge University Press, 2010. Which is a symmetric rotor with a single disk in the center. The shaft is hollow with an outside diameter of <img class="math" src="../_images/math/2b5ca84a2bad25b66ce372cab86d9568e1afbbc5.png" alt="80 mm"/>, an inside diameter of <img class="math" src="../_images/math/8e9470ebfd64c5de02ae063c5382abd50badc4c9.png" alt="30 mm"/>, and a length of <img class="math" src="../_images/math/b0c97f40d3e5ad6f640ba3548379ec4a36a7b157.png" alt="1.2 m"/> and it is modeled using Euler-Bernoulli elements, with no internal shaft damping. The bearings are rigid and short and
+the disk has a diameter of <img class="math" src="../_images/math/482f46b326290471233e9b288e6da262132d0994.png" alt="400 mm"/> and a thickness of <img class="math" src="../_images/math/2b5ca84a2bad25b66ce372cab86d9568e1afbbc5.png" alt="80 mm"/>. The disk and shaft elements are made of steel.</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
 </pre></div>
@@ -879,7 +881,7 @@ var element = document.currentScript.previousSibling.previousSibling;
     </p>
     <p>
         &copy; Copyright 2019, Team Ross.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.0.1.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.1.2.<br/>
     </p>
   </div>
 </footer>

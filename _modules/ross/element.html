@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta charset="utf-8" />
-    <title>ross.element &#8212; ross 0.1.1 documentation</title>
+    <title>ross.element &#8212; ross 0.1.2 documentation</title>
     <link rel="stylesheet" href="../../_static/bootstrap-sphinx.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx_copybutton.css" />
@@ -40,7 +40,7 @@
         </button>
         <a class="navbar-brand" href="../../index.html"><span><img src="../../_static/ross-logo.svg"></span>
           ross</a>
-        <span class="navbar-text navbar-version pull-left"><b>0.1.1</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>0.1.2</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -67,13 +67,13 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../examples/tutorial.html">Tutorial</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../examples/tutorial.html#materials">Materials</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../examples/tutorial.html#element">Element</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../examples/tutorial.html#shaftelement">ShaftElement</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../examples/tutorial.html#diskelement">DiskElement</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../examples/tutorial.html#bearingelement">BearingElement</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../examples/tutorial.html#rotor">Rotor</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../examples/tutorial.html#obtaining-results">Obtaining results</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/tutorial.html#Materials">Materials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/tutorial.html#Element">Element</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/tutorial.html#ShaftElement">ShaftElement</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/tutorial.html#DiskElement">DiskElement</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/tutorial.html#BearingElement">BearingElement</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/tutorial.html#Rotor">Rotor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/tutorial.html#Obtaining-results">Obtaining results</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../examples.html">Examples</a><ul>
@@ -89,7 +89,9 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../download.html">Download notebooks</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../api.html">API Reference</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../api.html#module-ross.materials">Material</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../api.html#material">Material</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../api.html#elements">Elements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../api.html#rotor">Rotor</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../contributing.html">Contributing</a><ul>
@@ -156,7 +158,7 @@
 <span class="kn">import</span> <span class="nn">toml</span>
 
 
-<div class="viewcode-block" id="Element"><a class="viewcode-back" href="../../api.html#ross.element.Element">[docs]</a><span class="k">class</span> <span class="nc">Element</span><span class="p">(</span><span class="n">ABC</span><span class="p">):</span>
+<span class="k">class</span> <span class="nc">Element</span><span class="p">(</span><span class="n">ABC</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Element class.</span>
 <span class="sd">    This class is a general class to be called for other files which</span>
 <span class="sd">    create specific elements for the user</span>
@@ -174,34 +176,34 @@
     <span class="k">def</span> <span class="nf">load</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">file_name</span><span class="p">):</span>
         <span class="k">pass</span>
 
-<div class="viewcode-block" id="Element.M"><a class="viewcode-back" href="../../api.html#ross.element.Element.M">[docs]</a>    <span class="nd">@abstractmethod</span>
+    <span class="nd">@abstractmethod</span>
     <span class="k">def</span> <span class="nf">M</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Mass matrix.&quot;&quot;&quot;</span>
-        <span class="k">pass</span></div>
+        <span class="k">pass</span>
 
-<div class="viewcode-block" id="Element.C"><a class="viewcode-back" href="../../api.html#ross.element.Element.C">[docs]</a>    <span class="nd">@abstractmethod</span>
+    <span class="nd">@abstractmethod</span>
     <span class="k">def</span> <span class="nf">C</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">frequency</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Frequency dependent damping coefficients matrix.&quot;&quot;&quot;</span>
-        <span class="k">pass</span></div>
+        <span class="k">pass</span>
 
-<div class="viewcode-block" id="Element.K"><a class="viewcode-back" href="../../api.html#ross.element.Element.K">[docs]</a>    <span class="nd">@abstractmethod</span>
+    <span class="nd">@abstractmethod</span>
     <span class="k">def</span> <span class="nf">K</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">frequency</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Frequency dependent stiffness coefficients matrix.&quot;&quot;&quot;</span>
-        <span class="k">pass</span></div>
+        <span class="k">pass</span>
 
-<div class="viewcode-block" id="Element.G"><a class="viewcode-back" href="../../api.html#ross.element.Element.G">[docs]</a>    <span class="nd">@abstractmethod</span>
+    <span class="nd">@abstractmethod</span>
     <span class="k">def</span> <span class="nf">G</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Giroscopic matrix.&quot;&quot;&quot;</span>
-        <span class="k">pass</span></div>
+        <span class="sd">&quot;&quot;&quot;Gyroscopic matrix.&quot;&quot;&quot;</span>
+        <span class="k">pass</span>
 
-<div class="viewcode-block" id="Element.summary"><a class="viewcode-back" href="../../api.html#ross.element.Element.summary">[docs]</a>    <span class="k">def</span> <span class="nf">summary</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">summary</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;A summary for the element.</span>
 
 <span class="sd">        A pandas series with the element properties as variables.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">attributes</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span>
         <span class="n">attributes</span><span class="p">[</span><span class="s2">&quot;type&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span>
-        <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">attributes</span><span class="p">)</span></div>
+        <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">attributes</span><span class="p">)</span>
 
     <span class="nd">@staticmethod</span>
     <span class="k">def</span> <span class="nf">load_data</span><span class="p">(</span><span class="n">file_name</span><span class="p">):</span>
@@ -221,7 +223,7 @@
         <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">file_name</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
             <span class="n">toml</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span>
 
-<div class="viewcode-block" id="Element.dof_mapping"><a class="viewcode-back" href="../../api.html#ross.element.Element.dof_mapping">[docs]</a>    <span class="nd">@abstractmethod</span>
+    <span class="nd">@abstractmethod</span>
     <span class="k">def</span> <span class="nf">dof_mapping</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Should return a dictionary with a mapping between degree of freedom</span>
 <span class="sd">        and its index.</span>
@@ -229,37 +231,41 @@
 <span class="sd">        Example considering a shaft element:</span>
 <span class="sd">        def dof_mapping(self):</span>
 <span class="sd">            return dict(</span>
-<span class="sd">                x0=0,</span>
-<span class="sd">                y0=1,</span>
-<span class="sd">                alpha0=2,</span>
-<span class="sd">                beta0=3,</span>
-<span class="sd">                x1=4,</span>
-<span class="sd">                y1=5,</span>
-<span class="sd">                alpha1=6,</span>
-<span class="sd">                beta1=7,</span>
+<span class="sd">                x_0=0,</span>
+<span class="sd">                y_0=1,</span>
+<span class="sd">                alpha_0=2,</span>
+<span class="sd">                beta_0=3,</span>
+<span class="sd">                x_1=4,</span>
+<span class="sd">                y_1=5,</span>
+<span class="sd">                alpha_1=6,</span>
+<span class="sd">                beta_1=7,</span>
 <span class="sd">            )</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">pass</span></div>
+        <span class="k">pass</span>
 
-<div class="viewcode-block" id="Element.dof_local_index"><a class="viewcode-back" href="../../api.html#ross.element.Element.dof_local_index">[docs]</a>    <span class="k">def</span> <span class="nf">dof_local_index</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">dof_local_index</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Get the local index for a element specific degree of freedom.&quot;&quot;&quot;</span>
         <span class="n">dof_mapping</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dof_mapping</span><span class="p">()</span>
         <span class="n">dof_tuple</span> <span class="o">=</span> <span class="n">namedtuple</span><span class="p">(</span><span class="s2">&quot;LocalIndex&quot;</span><span class="p">,</span> <span class="n">dof_mapping</span><span class="p">)</span>
-        <span class="n">global_index</span> <span class="o">=</span> <span class="n">dof_tuple</span><span class="p">(</span><span class="o">**</span><span class="n">dof_mapping</span><span class="p">)</span>
+        <span class="n">local_index</span> <span class="o">=</span> <span class="n">dof_tuple</span><span class="p">(</span><span class="o">**</span><span class="n">dof_mapping</span><span class="p">)</span>
 
-        <span class="k">return</span> <span class="n">global_index</span></div>
+        <span class="k">return</span> <span class="n">local_index</span>
 
-<div class="viewcode-block" id="Element.dof_global_index"><a class="viewcode-back" href="../../api.html#ross.element.Element.dof_global_index">[docs]</a>    <span class="k">def</span> <span class="nf">dof_global_index</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">dof_global_index</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Get the global index for a element specific degree of freedom.&quot;&quot;&quot;</span>
         <span class="n">dof_mapping</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dof_mapping</span><span class="p">()</span>
-        <span class="n">dof_tuple</span> <span class="o">=</span> <span class="n">namedtuple</span><span class="p">(</span><span class="s2">&quot;GlobalIndex&quot;</span><span class="p">,</span> <span class="n">dof_mapping</span><span class="p">)</span>
-
+        <span class="n">global_dof_mapping</span> <span class="o">=</span> <span class="p">{}</span>
         <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">dof_mapping</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
-            <span class="n">dof_mapping</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="mi">4</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">n</span> <span class="o">+</span> <span class="n">v</span>
+            <span class="n">dof_letter</span><span class="p">,</span> <span class="n">dof_number</span> <span class="o">=</span> <span class="n">k</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;_&quot;</span><span class="p">)</span>
+            <span class="n">global_dof_mapping</span><span class="p">[</span><span class="n">dof_letter</span> <span class="o">+</span> <span class="s2">&quot;_&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">dof_number</span><span class="p">)</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">n</span><span class="p">)]</span> <span class="o">=</span> <span class="n">v</span>
+        <span class="n">dof_tuple</span> <span class="o">=</span> <span class="n">namedtuple</span><span class="p">(</span><span class="s2">&quot;GlobalIndex&quot;</span><span class="p">,</span> <span class="n">global_dof_mapping</span><span class="p">)</span>
 
-        <span class="n">global_index</span> <span class="o">=</span> <span class="n">dof_tuple</span><span class="p">(</span><span class="o">**</span><span class="n">dof_mapping</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">global_dof_mapping</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="n">global_dof_mapping</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="mi">4</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">n</span> <span class="o">+</span> <span class="n">v</span>
 
-        <span class="k">return</span> <span class="n">global_index</span></div></div>
+        <span class="n">global_index</span> <span class="o">=</span> <span class="n">dof_tuple</span><span class="p">(</span><span class="o">**</span><span class="n">global_dof_mapping</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">global_index</span>
 </pre></div>
 
     </div>
@@ -274,7 +280,7 @@
     </p>
     <p>
         &copy; Copyright 2019, Team Ross.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.0.1.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.1.2.<br/>
     </p>
   </div>
 </footer>

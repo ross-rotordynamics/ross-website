@@ -1,0 +1,1282 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>ross.Rotor &#8212; ross 0.1.2 documentation</title>
+    <link rel="stylesheet" href="../../_static/bootstrap-sphinx.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx_copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/style.css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/language_data.js"></script>
+    <script type="text/javascript" src="../../_static/sphinx_copybutton.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js"></script>
+    <link rel="shortcut icon" href="../../_static/ross-logo.ico"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Contributing" href="../../contributing.html" />
+    <link rel="prev" title="ross.SealElement" href="../elements/ross.SealElement.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<script type="text/javascript" src="../../_static/js/jquery-1.11.0.min.js "></script>
+<script type="text/javascript" src="../../_static/js/jquery-fix.js "></script>
+<script type="text/javascript" src="../../_static/bootstrap-3.3.7/js/bootstrap.min.js "></script>
+<script type="text/javascript" src="../../_static/bootstrap-sphinx.js "></script>
+
+  </head><body>
+
+  <div id="navbar" class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="../../index.html"><span><img src="../../_static/ross-logo.svg"></span>
+          ross</a>
+        <span class="navbar-text navbar-version pull-left"><b>0.1.2</b></span>
+      </div>
+
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            
+                <li><a href="../../examples/tutorial.html">Tutorial</a></li>
+                <li><a href="../../examples.html">Examples</a></li>
+                <li><a href="../../api.html">API</a></li>
+            
+            
+              <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="../../index.html">Site <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"><p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../installation.html">Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../installation.html#install-python">Install Python</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../installation.html#install-ross">Install ross</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples/tutorial.html">Tutorial</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/tutorial.html#Materials">Materials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/tutorial.html#Element">Element</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/tutorial.html#ShaftElement">ShaftElement</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/tutorial.html#DiskElement">DiskElement</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/tutorial.html#BearingElement">BearingElement</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/tutorial.html#Rotor">Rotor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/tutorial.html#Obtaining-results">Obtaining results</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples.html">Examples</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/example_05_08_01.html">Example 1 - Number of DOF influence in Natural Frequency</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/example_05_08_02.html">Example 2 - Effect of varying slenderness ratio</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/example_05_09_01.html">Example 3 - Isotropic Bearings, asymmetrical rotor.</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/example_05_09_02.html">Example 4 - Anisotropic Bearings.</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/example_05_09_04.html">Example 5 - Cross-coupled bearings.</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/example_05_09_05.html">Example 6 - Isotropic bearings with damping.</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/example_05_09_06.html">Example 7 - Hydrodinamic Bearings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/example_05_09_09.html">Example 8 - Overhung rotor.</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../download.html">Download notebooks</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../api.html">API Reference</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../api.html#material">Material</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../api.html#elements">Elements</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../../api.html#rotor">Rotor</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../contributing.html">Contributing</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../contributing.html#feedback-and-contribution">Feedback and Contribution</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../contributing.html#version-control-system-git">Version-control system: Git</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../contributing.html#code-style-black">Code style: Black</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../contributing.html#tests">Tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../contributing.html#documentation">Documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../contributing.html#integrated-development-environment-pycharm">Integrated development environment: PyCharm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../contributing.html#how-to-contribute-to-ross-using-git">How to contribute to ross using git</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../release_notes.html">Release notes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../release_notes.html#version-0-1-0-alpha-release">Version 0.1.0 (alpha release)</a></li>
+</ul>
+</li>
+</ul>
+</ul>
+</li>
+              
+                <li class="dropdown">
+  <a role="button"
+     id="dLabelLocalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="#">Page <b class="caret"></b></a>
+  <ul class="dropdown-menu localtoc"
+      role="menu"
+      aria-labelledby="dLabelLocalToc"><ul>
+<li><a class="reference internal" href="#">ross.Rotor</a></li>
+</ul>
+</ul>
+</li>
+              
+            
+            
+            
+            
+            
+              <li class="hidden-sm">
+<div id="sourcelink">
+  <a href="../../_sources/generated/results/ross.Rotor.rst.txt"
+     rel="nofollow">Source</a>
+</div></li>
+            
+          </ul>
+
+          
+            
+<form class="navbar-form navbar-right" action="../../search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+        </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="body col-md-12 content" role="main">
+      
+  </div>
+<div class=col-md-9 content><div class="section" id="ross-rotor">
+<h1>ross.Rotor<a class="headerlink" href="#ross-rotor" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="ross.Rotor">
+<em class="property">class </em><code class="sig-prename descclassname">ross.</code><code class="sig-name descname">Rotor</code><span class="sig-paren">(</span><em class="sig-param">shaft_elements</em>, <em class="sig-param">disk_elements=None</em>, <em class="sig-param">bearing_seal_elements=None</em>, <em class="sig-param">point_mass_elements=None</em>, <em class="sig-param">w=0</em>, <em class="sig-param">sparse=True</em>, <em class="sig-param">n_eigen=12</em>, <em class="sig-param">min_w=None</em>, <em class="sig-param">max_w=None</em>, <em class="sig-param">rated_w=None</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/rotor_assembly.html#Rotor"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.Rotor" title="Permalink to this definition">¶</a></dt>
+<dd><p>A rotor object.</p>
+<p>This class will create a rotor with the shaft,
+disk, bearing and seal elements provided.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>shaft_elements</strong><span class="classifier">list</span></dt><dd><p>List with the shaft elements</p>
+</dd>
+<dt><strong>disk_elements</strong><span class="classifier">list</span></dt><dd><p>List with the disk elements</p>
+</dd>
+<dt><strong>bearing_seal_elements</strong><span class="classifier">list</span></dt><dd><p>List with the bearing elements</p>
+</dd>
+<dt><strong>point_mass_elements: list</strong></dt><dd><p>List with the point mass elements</p>
+</dd>
+<dt><strong>w</strong><span class="classifier">float, optional</span></dt><dd><p>Rotor speed. Defaults to 0.</p>
+</dd>
+<dt><strong>sparse</strong><span class="classifier">bool, optional</span></dt><dd><p>If sparse, eigenvalues will be calculated with arpack.
+Default is True.</p>
+</dd>
+<dt><strong>n_eigen</strong><span class="classifier">int, optional</span></dt><dd><p>Number of eigenvalues calculated by arpack.
+Default is 12.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt>A rotor object.</dt><dd></dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1">#  Rotor without damping with 2 shaft elements 1 disk and 2 bearings</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">ross</span> <span class="k">as</span> <span class="nn">rs</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">steel</span> <span class="o">=</span> <span class="n">rs</span><span class="o">.</span><span class="n">materials</span><span class="o">.</span><span class="n">steel</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">z</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">le</span> <span class="o">=</span> <span class="mf">0.25</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">i_d</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">o_d</span> <span class="o">=</span> <span class="mf">0.05</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tim0</span> <span class="o">=</span> <span class="n">rs</span><span class="o">.</span><span class="n">ShaftElement</span><span class="p">(</span><span class="n">le</span><span class="p">,</span> <span class="n">i_d</span><span class="p">,</span> <span class="n">o_d</span><span class="p">,</span> <span class="n">steel</span><span class="p">,</span>
+<span class="gp">... </span>                       <span class="n">shear_effects</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<span class="gp">... </span>                       <span class="n">rotary_inertia</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<span class="gp">... </span>                       <span class="n">gyroscopic</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tim1</span> <span class="o">=</span> <span class="n">rs</span><span class="o">.</span><span class="n">ShaftElement</span><span class="p">(</span><span class="n">le</span><span class="p">,</span> <span class="n">i_d</span><span class="p">,</span> <span class="n">o_d</span><span class="p">,</span> <span class="n">steel</span><span class="p">,</span>
+<span class="gp">... </span>                       <span class="n">shear_effects</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<span class="gp">... </span>                       <span class="n">rotary_inertia</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<span class="gp">... </span>                       <span class="n">gyroscopic</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">shaft_elm</span> <span class="o">=</span> <span class="p">[</span><span class="n">tim0</span><span class="p">,</span> <span class="n">tim1</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">disk0</span> <span class="o">=</span> <span class="n">rs</span><span class="o">.</span><span class="n">DiskElement</span><span class="o">.</span><span class="n">from_geometry</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">steel</span><span class="p">,</span> <span class="mf">0.07</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.28</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">stf</span> <span class="o">=</span> <span class="mf">1e6</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">bearing0</span> <span class="o">=</span> <span class="n">rs</span><span class="o">.</span><span class="n">BearingElement</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">kxx</span><span class="o">=</span><span class="n">stf</span><span class="p">,</span> <span class="n">cxx</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">bearing1</span> <span class="o">=</span> <span class="n">rs</span><span class="o">.</span><span class="n">BearingElement</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">kxx</span><span class="o">=</span><span class="n">stf</span><span class="p">,</span> <span class="n">cxx</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">rotor</span> <span class="o">=</span> <span class="n">rs</span><span class="o">.</span><span class="n">Rotor</span><span class="p">(</span><span class="n">shaft_elm</span><span class="p">,</span> <span class="p">[</span><span class="n">disk0</span><span class="p">],</span> <span class="p">[</span><span class="n">bearing0</span><span class="p">,</span> <span class="n">bearing1</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">rotor</span><span class="o">.</span><span class="n">run_modal</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">rotor</span><span class="o">.</span><span class="n">wd</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="c1"># doctest: +ELLIPSIS</span>
+<span class="go">215.3707...</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Attributes</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>evalues</strong><span class="classifier">array</span></dt><dd><p>Rotor’s eigenvalues.</p>
+</dd>
+<dt><strong>evectors</strong><span class="classifier">array</span></dt><dd><p>Rotor’s eigenvectors.</p>
+</dd>
+<dt><strong>wn</strong><span class="classifier">array</span></dt><dd><p>Rotor’s natural frequencies in rad/s.</p>
+</dd>
+<dt><strong>wd</strong><span class="classifier">array</span></dt><dd><p>Rotor’s damped natural frequencies in rad/s.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<dl class="method">
+<dt id="ross.Rotor.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">shaft_elements</em>, <em class="sig-param">disk_elements=None</em>, <em class="sig-param">bearing_seal_elements=None</em>, <em class="sig-param">point_mass_elements=None</em>, <em class="sig-param">w=0</em>, <em class="sig-param">sparse=True</em>, <em class="sig-param">n_eigen=12</em>, <em class="sig-param">min_w=None</em>, <em class="sig-param">max_w=None</em>, <em class="sig-param">rated_w=None</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/rotor_assembly.html#Rotor.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.Rotor.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
+</dd></dl>
+
+<p class="rubric">Methods</p>
+<dl class="method">
+<dt id="ross.Rotor.A">
+<code class="sig-name descname">A</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">frequency=None</em>, <em class="sig-param">speed=None</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/rotor_assembly.html#Rotor.A"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.Rotor.A" title="Permalink to this definition">¶</a></dt>
+<dd><p>State space matrix for an instance of a rotor.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>frequency</strong><span class="classifier">float, optional</span></dt><dd><p>Excitation frequency. Default is rotor speed.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt>State space matrix for the rotor.</dt><dd></dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">rotor</span> <span class="o">=</span> <span class="n">rotor_example</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">rotor</span><span class="o">.</span><span class="n">A</span><span class="p">()[</span><span class="mi">50</span><span class="p">:</span><span class="mi">56</span><span class="p">,</span> <span class="p">:</span><span class="mi">2</span><span class="p">])</span>
+<span class="go">array([[     0.,  10927.],</span>
+<span class="go">       [-10924.,     -0.],</span>
+<span class="go">       [  -174.,      0.],</span>
+<span class="go">       [    -0.,   -174.],</span>
+<span class="go">       [    -0.,  10723.],</span>
+<span class="go">       [-10719.,     -0.]])</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="ross.Rotor.C">
+<code class="sig-name descname">C</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">frequency=None</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/rotor_assembly.html#Rotor.C"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.Rotor.C" title="Permalink to this definition">¶</a></dt>
+<dd><p>Damping matrix for an instance of a rotor.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>frequency</strong><span class="classifier">float, optional</span></dt><dd><p>Excitation frequency. Default is rotor speed.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt>Damping matrix for the rotor.</dt><dd></dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">rotor</span> <span class="o">=</span> <span class="n">rotor_example</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">rotor</span><span class="o">.</span><span class="n">C</span><span class="p">()[:</span><span class="mi">4</span><span class="p">,</span> <span class="p">:</span><span class="mi">4</span><span class="p">]</span>
+<span class="go">array([[0., 0., 0., 0.],</span>
+<span class="go">       [0., 0., 0., 0.],</span>
+<span class="go">       [0., 0., 0., 0.],</span>
+<span class="go">       [0., 0., 0., 0.]])</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="ross.Rotor.G">
+<code class="sig-name descname">G</code><span class="sig-paren">(</span><em class="sig-param">self</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/rotor_assembly.html#Rotor.G"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.Rotor.G" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gyroscopic matrix for an instance of a rotor.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><dl class="simple">
+<dt>Gyroscopic matrix for the rotor.</dt><dd></dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">rotor</span> <span class="o">=</span> <span class="n">rotor_example</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">rotor</span><span class="o">.</span><span class="n">G</span><span class="p">()[:</span><span class="mi">4</span><span class="p">,</span> <span class="p">:</span><span class="mi">4</span><span class="p">]</span>
+<span class="go">array([[ 0.        ,  0.01943344, -0.00022681,  0.        ],</span>
+<span class="go">       [-0.01943344,  0.        ,  0.        , -0.00022681],</span>
+<span class="go">       [ 0.00022681,  0.        ,  0.        ,  0.0001524 ],</span>
+<span class="go">       [ 0.        ,  0.00022681, -0.0001524 ,  0.        ]])</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="ross.Rotor.H_kappa">
+<code class="sig-name descname">H_kappa</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">node</em>, <em class="sig-param">w</em>, <em class="sig-param">return_T=False</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/rotor_assembly.html#Rotor.H_kappa"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.Rotor.H_kappa" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculates the H matrix for a given node and natural frequency.</p>
+<p>The matrix H contains information about the whirl direction,
+the orbit minor and major axis and the orbit inclination.
+The matrix is calculated by <img class="math" src="../../_images/math/3b27998d3dfe4f8b5adf481bf7e90ed6aa6d9088.png" alt="H = T.T^T"/> where the
+matrix T is constructed using the eigenvector corresponding
+to the natural frequency of interest:</p>
+<div class="math">
+<p><img src="../../_images/math/32221331ee2b58043e0d4911d992a33e68cfd3cf.png" alt="\begin{eqnarray}
+   \begin{bmatrix}
+   u(t)\\
+   v(t)
+   \end{bmatrix}
+   = \mathfrak{R}\Bigg(
+   \begin{bmatrix}
+   r_u e^{j\eta_u}\\
+   r_v e^{j\eta_v}
+   \end{bmatrix}\Bigg)
+   e^{j\omega_i t}
+   =
+   \begin{bmatrix}
+   r_u cos(\eta_u + \omega_i t)\\
+   r_v cos(\eta_v + \omega_i t)
+   \end{bmatrix}
+   = {\bf T}
+   \begin{bmatrix}
+   cos(\omega_i t)\\
+   sin(\omega_i t)
+   \end{bmatrix}
+\end{eqnarray}"/></p>
+</div><p>Where <img class="math" src="../../_images/math/e81abf32f6045fc554966d062fb95d76371e17fa.png" alt="r_u e^{j\eta_u}"/> e <img class="math" src="../../_images/math/fea59596b40588b1e9cd10fac43cc31c3bdb4f99.png" alt="r_v e^{j\eta_v}"/> are the
+elements of the <em>i</em>th eigenvector, corresponding to the node and
+natural frequency of interest (mode).</p>
+<div class="math">
+<p><img src="../../_images/math/13201a3bf4d4a2418e9ccd79b7b521c375251e31.png" alt="{\bf T} =
+\begin{bmatrix}
+r_u cos(\eta_u) &amp; -r_u sin(\eta_u)\\
+r_u cos(\eta_u) &amp; -r_v sin(\eta_v)
+\end{bmatrix}"/></p>
+</div><dl class="field-list">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl>
+<dt><strong>node: int</strong></dt><dd><p>Node for which the matrix H will be calculated.</p>
+</dd>
+<dt><strong>w: int</strong></dt><dd><p>Index corresponding to the natural frequency
+of interest.</p>
+</dd>
+<dt><strong>return_T: bool, optional</strong></dt><dd><p>If True, returns the H matrix and a dictionary with the
+values for <img class="math" src="../../_images/math/d1dc9a2744fa44aa059120f954001e8fdf32425d.png" alt="r_u, r_v, \eta_u, \eta_v"/>.</p>
+<p>Default is false.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl>
+<dt>H: array</dt><dd><p>Matrix H.</p>
+</dd>
+<dt>Tdic: dict</dt><dd><p>Dictionary with values for <img class="math" src="../../_images/math/d1dc9a2744fa44aa059120f954001e8fdf32425d.png" alt="r_u, r_v, \eta_u, \eta_v"/>.</p>
+<p>It will be returned only if return_T is True.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">rotor</span> <span class="o">=</span> <span class="n">rotor_example</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># H matrix for the 0th node</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">h_kappa</span> <span class="o">=</span> <span class="n">rotor</span><span class="o">.</span><span class="n">H_kappa</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="ross.Rotor.K">
+<code class="sig-name descname">K</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">frequency=None</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/rotor_assembly.html#Rotor.K"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.Rotor.K" title="Permalink to this definition">¶</a></dt>
+<dd><p>Stiffness matrix for an instance of a rotor.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>frequency</strong><span class="classifier">float, optional</span></dt><dd><p>Excitation frequency. Default is rotor speed.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt>Stiffness matrix for the rotor.</dt><dd></dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">rotor</span> <span class="o">=</span> <span class="n">rotor_example</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">rotor</span><span class="o">.</span><span class="n">K</span><span class="p">()[:</span><span class="mi">4</span><span class="p">,</span> <span class="p">:</span><span class="mi">4</span><span class="p">]</span><span class="o">/</span><span class="mf">1e6</span><span class="p">)</span>
+<span class="go">array([[47.,  0.,  0.,  6.],</span>
+<span class="go">       [ 0., 46., -6.,  0.],</span>
+<span class="go">       [ 0., -6.,  1.,  0.],</span>
+<span class="go">       [ 6.,  0.,  0.,  1.]])</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="ross.Rotor.M">
+<code class="sig-name descname">M</code><span class="sig-paren">(</span><em class="sig-param">self</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/rotor_assembly.html#Rotor.M"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.Rotor.M" title="Permalink to this definition">¶</a></dt>
+<dd><p>Mass matrix for an instance of a rotor.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><dl class="simple">
+<dt>Mass matrix for the rotor.</dt><dd></dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">rotor</span> <span class="o">=</span> <span class="n">rotor_example</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">rotor</span><span class="o">.</span><span class="n">M</span><span class="p">()[:</span><span class="mi">4</span><span class="p">,</span> <span class="p">:</span><span class="mi">4</span><span class="p">]</span>
+<span class="go">array([[ 1.42050794,  0.        ,  0.        ,  0.04931719],</span>
+<span class="go">       [ 0.        ,  1.42050794, -0.04931719,  0.        ],</span>
+<span class="go">       [ 0.        , -0.04931719,  0.00231392,  0.        ],</span>
+<span class="go">       [ 0.04931719,  0.        ,  0.        ,  0.00231392]])</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt>
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">shaft_elements</em>, <em class="sig-param">disk_elements=None</em>, <em class="sig-param">bearing_seal_elements=None</em>, <em class="sig-param">point_mass_elements=None</em>, <em class="sig-param">w=0</em>, <em class="sig-param">sparse=True</em>, <em class="sig-param">n_eigen=12</em>, <em class="sig-param">min_w=None</em>, <em class="sig-param">max_w=None</em>, <em class="sig-param">rated_w=None</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/rotor_assembly.html#Rotor.__init__"><span class="viewcode-link">[source]</span></a></dt>
+<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="ross.Rotor.available_rotors">
+<em class="property">static </em><code class="sig-name descname">available_rotors</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/rotor_assembly.html#Rotor.available_rotors"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.Rotor.available_rotors" title="Permalink to this definition">¶</a></dt>
+<dd><p>Displays previously saved rotors</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="ross.Rotor.check_slenderness_ratio">
+<code class="sig-name descname">check_slenderness_ratio</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">nodes=1</em>, <em class="sig-param">*args</em>, <em class="sig-param">plot_type='matplotlib'</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/rotor_assembly.html#Rotor.check_slenderness_ratio"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.Rotor.check_slenderness_ratio" title="Permalink to this definition">¶</a></dt>
+<dd><p>Plots a rotor object and check the slenderness ratio</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>nodes</strong><span class="classifier">int, optional</span></dt><dd><p>Increment that will be used to plot nodes label.</p>
+</dd>
+<dt><strong>plot_type</strong><span class="classifier">str</span></dt><dd><p>Matplotlib or bokeh.
+Default is matplotlib.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>ax</strong><span class="classifier">matplotlib axes</span></dt><dd><p>Returns the axes object with the plot.</p>
+</dd>
+<dt><strong>bk_ax</strong><span class="classifier">bokeh plotting axes</span></dt><dd><p>Returns the axes object with the plot.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="ross.Rotor.convergence">
+<code class="sig-name descname">convergence</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">n_eigval=0</em>, <em class="sig-param">err_max=0.01</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/rotor_assembly.html#Rotor.convergence"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.Rotor.convergence" title="Permalink to this definition">¶</a></dt>
+<dd><p>Function to analyze the eigenvalues convergence through the number of
+shaft elements. Every new run doubles the number os shaft elements.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>n_eigval</strong><span class="classifier">int</span></dt><dd><p>The nth eigenvalue which the convergence analysis will run.
+Default is 0 (the first eigenvalue).</p>
+</dd>
+<dt><strong>err_max</strong><span class="classifier">float</span></dt><dd><p>Maximum allowable convergence error.
+Default is 1e-02</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt>Lists containing the information about:</dt><dd><p>The number or elements in each run;
+The relative error calculated in each run;
+The natural frequency calculated in each run.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="ross.Rotor.from_section">
+<em class="property">classmethod </em><code class="sig-name descname">from_section</code><span class="sig-paren">(</span><em class="sig-param">leng_data</em>, <em class="sig-param">o_ds_data</em>, <em class="sig-param">i_ds_data</em>, <em class="sig-param">disk_data=None</em>, <em class="sig-param">brg_seal_data=None</em>, <em class="sig-param">sparse=True</em>, <em class="sig-param">min_w=None</em>, <em class="sig-param">max_w=None</em>, <em class="sig-param">n_eigen=12</em>, <em class="sig-param">w=0</em>, <em class="sig-param">nel_r=1</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/rotor_assembly.html#Rotor.from_section"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.Rotor.from_section" title="Permalink to this definition">¶</a></dt>
+<dd><p>This class is an alternative to build rotors from separated
+sections. Each section has the same number (n) of shaft elements.</p>
+<dl class="field-list">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl>
+<dt><strong>leng_data</strong><span class="classifier">list</span></dt><dd><p>List with the lengths of rotor regions.</p>
+</dd>
+<dt><strong>o_d_data</strong><span class="classifier">list</span></dt><dd><p>List with the outer diameters of rotor regions.</p>
+</dd>
+<dt><strong>i_d_data</strong><span class="classifier">list</span></dt><dd><p>List with the inner diameters of rotor regions.</p>
+</dd>
+<dt><strong>disk_data</strong><span class="classifier">dict, optional</span></dt><dd><p>Dict holding disks datas.
+Example : disk_data=DiskElement.from_geometry(n=2,</p>
+<blockquote>
+<div><p>material=steel,
+width=0.07,
+i_d=0,
+o_d=0.28
+)</p>
+</div></blockquote>
+<p><strong>*See ‘disk_element.py’ docstring for more information*</strong></p>
+</dd>
+<dt><strong>brg_seal_data</strong><span class="classifier">dict, optional</span></dt><dd><p>Dict holding lists of bearings and seals datas.
+Example : brg_seal_data=BearingElement(n=1, kxx=1e6, cxx=0,</p>
+<blockquote>
+<div><p>kyy=1e6, cyy=0, kxy=0,
+cxy=0, kyx=0, cyx=0)</p>
+</div></blockquote>
+<p><strong>*See ‘bearing_seal_element.py’ docstring for more information*</strong></p>
+</dd>
+<dt><strong>w</strong><span class="classifier">float, optional</span></dt><dd><p>Rotor speed.</p>
+</dd>
+<dt><strong>nel_r</strong><span class="classifier">int, optional</span></dt><dd><p>Number or elements per shaft region.
+Default is 1</p>
+</dd>
+<dt><strong>n_eigen</strong><span class="classifier">int, optional</span></dt><dd><p>Number of eigenvalues calculated by arpack.
+Default is 12.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt>A rotor object</dt><dd></dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="ross.Rotor.kappa">
+<code class="sig-name descname">kappa</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">node</em>, <em class="sig-param">w</em>, <em class="sig-param">wd=True</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/rotor_assembly.html#Rotor.kappa"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.Rotor.kappa" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculates kappa for a given node and natural frequency.</p>
+<p>w is the the index of the natural frequency of interest.
+The function calculates the orbit parameter <img class="math" src="../../_images/math/261e3eb56c1757dd003745ee4cc53aa595565af1.png" alt="\kappa"/>:</p>
+<div class="math">
+<p><img src="../../_images/math/fa2758e7525ec8fea770d54989d2588a12a08465.png" alt="\kappa = \pm \sqrt{\lambda_2 / \lambda_1}"/></p>
+</div><p>Where <img class="math" src="../../_images/math/a6c6818b47bc1e06473cce44c1ffca96017e69bf.png" alt="\sqrt{\lambda_1}"/> is the length of the semiminor axes
+and <img class="math" src="../../_images/math/077d17789a703e33a62c19aa9dc223c30e5c90ec.png" alt="\sqrt{\lambda_2}"/> is the length of the semimajor axes.</p>
+<p>If <img class="math" src="../../_images/math/114ac98263a463689a457b529ed647ff0ac30dcb.png" alt="\kappa = \pm 1"/>, the orbit is circular.</p>
+<p>If <img class="math" src="../../_images/math/261e3eb56c1757dd003745ee4cc53aa595565af1.png" alt="\kappa"/> is positive we have a forward rotating orbit
+and if it is negative we have a backward rotating orbit.</p>
+<dl class="field-list">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl>
+<dt><strong>node: int</strong></dt><dd><p>Node for which kappa will be calculated.</p>
+</dd>
+<dt><strong>w: int</strong></dt><dd><p>Index corresponding to the natural frequency
+of interest.</p>
+</dd>
+<dt><strong>wd: bool</strong></dt><dd><p>If True, damping natural frequencies are used.</p>
+<p>Default is true.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt>kappa: dict</dt><dd><p>A dictionary with values for the natural frequency,
+major axis, minor axis and kappa.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">rotor</span> <span class="o">=</span> <span class="n">rotor_example</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># kappa for each node of the first natural frequency</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># Major axes for node 0 and natural frequency (mode) 0.</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">rotor</span><span class="o">.</span><span class="n">kappa</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)[</span><span class="s1">&#39;Major axes&#39;</span><span class="p">]</span> <span class="c1"># doctest: +ELLIPSIS</span>
+<span class="go">0.00141...</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># kappa for node 2 and natural frequency (mode) 3.</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">kappa</span> <span class="o">=</span> <span class="n">rotor</span><span class="o">.</span><span class="n">kappa</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)[</span><span class="s1">&#39;kappa&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="c1"># doctest: +ELLIPSIS</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="ross.Rotor.kappa_mode">
+<code class="sig-name descname">kappa_mode</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">w</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/rotor_assembly.html#Rotor.kappa_mode"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.Rotor.kappa_mode" title="Permalink to this definition">¶</a></dt>
+<dd><p>This function evaluates kappa given the index of
+the natural frequency of interest.
+Values of kappa are evaluated for each node of the
+corresponding frequency mode.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>w: int</strong></dt><dd><p>Index corresponding to the natural frequency
+of interest.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt>kappa_mode: list</dt><dd><p>A list with the value of kappa for each node related
+to the mode/natural frequency of interest.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">rotor</span> <span class="o">=</span> <span class="n">rotor_example</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># kappa for each node of the first natural frequency</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">rotor</span><span class="o">.</span><span class="n">kappa_mode</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="c1"># doctest: +ELLIPSIS</span>
+<span class="go">[...]</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="ross.Rotor.load">
+<em class="property">static </em><code class="sig-name descname">load</code><span class="sig-paren">(</span><em class="sig-param">file_name</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/rotor_assembly.html#Rotor.load"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.Rotor.load" title="Permalink to this definition">¶</a></dt>
+<dd><p>Load rotor from toml file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>file_name</strong><span class="classifier">str</span></dt><dd></dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>rotor</strong><span class="classifier">ross.rotor.Rotor</span></dt><dd></dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="ross.Rotor.orbit">
+<code class="sig-name descname">orbit</code><span class="sig-paren">(</span><em class="sig-param">self</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/rotor_assembly.html#Rotor.orbit"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.Rotor.orbit" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="ross.Rotor.plot_level1">
+<code class="sig-name descname">plot_level1</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">n=None</em>, <em class="sig-param">stiffness_range=None</em>, <em class="sig-param">num=5</em>, <em class="sig-param">ax=None</em>, <em class="sig-param">output_html=False</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/rotor_assembly.html#Rotor.plot_level1"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.Rotor.plot_level1" title="Permalink to this definition">¶</a></dt>
+<dd><p>Plot level 1 stability analysis.</p>
+<p>This method will plot the stability 1 analysis for a
+given stiffness range.</p>
+<dl class="field-list">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>stiffness_range</strong><span class="classifier">tuple, optional</span></dt><dd><p>Tuple with (start, end) for stiffness range.</p>
+</dd>
+<dt><strong>num</strong><span class="classifier">int</span></dt><dd><p>Number of steps in the range.
+Default is 5.</p>
+</dd>
+<dt><strong>ax</strong><span class="classifier">matplotlib axes, optional</span></dt><dd><p>Axes in which the plot will be drawn.</p>
+</dd>
+<dt><strong>output_html</strong><span class="classifier">Boolean, optional</span></dt><dd><p>outputs a html file.
+Default is False</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>ax</strong><span class="classifier">matplotlib axes</span></dt><dd><p>Returns the axes object with the plot.</p>
+</dd>
+<dt><strong>bk_ax</strong><span class="classifier">bokeh plot axes</span></dt><dd><p>Returns the axes object with the plot.</p>
+</dd>
+<dt>Example</dt><dd></dd>
+</dl>
+<blockquote>
+<div></div></blockquote>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">i_d</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="go">    ..</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">o_d</span> <span class="o">=</span> <span class="mf">0.05</span>
+<span class="go">    ..</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">n</span> <span class="o">=</span> <span class="mi">6</span>
+<span class="go">    ..</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">L</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.25</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">)]</span>
+<span class="go">    ..</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">shaft_elem</span> <span class="o">=</span> <span class="p">[</span>
+<span class="go">    ..</span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt>…     ShaftElement(</dt><dd></dd>
+<dt>…         l, i_d, o_d, steel, shear_effects=True,</dt><dd></dd>
+<dt>…         rotary_inertia=True, gyroscopic=True</dt><dd></dd>
+<dt>…     )</dt><dd></dd>
+<dt>…     for l in L</dt><dd></dd>
+<dt>… ]</dt><dd></dd>
+</dl>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">disk0</span> <span class="o">=</span> <span class="n">DiskElement</span><span class="o">.</span><span class="n">from_geometry</span><span class="p">(</span>
+<span class="go">    ..</span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt>…     n=2, material=steel, width=0.07, i_d=0.05, o_d=0.28</dt><dd></dd>
+<dt>… )</dt><dd></dd>
+</dl>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">disk1</span> <span class="o">=</span> <span class="n">DiskElement</span><span class="o">.</span><span class="n">from_geometry</span><span class="p">(</span>
+<span class="go">    ..</span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt>…     n=4, material=steel, width=0.07, i_d=0.05, o_d=0.28</dt><dd></dd>
+<dt>… )</dt><dd></dd>
+</dl>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">stfx</span> <span class="o">=</span> <span class="mf">1e6</span>
+<span class="go">    ..</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">stfy</span> <span class="o">=</span> <span class="mf">0.8e6</span>
+<span class="go">    ..</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">bearing0</span> <span class="o">=</span> <span class="n">BearingElement</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">kxx</span><span class="o">=</span><span class="n">stfx</span><span class="p">,</span> <span class="n">kyy</span><span class="o">=</span><span class="n">stfy</span><span class="p">,</span> <span class="n">cxx</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="go">    ..</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">bearing1</span> <span class="o">=</span> <span class="n">BearingElement</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="n">kxx</span><span class="o">=</span><span class="n">stfx</span><span class="p">,</span> <span class="n">kyy</span><span class="o">=</span><span class="n">stfy</span><span class="p">,</span> <span class="n">cxx</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="go">    ..</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">rotor</span> <span class="o">=</span> <span class="n">Rotor</span><span class="p">(</span><span class="n">shaft_elem</span><span class="p">,</span> <span class="p">[</span><span class="n">disk0</span><span class="p">,</span> <span class="n">disk1</span><span class="p">],</span> <span class="p">[</span><span class="n">bearing0</span><span class="p">,</span> <span class="n">bearing1</span><span class="p">],</span> <span class="n">rated_w</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="go">    ..</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">rotor</span><span class="o">.</span><span class="n">plot_level1</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">stiffness_range</span><span class="o">=</span><span class="p">(</span><span class="mf">1e6</span><span class="p">,</span> <span class="mf">1e11</span><span class="p">))</span> <span class="c1"># doctest: +ELLIPSIS</span>
+<span class="go">    ..</span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt>(&lt;matplotlib.axes._subplots.AxesSubplot …</dt><dd></dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="ross.Rotor.plot_rotor">
+<code class="sig-name descname">plot_rotor</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">nodes=1</em>, <em class="sig-param">*args</em>, <em class="sig-param">plot_type='bokeh'</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/rotor_assembly.html#Rotor.plot_rotor"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.Rotor.plot_rotor" title="Permalink to this definition">¶</a></dt>
+<dd><p>Plots a rotor object.</p>
+<p>This function will take a rotor object and plot its shaft,
+disks and bearing elements</p>
+<dl class="field-list">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>nodes</strong><span class="classifier">int, optional</span></dt><dd><p>Increment that will be used to plot nodes label.</p>
+</dd>
+<dt><strong>plot_type</strong><span class="classifier">str</span></dt><dd><p>Matplotlib or bokeh.
+Default is matplotlib.</p>
+</dd>
+<dt><strong>ax</strong><span class="classifier">matplotlib axes, optional</span></dt><dd><p>Axes in which the plot will be drawn.</p>
+</dd>
+<dt><strong>bk_ax</strong><span class="classifier">bokeh plotting axes, optional</span></dt><dd><p>Axes in which the plot will be drawn.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>ax</strong><span class="classifier">matplotlib axes</span></dt><dd><p>Returns the axes object with the plot.</p>
+</dd>
+<dt><strong>bk_ax</strong><span class="classifier">bokeh plotting axes</span></dt><dd><p>Returns the axes object with the plot.</p>
+</dd>
+<dt>Examples:</dt><dd></dd>
+</dl>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">ross</span> <span class="k">as</span> <span class="nn">rs</span>
+<span class="go">    ..</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">rotor</span> <span class="o">=</span> <span class="n">rs</span><span class="o">.</span><span class="n">rotor_example</span><span class="p">()</span>
+<span class="go">    ..</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">rotor</span><span class="o">.</span><span class="n">plot_rotor</span><span class="p">()</span> <span class="c1"># doctest: +ELLIPSIS</span>
+<span class="go">    ..</span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt>Figure…</dt><dd></dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="ross.Rotor.plot_ucs">
+<code class="sig-name descname">plot_ucs</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">stiffness_range=None</em>, <em class="sig-param">num=20</em>, <em class="sig-param">ax=None</em>, <em class="sig-param">output_html=False</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/rotor_assembly.html#Rotor.plot_ucs"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.Rotor.plot_ucs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Plot undamped critical speed map.</p>
+<p>This method will plot the undamped critical speed map for a given range
+of stiffness values. If the range is not provided, the bearing
+stiffness at rated speed will be used to create a range.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>stiffness_range</strong><span class="classifier">tuple, optional</span></dt><dd><p>Tuple with (start, end) for stiffness range.</p>
+</dd>
+<dt><strong>num</strong><span class="classifier">int</span></dt><dd><p>Number of steps in the range.
+Default is 20.</p>
+</dd>
+<dt><strong>ax</strong><span class="classifier">matplotlib axes, optional</span></dt><dd><p>Axes in which the plot will be drawn.</p>
+</dd>
+<dt><strong>output_html</strong><span class="classifier">Boolean, optional</span></dt><dd><p>outputs a html file.
+Default is False</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>ax</strong><span class="classifier">matplotlib axes</span></dt><dd><p>Returns the axes object with the plot.</p>
+</dd>
+<dt><strong>bk_ax</strong><span class="classifier">bokeh plot axes</span></dt><dd><p>Returns the axes object with the plot.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="ross.Rotor.remove">
+<em class="property">static </em><code class="sig-name descname">remove</code><span class="sig-paren">(</span><em class="sig-param">rotor_name</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/rotor_assembly.html#Rotor.remove"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.Rotor.remove" title="Permalink to this definition">¶</a></dt>
+<dd><p>Remove a previously saved rotor</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>file_name</strong><span class="classifier">str</span></dt><dd></dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="ross.Rotor.run_campbell">
+<code class="sig-name descname">run_campbell</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">speed_range</em>, <em class="sig-param">frequencies=6</em>, <em class="sig-param">frequency_type='wd'</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/rotor_assembly.html#Rotor.run_campbell"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.Rotor.run_campbell" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculates the Campbell diagram.</p>
+<p>This function will calculate the damped natural frequencies
+for a speed range.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>speed_range</strong><span class="classifier">array</span></dt><dd><p>Array with the speed range in rad/s.</p>
+</dd>
+<dt><strong>frequencies</strong><span class="classifier">int, optional</span></dt><dd><p>Number of frequencies that will be calculated.
+Default is 6.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>results</strong><span class="classifier">array</span></dt><dd><p>Array with the damped natural frequencies, log dec and precessions
+corresponding to each speed of the speed_rad array.
+It will be returned if plot=False.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">rotor1</span> <span class="o">=</span> <span class="n">rotor_example</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">speed</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">400</span><span class="p">,</span> <span class="mi">101</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">camp</span> <span class="o">=</span> <span class="n">rotor1</span><span class="o">.</span><span class="n">run_campbell</span><span class="p">(</span><span class="n">speed</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">camp</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span> <span class="c1"># doctest: +ELLIPSIS</span>
+<span class="go">Figure...</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="ross.Rotor.run_forced_response">
+<code class="sig-name descname">run_forced_response</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">force=None</em>, <em class="sig-param">speed_range=None</em>, <em class="sig-param">modes=None</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/rotor_assembly.html#Rotor.run_forced_response"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.Rotor.run_forced_response" title="Permalink to this definition">¶</a></dt>
+<dd><p>Unbalanced response for a mdof system.</p>
+<p>This method returns the unbalanced response for a mdof system
+given magnitide and phase of the unbalance, the node where it’s
+applied and a frequency range.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>force</strong><span class="classifier">list</span></dt><dd><p>Unbalance force in each degree of freedom for each value in omega</p>
+</dd>
+<dt><strong>speed_range</strong><span class="classifier">list, float</span></dt><dd><p>Array with the desired range of frequencies</p>
+</dd>
+<dt><strong>modes</strong><span class="classifier">list, optional</span></dt><dd><p>Modes that will be used to calculate the frequency response
+(all modes will be used if a list is not given).</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>force_resp</strong><span class="classifier">array</span></dt><dd><p>Array with the force response for each node for each frequency</p>
+</dd>
+<dt><strong>speed_range</strong><span class="classifier">array</span></dt><dd><p>Array with the frequencies</p>
+</dd>
+<dt><strong>magnitude</strong><span class="classifier">array</span></dt><dd><p>Magnitude (dB) of the frequency response for node for each frequency</p>
+</dd>
+<dt><strong>phase</strong><span class="classifier">array</span></dt><dd><p>Phase of the frequency response for node for each frequency</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">rotor</span> <span class="o">=</span> <span class="n">rotor_example</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">speed</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1000</span><span class="p">,</span> <span class="mi">101</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">force</span> <span class="o">=</span> <span class="n">rotor</span><span class="o">.</span><span class="n">_unbalance_force</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mf">10.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="n">speed</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">resp</span> <span class="o">=</span> <span class="n">rotor</span><span class="o">.</span><span class="n">run_forced_response</span><span class="p">(</span><span class="n">force</span><span class="o">=</span><span class="n">force</span><span class="p">,</span> <span class="n">speed_range</span><span class="o">=</span><span class="n">speed</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">resp</span><span class="o">.</span><span class="n">magnitude</span> <span class="c1"># doctest: +ELLIPSIS</span>
+<span class="go">array([[0.00000000e+00, 5.06073311e-04, 2.10044826e-03, ...</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="ross.Rotor.run_freq_response">
+<code class="sig-name descname">run_freq_response</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">speed_range=None</em>, <em class="sig-param">modes=None</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/rotor_assembly.html#Rotor.run_freq_response"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.Rotor.run_freq_response" title="Permalink to this definition">¶</a></dt>
+<dd><p>Frequency response for a mdof system.</p>
+<p>This method returns the frequency response for a mdof system
+given a range of frequencies and the modes that will be used.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>speed_range</strong><span class="classifier">array, optional</span></dt><dd><dl class="simple">
+<dt>Array with the desired range of frequencies (the default</dt><dd><p>is 0 to 1.5 x highest damped natural frequency.</p>
+</dd>
+</dl>
+</dd>
+<dt><strong>modes</strong><span class="classifier">list, optional</span></dt><dd><p>Modes that will be used to calculate the frequency response
+(all modes will be used if a list is not given).</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>results</strong><span class="classifier">array</span></dt><dd><p>Array with the frequencies, magnitude (dB) of the frequency
+response for each pair input/output, and
+phase of the frequency response for each pair input/output..
+It will be returned if plot=False.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">rotor</span> <span class="o">=</span> <span class="n">rotor_example</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">speed</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1000</span><span class="p">,</span> <span class="mi">101</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">response</span> <span class="o">=</span> <span class="n">rotor</span><span class="o">.</span><span class="n">run_freq_response</span><span class="p">(</span><span class="n">speed_range</span><span class="o">=</span><span class="n">speed</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">response</span><span class="o">.</span><span class="n">magnitude</span> <span class="c1"># doctest: +ELLIPSIS</span>
+<span class="go">array([[[1.00000000e-06, 1.00261725e-06, 1.01076952e-06, ...</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="ross.Rotor.run_modal">
+<code class="sig-name descname">run_modal</code><span class="sig-paren">(</span><em class="sig-param">self</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/rotor_assembly.html#Rotor.run_modal"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.Rotor.run_modal" title="Permalink to this definition">¶</a></dt>
+<dd><p>Method to calculate eigenvalues and eigvectors for a given rotor system
+This method is automatically called when a rotor is instantiated.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>evalues</strong><span class="classifier">array</span></dt><dd><p>Eigenvalues array</p>
+</dd>
+<dt><strong>evectors</strong><span class="classifier">array</span></dt><dd><p>Eigenvectors array</p>
+</dd>
+<dt><strong>wn</strong><span class="classifier">array</span></dt><dd><p>Undamped natural frequencies array</p>
+</dd>
+<dt><strong>wd</strong><span class="classifier">array</span></dt><dd><p>Damped natural frequencies array</p>
+</dd>
+<dt><strong>log_dec</strong><span class="classifier">array</span></dt><dd><p>Logarithmic decrement array</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="ross.Rotor.run_mode_shapes">
+<code class="sig-name descname">run_mode_shapes</code><span class="sig-paren">(</span><em class="sig-param">self</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/rotor_assembly.html#Rotor.run_mode_shapes"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.Rotor.run_mode_shapes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Evaluates the mode shapes for the rotor.</p>
+<p>This analysis presents the vibration mode for each critical speed.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><dl class="simple">
+<dt>mode_shapes</dt><dd><p>An array with the modes, number of dof, nodes list, nodes position,
+lenght of shaft elements, the rotor speed, damped natural frequency,
+logarithmic decrement and the kappa modes</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="ross.Rotor.run_static">
+<code class="sig-name descname">run_static</code><span class="sig-paren">(</span><em class="sig-param">self</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/rotor_assembly.html#Rotor.run_static"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.Rotor.run_static" title="Permalink to this definition">¶</a></dt>
+<dd><p>Static analysis calculates free-body diagram, deformed shaft, shearing
+force diagram and bending moment diagram.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><dl class="simple">
+<dt>A dictionary containing the information about:</dt><dd><p>Static displacement vector,
+Shearing force vector,
+Bending moment vector,
+Shaft total weight,
+Disks forces,
+Bearings reaction forces</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="ross.Rotor.run_time_response">
+<code class="sig-name descname">run_time_response</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">F</em>, <em class="sig-param">t</em>, <em class="sig-param">dof</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/rotor_assembly.html#Rotor.run_time_response"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.Rotor.run_time_response" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculates the time response.</p>
+<p>This function will take a rotor object and plot its time response
+given a force and a time.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>F</strong><span class="classifier">array</span></dt><dd><p>Force array (needs to have the same number of rows as time array).
+Each column corresponds to a dof and each row to a time.</p>
+</dd>
+<dt><strong>t</strong><span class="classifier">array</span></dt><dd><p>Time array.</p>
+</dd>
+<dt><strong>dof</strong><span class="classifier">int</span></dt><dd><p>Degree of freedom that will be observed.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>results</strong><span class="classifier">array</span></dt><dd><p>Array containing the time array, the system response, and the
+time evolution of the state vector.
+It will be returned if plot=False.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">rotor</span> <span class="o">=</span> <span class="n">rotor_example</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">size</span> <span class="o">=</span> <span class="n">rotor</span><span class="o">.</span><span class="n">lti</span><span class="o">.</span><span class="n">B</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="n">size</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">F</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="n">size</span><span class="p">,</span> <span class="n">size</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">dof</span> <span class="o">=</span> <span class="mi">13</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">response</span> <span class="o">=</span> <span class="n">rotor</span><span class="o">.</span><span class="n">run_time_response</span><span class="p">(</span><span class="n">F</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">dof</span><span class="p">)</span> <span class="c1"># doctest: +ELLIPSIS</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">response</span><span class="o">.</span><span class="n">yout</span><span class="p">[:,</span> <span class="n">dof</span><span class="p">]</span>
+<span class="go">array([ 0.00000000e+00,  1.06327334e-05,  1.54684988e-05, ...</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="ross.Rotor.save">
+<code class="sig-name descname">save</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">file_name</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/rotor_assembly.html#Rotor.save"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.Rotor.save" title="Permalink to this definition">¶</a></dt>
+<dd><p>Save rotor to toml file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>file_name</strong><span class="classifier">str</span></dt><dd></dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">rotor</span> <span class="o">=</span> <span class="n">rotor_example</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">rotor</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s1">&#39;new_rotor&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Rotor</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="s1">&#39;new_rotor&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="ross.Rotor.save_mat">
+<code class="sig-name descname">save_mat</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">file_name</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/rotor_assembly.html#Rotor.save_mat"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.Rotor.save_mat" title="Permalink to this definition">¶</a></dt>
+<dd><p>Save matrices and rotor model to a .mat file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>file_name</strong><span class="classifier">str</span></dt><dd></dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">rotor</span> <span class="o">=</span> <span class="n">rotor_example</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">rotor</span><span class="o">.</span><span class="n">save_mat</span><span class="p">(</span><span class="s1">&#39;new_matrices.mat&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="ross.Rotor.time_response">
+<code class="sig-name descname">time_response</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">F</em>, <em class="sig-param">t</em>, <em class="sig-param">ic=None</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/rotor_assembly.html#Rotor.time_response"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.Rotor.time_response" title="Permalink to this definition">¶</a></dt>
+<dd><p>Time response for a rotor.</p>
+<p>This method returns the time response for a rotor
+given a force, time and initial conditions.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>F</strong><span class="classifier">array</span></dt><dd><p>Force array (needs to have the same length as time array).</p>
+</dd>
+<dt><strong>t</strong><span class="classifier">array</span></dt><dd><p>Time array. (must have the same length than lti.B matrix)</p>
+</dd>
+<dt><strong>ic</strong><span class="classifier">array, optional</span></dt><dd><p>The initial conditions on the state vector (zero by default).</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>t</strong><span class="classifier">array</span></dt><dd><p>Time values for the output.</p>
+</dd>
+<dt><strong>yout</strong><span class="classifier">array</span></dt><dd><p>System response.</p>
+</dd>
+<dt><strong>xout</strong><span class="classifier">array</span></dt><dd><p>Time evolution of the state vector.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">rotor</span> <span class="o">=</span> <span class="n">rotor_example</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">size</span> <span class="o">=</span> <span class="n">rotor</span><span class="o">.</span><span class="n">lti</span><span class="o">.</span><span class="n">B</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="n">size</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">F</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="n">size</span><span class="p">,</span> <span class="n">size</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">rotor</span><span class="o">.</span><span class="n">time_response</span><span class="p">(</span><span class="n">F</span><span class="p">,</span> <span class="n">t</span><span class="p">)</span> <span class="c1"># doctest: +ELLIPSIS</span>
+<span class="go">(array([0.        , 0.18518519, 0.37037037, ...</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="ross.Rotor.transfer_matrix">
+<code class="sig-name descname">transfer_matrix</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">frequency=None</em>, <em class="sig-param">speed=None</em>, <em class="sig-param">modes=None</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/rotor_assembly.html#Rotor.transfer_matrix"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.Rotor.transfer_matrix" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculates the fer matrix for the frequency response function (FRF)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>H</strong><span class="classifier">matrix</span></dt><dd><p>System transfer matrix</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="ross.Rotor.unbalance_response">
+<code class="sig-name descname">unbalance_response</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">node</em>, <em class="sig-param">magnitude</em>, <em class="sig-param">phase</em>, <em class="sig-param">frequency_range=None</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/rotor_assembly.html#Rotor.unbalance_response"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.Rotor.unbalance_response" title="Permalink to this definition">¶</a></dt>
+<dd><p>Unbalanced response for a mdof system.</p>
+<p>This method returns the unbalanced response for a mdof system
+given magnitide and phase of the unbalance, the node where it’s
+applied and a frequency range.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>node</strong><span class="classifier">list, int</span></dt><dd><p>Node where the unbalance is applied.</p>
+</dd>
+<dt><strong>magnitude</strong><span class="classifier">list, float</span></dt><dd><p>Unbalance magnitude (kg.m)</p>
+</dd>
+<dt><strong>phase</strong><span class="classifier">list, float</span></dt><dd><p>Unbalance phase (rad)</p>
+</dd>
+<dt><strong>frequency_range</strong><span class="classifier">list, float</span></dt><dd><p>Array with the desired range of frequencies</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>force_resp</strong><span class="classifier">array</span></dt><dd><p>Array with the force response for each node for each frequency</p>
+</dd>
+<dt><strong>speed_range</strong><span class="classifier">array</span></dt><dd><p>Array with the frequencies</p>
+</dd>
+<dt><strong>magdb</strong><span class="classifier">array</span></dt><dd><p>Magnitude (dB) of the frequency response for each pair input/output.
+The order of the array is: [output, input, magnitude]</p>
+</dd>
+<dt><strong>phase</strong><span class="classifier">array</span></dt><dd><p>Phase of the frequency response for each pair input/output.
+The order of the array is: [output, input, phase]</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">rotor</span> <span class="o">=</span> <span class="n">rotor_example</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">speed</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1000</span><span class="p">,</span> <span class="mi">101</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">response</span> <span class="o">=</span> <span class="n">rotor</span><span class="o">.</span><span class="n">unbalance_response</span><span class="p">(</span><span class="n">node</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">magnitude</span><span class="o">=</span><span class="mf">10.0</span><span class="p">,</span> <span class="n">phase</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">frequency_range</span><span class="o">=</span><span class="n">speed</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">response</span><span class="o">.</span><span class="n">magnitude</span> <span class="c1"># doctest: +ELLIPSIS</span>
+<span class="go">array([[0.00000000e+00, 5.06073311e-04, 2.10044826e-03, ...</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="ross.Rotor.whirl_direction">
+<code class="sig-name descname">whirl_direction</code><span class="sig-paren">(</span><em class="sig-param">self</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/rotor_assembly.html#Rotor.whirl_direction"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.Rotor.whirl_direction" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the whirl direction for each frequency.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>whirl_w</strong><span class="classifier">array</span></dt><dd><p>An array of strings indicating the direction of precession related
+to the kappa_mode. Backward, Mixed or Forward depending on values
+of kappa_mode.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="ross.Rotor.whirl_values">
+<code class="sig-name descname">whirl_values</code><span class="sig-paren">(</span><em class="sig-param">self</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/rotor_assembly.html#Rotor.whirl_values"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.Rotor.whirl_values" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the whirl value (0., 0.5, or 1.) for each frequency.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><dl class="simple">
+<dt>whirl_to_cmap</dt><dd><p>0.0 - if the whirl is Forward
+0.5 - if the whirl is Mixed
+1.0 - if the whirl is Backward</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<p class="rubric">Attributes</p>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">w</span></code></p></td>
+<td><p>Set rotor speed as property</p></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
+    </p>
+    <p>
+        &copy; Copyright 2019, Team Ross.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.1.2.<br/>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>
