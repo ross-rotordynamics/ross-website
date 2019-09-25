@@ -363,16 +363,16 @@ div.rendered_html tbody tr:hover {
 <div class="section" id="Example-8---Overhung-rotor.">
 <h1>Example 8 - Overhung rotor.<a class="headerlink" href="#Example-8---Overhung-rotor." title="Permalink to this headline">¶</a></h1>
 <p>In this example, we use the rotor seen in Example 5.9.9 from ‘Dynamics of Rotating Machinery’ by MI Friswell, JET Penny, SD Garvey &amp; AW Lees, published by Cambridge University Press, 2010.</p>
-<p>The shaft is <img class="math" src="../_images/math/1cb0ad406da22ee996f28e891523100cd5dbe85e.png" alt="1.5m"/> long and the diameter is <img class="math" src="../_images/math/ed1b3b3c7d74274e81c8a022d8cc2bc15be419e2.png" alt="50 mm"/> with a disk of diameter <img class="math" src="../_images/math/4f4b22979b85249d9f058ff33409cc271aeee22a.png" alt="350mm"/> and thickness <img class="math" src="../_images/math/78833c32b0ef7ad234f7aefc113c3908bd02f4f8.png" alt="70 mm"/>. The two bearings, have a stiffness of <img class="math" src="../_images/math/d5bc85a73b9f2c7d8da1e2b87270ec0fc16d9d5b.png" alt="10 MN/m"/> in each direction. The shaft and disk are made of steel. Damping is neglected.</p>
+<p>The shaft is <span class="math">1.5m</span> long and the diameter is <span class="math">50 mm</span> with a disk of diameter <span class="math">350mm</span> and thickness <span class="math">70 mm</span>. The two bearings, have a stiffness of <span class="math">10 MN/m</span> in each direction. The shaft and disk are made of steel. Damping is neglected.</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="kn">import</span> <span class="nn">ross</span> <span class="k">as</span> <span class="nn">rs</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">from</span> <span class="nn">bokeh.io</span> <span class="k">import</span> <span class="n">output_notebook</span><span class="p">,</span> <span class="n">show</span>
-<span class="n">output_notebook</span><span class="p">()</span>
+<span></span>import ross as rs
+import numpy as np
+from bokeh.io import output_notebook, show
+output_notebook()
 </pre></div>
 </div>
 </div>
@@ -689,33 +689,33 @@ var element = document.currentScript.previousSibling.previousSibling;
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">shaft_elements</span> <span class="o">=</span><span class="p">[]</span>
-<span class="n">disk_elements</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="n">bearing_seal_elements</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="n">Steel</span> <span class="o">=</span> <span class="n">rs</span><span class="o">.</span><span class="n">steel</span>
+<span></span>shaft_elements =[]
+disk_elements = []
+bearing_seal_elements = []
+Steel = rs.steel
 
-<span class="n">bearing_seal_elements</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">rs</span><span class="o">.</span><span class="n">BearingElement</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">kxx</span><span class="o">=</span><span class="mf">10e6</span><span class="p">,</span><span class="n">kyy</span><span class="o">=</span><span class="mf">10e6</span><span class="p">,</span><span class="n">cxx</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">cyy</span><span class="o">=</span><span class="mi">0</span><span class="p">))</span>
-<span class="n">bearing_seal_elements</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">rs</span><span class="o">.</span><span class="n">BearingElement</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">kxx</span><span class="o">=</span><span class="mf">10e6</span><span class="p">,</span><span class="n">kyy</span><span class="o">=</span><span class="mf">10e6</span><span class="p">,</span><span class="n">cxx</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">cyy</span><span class="o">=</span><span class="mi">0</span><span class="p">))</span>
+bearing_seal_elements.append(rs.BearingElement(n=0,kxx=10e6,kyy=10e6,cxx=0,cyy=0))
+bearing_seal_elements.append(rs.BearingElement(n=1,kxx=10e6,kyy=10e6,cxx=0,cyy=0))
 
-<span class="n">shaft_elements</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">rs</span><span class="o">.</span><span class="n">ShaftElement</span><span class="p">(</span><span class="n">material</span><span class="o">=</span><span class="n">Steel</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">L</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">o_d</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span><span class="n">i_d</span><span class="o">=</span><span class="mi">0</span><span class="p">))</span>
-<span class="n">shaft_elements</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">rs</span><span class="o">.</span><span class="n">ShaftElement</span><span class="p">(</span><span class="n">material</span><span class="o">=</span><span class="n">Steel</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">L</span><span class="o">=.</span><span class="mi">5</span><span class="p">,</span><span class="n">o_d</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span><span class="n">i_d</span><span class="o">=</span><span class="mi">0</span><span class="p">))</span>
+shaft_elements.append(rs.ShaftElement(material=Steel, n=0,L=1,o_d=0.05,i_d=0))
+shaft_elements.append(rs.ShaftElement(material=Steel, n=1,L=.5,o_d=0.05,i_d=0))
 
-<span class="n">disk_elements</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">rs</span><span class="o">.</span><span class="n">DiskElement</span><span class="o">.</span><span class="n">from_geometry</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span><span class="n">i_d</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span><span class="n">o_d</span><span class="o">=</span><span class="mf">0.35</span><span class="p">,</span><span class="n">width</span><span class="o">=</span><span class="mf">0.07</span><span class="p">,</span><span class="n">material</span><span class="o">=</span><span class="n">Steel</span><span class="p">))</span>
+disk_elements.append(rs.DiskElement.from_geometry(n=2,i_d=0.05,o_d=0.35,width=0.07,material=Steel))
 
-<span class="c1">#Moment approach</span>
-<span class="n">overhung_rotor</span> <span class="o">=</span> <span class="n">rs</span><span class="o">.</span><span class="n">Rotor</span><span class="p">(</span><span class="n">shaft_elements</span><span class="o">=</span><span class="n">shaft_elements</span><span class="p">,</span>
-                          <span class="n">bearing_seal_elements</span><span class="o">=</span><span class="n">bearing_seal_elements</span><span class="p">,</span>
-                          <span class="n">disk_elements</span><span class="o">=</span><span class="n">disk_elements</span><span class="p">)</span>
-<span class="c1">#from section approach</span>
-<span class="n">leng_data</span> <span class="o">=</span> <span class="p">[</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">0.5</span><span class="p">]</span>
+#Moment approach
+overhung_rotor = rs.Rotor(shaft_elements=shaft_elements,
+                          bearing_seal_elements=bearing_seal_elements,
+                          disk_elements=disk_elements)
+#from section approach
+leng_data = [1.0,0.5]
 
-<span class="n">overhung_from_section_rotor</span> <span class="o">=</span> <span class="n">rs</span><span class="o">.</span><span class="n">Rotor</span><span class="o">.</span><span class="n">from_section</span><span class="p">(</span><span class="n">brg_seal_data</span><span class="o">=</span><span class="n">bearing_seal_elements</span><span class="p">,</span>
-                                                    <span class="n">disk_data</span><span class="o">=</span><span class="n">disk_elements</span><span class="p">,</span>
-                                                    <span class="n">leng_data</span><span class="o">=</span><span class="n">leng_data</span><span class="p">,</span>
-                                                    <span class="n">i_ds_data</span><span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span> <span class="p">,</span>
-                                                    <span class="n">o_ds_data</span><span class="o">=</span> <span class="p">[</span><span class="mf">0.05</span><span class="p">,</span><span class="mf">0.05</span><span class="p">]</span>
-                                                   <span class="p">)</span>
-<span class="n">overhung_from_section_rotor</span><span class="o">.</span><span class="n">plot_rotor</span><span class="p">(</span><span class="n">plot_type</span><span class="o">=</span><span class="s1">&#39;bokeh&#39;</span><span class="p">)</span>
+overhung_from_section_rotor = rs.Rotor.from_section(brg_seal_data=bearing_seal_elements,
+                                                    disk_data=disk_elements,
+                                                    leng_data=leng_data,
+                                                    i_ds_data= [0,0] ,
+                                                    o_ds_data= [0.05,0.05]
+                                                   )
+overhung_from_section_rotor.plot_rotor(plot_type=&#39;bokeh&#39;)
 </pre></div>
 </div>
 </div>
@@ -787,7 +787,7 @@ var element = document.currentScript.previousSibling.previousSibling;
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
 
-<span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;From section approach =&#39;</span><span class="p">,</span><span class="n">overhung_from_section_rotor</span><span class="o">.</span><span class="n">wn</span><span class="o">/</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">))</span>
+<span></span>print(&#39;From section approach =&#39;,overhung_from_section_rotor.wn/(2*np.pi))
 </pre></div>
 </div>
 </div>
@@ -805,7 +805,7 @@ From section approach = [ 14.34690401  14.34690401 109.31683436 109.31683437 134
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">show</span><span class="p">(</span><span class="n">overhung_from_section_rotor</span><span class="o">.</span><span class="n">run_campbell</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">4000</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mi">30</span><span class="p">,</span><span class="mi">100</span><span class="p">))</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">plot_type</span><span class="o">=</span><span class="s1">&#39;bokeh&#39;</span><span class="p">))</span>
+<span></span>show(overhung_from_section_rotor.run_campbell(np.linspace(0,4000*np.pi/30,100)).plot(plot_type=&#39;bokeh&#39;))
 </pre></div>
 </div>
 </div>
@@ -882,7 +882,7 @@ var element = document.currentScript.previousSibling.previousSibling;
     </p>
     <p>
         &copy; Copyright 2019, Team Ross.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.1.2.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.2.0.<br/>
     </p>
   </div>
 </footer>

@@ -219,7 +219,7 @@ Default is 12.</p>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">bearing1</span> <span class="o">=</span> <span class="n">rs</span><span class="o">.</span><span class="n">BearingElement</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">kxx</span><span class="o">=</span><span class="n">stf</span><span class="p">,</span> <span class="n">cxx</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">rotor</span> <span class="o">=</span> <span class="n">rs</span><span class="o">.</span><span class="n">Rotor</span><span class="p">(</span><span class="n">shaft_elm</span><span class="p">,</span> <span class="p">[</span><span class="n">disk0</span><span class="p">],</span> <span class="p">[</span><span class="n">bearing0</span><span class="p">,</span> <span class="n">bearing1</span><span class="p">])</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">rotor</span><span class="o">.</span><span class="n">run_modal</span><span class="p">()</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">rotor</span><span class="o">.</span><span class="n">wd</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="c1"># doctest: +ELLIPSIS</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">rotor</span><span class="o">.</span><span class="n">wd</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> 
 <span class="go">215.3707...</span>
 </pre></div>
 </div>
@@ -330,11 +330,11 @@ Default is 12.</p>
 <dd><p>Calculates the H matrix for a given node and natural frequency.</p>
 <p>The matrix H contains information about the whirl direction,
 the orbit minor and major axis and the orbit inclination.
-The matrix is calculated by <img class="math" src="../../_images/math/3b27998d3dfe4f8b5adf481bf7e90ed6aa6d9088.png" alt="H = T.T^T"/> where the
+The matrix is calculated by <span class="math">H = T.T^T</span> where the
 matrix T is constructed using the eigenvector corresponding
 to the natural frequency of interest:</p>
 <div class="math">
-<p><img src="../../_images/math/32221331ee2b58043e0d4911d992a33e68cfd3cf.png" alt="\begin{eqnarray}
+<p><span class="math">\begin{eqnarray}
    \begin{bmatrix}
    u(t)\\
    v(t)
@@ -355,16 +355,16 @@ to the natural frequency of interest:</p>
    cos(\omega_i t)\\
    sin(\omega_i t)
    \end{bmatrix}
-\end{eqnarray}"/></p>
-</div><p>Where <img class="math" src="../../_images/math/e81abf32f6045fc554966d062fb95d76371e17fa.png" alt="r_u e^{j\eta_u}"/> e <img class="math" src="../../_images/math/fea59596b40588b1e9cd10fac43cc31c3bdb4f99.png" alt="r_v e^{j\eta_v}"/> are the
+\end{eqnarray}</span></p>
+</div><p>Where <span class="math">r_u e^{j\eta_u}</span> e <span class="math">r_v e^{j\eta_v}</span> are the
 elements of the <em>i</em>th eigenvector, corresponding to the node and
 natural frequency of interest (mode).</p>
 <div class="math">
-<p><img src="../../_images/math/13201a3bf4d4a2418e9ccd79b7b521c375251e31.png" alt="{\bf T} =
+<p><span class="math">{\bf T} =
 \begin{bmatrix}
 r_u cos(\eta_u) &amp; -r_u sin(\eta_u)\\
 r_u cos(\eta_u) &amp; -r_v sin(\eta_v)
-\end{bmatrix}"/></p>
+\end{bmatrix}</span></p>
 </div><dl class="field-list">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl>
@@ -374,7 +374,7 @@ r_u cos(\eta_u) &amp; -r_v sin(\eta_v)
 of interest.</p>
 </dd>
 <dt><strong>return_T: bool, optional</strong></dt><dd><p>If True, returns the H matrix and a dictionary with the
-values for <img class="math" src="../../_images/math/d1dc9a2744fa44aa059120f954001e8fdf32425d.png" alt="r_u, r_v, \eta_u, \eta_v"/>.</p>
+values for <span class="math">r_u, r_v, \eta_u, \eta_v</span>.</p>
 <p>Default is false.</p>
 </dd>
 </dl>
@@ -383,7 +383,7 @@ values for <img class="math" src="../../_images/math/d1dc9a2744fa44aa059120f9540
 <dd class="field-even"><dl>
 <dt>H: array</dt><dd><p>Matrix H.</p>
 </dd>
-<dt>Tdic: dict</dt><dd><p>Dictionary with values for <img class="math" src="../../_images/math/d1dc9a2744fa44aa059120f954001e8fdf32425d.png" alt="r_u, r_v, \eta_u, \eta_v"/>.</p>
+<dt>Tdic: dict</dt><dd><p>Dictionary with values for <span class="math">r_u, r_v, \eta_u, \eta_v</span>.</p>
 <p>It will be returned only if return_T is True.</p>
 </dd>
 </dl>
@@ -567,13 +567,13 @@ Default is 12.</p>
 <code class="sig-name descname">kappa</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">node</em>, <em class="sig-param">w</em>, <em class="sig-param">wd=True</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/rotor_assembly.html#Rotor.kappa"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.Rotor.kappa" title="Permalink to this definition">¶</a></dt>
 <dd><p>Calculates kappa for a given node and natural frequency.</p>
 <p>w is the the index of the natural frequency of interest.
-The function calculates the orbit parameter <img class="math" src="../../_images/math/261e3eb56c1757dd003745ee4cc53aa595565af1.png" alt="\kappa"/>:</p>
+The function calculates the orbit parameter <span class="math">\kappa</span>:</p>
 <div class="math">
-<p><img src="../../_images/math/fa2758e7525ec8fea770d54989d2588a12a08465.png" alt="\kappa = \pm \sqrt{\lambda_2 / \lambda_1}"/></p>
-</div><p>Where <img class="math" src="../../_images/math/a6c6818b47bc1e06473cce44c1ffca96017e69bf.png" alt="\sqrt{\lambda_1}"/> is the length of the semiminor axes
-and <img class="math" src="../../_images/math/077d17789a703e33a62c19aa9dc223c30e5c90ec.png" alt="\sqrt{\lambda_2}"/> is the length of the semimajor axes.</p>
-<p>If <img class="math" src="../../_images/math/114ac98263a463689a457b529ed647ff0ac30dcb.png" alt="\kappa = \pm 1"/>, the orbit is circular.</p>
-<p>If <img class="math" src="../../_images/math/261e3eb56c1757dd003745ee4cc53aa595565af1.png" alt="\kappa"/> is positive we have a forward rotating orbit
+<p><span class="math">\kappa = \pm \sqrt{\lambda_2 / \lambda_1}</span></p>
+</div><p>Where <span class="math">\sqrt{\lambda_1}</span> is the length of the semiminor axes
+and <span class="math">\sqrt{\lambda_2}</span> is the length of the semimajor axes.</p>
+<p>If <span class="math">\kappa = \pm 1</span>, the orbit is circular.</p>
+<p>If <span class="math">\kappa</span> is positive we have a forward rotating orbit
 and if it is negative we have a backward rotating orbit.</p>
 <dl class="field-list">
 <dt class="field-odd">Parameters</dt>
@@ -600,10 +600,10 @@ major axis, minor axis and kappa.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">rotor</span> <span class="o">=</span> <span class="n">rotor_example</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="c1"># kappa for each node of the first natural frequency</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="c1"># Major axes for node 0 and natural frequency (mode) 0.</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">rotor</span><span class="o">.</span><span class="n">kappa</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)[</span><span class="s1">&#39;Major axes&#39;</span><span class="p">]</span> <span class="c1"># doctest: +ELLIPSIS</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">rotor</span><span class="o">.</span><span class="n">kappa</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)[</span><span class="s1">&#39;Major axes&#39;</span><span class="p">]</span> 
 <span class="go">0.00141...</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="c1"># kappa for node 2 and natural frequency (mode) 3.</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">kappa</span> <span class="o">=</span> <span class="n">rotor</span><span class="o">.</span><span class="n">kappa</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)[</span><span class="s1">&#39;kappa&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="c1"># doctest: +ELLIPSIS</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">kappa</span> <span class="o">=</span> <span class="n">rotor</span><span class="o">.</span><span class="n">kappa</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)[</span><span class="s1">&#39;kappa&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> 
 </pre></div>
 </div>
 </dd></dl>
@@ -634,7 +634,7 @@ to the mode/natural frequency of interest.</p>
 <p class="rubric">Examples</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">rotor</span> <span class="o">=</span> <span class="n">rotor_example</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="c1"># kappa for each node of the first natural frequency</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">rotor</span><span class="o">.</span><span class="n">kappa_mode</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="c1"># doctest: +ELLIPSIS</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">rotor</span><span class="o">.</span><span class="n">kappa_mode</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> 
 <span class="go">[...]</span>
 </pre></div>
 </div>
@@ -758,7 +758,7 @@ Default is False</p>
 <span class="go">    ..</span>
 </pre></div>
 </div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">rotor</span><span class="o">.</span><span class="n">plot_level1</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">stiffness_range</span><span class="o">=</span><span class="p">(</span><span class="mf">1e6</span><span class="p">,</span> <span class="mf">1e11</span><span class="p">))</span> <span class="c1"># doctest: +ELLIPSIS</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">rotor</span><span class="o">.</span><span class="n">plot_level1</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">stiffness_range</span><span class="o">=</span><span class="p">(</span><span class="mf">1e6</span><span class="p">,</span> <span class="mf">1e11</span><span class="p">))</span> 
 <span class="go">    ..</span>
 </pre></div>
 </div>
@@ -805,7 +805,7 @@ Default is matplotlib.</p>
 <span class="go">    ..</span>
 </pre></div>
 </div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">rotor</span><span class="o">.</span><span class="n">plot_rotor</span><span class="p">()</span> <span class="c1"># doctest: +ELLIPSIS</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">rotor</span><span class="o">.</span><span class="n">plot_rotor</span><span class="p">()</span> 
 <span class="go">    ..</span>
 </pre></div>
 </div>
@@ -891,7 +891,7 @@ It will be returned if plot=False.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">rotor1</span> <span class="o">=</span> <span class="n">rotor_example</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">speed</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">400</span><span class="p">,</span> <span class="mi">101</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">camp</span> <span class="o">=</span> <span class="n">rotor1</span><span class="o">.</span><span class="n">run_campbell</span><span class="p">(</span><span class="n">speed</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">camp</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span> <span class="c1"># doctest: +ELLIPSIS</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">camp</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span> 
 <span class="go">Figure...</span>
 </pre></div>
 </div>
@@ -934,7 +934,7 @@ applied and a frequency range.</p>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">speed</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1000</span><span class="p">,</span> <span class="mi">101</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">force</span> <span class="o">=</span> <span class="n">rotor</span><span class="o">.</span><span class="n">_unbalance_force</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mf">10.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="n">speed</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">resp</span> <span class="o">=</span> <span class="n">rotor</span><span class="o">.</span><span class="n">run_forced_response</span><span class="p">(</span><span class="n">force</span><span class="o">=</span><span class="n">force</span><span class="p">,</span> <span class="n">speed_range</span><span class="o">=</span><span class="n">speed</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">resp</span><span class="o">.</span><span class="n">magnitude</span> <span class="c1"># doctest: +ELLIPSIS</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">resp</span><span class="o">.</span><span class="n">magnitude</span> 
 <span class="go">array([[0.00000000e+00, 5.06073311e-04, 2.10044826e-03, ...</span>
 </pre></div>
 </div>
@@ -973,7 +973,7 @@ It will be returned if plot=False.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">rotor</span> <span class="o">=</span> <span class="n">rotor_example</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">speed</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1000</span><span class="p">,</span> <span class="mi">101</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">response</span> <span class="o">=</span> <span class="n">rotor</span><span class="o">.</span><span class="n">run_freq_response</span><span class="p">(</span><span class="n">speed_range</span><span class="o">=</span><span class="n">speed</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">response</span><span class="o">.</span><span class="n">magnitude</span> <span class="c1"># doctest: +ELLIPSIS</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">response</span><span class="o">.</span><span class="n">magnitude</span> 
 <span class="go">array([[[1.00000000e-06, 1.00261725e-06, 1.01076952e-06, ...</span>
 </pre></div>
 </div>
@@ -1072,7 +1072,7 @@ It will be returned if plot=False.</p>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="n">size</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">F</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="n">size</span><span class="p">,</span> <span class="n">size</span><span class="p">))</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">dof</span> <span class="o">=</span> <span class="mi">13</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">response</span> <span class="o">=</span> <span class="n">rotor</span><span class="o">.</span><span class="n">run_time_response</span><span class="p">(</span><span class="n">F</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">dof</span><span class="p">)</span> <span class="c1"># doctest: +ELLIPSIS</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">response</span> <span class="o">=</span> <span class="n">rotor</span><span class="o">.</span><span class="n">run_time_response</span><span class="p">(</span><span class="n">F</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">dof</span><span class="p">)</span> 
 <span class="gp">&gt;&gt;&gt; </span><span class="n">response</span><span class="o">.</span><span class="n">yout</span><span class="p">[:,</span> <span class="n">dof</span><span class="p">]</span>
 <span class="go">array([ 0.00000000e+00,  1.06327334e-05,  1.54684988e-05, ...</span>
 </pre></div>
@@ -1149,7 +1149,7 @@ given a force, time and initial conditions.</p>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">size</span> <span class="o">=</span> <span class="n">rotor</span><span class="o">.</span><span class="n">lti</span><span class="o">.</span><span class="n">B</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="n">size</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">F</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="n">size</span><span class="p">,</span> <span class="n">size</span><span class="p">))</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">rotor</span><span class="o">.</span><span class="n">time_response</span><span class="p">(</span><span class="n">F</span><span class="p">,</span> <span class="n">t</span><span class="p">)</span> <span class="c1"># doctest: +ELLIPSIS</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">rotor</span><span class="o">.</span><span class="n">time_response</span><span class="p">(</span><span class="n">F</span><span class="p">,</span> <span class="n">t</span><span class="p">)</span> 
 <span class="go">(array([0.        , 0.18518519, 0.37037037, ...</span>
 </pre></div>
 </div>
@@ -1208,7 +1208,7 @@ The order of the array is: [output, input, phase]</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">rotor</span> <span class="o">=</span> <span class="n">rotor_example</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">speed</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1000</span><span class="p">,</span> <span class="mi">101</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">response</span> <span class="o">=</span> <span class="n">rotor</span><span class="o">.</span><span class="n">unbalance_response</span><span class="p">(</span><span class="n">node</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">magnitude</span><span class="o">=</span><span class="mf">10.0</span><span class="p">,</span> <span class="n">phase</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">frequency_range</span><span class="o">=</span><span class="n">speed</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">response</span><span class="o">.</span><span class="n">magnitude</span> <span class="c1"># doctest: +ELLIPSIS</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">response</span><span class="o">.</span><span class="n">magnitude</span> 
 <span class="go">array([[0.00000000e+00, 5.06073311e-04, 2.10044826e-03, ...</span>
 </pre></div>
 </div>
@@ -1275,7 +1275,7 @@ of kappa_mode.</p>
     </p>
     <p>
         &copy; Copyright 2019, Team Ross.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.1.2.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.2.0.<br/>
     </p>
   </div>
 </footer>

@@ -362,18 +362,18 @@ div.rendered_html tbody tr:hover {
 </style>
 <div class="section" id="Example-3---Isotropic-Bearings,-asymmetrical-rotor.">
 <h1>Example 3 - Isotropic Bearings, asymmetrical rotor.<a class="headerlink" href="#Example-3---Isotropic-Bearings,-asymmetrical-rotor." title="Permalink to this headline">¶</a></h1>
-<p>In this example, we use the rotor seen in Example 5.9.1 from ‘Dynamics of Rotating Machinery’ by MI Friswell, JET Penny, SD Garvey &amp; AW Lees, published by Cambridge University Press, 2010. A 1.5-m-long shaft, with a diameter of <img class="math" src="../_images/math/b6a838645ef92a97e0bbb2cc48453c1958f1e0b0.png" alt="0.05 m"/>. The disks are keyed to the shaft at <img class="math" src="../_images/math/b44fd1b6dc8c77975b68a57eb25231239a15d7b5.png" alt="0.5"/> and <img class="math" src="../_images/math/c08fb88342de6a308cce1ed37d750636a50738e1.png" alt="1 m"/> from one end. The left disk is <img class="math" src="../_images/math/e5a4d79bf7d809c38d742e7a8c6bda14dac98748.png" alt="0.07 m"/> thick with a diameter of <img class="math" src="../_images/math/7a36822c0dcb9c0a936162ebcd888bb9af8be4ee.png" alt="0.28 m"/>; the right disk is <img class="math" src="../_images/math/e5a4d79bf7d809c38d742e7a8c6bda14dac98748.png" alt="0.07 m"/> thick with a diameter of <img class="math" src="../_images/math/842e73ab8962fddf69e555678aef10d929a76923.png" alt="0.35 m"/>. For the shaft,
-<img class="math" src="../_images/math/9dc28cb9011dd98431f99c956e44f0f0ab74b9b2.png" alt="E = 211 GN/m^2"/> and <img class="math" src="../_images/math/9295a08b753cea3ce4b9fd75e44f839bd0f43571.png" alt="G = 81.2 GN/m^2"/>. There is no internal shaft damping. For both the shaft and the disks, <img class="math" src="../_images/math/a2d54b421ecc0e7f5e77443d765b82514c61eab9.png" alt="\rho = 7,810 kg/m^3"/>. The shaft is supported by identical bearings at its ends.</p>
-<p>These bearings are isotropic and have a stiffness of <img class="math" src="../_images/math/df663cf4255e568d994292a8c91bf8c6718673b4.png" alt="1 MN/m"/> in both the x and y directions. The bearings contribute no additional stiffness to the rotational degrees of freedom and there is no damping or cross-coupling in the bearings.</p>
+<p>In this example, we use the rotor seen in Example 5.9.1 from ‘Dynamics of Rotating Machinery’ by MI Friswell, JET Penny, SD Garvey &amp; AW Lees, published by Cambridge University Press, 2010. A 1.5-m-long shaft, with a diameter of <span class="math">0.05 m</span>. The disks are keyed to the shaft at <span class="math">0.5</span> and <span class="math">1 m</span> from one end. The left disk is <span class="math">0.07 m</span> thick with a diameter of <span class="math">0.28 m</span>; the right disk is <span class="math">0.07 m</span> thick with a diameter of <span class="math">0.35 m</span>. For the shaft,
+<span class="math">E = 211 GN/m^2</span> and <span class="math">G = 81.2 GN/m^2</span>. There is no internal shaft damping. For both the shaft and the disks, <span class="math">\rho = 7,810 kg/m^3</span>. The shaft is supported by identical bearings at its ends.</p>
+<p>These bearings are isotropic and have a stiffness of <span class="math">1 MN/m</span> in both the x and y directions. The bearings contribute no additional stiffness to the rotational degrees of freedom and there is no damping or cross-coupling in the bearings.</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="kn">from</span> <span class="nn">bokeh.io</span> <span class="k">import</span> <span class="n">output_notebook</span><span class="p">,</span> <span class="n">show</span>
-<span class="kn">import</span> <span class="nn">ross</span> <span class="k">as</span> <span class="nn">rs</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="n">output_notebook</span><span class="p">()</span>
+<span></span>from bokeh.io import output_notebook, show
+import ross as rs
+import numpy as np
+output_notebook()
 </pre></div>
 </div>
 </div>
@@ -690,37 +690,37 @@ var element = document.currentScript.previousSibling.previousSibling;
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="c1">#Classic Instantiation of the rotor</span>
-<span class="n">shaft_elements</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="n">bearing_seal_elements</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="n">disk_elements</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="n">Steel</span> <span class="o">=</span> <span class="n">rs</span><span class="o">.</span><span class="n">Material</span><span class="o">.</span><span class="n">use_material</span><span class="p">(</span><span class="s1">&#39;Steel&#39;</span><span class="p">)</span>
-<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">6</span><span class="p">):</span>
-    <span class="n">shaft_elements</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">rs</span><span class="o">.</span><span class="n">ShaftElement</span><span class="p">(</span><span class="n">L</span><span class="o">=</span><span class="mf">0.25</span><span class="p">,</span> <span class="n">material</span><span class="o">=</span><span class="n">Steel</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="n">i</span><span class="p">,</span> <span class="n">i_d</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">o_d</span><span class="o">=</span><span class="mf">0.05</span><span class="p">))</span>
+<span></span>#Classic Instantiation of the rotor
+shaft_elements = []
+bearing_seal_elements = []
+disk_elements = []
+Steel = rs.Material.use_material(&#39;Steel&#39;)
+for i in range(6):
+    shaft_elements.append(rs.ShaftElement(L=0.25, material=Steel, n=i, i_d=0, o_d=0.05))
 
-<span class="n">disk_elements</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">rs</span><span class="o">.</span><span class="n">DiskElement</span><span class="o">.</span><span class="n">from_geometry</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
-                                                  <span class="n">material</span><span class="o">=</span><span class="n">Steel</span><span class="p">,</span>
-                                                  <span class="n">width</span><span class="o">=</span><span class="mf">0.07</span><span class="p">,</span>
-                                                  <span class="n">i_d</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span>
-                                                  <span class="n">o_d</span><span class="o">=</span><span class="mf">0.28</span>
-                                                 <span class="p">)</span>
-                    <span class="p">)</span>
+disk_elements.append(rs.DiskElement.from_geometry(n=2,
+                                                  material=Steel,
+                                                  width=0.07,
+                                                  i_d=0.05,
+                                                  o_d=0.28
+                                                 )
+                    )
 
-<span class="n">disk_elements</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">rs</span><span class="o">.</span><span class="n">DiskElement</span><span class="o">.</span><span class="n">from_geometry</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span>
-                                                  <span class="n">material</span><span class="o">=</span><span class="n">Steel</span><span class="p">,</span>
-                                                  <span class="n">width</span><span class="o">=</span><span class="mf">0.07</span><span class="p">,</span>
-                                                  <span class="n">i_d</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span>
-                                                  <span class="n">o_d</span><span class="o">=</span><span class="mf">0.35</span>
-                                                 <span class="p">)</span>
-                    <span class="p">)</span>
-<span class="n">bearing_seal_elements</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">rs</span><span class="o">.</span><span class="n">BearingElement</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">kxx</span><span class="o">=</span><span class="mf">1e6</span><span class="p">,</span> <span class="n">kyy</span><span class="o">=</span><span class="mf">1e6</span><span class="p">,</span> <span class="n">cxx</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">cyy</span><span class="o">=</span><span class="mi">0</span><span class="p">))</span>
-<span class="n">bearing_seal_elements</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">rs</span><span class="o">.</span><span class="n">BearingElement</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span> <span class="n">kxx</span><span class="o">=</span><span class="mf">1e6</span><span class="p">,</span> <span class="n">kyy</span><span class="o">=</span><span class="mf">1e6</span><span class="p">,</span> <span class="n">cxx</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">cyy</span><span class="o">=</span><span class="mi">0</span><span class="p">))</span>
+disk_elements.append(rs.DiskElement.from_geometry(n=4,
+                                                  material=Steel,
+                                                  width=0.07,
+                                                  i_d=0.05,
+                                                  o_d=0.35
+                                                 )
+                    )
+bearing_seal_elements.append(rs.BearingElement(n=0, kxx=1e6, kyy=1e6, cxx=0, cyy=0))
+bearing_seal_elements.append(rs.BearingElement(n=6, kxx=1e6, kyy=1e6, cxx=0, cyy=0))
 
-<span class="n">rotor591c</span> <span class="o">=</span> <span class="n">rs</span><span class="o">.</span><span class="n">Rotor</span><span class="p">(</span><span class="n">shaft_elements</span><span class="o">=</span><span class="n">shaft_elements</span><span class="p">,</span>
-                     <span class="n">bearing_seal_elements</span><span class="o">=</span><span class="n">bearing_seal_elements</span><span class="p">,</span>
-                     <span class="n">disk_elements</span><span class="o">=</span><span class="n">disk_elements</span><span class="p">,</span><span class="n">n_eigen</span> <span class="o">=</span> <span class="mi">12</span><span class="p">)</span>
+rotor591c = rs.Rotor(shaft_elements=shaft_elements,
+                     bearing_seal_elements=bearing_seal_elements,
+                     disk_elements=disk_elements,n_eigen = 12)
 
-<span class="n">rotor591c</span><span class="o">.</span><span class="n">plot_rotor</span><span class="p">()</span>
+rotor591c.plot_rotor()
 </pre></div>
 </div>
 </div>
@@ -745,36 +745,36 @@ var element = document.currentScript.previousSibling.previousSibling;
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="c1">#From_section class method instantiation.</span>
-<span class="n">bearing_seal_elements</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="n">disk_elements</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="n">shaft_length_data</span> <span class="o">=</span> <span class="mi">3</span><span class="o">*</span><span class="p">[</span><span class="mf">0.5</span><span class="p">]</span>
-<span class="n">i_d</span> <span class="o">=</span> <span class="mi">3</span><span class="o">*</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-<span class="n">o_d</span> <span class="o">=</span> <span class="mi">3</span><span class="o">*</span><span class="p">[</span><span class="mf">0.05</span><span class="p">]</span>
+<span></span>#From_section class method instantiation.
+bearing_seal_elements = []
+disk_elements = []
+shaft_length_data = 3*[0.5]
+i_d = 3*[0]
+o_d = 3*[0.05]
 
-<span class="n">disk_elements</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">rs</span><span class="o">.</span><span class="n">DiskElement</span><span class="o">.</span><span class="n">from_geometry</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
-                                                  <span class="n">material</span><span class="o">=</span><span class="n">Steel</span><span class="p">,</span>
-                                                  <span class="n">width</span><span class="o">=</span><span class="mf">0.07</span><span class="p">,</span>
-                                                  <span class="n">i_d</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span>
-                                                  <span class="n">o_d</span><span class="o">=</span><span class="mf">0.28</span>
-                                                 <span class="p">)</span>
-                    <span class="p">)</span>
+disk_elements.append(rs.DiskElement.from_geometry(n=1,
+                                                  material=Steel,
+                                                  width=0.07,
+                                                  i_d=0.05,
+                                                  o_d=0.28
+                                                 )
+                    )
 
-<span class="n">disk_elements</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">rs</span><span class="o">.</span><span class="n">DiskElement</span><span class="o">.</span><span class="n">from_geometry</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
-                                                  <span class="n">material</span><span class="o">=</span><span class="n">Steel</span><span class="p">,</span>
-                                                  <span class="n">width</span><span class="o">=</span><span class="mf">0.07</span><span class="p">,</span>
-                                                  <span class="n">i_d</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span>
-                                                  <span class="n">o_d</span><span class="o">=</span><span class="mf">0.35</span>
-                                                 <span class="p">)</span>
-                    <span class="p">)</span>
-<span class="n">bearing_seal_elements</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">rs</span><span class="o">.</span><span class="n">BearingElement</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">kxx</span><span class="o">=</span><span class="mf">1e6</span><span class="p">,</span> <span class="n">kyy</span><span class="o">=</span><span class="mf">1e6</span><span class="p">,</span> <span class="n">cxx</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">cyy</span><span class="o">=</span><span class="mi">0</span><span class="p">))</span>
-<span class="n">bearing_seal_elements</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">rs</span><span class="o">.</span><span class="n">BearingElement</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">kxx</span><span class="o">=</span><span class="mf">1e6</span><span class="p">,</span> <span class="n">kyy</span><span class="o">=</span><span class="mf">1e6</span><span class="p">,</span> <span class="n">cxx</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">cyy</span><span class="o">=</span><span class="mi">0</span><span class="p">))</span>
+disk_elements.append(rs.DiskElement.from_geometry(n=2,
+                                                  material=Steel,
+                                                  width=0.07,
+                                                  i_d=0.05,
+                                                  o_d=0.35
+                                                 )
+                    )
+bearing_seal_elements.append(rs.BearingElement(n=0, kxx=1e6, kyy=1e6, cxx=0, cyy=0))
+bearing_seal_elements.append(rs.BearingElement(n=3, kxx=1e6, kyy=1e6, cxx=0, cyy=0))
 
-<span class="n">rotor591fs</span> <span class="o">=</span> <span class="n">rs</span><span class="o">.</span><span class="n">Rotor</span><span class="o">.</span><span class="n">from_section</span><span class="p">(</span><span class="n">brg_seal_data</span><span class="o">=</span><span class="n">bearing_seal_elements</span><span class="p">,</span>
-                                   <span class="n">disk_data</span><span class="o">=</span><span class="n">disk_elements</span><span class="p">,</span><span class="n">leng_data</span><span class="o">=</span><span class="n">shaft_length_data</span><span class="p">,</span>
-                                   <span class="n">i_ds_data</span><span class="o">=</span><span class="n">i_d</span><span class="p">,</span><span class="n">o_ds_data</span><span class="o">=</span><span class="n">o_d</span>
-                                  <span class="p">)</span>
-<span class="n">rotor591fs</span><span class="o">.</span><span class="n">plot_rotor</span><span class="p">(</span><span class="n">plot_type</span><span class="o">=</span><span class="s1">&#39;bokeh&#39;</span><span class="p">)</span>
+rotor591fs = rs.Rotor.from_section(brg_seal_data=bearing_seal_elements,
+                                   disk_data=disk_elements,leng_data=shaft_length_data,
+                                   i_ds_data=i_d,o_ds_data=o_d
+                                  )
+rotor591fs.plot_rotor(plot_type=&#39;bokeh&#39;)
 
 </pre></div>
 </div>
@@ -846,12 +846,12 @@ var element = document.currentScript.previousSibling.previousSibling;
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="c1">#Obtaining results (wn is in rad/s)</span>
-<span class="n">show</span><span class="p">(</span><span class="n">rotor591c</span><span class="o">.</span><span class="n">run_campbell</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">4000</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mi">30</span><span class="p">,</span><span class="mi">250</span><span class="p">))</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">plot_type</span><span class="o">=</span><span class="s1">&#39;bokeh&#39;</span><span class="p">))</span>
+<span></span>#Obtaining results (wn is in rad/s)
+show(rotor591c.run_campbell(np.linspace(0,4000*np.pi/30,250)).plot(plot_type=&#39;bokeh&#39;))
 
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Normal Instantiation =&#39;</span><span class="p">,</span> <span class="n">rotor591c</span><span class="o">.</span><span class="n">wn</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;From Section Instantiation =&#39;</span><span class="p">,</span> <span class="n">rotor591fs</span><span class="o">.</span><span class="n">wn</span><span class="p">)</span>
+print(&#39;Normal Instantiation =&#39;, rotor591c.wn)
+print(&#39;\n&#39;)
+print(&#39;From Section Instantiation =&#39;, rotor591fs.wn)
 </pre></div>
 </div>
 </div>
@@ -913,11 +913,11 @@ From Section Instantiation = [ 86.65926451  86.65926451 274.37573752 274.3757375
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="c1">#Obtaining modal results for w=4000RPM (wn is in rad/s)</span>
-<span class="n">rotor591c</span><span class="o">.</span><span class="n">w</span> <span class="o">=</span> <span class="mi">4000</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mi">30</span>
-<span class="n">rotor591c</span><span class="o">.</span><span class="n">run_modal</span><span class="p">()</span>
+<span></span>#Obtaining modal results for w=4000RPM (wn is in rad/s)
+rotor591c.w = 4000*np.pi/30
+rotor591c.run_modal()
 
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Normal Instantiation =&#39;</span><span class="p">,</span> <span class="n">rotor591c</span><span class="o">.</span><span class="n">wn</span><span class="p">)</span>
+print(&#39;Normal Instantiation =&#39;, rotor591c.wn)
 </pre></div>
 </div>
 </div>
@@ -972,7 +972,7 @@ Normal Instantiation = [ 85.389467    87.7958637  251.78460413 294.71333087 600.
     </p>
     <p>
         &copy; Copyright 2019, Team Ross.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.1.2.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.2.0.<br/>
     </p>
   </div>
 </footer>

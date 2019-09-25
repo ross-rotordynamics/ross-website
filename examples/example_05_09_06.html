@@ -370,10 +370,10 @@ of 0.1 Pa s.</p>
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="kn">from</span> <span class="nn">bokeh.io</span> <span class="k">import</span> <span class="n">output_notebook</span><span class="p">,</span> <span class="n">show</span>
-<span class="kn">import</span> <span class="nn">ross</span> <span class="k">as</span> <span class="nn">rs</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="n">output_notebook</span><span class="p">()</span>
+<span></span>from bokeh.io import output_notebook, show
+import ross as rs
+import numpy as np
+output_notebook()
 
 </pre></div>
 </div>
@@ -691,46 +691,46 @@ var element = document.currentScript.previousSibling.previousSibling;
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="c1"># Classic Instantiation of the rotor</span>
-<span class="n">shaft_elements</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="n">bearing_seal_elements</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="n">disk_elements</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="n">Steel</span> <span class="o">=</span> <span class="n">rs</span><span class="o">.</span><span class="n">materials</span><span class="o">.</span> <span class="n">steel</span>
-<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">6</span><span class="p">):</span>
-    <span class="n">shaft_elements</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">rs</span><span class="o">.</span><span class="n">ShaftElement</span><span class="p">(</span><span class="n">L</span><span class="o">=</span><span class="mf">0.25</span><span class="p">,</span> <span class="n">material</span><span class="o">=</span><span class="n">Steel</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="n">i</span><span class="p">,</span> <span class="n">i_d</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">o_d</span><span class="o">=</span><span class="mf">0.05</span><span class="p">))</span>
+<span></span># Classic Instantiation of the rotor
+shaft_elements = []
+bearing_seal_elements = []
+disk_elements = []
+Steel = rs.materials. steel
+for i in range(6):
+    shaft_elements.append(rs.ShaftElement(L=0.25, material=Steel, n=i, i_d=0, o_d=0.05))
 
-<span class="n">disk_elements</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">rs</span><span class="o">.</span><span class="n">DiskElement</span><span class="o">.</span><span class="n">from_geometry</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
-                                                  <span class="n">material</span><span class="o">=</span><span class="n">Steel</span><span class="p">,</span>
-                                                  <span class="n">width</span><span class="o">=</span><span class="mf">0.07</span><span class="p">,</span>
-                                                  <span class="n">i_d</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span>
-                                                  <span class="n">o_d</span><span class="o">=</span><span class="mf">0.28</span>
-                                                  <span class="p">)</span>
-                     <span class="p">)</span>
+disk_elements.append(rs.DiskElement.from_geometry(n=2,
+                                                  material=Steel,
+                                                  width=0.07,
+                                                  i_d=0.05,
+                                                  o_d=0.28
+                                                  )
+                     )
 
-<span class="n">disk_elements</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">rs</span><span class="o">.</span><span class="n">DiskElement</span><span class="o">.</span><span class="n">from_geometry</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span>
-                                                  <span class="n">material</span><span class="o">=</span><span class="n">Steel</span><span class="p">,</span>
-                                                  <span class="n">width</span><span class="o">=</span><span class="mf">0.07</span><span class="p">,</span>
-                                                  <span class="n">i_d</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span>
-                                                  <span class="n">o_d</span><span class="o">=</span><span class="mf">0.35</span>
-                                                  <span class="p">)</span>
-                     <span class="p">)</span>
+disk_elements.append(rs.DiskElement.from_geometry(n=4,
+                                                  material=Steel,
+                                                  width=0.07,
+                                                  i_d=0.05,
+                                                  o_d=0.35
+                                                  )
+                     )
 
-<span class="n">bearing_seal_elements</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">rs</span><span class="o">.</span><span class="n">BearingElement</span><span class="o">.</span><span class="n">from_fluid_flow</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">nz</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">ntheta</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">nradius</span><span class="o">=</span><span class="mi">11</span><span class="p">,</span>
-                                                               <span class="n">length</span><span class="o">=</span><span class="mf">0.03</span><span class="p">,</span> <span class="n">omega</span><span class="o">=</span><span class="mf">157.1</span><span class="p">,</span> <span class="n">p_in</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
-                                                               <span class="n">p_out</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">radius_rotor</span><span class="o">=</span><span class="mf">0.0499</span><span class="p">,</span>
-                                                               <span class="n">radius_stator</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span> <span class="n">visc</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span>
-                                                               <span class="n">rho</span><span class="o">=</span><span class="mf">860.</span><span class="p">,</span> <span class="n">load</span><span class="o">=</span><span class="mi">525</span><span class="p">))</span>
-<span class="n">bearing_seal_elements</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">rs</span><span class="o">.</span><span class="n">BearingElement</span><span class="o">.</span><span class="n">from_fluid_flow</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span> <span class="n">nz</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">ntheta</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">nradius</span><span class="o">=</span><span class="mi">11</span><span class="p">,</span>
-                                                               <span class="n">length</span><span class="o">=</span><span class="mf">0.03</span><span class="p">,</span> <span class="n">omega</span><span class="o">=</span><span class="mf">157.1</span><span class="p">,</span> <span class="n">p_in</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
-                                                               <span class="n">p_out</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">radius_rotor</span><span class="o">=</span><span class="mf">0.0499</span><span class="p">,</span>
-                                                               <span class="n">radius_stator</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span> <span class="n">visc</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span>
-                                                               <span class="n">rho</span><span class="o">=</span><span class="mf">860.</span><span class="p">,</span> <span class="n">load</span><span class="o">=</span><span class="mi">525</span><span class="p">))</span>
+bearing_seal_elements.append(rs.BearingElement.from_fluid_flow(n=0, nz=30, ntheta=20, nradius=11,
+                                                               length=0.03, omega=157.1, p_in=0,
+                                                               p_out=0, radius_rotor=0.0499,
+                                                               radius_stator=0.05, visc=0.1,
+                                                               rho=860., load=525))
+bearing_seal_elements.append(rs.BearingElement.from_fluid_flow(n=6, nz=30, ntheta=20, nradius=11,
+                                                               length=0.03, omega=157.1, p_in=0,
+                                                               p_out=0, radius_rotor=0.0499,
+                                                               radius_stator=0.05, visc=0.1,
+                                                               rho=860., load=525))
 
-<span class="n">rotor596c</span> <span class="o">=</span> <span class="n">rs</span><span class="o">.</span><span class="n">Rotor</span><span class="p">(</span><span class="n">shaft_elements</span><span class="o">=</span><span class="n">shaft_elements</span><span class="p">,</span>
-                     <span class="n">bearing_seal_elements</span><span class="o">=</span><span class="n">bearing_seal_elements</span><span class="p">,</span>
-                     <span class="n">disk_elements</span><span class="o">=</span><span class="n">disk_elements</span><span class="p">,</span> <span class="n">n_eigen</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+rotor596c = rs.Rotor(shaft_elements=shaft_elements,
+                     bearing_seal_elements=bearing_seal_elements,
+                     disk_elements=disk_elements, n_eigen=12)
 
-<span class="n">rotor596c</span><span class="o">.</span><span class="n">plot_rotor</span><span class="p">()</span>
+rotor596c.plot_rotor()
 
 </pre></div>
 </div>
@@ -778,36 +778,36 @@ var element = document.currentScript.previousSibling.previousSibling;
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="c1"># From_section class method instantiation</span>
-<span class="n">bearing_seal_elements</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="n">disk_elements</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="n">shaft_length_data</span> <span class="o">=</span> <span class="mi">3</span><span class="o">*</span><span class="p">[</span><span class="mf">0.5</span><span class="p">]</span>
-<span class="n">i_d</span> <span class="o">=</span> <span class="mi">3</span><span class="o">*</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-<span class="n">o_d</span> <span class="o">=</span> <span class="mi">3</span><span class="o">*</span><span class="p">[</span><span class="mf">0.05</span><span class="p">]</span>
+<span></span># From_section class method instantiation
+bearing_seal_elements = []
+disk_elements = []
+shaft_length_data = 3*[0.5]
+i_d = 3*[0]
+o_d = 3*[0.05]
 
-<span class="n">disk_elements</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">rs</span><span class="o">.</span><span class="n">DiskElement</span><span class="o">.</span><span class="n">from_geometry</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
-                                                  <span class="n">material</span><span class="o">=</span><span class="n">Steel</span><span class="p">,</span>
-                                                  <span class="n">width</span><span class="o">=</span><span class="mf">0.07</span><span class="p">,</span>
-                                                  <span class="n">i_d</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span>
-                                                  <span class="n">o_d</span><span class="o">=</span><span class="mf">0.28</span>
-                                                  <span class="p">)</span>
-                    <span class="p">)</span>
+disk_elements.append(rs.DiskElement.from_geometry(n=1,
+                                                  material=Steel,
+                                                  width=0.07,
+                                                  i_d=0.05,
+                                                  o_d=0.28
+                                                  )
+                    )
 
-<span class="n">disk_elements</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">rs</span><span class="o">.</span><span class="n">DiskElement</span><span class="o">.</span><span class="n">from_geometry</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
-                                                  <span class="n">material</span><span class="o">=</span><span class="n">Steel</span><span class="p">,</span>
-                                                  <span class="n">width</span><span class="o">=</span><span class="mf">0.07</span><span class="p">,</span>
-                                                  <span class="n">i_d</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span>
-                                                  <span class="n">o_d</span><span class="o">=</span><span class="mf">0.35</span>
-                                                  <span class="p">)</span>
-                     <span class="p">)</span>
-<span class="n">bearing_seal_elements</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">rs</span><span class="o">.</span><span class="n">BearingElement</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">kxx</span><span class="o">=</span><span class="mf">1e6</span><span class="p">,</span> <span class="n">kyy</span><span class="o">=</span><span class="mf">1e6</span><span class="p">,</span> <span class="n">cxx</span><span class="o">=</span><span class="mf">3e3</span><span class="p">,</span> <span class="n">cyy</span><span class="o">=</span><span class="mf">3e3</span><span class="p">))</span>
-<span class="n">bearing_seal_elements</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">rs</span><span class="o">.</span><span class="n">BearingElement</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">kxx</span><span class="o">=</span><span class="mf">1e6</span><span class="p">,</span> <span class="n">kyy</span><span class="o">=</span><span class="mf">1e6</span><span class="p">,</span> <span class="n">cxx</span><span class="o">=</span><span class="mf">3e3</span><span class="p">,</span> <span class="n">cyy</span><span class="o">=</span><span class="mf">3e3</span><span class="p">))</span>
+disk_elements.append(rs.DiskElement.from_geometry(n=2,
+                                                  material=Steel,
+                                                  width=0.07,
+                                                  i_d=0.05,
+                                                  o_d=0.35
+                                                  )
+                     )
+bearing_seal_elements.append(rs.BearingElement(n=0, kxx=1e6, kyy=1e6, cxx=3e3, cyy=3e3))
+bearing_seal_elements.append(rs.BearingElement(n=3, kxx=1e6, kyy=1e6, cxx=3e3, cyy=3e3))
 
-<span class="n">rotor596fs</span> <span class="o">=</span> <span class="n">rs</span><span class="o">.</span><span class="n">Rotor</span><span class="o">.</span><span class="n">from_section</span><span class="p">(</span><span class="n">brg_seal_data</span><span class="o">=</span><span class="n">bearing_seal_elements</span><span class="p">,</span>
-                                   <span class="n">disk_data</span><span class="o">=</span><span class="n">disk_elements</span><span class="p">,</span> <span class="n">leng_data</span><span class="o">=</span><span class="n">shaft_length_data</span><span class="p">,</span>
-                                   <span class="n">i_ds_data</span><span class="o">=</span><span class="n">i_d</span><span class="p">,</span><span class="n">o_ds_data</span><span class="o">=</span><span class="n">o_d</span>
-                                   <span class="p">)</span>
-<span class="n">rotor596fs</span><span class="o">.</span><span class="n">plot_rotor</span><span class="p">()</span>
+rotor596fs = rs.Rotor.from_section(brg_seal_data=bearing_seal_elements,
+                                   disk_data=disk_elements, leng_data=shaft_length_data,
+                                   i_ds_data=i_d,o_ds_data=o_d
+                                   )
+rotor596fs.plot_rotor()
 
 </pre></div>
 </div>
@@ -817,13 +817,13 @@ var element = document.currentScript.previousSibling.previousSibling;
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="c1"># Obtaining results for w = 200 rpm</span>
+<span></span># Obtaining results for w = 200 rpm
 
-<span class="n">rotor596fs</span><span class="o">.</span><span class="n">w</span> <span class="o">=</span> <span class="mi">200</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mi">30</span>
+rotor596fs.w = 200*np.pi/30
 
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Normal Instantiation =&#39;</span><span class="p">,</span> <span class="n">rotor596c</span><span class="o">.</span><span class="n">wn</span><span class="o">/</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">),</span> <span class="s1">&#39;[Hz]&#39;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;From Section Instantiation =&#39;</span><span class="p">,</span> <span class="n">rotor596fs</span><span class="o">.</span><span class="n">wn</span><span class="o">/</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">),</span> <span class="s1">&#39;[Hz]&#39;</span><span class="p">)</span>
+print(&#39;Normal Instantiation =&#39;, rotor596c.wn/(2*np.pi), &#39;[Hz]&#39;)
+print(&#39;\n&#39;)
+print(&#39;From Section Instantiation =&#39;, rotor596fs.wn/(2*np.pi), &#39;[Hz]&#39;)
 
 </pre></div>
 </div>
@@ -850,11 +850,11 @@ var element = document.currentScript.previousSibling.previousSibling;
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="c1"># Obtaining results for w=4000RPM</span>
+<span></span># Obtaining results for w=4000RPM
 
-<span class="n">rotor596c</span><span class="o">.</span><span class="n">w</span> <span class="o">=</span> <span class="mi">4000</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mi">30</span>
+rotor596c.w = 4000*np.pi/30
 
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Normal Instantiation =&#39;</span><span class="p">,</span> <span class="n">rotor596c</span><span class="o">.</span><span class="n">wn</span><span class="o">/</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">))</span>
+print(&#39;Normal Instantiation =&#39;, rotor596c.wn/(2*np.pi))
 
 </pre></div>
 </div>
@@ -864,7 +864,7 @@ var element = document.currentScript.previousSibling.previousSibling;
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">rotor596c</span><span class="o">.</span><span class="n">run_campbell</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">4000</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mi">30</span><span class="p">,</span> <span class="mi">100</span><span class="p">))</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+<span></span>rotor596c.run_campbell(np.linspace(0, 4000*np.pi/30, 100)).plot()
 
 </pre></div>
 </div>
@@ -902,7 +902,7 @@ var element = document.currentScript.previousSibling.previousSibling;
     </p>
     <p>
         &copy; Copyright 2019, Team Ross.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.1.2.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.2.0.<br/>
     </p>
   </div>
 </footer>

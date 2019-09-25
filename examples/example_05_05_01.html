@@ -368,10 +368,10 @@ both. The one not parameter not given is them calculated based on the other one.
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="kn">from</span> <span class="nn">bokeh.io</span> <span class="k">import</span> <span class="n">output_notebook</span><span class="p">,</span> <span class="n">show</span>
-<span class="kn">from</span> <span class="nn">ross.fluid_flow</span> <span class="k">import</span> <span class="n">fluid_flow</span> <span class="k">as</span> <span class="n">flow</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="n">output_notebook</span><span class="p">()</span>
+<span></span>from bokeh.io import output_notebook, show
+from ross.fluid_flow import fluid_flow as flow
+import numpy as np
+output_notebook()
 
 </pre></div>
 </div>
@@ -689,22 +689,22 @@ var element = document.currentScript.previousSibling.previousSibling;
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="c1"># Instantiating a Pressure Matrix</span>
-<span class="n">nz</span> <span class="o">=</span> <span class="mi">30</span>
-<span class="n">ntheta</span> <span class="o">=</span> <span class="mi">20</span>
-<span class="n">nradius</span> <span class="o">=</span> <span class="mi">11</span>
-<span class="n">length</span> <span class="o">=</span> <span class="mf">0.03</span>
-<span class="n">omega</span> <span class="o">=</span> <span class="mf">157.1</span>
-<span class="n">p_in</span> <span class="o">=</span> <span class="mf">0.</span>
-<span class="n">p_out</span> <span class="o">=</span> <span class="mf">0.</span>
-<span class="n">radius_rotor</span> <span class="o">=</span> <span class="mf">0.0499</span>
-<span class="n">radius_stator</span> <span class="o">=</span> <span class="mf">0.05</span>
-<span class="n">load</span> <span class="o">=</span> <span class="mi">525</span>
-<span class="n">visc</span> <span class="o">=</span> <span class="mf">0.1</span>
-<span class="n">rho</span> <span class="o">=</span> <span class="mf">860.</span>
-<span class="n">my_fluid_flow</span> <span class="o">=</span> <span class="n">flow</span><span class="o">.</span><span class="n">PressureMatrix</span><span class="p">(</span><span class="n">nz</span><span class="p">,</span> <span class="n">ntheta</span><span class="p">,</span> <span class="n">nradius</span><span class="p">,</span> <span class="n">length</span><span class="p">,</span> <span class="n">omega</span><span class="p">,</span> <span class="n">p_in</span><span class="p">,</span>
-                                    <span class="n">p_out</span><span class="p">,</span> <span class="n">radius_rotor</span><span class="p">,</span> <span class="n">radius_stator</span><span class="p">,</span>
-                                    <span class="n">visc</span><span class="p">,</span> <span class="n">rho</span><span class="p">,</span> <span class="n">load</span><span class="o">=</span><span class="n">load</span><span class="p">)</span>
+<span></span># Instantiating a Pressure Matrix
+nz = 30
+ntheta = 20
+nradius = 11
+length = 0.03
+omega = 157.1
+p_in = 0.
+p_out = 0.
+radius_rotor = 0.0499
+radius_stator = 0.05
+load = 525
+visc = 0.1
+rho = 860.
+my_fluid_flow = flow.PressureMatrix(nz, ntheta, nradius, length, omega, p_in,
+                                    p_out, radius_rotor, radius_stator,
+                                    visc, rho, load=load)
 </pre></div>
 </div>
 </div>
@@ -726,9 +726,9 @@ var element = document.currentScript.previousSibling.previousSibling;
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="c1"># Getting the eccentricity</span>
+<span></span># Getting the eccentricity
 
-<span class="n">my_fluid_flow</span><span class="o">.</span><span class="n">eccentricity</span>
+my_fluid_flow.eccentricity
 </pre></div>
 </div>
 </div>
@@ -746,9 +746,9 @@ var element = document.currentScript.previousSibling.previousSibling;
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="c1"># Calculating the sommerfeld number</span>
+<span></span># Calculating the sommerfeld number
 
-<span class="n">my_fluid_flow</span><span class="o">.</span><span class="n">sommerfeld_number</span><span class="p">()</span>
+my_fluid_flow.sommerfeld_number()
 </pre></div>
 </div>
 </div>
@@ -766,9 +766,9 @@ var element = document.currentScript.previousSibling.previousSibling;
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="c1"># Plotting the eccentricity</span>
+<span></span># Plotting the eccentricity
 
-<span class="n">my_fluid_flow</span><span class="o">.</span><span class="n">matplot_eccentricity</span><span class="p">()</span>
+my_fluid_flow.matplot_eccentricity()
 </pre></div>
 </div>
 </div>
@@ -803,9 +803,9 @@ var element = document.currentScript.previousSibling.previousSibling;
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="c1"># Getting the stiffness matrix</span>
+<span></span># Getting the stiffness matrix
 
-<span class="n">my_fluid_flow</span><span class="o">.</span><span class="n">get_analytical_stiffness_matrix</span><span class="p">()</span>
+my_fluid_flow.get_analytical_stiffness_matrix()
 </pre></div>
 </div>
 </div>
@@ -814,23 +814,23 @@ var element = document.currentScript.previousSibling.previousSibling;
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="c1"># Getting the damping matrix</span>
+<span></span># Getting the damping matrix
 
-<span class="n">my_fluid_flow</span><span class="o">.</span><span class="n">get_analytical_damping_matrix</span><span class="p">()</span>
+my_fluid_flow.get_analytical_damping_matrix()
 </pre></div>
 </div>
 </div>
 <p>The stiffness and damping matrices can be calculated analytically using the methods above.</p>
-<p>Once the object Pressure Matrix is instantiated, the user must call a method to calculate its pressure matrix. There are 3 methods available: two that calculate the pressure analyticaly and one that calculate it numerically. The first one is based on the book Tribology Series vol. 33, by Frene et al., chapter 5. The second one is based on chapter Linear and Nonlinear Rotordynamics, by Ishida and Yamamoto, from the book Flow-Induced Vibrations. The numerical method was developed as part of
+<p>Once the object Pressure Matrix is instantiated, the user must call a method to calculate its pressure matrix. There are 3 methods available: two that calculate the pressure analyticaly and one that calculate it numerically. The first one is based on the book Tribology Series vol. 33, by Frene et al., chapter 5. The second one is based on chapter Linear and Nonlinear Rotordynamics, by Ishida and Yamamoto, from the book Flow-Induced Vibrations. The numerical method was developed as part of
 project ROSS and it was based on the undergraduate dissertation by Luiz Henrique Mamede Queiroz: Analysis of fluid flow inside rotary machines components.</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[33]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="c1"># Calculating pressure matrix</span>
+<span></span># Calculating pressure matrix
 
-<span class="n">my_fluid_flow</span><span class="o">.</span><span class="n">calculate_pressure_matrix_numerical</span><span class="p">()[</span><span class="nb">int</span><span class="p">(</span><span class="n">nz</span><span class="o">/</span><span class="mi">2</span><span class="p">)]</span>
+my_fluid_flow.calculate_pressure_matrix_numerical()[int(nz/2)]
 </pre></div>
 </div>
 </div>
@@ -854,9 +854,9 @@ project ROSS and it was based on the undergraduate dissertation by Luiz Henrique
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="c1"># Plotting pressure along theta in a chosen z</span>
+<span></span># Plotting pressure along theta in a chosen z
 
-<span class="n">show</span><span class="p">(</span><span class="n">my_fluid_flow</span><span class="o">.</span><span class="n">plot_pressure_theta</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">nz</span><span class="o">/</span><span class="mi">2</span><span class="p">)))</span>
+show(my_fluid_flow.plot_pressure_theta(int(nz/2)))
 </pre></div>
 </div>
 </div>
@@ -924,7 +924,7 @@ var element = document.currentScript.previousSibling.previousSibling;
     </p>
     <p>
         &copy; Copyright 2019, Team Ross.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.1.2.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.2.0.<br/>
     </p>
   </div>
 </footer>
