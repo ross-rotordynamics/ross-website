@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta charset="utf-8" />
-    <title>ross.SealElement &#8212; ross 0.1.2 documentation</title>
+    <title>ross.SealElement &#8212; ross 0.1.6 documentation</title>
     <link rel="stylesheet" href="../../_static/bootstrap-sphinx.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx_copybutton.css" />
@@ -42,7 +42,7 @@
         </button>
         <a class="navbar-brand" href="../../index.html"><span><img src="../../_static/ross-logo.svg"></span>
           ross</a>
-        <span class="navbar-text navbar-version pull-left"><b>0.1.2</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>0.1.6</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -104,6 +104,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../../contributing.html#documentation">Documentation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../contributing.html#integrated-development-environment-pycharm">Integrated development environment: PyCharm</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../contributing.html#how-to-contribute-to-ross-using-git">How to contribute to ross using git</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../contributing.html#making-new-releases">Making new releases</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../release_notes.html">Release notes</a><ul>
@@ -364,7 +365,24 @@ bk_ax : bokeh plotting axes, optional</p>
 <dl class="method">
 <dt id="ross.SealElement.dof_local_index">
 <code class="sig-name descname">dof_local_index</code><span class="sig-paren">(</span><em class="sig-param">self</em><span class="sig-paren">)</span><a class="headerlink" href="#ross.SealElement.dof_local_index" title="Permalink to this definition">¶</a></dt>
-<dd><p>Get the local index for a element specific degree of freedom.</p>
+<dd><p>Get the local index for a element specific degree of freedom.
+Parameters
+———-</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><dl class="simple">
+<dt>A named tuple containing the local index.</dt><dd></dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># Example using BearingElement</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">ross.bearing_seal_element</span> <span class="k">import</span> <span class="n">bearing_example</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">bearing</span> <span class="o">=</span> <span class="n">bearing_example</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">bearing</span><span class="o">.</span><span class="n">dof_local_index</span><span class="p">()</span>
+<span class="go">LocalIndex(x_0=0, y_0=1)</span>
+</pre></div>
+</div>
 </dd></dl>
 
 <dl class="method">
@@ -391,7 +409,28 @@ Parameters
 <dl class="method">
 <dt id="ross.SealElement.dump_data">
 <em class="property">static </em><code class="sig-name descname">dump_data</code><span class="sig-paren">(</span><em class="sig-param">data</em>, <em class="sig-param">file_name</em><span class="sig-paren">)</span><a class="headerlink" href="#ross.SealElement.dump_data" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Dumps element data in a toml file.
+Parameters
+———-
+data: dict</p>
+<blockquote>
+<div><p>The data that should be dumped.</p>
+</div></blockquote>
+<dl class="simple">
+<dt>file_name: string</dt><dd><p>The name of the file the data will be dumped in.</p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># Example using BearingElement</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">ross.bearing_seal_element</span> <span class="k">import</span> <span class="n">bearing_example</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">ross.bearing_seal_element</span> <span class="k">import</span> <span class="n">BearingElement</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">bearing</span> <span class="o">=</span> <span class="n">bearing_example</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">bearing</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s1">&#39;BearingElement.toml&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">data</span> <span class="o">=</span> <span class="n">BearingElement</span><span class="o">.</span><span class="n">load_data</span><span class="p">(</span><span class="s1">&#39;BearingElement.toml&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">BearingElement</span><span class="o">.</span><span class="n">dump_data</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="s1">&#39;bearing_data.toml&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
 
 <dl class="method">
 <dt id="ross.SealElement.from_fluid_flow">
@@ -536,7 +575,52 @@ file_name: string</p>
 <dl class="method">
 <dt id="ross.SealElement.load_data">
 <em class="property">static </em><code class="sig-name descname">load_data</code><span class="sig-paren">(</span><em class="sig-param">file_name</em><span class="sig-paren">)</span><a class="headerlink" href="#ross.SealElement.load_data" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Loads elements data saved in a toml format.
+Parameters
+———-
+file_name: string</p>
+<blockquote>
+<div><p>The name of the file to be loaded.</p>
+</div></blockquote>
+<dl class="field-list">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><dl class="simple">
+<dt>dict</dt><dd><p>The element parameters presented as a dictionary.</p>
+</dd>
+<dt>Examples</dt><dd></dd>
+</dl>
+<blockquote>
+<div></div></blockquote>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># Example using BearingElement</span>
+<span class="go">    ..</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">ross.bearing_seal_element</span> <span class="k">import</span> <span class="n">bearing_example</span>
+<span class="go">    ..</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">ross.bearing_seal_element</span> <span class="k">import</span> <span class="n">BearingElement</span>
+<span class="go">    ..</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">bearing</span> <span class="o">=</span> <span class="n">bearing_example</span><span class="p">()</span>
+<span class="go">    ..</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">bearing</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s1">&#39;BearingElement.toml&#39;</span><span class="p">)</span>
+<span class="go">    ..</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">BearingElement</span><span class="o">.</span><span class="n">load_data</span><span class="p">(</span><span class="s1">&#39;BearingElement.toml&#39;</span><span class="p">)</span> <span class="c1"># doctest: +ELLIPSIS</span>
+<span class="go">    ..</span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt>{‘BearingElement’: {‘0’: {‘n’: 0, ‘kxx’: [1000000.0, 1000000.0,…</dt><dd></dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="method">
 <dt id="ross.SealElement.patch">
@@ -588,7 +672,33 @@ file_name: string</p>
 <dt id="ross.SealElement.summary">
 <code class="sig-name descname">summary</code><span class="sig-paren">(</span><em class="sig-param">self</em><span class="sig-paren">)</span><a class="headerlink" href="#ross.SealElement.summary" title="Permalink to this definition">¶</a></dt>
 <dd><p>A summary for the element.</p>
-<p>A pandas series with the element properties as variables.</p>
+<p>A pandas series with the element properties as variables.
+Parameters
+———-</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><dl class="simple">
+<dt>A pandas series.</dt><dd></dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># Example using DiskElement</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">ross.disk_element</span> <span class="k">import</span> <span class="n">disk_example</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">disk</span> <span class="o">=</span> <span class="n">disk_example</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">disk</span><span class="o">.</span><span class="n">summary</span><span class="p">()</span>
+<span class="go">n                  0</span>
+<span class="go">n_l                0</span>
+<span class="go">n_r                0</span>
+<span class="go">m            32.5897</span>
+<span class="go">Id          0.178089</span>
+<span class="go">Ip          0.329564</span>
+<span class="go">tag             None</span>
+<span class="go">color        #bc625b</span>
+<span class="go">type     DiskElement</span>
+<span class="go">dtype: object</span>
+</pre></div>
+</div>
 </dd></dl>
 
 <dl class="method">

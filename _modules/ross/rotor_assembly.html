@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta charset="utf-8" />
-    <title>ross.rotor_assembly &#8212; ross 0.1.2 documentation</title>
+    <title>ross.rotor_assembly &#8212; ross 0.1.6 documentation</title>
     <link rel="stylesheet" href="../../_static/bootstrap-sphinx.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx_copybutton.css" />
@@ -40,7 +40,7 @@
         </button>
         <a class="navbar-brand" href="../../index.html"><span><img src="../../_static/ross-logo.svg"></span>
           ross</a>
-        <span class="navbar-text navbar-version pull-left"><b>0.1.2</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>0.1.6</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -102,6 +102,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../../contributing.html#documentation">Documentation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../contributing.html#integrated-development-environment-pycharm">Integrated development environment: PyCharm</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../contributing.html#how-to-contribute-to-ross-using-git">How to contribute to ross using git</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../contributing.html#making-new-releases">Making new releases</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../release_notes.html">Release notes</a><ul>
@@ -462,12 +463,10 @@
         <span class="n">nodes_o_d</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">df_shaft</span><span class="p">[</span><span class="s2">&quot;o_d&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">nodes_o_d</span> <span class="o">=</span> <span class="n">nodes_o_d</span>
 
-        <span class="n">nodes_le</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">df_shaft</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&quot;n_l&quot;</span><span class="p">)[</span><span class="s2">&quot;L&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">())</span>
-        <span class="n">nodes_le</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">df_shaft</span><span class="p">[</span><span class="s2">&quot;L&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">nodes_le</span> <span class="o">=</span> <span class="n">nodes_le</span>
+        <span class="n">shaft_elements_length</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">df_shaft</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&quot;n_l&quot;</span><span class="p">)[</span><span class="s2">&quot;L&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">())</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">shaft_elements_length</span> <span class="o">=</span> <span class="n">shaft_elements_length</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">nodes</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">nodes_pos</span><span class="p">)))</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">elements_length</span> <span class="o">=</span> <span class="p">[</span><span class="n">sh_el</span><span class="o">.</span><span class="n">L</span> <span class="k">for</span> <span class="n">sh_el</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">shaft_elements</span><span class="p">]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">L</span> <span class="o">=</span> <span class="n">nodes_pos</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
 
         <span class="c1"># rotor mass can also be calculated with self.M()[::4, ::4].sum()</span>
@@ -2000,7 +1999,7 @@
             <span class="n">ndof</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">ndof</span><span class="p">,</span>
             <span class="n">nodes</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">nodes</span><span class="p">,</span>
             <span class="n">nodes_pos</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">nodes_pos</span><span class="p">,</span>
-            <span class="n">elements_length</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">elements_length</span><span class="p">,</span>
+            <span class="n">shaft_elements_length</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">shaft_elements_length</span><span class="p">,</span>
             <span class="n">w</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">w</span><span class="p">,</span>
             <span class="n">wd</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">wd</span><span class="p">,</span>
             <span class="n">log_dec</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">log_dec</span><span class="p">,</span>

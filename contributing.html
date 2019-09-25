@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta charset="utf-8" />
-    <title>Contributing &#8212; ross 0.1.2 documentation</title>
+    <title>Contributing &#8212; ross 0.1.6 documentation</title>
     <link rel="stylesheet" href="_static/bootstrap-sphinx.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx_copybutton.css" />
@@ -42,7 +42,7 @@
         </button>
         <a class="navbar-brand" href="index.html"><span><img src="_static/ross-logo.svg"></span>
           ross</a>
-        <span class="navbar-text navbar-version pull-left"><b>0.1.2</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>0.1.6</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -104,6 +104,7 @@
 <li class="toctree-l2"><a class="reference internal" href="#documentation">Documentation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#integrated-development-environment-pycharm">Integrated development environment: PyCharm</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#how-to-contribute-to-ross-using-git">How to contribute to ross using git</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#making-new-releases">Making new releases</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="release_notes.html">Release notes</a><ul>
@@ -135,13 +136,10 @@
 <li><a class="reference internal" href="#step-2-keep-in-sync-with-changes-in-ross">Step 2: Keep in sync with changes in Ross</a></li>
 <li><a class="reference internal" href="#step-3-make-a-new-feature-branch">Step 3: Make a new feature branch</a></li>
 <li><a class="reference internal" href="#step-4-push-changes-to-your-git-repository">Step 4: Push changes to your git repository</a></li>
-<li><a class="reference internal" href="#step-5-push-changes-to-the-main-repo">Step 5: Push changes to the main repo</a><ul>
-<li><a class="reference internal" href="#for-contributors">For contributors</a></li>
-<li><a class="reference internal" href="#for-core-developers">For core developers</a></li>
+<li><a class="reference internal" href="#step-5-push-changes-to-the-main-repo">Step 5: Push changes to the main repo</a></li>
 </ul>
 </li>
-</ul>
-</li>
+<li><a class="reference internal" href="#making-new-releases">Making new releases</a></li>
 </ul>
 </li>
 </ul>
@@ -302,20 +300,18 @@ It should look like this:</p>
 </div>
 <div class="section" id="step-5-push-changes-to-the-main-repo">
 <h3>Step 5: Push changes to the main repo<a class="headerlink" href="#step-5-push-changes-to-the-main-repo" title="Permalink to this headline">¶</a></h3>
-<div class="section" id="for-contributors">
-<h4>For contributors<a class="headerlink" href="#for-contributors" title="Permalink to this headline">¶</a></h4>
 <p>To create a Pull Request (PR), refer to <a class="reference external" href="https://help.github.com/articles/about-pull-requests/">the github PR guide</a>.</p>
 </div>
-<div class="section" id="for-core-developers">
-<h4>For core developers<a class="headerlink" href="#for-core-developers" title="Permalink to this headline">¶</a></h4>
-<p>If there are only a few, unrelated commits:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">fetch</span> <span class="n">upstream</span>
-<span class="n">git</span> <span class="n">rebase</span> <span class="n">upstream</span><span class="o">/</span><span class="n">master</span>
-<span class="n">git</span> <span class="n">push</span> <span class="n">upstream</span> <span class="n">my</span><span class="o">-</span><span class="n">feature</span><span class="o">-</span><span class="n">branch</span><span class="p">:</span><span class="n">master</span>
-</pre></div>
 </div>
-</div>
-</div>
+<div class="section" id="making-new-releases">
+<h2>Making new releases<a class="headerlink" href="#making-new-releases" title="Permalink to this headline">¶</a></h2>
+<p>To make a new release we need only to create a tag using git and push to GitHub:</p>
+<blockquote>
+<div><p>$ git tag &lt;version number&gt;</p>
+<p>$ git push upstream –tags</p>
+</div></blockquote>
+<p>Pushing the new tag to the GitHub repository will start a new build on Travis CI. If all the tests succeed, Travis will
+upload the new package to PyPI (see the deploy command on .travis.yml).</p>
 </div>
 </div>
 
