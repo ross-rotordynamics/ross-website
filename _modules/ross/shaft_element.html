@@ -1053,29 +1053,28 @@
 <span class="sd">    --------</span>
 <span class="sd">    &gt;&gt;&gt; from ross.materials import steel</span>
 <span class="sd">    &gt;&gt;&gt; Euler_Bernoulli_Element = ShaftTaperedElement(</span>
-<span class="sd">    ...                         L=0.5, i_d_l=0.05, i_d_r=0.05, o_d_l=0.1,</span>
-<span class="sd">    ...                         o_d_r=0.15, material=steel,</span>
+<span class="sd">    ...                         material=steel, L=0.5, i_d_l=0.05, o_d_l=0.1,</span>
+<span class="sd">    ...                         i_d_r=0.05, o_d_r=0.15,</span>
 <span class="sd">    ...                         rotary_inertia=False,</span>
 <span class="sd">    ...                         shear_effects=False)</span>
 <span class="sd">    &gt;&gt;&gt; Euler_Bernoulli_Element.phi</span>
 <span class="sd">    0</span>
 <span class="sd">    &gt;&gt;&gt; Timoshenko_Element = ShaftTaperedElement(</span>
-<span class="sd">    ...                         L=0.5, i_d_l=0.05, i_d_r=0.05, o_d_l=0.1,</span>
-<span class="sd">    ...                         o_d_r=0.15, material=steel,</span>
+<span class="sd">    ...                         material=steel, L=0.5, i_d_l=0.05, o_d_l=0.1,</span>
 <span class="sd">    ...                         rotary_inertia=True,</span>
 <span class="sd">    ...                         shear_effects=True)</span>
 <span class="sd">    &gt;&gt;&gt; Timoshenko_Element.phi</span>
-<span class="sd">    0.21026260191948362</span>
+<span class="sd">    0.1571268472906404</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
+        <span class="n">material</span><span class="p">,</span>
         <span class="n">L</span><span class="p">,</span>
         <span class="n">i_d_l</span><span class="p">,</span>
-        <span class="n">i_d_r</span><span class="p">,</span>
         <span class="n">o_d_l</span><span class="p">,</span>
-        <span class="n">o_d_r</span><span class="p">,</span>
-        <span class="n">material</span><span class="p">,</span>
+        <span class="n">i_d_r</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">o_d_r</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
         <span class="n">n</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
         <span class="n">axial_force</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
         <span class="n">torque</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
@@ -1085,6 +1084,11 @@
         <span class="n">shear_method_calc</span><span class="o">=</span><span class="s2">&quot;cowper&quot;</span><span class="p">,</span>
         <span class="n">tag</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
     <span class="p">):</span>
+
+        <span class="k">if</span> <span class="n">i_d_r</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">i_d_r</span> <span class="o">=</span> <span class="n">i_d_l</span>
+        <span class="k">if</span> <span class="n">o_d_r</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">o_d_r</span> <span class="o">=</span> <span class="n">o_d_l</span>
 
         <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">material</span><span class="p">)</span> <span class="ow">is</span> <span class="nb">str</span><span class="p">:</span>
             <span class="n">os</span><span class="o">.</span><span class="n">chdir</span><span class="p">(</span><span class="n">Path</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">ross</span><span class="o">.</span><span class="vm">__file__</span><span class="p">)))</span>
@@ -1424,8 +1428,8 @@
 <span class="sd">        Examples</span>
 <span class="sd">        --------</span>
 <span class="sd">        &gt;&gt;&gt; Timoshenko_Element = ShaftTaperedElement(</span>
-<span class="sd">        ...                         0.5, 0.05, 0.05, 0.1,</span>
-<span class="sd">        ...                         0.15, steel,</span>
+<span class="sd">        ...                         L=0.5, i_d_l=0.05, i_d_r=0.05, o_d_l=0.1,</span>
+<span class="sd">        ...                         o_d_r=0.15, material=steel,</span>
 <span class="sd">        ...                         rotary_inertia=True,</span>
 <span class="sd">        ...                         shear_effects=True)</span>
 <span class="sd">        &gt;&gt;&gt; Timoshenko_Element.M()[:4, :4]</span>
@@ -1576,8 +1580,8 @@
 <span class="sd">        --------</span>
 <span class="sd">        &gt;&gt;&gt; from ross.materials import steel</span>
 <span class="sd">        &gt;&gt;&gt; Timoshenko_Element = ShaftTaperedElement(</span>
-<span class="sd">        ...                         0.5, 0.05, 0.05, 0.1,</span>
-<span class="sd">        ...                         0.15, steel,</span>
+<span class="sd">        ...                         L=0.5, i_d_l=0.05, i_d_r=0.05, o_d_l=0.1,</span>
+<span class="sd">        ...                         o_d_r=0.15, material=steel,</span>
 <span class="sd">        ...                         rotary_inertia=True,</span>
 <span class="sd">        ...                         shear_effects=True)</span>
 <span class="sd">        &gt;&gt;&gt; Timoshenko_Element.K()[:4, :4]/1e6</span>
@@ -1678,8 +1682,8 @@
 <span class="sd">        --------</span>
 <span class="sd">        &gt;&gt;&gt; from ross.materials import steel</span>
 <span class="sd">        &gt;&gt;&gt; Timoshenko_Element = ShaftTaperedElement(</span>
-<span class="sd">        ...                         0.5, 0.05, 0.05, 0.1,</span>
-<span class="sd">        ...                         0.15, steel,</span>
+<span class="sd">        ...                         L=0.5, i_d_l=0.05, i_d_r=0.05, o_d_l=0.1,</span>
+<span class="sd">        ...                         o_d_r=0.15, material=steel,</span>
 <span class="sd">        ...                         rotary_inertia=True,</span>
 <span class="sd">        ...                         shear_effects=True)</span>
 <span class="sd">        &gt;&gt;&gt; Timoshenko_Element.C()[:4, :4]</span>
@@ -1704,8 +1708,8 @@
 <span class="sd">        &gt;&gt;&gt; from ross.materials import steel</span>
 <span class="sd">        &gt;&gt;&gt; # Timoshenko is the default shaft element</span>
 <span class="sd">        &gt;&gt;&gt; Timoshenko_Element = ShaftTaperedElement(</span>
-<span class="sd">        ...                         0.5, 0.05, 0.05, 0.1,</span>
-<span class="sd">        ...                         0.15, steel,</span>
+<span class="sd">        ...                         L=0.5, i_d_l=0.05, i_d_r=0.05, o_d_l=0.1,</span>
+<span class="sd">        ...                         o_d_r=0.15, material=steel,</span>
 <span class="sd">        ...                         rotary_inertia=True,</span>
 <span class="sd">        ...                         shear_effects=True)</span>
 <span class="sd">        &gt;&gt;&gt; Timoshenko_Element.G()[:4, :4]</span>

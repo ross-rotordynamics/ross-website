@@ -691,12 +691,12 @@
                     <span class="n">i_d_l</span> <span class="o">=</span> <span class="p">((</span><span class="n">nel_r</span> <span class="o">-</span> <span class="n">j</span><span class="p">)</span> <span class="o">*</span> <span class="n">idl</span> <span class="o">+</span> <span class="n">j</span> <span class="o">*</span> <span class="n">idr</span><span class="p">)</span> <span class="o">/</span> <span class="n">nel_r</span>
                     <span class="n">shaft_elem</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
                         <span class="n">ShaftTaperedElement</span><span class="p">(</span>
-                            <span class="n">le</span><span class="p">,</span>
-                            <span class="n">i_d_l</span><span class="p">,</span>
-                            <span class="n">i_d_r</span><span class="p">,</span>
-                            <span class="n">o_d_l</span><span class="p">,</span>
-                            <span class="n">o_d_r</span><span class="p">,</span>
                             <span class="n">material</span><span class="o">=</span><span class="n">shaft</span><span class="o">.</span><span class="n">material</span><span class="p">,</span>
+                            <span class="n">L</span><span class="o">=</span><span class="n">le</span><span class="p">,</span>
+                            <span class="n">i_d_l</span><span class="o">=</span><span class="n">i_d_l</span><span class="p">,</span>
+                            <span class="n">o_d_l</span><span class="o">=</span><span class="n">o_d_l</span><span class="p">,</span>
+                            <span class="n">i_d_r</span><span class="o">=</span><span class="n">i_d_r</span><span class="p">,</span>
+                            <span class="n">o_d_r</span><span class="o">=</span><span class="n">o_d_r</span><span class="p">,</span>
                             <span class="n">shear_effects</span><span class="o">=</span><span class="n">shaft</span><span class="o">.</span><span class="n">shear_effects</span><span class="p">,</span>
                             <span class="n">rotary_inertia</span><span class="o">=</span><span class="n">shaft</span><span class="o">.</span><span class="n">rotary_inertia</span><span class="p">,</span>
                             <span class="n">gyroscopic</span><span class="o">=</span><span class="n">shaft</span><span class="o">.</span><span class="n">gyroscopic</span><span class="p">,</span>
