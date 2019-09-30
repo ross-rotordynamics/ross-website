@@ -176,7 +176,13 @@
 <span class="kn">from</span> <span class="nn">cycler</span> <span class="k">import</span> <span class="n">cycler</span>
 
 <span class="kn">import</span> <span class="nn">ross</span>
-<span class="kn">from</span> <span class="nn">ross.bearing_seal_element</span> <span class="k">import</span> <span class="n">BearingElement</span>
+<span class="kn">from</span> <span class="nn">ross.point_mass</span> <span class="k">import</span> <span class="n">PointMass</span>
+<span class="kn">from</span> <span class="nn">ross.bearing_seal_element</span> <span class="k">import</span><span class="p">(</span>
+        <span class="n">BearingElement</span><span class="p">,</span>
+        <span class="n">SealElement</span><span class="p">,</span>
+        <span class="n">BallBearingElement</span><span class="p">,</span>
+        <span class="n">RollerBearingElement</span><span class="p">,</span>
+<span class="p">)</span>
 <span class="kn">from</span> <span class="nn">ross.disk_element</span> <span class="k">import</span> <span class="n">DiskElement</span>
 <span class="kn">from</span> <span class="nn">ross.materials</span> <span class="k">import</span> <span class="n">steel</span>
 <span class="kn">from</span> <span class="nn">ross.results</span> <span class="k">import</span> <span class="p">(</span>
@@ -356,6 +362,10 @@
             <span class="k">if</span> <span class="n">brg</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;SealElement&quot;</span> <span class="ow">and</span> <span class="n">brg</span><span class="o">.</span><span class="n">tag</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
                 <span class="n">brg</span><span class="o">.</span><span class="n">tag</span> <span class="o">=</span> <span class="s2">&quot;Seal &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
 
+        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">p_mass</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">point_mass_elements</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">p_mass</span><span class="o">.</span><span class="n">tag</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">p_mass</span><span class="o">.</span><span class="n">tag</span> <span class="o">=</span> <span class="s2">&quot;Point Mass &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+
         <span class="bp">self</span><span class="o">.</span><span class="n">shaft_elements</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">shaft_elements</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">el</span><span class="p">:</span> <span class="n">el</span><span class="o">.</span><span class="n">n</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">bearing_seal_elements</span> <span class="o">=</span> <span class="n">bearing_seal_elements</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">disk_elements</span> <span class="o">=</span> <span class="n">disk_elements</span>
@@ -449,6 +459,7 @@
         <span class="n">max_location</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">df_shaft</span><span class="o">.</span><span class="n">n_r</span><span class="o">.</span><span class="n">max</span><span class="p">(),</span> <span class="n">max_loc_point_mass</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">df</span><span class="o">.</span><span class="n">n_l</span><span class="o">.</span><span class="n">max</span><span class="p">()</span> <span class="o">&gt;</span> <span class="n">max_location</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Trying to set disk or bearing outside shaft&quot;</span><span class="p">)</span>
+
         <span class="c1"># nodes axial position and diameter</span>
         <span class="n">nodes_pos</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">df_shaft</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&quot;n_l&quot;</span><span class="p">)[</span><span class="s2">&quot;nodes_pos_l&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">())</span>
         <span class="n">nodes_pos</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">df_shaft</span><span class="p">[</span><span class="s2">&quot;nodes_pos_r&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
@@ -541,7 +552,7 @@
             <span class="n">mean_od</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">nodes_o_d</span><span class="p">)</span>
             <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">dfb_z_pos</span><span class="o">.</span><span class="n">tag</span><span class="p">:</span>
                 <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="o">.</span><span class="n">tag</span> <span class="o">==</span> <span class="n">t</span><span class="p">,</span> <span class="s2">&quot;y_pos&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">y_pos</span>
-                <span class="n">y_pos</span> <span class="o">+=</span> <span class="n">mean_od</span>
+                <span class="n">y_pos</span> <span class="o">+=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">mean_od</span>
 
         <span class="c1"># define position for point mass elements</span>
         <span class="n">dfb</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="o">.</span><span class="n">type</span> <span class="o">==</span> <span class="s2">&quot;BearingElement&quot;</span><span class="p">]</span>
@@ -1700,11 +1711,20 @@
             <span class="n">position</span> <span class="o">=</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">nodes_pos</span><span class="p">[</span><span class="n">disk</span><span class="o">.</span><span class="n">n</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">nodes_o_d</span><span class="p">[</span><span class="n">disk</span><span class="o">.</span><span class="n">n</span><span class="p">]</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span>
             <span class="n">disk</span><span class="o">.</span><span class="n">patch</span><span class="p">(</span><span class="n">position</span><span class="p">,</span> <span class="n">ax</span><span class="p">)</span>
 
-        <span class="n">mean_od</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">nodes_o_d</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span>
+        <span class="n">mean_od</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">nodes_o_d</span><span class="p">)</span>
         <span class="c1"># plot bearings</span>
         <span class="k">for</span> <span class="n">bearing</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">bearing_seal_elements</span><span class="p">:</span>
-            <span class="n">position</span> <span class="o">=</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">nodes_pos</span><span class="p">[</span><span class="n">bearing</span><span class="o">.</span><span class="n">n</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">nodes_o_d</span><span class="p">[</span><span class="n">bearing</span><span class="o">.</span><span class="n">n</span><span class="p">]</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span>
+            <span class="n">z_pos</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">df</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">df</span><span class="o">.</span><span class="n">tag</span> <span class="o">==</span> <span class="n">bearing</span><span class="o">.</span><span class="n">tag</span><span class="p">][</span><span class="s2">&quot;nodes_pos_l&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="n">y_pos</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">df</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">df</span><span class="o">.</span><span class="n">tag</span> <span class="o">==</span> <span class="n">bearing</span><span class="o">.</span><span class="n">tag</span><span class="p">][</span><span class="s2">&quot;y_pos&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="n">position</span> <span class="o">=</span> <span class="p">(</span><span class="n">z_pos</span><span class="p">,</span> <span class="n">y_pos</span><span class="p">)</span>
             <span class="n">bearing</span><span class="o">.</span><span class="n">patch</span><span class="p">(</span><span class="n">position</span><span class="p">,</span> <span class="n">mean_od</span><span class="p">,</span> <span class="n">ax</span><span class="p">)</span>
+
+        <span class="c1"># plot point mass</span>
+        <span class="k">for</span> <span class="n">p_mass</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">point_mass_elements</span><span class="p">:</span>
+            <span class="n">z_pos</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">df</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">df</span><span class="o">.</span><span class="n">tag</span> <span class="o">==</span> <span class="n">p_mass</span><span class="o">.</span><span class="n">tag</span><span class="p">][</span><span class="s2">&quot;nodes_pos_l&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="n">y_pos</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">df</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">df</span><span class="o">.</span><span class="n">tag</span> <span class="o">==</span> <span class="n">p_mass</span><span class="o">.</span><span class="n">tag</span><span class="p">][</span><span class="s2">&quot;y_pos&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="n">position</span> <span class="o">=</span> <span class="p">(</span><span class="n">z_pos</span><span class="p">,</span> <span class="n">y_pos</span><span class="p">)</span>
+            <span class="n">p_mass</span><span class="o">.</span><span class="n">patch</span><span class="p">(</span><span class="n">position</span><span class="p">,</span> <span class="n">ax</span><span class="p">)</span>
 
         <span class="k">return</span> <span class="n">ax</span>
 
@@ -1804,13 +1824,22 @@
 
         <span class="n">bk_ax</span><span class="o">.</span><span class="n">add_tools</span><span class="p">(</span><span class="n">hover</span><span class="p">)</span>
 
-        <span class="n">mean_od</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">nodes_o_d</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span>
+        <span class="n">mean_od</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">nodes_o_d</span><span class="p">)</span>
         <span class="c1"># plot bearings</span>
         <span class="k">for</span> <span class="n">bearing</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">bearing_seal_elements</span><span class="p">:</span>
             <span class="n">z_pos</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">df</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">df</span><span class="o">.</span><span class="n">tag</span> <span class="o">==</span> <span class="n">bearing</span><span class="o">.</span><span class="n">tag</span><span class="p">][</span><span class="s2">&quot;nodes_pos_l&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
             <span class="n">y_pos</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">df</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">df</span><span class="o">.</span><span class="n">tag</span> <span class="o">==</span> <span class="n">bearing</span><span class="o">.</span><span class="n">tag</span><span class="p">][</span><span class="s2">&quot;y_pos&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
             <span class="n">position</span> <span class="o">=</span> <span class="p">(</span><span class="n">z_pos</span><span class="p">,</span> <span class="n">y_pos</span><span class="p">)</span>
             <span class="n">bearing</span><span class="o">.</span><span class="n">bokeh_patch</span><span class="p">(</span><span class="n">position</span><span class="p">,</span> <span class="n">mean_od</span><span class="p">,</span> <span class="n">bk_ax</span><span class="p">)</span>
+
+        <span class="c1"># plot point mass</span>
+        <span class="k">for</span> <span class="n">p_mass</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">point_mass_elements</span><span class="p">:</span>
+            <span class="n">z_pos</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">df</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">df</span><span class="o">.</span><span class="n">tag</span> <span class="o">==</span> <span class="n">p_mass</span><span class="o">.</span><span class="n">tag</span><span class="p">][</span><span class="s2">&quot;nodes_pos_l&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="n">y_pos</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">df</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">df</span><span class="o">.</span><span class="n">tag</span> <span class="o">==</span> <span class="n">p_mass</span><span class="o">.</span><span class="n">tag</span><span class="p">][</span><span class="s2">&quot;y_pos&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="n">position</span> <span class="o">=</span> <span class="p">(</span><span class="n">z_pos</span><span class="p">,</span> <span class="n">y_pos</span><span class="p">)</span>
+            <span class="n">hover</span> <span class="o">=</span> <span class="n">p_mass</span><span class="o">.</span><span class="n">bokeh_patch</span><span class="p">(</span><span class="n">position</span><span class="p">,</span> <span class="n">bk_ax</span><span class="p">)</span>
+
+        <span class="n">bk_ax</span><span class="o">.</span><span class="n">add_tools</span><span class="p">(</span><span class="n">hover</span><span class="p">)</span>
 
         <span class="k">return</span> <span class="n">bk_ax</span>
 
