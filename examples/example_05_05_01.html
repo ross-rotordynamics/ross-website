@@ -364,12 +364,19 @@ div.rendered_html tbody tr:hover {
 <p>It is the same bearing of Example 7, only this time we stick to the methods provided by the Fluid Flow subpackage of ROSS. We instantiate a Pressure Matrix object with the data given by the Example 5.5.1 from the book: The oil-film bearing has a diameter of 100 mm, is 30 mm long, and supports a static load of 525 N. The radial clearance is 0.1 mm and the oil film has a viscosity of 0.1 Pa s. When instantiated, a Pressure Matrix must be given either the eccentricity, or load of the bearing, or
 both. The one not parameter not given is them calculated based on the other one.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
 <span></span>from bokeh.io import output_notebook, show
 from ross.fluid_flow import fluid_flow as flow
+from ross.fluid_flow.fluid_flow_geometry import sommerfeld_number,\
+    modified_sommerfeld_number
+from ross.fluid_flow.fluid_flow_graphics import matplot_eccentricity,\
+    plot_pressure_theta
+from ross.fluid_flow.fluid_flow_coefficients import calculate_analytical_stiffness_matrix,\
+    calculate_analytical_damping_matrix
+
 import numpy as np
 output_notebook()
 
@@ -382,7 +389,7 @@ output_notebook()
 <div class="output_area rendered_html docutils container">
 <div class="bk-root">
     <a href="https://bokeh.pydata.org" target="_blank" class="bk-logo bk-logo-small bk-logo-notebook"></a>
-    <span id="1001">Loading BokehJS ...</span>
+    <span id="1002">Loading BokehJS ...</span>
 </div></div>
 </div>
 <div class="nboutput nblast docutils container">
@@ -551,7 +558,7 @@ var element = document.currentScript.previousSibling.previousSibling;
      "</div>"}};
 
   function display_loaded() {
-    var el = document.getElementById("1001");
+    var el = document.getElementById("1002");
     if (el != null) {
       el.textContent = "BokehJS is loading...";
     }
@@ -627,9 +634,9 @@ var element = document.currentScript.previousSibling.previousSibling;
       console.debug("Bokeh: injecting script tag for BokehJS library: ", url);
       document.head.appendChild(element);
     }
-  };var element = document.getElementById("1001");
+  };var element = document.getElementById("1002");
   if (element == null) {
-    console.error("Bokeh: ERROR: autoload.js configured with elementid '1001' but no matching script tag was found. ")
+    console.error("Bokeh: ERROR: autoload.js configured with elementid '1002' but no matching script tag was found. ")
     return false;
   }
 
@@ -639,7 +646,7 @@ var element = document.currentScript.previousSibling.previousSibling;
     document.body.appendChild(element);
   }
 
-  var js_urls = ["https://cdn.pydata.org/bokeh/release/bokeh-1.3.4.min.js", "https://cdn.pydata.org/bokeh/release/bokeh-widgets-1.3.4.min.js", "https://cdn.pydata.org/bokeh/release/bokeh-tables-1.3.4.min.js", "https://cdn.pydata.org/bokeh/release/bokeh-gl-1.3.4.min.js"];
+  var js_urls = ["https://cdn.pydata.org/bokeh/release/bokeh-1.3.0.min.js", "https://cdn.pydata.org/bokeh/release/bokeh-widgets-1.3.0.min.js", "https://cdn.pydata.org/bokeh/release/bokeh-tables-1.3.0.min.js", "https://cdn.pydata.org/bokeh/release/bokeh-gl-1.3.0.min.js"];
   var css_urls = [];
 
   var inline_js = [
@@ -666,7 +673,7 @@ var element = document.currentScript.previousSibling.previousSibling;
       console.log("Bokeh: BokehJS failed to load within specified timeout.");
       root._bokeh_failed_load = true;
     } else if (force !== true) {
-      var cell = $(document.getElementById("1001")).parents('.cell').data().cell;
+      var cell = $(document.getElementById("1002")).parents('.cell').data().cell;
       cell.output_area.append_execute_result(NB_LOAD_WARNING)
     }
 
@@ -685,7 +692,7 @@ var element = document.currentScript.previousSibling.previousSibling;
 </script></div>
 </div>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -709,7 +716,7 @@ my_fluid_flow = flow.PressureMatrix(nz, ntheta, nradius, length, omega, p_in,
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -720,7 +727,7 @@ my_fluid_flow.eccentricity
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
 </pre></div>
 </div>
 <div class="output_area highlight-none notranslate"><div class="highlight"><pre>
@@ -729,13 +736,55 @@ my_fluid_flow.eccentricity
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span># Calculating the sommerfeld number
+<span></span># Calculating the modified sommerfeld number and the sommerfeld number
 
-my_fluid_flow.sommerfeld_number()
+modified_s = modified_sommerfeld_number(
+    my_fluid_flow.radius_stator,
+    my_fluid_flow.omega,
+    my_fluid_flow.viscosity,
+    my_fluid_flow.length,
+    my_fluid_flow.load,
+    my_fluid_flow.radial_clearance
+)
+
+sommerfeld_number(
+    modified_s,
+    my_fluid_flow.radius_stator,
+    my_fluid_flow.length
+)
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
+</pre></div>
+</div>
+<div class="output_area highlight-none notranslate"><div class="highlight"><pre>
+<span></span>3.5718916513907613
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span># Plotting the eccentricity
+
+matplot_eccentricity(my_fluid_flow)
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
+</pre></div>
+</div>
+<div class="output_area highlight-none notranslate"><div class="highlight"><pre>
+<span></span>&lt;matplotlib.axes._subplots.AxesSubplot at 0x7f7ead3068d0&gt;
 </pre></div>
 </div>
 </div>
@@ -743,56 +792,64 @@ my_fluid_flow.sommerfeld_number()
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<div class="highlight"><pre>
-<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
-<span class="ansi-red-fg">AttributeError</span>                            Traceback (most recent call last)
-<span class="ansi-green-fg">&lt;ipython-input-4-a274678995e3&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
-<span class="ansi-green-intense-fg ansi-bold">      1</span> <span class="ansi-red-fg"># Calculating the sommerfeld number</span>
-<span class="ansi-green-intense-fg ansi-bold">      2</span>
-<span class="ansi-green-fg">----&gt; 3</span><span class="ansi-red-fg"> </span>my_fluid_flow<span class="ansi-blue-fg">.</span>sommerfeld_number<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">)</span>
-
-<span class="ansi-red-fg">AttributeError</span>: &#39;PressureMatrix&#39; object has no attribute &#39;sommerfeld_number&#39;
-</pre></div></div>
-</div>
-<div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
-</pre></div>
-</div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span># Plotting the eccentricity
-
-my_fluid_flow.matplot_eccentricity()
-</pre></div>
+<img alt="../_images/examples_example_05_05_01_5_1.png" src="../_images/examples_example_05_05_01_5_1.png" />
 </div>
 </div>
 <p>The graphic above plots two circles: one representing the stator and one representing the rotor, considering the eccentricity. In this case, since the space between the stator and the rotor is very small, it is not seen in the graphic.</p>
-<div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
 <span></span># Getting the stiffness matrix
 
-my_fluid_flow.get_analytical_stiffness_matrix()
+calculate_analytical_stiffness_matrix(
+    my_fluid_flow.load,
+    my_fluid_flow.eccentricity_ratio,
+    my_fluid_flow.radial_clearance
+)
 </pre></div>
 </div>
 </div>
-<div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
+</pre></div>
+</div>
+<div class="output_area highlight-none notranslate"><div class="highlight"><pre>
+<span></span>[12808062.43570496, 16395796.329160627, -25061769.791664664, 8814873.993177759]
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
 <span></span># Getting the damping matrix
 
-my_fluid_flow.get_analytical_damping_matrix()
+calculate_analytical_damping_matrix(
+    my_fluid_flow.load,
+    my_fluid_flow.eccentricity_ratio,
+    my_fluid_flow.radial_clearance,
+    my_fluid_flow.omega
+)
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
+</pre></div>
+</div>
+<div class="output_area highlight-none notranslate"><div class="highlight"><pre>
+<span></span>[232892.5172631672, -81914.33449011963, -81914.33449011963, 294893.1749179313]
 </pre></div>
 </div>
 </div>
 <p>The stiffness and damping matrices can be calculated analytically using the methods above.</p>
 <p>Once the object Pressure Matrix is instantiated, the user must call a method to calculate its pressure matrix. There are 3 methods available: two that calculate the pressure analyticaly and one that calculate it numerically. The first one is based on the book Tribology Series vol. 33, by Frene et al., chapter 5. The second one is based on chapter Linear and Nonlinear Rotordynamics, by Ishida and Yamamoto, from the book Flow-Induced Vibrations. The numerical method was developed as part of
 project ROSS and it was based on the undergraduate dissertation by Luiz Henrique Mamede Queiroz: Analysis of fluid flow inside rotary machines components.</p>
-<div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[17]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -802,16 +859,69 @@ my_fluid_flow.calculate_pressure_matrix_numerical()[int(nz/2)]
 </pre></div>
 </div>
 </div>
-<div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[17]:
+</pre></div>
+</div>
+<div class="output_area highlight-none notranslate"><div class="highlight"><pre>
+<span></span>array([     0.        ,  27858.11278474,  76957.5759592 , 136957.62955623,
+       208379.36855386, 287589.69704017, 360054.60982653, 395099.42333323,
+       352263.79453191, 210847.76457148,   5938.23912407,      0.        ,
+            0.        ,      0.        ,      0.        ,      0.        ,
+            0.        ,      0.        ,      0.        ,      0.        ])
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[18]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
 <span></span># Plotting pressure along theta in a chosen z
 
-show(my_fluid_flow.plot_pressure_theta(int(nz/2)))
+show(plot_pressure_theta(my_fluid_flow, z=int(nz/2)))
 </pre></div>
 </div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area rendered_html docutils container">
+<div class="bk-root" id="8a72eeca-5eb0-4c4b-b425-ee8f17bb8fe1" data-root-id="1003"></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div></div>
+<script type="text/javascript">
+var element = document.currentScript.previousSibling.previousSibling;
+(function(root) {
+  function embed_document(root) {
+
+  var docs_json = {"79866b02-e37b-4d36-926b-f876939daefd":{"roots":{"references":[{"attributes":{"below":[{"id":"1014","type":"LinearAxis"}],"center":[{"id":"1018","type":"Grid"},{"id":"1023","type":"Grid"},{"id":"1048","type":"Legend"}],"left":[{"id":"1019","type":"LinearAxis"}],"renderers":[{"id":"1040","type":"GlyphRenderer"}],"title":{"id":"1004","type":"Title"},"toolbar":{"id":"1030","type":"Toolbar"},"x_range":{"id":"1006","type":"DataRange1d"},"x_scale":{"id":"1010","type":"LinearScale"},"y_range":{"id":"1008","type":"DataRange1d"},"y_scale":{"id":"1012","type":"LinearScale"}},"id":"1003","subtype":"Figure","type":"Plot"},{"attributes":{},"id":"1025","type":"WheelZoomTool"},{"attributes":{},"id":"1012","type":"LinearScale"},{"attributes":{},"id":"1015","type":"BasicTicker"},{"attributes":{},"id":"1010","type":"LinearScale"},{"attributes":{"active_drag":"auto","active_inspect":"auto","active_multi":null,"active_scroll":"auto","active_tap":"auto","tools":[{"id":"1024","type":"PanTool"},{"id":"1025","type":"WheelZoomTool"},{"id":"1026","type":"BoxZoomTool"},{"id":"1027","type":"SaveTool"},{"id":"1028","type":"ResetTool"},{"id":"1029","type":"HelpTool"}]},"id":"1030","type":"Toolbar"},{"attributes":{},"id":"1027","type":"SaveTool"},{"attributes":{"label":{"value":"Numerical pressure"},"renderers":[{"id":"1040","type":"GlyphRenderer"}]},"id":"1049","type":"LegendItem"},{"attributes":{"overlay":{"id":"1047","type":"BoxAnnotation"}},"id":"1026","type":"BoxZoomTool"},{"attributes":{},"id":"1056","type":"UnionRenderers"},{"attributes":{},"id":"1024","type":"PanTool"},{"attributes":{"callback":null,"data":{"x":{"__ndarray__":"FJx2mR27/j9QRS6t0QICQJY8oY0UqARA3DMUbldNB0AiK4dOmvIJQGgi+i7dlwxArRltDyA9D0B6CPB3MfEQQByEKejSQxJAwP9iWHSWE0Bie5zIFekUQAb31Ti3OxZAqHIPqViOF0BL7kgZ+uAYQO5pgombMxpAkeW7+TyGG0A0YfVp3tgcQNfcLtp/Kx5AelhoSiF+H0AO6lBdYWggQA==","dtype":"float64","shape":[20]},"y":{"__ndarray__":"AAAAAAAAAAC8f903hzTbQD7+IDfZyfJAvsZUCe23AEFGXczy2m8JQdflxMmWjRFBp112cNr5FUEARH6xbR0YQSzGmS0fgBVB5qbXHf68CUGAKTw3PTK3QAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==","dtype":"float64","shape":[20]}},"selected":{"id":"1057","type":"Selection"},"selection_policy":{"id":"1056","type":"UnionRenderers"}},"id":"1037","type":"ColumnDataSource"},{"attributes":{"line_alpha":0.1,"line_color":"#1f77b4","line_width":2,"x":{"field":"x"},"y":{"field":"y"}},"id":"1039","type":"Line"},{"attributes":{"source":{"id":"1037","type":"ColumnDataSource"}},"id":"1041","type":"CDSView"},{"attributes":{"ticker":{"id":"1015","type":"BasicTicker"}},"id":"1018","type":"Grid"},{"attributes":{"callback":null},"id":"1008","type":"DataRange1d"},{"attributes":{},"id":"1044","type":"BasicTickFormatter"},{"attributes":{"dimension":1,"ticker":{"id":"1020","type":"BasicTicker"}},"id":"1023","type":"Grid"},{"attributes":{"bottom_units":"screen","fill_alpha":{"value":0.5},"fill_color":{"value":"lightgrey"},"left_units":"screen","level":"overlay","line_alpha":{"value":1.0},"line_color":{"value":"black"},"line_dash":[4,4],"line_width":{"value":2},"render_mode":"css","right_units":"screen","top_units":"screen"},"id":"1047","type":"BoxAnnotation"},{"attributes":{"text":"Pressure along Theta; Z=15"},"id":"1004","type":"Title"},{"attributes":{},"id":"1020","type":"BasicTicker"},{"attributes":{"axis_label":"Pressure","formatter":{"id":"1044","type":"BasicTickFormatter"},"ticker":{"id":"1020","type":"BasicTicker"}},"id":"1019","type":"LinearAxis"},{"attributes":{},"id":"1028","type":"ResetTool"},{"attributes":{"axis_label":"Points along Theta","formatter":{"id":"1046","type":"BasicTickFormatter"},"ticker":{"id":"1015","type":"BasicTicker"}},"id":"1014","type":"LinearAxis"},{"attributes":{},"id":"1029","type":"HelpTool"},{"attributes":{"callback":null},"id":"1006","type":"DataRange1d"},{"attributes":{"data_source":{"id":"1037","type":"ColumnDataSource"},"glyph":{"id":"1038","type":"Line"},"hover_glyph":null,"muted_glyph":null,"nonselection_glyph":{"id":"1039","type":"Line"},"selection_glyph":null,"view":{"id":"1041","type":"CDSView"}},"id":"1040","type":"GlyphRenderer"},{"attributes":{},"id":"1057","type":"Selection"},{"attributes":{},"id":"1046","type":"BasicTickFormatter"},{"attributes":{"line_color":"blue","line_width":2,"x":{"field":"x"},"y":{"field":"y"}},"id":"1038","type":"Line"},{"attributes":{"items":[{"id":"1049","type":"LegendItem"}]},"id":"1048","type":"Legend"}],"root_ids":["1003"]},"title":"Bokeh Application","version":"1.3.0"}};
+  var render_items = [{"docid":"79866b02-e37b-4d36-926b-f876939daefd","roots":{"1003":"8a72eeca-5eb0-4c4b-b425-ee8f17bb8fe1"}}];
+  root.Bokeh.embed.embed_items_notebook(docs_json, render_items);
+
+  }
+  if (root.Bokeh !== undefined) {
+    embed_document(root);
+  } else {
+    var attempts = 0;
+    var timer = setInterval(function(root) {
+      if (root.Bokeh !== undefined) {
+        embed_document(root);
+        clearInterval(timer);
+      }
+      attempts++;
+      if (attempts > 100) {
+        console.log("Bokeh: ERROR: Unable to run BokehJS code because BokehJS library is missing");
+        clearInterval(timer);
+      }
+    }, 10, root)
+  }
+})(window);
+</script></div>
 </div>
 </div>
 
