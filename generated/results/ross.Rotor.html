@@ -1022,17 +1022,29 @@ logarithmic decrement and the kappa modes</p>
 <dl class="method">
 <dt id="ross.Rotor.run_static">
 <code class="sig-name descname">run_static</code><span class="sig-paren">(</span><em class="sig-param">self</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/rotor_assembly.html#Rotor.run_static"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.Rotor.run_static" title="Permalink to this definition">¶</a></dt>
-<dd><p>Static analysis calculates free-body diagram, deformed shaft, shearing
+<dd><p>Rotor static analysis.
+Static analysis calculates free-body diagram, deformed shaft, shearing
 force diagram and bending moment diagram.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
 <dd class="field-odd"><dl class="simple">
-<dt>A dictionary containing the information about:</dt><dd><p>Static displacement vector,
-Shearing force vector,
-Bending moment vector,
-Shaft total weight,
-Disks forces,
-Bearings reaction forces</p>
+<dt>results: object</dt><dd><p>An instance of StaticResult class, which is used to create plots.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Attributes</dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>shaft_weight: float</strong></dt><dd><p>Shaft total weight</p>
+</dd>
+<dt><strong>disk_weigth_force: list</strong></dt><dd><p>Weight forces of each disk</p>
+</dd>
+<dt><strong>bearing_reaction_force: list</strong></dt><dd><p>The static reaction forces on each bearing</p>
+</dd>
+<dt><strong>disp_y: array</strong></dt><dd><p>The shaft static displacement vector,</p>
+</dd>
+<dt><strong>Vx: array</strong></dt><dd><p>Shearing force vector</p>
+</dd>
+<dt><strong>Bm: array</strong></dt><dd><p>Bending moment vector</p>
 </dd>
 </dl>
 </dd>

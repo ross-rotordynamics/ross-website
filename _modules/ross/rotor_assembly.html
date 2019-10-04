@@ -2485,28 +2485,38 @@
         <span class="n">shutil</span><span class="o">.</span><span class="n">rmtree</span><span class="p">(</span><span class="n">Path</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">ross</span><span class="o">.</span><span class="vm">__file__</span><span class="p">))</span> <span class="o">/</span> <span class="s2">&quot;rotors&quot;</span> <span class="o">/</span> <span class="n">rotor_name</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="Rotor.run_static"><a class="viewcode-back" href="../../generated/results/ross.Rotor.html#ross.Rotor.run_static">[docs]</a>    <span class="k">def</span> <span class="nf">run_static</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+        <span class="sd">&quot;&quot;&quot;Rotor static analysis.</span>
 <span class="sd">        Static analysis calculates free-body diagram, deformed shaft, shearing</span>
 <span class="sd">        force diagram and bending moment diagram.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
 
+<span class="sd">        Attributes</span>
+<span class="sd">        ----------</span>
+<span class="sd">        shaft_weight: float</span>
+<span class="sd">            Shaft total weight</span>
+<span class="sd">        disk_weigth_force: list</span>
+<span class="sd">            Weight forces of each disk</span>
+<span class="sd">        bearing_reaction_force: list</span>
+<span class="sd">            The static reaction forces on each bearing</span>
+<span class="sd">        disp_y: array</span>
+<span class="sd">            The shaft static displacement vector,</span>
+<span class="sd">        Vx: array</span>
+<span class="sd">            Shearing force vector</span>
+<span class="sd">        Bm: array</span>
+<span class="sd">            Bending moment vector</span>
+
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        A dictionary containing the information about:</span>
-<span class="sd">            Static displacement vector,</span>
-<span class="sd">            Shearing force vector,</span>
-<span class="sd">            Bending moment vector,</span>
-<span class="sd">            Shaft total weight,</span>
-<span class="sd">            Disks forces,</span>
-<span class="sd">            Bearings reaction forces</span>
+<span class="sd">        results: object</span>
+<span class="sd">            An instance of StaticResult class, which is used to create plots.</span>
 
 <span class="sd">        Example</span>
 <span class="sd">        -------</span>
 <span class="sd">        &gt;&gt;&gt; rotor = rotor_example()</span>
 <span class="sd">        &gt;&gt;&gt; static = rotor.run_static()</span>
-<span class="sd">        &gt;&gt;&gt; static.force_data[&#39;Bearings Reaction Forces&#39;]</span>
+<span class="sd">        &gt;&gt;&gt; rotor.bearing_reaction_forces</span>
 <span class="sd">        [432.4, 432.4]</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">df_bearings</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
@@ -2626,14 +2636,9 @@
 
             <span class="n">sh_weight</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">around</span><span class="p">(</span><span class="nb">sum</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">df_shaft</span><span class="p">[</span><span class="s2">&quot;m&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">)</span> <span class="o">*</span> <span class="mf">9.8065</span><span class="p">,</span> <span class="n">decimals</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 
-            <span class="n">force_data</span> <span class="o">=</span> <span class="p">{</span>
-                <span class="s2">&quot;Static displacement vector&quot;</span><span class="p">:</span> <span class="n">disp_y</span><span class="p">,</span>
-                <span class="s2">&quot;Shearing force vector&quot;</span><span class="p">:</span> <span class="n">Vx</span><span class="p">,</span>
-                <span class="s2">&quot;Bending moment vector&quot;</span><span class="p">:</span> <span class="n">Bm</span><span class="p">,</span>
-                <span class="s2">&quot;Shaft Total Weight&quot;</span><span class="p">:</span> <span class="n">sh_weight</span><span class="p">,</span>
-                <span class="s2">&quot;Disks Forces&quot;</span><span class="p">:</span> <span class="n">DskForceToReturn</span><span class="p">,</span>
-                <span class="s2">&quot;Bearings Reaction Forces&quot;</span><span class="p">:</span> <span class="n">BrgForceToReturn</span><span class="p">,</span>
-            <span class="p">}</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">shaft_weight</span> <span class="o">=</span> <span class="n">sh_weight</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">disk_forces</span> <span class="o">=</span> <span class="n">DskForceToReturn</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">bearing_reaction_forces</span> <span class="o">=</span> <span class="n">BrgForceToReturn</span>
 
             <span class="n">results</span> <span class="o">=</span> <span class="n">StaticResults</span><span class="p">(</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">disp_y</span><span class="p">,</span>
@@ -2645,7 +2650,6 @@
                 <span class="bp">self</span><span class="o">.</span><span class="n">nodes</span><span class="p">,</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">nodes_pos</span><span class="p">,</span>
                 <span class="n">Vx_axis</span><span class="p">,</span>
-                <span class="n">force_data</span><span class="p">,</span>
             <span class="p">)</span>
 
         <span class="k">return</span> <span class="n">results</span></div>
