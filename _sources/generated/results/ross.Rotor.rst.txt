@@ -19,7 +19,6 @@ ross.Rotor
    .. automethod:: A
    .. automethod:: C
    .. automethod:: G
-   .. automethod:: H_kappa
    .. automethod:: K
    .. automethod:: M
    .. automethod:: __init__
@@ -27,8 +26,6 @@ ross.Rotor
    .. automethod:: check_slenderness_ratio
    .. automethod:: convergence
    .. automethod:: from_section
-   .. automethod:: kappa
-   .. automethod:: kappa_mode
    .. automethod:: load
    .. automethod:: orbit
    .. automethod:: plot_level1
@@ -39,7 +36,6 @@ ross.Rotor
    .. automethod:: run_forced_response
    .. automethod:: run_freq_response
    .. automethod:: run_modal
-   .. automethod:: run_mode_shapes
    .. automethod:: run_static
    .. automethod:: run_time_response
    .. automethod:: save
@@ -48,17 +44,9 @@ ross.Rotor
    .. automethod:: time_response
    .. automethod:: transfer_matrix
    .. automethod:: unbalance_response
-   .. automethod:: whirl_direction
-   .. automethod:: whirl_values
    
    
 
    
-   
-   .. rubric:: Attributes
-
-   .. autosummary::
-   
-      ~Rotor.w
    
    
