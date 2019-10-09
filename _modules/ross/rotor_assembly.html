@@ -192,6 +192,7 @@
     <span class="n">ForcedResponseResults</span><span class="p">,</span>
     <span class="n">ModeShapeResults</span><span class="p">,</span>
     <span class="n">StaticResults</span><span class="p">,</span>
+    <span class="n">SummaryResults</span><span class="p">,</span>
     <span class="n">ConvergenceResults</span><span class="p">,</span>
     <span class="n">TimeResponseResults</span><span class="p">,</span>
 <span class="p">)</span>
@@ -393,6 +394,8 @@
             <span class="s2">&quot;L&quot;</span><span class="p">,</span>
             <span class="s2">&quot;node_pos&quot;</span><span class="p">,</span>
             <span class="s2">&quot;node_pos_r&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;beam_cg&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;axial_cg_pos&quot;</span><span class="p">,</span>
             <span class="s2">&quot;y_pos&quot;</span><span class="p">,</span>
             <span class="s2">&quot;i_d&quot;</span><span class="p">,</span>
             <span class="s2">&quot;o_d&quot;</span><span class="p">,</span>
@@ -425,10 +428,13 @@
 
         <span class="n">nodes_pos_l</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">df_shaft</span><span class="o">.</span><span class="n">n_l</span><span class="p">))</span>
         <span class="n">nodes_pos_r</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">df_shaft</span><span class="o">.</span><span class="n">n_l</span><span class="p">))</span>
+        <span class="n">axial_cg_pos</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">df_shaft</span><span class="o">.</span><span class="n">n_l</span><span class="p">))</span>
 
-        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">df_shaft</span><span class="p">)):</span>
+        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">sh</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">shaft_elements</span><span class="p">):</span>
             <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
                 <span class="n">nodes_pos_r</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">nodes_pos_r</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="n">df_shaft</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="s2">&quot;L&quot;</span><span class="p">]</span>
+                <span class="n">axial_cg_pos</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">sh</span><span class="o">.</span><span class="n">beam_cg</span> <span class="o">+</span> <span class="n">nodes_pos_l</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+                <span class="n">sh</span><span class="o">.</span><span class="n">axial_cg_pos</span> <span class="o">=</span> <span class="n">axial_cg_pos</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
                 <span class="k">continue</span>
             <span class="k">if</span> <span class="n">df_shaft</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="s2">&quot;n_l&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="n">df_shaft</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;n_l&quot;</span><span class="p">]:</span>
                 <span class="n">nodes_pos_l</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">nodes_pos_l</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span>
@@ -436,9 +442,12 @@
             <span class="k">else</span><span class="p">:</span>
                 <span class="n">nodes_pos_l</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">nodes_pos_r</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span>
                 <span class="n">nodes_pos_r</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">nodes_pos_l</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="n">df_shaft</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="s2">&quot;L&quot;</span><span class="p">]</span>
+            <span class="n">axial_cg_pos</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">sh</span><span class="o">.</span><span class="n">beam_cg</span> <span class="o">+</span> <span class="n">nodes_pos_l</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+            <span class="n">sh</span><span class="o">.</span><span class="n">axial_cg_pos</span> <span class="o">=</span> <span class="n">axial_cg_pos</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
 
         <span class="n">df_shaft</span><span class="p">[</span><span class="s2">&quot;nodes_pos_l&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">nodes_pos_l</span>
         <span class="n">df_shaft</span><span class="p">[</span><span class="s2">&quot;nodes_pos_r&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">nodes_pos_r</span>
+        <span class="n">df_shaft</span><span class="p">[</span><span class="s2">&quot;axial_cg_pos&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">axial_cg_pos</span>
 
         <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span>
             <span class="p">[</span><span class="n">df_shaft</span><span class="p">,</span> <span class="n">df_disks</span><span class="p">,</span> <span class="n">df_bearings</span><span class="p">,</span> <span class="n">df_point_mass</span><span class="p">,</span> <span class="n">df_seals</span><span class="p">],</span> <span class="n">sort</span><span class="o">=</span><span class="kc">True</span>
@@ -2652,6 +2661,30 @@
                 <span class="n">Vx_axis</span><span class="p">,</span>
             <span class="p">)</span>
 
+        <span class="k">return</span> <span class="n">results</span></div>
+
+<div class="viewcode-block" id="Rotor.summary"><a class="viewcode-back" href="../../generated/results/ross.Rotor.html#ross.Rotor.summary">[docs]</a>    <span class="k">def</span> <span class="nf">summary</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Rotor summary.</span>
+
+<span class="sd">        This creates a summary of the main parameters and attributes from the</span>
+<span class="sd">        rotor model. The data is presented in a table format.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        results : class instance</span>
+<span class="sd">            An instance of SumarryResults class to build the summary table</span>
+
+<span class="sd">        Examples</span>
+<span class="sd">        --------</span>
+<span class="sd">        &gt;&gt;&gt; rotor = rotor_example()</span>
+<span class="sd">        &gt;&gt;&gt; table = rotor.summary().plot()</span>
+<span class="sd">        &gt;&gt;&gt; # to display the plot use the command:</span>
+<span class="sd">        &gt;&gt;&gt; # show(table)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">results</span> <span class="o">=</span> <span class="n">SummaryResults</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">df_shaft</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">results</span></div>
 
 <div class="viewcode-block" id="Rotor.from_section"><a class="viewcode-back" href="../../generated/results/ross.Rotor.html#ross.Rotor.from_section">[docs]</a>    <span class="nd">@classmethod</span>

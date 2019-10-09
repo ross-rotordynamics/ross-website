@@ -1129,6 +1129,29 @@ It will be returned if plot=False.</p>
 </dd></dl>
 
 <dl class="method">
+<dt id="ross.Rotor.summary">
+<code class="sig-name descname">summary</code><span class="sig-paren">(</span><em class="sig-param">self</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/rotor_assembly.html#Rotor.summary"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.Rotor.summary" title="Permalink to this definition">¶</a></dt>
+<dd><p>Rotor summary.</p>
+<p>This creates a summary of the main parameters and attributes from the
+rotor model. The data is presented in a table format.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>results</strong><span class="classifier">class instance</span></dt><dd><p>An instance of SumarryResults class to build the summary table</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">rotor</span> <span class="o">=</span> <span class="n">rotor_example</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">table</span> <span class="o">=</span> <span class="n">rotor</span><span class="o">.</span><span class="n">summary</span><span class="p">()</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># to display the plot use the command:</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># show(table)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
 <dt id="ross.Rotor.time_response">
 <code class="sig-name descname">time_response</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">F</em>, <em class="sig-param">t</em>, <em class="sig-param">ic=None</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/rotor_assembly.html#Rotor.time_response"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.Rotor.time_response" title="Permalink to this definition">¶</a></dt>
 <dd><p>Time response for a rotor.</p>

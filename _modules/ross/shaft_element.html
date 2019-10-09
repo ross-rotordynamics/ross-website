@@ -302,6 +302,10 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">Ie</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="p">(</span><span class="n">o_d</span> <span class="o">**</span> <span class="mi">4</span> <span class="o">-</span> <span class="n">i_d</span> <span class="o">**</span> <span class="mi">4</span><span class="p">)</span> <span class="o">/</span> <span class="mi">64</span>
         <span class="n">phi</span> <span class="o">=</span> <span class="mi">0</span>
 
+        <span class="c1"># Geometric center</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">beam_cg</span> <span class="o">=</span> <span class="n">L</span> <span class="o">/</span> <span class="mi">2</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">axial_cg_pos</span> <span class="o">=</span> <span class="kc">None</span>
+
         <span class="c1"># Slenderness ratio of beam elements (G*A*L^2) / (E*I)</span>
         <span class="n">sld</span> <span class="o">=</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">material</span><span class="o">.</span><span class="n">G_s</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">A</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">L</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">material</span><span class="o">.</span><span class="n">E</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">Ie</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">slenderness_ratio</span> <span class="o">=</span> <span class="n">sld</span>
@@ -1172,6 +1176,19 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">Ie_l</span> <span class="o">=</span> <span class="n">Ie_l</span>
 
         <span class="n">phi</span> <span class="o">=</span> <span class="mi">0</span>
+
+        <span class="c1"># geometric center</span>
+        <span class="n">c1</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="n">roj</span> <span class="o">**</span> <span class="mi">2</span>
+            <span class="o">+</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">roj</span> <span class="o">*</span> <span class="n">rok</span>
+            <span class="o">+</span> <span class="mi">3</span> <span class="o">*</span> <span class="n">rok</span> <span class="o">**</span> <span class="mi">2</span>
+            <span class="o">-</span> <span class="n">rij</span> <span class="o">**</span> <span class="mi">2</span>
+            <span class="o">-</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">rij</span> <span class="o">*</span> <span class="n">rik</span>
+            <span class="o">-</span> <span class="mi">3</span> <span class="o">*</span> <span class="n">rik</span> <span class="o">**</span> <span class="mi">2</span>
+        <span class="p">)</span>
+        <span class="n">c2</span> <span class="o">=</span> <span class="p">(</span><span class="n">roj</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">+</span> <span class="n">roj</span> <span class="o">*</span> <span class="n">rok</span> <span class="o">+</span> <span class="n">rok</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span> <span class="o">-</span> <span class="p">(</span><span class="n">rij</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">+</span> <span class="n">rij</span> <span class="o">*</span> <span class="n">rik</span> <span class="o">+</span> <span class="n">rik</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">beam_cg</span> <span class="o">=</span> <span class="n">L</span> <span class="o">*</span> <span class="n">c1</span> <span class="o">/</span> <span class="p">(</span><span class="mi">4</span> <span class="o">*</span> <span class="n">c2</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">axial_cg_pos</span> <span class="o">=</span> <span class="kc">None</span>
 
         <span class="c1"># Slenderness ratio of beam elements (G*A*L^2) / (E*I)</span>
         <span class="n">sld</span> <span class="o">=</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">material</span><span class="o">.</span><span class="n">G_s</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">A</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">L</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">material</span><span class="o">.</span><span class="n">E</span> <span class="o">*</span> <span class="n">Ie</span><span class="p">)</span>

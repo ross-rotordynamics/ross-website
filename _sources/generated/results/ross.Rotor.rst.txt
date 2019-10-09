@@ -44,6 +44,7 @@ ross.Rotor
    .. automethod:: run_time_response
    .. automethod:: save
    .. automethod:: save_mat
+   .. automethod:: summary
    .. automethod:: time_response
    .. automethod:: transfer_matrix
    .. automethod:: unbalance_response
