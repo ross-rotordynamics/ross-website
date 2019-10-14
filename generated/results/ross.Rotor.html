@@ -165,7 +165,7 @@
 <h1>ross.Rotor<a class="headerlink" href="#ross-rotor" title="Permalink to this headline">¶</a></h1>
 <dl class="class">
 <dt id="ross.Rotor">
-<em class="property">class </em><code class="sig-prename descclassname">ross.</code><code class="sig-name descname">Rotor</code><span class="sig-paren">(</span><em class="sig-param">shaft_elements</em>, <em class="sig-param">disk_elements=None</em>, <em class="sig-param">bearing_seal_elements=None</em>, <em class="sig-param">point_mass_elements=None</em>, <em class="sig-param">sparse=True</em>, <em class="sig-param">n_eigen=12</em>, <em class="sig-param">min_w=None</em>, <em class="sig-param">max_w=None</em>, <em class="sig-param">rated_w=None</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/rotor_assembly.html#Rotor"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.Rotor" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">ross.</code><code class="sig-name descname">Rotor</code><span class="sig-paren">(</span><em class="sig-param">shaft_elements</em>, <em class="sig-param">disk_elements=None</em>, <em class="sig-param">bearing_seal_elements=None</em>, <em class="sig-param">point_mass_elements=None</em>, <em class="sig-param">sparse=True</em>, <em class="sig-param">n_eigen=12</em>, <em class="sig-param">min_w=None</em>, <em class="sig-param">max_w=None</em>, <em class="sig-param">rated_w=None</em>, <em class="sig-param">tag=None</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/rotor_assembly.html#Rotor"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.Rotor" title="Permalink to this definition">¶</a></dt>
 <dd><p>A rotor object.</p>
 <p>This class will create a rotor with the shaft,
 disk, bearing and seal elements provided.</p>
@@ -185,6 +185,8 @@ Default is True.</p>
 </dd>
 <dt><strong>n_eigen</strong><span class="classifier">int, optional</span></dt><dd><p>Number of eigenvalues calculated by arpack.
 Default is 12.</p>
+</dd>
+<dt><strong>tag</strong><span class="classifier">str</span></dt><dd><p>A tag for the rotor</p>
 </dd>
 </dl>
 </dd>
@@ -237,7 +239,7 @@ Default is 12.</p>
 </dl>
 <dl class="method">
 <dt id="ross.Rotor.__init__">
-<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">shaft_elements</em>, <em class="sig-param">disk_elements=None</em>, <em class="sig-param">bearing_seal_elements=None</em>, <em class="sig-param">point_mass_elements=None</em>, <em class="sig-param">sparse=True</em>, <em class="sig-param">n_eigen=12</em>, <em class="sig-param">min_w=None</em>, <em class="sig-param">max_w=None</em>, <em class="sig-param">rated_w=None</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/rotor_assembly.html#Rotor.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.Rotor.__init__" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">shaft_elements</em>, <em class="sig-param">disk_elements=None</em>, <em class="sig-param">bearing_seal_elements=None</em>, <em class="sig-param">point_mass_elements=None</em>, <em class="sig-param">sparse=True</em>, <em class="sig-param">n_eigen=12</em>, <em class="sig-param">min_w=None</em>, <em class="sig-param">max_w=None</em>, <em class="sig-param">rated_w=None</em>, <em class="sig-param">tag=None</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/rotor_assembly.html#Rotor.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.Rotor.__init__" title="Permalink to this definition">¶</a></dt>
 <dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
 </dd></dl>
 
@@ -377,7 +379,7 @@ Default is 0.</p>
 
 <dl class="method">
 <dt>
-<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">shaft_elements</em>, <em class="sig-param">disk_elements=None</em>, <em class="sig-param">bearing_seal_elements=None</em>, <em class="sig-param">point_mass_elements=None</em>, <em class="sig-param">sparse=True</em>, <em class="sig-param">n_eigen=12</em>, <em class="sig-param">min_w=None</em>, <em class="sig-param">max_w=None</em>, <em class="sig-param">rated_w=None</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/rotor_assembly.html#Rotor.__init__"><span class="viewcode-link">[source]</span></a></dt>
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">shaft_elements</em>, <em class="sig-param">disk_elements=None</em>, <em class="sig-param">bearing_seal_elements=None</em>, <em class="sig-param">point_mass_elements=None</em>, <em class="sig-param">sparse=True</em>, <em class="sig-param">n_eigen=12</em>, <em class="sig-param">min_w=None</em>, <em class="sig-param">max_w=None</em>, <em class="sig-param">rated_w=None</em>, <em class="sig-param">tag=None</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/rotor_assembly.html#Rotor.__init__"><span class="viewcode-link">[source]</span></a></dt>
 <dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
 </dd></dl>
 
