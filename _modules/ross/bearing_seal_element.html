@@ -299,6 +299,9 @@
 <span class="sd">        Node to which the bearing will connect. If None the bearing is</span>
 <span class="sd">        connected to ground.</span>
 <span class="sd">        Default is None.</span>
+<span class="sd">    scale_factor: float, optional</span>
+<span class="sd">        The scale factor is used to scale the bearing drawing.</span>
+<span class="sd">        Default is 1.</span>
 <span class="sd">    Examples</span>
 <span class="sd">    --------</span>
 <span class="sd">    &gt;&gt;&gt; # A bearing element located in the first rotor node, with these</span>
@@ -331,6 +334,7 @@
         <span class="n">w</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
         <span class="n">tag</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
         <span class="n">n_link</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">scale_factor</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
     <span class="p">):</span>
 
         <span class="n">args</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;kxx&quot;</span><span class="p">,</span> <span class="s2">&quot;kyy&quot;</span><span class="p">,</span> <span class="s2">&quot;kxy&quot;</span><span class="p">,</span> <span class="s2">&quot;kyx&quot;</span><span class="p">,</span> <span class="s2">&quot;cxx&quot;</span><span class="p">,</span> <span class="s2">&quot;cyy&quot;</span><span class="p">,</span> <span class="s2">&quot;cxy&quot;</span><span class="p">,</span> <span class="s2">&quot;cyx&quot;</span><span class="p">]</span>
@@ -377,7 +381,8 @@
 
         <span class="bp">self</span><span class="o">.</span><span class="n">w</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">w</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">tag</span> <span class="o">=</span> <span class="n">tag</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">color</span> <span class="o">=</span> <span class="s2">&quot;#355d7a&quot;</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">color</span> <span class="o">=</span> <span class="s2">&quot;#355d7a&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">scale_factor</span> <span class="o">=</span> <span class="n">scale_factor</span></div>
 
     <span class="k">def</span> <span class="nf">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;This function returns a string representation of a bearing element.</span>
@@ -704,6 +709,7 @@
             <span class="n">kwargs</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span>
 
         <span class="c1"># geometric factors</span>
+        <span class="n">mean</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">scale_factor</span> <span class="o">*</span> <span class="n">mean</span>
         <span class="n">zpos</span><span class="p">,</span> <span class="n">ypos</span> <span class="o">=</span> <span class="n">position</span>
         <span class="n">coils</span> <span class="o">=</span> <span class="mi">6</span>  <span class="c1"># number of points to generate spring</span>
         <span class="n">n</span> <span class="o">=</span> <span class="mi">5</span>  <span class="c1"># number of ground lines</span>
@@ -805,6 +811,7 @@
             <span class="n">kwargs</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span>
 
         <span class="c1"># geometric factors</span>
+        <span class="n">mean</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">scale_factor</span> <span class="o">*</span> <span class="n">mean</span>
         <span class="n">zpos</span><span class="p">,</span> <span class="n">ypos</span> <span class="o">=</span> <span class="n">position</span>
         <span class="n">coils</span> <span class="o">=</span> <span class="mi">6</span>  <span class="c1"># number of points to generate spring</span>
         <span class="n">n</span> <span class="o">=</span> <span class="mi">5</span>  <span class="c1"># number of ground lines</span>
@@ -922,7 +929,7 @@
         <span class="k">return</span> <span class="n">data</span></div>
 
 <div class="viewcode-block" id="BearingElement.from_table"><a class="viewcode-back" href="../../generated/elements/ross.BearingElement.html#ross.BearingElement.from_table">[docs]</a>    <span class="nd">@classmethod</span>
-    <span class="k">def</span> <span class="nf">from_table</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">file</span><span class="p">,</span> <span class="n">sheet_name</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">from_table</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">file</span><span class="p">,</span> <span class="n">sheet_name</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Instantiate a bearing using inputs from an Excel table.</span>
 <span class="sd">        A header with the names of the columns is required. These names should match the names expected by the routine</span>
 <span class="sd">        (usually the names of the parameters, but also similar ones). The program will read every row bellow the header</span>
@@ -959,6 +966,7 @@
             <span class="n">cxy</span><span class="o">=</span><span class="n">parameters</span><span class="p">[</span><span class="s2">&quot;cxy&quot;</span><span class="p">],</span>
             <span class="n">cyx</span><span class="o">=</span><span class="n">parameters</span><span class="p">[</span><span class="s2">&quot;cyx&quot;</span><span class="p">],</span>
             <span class="n">w</span><span class="o">=</span><span class="n">parameters</span><span class="p">[</span><span class="s2">&quot;w&quot;</span><span class="p">],</span>
+            <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
         <span class="p">)</span></div>
 
 <div class="viewcode-block" id="BearingElement.from_fluid_flow"><a class="viewcode-back" href="../../generated/elements/ross.BearingElement.html#ross.BearingElement.from_fluid_flow">[docs]</a>    <span class="nd">@classmethod</span>
@@ -1752,6 +1760,7 @@
         <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">default_values</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
             <span class="n">kwargs</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span>
 
+        <span class="n">mean</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">scale_factor</span>
         <span class="c1"># geometric factors</span>
         <span class="n">zpos</span><span class="p">,</span> <span class="n">ypos</span> <span class="o">=</span> <span class="n">position</span>
         <span class="n">coils</span> <span class="o">=</span> <span class="mi">6</span>  <span class="c1"># number of points to generate spring</span>
