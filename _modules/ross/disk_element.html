@@ -201,7 +201,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">Id</span> <span class="o">=</span> <span class="n">Id</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">Ip</span> <span class="o">=</span> <span class="n">Ip</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">tag</span> <span class="o">=</span> <span class="n">tag</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">color</span> <span class="o">=</span> <span class="s2">&quot;#bc625b&quot;</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">color</span> <span class="o">=</span> <span class="n">bokeh_colors</span><span class="p">[</span><span class="mi">9</span><span class="p">]</span></div>
 
     <span class="k">def</span> <span class="nf">__eq__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;This function allows disk elements to be compared.</span>
@@ -537,7 +537,7 @@
             <span class="n">source</span><span class="o">=</span><span class="n">source</span><span class="p">,</span>
             <span class="n">alpha</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
             <span class="n">line_width</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
-            <span class="n">color</span><span class="o">=</span><span class="n">bokeh_colors</span><span class="p">[</span><span class="mi">9</span><span class="p">],</span>
+            <span class="n">color</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">color</span><span class="p">,</span>
             <span class="n">legend</span><span class="o">=</span><span class="s2">&quot;Disk&quot;</span><span class="p">,</span>
             <span class="n">name</span><span class="o">=</span><span class="s2">&quot;ub_disk&quot;</span><span class="p">,</span>
         <span class="p">)</span>
@@ -547,7 +547,7 @@
             <span class="n">source</span><span class="o">=</span><span class="n">source</span><span class="p">,</span>
             <span class="n">alpha</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
             <span class="n">line_width</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
-            <span class="n">color</span><span class="o">=</span><span class="n">bokeh_colors</span><span class="p">[</span><span class="mi">9</span><span class="p">],</span>
+            <span class="n">color</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">color</span><span class="p">,</span>
             <span class="n">name</span><span class="o">=</span><span class="s2">&quot;ub_disk&quot;</span><span class="p">,</span>
         <span class="p">)</span>
         <span class="n">bk_ax</span><span class="o">.</span><span class="n">circle</span><span class="p">(</span>
@@ -556,7 +556,7 @@
             <span class="n">radius</span><span class="o">=</span><span class="s2">&quot;radius&quot;</span><span class="p">,</span>
             <span class="n">source</span><span class="o">=</span><span class="n">source_c</span><span class="p">,</span>
             <span class="n">fill_alpha</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
-            <span class="n">color</span><span class="o">=</span><span class="n">bokeh_colors</span><span class="p">[</span><span class="mi">9</span><span class="p">],</span>
+            <span class="n">color</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">color</span><span class="p">,</span>
             <span class="n">name</span><span class="o">=</span><span class="s2">&quot;uc_disk&quot;</span><span class="p">,</span>
         <span class="p">)</span>
         <span class="n">bk_ax</span><span class="o">.</span><span class="n">circle</span><span class="p">(</span>
@@ -565,7 +565,7 @@
             <span class="n">radius</span><span class="o">=</span><span class="s2">&quot;radius&quot;</span><span class="p">,</span>
             <span class="n">source</span><span class="o">=</span><span class="n">source_c</span><span class="p">,</span>
             <span class="n">fill_alpha</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
-            <span class="n">color</span><span class="o">=</span><span class="n">bokeh_colors</span><span class="p">[</span><span class="mi">9</span><span class="p">],</span>
+            <span class="n">color</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">color</span><span class="p">,</span>
             <span class="n">name</span><span class="o">=</span><span class="s2">&quot;lc_disk&quot;</span><span class="p">,</span>
         <span class="p">)</span>
 
@@ -655,7 +655,7 @@
 <span class="sd">        &gt;&gt;&gt; file_path = os.path.dirname(os.path.realpath(__file__)) + &#39;/tests/data/shaft_si.xls&#39;</span>
 <span class="sd">        &gt;&gt;&gt; list_of_disks = DiskElement.from_table(file_path, sheet_name=&quot;More&quot;)</span>
 <span class="sd">        &gt;&gt;&gt; list_of_disks[0]</span>
-<span class="sd">        DiskElement(Id=0.0, Ip=0.0, m=15.12, color=&#39;#bc625b&#39;, n=4, tag=None)</span>
+<span class="sd">        DiskElement(Id=0.0, Ip=0.0, m=15.12, color=&#39;#b2182b&#39;, n=4, tag=None)</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">parameters</span> <span class="o">=</span> <span class="n">read_table_file</span><span class="p">(</span><span class="n">file</span><span class="p">,</span> <span class="s2">&quot;disk&quot;</span><span class="p">,</span> <span class="n">sheet_name</span><span class="o">=</span><span class="n">sheet_name</span><span class="p">)</span>
         <span class="n">list_of_disks</span> <span class="o">=</span> <span class="p">[]</span>
@@ -689,9 +689,8 @@
 <span class="sd">    &gt;&gt;&gt; disk.Ip</span>
 <span class="sd">    0.32956362</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">disk</span> <span class="o">=</span> <span class="n">DiskElement</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">32.58972765</span><span class="p">,</span> <span class="mf">0.17808928</span><span class="p">,</span> <span class="mf">0.32956362</span><span class="p">)</span>
+    <span class="n">disk</span> <span class="o">=</span> <span class="n">DiskElement</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">32.589_727_65</span><span class="p">,</span> <span class="mf">0.178_089_28</span><span class="p">,</span> <span class="mf">0.329_563_62</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">disk</span>
-
 </pre></div>
 
     </div>
