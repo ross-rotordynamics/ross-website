@@ -540,7 +540,7 @@ assumed to be the first sheet in the file.</p>
 Examples
 ——–
 &gt;&gt;&gt; import os
-&gt;&gt;&gt; file_path = os.path.dirname(os.path.realpath(__file__)) + ‘/tests/data/bearing_seal.xls’
+&gt;&gt;&gt; file_path = os.path.dirname(os.path.realpath(__file__)) + ‘/tests/data/bearing_seal_si.xls’
 &gt;&gt;&gt; BearingElement.from_table(0, file_path) # doctest: +ELLIPSIS
 BearingElement(n=0,</p>
 <blockquote>
@@ -722,7 +722,7 @@ n : int</p>
 </dd>
 </dl>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">os</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">file_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">realpath</span><span class="p">(</span><span class="vm">__file__</span><span class="p">))</span> <span class="o">+</span> <span class="s1">&#39;/tests/data/bearing_seal.xls&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">file_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">realpath</span><span class="p">(</span><span class="vm">__file__</span><span class="p">))</span> <span class="o">+</span> <span class="s1">&#39;/tests/data/bearing_seal_si.xls&#39;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">BearingElement</span><span class="o">.</span><span class="n">table_to_toml</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">file_path</span><span class="p">)</span> 
 <span class="go">{&#39;n&#39;: 0, &#39;kxx&#39;: [...</span>
 </pre></div>
