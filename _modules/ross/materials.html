@@ -167,13 +167,14 @@
 
 
 <div class="viewcode-block" id="Material"><a class="viewcode-back" href="../../generated/material/ross.Material.html#ross.Material">[docs]</a><span class="k">class</span> <span class="nc">Material</span><span class="p">:</span>
-    <span class="sd">&quot;&quot;&quot;Material.</span>
+    <span class="sd">&quot;&quot;&quot;Material used on shaft and disks.</span>
 
 <span class="sd">    Class used to create a material and define its properties.</span>
-<span class="sd">    Density and at least 2 arguments from E, G_s and Poisson</span>
-<span class="sd">    should be provided.</span>
+<span class="sd">    Density and at least 2 arguments from E, G_s and Poisson should be</span>
+<span class="sd">    provided.</span>
 
-<span class="sd">    Run Material.available_materials() for materials already provided.</span>
+<span class="sd">    You can run rs.Material.available_materials() to get a list of materials</span>
+<span class="sd">    already provided.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -309,6 +310,7 @@
         <span class="n">os</span><span class="o">.</span><span class="n">chdir</span><span class="p">(</span><span class="n">run_path</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="Material.save_material"><a class="viewcode-back" href="../../generated/material/ross.Material.html#ross.Material.save_material">[docs]</a>    <span class="k">def</span> <span class="nf">save_material</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Saves the material in the available_materials list.&quot;&quot;&quot;</span>
         <span class="n">run_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">()</span>
         <span class="n">ross_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">rs</span><span class="o">.</span><span class="vm">__file__</span><span class="p">)</span>
         <span class="n">os</span><span class="o">.</span><span class="n">chdir</span><span class="p">(</span><span class="n">ross_path</span><span class="p">)</span>

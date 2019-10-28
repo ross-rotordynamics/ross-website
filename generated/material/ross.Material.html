@@ -166,11 +166,12 @@
 <dl class="class">
 <dt id="ross.Material">
 <em class="property">class </em><code class="sig-prename descclassname">ross.</code><code class="sig-name descname">Material</code><span class="sig-paren">(</span><em class="sig-param">name</em>, <em class="sig-param">rho</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/materials.html#Material"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.Material" title="Permalink to this definition">¶</a></dt>
-<dd><p>Material.</p>
+<dd><p>Material used on shaft and disks.</p>
 <p>Class used to create a material and define its properties.
-Density and at least 2 arguments from E, G_s and Poisson
-should be provided.</p>
-<p>Run Material.available_materials() for materials already provided.</p>
+Density and at least 2 arguments from E, G_s and Poisson should be
+provided.</p>
+<p>You can run rs.Material.available_materials() to get a list of materials
+already provided.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
@@ -230,7 +231,8 @@ should be provided.</p>
 <dl class="method">
 <dt id="ross.Material.save_material">
 <code class="sig-name descname">save_material</code><span class="sig-paren">(</span><em class="sig-param">self</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/materials.html#Material.save_material"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.Material.save_material" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Saves the material in the available_materials list.</p>
+</dd></dl>
 
 <dl class="method">
 <dt id="ross.Material.use_material">
