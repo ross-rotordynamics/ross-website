@@ -338,7 +338,7 @@
             <span class="k">if</span> <span class="n">sh</span><span class="o">.</span><span class="n">n</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
                 <span class="n">sh</span><span class="o">.</span><span class="n">n</span> <span class="o">=</span> <span class="n">i</span>
             <span class="k">if</span> <span class="n">sh</span><span class="o">.</span><span class="n">tag</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-                <span class="n">sh</span><span class="o">.</span><span class="n">tag</span> <span class="o">=</span> <span class="n">sh</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span> <span class="o">+</span> <span class="s2">&quot; &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="o">+</span> <span class="n">f</span><span class="s2">&quot; i_d=</span><span class="si">{sh.i_d}</span><span class="s2">&quot;</span>
+                <span class="n">sh</span><span class="o">.</span><span class="n">tag</span> <span class="o">=</span> <span class="n">sh</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span> <span class="o">+</span> <span class="s2">&quot; &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
 
         <span class="k">if</span> <span class="n">disk_elements</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">disk_elements</span> <span class="o">=</span> <span class="p">[]</span>
@@ -2383,7 +2383,18 @@
 <span class="sd">        &gt;&gt;&gt; # to display the plot use the command:</span>
 <span class="sd">        &gt;&gt;&gt; # show(table)</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">results</span> <span class="o">=</span> <span class="n">SummaryResults</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">df_shaft</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">df_disks</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">CG</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">Ip</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">tag</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">run_static</span><span class="p">()</span>
+        <span class="n">forces</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">bearing_reaction_forces</span>
+        <span class="n">results</span> <span class="o">=</span> <span class="n">SummaryResults</span><span class="p">(</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">df_shaft</span><span class="p">,</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">df_disks</span><span class="p">,</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">df_bearings</span><span class="p">,</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">nodes_pos</span><span class="p">,</span>
+                <span class="n">forces</span><span class="p">,</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">CG</span><span class="p">,</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">Ip</span><span class="p">,</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">tag</span>
+        <span class="p">)</span>
         <span class="k">return</span> <span class="n">results</span></div>
 
 <div class="viewcode-block" id="Rotor.from_section"><a class="viewcode-back" href="../../generated/results/ross.Rotor.html#ross.Rotor.from_section">[docs]</a>    <span class="nd">@classmethod</span>
@@ -2682,7 +2693,7 @@
     </p>
     <p>
         &copy; Copyright 2019, Team Ross.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.2.0.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.2.1.<br/>
     </p>
   </div>
 </footer>
