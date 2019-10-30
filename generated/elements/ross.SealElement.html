@@ -165,51 +165,52 @@
 <h1>ross.SealElement<a class="headerlink" href="#ross-sealelement" title="Permalink to this headline">¶</a></h1>
 <dl class="class">
 <dt id="ross.SealElement">
-<em class="property">class </em><code class="sig-prename descclassname">ross.</code><code class="sig-name descname">SealElement</code><span class="sig-paren">(</span><em class="sig-param">n</em>, <em class="sig-param">kxx</em>, <em class="sig-param">cxx</em>, <em class="sig-param">kyy=None</em>, <em class="sig-param">kxy=0</em>, <em class="sig-param">kyx=0</em>, <em class="sig-param">cyy=None</em>, <em class="sig-param">cxy=0</em>, <em class="sig-param">cyx=0</em>, <em class="sig-param">w=None</em>, <em class="sig-param">seal_leakage=None</em>, <em class="sig-param">tag=None</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/bearing_seal_element.html#SealElement"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.SealElement" title="Permalink to this definition">¶</a></dt>
-<dd><p>A seal element.
-This class will create a seal element.
+<em class="property">class </em><code class="sig-prename descclassname">ross.</code><code class="sig-name descname">SealElement</code><span class="sig-paren">(</span><em class="sig-param">n</em>, <em class="sig-param">kxx</em>, <em class="sig-param">cxx</em>, <em class="sig-param">kyy=None</em>, <em class="sig-param">kxy=0</em>, <em class="sig-param">kyx=0</em>, <em class="sig-param">cyy=None</em>, <em class="sig-param">cxy=0</em>, <em class="sig-param">cyx=0</em>, <em class="sig-param">frequency=None</em>, <em class="sig-param">seal_leakage=None</em>, <em class="sig-param">tag=None</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/bearing_seal_element.html#SealElement"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.SealElement" title="Permalink to this definition">¶</a></dt>
+<dd><p>A seal element.</p>
+<p>This class will create a seal element.
 Parameters can be a constant value or speed dependent.
 For speed dependent parameters, each argument should be passed
 as an array and the correspondent speed values should also be
 passed as an array.
-Values for each parameter will be interpolated for the speed.
-Parameters
-———-
-n: int</p>
-<blockquote>
-<div><p>Node which the bearing will be located in</p>
-</div></blockquote>
-<dl class="simple">
-<dt>kxx: float, array</dt><dd><p>Direct stiffness in the x direction.</p>
+Values for each parameter will be interpolated for the speed.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>n: int</strong></dt><dd><p>Node which the bearing will be located in</p>
 </dd>
-<dt>cxx: float, array</dt><dd><p>Direct damping in the x direction.</p>
+<dt><strong>kxx: float, array</strong></dt><dd><p>Direct stiffness in the x direction.</p>
 </dd>
-<dt>kyy: float, array, optional</dt><dd><p>Direct stiffness in the y direction.
+<dt><strong>cxx: float, array</strong></dt><dd><p>Direct damping in the x direction.</p>
+</dd>
+<dt><strong>kyy: float, array, optional</strong></dt><dd><p>Direct stiffness in the y direction.
 (defaults to kxx)</p>
 </dd>
-<dt>cyy: float, array, optional</dt><dd><p>Direct damping in the y direction.
+<dt><strong>cyy: float, array, optional</strong></dt><dd><p>Direct damping in the y direction.
 (defaults to cxx)</p>
 </dd>
-<dt>kxy: float, array, optional</dt><dd><p>Cross coupled stiffness in the x direction.
+<dt><strong>kxy: float, array, optional</strong></dt><dd><p>Cross coupled stiffness in the x direction.
 (defaults to 0)</p>
 </dd>
-<dt>cxy: float, array, optional</dt><dd><p>Cross coupled damping in the x direction.
+<dt><strong>cxy: float, array, optional</strong></dt><dd><p>Cross coupled damping in the x direction.
 (defaults to 0)</p>
 </dd>
-<dt>kyx: float, array, optional</dt><dd><p>Cross coupled stiffness in the y direction.
+<dt><strong>kyx: float, array, optional</strong></dt><dd><p>Cross coupled stiffness in the y direction.
 (defaults to 0)</p>
 </dd>
-<dt>cyx: float, array, optional</dt><dd><p>Cross coupled damping in the y direction.
+<dt><strong>cyx: float, array, optional</strong></dt><dd><p>Cross coupled damping in the y direction.
 (defaults to 0)</p>
 </dd>
-<dt>w: array, optional</dt><dd><p>Array with the speeds (rad/s).</p>
+<dt><strong>frequency: array, optional</strong></dt><dd><p>Array with the speeds (rad/s).</p>
 </dd>
-<dt>seal_leakage: float, optional</dt><dd><p>Amount of leakage</p>
+<dt><strong>seal_leakage: float, optional</strong></dt><dd><p>Amount of leakage</p>
 </dd>
-<dt>tag<span class="classifier">str, optional</span></dt><dd><p>A tag to name the element
+<dt><strong>tag</strong><span class="classifier">str, optional</span></dt><dd><p>A tag to name the element
 Default is None</p>
 </dd>
 </dl>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># A seal element located in the first rotor node, with these</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="c1"># following stiffness and damping coefficients and speed range from</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="c1"># 0 to 200 rad/s</span>
@@ -218,35 +219,36 @@ Default is None</p>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">kyy</span> <span class="o">=</span> <span class="mf">0.8e6</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">cxx</span> <span class="o">=</span> <span class="mf">2e2</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">cyy</span> <span class="o">=</span> <span class="mf">1.5e2</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">w</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">11</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">seal</span> <span class="o">=</span> <span class="n">rs</span><span class="o">.</span><span class="n">SealElement</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">kxx</span><span class="o">=</span><span class="n">kxx</span><span class="p">,</span> <span class="n">kyy</span><span class="o">=</span><span class="n">kyy</span><span class="p">,</span> <span class="n">cxx</span><span class="o">=</span><span class="n">cxx</span><span class="p">,</span> <span class="n">cyy</span><span class="o">=</span><span class="n">cyy</span><span class="p">,</span> <span class="n">w</span><span class="o">=</span><span class="n">w</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">seal</span><span class="o">.</span><span class="n">K</span><span class="p">(</span><span class="n">w</span><span class="p">)</span> 
+<span class="gp">&gt;&gt;&gt; </span><span class="n">frequency</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">11</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">seal</span> <span class="o">=</span> <span class="n">rs</span><span class="o">.</span><span class="n">SealElement</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">kxx</span><span class="o">=</span><span class="n">kxx</span><span class="p">,</span> <span class="n">kyy</span><span class="o">=</span><span class="n">kyy</span><span class="p">,</span> <span class="n">cxx</span><span class="o">=</span><span class="n">cxx</span><span class="p">,</span> <span class="n">cyy</span><span class="o">=</span><span class="n">cyy</span><span class="p">,</span> <span class="n">frequency</span><span class="o">=</span><span class="n">frequency</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">seal</span><span class="o">.</span><span class="n">K</span><span class="p">(</span><span class="n">frequency</span><span class="p">)</span> 
 <span class="go">array([[[1000000., 1000000., ...</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">seal</span><span class="o">.</span><span class="n">C</span><span class="p">(</span><span class="n">w</span><span class="p">)</span> 
+<span class="gp">&gt;&gt;&gt; </span><span class="n">seal</span><span class="o">.</span><span class="n">C</span><span class="p">(</span><span class="n">frequency</span><span class="p">)</span> 
 <span class="go">array([[[200., 200., ...</span>
 </pre></div>
 </div>
 <dl class="method">
 <dt id="ross.SealElement.__init__">
-<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">n</em>, <em class="sig-param">kxx</em>, <em class="sig-param">cxx</em>, <em class="sig-param">kyy=None</em>, <em class="sig-param">kxy=0</em>, <em class="sig-param">kyx=0</em>, <em class="sig-param">cyy=None</em>, <em class="sig-param">cxy=0</em>, <em class="sig-param">cyx=0</em>, <em class="sig-param">w=None</em>, <em class="sig-param">seal_leakage=None</em>, <em class="sig-param">tag=None</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/bearing_seal_element.html#SealElement.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.SealElement.__init__" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">n</em>, <em class="sig-param">kxx</em>, <em class="sig-param">cxx</em>, <em class="sig-param">kyy=None</em>, <em class="sig-param">kxy=0</em>, <em class="sig-param">kyx=0</em>, <em class="sig-param">cyy=None</em>, <em class="sig-param">cxy=0</em>, <em class="sig-param">cyx=0</em>, <em class="sig-param">frequency=None</em>, <em class="sig-param">seal_leakage=None</em>, <em class="sig-param">tag=None</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/bearing_seal_element.html#SealElement.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.SealElement.__init__" title="Permalink to this definition">¶</a></dt>
 <dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
 </dd></dl>
 
 <p class="rubric">Methods</p>
 <dl class="method">
 <dt id="ross.SealElement.C">
-<code class="sig-name descname">C</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">w</em><span class="sig-paren">)</span><a class="headerlink" href="#ross.SealElement.C" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns the damping matrix for a given speed.
-Parameters
-———-
-w: float</p>
-<blockquote>
-<div><p>The speeds (rad/s) to consider.</p>
-</div></blockquote>
+<code class="sig-name descname">C</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">frequency</em><span class="sig-paren">)</span><a class="headerlink" href="#ross.SealElement.C" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the damping matrix for a given excitation frequency.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt>A 2x2 matrix of floats containing the cxx, cxy, cyx, and cyy values.</dt><dd></dd>
+<dt><strong>frequency: float</strong></dt><dd><p>The excitation frequency (rad/s).</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt>C: np.ndarray</dt><dd><p>A 2x2 matrix of floats containing the cxx, cxy, cyx, and cyy values.</p>
+</dd>
 </dl>
 </dd>
 </dl>
@@ -262,13 +264,12 @@ w: float</p>
 <dl class="method">
 <dt id="ross.SealElement.G">
 <code class="sig-name descname">G</code><span class="sig-paren">(</span><em class="sig-param">self</em><span class="sig-paren">)</span><a class="headerlink" href="#ross.SealElement.G" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns the giroscopic matrix.
-Parameters
-———-</p>
+<dd><p>Gyroscopic matrix.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
 <dd class="field-odd"><dl class="simple">
-<dt>A matrix of floats.</dt><dd></dd>
+<dt>G: np.ndarray</dt><dd><p>A 2x2 matrix of floats.</p>
+</dd>
 </dl>
 </dd>
 </dl>
@@ -283,18 +284,19 @@ Parameters
 
 <dl class="method">
 <dt id="ross.SealElement.K">
-<code class="sig-name descname">K</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">w</em><span class="sig-paren">)</span><a class="headerlink" href="#ross.SealElement.K" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns the stiffness matrix for a given speed.
-Parameters
-———-
-w: float</p>
-<blockquote>
-<div><p>The speeds (rad/s) to consider.</p>
-</div></blockquote>
+<code class="sig-name descname">K</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">frequency</em><span class="sig-paren">)</span><a class="headerlink" href="#ross.SealElement.K" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the stiffness matrix for a given excitation frequency.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt>A 2x2 matrix of floats containing the kxx, kxy, kyx, and kyy values.</dt><dd></dd>
+<dt><strong>frequency: float</strong></dt><dd><p>The excitation frequency (rad/s).</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt>K: np.ndarray</dt><dd><p>A 2x2 matrix of floats containing the kxx, kxy, kyx, and kyy values.</p>
+</dd>
 </dl>
 </dd>
 </dl>
@@ -310,13 +312,12 @@ w: float</p>
 <dl class="method">
 <dt id="ross.SealElement.M">
 <code class="sig-name descname">M</code><span class="sig-paren">(</span><em class="sig-param">self</em><span class="sig-paren">)</span><a class="headerlink" href="#ross.SealElement.M" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns the mass matrix.
-Parameters
-———-</p>
+<dd><p>Mass matrix.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
 <dd class="field-odd"><dl class="simple">
-<dt>A matrix of floats.</dt><dd></dd>
+<dt>M: np.ndarray</dt><dd><p>Mass matrix.</p>
+</dd>
 </dl>
 </dd>
 </dl>
@@ -331,7 +332,7 @@ Parameters
 
 <dl class="method">
 <dt>
-<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">n</em>, <em class="sig-param">kxx</em>, <em class="sig-param">cxx</em>, <em class="sig-param">kyy=None</em>, <em class="sig-param">kxy=0</em>, <em class="sig-param">kyx=0</em>, <em class="sig-param">cyy=None</em>, <em class="sig-param">cxy=0</em>, <em class="sig-param">cyx=0</em>, <em class="sig-param">w=None</em>, <em class="sig-param">seal_leakage=None</em>, <em class="sig-param">tag=None</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/bearing_seal_element.html#SealElement.__init__"><span class="viewcode-link">[source]</span></a></dt>
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">n</em>, <em class="sig-param">kxx</em>, <em class="sig-param">cxx</em>, <em class="sig-param">kyy=None</em>, <em class="sig-param">kxy=0</em>, <em class="sig-param">kyx=0</em>, <em class="sig-param">cyy=None</em>, <em class="sig-param">cxy=0</em>, <em class="sig-param">cyx=0</em>, <em class="sig-param">frequency=None</em>, <em class="sig-param">seal_leakage=None</em>, <em class="sig-param">tag=None</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/bearing_seal_element.html#SealElement.__init__"><span class="viewcode-link">[source]</span></a></dt>
 <dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
 </dd></dl>
 
@@ -365,13 +366,12 @@ bk_ax : bokeh plotting axes, optional</p>
 <dl class="method">
 <dt id="ross.SealElement.dof_local_index">
 <code class="sig-name descname">dof_local_index</code><span class="sig-paren">(</span><em class="sig-param">self</em><span class="sig-paren">)</span><a class="headerlink" href="#ross.SealElement.dof_local_index" title="Permalink to this definition">¶</a></dt>
-<dd><p>Get the local index for a element specific degree of freedom.
-Parameters
-———-</p>
+<dd><p>Get the local index for a element specific degree of freedom.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
 <dd class="field-odd"><dl class="simple">
-<dt>A named tuple containing the local index.</dt><dd></dd>
+<dt>local_index: namedtupple</dt><dd><p>A named tuple containing the local index.</p>
+</dd>
 </dl>
 </dd>
 </dl>
@@ -388,18 +388,21 @@ Parameters
 <dl class="method">
 <dt id="ross.SealElement.dof_mapping">
 <code class="sig-name descname">dof_mapping</code><span class="sig-paren">(</span><em class="sig-param">self</em><span class="sig-paren">)</span><a class="headerlink" href="#ross.SealElement.dof_mapping" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns a dictionary with a mapping between degree of freedom and its index.
-Parameters
-———-</p>
+<dd><p>Degrees of freedom mapping.</p>
+<p>Should return a dictionary with a mapping between degree of freedom
+and its index.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
 <dd class="field-odd"><dl class="simple">
-<dt>A dictionary containing the degrees of freedom and their indexes.</dt><dd></dd>
+<dt>dof_mapping: dict</dt><dd><p>A dictionary containing the degrees of freedom and their indexes.</p>
+</dd>
 </dl>
 </dd>
 </dl>
 <p class="rubric">Examples</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">bearing</span> <span class="o">=</span> <span class="n">bearing_example</span><span class="p">()</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># Example using BearingElement</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">ross.bearing_seal_element</span> <span class="k">import</span> <span class="n">bearing_example</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">bearing</span> <span class="o">=</span> <span class="n">bearing_example</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">bearing</span><span class="o">.</span><span class="n">dof_mapping</span><span class="p">()</span>
 <span class="go">{&#39;x_0&#39;: 0, &#39;y_0&#39;: 1}</span>
 </pre></div>
@@ -409,15 +412,15 @@ Parameters
 <dl class="method">
 <dt id="ross.SealElement.dump_data">
 <em class="property">static </em><code class="sig-name descname">dump_data</code><span class="sig-paren">(</span><em class="sig-param">data</em>, <em class="sig-param">file_name</em><span class="sig-paren">)</span><a class="headerlink" href="#ross.SealElement.dump_data" title="Permalink to this definition">¶</a></dt>
-<dd><p>Dumps element data in a toml file.
-Parameters
-———-
-data: dict</p>
-<blockquote>
-<div><p>The data that should be dumped.</p>
-</div></blockquote>
-<dl class="simple">
-<dt>file_name: string</dt><dd><p>The name of the file the data will be dumped in.</p>
+<dd><p>Dumps element data in a toml file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>data: dict</strong></dt><dd><p>The data that should be dumped.</p>
+</dd>
+<dt><strong>file_name: string</strong></dt><dd><p>The name of the file the data will be dumped in.</p>
+</dd>
+</dl>
 </dd>
 </dl>
 <p class="rubric">Examples</p>
@@ -435,129 +438,131 @@ data: dict</p>
 <dl class="method">
 <dt id="ross.SealElement.from_fluid_flow">
 <em class="property">classmethod </em><code class="sig-name descname">from_fluid_flow</code><span class="sig-paren">(</span><em class="sig-param">n</em>, <em class="sig-param">nz</em>, <em class="sig-param">ntheta</em>, <em class="sig-param">nradius</em>, <em class="sig-param">length</em>, <em class="sig-param">omega</em>, <em class="sig-param">p_in</em>, <em class="sig-param">p_out</em>, <em class="sig-param">radius_rotor</em>, <em class="sig-param">radius_stator</em>, <em class="sig-param">visc</em>, <em class="sig-param">rho</em>, <em class="sig-param">eccentricity=None</em>, <em class="sig-param">load=None</em><span class="sig-paren">)</span><a class="headerlink" href="#ross.SealElement.from_fluid_flow" title="Permalink to this definition">¶</a></dt>
-<dd><p>Instantiate a bearing using inputs from its fluid flow.
-Parameters
-———-
-n : int</p>
-<blockquote>
-<div><p>The node in which the bearing will be located in the rotor.</p>
-</div></blockquote>
-<p>Describes the discretization of the problem
-nz: int</p>
-<blockquote>
-<div><p>Number of points along the Z direction (direction of flow).</p>
-</div></blockquote>
-<dl class="simple">
-<dt>ntheta: int</dt><dd><p>Number of points along the direction theta. NOTE: ntheta must be odd.</p>
+<dd><p>Instantiate a bearing using inputs from its fluid flow.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>n</strong><span class="classifier">int</span></dt><dd><p>The node in which the bearing will be located in the rotor.</p>
 </dd>
-<dt>nradius: int</dt><dd><p>Number of points along the direction r.</p>
+<dt><strong>Grid related</strong></dt><dd></dd>
+<dt><strong>^^^^^^^^^^^^</strong></dt><dd></dd>
+<dt><strong>Describes the discretization of the problem</strong></dt><dd></dd>
+<dt><strong>nz: int</strong></dt><dd><p>Number of points along the Z direction (direction of flow).</p>
 </dd>
-<dt>length: float</dt><dd><p>Length in the Z direction (m).</p>
+<dt><strong>ntheta: int</strong></dt><dd><p>Number of points along the direction theta. NOTE: ntheta must be odd.</p>
 </dd>
-</dl>
-<p>Describes the operation conditions.
-omega: float</p>
-<blockquote>
-<div><p>Rotation of the rotor (rad/s).</p>
-</div></blockquote>
-<dl class="simple">
-<dt>p_in: float</dt><dd><p>Input Pressure (Pa).</p>
+<dt><strong>nradius: int</strong></dt><dd><p>Number of points along the direction r.</p>
 </dd>
-<dt>p_out: float</dt><dd><p>Output Pressure (Pa).</p>
+<dt><strong>length: float</strong></dt><dd><p>Length in the Z direction (m).</p>
 </dd>
-<dt>load: float</dt><dd><p>Load applied to the rotor (N).</p>
+<dt><strong>Operation conditions</strong></dt><dd></dd>
+<dt><strong>^^^^^^^^^^^^^^^^^^^^</strong></dt><dd></dd>
+<dt><strong>Describes the operation conditions.</strong></dt><dd></dd>
+<dt><strong>omega: float</strong></dt><dd><p>Rotation of the rotor (rad/s).</p>
 </dd>
-</dl>
-<p>Describes the geometric data of the problem.
-radius_rotor: float</p>
-<blockquote>
-<div><p>Rotor radius (m).</p>
-</div></blockquote>
-<dl class="simple">
-<dt>radius_stator: float</dt><dd><p>Stator Radius (m).</p>
+<dt><strong>p_in: float</strong></dt><dd><p>Input Pressure (Pa).</p>
 </dd>
-<dt>eccentricity: float</dt><dd><p>Eccentricity (m) is the euclidean distance between rotor and stator centers.
+<dt><strong>p_out: float</strong></dt><dd><p>Output Pressure (Pa).</p>
+</dd>
+<dt><strong>load: float</strong></dt><dd><p>Load applied to the rotor (N).</p>
+</dd>
+<dt><strong>Geometric data of the problem</strong></dt><dd></dd>
+<dt><strong>^^^^^^^^^^^^^^^^^^^^^^^^^^^^^</strong></dt><dd></dd>
+<dt><strong>Describes the geometric data of the problem.</strong></dt><dd></dd>
+<dt><strong>radius_rotor: float</strong></dt><dd><p>Rotor radius (m).</p>
+</dd>
+<dt><strong>radius_stator: float</strong></dt><dd><p>Stator Radius (m).</p>
+</dd>
+<dt><strong>eccentricity: float</strong></dt><dd><p>Eccentricity (m) is the euclidean distance between rotor and stator centers.
 The center of the stator is in position (0,0).</p>
 </dd>
-</dl>
-<p>Describes the fluid characteristics.
-visc: float</p>
-<blockquote>
-<div><p>Viscosity (Pa.s).</p>
-</div></blockquote>
-<dl class="simple">
-<dt>rho: float</dt><dd><p>Fluid density(Kg/m^3).</p>
+<dt><strong>Fluid characteristics</strong></dt><dd></dd>
+<dt><strong>^^^^^^^^^^^^^^^^^^^^^</strong></dt><dd></dd>
+<dt><strong>Describes the fluid characteristics.</strong></dt><dd></dd>
+<dt><strong>visc: float</strong></dt><dd><p>Viscosity (Pa.s).</p>
+</dd>
+<dt><strong>rho: float</strong></dt><dd><p>Fluid density(Kg/m^3).</p>
 </dd>
 </dl>
-<p>A bearing object.
-Examples
-——–
-&gt;&gt;&gt; nz = 30
-&gt;&gt;&gt; ntheta = 20
-&gt;&gt;&gt; nradius = 11
-&gt;&gt;&gt; length = 0.03
-&gt;&gt;&gt; omega = 157.1
-&gt;&gt;&gt; p_in = 0.
-&gt;&gt;&gt; p_out = 0.
-&gt;&gt;&gt; radius_rotor = 0.0499
-&gt;&gt;&gt; radius_stator = 0.05
-&gt;&gt;&gt; eccentricity = (radius_stator - radius_rotor)*0.2663
-&gt;&gt;&gt; visc = 0.1
-&gt;&gt;&gt; rho = 860.
-&gt;&gt;&gt; BearingElement.from_fluid_flow(0, nz, ntheta, nradius, length, omega, p_in,
-…                                p_out, radius_rotor, radius_stator,
-…                                visc, rho, eccentricity=eccentricity) # doctest: +ELLIPSIS
-BearingElement(n=0,</p>
-<blockquote>
-<div><p>kxx=[…</p>
-</div></blockquote>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt>bearing: rs.BearingElement</dt><dd><p>A bearing object.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">nz</span> <span class="o">=</span> <span class="mi">30</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ntheta</span> <span class="o">=</span> <span class="mi">20</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">nradius</span> <span class="o">=</span> <span class="mi">11</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">length</span> <span class="o">=</span> <span class="mf">0.03</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">omega</span> <span class="o">=</span> <span class="mf">157.1</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">p_in</span> <span class="o">=</span> <span class="mf">0.</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">p_out</span> <span class="o">=</span> <span class="mf">0.</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">radius_rotor</span> <span class="o">=</span> <span class="mf">0.0499</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">radius_stator</span> <span class="o">=</span> <span class="mf">0.05</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">eccentricity</span> <span class="o">=</span> <span class="p">(</span><span class="n">radius_stator</span> <span class="o">-</span> <span class="n">radius_rotor</span><span class="p">)</span><span class="o">*</span><span class="mf">0.2663</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">visc</span> <span class="o">=</span> <span class="mf">0.1</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">rho</span> <span class="o">=</span> <span class="mf">860.</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">BearingElement</span><span class="o">.</span><span class="n">from_fluid_flow</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">nz</span><span class="p">,</span> <span class="n">ntheta</span><span class="p">,</span> <span class="n">nradius</span><span class="p">,</span> <span class="n">length</span><span class="p">,</span> <span class="n">omega</span><span class="p">,</span> <span class="n">p_in</span><span class="p">,</span>
+<span class="gp">... </span>                               <span class="n">p_out</span><span class="p">,</span> <span class="n">radius_rotor</span><span class="p">,</span> <span class="n">radius_stator</span><span class="p">,</span>
+<span class="gp">... </span>                               <span class="n">visc</span><span class="p">,</span> <span class="n">rho</span><span class="p">,</span> <span class="n">eccentricity</span><span class="o">=</span><span class="n">eccentricity</span><span class="p">)</span> 
+<span class="go">BearingElement(n=0,</span>
+<span class="go"> kxx=[...</span>
+</pre></div>
+</div>
 </dd></dl>
 
 <dl class="method">
 <dt id="ross.SealElement.from_table">
 <em class="property">classmethod </em><code class="sig-name descname">from_table</code><span class="sig-paren">(</span><em class="sig-param">n</em>, <em class="sig-param">file</em>, <em class="sig-param">sheet_name=0</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#ross.SealElement.from_table" title="Permalink to this definition">¶</a></dt>
-<dd><p>Instantiate a bearing using inputs from an Excel table.
-A header with the names of the columns is required. These names should match the names expected by the routine
+<dd><p>Instantiate a bearing using inputs from an Excel table.</p>
+<p>A header with the names of the columns is required. These names should match the names expected by the routine
 (usually the names of the parameters, but also similar ones). The program will read every row bellow the header
-until they end or it reaches a NaN.
-Parameters
-———-
-n : int</p>
-<blockquote>
-<div><p>The node in which the bearing will be located in the rotor.</p>
-</div></blockquote>
-<dl class="simple">
-<dt>file: str</dt><dd><p>Path to the file containing the bearing parameters.</p>
+until they end or it reaches a NaN.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>n</strong><span class="classifier">int</span></dt><dd><p>The node in which the bearing will be located in the rotor.</p>
 </dd>
-<dt>sheet_name: int or str, optional</dt><dd><p>Position of the sheet in the file (starting from 0) or its name. If none is passed, it is
+<dt><strong>file: str</strong></dt><dd><p>Path to the file containing the bearing parameters.</p>
+</dd>
+<dt><strong>sheet_name: int or str, optional</strong></dt><dd><p>Position of the sheet in the file (starting from 0) or its name. If none is passed, it is
 assumed to be the first sheet in the file.</p>
 </dd>
 </dl>
-<p>A bearing object.
-Examples
-——–
-&gt;&gt;&gt; import os
-&gt;&gt;&gt; file_path = os.path.dirname(os.path.realpath(__file__)) + ‘/tests/data/bearing_seal_si.xls’
-&gt;&gt;&gt; BearingElement.from_table(0, file_path) # doctest: +ELLIPSIS
-BearingElement(n=0,</p>
-<blockquote>
-<div><p>kxx=[…</p>
-</div></blockquote>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt>bearing: rs.BearingElement</dt><dd><p>A bearing object.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">os</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">file_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">realpath</span><span class="p">(</span><span class="vm">__file__</span><span class="p">))</span> <span class="o">+</span> <span class="s1">&#39;/tests/data/bearing_seal_si.xls&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">BearingElement</span><span class="o">.</span><span class="n">from_table</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">file_path</span><span class="p">)</span> 
+<span class="go">BearingElement(n=0,</span>
+<span class="go"> kxx=[...</span>
+</pre></div>
+</div>
 </dd></dl>
 
 <dl class="method">
 <dt id="ross.SealElement.load">
 <em class="property">static </em><code class="sig-name descname">load</code><span class="sig-paren">(</span><em class="sig-param">file_name='BearingElement'</em><span class="sig-paren">)</span><a class="headerlink" href="#ross.SealElement.load" title="Permalink to this definition">¶</a></dt>
-<dd><p>Loads a list of bearing elements saved in a toml format.
-Parameters
-———-
-file_name: string</p>
-<blockquote>
-<div><p>The name of the file of the bearing element to be loaded.</p>
-</div></blockquote>
+<dd><p>Loads a list of bearing elements saved in a toml format.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
+<dt><strong>file_name: string</strong></dt><dd><p>The name of the file of the bearing element to be loaded.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
 <dt>A list of bearing elements.</dt><dd></dd>
 </dl>
 </dd>
@@ -575,51 +580,31 @@ file_name: string</p>
 <dl class="method">
 <dt id="ross.SealElement.load_data">
 <em class="property">static </em><code class="sig-name descname">load_data</code><span class="sig-paren">(</span><em class="sig-param">file_name</em><span class="sig-paren">)</span><a class="headerlink" href="#ross.SealElement.load_data" title="Permalink to this definition">¶</a></dt>
-<dd><p>Loads elements data saved in a toml format.
-Parameters
-———-
-file_name: string</p>
-<blockquote>
-<div><p>The name of the file to be loaded.</p>
-</div></blockquote>
-<dl class="field-list">
-<dt class="field-odd">Returns</dt>
+<dd><p>Loads elements data saved in a toml format.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt>dict</dt><dd><p>The element parameters presented as a dictionary.</p>
+<dt><strong>file_name: string</strong></dt><dd><p>The name of the file to be loaded.</p>
 </dd>
-<dt>Examples</dt><dd></dd>
 </dl>
-<blockquote>
-<div></div></blockquote>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt>data: dict</dt><dd><p>The element parameters presented as a dictionary.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># Example using BearingElement</span>
-<span class="go">    ..</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">ross.bearing_seal_element</span> <span class="k">import</span> <span class="n">bearing_example</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">ross.bearing_seal_element</span> <span class="k">import</span> <span class="n">BearingElement</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">bearing</span> <span class="o">=</span> <span class="n">bearing_example</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">bearing</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s1">&#39;BearingElement.toml&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">BearingElement</span><span class="o">.</span><span class="n">load_data</span><span class="p">(</span><span class="s1">&#39;BearingElement.toml&#39;</span><span class="p">)</span> 
+<span class="go">{&#39;BearingElement&#39;: {&#39;0&#39;: {&#39;n&#39;: 0, &#39;kxx&#39;: [1000000.0, 1000000.0,...</span>
 </pre></div>
 </div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">ross.bearing_seal_element</span> <span class="k">import</span> <span class="n">bearing_example</span>
-<span class="go">    ..</span>
-</pre></div>
-</div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">ross.bearing_seal_element</span> <span class="k">import</span> <span class="n">BearingElement</span>
-<span class="go">    ..</span>
-</pre></div>
-</div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">bearing</span> <span class="o">=</span> <span class="n">bearing_example</span><span class="p">()</span>
-<span class="go">    ..</span>
-</pre></div>
-</div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">bearing</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s1">&#39;BearingElement.toml&#39;</span><span class="p">)</span>
-<span class="go">    ..</span>
-</pre></div>
-</div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">BearingElement</span><span class="o">.</span><span class="n">load_data</span><span class="p">(</span><span class="s1">&#39;BearingElement.toml&#39;</span><span class="p">)</span> 
-<span class="go">    ..</span>
-</pre></div>
-</div>
-<dl class="simple">
-<dt>{‘BearingElement’: {‘0’: {‘n’: 0, ‘kxx’: [1000000.0, 1000000.0,…</dt><dd></dd>
-</dl>
-</dd>
-</dl>
 </dd></dl>
 
 <dl class="method">
@@ -646,17 +631,17 @@ ax : matplotlib axes, optional</p>
 <dl class="method">
 <dt id="ross.SealElement.save">
 <code class="sig-name descname">save</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">file_name</em><span class="sig-paren">)</span><a class="headerlink" href="#ross.SealElement.save" title="Permalink to this definition">¶</a></dt>
-<dd><p>Saves a bearing element in a toml format. It works as an auxiliary function of
-the save function in the Rotor class.
-Parameters
-———-
-file_name: string</p>
-<blockquote>
-<div><p>The name of the file the bearing element will be saved in.</p>
-</div></blockquote>
+<dd><p>Saves a bearing element in a toml format. It works as an auxiliary
+function of the save function in the Rotor class.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
+<dt><strong>file_name: string</strong></dt><dd><p>The name of the file the bearing element will be saved in.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
 <dt>None</dt><dd></dd>
 </dl>
 </dd>
@@ -672,9 +657,7 @@ file_name: string</p>
 <dt id="ross.SealElement.summary">
 <code class="sig-name descname">summary</code><span class="sig-paren">(</span><em class="sig-param">self</em><span class="sig-paren">)</span><a class="headerlink" href="#ross.SealElement.summary" title="Permalink to this definition">¶</a></dt>
 <dd><p>A summary for the element.</p>
-<p>A pandas series with the element properties as variables.
-Parameters
-———-</p>
+<p>A pandas series with the element properties as variables.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
 <dd class="field-odd"><dl class="simple">
@@ -704,22 +687,26 @@ Parameters
 <dl class="method">
 <dt id="ross.SealElement.table_to_toml">
 <em class="property">classmethod </em><code class="sig-name descname">table_to_toml</code><span class="sig-paren">(</span><em class="sig-param">n</em>, <em class="sig-param">file</em><span class="sig-paren">)</span><a class="headerlink" href="#ross.SealElement.table_to_toml" title="Permalink to this definition">¶</a></dt>
-<dd><p>Convert a table with parameters of a bearing element to a dictionary ready to save
-to a toml file that can be later loaded by ross.
-Parameters
-———-
-n : int</p>
-<blockquote>
-<div><p>The node in which the bearing will be located in the rotor.</p>
-</div></blockquote>
-<dl class="simple">
-<dt>file: str</dt><dd><p>Path to the file containing the bearing parameters.</p>
+<dd><p>Convert bearing parameters to toml.</p>
+<p>Convert a table with parameters of a bearing element to a dictionary ready to save
+to a toml file that can be later loaded by ross.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>n</strong><span class="classifier">int</span></dt><dd><p>The node in which the bearing will be located in the rotor.</p>
+</dd>
+<dt><strong>file: str</strong></dt><dd><p>Path to the file containing the bearing parameters.</p>
 </dd>
 </dl>
-<dl class="simple">
-<dt>dict</dt><dd><p>A dict that is ready to save to toml and readable by ross.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt>data: dict</dt><dd><p>A dict that is ready to save to toml and readable by ross.</p>
 </dd>
 </dl>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">os</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">file_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">realpath</span><span class="p">(</span><span class="vm">__file__</span><span class="p">))</span> <span class="o">+</span> <span class="s1">&#39;/tests/data/bearing_seal_si.xls&#39;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">BearingElement</span><span class="o">.</span><span class="n">table_to_toml</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">file_path</span><span class="p">)</span> 

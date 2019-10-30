@@ -177,9 +177,13 @@
 <span class="sd">    account shear, rotary inertia an gyroscopic effects.</span>
 <span class="sd">    The matrices will be defined considering the following local</span>
 <span class="sd">    coordinate vector:</span>
-<span class="sd">    .. math:: [x_0, y_0, \alpha_0, \beta_0, x_1, y_1, \alpha_1, \beta_1]^T</span>
-<span class="sd">    Where :math:`\alpha_0` and :math:`\alpha_1` are the bending on the yz plane and</span>
-<span class="sd">    :math:`\beta_0` and :math:`\beta_1` are the bending on the xz plane.</span>
+
+<span class="sd">    .. math::</span>
+
+<span class="sd">        [x_0, y_0, \alpha_0, \beta_0, x_1, y_1, \alpha_1, \beta_1]^T</span>
+<span class="sd">    Where :math:`\alpha_0` and :math:`\alpha_1` are the bending on the yz plane</span>
+<span class="sd">    and :math:`\beta_0` and :math:`\beta_1` are the bending on the xz plane.</span>
+
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
 <span class="sd">    L : float</span>
@@ -211,8 +215,10 @@
 <span class="sd">    shear_method_calc : string, optional</span>
 <span class="sd">        Determines which shear calculation method the user will adopt</span>
 <span class="sd">        Default is &#39;cowper&#39;</span>
+
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
+
 <span class="sd">    Attributes</span>
 <span class="sd">    ----------</span>
 <span class="sd">    Poisson : float</span>
@@ -221,14 +227,17 @@
 <span class="sd">        Element section area.</span>
 <span class="sd">    Ie : float</span>
 <span class="sd">        Ie is the second moment of area of the cross section about</span>
-<span class="sd">        the neutral plane Ie = pi*r**2/4</span>
+<span class="sd">        the neutral plane :math:`Ie = \pi r^2/4`</span>
 <span class="sd">    phi : float</span>
-<span class="sd">        Constant that is used according to [1]_ to consider rotary</span>
-<span class="sd">        inertia and shear effects. If these are not considered phi=0.</span>
+<span class="sd">        Constant that is used according to :cite:`friswell2010dynamics` to</span>
+<span class="sd">        consider rotary inertia and shear effects. If these are not considered</span>
+<span class="sd">        :math:`\phi=0`.</span>
+
 <span class="sd">    References</span>
 <span class="sd">    ----------</span>
-<span class="sd">    .. [1] &#39;Dynamics of Rotating Machinery&#39; by MI Friswell, JET Penny, SD Garvey</span>
-<span class="sd">       &amp; AW Lees, published by Cambridge University Press, 2010 pp. 158-166.</span>
+
+<span class="sd">    .. bibliography:: ../../../docs/refs.bib</span>
+
 <span class="sd">    Examples</span>
 <span class="sd">    --------</span>
 <span class="sd">    &gt;&gt;&gt; from ross.materials import steel</span>
@@ -452,9 +461,12 @@
 <div class="viewcode-block" id="ShaftElement.from_table"><a class="viewcode-back" href="../../generated/elements/ross.ShaftElement.html#ross.ShaftElement.from_table">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">from_table</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">file</span><span class="p">,</span> <span class="n">sheet_type</span><span class="o">=</span><span class="s2">&quot;Simple&quot;</span><span class="p">,</span> <span class="n">sheet_name</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Instantiate one or more shafts using inputs from an Excel table.</span>
-<span class="sd">        A header with the names of the columns is required. These names should match the names expected by the routine</span>
-<span class="sd">        (usually the names of the parameters, but also similar ones). The program will read every row bellow the header</span>
-<span class="sd">        until they end or it reaches a NaN.</span>
+
+<span class="sd">        A header with the names of the columns is required. These names should</span>
+<span class="sd">        match the names expected by the routine (usually the names of the</span>
+<span class="sd">        parameters, but also similar ones). The program will read every row</span>
+<span class="sd">        bellow the header until they end or it reaches a NaN.</span>
+
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
 <span class="sd">        file: str</span>
@@ -468,9 +480,10 @@
 <span class="sd">        sheet_name: int or str, optional</span>
 <span class="sd">            Position of the sheet in the file (starting from 0) or its name. If none is passed, it is</span>
 <span class="sd">            assumed to be the first sheet in the file.</span>
+
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        shaft : list</span>
+<span class="sd">        shaft: list</span>
 <span class="sd">            A list of shaft objects.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">parameters</span> <span class="o">=</span> <span class="n">read_table_file</span><span class="p">(</span>
@@ -622,9 +635,12 @@
 
 <div class="viewcode-block" id="ShaftElement.M"><a class="viewcode-back" href="../../generated/elements/ross.ShaftElement.html#ross.ShaftElement.M">[docs]</a>    <span class="k">def</span> <span class="nf">M</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sa">r</span><span class="sd">&quot;&quot;&quot;Mass matrix for an instance of a shaft element.</span>
+
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        Mass matrix for the shaft element.</span>
+<span class="sd">        M: np.ndarray</span>
+<span class="sd">            Mass matrix for the shaft element.</span>
+
 <span class="sd">        Examples</span>
 <span class="sd">        --------</span>
 <span class="sd">        &gt;&gt;&gt; Timoshenko_Element = ShaftElement(0.25, 0, 0.05, steel,</span>
@@ -679,9 +695,12 @@
 
 <div class="viewcode-block" id="ShaftElement.K"><a class="viewcode-back" href="../../generated/elements/ross.ShaftElement.html#ross.ShaftElement.K">[docs]</a>    <span class="k">def</span> <span class="nf">K</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sa">r</span><span class="sd">&quot;&quot;&quot;Stiffness matrix for an instance of a shaft element.</span>
+
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        Stiffness matrix for the shaft element.</span>
+<span class="sd">        K: np.ndarray</span>
+<span class="sd">            Stiffness matrix for the shaft element.</span>
+
 <span class="sd">        Examples</span>
 <span class="sd">        --------</span>
 <span class="sd">        &gt;&gt;&gt; from ross.materials import steel</span>
@@ -713,15 +732,25 @@
         <span class="k">return</span> <span class="n">K</span></div>
 
 <div class="viewcode-block" id="ShaftElement.C"><a class="viewcode-back" href="../../generated/elements/ross.ShaftElement.html#ross.ShaftElement.C">[docs]</a>    <span class="k">def</span> <span class="nf">C</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Stiffness matrix for an instance of a shaft element.</span>
+        <span class="sd">&quot;&quot;&quot;Damping matrix for an instance of a shaft element.</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        C : np.array</span>
+<span class="sd">        C: np.ndarray</span>
 <span class="sd">           Damping matrix for the shaft element.</span>
 
 <span class="sd">        Examples</span>
 <span class="sd">        --------</span>
+<span class="sd">        &gt;&gt;&gt; from ross.materials import steel</span>
+<span class="sd">        &gt;&gt;&gt; # Timoshenko is the default shaft element</span>
+<span class="sd">        &gt;&gt;&gt; Timoshenko_Element = ShaftElement(0.25, 0, 0.05, steel)</span>
+<span class="sd">        &gt;&gt;&gt; # Currently internal damping for the shaft elements is not</span>
+<span class="sd">        &gt;&gt;&gt; # considered, so the matrix has only zeros.</span>
+<span class="sd">        &gt;&gt;&gt; Timoshenko_Element.C()[:4, :4]</span>
+<span class="sd">        array([[0., 0., 0., 0.],</span>
+<span class="sd">               [0., 0., 0., 0.],</span>
+<span class="sd">               [0., 0., 0., 0.],</span>
+<span class="sd">               [0., 0., 0., 0.]])</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">C</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
 
@@ -729,9 +758,12 @@
 
 <div class="viewcode-block" id="ShaftElement.G"><a class="viewcode-back" href="../../generated/elements/ross.ShaftElement.html#ross.ShaftElement.G">[docs]</a>    <span class="k">def</span> <span class="nf">G</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Gyroscopic matrix for an instance of a shaft element.</span>
+
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        Gyroscopic matrix for the shaft element.</span>
+<span class="sd">        G: np.ndarray</span>
+<span class="sd">            Gyroscopic matrix for the shaft element.</span>
+
 <span class="sd">        Examples</span>
 <span class="sd">        --------</span>
 <span class="sd">        &gt;&gt;&gt; from ross.materials import steel</span>
@@ -769,7 +801,9 @@
 
 <div class="viewcode-block" id="ShaftElement.patch"><a class="viewcode-back" href="../../generated/elements/ross.ShaftElement.html#ross.ShaftElement.patch">[docs]</a>    <span class="k">def</span> <span class="nf">patch</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">position</span><span class="p">,</span> <span class="n">check_sld</span><span class="p">,</span> <span class="n">ax</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Shaft element patch.</span>
+
 <span class="sd">        Patch that will be used to draw the shaft element.</span>
+
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
 <span class="sd">        position : float</span>
@@ -778,8 +812,10 @@
 <span class="sd">            If True, HoverTool displays only the slenderness ratio</span>
 <span class="sd">        ax : matplotlib axes, optional</span>
 <span class="sd">            Axes in which the plot will be drawn.</span>
+
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
+
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">position_u</span> <span class="o">=</span> <span class="p">[</span><span class="n">position</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">i_d</span> <span class="o">/</span> <span class="mi">2</span><span class="p">]</span>  <span class="c1"># upper</span>
         <span class="n">position_l</span> <span class="o">=</span> <span class="p">[</span><span class="n">position</span><span class="p">,</span> <span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">o_d</span> <span class="o">/</span> <span class="mi">2</span><span class="p">]</span>  <span class="c1"># lower</span>
@@ -822,7 +858,9 @@
 
 <div class="viewcode-block" id="ShaftElement.bokeh_patch"><a class="viewcode-back" href="../../generated/elements/ross.ShaftElement.html#ross.ShaftElement.bokeh_patch">[docs]</a>    <span class="k">def</span> <span class="nf">bokeh_patch</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">position</span><span class="p">,</span> <span class="n">check_sld</span><span class="p">,</span> <span class="n">bk_ax</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Shaft element patch.</span>
+
 <span class="sd">        Patch that will be used to draw the shaft element.</span>
+
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
 <span class="sd">        position : float</span>
@@ -831,9 +869,10 @@
 <span class="sd">            If True, HoverTool displays only the slenderness ratio</span>
 <span class="sd">        bk_ax : bokeh plotting axes, optional</span>
 <span class="sd">            Axes in which the plot will be drawn.</span>
+
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        hover : Bokeh HoverTool</span>
+<span class="sd">        hover: Bokeh HoverTool</span>
 <span class="sd">            Bokeh HoverTool axes</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">check_sld</span> <span class="ow">is</span> <span class="kc">True</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">slenderness_ratio</span> <span class="o">&lt;</span> <span class="mf">1.6</span><span class="p">:</span>
@@ -938,8 +977,10 @@
         <span class="n">gyroscopic</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
     <span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Shaft section constructor.</span>
-<span class="sd">        This method will create a shaft section with length &#39;L&#39;</span>
-<span class="sd">        divided into &#39;ne&#39; elements.</span>
+
+<span class="sd">        This method will create a shaft section with length &#39;L&#39; divided into</span>
+<span class="sd">        &#39;ne&#39; elements.</span>
+
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
 <span class="sd">        i_d : float</span>
@@ -970,10 +1011,12 @@
 <span class="sd">        gyroscopic : bool</span>
 <span class="sd">            Determine if gyroscopic effects are taken into account.</span>
 <span class="sd">            Default is False.</span>
+
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
 <span class="sd">        elements: list</span>
 <span class="sd">            List with the &#39;ne&#39; shaft elements.</span>
+
 <span class="sd">        Examples</span>
 <span class="sd">        --------</span>
 <span class="sd">        &gt;&gt;&gt; # shaft material</span>

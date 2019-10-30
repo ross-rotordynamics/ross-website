@@ -488,8 +488,12 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">m</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">m_disks</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">m_shaft</span>
 
         <span class="c1"># rotor center of mass and total inertia</span>
-        <span class="n">CG_sh</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">([(</span><span class="n">sh</span><span class="o">.</span><span class="n">m</span> <span class="o">*</span> <span class="n">sh</span><span class="o">.</span><span class="n">axial_cg_pos</span><span class="p">)</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">m</span> <span class="k">for</span> <span class="n">sh</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">shaft_elements</span><span class="p">])</span>
-        <span class="n">CG_dsk</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">([</span><span class="n">disk</span><span class="o">.</span><span class="n">m</span> <span class="o">*</span> <span class="n">nodes_pos</span><span class="p">[</span><span class="n">disk</span><span class="o">.</span><span class="n">n</span><span class="p">]</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">m</span> <span class="k">for</span> <span class="n">disk</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">disk_elements</span><span class="p">])</span>
+        <span class="n">CG_sh</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span>
+            <span class="p">[(</span><span class="n">sh</span><span class="o">.</span><span class="n">m</span> <span class="o">*</span> <span class="n">sh</span><span class="o">.</span><span class="n">axial_cg_pos</span><span class="p">)</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">m</span> <span class="k">for</span> <span class="n">sh</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">shaft_elements</span><span class="p">]</span>
+        <span class="p">)</span>
+        <span class="n">CG_dsk</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span>
+            <span class="p">[</span><span class="n">disk</span><span class="o">.</span><span class="n">m</span> <span class="o">*</span> <span class="n">nodes_pos</span><span class="p">[</span><span class="n">disk</span><span class="o">.</span><span class="n">n</span><span class="p">]</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">m</span> <span class="k">for</span> <span class="n">disk</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">disk_elements</span><span class="p">]</span>
+        <span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">CG</span> <span class="o">=</span> <span class="n">CG_sh</span> <span class="o">+</span> <span class="n">CG_dsk</span>
 
         <span class="n">Ip_sh</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">([</span><span class="n">sh</span><span class="o">.</span><span class="n">Im</span> <span class="k">for</span> <span class="n">sh</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">shaft_elements</span><span class="p">])</span>
@@ -561,18 +565,41 @@
             <span class="n">dfb_z_pos</span> <span class="o">=</span> <span class="n">dfb</span><span class="p">[</span><span class="n">dfb</span><span class="o">.</span><span class="n">nodes_pos_l</span> <span class="o">==</span> <span class="n">z_pos</span><span class="p">]</span>
             <span class="n">dfb_z_pos</span> <span class="o">=</span> <span class="n">dfb_z_pos</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="s2">&quot;n_l&quot;</span><span class="p">)</span>
             <span class="k">if</span> <span class="n">z_pos</span> <span class="o">==</span> <span class="n">df_shaft</span><span class="p">[</span><span class="s2">&quot;nodes_pos_l&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span>
-                <span class="n">y_pos</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span>
-                    <span class="n">df_shaft</span><span class="p">[</span><span class="s2">&quot;o_d_l&quot;</span><span class="p">][</span><span class="n">df_shaft</span><span class="o">.</span><span class="n">n_l</span> <span class="o">==</span> <span class="nb">int</span><span class="p">(</span><span class="n">dfb_z_pos</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s2">&quot;n_l&quot;</span><span class="p">])]</span><span class="o">.</span><span class="n">values</span>
-                <span class="p">)</span> <span class="o">/</span> <span class="mi">2</span>
+                <span class="n">y_pos</span> <span class="o">=</span> <span class="p">(</span>
+                    <span class="nb">max</span><span class="p">(</span>
+                        <span class="n">df_shaft</span><span class="p">[</span><span class="s2">&quot;o_d_l&quot;</span><span class="p">][</span>
+                            <span class="n">df_shaft</span><span class="o">.</span><span class="n">n_l</span> <span class="o">==</span> <span class="nb">int</span><span class="p">(</span><span class="n">dfb_z_pos</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s2">&quot;n_l&quot;</span><span class="p">])</span>
+                        <span class="p">]</span><span class="o">.</span><span class="n">values</span>
+                    <span class="p">)</span>
+                    <span class="o">/</span> <span class="mi">2</span>
+                <span class="p">)</span>
             <span class="k">elif</span> <span class="n">z_pos</span> <span class="o">==</span> <span class="n">df_shaft</span><span class="p">[</span><span class="s2">&quot;nodes_pos_r&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]:</span>
-                <span class="n">y_pos</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span>
-                    <span class="n">df_shaft</span><span class="p">[</span><span class="s2">&quot;o_d_r&quot;</span><span class="p">][</span><span class="n">df_shaft</span><span class="o">.</span><span class="n">n_r</span> <span class="o">==</span> <span class="nb">int</span><span class="p">(</span><span class="n">dfb_z_pos</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s2">&quot;n_r&quot;</span><span class="p">])]</span><span class="o">.</span><span class="n">values</span>
-                <span class="p">)</span> <span class="o">/</span> <span class="mi">2</span>
+                <span class="n">y_pos</span> <span class="o">=</span> <span class="p">(</span>
+                    <span class="nb">max</span><span class="p">(</span>
+                        <span class="n">df_shaft</span><span class="p">[</span><span class="s2">&quot;o_d_r&quot;</span><span class="p">][</span>
+                            <span class="n">df_shaft</span><span class="o">.</span><span class="n">n_r</span> <span class="o">==</span> <span class="nb">int</span><span class="p">(</span><span class="n">dfb_z_pos</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s2">&quot;n_r&quot;</span><span class="p">])</span>
+                        <span class="p">]</span><span class="o">.</span><span class="n">values</span>
+                    <span class="p">)</span>
+                    <span class="o">/</span> <span class="mi">2</span>
+                <span class="p">)</span>
             <span class="k">else</span><span class="p">:</span>
-                <span class="n">y_pos</span> <span class="o">=</span> <span class="nb">max</span><span class="p">([</span>
-                    <span class="nb">max</span><span class="p">(</span><span class="n">df_shaft</span><span class="p">[</span><span class="s2">&quot;o_d_l&quot;</span><span class="p">][</span><span class="n">df_shaft</span><span class="o">.</span><span class="n">_n</span> <span class="o">==</span> <span class="nb">int</span><span class="p">(</span><span class="n">dfb_z_pos</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s2">&quot;n_l&quot;</span><span class="p">])]</span><span class="o">.</span><span class="n">values</span><span class="p">),</span>
-                    <span class="nb">max</span><span class="p">(</span><span class="n">df_shaft</span><span class="p">[</span><span class="s2">&quot;o_d_r&quot;</span><span class="p">][</span><span class="n">df_shaft</span><span class="o">.</span><span class="n">_n</span> <span class="o">==</span> <span class="nb">int</span><span class="p">(</span><span class="n">dfb_z_pos</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s2">&quot;n_l&quot;</span><span class="p">])</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
-                <span class="p">])</span> <span class="o">/</span> <span class="mi">2</span>
+                <span class="n">y_pos</span> <span class="o">=</span> <span class="p">(</span>
+                    <span class="nb">max</span><span class="p">(</span>
+                        <span class="p">[</span>
+                            <span class="nb">max</span><span class="p">(</span>
+                                <span class="n">df_shaft</span><span class="p">[</span><span class="s2">&quot;o_d_l&quot;</span><span class="p">][</span>
+                                    <span class="n">df_shaft</span><span class="o">.</span><span class="n">_n</span> <span class="o">==</span> <span class="nb">int</span><span class="p">(</span><span class="n">dfb_z_pos</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s2">&quot;n_l&quot;</span><span class="p">])</span>
+                                <span class="p">]</span><span class="o">.</span><span class="n">values</span>
+                            <span class="p">),</span>
+                            <span class="nb">max</span><span class="p">(</span>
+                                <span class="n">df_shaft</span><span class="p">[</span><span class="s2">&quot;o_d_r&quot;</span><span class="p">][</span>
+                                    <span class="n">df_shaft</span><span class="o">.</span><span class="n">_n</span> <span class="o">==</span> <span class="nb">int</span><span class="p">(</span><span class="n">dfb_z_pos</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s2">&quot;n_l&quot;</span><span class="p">])</span> <span class="o">-</span> <span class="mi">1</span>
+                                <span class="p">]</span><span class="o">.</span><span class="n">values</span>
+                            <span class="p">),</span>
+                        <span class="p">]</span>
+                    <span class="p">)</span>
+                    <span class="o">/</span> <span class="mi">2</span>
+                <span class="p">)</span>
             <span class="n">mean_od</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">nodes_o_d</span><span class="p">)</span>
             <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">dfb_z_pos</span><span class="o">.</span><span class="n">tag</span><span class="p">:</span>
                 <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="o">.</span><span class="n">tag</span> <span class="o">==</span> <span class="n">t</span><span class="p">,</span> <span class="s2">&quot;y_pos&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">y_pos</span>
@@ -1103,7 +1130,7 @@
 <span class="sd">        frequency : float, optional</span>
 <span class="sd">            Excitation frequency. Default is rotor speed.</span>
 <span class="sd">        speed : float, optional</span>
-<span class="sd">            Rotating speed. Default is rotor speed (w).</span>
+<span class="sd">            Rotating speed. Default is rotor speed (frequency).</span>
 <span class="sd">        modes : list, optional</span>
 <span class="sd">            List with modes used to calculate the matrix.</span>
 <span class="sd">            (all modes will be used if a list is not given).</span>
@@ -1789,8 +1816,8 @@
 <span class="sd">        ... )</span>
 <span class="sd">        &gt;&gt;&gt; stfx = [1e6, 2e7, 3e8]</span>
 <span class="sd">        &gt;&gt;&gt; stfy = [0.8e6, 1.6e7, 2.4e8]</span>
-<span class="sd">        &gt;&gt;&gt; bearing0 = BearingElement(0, kxx=stfx, kyy=stfy, cxx=0, w=[0,1000, 2000])</span>
-<span class="sd">        &gt;&gt;&gt; bearing1 = BearingElement(6, kxx=stfx, kyy=stfy, cxx=0, w=[0,1000, 2000])</span>
+<span class="sd">        &gt;&gt;&gt; bearing0 = BearingElement(0, kxx=stfx, kyy=stfy, cxx=0, frequency=[0,1000, 2000])</span>
+<span class="sd">        &gt;&gt;&gt; bearing1 = BearingElement(6, kxx=stfx, kyy=stfy, cxx=0, frequency=[0,1000, 2000])</span>
 <span class="sd">        &gt;&gt;&gt; rotor = Rotor(shaft_elem, [disk0, disk1], [bearing0, bearing1])</span>
 <span class="sd">        &gt;&gt;&gt; rotor.plot_ucs() # doctest: +ELLIPSIS</span>
 <span class="sd">        &lt;matplotlib.axes._subplots.AxesSubplot ...</span>
@@ -1831,8 +1858,8 @@
         <span class="n">bearing0</span> <span class="o">=</span> <span class="n">bearings_elements</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 
         <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
-            <span class="n">bearing0</span><span class="o">.</span><span class="n">kxx</span><span class="o">.</span><span class="n">interpolated</span><span class="p">(</span><span class="n">bearing0</span><span class="o">.</span><span class="n">w</span><span class="p">),</span>
-            <span class="n">bearing0</span><span class="o">.</span><span class="n">w</span><span class="p">,</span>
+            <span class="n">bearing0</span><span class="o">.</span><span class="n">kxx</span><span class="o">.</span><span class="n">interpolated</span><span class="p">(</span><span class="n">bearing0</span><span class="o">.</span><span class="n">frequency</span><span class="p">),</span>
+            <span class="n">bearing0</span><span class="o">.</span><span class="n">frequency</span><span class="p">,</span>
             <span class="n">marker</span><span class="o">=</span><span class="s2">&quot;o&quot;</span><span class="p">,</span>
             <span class="n">color</span><span class="o">=</span><span class="s2">&quot;k&quot;</span><span class="p">,</span>
             <span class="n">alpha</span><span class="o">=</span><span class="mf">0.25</span><span class="p">,</span>
@@ -1841,8 +1868,8 @@
             <span class="n">label</span><span class="o">=</span><span class="s2">&quot;kxx&quot;</span><span class="p">,</span>
         <span class="p">)</span>
         <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
-            <span class="n">bearing0</span><span class="o">.</span><span class="n">kyy</span><span class="o">.</span><span class="n">interpolated</span><span class="p">(</span><span class="n">bearing0</span><span class="o">.</span><span class="n">w</span><span class="p">),</span>
-            <span class="n">bearing0</span><span class="o">.</span><span class="n">w</span><span class="p">,</span>
+            <span class="n">bearing0</span><span class="o">.</span><span class="n">kyy</span><span class="o">.</span><span class="n">interpolated</span><span class="p">(</span><span class="n">bearing0</span><span class="o">.</span><span class="n">frequency</span><span class="p">),</span>
+            <span class="n">bearing0</span><span class="o">.</span><span class="n">frequency</span><span class="p">,</span>
             <span class="n">marker</span><span class="o">=</span><span class="s2">&quot;s&quot;</span><span class="p">,</span>
             <span class="n">color</span><span class="o">=</span><span class="s2">&quot;k&quot;</span><span class="p">,</span>
             <span class="n">alpha</span><span class="o">=</span><span class="mf">0.25</span><span class="p">,</span>
@@ -1872,16 +1899,16 @@
 
         <span class="c1"># bokeh plot - plot shaft centerline</span>
         <span class="n">bk_ax</span><span class="o">.</span><span class="n">circle</span><span class="p">(</span>
-            <span class="n">bearing0</span><span class="o">.</span><span class="n">kxx</span><span class="o">.</span><span class="n">interpolated</span><span class="p">(</span><span class="n">bearing0</span><span class="o">.</span><span class="n">w</span><span class="p">),</span>
-            <span class="n">bearing0</span><span class="o">.</span><span class="n">w</span><span class="p">,</span>
+            <span class="n">bearing0</span><span class="o">.</span><span class="n">kxx</span><span class="o">.</span><span class="n">interpolated</span><span class="p">(</span><span class="n">bearing0</span><span class="o">.</span><span class="n">frequency</span><span class="p">),</span>
+            <span class="n">bearing0</span><span class="o">.</span><span class="n">frequency</span><span class="p">,</span>
             <span class="n">size</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>
             <span class="n">fill_alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span>
             <span class="n">fill_color</span><span class="o">=</span><span class="n">bokeh_colors</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
             <span class="n">legend</span><span class="o">=</span><span class="s2">&quot;Kxx&quot;</span><span class="p">,</span>
         <span class="p">)</span>
         <span class="n">bk_ax</span><span class="o">.</span><span class="n">square</span><span class="p">(</span>
-            <span class="n">bearing0</span><span class="o">.</span><span class="n">kyy</span><span class="o">.</span><span class="n">interpolated</span><span class="p">(</span><span class="n">bearing0</span><span class="o">.</span><span class="n">w</span><span class="p">),</span>
-            <span class="n">bearing0</span><span class="o">.</span><span class="n">w</span><span class="p">,</span>
+            <span class="n">bearing0</span><span class="o">.</span><span class="n">kyy</span><span class="o">.</span><span class="n">interpolated</span><span class="p">(</span><span class="n">bearing0</span><span class="o">.</span><span class="n">frequency</span><span class="p">),</span>
+            <span class="n">bearing0</span><span class="o">.</span><span class="n">frequency</span><span class="p">,</span>
             <span class="n">size</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>
             <span class="n">fill_alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span>
             <span class="n">fill_color</span><span class="o">=</span><span class="n">bokeh_colors</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
@@ -2390,14 +2417,14 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">run_static</span><span class="p">()</span>
         <span class="n">forces</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">bearing_reaction_forces</span>
         <span class="n">results</span> <span class="o">=</span> <span class="n">SummaryResults</span><span class="p">(</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">df_shaft</span><span class="p">,</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">df_disks</span><span class="p">,</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">df_bearings</span><span class="p">,</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">nodes_pos</span><span class="p">,</span>
-                <span class="n">forces</span><span class="p">,</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">CG</span><span class="p">,</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">Ip</span><span class="p">,</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">tag</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">df_shaft</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">df_disks</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">df_bearings</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">nodes_pos</span><span class="p">,</span>
+            <span class="n">forces</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">CG</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">Ip</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">tag</span><span class="p">,</span>
         <span class="p">)</span>
         <span class="k">return</span> <span class="n">results</span></div>
 
@@ -2413,7 +2440,7 @@
         <span class="n">min_w</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
         <span class="n">max_w</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
         <span class="n">n_eigen</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span>
-        <span class="n">w</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+        <span class="n">frequency</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
         <span class="n">nel_r</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
     <span class="p">):</span>
 
@@ -2466,7 +2493,7 @@
 <span class="sd">        ...                        DiskElement.from_geometry(n=2, material=steel, width=0.07, i_d=0, o_d=0.35)],</span>
 <span class="sd">        ...             brg_seal_data=[BearingElement(n=0, kxx=1e6, cxx=0, kyy=1e6, cyy=0, kxy=0, cxy=0, kyx=0, cyx=0),</span>
 <span class="sd">        ...                            BearingElement(n=3, kxx=1e6, cxx=0, kyy=1e6, cyy=0, kxy=0, cxy=0, kyx=0, cyx=0)],</span>
-<span class="sd">        ...             w=0, nel_r=1)</span>
+<span class="sd">        ...             frequency=0, nel_r=1)</span>
 <span class="sd">        &gt;&gt;&gt; modal = rotor.run_modal(speed=0)</span>
 <span class="sd">        &gt;&gt;&gt; modal.wn.round(4)</span>
 <span class="sd">        array([ 85.7634,  85.7634, 271.9326, 271.9326, 718.58  , 718.58  ])</span>

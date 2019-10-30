@@ -303,6 +303,7 @@
         <span class="sd">&quot;&quot;&quot;A summary for the element.</span>
 
 <span class="sd">        A pandas series with the element properties as variables.</span>
+
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
 
@@ -334,6 +335,7 @@
     <span class="nd">@staticmethod</span>
     <span class="k">def</span> <span class="nf">load_data</span><span class="p">(</span><span class="n">file_name</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Loads elements data saved in a toml format.</span>
+
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
 <span class="sd">        file_name: string</span>
@@ -341,8 +343,9 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        dict</span>
+<span class="sd">        data: dict</span>
 <span class="sd">            The element parameters presented as a dictionary.</span>
+
 <span class="sd">        Examples</span>
 <span class="sd">        --------</span>
 <span class="sd">        &gt;&gt;&gt; # Example using BearingElement</span>
@@ -367,12 +370,14 @@
     <span class="nd">@staticmethod</span>
     <span class="k">def</span> <span class="nf">dump_data</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">file_name</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Dumps element data in a toml file.</span>
+
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
 <span class="sd">        data: dict</span>
 <span class="sd">            The data that should be dumped.</span>
 <span class="sd">        file_name: string</span>
 <span class="sd">            The name of the file the data will be dumped in.</span>
+
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
 
@@ -391,14 +396,15 @@
 
     <span class="nd">@abstractmethod</span>
     <span class="k">def</span> <span class="nf">dof_mapping</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Should return a dictionary with a mapping between degree of freedom</span>
+        <span class="sd">&quot;&quot;&quot;Degrees of freedom mapping.</span>
+
+<span class="sd">        Should return a dictionary with a mapping between degree of freedom</span>
 <span class="sd">        and its index.</span>
-<span class="sd">        Parameters</span>
-<span class="sd">        ----------</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        A dictionary of degrees of freedom.</span>
+<span class="sd">        dof_mapping: dict</span>
+<span class="sd">            A dictionary containing the degrees of freedom and their indexes.</span>
 
 <span class="sd">        Examples</span>
 <span class="sd">        --------</span>
@@ -412,12 +418,11 @@
 
     <span class="k">def</span> <span class="nf">dof_local_index</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Get the local index for a element specific degree of freedom.</span>
-<span class="sd">        Parameters</span>
-<span class="sd">        ----------</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        A named tuple containing the local index.</span>
+<span class="sd">        local_index: namedtupple</span>
+<span class="sd">            A named tuple containing the local index.</span>
 
 <span class="sd">        Examples</span>
 <span class="sd">        --------</span>
@@ -435,12 +440,11 @@
 
     <span class="k">def</span> <span class="nf">dof_global_index</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Get the global index for a element specific degree of freedom.</span>
-<span class="sd">        Parameters</span>
-<span class="sd">        ----------</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        A named tuple containing the global index.</span>
+<span class="sd">        global_index: namedtupple</span>
+<span class="sd">            A named tuple containing the global index.</span>
 
 <span class="sd">        Examples</span>
 <span class="sd">        --------</span>

@@ -210,7 +210,8 @@
                         <span class="p">)</span>
                 <span class="k">except</span><span class="p">:</span>
                     <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
-                        <span class="s2">&quot;Arguments (coefficients and w)&quot;</span> <span class="s2">&quot; must have the same dimension&quot;</span>
+                        <span class="s2">&quot;Arguments (coefficients and frequency)&quot;</span>
+                        <span class="s2">&quot; must have the same dimension&quot;</span>
                     <span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">interpolated</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">coefficient</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
@@ -258,12 +259,14 @@
 
 <div class="viewcode-block" id="BearingElement"><a class="viewcode-back" href="../../generated/elements/ross.BearingElement.html#ross.BearingElement">[docs]</a><span class="k">class</span> <span class="nc">BearingElement</span><span class="p">(</span><span class="n">Element</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;A bearing element.</span>
+
 <span class="sd">    This class will create a bearing element.</span>
 <span class="sd">    Parameters can be a constant value or speed dependent.</span>
 <span class="sd">    For speed dependent parameters, each argument should be passed</span>
 <span class="sd">    as an array and the correspondent speed values should also be</span>
 <span class="sd">    passed as an array.</span>
 <span class="sd">    Values for each parameter will be interpolated for the speed.</span>
+
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
 <span class="sd">    n: int</span>
@@ -290,8 +293,8 @@
 <span class="sd">    cyx: float, array, optional</span>
 <span class="sd">        Cross coupled damping in the y direction.</span>
 <span class="sd">        (defaults to 0)</span>
-<span class="sd">    w: array, optional</span>
-<span class="sd">        Array with the speeds (rad/s).</span>
+<span class="sd">    frequency: array, optional</span>
+<span class="sd">        Array with the frequencies (rad/s).</span>
 <span class="sd">    tag: str, optional</span>
 <span class="sd">        A tag to name the element</span>
 <span class="sd">        Default is None.</span>
@@ -302,6 +305,7 @@
 <span class="sd">    scale_factor: float, optional</span>
 <span class="sd">        The scale factor is used to scale the bearing drawing.</span>
 <span class="sd">        Default is 1.</span>
+
 <span class="sd">    Examples</span>
 <span class="sd">    --------</span>
 <span class="sd">    &gt;&gt;&gt; # A bearing element located in the first rotor node, with these</span>
@@ -312,11 +316,11 @@
 <span class="sd">    &gt;&gt;&gt; kyy = 0.8e6</span>
 <span class="sd">    &gt;&gt;&gt; cxx = 2e2</span>
 <span class="sd">    &gt;&gt;&gt; cyy = 1.5e2</span>
-<span class="sd">    &gt;&gt;&gt; w = np.linspace(0, 200, 11)</span>
-<span class="sd">    &gt;&gt;&gt; bearing0 = rs.BearingElement(n=0, kxx=kxx, kyy=kyy, cxx=cxx, cyy=cyy, w=w)</span>
-<span class="sd">    &gt;&gt;&gt; bearing0.K(w) # doctest: +ELLIPSIS</span>
+<span class="sd">    &gt;&gt;&gt; frequency = np.linspace(0, 200, 11)</span>
+<span class="sd">    &gt;&gt;&gt; bearing0 = rs.BearingElement(n=0, kxx=kxx, kyy=kyy, cxx=cxx, cyy=cyy, frequency=frequency)</span>
+<span class="sd">    &gt;&gt;&gt; bearing0.K(frequency) # doctest: +ELLIPSIS</span>
 <span class="sd">    array([[[1000000., 1000000., ...</span>
-<span class="sd">    &gt;&gt;&gt; bearing0.C(w) # doctest: +ELLIPSIS</span>
+<span class="sd">    &gt;&gt;&gt; bearing0.C(frequency) # doctest: +ELLIPSIS</span>
 <span class="sd">    array([[[200., 200., ...</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
@@ -331,7 +335,7 @@
         <span class="n">cyy</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
         <span class="n">cxy</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
         <span class="n">cyx</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
-        <span class="n">w</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">frequency</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
         <span class="n">tag</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
         <span class="n">n_link</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
         <span class="n">scale_factor</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
@@ -351,24 +355,28 @@
         <span class="k">for</span> <span class="n">arg</span> <span class="ow">in</span> <span class="n">args</span><span class="p">:</span>
             <span class="k">if</span> <span class="n">arg</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;k&quot;</span><span class="p">:</span>
                 <span class="n">coefficients</span><span class="p">[</span><span class="n">arg</span><span class="p">]</span> <span class="o">=</span> <span class="n">_Stiffness_Coefficient</span><span class="p">(</span>
-                    <span class="n">coefficient</span><span class="o">=</span><span class="n">args_dict</span><span class="p">[</span><span class="n">arg</span><span class="p">],</span> <span class="n">w</span><span class="o">=</span><span class="n">args_dict</span><span class="p">[</span><span class="s2">&quot;w&quot;</span><span class="p">]</span>
+                    <span class="n">coefficient</span><span class="o">=</span><span class="n">args_dict</span><span class="p">[</span><span class="n">arg</span><span class="p">],</span> <span class="n">w</span><span class="o">=</span><span class="n">args_dict</span><span class="p">[</span><span class="s2">&quot;frequency&quot;</span><span class="p">]</span>
                 <span class="p">)</span>
             <span class="k">else</span><span class="p">:</span>
-                <span class="n">coefficients</span><span class="p">[</span><span class="n">arg</span><span class="p">]</span> <span class="o">=</span> <span class="n">_Damping_Coefficient</span><span class="p">(</span><span class="n">args_dict</span><span class="p">[</span><span class="n">arg</span><span class="p">],</span> <span class="n">args_dict</span><span class="p">[</span><span class="s2">&quot;w&quot;</span><span class="p">])</span>
+                <span class="n">coefficients</span><span class="p">[</span><span class="n">arg</span><span class="p">]</span> <span class="o">=</span> <span class="n">_Damping_Coefficient</span><span class="p">(</span>
+                    <span class="n">args_dict</span><span class="p">[</span><span class="n">arg</span><span class="p">],</span> <span class="n">args_dict</span><span class="p">[</span><span class="s2">&quot;frequency&quot;</span><span class="p">]</span>
+                <span class="p">)</span>
 
         <span class="n">coefficients_len</span> <span class="o">=</span> <span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">v</span><span class="o">.</span><span class="n">coefficient</span><span class="p">)</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">coefficients</span><span class="o">.</span><span class="n">values</span><span class="p">()]</span>
 
-        <span class="k">if</span> <span class="n">w</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="nb">type</span><span class="p">(</span><span class="n">w</span><span class="p">)</span> <span class="o">!=</span> <span class="nb">float</span><span class="p">:</span>
-            <span class="n">coefficients_len</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">args_dict</span><span class="p">[</span><span class="s2">&quot;w&quot;</span><span class="p">]))</span>
+        <span class="k">if</span> <span class="n">frequency</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="nb">type</span><span class="p">(</span><span class="n">frequency</span><span class="p">)</span> <span class="o">!=</span> <span class="nb">float</span><span class="p">:</span>
+            <span class="n">coefficients_len</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">args_dict</span><span class="p">[</span><span class="s2">&quot;frequency&quot;</span><span class="p">]))</span>
             <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">coefficients_len</span><span class="p">))</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
                 <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
-                    <span class="s2">&quot;Arguments (coefficients and w)&quot;</span> <span class="s2">&quot; must have the same dimension&quot;</span>
+                    <span class="s2">&quot;Arguments (coefficients and frequency)&quot;</span>
+                    <span class="s2">&quot; must have the same dimension&quot;</span>
                 <span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">coefficients_len</span><span class="p">:</span>
                 <span class="k">if</span> <span class="n">c</span> <span class="o">!=</span> <span class="mi">1</span><span class="p">:</span>
                     <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
-                        <span class="s2">&quot;Arguments (coefficients and w)&quot;</span> <span class="s2">&quot; must have the same dimension&quot;</span>
+                        <span class="s2">&quot;Arguments (coefficients and frequency)&quot;</span>
+                        <span class="s2">&quot; must have the same dimension&quot;</span>
                     <span class="p">)</span>
 
         <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">coefficients</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
@@ -379,7 +387,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">n_l</span> <span class="o">=</span> <span class="n">n</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">n_r</span> <span class="o">=</span> <span class="n">n</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">w</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">w</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">frequency</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">frequency</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">tag</span> <span class="o">=</span> <span class="n">tag</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">color</span> <span class="o">=</span> <span class="s2">&quot;#355d7a&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">scale_factor</span> <span class="o">=</span> <span class="n">scale_factor</span></div>
@@ -406,7 +414,7 @@
             <span class="n">f</span><span class="s2">&quot; kyx=</span><span class="si">{self.kyx}</span><span class="s2">, kyy=</span><span class="si">{self.kyy}</span><span class="s2">,</span><span class="se">\n</span><span class="s2">&quot;</span>
             <span class="n">f</span><span class="s2">&quot; cxx=</span><span class="si">{self.cxx}</span><span class="s2">, cxy=</span><span class="si">{self.cxy}</span><span class="s2">,</span><span class="se">\n</span><span class="s2">&quot;</span>
             <span class="n">f</span><span class="s2">&quot; cyx=</span><span class="si">{self.cyx}</span><span class="s2">, cyy=</span><span class="si">{self.cyy}</span><span class="s2">,</span><span class="se">\n</span><span class="s2">&quot;</span>
-            <span class="n">f</span><span class="s2">&quot; w=</span><span class="si">{self.w}</span><span class="s2">, tag=</span><span class="si">{self.tag!r}</span><span class="s2">)&quot;</span>
+            <span class="n">f</span><span class="s2">&quot; frequency=</span><span class="si">{self.frequency}</span><span class="s2">, tag=</span><span class="si">{self.tag!r}</span><span class="s2">)&quot;</span>
         <span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">__eq__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
@@ -436,7 +444,7 @@
             <span class="s2">&quot;cyy&quot;</span><span class="p">,</span>
             <span class="s2">&quot;cxy&quot;</span><span class="p">,</span>
             <span class="s2">&quot;cyx&quot;</span><span class="p">,</span>
-            <span class="s2">&quot;w&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;frequency&quot;</span><span class="p">,</span>
             <span class="s2">&quot;n&quot;</span><span class="p">,</span>
         <span class="p">]</span>
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="p">):</span>
@@ -453,8 +461,9 @@
         <span class="k">return</span> <span class="nb">hash</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">tag</span><span class="p">)</span>
 
 <div class="viewcode-block" id="BearingElement.save"><a class="viewcode-back" href="../../generated/elements/ross.BearingElement.html#ross.BearingElement.save">[docs]</a>    <span class="k">def</span> <span class="nf">save</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">file_name</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Saves a bearing element in a toml format. It works as an auxiliary function of</span>
-<span class="sd">        the save function in the Rotor class.</span>
+        <span class="sd">&quot;&quot;&quot;Saves a bearing element in a toml format. It works as an auxiliary</span>
+<span class="sd">        function of the save function in the Rotor class.</span>
+
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
 <span class="sd">        file_name: string</span>
@@ -470,12 +479,12 @@
 <span class="sd">        &gt;&gt;&gt; bearing.save(&#39;BearingElement.toml&#39;)</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">load_data</span><span class="p">(</span><span class="n">file_name</span><span class="p">)</span>
-        <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">w</span><span class="p">)</span> <span class="o">==</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+        <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">frequency</span><span class="p">)</span> <span class="o">==</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
             <span class="k">try</span><span class="p">:</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">w</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-                <span class="n">w</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">w</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">frequency</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+                <span class="n">frequency</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">frequency</span><span class="p">)</span>
             <span class="k">except</span> <span class="ne">IndexError</span><span class="p">:</span>
-                <span class="n">w</span> <span class="o">=</span> <span class="kc">None</span>
+                <span class="n">frequency</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="n">data</span><span class="p">[</span><span class="s2">&quot;BearingElement&quot;</span><span class="p">][</span><span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">n</span><span class="p">)]</span> <span class="o">=</span> <span class="p">{</span>
             <span class="s2">&quot;n&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">n</span><span class="p">,</span>
             <span class="s2">&quot;kxx&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">kxx</span><span class="o">.</span><span class="n">coefficient</span><span class="p">,</span>
@@ -486,7 +495,7 @@
             <span class="s2">&quot;cyy&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">cyy</span><span class="o">.</span><span class="n">coefficient</span><span class="p">,</span>
             <span class="s2">&quot;cxy&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">cxy</span><span class="o">.</span><span class="n">coefficient</span><span class="p">,</span>
             <span class="s2">&quot;cyx&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">cyx</span><span class="o">.</span><span class="n">coefficient</span><span class="p">,</span>
-            <span class="s2">&quot;w&quot;</span><span class="p">:</span> <span class="n">w</span><span class="p">,</span>
+            <span class="s2">&quot;frequency&quot;</span><span class="p">:</span> <span class="n">frequency</span><span class="p">,</span>
             <span class="s2">&quot;tag&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">tag</span><span class="p">,</span>
         <span class="p">}</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">dump_data</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">file_name</span><span class="p">)</span></div>
@@ -494,6 +503,7 @@
 <div class="viewcode-block" id="BearingElement.load"><a class="viewcode-back" href="../../generated/elements/ross.BearingElement.html#ross.BearingElement.load">[docs]</a>    <span class="nd">@staticmethod</span>
     <span class="k">def</span> <span class="nf">load</span><span class="p">(</span><span class="n">file_name</span><span class="o">=</span><span class="s2">&quot;BearingElement&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Loads a list of bearing elements saved in a toml format.</span>
+
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
 <span class="sd">        file_name: string</span>
@@ -553,20 +563,6 @@
         <span class="k">return</span> <span class="n">bearing_elements</span></div>
 
 <div class="viewcode-block" id="BearingElement.dof_mapping"><a class="viewcode-back" href="../../generated/elements/ross.BearingElement.html#ross.BearingElement.dof_mapping">[docs]</a>    <span class="k">def</span> <span class="nf">dof_mapping</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Returns a dictionary with a mapping between degree of freedom and its index.</span>
-<span class="sd">        Parameters</span>
-<span class="sd">        ----------</span>
-
-<span class="sd">        Returns</span>
-<span class="sd">        -------</span>
-<span class="sd">        A dictionary containing the degrees of freedom and their indexes.</span>
-
-<span class="sd">        Examples</span>
-<span class="sd">        --------</span>
-<span class="sd">        &gt;&gt;&gt; bearing = bearing_example()</span>
-<span class="sd">        &gt;&gt;&gt; bearing.dof_mapping()</span>
-<span class="sd">        {&#39;x_0&#39;: 0, &#39;y_0&#39;: 1}</span>
-<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="nb">dict</span><span class="p">(</span><span class="n">x_0</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">y_0</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="BearingElement.dof_global_index"><a class="viewcode-back" href="../../generated/elements/ross.BearingElement.html#ross.BearingElement.dof_global_index">[docs]</a>    <span class="k">def</span> <span class="nf">dof_global_index</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -583,13 +579,12 @@
         <span class="k">return</span> <span class="n">global_index</span></div>
 
 <div class="viewcode-block" id="BearingElement.M"><a class="viewcode-back" href="../../generated/elements/ross.BearingElement.html#ross.BearingElement.M">[docs]</a>    <span class="k">def</span> <span class="nf">M</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Returns the mass matrix.</span>
-<span class="sd">        Parameters</span>
-<span class="sd">        ----------</span>
+        <span class="sd">&quot;&quot;&quot;Mass matrix.</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        A matrix of floats.</span>
+<span class="sd">        M: np.ndarray</span>
+<span class="sd">            Mass matrix.</span>
 
 <span class="sd">        Examples</span>
 <span class="sd">        --------</span>
@@ -602,16 +597,18 @@
 
         <span class="k">return</span> <span class="n">M</span></div>
 
-<div class="viewcode-block" id="BearingElement.K"><a class="viewcode-back" href="../../generated/elements/ross.BearingElement.html#ross.BearingElement.K">[docs]</a>    <span class="k">def</span> <span class="nf">K</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">w</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Returns the stiffness matrix for a given speed.</span>
+<div class="viewcode-block" id="BearingElement.K"><a class="viewcode-back" href="../../generated/elements/ross.BearingElement.html#ross.BearingElement.K">[docs]</a>    <span class="k">def</span> <span class="nf">K</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">frequency</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Returns the stiffness matrix for a given excitation frequency.</span>
+
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-<span class="sd">        w: float</span>
-<span class="sd">            The speeds (rad/s) to consider.</span>
+<span class="sd">        frequency: float</span>
+<span class="sd">            The excitation frequency (rad/s).</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        A 2x2 matrix of floats containing the kxx, kxy, kyx, and kyy values.</span>
+<span class="sd">        K: np.ndarray</span>
+<span class="sd">            A 2x2 matrix of floats containing the kxx, kxy, kyx, and kyy values.</span>
 
 <span class="sd">        Examples</span>
 <span class="sd">        --------</span>
@@ -620,10 +617,10 @@
 <span class="sd">        array([[1000000.,       0.],</span>
 <span class="sd">               [      0.,  800000.]])</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">kxx</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">kxx</span><span class="o">.</span><span class="n">interpolated</span><span class="p">(</span><span class="n">w</span><span class="p">)</span>
-        <span class="n">kyy</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">kyy</span><span class="o">.</span><span class="n">interpolated</span><span class="p">(</span><span class="n">w</span><span class="p">)</span>
-        <span class="n">kxy</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">kxy</span><span class="o">.</span><span class="n">interpolated</span><span class="p">(</span><span class="n">w</span><span class="p">)</span>
-        <span class="n">kyx</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">kyx</span><span class="o">.</span><span class="n">interpolated</span><span class="p">(</span><span class="n">w</span><span class="p">)</span>
+        <span class="n">kxx</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">kxx</span><span class="o">.</span><span class="n">interpolated</span><span class="p">(</span><span class="n">frequency</span><span class="p">)</span>
+        <span class="n">kyy</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">kyy</span><span class="o">.</span><span class="n">interpolated</span><span class="p">(</span><span class="n">frequency</span><span class="p">)</span>
+        <span class="n">kxy</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">kxy</span><span class="o">.</span><span class="n">interpolated</span><span class="p">(</span><span class="n">frequency</span><span class="p">)</span>
+        <span class="n">kyx</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">kyx</span><span class="o">.</span><span class="n">interpolated</span><span class="p">(</span><span class="n">frequency</span><span class="p">)</span>
 
         <span class="n">K</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="n">kxx</span><span class="p">,</span> <span class="n">kxy</span><span class="p">],</span> <span class="p">[</span><span class="n">kyx</span><span class="p">,</span> <span class="n">kyy</span><span class="p">]])</span>
 
@@ -635,16 +632,18 @@
 
         <span class="k">return</span> <span class="n">K</span></div>
 
-<div class="viewcode-block" id="BearingElement.C"><a class="viewcode-back" href="../../generated/elements/ross.BearingElement.html#ross.BearingElement.C">[docs]</a>    <span class="k">def</span> <span class="nf">C</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">w</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Returns the damping matrix for a given speed.</span>
+<div class="viewcode-block" id="BearingElement.C"><a class="viewcode-back" href="../../generated/elements/ross.BearingElement.html#ross.BearingElement.C">[docs]</a>    <span class="k">def</span> <span class="nf">C</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">frequency</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Returns the damping matrix for a given excitation frequency.</span>
+
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-<span class="sd">        w: float</span>
-<span class="sd">            The speeds (rad/s) to consider.</span>
+<span class="sd">        frequency: float</span>
+<span class="sd">            The excitation frequency (rad/s).</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        A 2x2 matrix of floats containing the cxx, cxy, cyx, and cyy values.</span>
+<span class="sd">        C: np.ndarray</span>
+<span class="sd">            A 2x2 matrix of floats containing the cxx, cxy, cyx, and cyy values.</span>
 
 <span class="sd">        Examples</span>
 <span class="sd">        --------</span>
@@ -653,10 +652,10 @@
 <span class="sd">        array([[200.,   0.],</span>
 <span class="sd">               [  0., 150.]])</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">cxx</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">cxx</span><span class="o">.</span><span class="n">interpolated</span><span class="p">(</span><span class="n">w</span><span class="p">)</span>
-        <span class="n">cyy</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">cyy</span><span class="o">.</span><span class="n">interpolated</span><span class="p">(</span><span class="n">w</span><span class="p">)</span>
-        <span class="n">cxy</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">cxy</span><span class="o">.</span><span class="n">interpolated</span><span class="p">(</span><span class="n">w</span><span class="p">)</span>
-        <span class="n">cyx</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">cyx</span><span class="o">.</span><span class="n">interpolated</span><span class="p">(</span><span class="n">w</span><span class="p">)</span>
+        <span class="n">cxx</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">cxx</span><span class="o">.</span><span class="n">interpolated</span><span class="p">(</span><span class="n">frequency</span><span class="p">)</span>
+        <span class="n">cyy</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">cyy</span><span class="o">.</span><span class="n">interpolated</span><span class="p">(</span><span class="n">frequency</span><span class="p">)</span>
+        <span class="n">cxy</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">cxy</span><span class="o">.</span><span class="n">interpolated</span><span class="p">(</span><span class="n">frequency</span><span class="p">)</span>
+        <span class="n">cyx</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">cyx</span><span class="o">.</span><span class="n">interpolated</span><span class="p">(</span><span class="n">frequency</span><span class="p">)</span>
 
         <span class="n">C</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="n">cxx</span><span class="p">,</span> <span class="n">cxy</span><span class="p">],</span> <span class="p">[</span><span class="n">cyx</span><span class="p">,</span> <span class="n">cyy</span><span class="p">]])</span>
 
@@ -669,13 +668,12 @@
         <span class="k">return</span> <span class="n">C</span></div>
 
 <div class="viewcode-block" id="BearingElement.G"><a class="viewcode-back" href="../../generated/elements/ross.BearingElement.html#ross.BearingElement.G">[docs]</a>    <span class="k">def</span> <span class="nf">G</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Returns the giroscopic matrix.</span>
-<span class="sd">        Parameters</span>
-<span class="sd">        ----------</span>
+        <span class="sd">&quot;&quot;&quot;Gyroscopic matrix.</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        A matrix of floats.</span>
+<span class="sd">        G: np.ndarray</span>
+<span class="sd">            A 2x2 matrix of floats.</span>
 
 <span class="sd">        Examples</span>
 <span class="sd">        --------</span>
@@ -894,18 +892,23 @@
 
 <div class="viewcode-block" id="BearingElement.table_to_toml"><a class="viewcode-back" href="../../generated/elements/ross.BearingElement.html#ross.BearingElement.table_to_toml">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">table_to_toml</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">file</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Convert a table with parameters of a bearing element to a dictionary ready to save</span>
+        <span class="sd">&quot;&quot;&quot;Convert bearing parameters to toml.</span>
+
+<span class="sd">        Convert a table with parameters of a bearing element to a dictionary ready to save</span>
 <span class="sd">        to a toml file that can be later loaded by ross.</span>
+
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
 <span class="sd">        n : int</span>
 <span class="sd">            The node in which the bearing will be located in the rotor.</span>
 <span class="sd">        file: str</span>
 <span class="sd">            Path to the file containing the bearing parameters.</span>
+
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        dict</span>
+<span class="sd">        data: dict</span>
 <span class="sd">            A dict that is ready to save to toml and readable by ross.</span>
+
 <span class="sd">        Examples</span>
 <span class="sd">        --------</span>
 <span class="sd">        &gt;&gt;&gt; import os</span>
@@ -924,16 +927,18 @@
             <span class="s2">&quot;cyy&quot;</span><span class="p">:</span> <span class="n">b_elem</span><span class="o">.</span><span class="n">cyy</span><span class="o">.</span><span class="n">coefficient</span><span class="p">,</span>
             <span class="s2">&quot;cxy&quot;</span><span class="p">:</span> <span class="n">b_elem</span><span class="o">.</span><span class="n">cxy</span><span class="o">.</span><span class="n">coefficient</span><span class="p">,</span>
             <span class="s2">&quot;cyx&quot;</span><span class="p">:</span> <span class="n">b_elem</span><span class="o">.</span><span class="n">cyx</span><span class="o">.</span><span class="n">coefficient</span><span class="p">,</span>
-            <span class="s2">&quot;w&quot;</span><span class="p">:</span> <span class="n">b_elem</span><span class="o">.</span><span class="n">w</span><span class="p">,</span>
+            <span class="s2">&quot;frequency&quot;</span><span class="p">:</span> <span class="n">b_elem</span><span class="o">.</span><span class="n">frequency</span><span class="p">,</span>
         <span class="p">}</span>
         <span class="k">return</span> <span class="n">data</span></div>
 
 <div class="viewcode-block" id="BearingElement.from_table"><a class="viewcode-back" href="../../generated/elements/ross.BearingElement.html#ross.BearingElement.from_table">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">from_table</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">file</span><span class="p">,</span> <span class="n">sheet_name</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Instantiate a bearing using inputs from an Excel table.</span>
+
 <span class="sd">        A header with the names of the columns is required. These names should match the names expected by the routine</span>
 <span class="sd">        (usually the names of the parameters, but also similar ones). The program will read every row bellow the header</span>
 <span class="sd">        until they end or it reaches a NaN.</span>
+
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
 <span class="sd">        n : int</span>
@@ -943,9 +948,12 @@
 <span class="sd">        sheet_name: int or str, optional</span>
 <span class="sd">            Position of the sheet in the file (starting from 0) or its name. If none is passed, it is</span>
 <span class="sd">            assumed to be the first sheet in the file.</span>
+
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        A bearing object.</span>
+<span class="sd">        bearing: rs.BearingElement</span>
+<span class="sd">            A bearing object.</span>
+
 <span class="sd">        Examples</span>
 <span class="sd">        --------</span>
 <span class="sd">        &gt;&gt;&gt; import os</span>
@@ -965,7 +973,7 @@
             <span class="n">cyy</span><span class="o">=</span><span class="n">parameters</span><span class="p">[</span><span class="s2">&quot;cyy&quot;</span><span class="p">],</span>
             <span class="n">cxy</span><span class="o">=</span><span class="n">parameters</span><span class="p">[</span><span class="s2">&quot;cxy&quot;</span><span class="p">],</span>
             <span class="n">cyx</span><span class="o">=</span><span class="n">parameters</span><span class="p">[</span><span class="s2">&quot;cyx&quot;</span><span class="p">],</span>
-            <span class="n">w</span><span class="o">=</span><span class="n">parameters</span><span class="p">[</span><span class="s2">&quot;w&quot;</span><span class="p">],</span>
+            <span class="n">frequency</span><span class="o">=</span><span class="n">parameters</span><span class="p">[</span><span class="s2">&quot;frequency&quot;</span><span class="p">],</span>
             <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
         <span class="p">)</span></div>
 
@@ -988,10 +996,12 @@
         <span class="n">load</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
     <span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Instantiate a bearing using inputs from its fluid flow.</span>
+
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
 <span class="sd">        n : int</span>
 <span class="sd">            The node in which the bearing will be located in the rotor.</span>
+
 <span class="sd">        Grid related</span>
 <span class="sd">        ^^^^^^^^^^^^</span>
 <span class="sd">        Describes the discretization of the problem</span>
@@ -1034,9 +1044,12 @@
 <span class="sd">            Viscosity (Pa.s).</span>
 <span class="sd">        rho: float</span>
 <span class="sd">            Fluid density(Kg/m^3).</span>
+
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        A bearing object.</span>
+<span class="sd">        bearing: rs.BearingElement</span>
+<span class="sd">            A bearing object.</span>
+
 <span class="sd">        Examples</span>
 <span class="sd">        --------</span>
 <span class="sd">        &gt;&gt;&gt; nz = 30</span>
@@ -1091,18 +1104,20 @@
             <span class="n">cyy</span><span class="o">=</span><span class="n">c</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span>
             <span class="n">cxy</span><span class="o">=</span><span class="n">c</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
             <span class="n">cyx</span><span class="o">=</span><span class="n">c</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span>
-            <span class="n">w</span><span class="o">=</span><span class="n">fluid_flow</span><span class="o">.</span><span class="n">omega</span><span class="p">,</span>
+            <span class="n">frequency</span><span class="o">=</span><span class="n">fluid_flow</span><span class="o">.</span><span class="n">omega</span><span class="p">,</span>
         <span class="p">)</span></div></div>
 
 
 <div class="viewcode-block" id="SealElement"><a class="viewcode-back" href="../../generated/elements/ross.SealElement.html#ross.SealElement">[docs]</a><span class="k">class</span> <span class="nc">SealElement</span><span class="p">(</span><span class="n">BearingElement</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;A seal element.</span>
+
 <span class="sd">    This class will create a seal element.</span>
 <span class="sd">    Parameters can be a constant value or speed dependent.</span>
 <span class="sd">    For speed dependent parameters, each argument should be passed</span>
 <span class="sd">    as an array and the correspondent speed values should also be</span>
 <span class="sd">    passed as an array.</span>
 <span class="sd">    Values for each parameter will be interpolated for the speed.</span>
+
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
 <span class="sd">    n: int</span>
@@ -1129,13 +1144,14 @@
 <span class="sd">    cyx: float, array, optional</span>
 <span class="sd">        Cross coupled damping in the y direction.</span>
 <span class="sd">        (defaults to 0)</span>
-<span class="sd">    w: array, optional</span>
+<span class="sd">    frequency: array, optional</span>
 <span class="sd">        Array with the speeds (rad/s).</span>
 <span class="sd">    seal_leakage: float, optional</span>
 <span class="sd">        Amount of leakage</span>
 <span class="sd">    tag : str, optional</span>
 <span class="sd">        A tag to name the element</span>
 <span class="sd">        Default is None</span>
+
 <span class="sd">    Examples</span>
 <span class="sd">    --------</span>
 <span class="sd">    &gt;&gt;&gt; # A seal element located in the first rotor node, with these</span>
@@ -1146,11 +1162,11 @@
 <span class="sd">    &gt;&gt;&gt; kyy = 0.8e6</span>
 <span class="sd">    &gt;&gt;&gt; cxx = 2e2</span>
 <span class="sd">    &gt;&gt;&gt; cyy = 1.5e2</span>
-<span class="sd">    &gt;&gt;&gt; w = np.linspace(0, 200, 11)</span>
-<span class="sd">    &gt;&gt;&gt; seal = rs.SealElement(n=0, kxx=kxx, kyy=kyy, cxx=cxx, cyy=cyy, w=w)</span>
-<span class="sd">    &gt;&gt;&gt; seal.K(w) # doctest: +ELLIPSIS</span>
+<span class="sd">    &gt;&gt;&gt; frequency = np.linspace(0, 200, 11)</span>
+<span class="sd">    &gt;&gt;&gt; seal = rs.SealElement(n=0, kxx=kxx, kyy=kyy, cxx=cxx, cyy=cyy, frequency=frequency)</span>
+<span class="sd">    &gt;&gt;&gt; seal.K(frequency) # doctest: +ELLIPSIS</span>
 <span class="sd">    array([[[1000000., 1000000., ...</span>
-<span class="sd">    &gt;&gt;&gt; seal.C(w) # doctest: +ELLIPSIS</span>
+<span class="sd">    &gt;&gt;&gt; seal.C(frequency) # doctest: +ELLIPSIS</span>
 <span class="sd">    array([[[200., 200., ...</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
@@ -1165,13 +1181,13 @@
         <span class="n">cyy</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
         <span class="n">cxy</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
         <span class="n">cyx</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
-        <span class="n">w</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">frequency</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
         <span class="n">seal_leakage</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
         <span class="n">tag</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
     <span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span>
             <span class="n">n</span><span class="o">=</span><span class="n">n</span><span class="p">,</span>
-            <span class="n">w</span><span class="o">=</span><span class="n">w</span><span class="p">,</span>
+            <span class="n">frequency</span><span class="o">=</span><span class="n">frequency</span><span class="p">,</span>
             <span class="n">kxx</span><span class="o">=</span><span class="n">kxx</span><span class="p">,</span>
             <span class="n">kxy</span><span class="o">=</span><span class="n">kxy</span><span class="p">,</span>
             <span class="n">kyx</span><span class="o">=</span><span class="n">kyx</span><span class="p">,</span>
@@ -1335,7 +1351,7 @@
 
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span>
             <span class="n">n</span><span class="o">=</span><span class="n">n</span><span class="p">,</span>
-            <span class="n">w</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+            <span class="n">frequency</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
             <span class="n">kxx</span><span class="o">=</span><span class="n">kxx</span><span class="p">,</span>
             <span class="n">kxy</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span>
             <span class="n">kyx</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span>
@@ -1625,7 +1641,7 @@
 
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span>
             <span class="n">n</span><span class="o">=</span><span class="n">n</span><span class="p">,</span>
-            <span class="n">w</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+            <span class="n">frequency</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
             <span class="n">kxx</span><span class="o">=</span><span class="n">kxx</span><span class="p">,</span>
             <span class="n">kxy</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span>
             <span class="n">kyx</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span>
@@ -1858,7 +1874,7 @@
 <span class="sd">    Examples</span>
 <span class="sd">    --------</span>
 <span class="sd">    &gt;&gt;&gt; bearing = bearing_example()</span>
-<span class="sd">    &gt;&gt;&gt; bearing.w[0]</span>
+<span class="sd">    &gt;&gt;&gt; bearing.frequency[0]</span>
 <span class="sd">    0.0</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">kxx</span> <span class="o">=</span> <span class="mf">1e6</span>
@@ -1866,7 +1882,7 @@
     <span class="n">cxx</span> <span class="o">=</span> <span class="mf">2e2</span>
     <span class="n">cyy</span> <span class="o">=</span> <span class="mf">1.5e2</span>
     <span class="n">w</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">11</span><span class="p">)</span>
-    <span class="n">bearing</span> <span class="o">=</span> <span class="n">BearingElement</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">kxx</span><span class="o">=</span><span class="n">kxx</span><span class="p">,</span> <span class="n">kyy</span><span class="o">=</span><span class="n">kyy</span><span class="p">,</span> <span class="n">cxx</span><span class="o">=</span><span class="n">cxx</span><span class="p">,</span> <span class="n">cyy</span><span class="o">=</span><span class="n">cyy</span><span class="p">,</span> <span class="n">w</span><span class="o">=</span><span class="n">w</span><span class="p">)</span>
+    <span class="n">bearing</span> <span class="o">=</span> <span class="n">BearingElement</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">kxx</span><span class="o">=</span><span class="n">kxx</span><span class="p">,</span> <span class="n">kyy</span><span class="o">=</span><span class="n">kyy</span><span class="p">,</span> <span class="n">cxx</span><span class="o">=</span><span class="n">cxx</span><span class="p">,</span> <span class="n">cyy</span><span class="o">=</span><span class="n">cyy</span><span class="p">,</span> <span class="n">frequency</span><span class="o">=</span><span class="n">w</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">bearing</span>
 
 
@@ -1885,7 +1901,7 @@
 <span class="sd">    Examples</span>
 <span class="sd">    --------</span>
 <span class="sd">    &gt;&gt;&gt; seal = bearing_example()</span>
-<span class="sd">    &gt;&gt;&gt; seal.w[0]</span>
+<span class="sd">    &gt;&gt;&gt; seal.frequency[0]</span>
 <span class="sd">    0.0</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">kxx</span> <span class="o">=</span> <span class="mf">1e6</span>
@@ -1893,7 +1909,7 @@
     <span class="n">cxx</span> <span class="o">=</span> <span class="mf">2e2</span>
     <span class="n">cyy</span> <span class="o">=</span> <span class="mf">1.5e2</span>
     <span class="n">w</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">11</span><span class="p">)</span>
-    <span class="n">seal</span> <span class="o">=</span> <span class="n">SealElement</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">kxx</span><span class="o">=</span><span class="n">kxx</span><span class="p">,</span> <span class="n">kyy</span><span class="o">=</span><span class="n">kyy</span><span class="p">,</span> <span class="n">cxx</span><span class="o">=</span><span class="n">cxx</span><span class="p">,</span> <span class="n">cyy</span><span class="o">=</span><span class="n">cyy</span><span class="p">,</span> <span class="n">w</span><span class="o">=</span><span class="n">w</span><span class="p">)</span>
+    <span class="n">seal</span> <span class="o">=</span> <span class="n">SealElement</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">kxx</span><span class="o">=</span><span class="n">kxx</span><span class="p">,</span> <span class="n">kyy</span><span class="o">=</span><span class="n">kyy</span><span class="p">,</span> <span class="n">cxx</span><span class="o">=</span><span class="n">cxx</span><span class="p">,</span> <span class="n">cyy</span><span class="o">=</span><span class="n">cyy</span><span class="p">,</span> <span class="n">frequency</span><span class="o">=</span><span class="n">w</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">seal</span>
 </pre></div>
 
