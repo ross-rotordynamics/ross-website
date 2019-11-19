@@ -16,6 +16,8 @@
     <script type="text/javascript" src="../../_static/sphinx_copybutton.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js"></script>
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
     <link rel="shortcut icon" href="../../_static/ross-logo.ico"/>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -171,10 +173,10 @@ This class will create a shaft element that may take into
 account shear, rotary inertia an gyroscopic effects.
 The matrices will be defined considering the following local
 coordinate vector:</p>
-<div class="math">
-<p><span class="math">[x_0, y_0, \alpha_0, \beta_0, x_1, y_1, \alpha_1, \beta_1]^T</span></p>
-</div><p>Where <span class="math">\alpha_0</span> and <span class="math">\alpha_1</span> are the bending on the yz plane
-and <span class="math">\beta_0</span> and <span class="math">\beta_1</span> are the bending on the xz plane.</p>
+<div class="math notranslate nohighlight">
+\[[x_0, y_0, \alpha_0, \beta_0, x_1, y_1, \alpha_1, \beta_1]^T\]</div>
+<p>Where <span class="math notranslate nohighlight">\(\alpha_0\)</span> and <span class="math notranslate nohighlight">\(\alpha_1\)</span> are the bending on the yz plane
+and <span class="math notranslate nohighlight">\(\beta_0\)</span> and <span class="math notranslate nohighlight">\(\beta_1\)</span> are the bending on the xz plane.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
@@ -241,11 +243,11 @@ Default is ‘cowper’</p>
 <dt><strong>A</strong><span class="classifier">float</span></dt><dd><p>Element section area.</p>
 </dd>
 <dt><strong>Ie</strong><span class="classifier">float</span></dt><dd><p>Ie is the second moment of area of the cross section about
-the neutral plane <span class="math">Ie = \pi r^2/4</span></p>
+the neutral plane <span class="math notranslate nohighlight">\(Ie = \pi r^2/4\)</span></p>
 </dd>
 <dt><strong>phi</strong><span class="classifier">float</span></dt><dd><p>Constant that is used according to <a class="bibtex reference internal" href="#friswell2010dynamics" id="id1">[Fri10]</a> to
 consider rotary inertia and shear effects. If these are not considered
-<span class="math">\phi=0</span>.</p>
+<span class="math notranslate nohighlight">\(\phi=0\)</span>.</p>
 </dd>
 </dl>
 </dd>
