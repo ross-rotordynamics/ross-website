@@ -27,7 +27,6 @@ ross.Rotor
    .. automethod:: convergence
    .. automethod:: from_section
    .. automethod:: load
-   .. automethod:: orbit
    .. automethod:: plot_level1
    .. automethod:: plot_rotor
    .. automethod:: plot_ucs
@@ -36,6 +35,7 @@ ross.Rotor
    .. automethod:: run_forced_response
    .. automethod:: run_freq_response
    .. automethod:: run_modal
+   .. automethod:: run_orbit_response
    .. automethod:: run_static
    .. automethod:: run_time_response
    .. automethod:: save

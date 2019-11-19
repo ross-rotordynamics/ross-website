@@ -188,6 +188,7 @@
     <span class="n">StaticResults</span><span class="p">,</span>
     <span class="n">SummaryResults</span><span class="p">,</span>
     <span class="n">TimeResponseResults</span><span class="p">,</span>
+    <span class="n">OrbitResponseResults</span>
 <span class="p">)</span>
 <span class="kn">from</span> <span class="nn">ross.shaft_element</span> <span class="k">import</span> <span class="n">ShaftElement</span><span class="p">,</span> <span class="n">ShaftTaperedElement</span>
 
@@ -1060,9 +1061,6 @@
         <span class="n">idx</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_index</span><span class="p">(</span><span class="n">evalues</span><span class="p">)</span>
 
         <span class="k">return</span> <span class="n">evalues</span><span class="p">[</span><span class="n">idx</span><span class="p">],</span> <span class="n">evectors</span><span class="p">[:,</span> <span class="n">idx</span><span class="p">]</span>
-
-<div class="viewcode-block" id="Rotor.orbit"><a class="viewcode-back" href="../../generated/results/ross.Rotor.html#ross.Rotor.orbit">[docs]</a>    <span class="k">def</span> <span class="nf">orbit</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">pass</span></div>
 
     <span class="k">def</span> <span class="nf">_lti</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">speed</span><span class="p">,</span> <span class="n">frequency</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Continuous-time linear time invariant system.</span>
@@ -2063,6 +2061,51 @@
         <span class="n">t_</span><span class="p">,</span> <span class="n">yout</span><span class="p">,</span> <span class="n">xout</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">time_response</span><span class="p">(</span><span class="n">speed</span><span class="p">,</span> <span class="n">F</span><span class="p">,</span> <span class="n">t</span><span class="p">)</span>
 
         <span class="n">results</span> <span class="o">=</span> <span class="n">TimeResponseResults</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">yout</span><span class="p">,</span> <span class="n">xout</span><span class="p">,</span> <span class="n">dof</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">results</span></div>
+
+<div class="viewcode-block" id="Rotor.run_orbit_response"><a class="viewcode-back" href="../../generated/results/ross.Rotor.html#ross.Rotor.run_orbit_response">[docs]</a>    <span class="k">def</span> <span class="nf">run_orbit_response</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">speed</span><span class="p">,</span> <span class="n">F</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">node</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Calculates the orbit for a given node.</span>
+
+<span class="sd">        This function will take a rotor object and plot the orbit for a single</span>
+<span class="sd">        node.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        speed: float</span>
+<span class="sd">            Rotor speed</span>
+<span class="sd">        F: array</span>
+<span class="sd">            Force array (needs to have the same number of rows as time array).</span>
+<span class="sd">            Each column corresponds to a dof and each row to a time.</span>
+<span class="sd">        t: array</span>
+<span class="sd">            Time array.</span>
+<span class="sd">        node : int</span>
+<span class="sd">            Node to be observed.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        results : array</span>
+<span class="sd">            Array containing the time array, the system response, and the</span>
+<span class="sd">            time evolution of the state vector.</span>
+<span class="sd">            It will be returned if plot=False.</span>
+
+<span class="sd">        Examples</span>
+<span class="sd">        --------</span>
+<span class="sd">        &gt;&gt;&gt; rotor = rotor_example()</span>
+<span class="sd">        &gt;&gt;&gt; speed = 500.0</span>
+<span class="sd">        &gt;&gt;&gt; size = 1000</span>
+<span class="sd">        &gt;&gt;&gt; node = 3</span>
+<span class="sd">        &gt;&gt;&gt; t = np.linspace(0, 10, size)</span>
+<span class="sd">        &gt;&gt;&gt; F = np.zeros((size, rotor.ndof))</span>
+<span class="sd">        &gt;&gt;&gt; F[:, 4 * node] = 10 * np.cos(2 * t)</span>
+<span class="sd">        &gt;&gt;&gt; F[:, 4 * node + 1] = 10 * np.sin(2 * t)</span>
+<span class="sd">        &gt;&gt;&gt; response = rotor.run_orbit_response(speed, F, t, node)</span>
+<span class="sd">        &gt;&gt;&gt; response.yout[:, 4 * node] # doctest: +ELLIPSIS</span>
+<span class="sd">        array([ 0.00000000e+00,  6.94968863e-06,  2.13014440e-05, ...</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">t_</span><span class="p">,</span> <span class="n">yout</span><span class="p">,</span> <span class="n">xout</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">time_response</span><span class="p">(</span><span class="n">speed</span><span class="p">,</span> <span class="n">F</span><span class="p">,</span> <span class="n">t</span><span class="p">)</span>
+
+        <span class="n">results</span> <span class="o">=</span> <span class="n">OrbitResponseResults</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">yout</span><span class="p">,</span> <span class="n">xout</span><span class="p">,</span> <span class="n">node</span><span class="p">)</span>
 
         <span class="k">return</span> <span class="n">results</span></div>
 
