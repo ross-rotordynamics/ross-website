@@ -2066,11 +2066,11 @@
 
         <span class="k">return</span> <span class="n">results</span></div>
 
-<div class="viewcode-block" id="Rotor.run_orbit_response"><a class="viewcode-back" href="../../generated/results/ross.Rotor.html#ross.Rotor.run_orbit_response">[docs]</a>    <span class="k">def</span> <span class="nf">run_orbit_response</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">speed</span><span class="p">,</span> <span class="n">F</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">node</span><span class="p">):</span>
+<div class="viewcode-block" id="Rotor.run_orbit_response"><a class="viewcode-back" href="../../generated/results/ross.Rotor.html#ross.Rotor.run_orbit_response">[docs]</a>    <span class="k">def</span> <span class="nf">run_orbit_response</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">speed</span><span class="p">,</span> <span class="n">F</span><span class="p">,</span> <span class="n">t</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Calculates the orbit for a given node.</span>
 
 <span class="sd">        This function will take a rotor object and plot the orbit for a single</span>
-<span class="sd">        node.</span>
+<span class="sd">        (2D graph) or all nodes (3D graph).</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -2081,8 +2081,6 @@
 <span class="sd">            Each column corresponds to a dof and each row to a time.</span>
 <span class="sd">        t: array</span>
 <span class="sd">            Time array.</span>
-<span class="sd">        node : int</span>
-<span class="sd">            Node to be observed.</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
@@ -2101,13 +2099,13 @@
 <span class="sd">        &gt;&gt;&gt; F = np.zeros((size, rotor.ndof))</span>
 <span class="sd">        &gt;&gt;&gt; F[:, 4 * node] = 10 * np.cos(2 * t)</span>
 <span class="sd">        &gt;&gt;&gt; F[:, 4 * node + 1] = 10 * np.sin(2 * t)</span>
-<span class="sd">        &gt;&gt;&gt; response = rotor.run_orbit_response(speed, F, t, node)</span>
+<span class="sd">        &gt;&gt;&gt; response = rotor.run_orbit_response(speed, F, t)</span>
 <span class="sd">        &gt;&gt;&gt; response.yout[:, 4 * node] # doctest: +ELLIPSIS</span>
 <span class="sd">        array([ 0.00000000e+00,  6.94968863e-06,  2.13014440e-05, ...</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">t_</span><span class="p">,</span> <span class="n">yout</span><span class="p">,</span> <span class="n">xout</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">time_response</span><span class="p">(</span><span class="n">speed</span><span class="p">,</span> <span class="n">F</span><span class="p">,</span> <span class="n">t</span><span class="p">)</span>
 
-        <span class="n">results</span> <span class="o">=</span> <span class="n">OrbitResponseResults</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">yout</span><span class="p">,</span> <span class="n">xout</span><span class="p">,</span> <span class="n">node</span><span class="p">)</span>
+        <span class="n">results</span> <span class="o">=</span> <span class="n">OrbitResponseResults</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">yout</span><span class="p">,</span> <span class="n">xout</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">nodes</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">nodes_pos</span><span class="p">)</span>
 
         <span class="k">return</span> <span class="n">results</span></div>
 

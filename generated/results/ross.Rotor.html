@@ -853,10 +853,10 @@ This method is automatically called when a rotor is instantiated.</p>
 
 <dl class="method">
 <dt id="ross.Rotor.run_orbit_response">
-<code class="sig-name descname">run_orbit_response</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">speed</em>, <em class="sig-param">F</em>, <em class="sig-param">t</em>, <em class="sig-param">node</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/rotor_assembly.html#Rotor.run_orbit_response"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.Rotor.run_orbit_response" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">run_orbit_response</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">speed</em>, <em class="sig-param">F</em>, <em class="sig-param">t</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/rotor_assembly.html#Rotor.run_orbit_response"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.Rotor.run_orbit_response" title="Permalink to this definition">¶</a></dt>
 <dd><p>Calculates the orbit for a given node.</p>
 <p>This function will take a rotor object and plot the orbit for a single
-node.</p>
+(2D graph) or all nodes (3D graph).</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
@@ -866,8 +866,6 @@ node.</p>
 Each column corresponds to a dof and each row to a time.</p>
 </dd>
 <dt><strong>t: array</strong></dt><dd><p>Time array.</p>
-</dd>
-<dt><strong>node</strong><span class="classifier">int</span></dt><dd><p>Node to be observed.</p>
 </dd>
 </dl>
 </dd>
@@ -889,7 +887,7 @@ It will be returned if plot=False.</p>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">F</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">size</span><span class="p">,</span> <span class="n">rotor</span><span class="o">.</span><span class="n">ndof</span><span class="p">))</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">F</span><span class="p">[:,</span> <span class="mi">4</span> <span class="o">*</span> <span class="n">node</span><span class="p">]</span> <span class="o">=</span> <span class="mi">10</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">t</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">F</span><span class="p">[:,</span> <span class="mi">4</span> <span class="o">*</span> <span class="n">node</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">10</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">t</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">response</span> <span class="o">=</span> <span class="n">rotor</span><span class="o">.</span><span class="n">run_orbit_response</span><span class="p">(</span><span class="n">speed</span><span class="p">,</span> <span class="n">F</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">node</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">response</span> <span class="o">=</span> <span class="n">rotor</span><span class="o">.</span><span class="n">run_orbit_response</span><span class="p">(</span><span class="n">speed</span><span class="p">,</span> <span class="n">F</span><span class="p">,</span> <span class="n">t</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">response</span><span class="o">.</span><span class="n">yout</span><span class="p">[:,</span> <span class="mi">4</span> <span class="o">*</span> <span class="n">node</span><span class="p">]</span> 
 <span class="go">array([ 0.00000000e+00,  6.94968863e-06,  2.13014440e-05, ...</span>
 </pre></div>
