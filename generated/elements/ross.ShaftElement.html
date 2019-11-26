@@ -44,7 +44,7 @@
           <span class="icon-bar"></span>
         </button>
         <a class="navbar-brand" href="../../index.html"><span><img src="../../_static/ross-logo.svg"></span>
-          ross</a>
+          ROSS</a>
         <span class="navbar-text navbar-version pull-left"><b>0.1.7</b></span>
       </div>
 
@@ -68,7 +68,7 @@
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../../installation.html">Installation</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../installation.html#install-python">Install Python</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../installation.html#install-ross">Install ross</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../installation.html#install-ross">Install ROSS</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../examples/tutorial.html">Tutorial</a><ul>
@@ -220,7 +220,7 @@ Default is ‘cowper’</p>
 </dl>
 </p>
 <p class="rubric">Examples</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">ross.materials</span> <span class="k">import</span> <span class="n">steel</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">ross.materials</span> <span class="kn">import</span> <span class="n">steel</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">le</span> <span class="o">=</span> <span class="mf">0.25</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">i_d</span> <span class="o">=</span> <span class="mi">0</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">o_d</span> <span class="o">=</span> <span class="mf">0.05</span>
@@ -272,7 +272,7 @@ consider rotary inertia and shear effects. If these are not considered
 </dd>
 </dl>
 <p class="rubric">Examples</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">ross.materials</span> <span class="k">import</span> <span class="n">steel</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">ross.materials</span> <span class="kn">import</span> <span class="n">steel</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="c1"># Timoshenko is the default shaft element</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">Timoshenko_Element</span> <span class="o">=</span> <span class="n">ShaftElement</span><span class="p">(</span><span class="mf">0.25</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">,</span> <span class="n">steel</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="c1"># Currently internal damping for the shaft elements is not</span>
@@ -299,7 +299,7 @@ consider rotary inertia and shear effects. If these are not considered
 </dd>
 </dl>
 <p class="rubric">Examples</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">ross.materials</span> <span class="k">import</span> <span class="n">steel</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">ross.materials</span> <span class="kn">import</span> <span class="n">steel</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="c1"># Timoshenko is the default shaft element</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">Timoshenko_Element</span> <span class="o">=</span> <span class="n">ShaftElement</span><span class="p">(</span><span class="mf">0.25</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">,</span> <span class="n">steel</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">Timoshenko_Element</span><span class="o">.</span><span class="n">G</span><span class="p">()[:</span><span class="mi">4</span><span class="p">,</span> <span class="p">:</span><span class="mi">4</span><span class="p">]</span>
@@ -324,7 +324,7 @@ consider rotary inertia and shear effects. If these are not considered
 </dd>
 </dl>
 <p class="rubric">Examples</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">ross.materials</span> <span class="k">import</span> <span class="n">steel</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">ross.materials</span> <span class="kn">import</span> <span class="n">steel</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">Timoshenko_Element</span> <span class="o">=</span> <span class="n">ShaftElement</span><span class="p">(</span><span class="mf">0.25</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">,</span> <span class="n">steel</span><span class="p">,</span>
 <span class="gp">... </span>                                 <span class="n">rotary_inertia</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
 <span class="gp">... </span>                                 <span class="n">shear_effects</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
@@ -407,7 +407,7 @@ consider rotary inertia and shear effects. If these are not considered
 </dl>
 <p class="rubric">Examples</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># Example using BearingElement</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">ross.bearing_seal_element</span> <span class="k">import</span> <span class="n">bearing_example</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">ross.bearing_seal_element</span> <span class="kn">import</span> <span class="n">bearing_example</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">bearing</span> <span class="o">=</span> <span class="n">bearing_example</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">bearing</span><span class="o">.</span><span class="n">dof_global_index</span><span class="p">()</span>
 <span class="go">GlobalIndex(x_0=0, y_0=1)</span>
@@ -429,7 +429,7 @@ consider rotary inertia and shear effects. If these are not considered
 </dl>
 <p class="rubric">Examples</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># Example using BearingElement</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">ross.bearing_seal_element</span> <span class="k">import</span> <span class="n">bearing_example</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">ross.bearing_seal_element</span> <span class="kn">import</span> <span class="n">bearing_example</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">bearing</span> <span class="o">=</span> <span class="n">bearing_example</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">bearing</span><span class="o">.</span><span class="n">dof_local_index</span><span class="p">()</span>
 <span class="go">LocalIndex(x_0=0, y_0=1)</span>
@@ -468,8 +468,8 @@ consider rotary inertia and shear effects. If these are not considered
 </dl>
 <p class="rubric">Examples</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># Example using BearingElement</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">ross.bearing_seal_element</span> <span class="k">import</span> <span class="n">bearing_example</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">ross.bearing_seal_element</span> <span class="k">import</span> <span class="n">BearingElement</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">ross.bearing_seal_element</span> <span class="kn">import</span> <span class="n">bearing_example</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">ross.bearing_seal_element</span> <span class="kn">import</span> <span class="n">BearingElement</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">bearing</span> <span class="o">=</span> <span class="n">bearing_example</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">bearing</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s1">&#39;BearingElement.toml&#39;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">data</span> <span class="o">=</span> <span class="n">BearingElement</span><span class="o">.</span><span class="n">load_data</span><span class="p">(</span><span class="s1">&#39;BearingElement.toml&#39;</span><span class="p">)</span>
@@ -525,7 +525,7 @@ assumed to be the first sheet in the file.</p>
 </dd>
 </dl>
 <p class="rubric">Examples</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">ross.materials</span> <span class="k">import</span> <span class="n">steel</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">ross.materials</span> <span class="kn">import</span> <span class="n">steel</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">le</span> <span class="o">=</span> <span class="mf">0.25</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">i_d</span> <span class="o">=</span> <span class="mi">0</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">o_d</span> <span class="o">=</span> <span class="mf">0.05</span>
@@ -560,8 +560,8 @@ assumed to be the first sheet in the file.</p>
 </dl>
 <p class="rubric">Examples</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># Example using BearingElement</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">ross.bearing_seal_element</span> <span class="k">import</span> <span class="n">bearing_example</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">ross.bearing_seal_element</span> <span class="k">import</span> <span class="n">BearingElement</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">ross.bearing_seal_element</span> <span class="kn">import</span> <span class="n">bearing_example</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">ross.bearing_seal_element</span> <span class="kn">import</span> <span class="n">BearingElement</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">bearing</span> <span class="o">=</span> <span class="n">bearing_example</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">bearing</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s1">&#39;BearingElement.toml&#39;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">BearingElement</span><span class="o">.</span><span class="n">load_data</span><span class="p">(</span><span class="s1">&#39;BearingElement.toml&#39;</span><span class="p">)</span> 
@@ -601,7 +601,7 @@ assumed to be the first sheet in the file.</p>
 </dd>
 </dl>
 <p class="rubric">Examples</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">ross.materials</span> <span class="k">import</span> <span class="n">steel</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">ross.materials</span> <span class="kn">import</span> <span class="n">steel</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">le</span> <span class="o">=</span> <span class="mf">0.25</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">i_d</span> <span class="o">=</span> <span class="mi">0</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">o_d</span> <span class="o">=</span> <span class="mf">0.05</span>
@@ -661,7 +661,7 @@ Default is False.</p>
 </dl>
 <p class="rubric">Examples</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># shaft material</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">ross.materials</span> <span class="k">import</span> <span class="n">steel</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">ross.materials</span> <span class="kn">import</span> <span class="n">steel</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="c1"># shaft inner and outer diameters</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">si_d</span> <span class="o">=</span> <span class="mi">0</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">so_d</span> <span class="o">=</span> <span class="mf">0.01585</span>
@@ -688,7 +688,7 @@ Default is False.</p>
 </dl>
 <p class="rubric">Examples</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># Example using DiskElement</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">ross.disk_element</span> <span class="k">import</span> <span class="n">disk_example</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">ross.disk_element</span> <span class="kn">import</span> <span class="n">disk_example</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">disk</span> <span class="o">=</span> <span class="n">disk_example</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">disk</span><span class="o">.</span><span class="n">summary</span><span class="p">()</span>
 <span class="go">n                  0</span>
@@ -733,7 +733,7 @@ Default is False.</p>
       
     </p>
     <p>
-        &copy; Copyright 2019, Team Ross.<br/>
+        &copy; Copyright 2019, Team ROSS.<br/>
       Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.2.1.<br/>
     </p>
   </div>

@@ -42,7 +42,7 @@
           <span class="icon-bar"></span>
         </button>
         <a class="navbar-brand" href="../../index.html"><span><img src="../../_static/ross-logo.svg"></span>
-          ross</a>
+          ROSS</a>
         <span class="navbar-text navbar-version pull-left"><b>0.1.7</b></span>
       </div>
 
@@ -66,7 +66,7 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../installation.html">Installation</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../installation.html#install-python">Install Python</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../installation.html#install-ross">Install ross</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../installation.html#install-ross">Install ROSS</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../examples/tutorial.html">Tutorial</a><ul>
@@ -157,10 +157,10 @@
 <span></span><span class="kn">import</span> <span class="nn">os</span>
 <span class="kn">import</span> <span class="nn">shutil</span>
 <span class="kn">import</span> <span class="nn">warnings</span>
-<span class="kn">from</span> <span class="nn">collections</span> <span class="k">import</span> <span class="n">Iterable</span>
-<span class="kn">from</span> <span class="nn">copy</span> <span class="k">import</span> <span class="n">copy</span><span class="p">,</span> <span class="n">deepcopy</span>
-<span class="kn">from</span> <span class="nn">itertools</span> <span class="k">import</span> <span class="n">cycle</span>
-<span class="kn">from</span> <span class="nn">pathlib</span> <span class="k">import</span> <span class="n">Path</span>
+<span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">Iterable</span>
+<span class="kn">from</span> <span class="nn">copy</span> <span class="kn">import</span> <span class="n">copy</span><span class="p">,</span> <span class="n">deepcopy</span>
+<span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">cycle</span>
+<span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
 
 <span class="kn">import</span> <span class="nn">bokeh.palettes</span> <span class="k">as</span> <span class="nn">bp</span>
 <span class="kn">import</span> <span class="nn">matplotlib</span> <span class="k">as</span> <span class="nn">mpl</span>
@@ -172,16 +172,16 @@
 <span class="kn">import</span> <span class="nn">scipy.signal</span> <span class="k">as</span> <span class="nn">signal</span>
 <span class="kn">import</span> <span class="nn">scipy.sparse.linalg</span> <span class="k">as</span> <span class="nn">las</span>
 <span class="kn">import</span> <span class="nn">toml</span>
-<span class="kn">from</span> <span class="nn">bokeh.models</span> <span class="k">import</span> <span class="n">ColumnDataSource</span>
-<span class="kn">from</span> <span class="nn">bokeh.models.glyphs</span> <span class="k">import</span> <span class="n">Text</span>
-<span class="kn">from</span> <span class="nn">bokeh.plotting</span> <span class="k">import</span> <span class="n">figure</span><span class="p">,</span> <span class="n">output_file</span>
-<span class="kn">from</span> <span class="nn">cycler</span> <span class="k">import</span> <span class="n">cycler</span>
+<span class="kn">from</span> <span class="nn">bokeh.models</span> <span class="kn">import</span> <span class="n">ColumnDataSource</span>
+<span class="kn">from</span> <span class="nn">bokeh.models.glyphs</span> <span class="kn">import</span> <span class="n">Text</span>
+<span class="kn">from</span> <span class="nn">bokeh.plotting</span> <span class="kn">import</span> <span class="n">figure</span><span class="p">,</span> <span class="n">output_file</span>
+<span class="kn">from</span> <span class="nn">cycler</span> <span class="kn">import</span> <span class="n">cycler</span>
 
 <span class="kn">import</span> <span class="nn">ross</span>
-<span class="kn">from</span> <span class="nn">ross.bearing_seal_element</span> <span class="k">import</span> <span class="n">BearingElement</span>
-<span class="kn">from</span> <span class="nn">ross.disk_element</span> <span class="k">import</span> <span class="n">DiskElement</span>
-<span class="kn">from</span> <span class="nn">ross.materials</span> <span class="k">import</span> <span class="n">steel</span>
-<span class="kn">from</span> <span class="nn">ross.results</span> <span class="k">import</span> <span class="p">(</span>
+<span class="kn">from</span> <span class="nn">ross.bearing_seal_element</span> <span class="kn">import</span> <span class="n">BearingElement</span>
+<span class="kn">from</span> <span class="nn">ross.disk_element</span> <span class="kn">import</span> <span class="n">DiskElement</span>
+<span class="kn">from</span> <span class="nn">ross.materials</span> <span class="kn">import</span> <span class="n">steel</span>
+<span class="kn">from</span> <span class="nn">ross.results</span> <span class="kn">import</span> <span class="p">(</span>
     <span class="n">CampbellResults</span><span class="p">,</span>
     <span class="n">ConvergenceResults</span><span class="p">,</span>
     <span class="n">ForcedResponseResults</span><span class="p">,</span>
@@ -192,7 +192,7 @@
     <span class="n">TimeResponseResults</span><span class="p">,</span>
     <span class="n">OrbitResponseResults</span>
 <span class="p">)</span>
-<span class="kn">from</span> <span class="nn">ross.shaft_element</span> <span class="k">import</span> <span class="n">ShaftElement</span><span class="p">,</span> <span class="n">ShaftTaperedElement</span>
+<span class="kn">from</span> <span class="nn">ross.shaft_element</span> <span class="kn">import</span> <span class="n">ShaftElement</span><span class="p">,</span> <span class="n">ShaftTaperedElement</span>
 
 <span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Rotor&quot;</span><span class="p">,</span> <span class="s2">&quot;rotor_example&quot;</span><span class="p">]</span>
 
@@ -286,7 +286,7 @@
 <span class="sd">    215.3707...</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="Rotor.__init__"><a class="viewcode-back" href="../../generated/results/ross.Rotor.html#ross.Rotor.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span>
+<div class="viewcode-block" id="Rotor.__init__"><a class="viewcode-back" href="../../generated/results/ross.Rotor.html#ross.Rotor.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">shaft_elements</span><span class="p">,</span>
         <span class="n">disk_elements</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
@@ -619,7 +619,7 @@
 
         <span class="bp">self</span><span class="o">.</span><span class="n">df</span> <span class="o">=</span> <span class="n">df</span></div>
 
-    <span class="k">def</span> <span class="nf">__eq__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__eq__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Equality method for comparasions</span>
 
@@ -1474,7 +1474,7 @@
             <span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span>
                 <span class="n">position</span><span class="p">,</span>
                 <span class="mi">0</span><span class="p">,</span>
-                <span class="n">f</span><span class="s2">&quot;{node*nodes}&quot;</span><span class="p">,</span>
+                <span class="sa">f</span><span class="s2">&quot;{node*nodes}&quot;</span><span class="p">,</span>
                 <span class="n">size</span><span class="o">=</span><span class="s2">&quot;smaller&quot;</span><span class="p">,</span>
                 <span class="n">horizontalalignment</span><span class="o">=</span><span class="s2">&quot;center&quot;</span><span class="p">,</span>
                 <span class="n">verticalalignment</span><span class="o">=</span><span class="s2">&quot;center&quot;</span><span class="p">,</span>
@@ -1660,7 +1660,7 @@
         <span class="k">elif</span> <span class="n">plot_type</span> <span class="o">==</span> <span class="s2">&quot;bokeh&quot;</span><span class="p">:</span>
             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_plot_rotor_bokeh</span><span class="p">(</span><span class="n">nodes</span><span class="o">=</span><span class="n">nodes</span><span class="p">,</span> <span class="n">check_sld</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot;</span><span class="si">{plot_type}</span><span class="s2"> is not a valid plot type.&quot;</span><span class="p">)</span></div>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{plot_type}</span><span class="s2"> is not a valid plot type.&quot;</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="Rotor.check_slenderness_ratio"><a class="viewcode-back" href="../../generated/results/ross.Rotor.html#ross.Rotor.check_slenderness_ratio">[docs]</a>    <span class="k">def</span> <span class="nf">check_slenderness_ratio</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nodes</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="n">plot_type</span><span class="o">=</span><span class="s2">&quot;matplotlib&quot;</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Plots a rotor object and check the slenderness ratio</span>
@@ -1708,7 +1708,7 @@
         <span class="k">elif</span> <span class="n">plot_type</span> <span class="o">==</span> <span class="s2">&quot;bokeh&quot;</span><span class="p">:</span>
             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_plot_rotor_bokeh</span><span class="p">(</span><span class="n">nodes</span><span class="o">=</span><span class="n">nodes</span><span class="p">,</span> <span class="n">check_sld</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot;</span><span class="si">{plot_type}</span><span class="s2"> is not a valid plot type.&quot;</span><span class="p">)</span></div>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{plot_type}</span><span class="s2"> is not a valid plot type.&quot;</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="Rotor.run_campbell"><a class="viewcode-back" href="../../generated/results/ross.Rotor.html#ross.Rotor.run_campbell">[docs]</a>    <span class="k">def</span> <span class="nf">run_campbell</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">speed_range</span><span class="p">,</span> <span class="n">frequencies</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span> <span class="n">frequency_type</span><span class="o">=</span><span class="s2">&quot;wd&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Calculates the Campbell diagram.</span>
@@ -2766,7 +2766,7 @@
       
     </p>
     <p>
-        &copy; Copyright 2019, Team Ross.<br/>
+        &copy; Copyright 2019, Team ROSS.<br/>
       Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.2.1.<br/>
     </p>
   </div>

@@ -42,7 +42,7 @@
           <span class="icon-bar"></span>
         </button>
         <a class="navbar-brand" href="../../index.html"><span><img src="../../_static/ross-logo.svg"></span>
-          ross</a>
+          ROSS</a>
         <span class="navbar-text navbar-version pull-left"><b>0.1.7</b></span>
       </div>
 
@@ -66,7 +66,7 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../installation.html">Installation</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../installation.html#install-python">Install Python</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../installation.html#install-ross">Install ross</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../installation.html#install-ross">Install ROSS</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../examples/tutorial.html">Tutorial</a><ul>
@@ -163,11 +163,11 @@
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">scipy.interpolate</span> <span class="k">as</span> <span class="nn">interpolate</span>
 
-<span class="kn">from</span> <span class="nn">collections</span> <span class="k">import</span> <span class="n">namedtuple</span>
-<span class="kn">from</span> <span class="nn">ross.utils</span> <span class="k">import</span> <span class="n">read_table_file</span>
-<span class="kn">from</span> <span class="nn">ross.element</span> <span class="k">import</span> <span class="n">Element</span>
-<span class="kn">from</span> <span class="nn">ross.fluid_flow</span> <span class="k">import</span> <span class="n">fluid_flow</span> <span class="k">as</span> <span class="n">flow</span>
-<span class="kn">from</span> <span class="nn">ross.fluid_flow.fluid_flow_coefficients</span> <span class="k">import</span> <span class="p">(</span>
+<span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">namedtuple</span>
+<span class="kn">from</span> <span class="nn">ross.utils</span> <span class="kn">import</span> <span class="n">read_table_file</span>
+<span class="kn">from</span> <span class="nn">ross.element</span> <span class="kn">import</span> <span class="n">Element</span>
+<span class="kn">from</span> <span class="nn">ross.fluid_flow</span> <span class="kn">import</span> <span class="n">fluid_flow</span> <span class="k">as</span> <span class="n">flow</span>
+<span class="kn">from</span> <span class="nn">ross.fluid_flow.fluid_flow_coefficients</span> <span class="kn">import</span> <span class="p">(</span>
     <span class="n">calculate_analytical_stiffness_matrix</span><span class="p">,</span>
     <span class="n">calculate_analytical_damping_matrix</span><span class="p">,</span>
 <span class="p">)</span>
@@ -182,7 +182,7 @@
 
 
 <span class="k">class</span> <span class="nc">_Coefficient</span><span class="p">:</span>
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">coefficient</span><span class="p">,</span> <span class="n">w</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">interpolated</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">coefficient</span><span class="p">,</span> <span class="n">w</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">interpolated</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">coefficient</span><span class="p">,</span> <span class="p">(</span><span class="nb">int</span><span class="p">,</span> <span class="nb">float</span><span class="p">)):</span>
             <span class="k">if</span> <span class="n">w</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="nb">type</span><span class="p">(</span><span class="n">w</span><span class="p">)</span> <span class="o">!=</span> <span class="nb">float</span><span class="p">:</span>
                 <span class="n">coefficient</span> <span class="o">=</span> <span class="p">[</span><span class="n">coefficient</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">w</span><span class="p">))]</span>
@@ -218,17 +218,17 @@
         <span class="k">else</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">interpolated</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">coefficient</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
 
-    <span class="k">def</span> <span class="nf">__eq__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__eq__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
         <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">allclose</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">[</span><span class="s2">&quot;coefficient&quot;</span><span class="p">],</span> <span class="n">other</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">[</span><span class="s2">&quot;coefficient&quot;</span><span class="p">]):</span>
             <span class="k">return</span> <span class="kc">True</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="k">return</span> <span class="kc">False</span>
 
-    <span class="k">def</span> <span class="nf">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">coef</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">coefficient</span><span class="p">:</span>
             <span class="n">coef</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{:.2e}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">i</span><span class="p">))</span>
-        <span class="k">return</span> <span class="n">f</span><span class="s2">&quot;</span><span class="si">{coef}</span><span class="s2">&quot;</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{coef}</span><span class="s2">&quot;</span>
 
     <span class="k">def</span> <span class="nf">plot</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="k">if</span> <span class="n">ax</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
@@ -326,7 +326,7 @@
 <span class="sd">    array([[[200., 200., ...</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="BearingElement.__init__"><a class="viewcode-back" href="../../generated/elements/ross.BearingElement.html#ross.BearingElement.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span>
+<div class="viewcode-block" id="BearingElement.__init__"><a class="viewcode-back" href="../../generated/elements/ross.BearingElement.html#ross.BearingElement.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">n</span><span class="p">,</span>
         <span class="n">kxx</span><span class="p">,</span>
@@ -394,7 +394,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">color</span> <span class="o">=</span> <span class="s2">&quot;#355d7a&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">scale_factor</span> <span class="o">=</span> <span class="n">scale_factor</span></div>
 
-    <span class="k">def</span> <span class="nf">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;This function returns a string representation of a bearing element.</span>
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -410,16 +410,16 @@
 <span class="sd">         kxx=[...</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="p">(</span>
-            <span class="n">f</span><span class="s2">&quot;</span><span class="si">{self.__class__.__name__}</span><span class="s2">&quot;</span>
-            <span class="n">f</span><span class="s2">&quot;(n=</span><span class="si">{self.n}</span><span class="s2">,</span><span class="se">\n</span><span class="s2">&quot;</span>
-            <span class="n">f</span><span class="s2">&quot; kxx=</span><span class="si">{self.kxx}</span><span class="s2">, kxy=</span><span class="si">{self.kxy}</span><span class="s2">,</span><span class="se">\n</span><span class="s2">&quot;</span>
-            <span class="n">f</span><span class="s2">&quot; kyx=</span><span class="si">{self.kyx}</span><span class="s2">, kyy=</span><span class="si">{self.kyy}</span><span class="s2">,</span><span class="se">\n</span><span class="s2">&quot;</span>
-            <span class="n">f</span><span class="s2">&quot; cxx=</span><span class="si">{self.cxx}</span><span class="s2">, cxy=</span><span class="si">{self.cxy}</span><span class="s2">,</span><span class="se">\n</span><span class="s2">&quot;</span>
-            <span class="n">f</span><span class="s2">&quot; cyx=</span><span class="si">{self.cyx}</span><span class="s2">, cyy=</span><span class="si">{self.cyy}</span><span class="s2">,</span><span class="se">\n</span><span class="s2">&quot;</span>
-            <span class="n">f</span><span class="s2">&quot; frequency=</span><span class="si">{self.frequency}</span><span class="s2">, tag=</span><span class="si">{self.tag!r}</span><span class="s2">)&quot;</span>
+            <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{self.__class__.__name__}</span><span class="s2">&quot;</span>
+            <span class="sa">f</span><span class="s2">&quot;(n=</span><span class="si">{self.n}</span><span class="s2">,</span><span class="se">\n</span><span class="s2">&quot;</span>
+            <span class="sa">f</span><span class="s2">&quot; kxx=</span><span class="si">{self.kxx}</span><span class="s2">, kxy=</span><span class="si">{self.kxy}</span><span class="s2">,</span><span class="se">\n</span><span class="s2">&quot;</span>
+            <span class="sa">f</span><span class="s2">&quot; kyx=</span><span class="si">{self.kyx}</span><span class="s2">, kyy=</span><span class="si">{self.kyy}</span><span class="s2">,</span><span class="se">\n</span><span class="s2">&quot;</span>
+            <span class="sa">f</span><span class="s2">&quot; cxx=</span><span class="si">{self.cxx}</span><span class="s2">, cxy=</span><span class="si">{self.cxy}</span><span class="s2">,</span><span class="se">\n</span><span class="s2">&quot;</span>
+            <span class="sa">f</span><span class="s2">&quot; cyx=</span><span class="si">{self.cyx}</span><span class="s2">, cyy=</span><span class="si">{self.cyy}</span><span class="s2">,</span><span class="se">\n</span><span class="s2">&quot;</span>
+            <span class="sa">f</span><span class="s2">&quot; frequency=</span><span class="si">{self.frequency}</span><span class="s2">, tag=</span><span class="si">{self.tag!r}</span><span class="s2">)&quot;</span>
         <span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">__eq__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__eq__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;This function allows bearing elements to be compared.</span>
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -459,7 +459,7 @@
             <span class="p">)</span>
         <span class="k">return</span> <span class="kc">False</span>
 
-    <span class="k">def</span> <span class="nf">__hash__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__hash__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="nb">hash</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">tag</span><span class="p">)</span>
 
 <div class="viewcode-block" id="BearingElement.save"><a class="viewcode-back" href="../../generated/elements/ross.BearingElement.html#ross.BearingElement.save">[docs]</a>    <span class="k">def</span> <span class="nf">save</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">file_name</span><span class="p">):</span>
@@ -573,8 +573,8 @@
 
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_link</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">global_index</span> <span class="o">=</span> <span class="n">global_index</span><span class="o">.</span><span class="n">_asdict</span><span class="p">()</span>
-            <span class="n">global_index</span><span class="p">[</span><span class="n">f</span><span class="s2">&quot;x_</span><span class="si">{self.n_link}</span><span class="s2">&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">4</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_link</span>
-            <span class="n">global_index</span><span class="p">[</span><span class="n">f</span><span class="s2">&quot;y_</span><span class="si">{self.n_link}</span><span class="s2">&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">4</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_link</span> <span class="o">+</span> <span class="mi">1</span>
+            <span class="n">global_index</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;x_</span><span class="si">{self.n_link}</span><span class="s2">&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">4</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_link</span>
+            <span class="n">global_index</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;y_</span><span class="si">{self.n_link}</span><span class="s2">&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">4</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_link</span> <span class="o">+</span> <span class="mi">1</span>
             <span class="n">dof_tuple</span> <span class="o">=</span> <span class="n">namedtuple</span><span class="p">(</span><span class="s2">&quot;GlobalIndex&quot;</span><span class="p">,</span> <span class="n">global_index</span><span class="p">)</span>
             <span class="n">global_index</span> <span class="o">=</span> <span class="n">dof_tuple</span><span class="p">(</span><span class="o">**</span><span class="n">global_index</span><span class="p">)</span>
 
@@ -1172,7 +1172,7 @@
 <span class="sd">    array([[[200., 200., ...</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="SealElement.__init__"><a class="viewcode-back" href="../../generated/elements/ross.SealElement.html#ross.SealElement.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span>
+<div class="viewcode-block" id="SealElement.__init__"><a class="viewcode-back" href="../../generated/elements/ross.SealElement.html#ross.SealElement.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">n</span><span class="p">,</span>
         <span class="n">kxx</span><span class="p">,</span>
@@ -1325,7 +1325,7 @@
 <span class="sd">           [0.00000000e+00, 1.00906269e+08]])</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">n_balls</span><span class="p">,</span> <span class="n">d_balls</span><span class="p">,</span> <span class="n">fs</span><span class="p">,</span> <span class="n">alpha</span><span class="p">,</span> <span class="n">cxx</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">cyy</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">tag</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">n_balls</span><span class="p">,</span> <span class="n">d_balls</span><span class="p">,</span> <span class="n">fs</span><span class="p">,</span> <span class="n">alpha</span><span class="p">,</span> <span class="n">cxx</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">cyy</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">tag</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 
         <span class="n">Kb</span> <span class="o">=</span> <span class="mf">13.0e6</span>
         <span class="n">kyy</span> <span class="o">=</span> <span class="p">(</span>
@@ -1613,7 +1613,7 @@
 <span class="sd">           [0.00000000e+00, 5.56779444e+08]])</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">n_rollers</span><span class="p">,</span> <span class="n">l_rollers</span><span class="p">,</span> <span class="n">fs</span><span class="p">,</span> <span class="n">alpha</span><span class="p">,</span> <span class="n">cxx</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">cyy</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">tag</span><span class="o">=</span><span class="kc">None</span>
     <span class="p">):</span>
 
@@ -1926,7 +1926,7 @@
       
     </p>
     <p>
-        &copy; Copyright 2019, Team Ross.<br/>
+        &copy; Copyright 2019, Team ROSS.<br/>
       Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.2.1.<br/>
     </p>
   </div>
