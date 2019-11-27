@@ -75,6 +75,9 @@
 <li class="toctree-l2"><a class="reference internal" href="tutorial.html#DiskElement">DiskElement</a></li>
 <li class="toctree-l2"><a class="reference internal" href="tutorial.html#BearingElement">BearingElement</a></li>
 <li class="toctree-l2"><a class="reference internal" href="tutorial.html#Rotor">Rotor</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial.html#Running-the-simulation">Running the simulation</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="tutorial.html#Obtaining-results">Obtaining results</a></li>
 </ul>
 </li>
@@ -366,7 +369,7 @@ div.rendered_html tbody tr:hover {
 <p>It is the same bearing of Example 7, only this time we stick to the methods provided by the Fluid Flow subpackage of ROSS. We instantiate a Pressure Matrix object with the data given by the Example 5.5.1 from the book: The oil-film bearing has a diameter of 100 mm, is 30 mm long, and supports a static load of 525 N. The radial clearance is 0.1 mm and the oil film has a viscosity of 0.1 Pa s. When instantiated, a Pressure Matrix must be given either the eccentricity, or load of the bearing, or
 both. The one not parameter not given is them calculated based on the other one.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -390,8 +393,8 @@ output_notebook()
 </div>
 <div class="output_area rendered_html docutils container">
 <div class="bk-root">
-    <a href="https://bokeh.pydata.org" target="_blank" class="bk-logo bk-logo-small bk-logo-notebook"></a>
-    <span id="1002">Loading BokehJS ...</span>
+    <a href="https://bokeh.org" target="_blank" class="bk-logo bk-logo-small bk-logo-notebook"></a>
+    <span id="1001">Loading BokehJS ...</span>
 </div></div>
 </div>
 <div class="nboutput nblast docutils container">
@@ -560,7 +563,7 @@ var element = document.currentScript.previousSibling.previousSibling;
      "</div>"}};
 
   function display_loaded() {
-    var el = document.getElementById("1002");
+    var el = document.getElementById("1001");
     if (el != null) {
       el.textContent = "BokehJS is loading...";
     }
@@ -636,9 +639,9 @@ var element = document.currentScript.previousSibling.previousSibling;
       console.debug("Bokeh: injecting script tag for BokehJS library: ", url);
       document.head.appendChild(element);
     }
-  };var element = document.getElementById("1002");
+  };var element = document.getElementById("1001");
   if (element == null) {
-    console.error("Bokeh: ERROR: autoload.js configured with elementid '1002' but no matching script tag was found. ")
+    console.error("Bokeh: ERROR: autoload.js configured with elementid '1001' but no matching script tag was found. ")
     return false;
   }
 
@@ -648,26 +651,29 @@ var element = document.currentScript.previousSibling.previousSibling;
     document.body.appendChild(element);
   }
 
-  var js_urls = ["https://cdn.pydata.org/bokeh/release/bokeh-1.3.0.min.js", "https://cdn.pydata.org/bokeh/release/bokeh-widgets-1.3.0.min.js", "https://cdn.pydata.org/bokeh/release/bokeh-tables-1.3.0.min.js", "https://cdn.pydata.org/bokeh/release/bokeh-gl-1.3.0.min.js"];
+
+  var js_urls = ["https://cdn.pydata.org/bokeh/release/bokeh-1.4.0.min.js", "https://cdn.pydata.org/bokeh/release/bokeh-widgets-1.4.0.min.js", "https://cdn.pydata.org/bokeh/release/bokeh-tables-1.4.0.min.js", "https://cdn.pydata.org/bokeh/release/bokeh-gl-1.4.0.min.js"];
   var css_urls = [];
+
 
   var inline_js = [
     function(Bokeh) {
       Bokeh.set_log_level("info");
     },
-
     function(Bokeh) {
 
-    },
-    function(Bokeh) {} // ensure no trailing comma for IE
+
+    }
   ];
 
   function run_inline_js() {
 
-    if ((root.Bokeh !== undefined) || (force === true)) {
-      for (var i = 0; i < inline_js.length; i++) {
-        inline_js[i].call(root, root.Bokeh);
-      }if (force === true) {
+    if (root.Bokeh !== undefined || force === true) {
+
+    for (var i = 0; i < inline_js.length; i++) {
+      inline_js[i].call(root, root.Bokeh);
+    }
+    if (force === true) {
         display_loaded();
       }} else if (Date.now() < root._bokeh_timeout) {
       setTimeout(run_inline_js, 100);
@@ -675,7 +681,7 @@ var element = document.currentScript.previousSibling.previousSibling;
       console.log("Bokeh: BokehJS failed to load within specified timeout.");
       root._bokeh_failed_load = true;
     } else if (force !== true) {
-      var cell = $(document.getElementById("1002")).parents('.cell').data().cell;
+      var cell = $(document.getElementById("1001")).parents('.cell').data().cell;
       cell.output_area.append_execute_result(NB_LOAD_WARNING)
     }
 
@@ -694,7 +700,7 @@ var element = document.currentScript.previousSibling.previousSibling;
 </script></div>
 </div>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -718,7 +724,7 @@ my_fluid_flow = flow.FluidFlow(nz, ntheta, nradius, length, omega, p_in,
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -729,7 +735,7 @@ my_fluid_flow.eccentricity
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -738,7 +744,7 @@ my_fluid_flow.eccentricity
 </pre></div></div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -762,7 +768,7 @@ sommerfeld_number(
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -771,7 +777,7 @@ sommerfeld_number(
 </pre></div></div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -782,12 +788,12 @@ matplot_eccentricity(my_fluid_flow)
 </div>
 </div>
 <div class="nboutput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-&lt;matplotlib.axes._subplots.AxesSubplot at 0x7f7ead3068d0&gt;
+&lt;matplotlib.axes._subplots.AxesSubplot at 0x233c8a15048&gt;
 </pre></div></div>
 </div>
 <div class="nboutput nblast docutils container">
@@ -799,7 +805,7 @@ matplot_eccentricity(my_fluid_flow)
 </div>
 <p>The graphic above plots two circles: one representing the stator and one representing the rotor, considering the eccentricity. In this case, since the space between the stator and the rotor is very small, it is not seen in the graphic.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -814,7 +820,7 @@ calculate_analytical_stiffness_matrix(
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -823,7 +829,7 @@ calculate_analytical_stiffness_matrix(
 </pre></div></div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -839,7 +845,7 @@ calculate_analytical_damping_matrix(
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -851,7 +857,7 @@ calculate_analytical_damping_matrix(
 <p>Once the object Fluid Flow is instantiated, the user must call a method to calculate its pressure matrix. There are 3 methods available: two that calculate the pressure analyticaly and one that calculate it numerically. The first one is based on the book Tribology Series vol. 33, by Frene et al., chapter 5. The second one is based on chapter Linear and Nonlinear Rotordynamics, by Ishida and Yamamoto, from the book Flow-Induced Vibrations. The numerical method was developed as part of project
 ROSS and it was based on the undergraduate dissertation by Luiz Henrique Mamede Queiroz: Analysis of fluid flow inside rotary machines components.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[17]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -862,20 +868,147 @@ my_fluid_flow.calculate_pressure_matrix_numerical()[int(nz/2)]
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[17]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-array([     0.        ,  27858.11278474,  76957.5759592 , 136957.62955623,
-       208379.36855386, 287589.69704017, 360054.60982653, 395099.42333323,
-       352263.79453191, 210847.76457148,   5938.23912407,      0.        ,
-            0.        ,      0.        ,      0.        ,      0.        ,
-            0.        ,      0.        ,      0.        ,      0.        ])
+array([0.00000000e+00, 8.90360442e+02, 2.54822910e+03, 4.20657895e+03,
+       5.86560049e+03, 7.52548383e+03, 9.18641901e+03, 1.08485957e+04,
+       1.25122034e+04, 1.41774313e+04, 1.58444681e+04, 1.75135023e+04,
+       1.91847223e+04, 2.08583159e+04, 2.25344705e+04, 2.42133734e+04,
+       2.58952114e+04, 2.75801707e+04, 2.92684374e+04, 3.09601967e+04,
+       3.26556336e+04, 3.43549326e+04, 3.60582777e+04, 3.77658517e+04,
+       3.94778375e+04, 4.11944168e+04, 4.29157706e+04, 4.46420796e+04,
+       4.63735231e+04, 4.81102797e+04, 4.98525271e+04, 5.16004419e+04,
+       5.33541997e+04, 5.51139750e+04, 5.68799414e+04, 5.86522705e+04,
+       6.04311332e+04, 6.22166988e+04, 6.40091353e+04, 6.58086089e+04,
+       6.76152842e+04, 6.94293242e+04, 7.12508903e+04, 7.30801417e+04,
+       7.49172355e+04, 7.67623273e+04, 7.86155702e+04, 8.04771151e+04,
+       8.23471105e+04, 8.42257025e+04, 8.61130346e+04, 8.80092473e+04,
+       8.99144788e+04, 9.18288643e+04, 9.37525353e+04, 9.56856209e+04,
+       9.76282466e+04, 9.95805343e+04, 1.01542602e+05, 1.03514565e+05,
+       1.05496534e+05, 1.07488615e+05, 1.09490910e+05, 1.11503518e+05,
+       1.13526533e+05, 1.15560042e+05, 1.17604130e+05, 1.19658876e+05,
+       1.21724351e+05, 1.23800626e+05, 1.25887761e+05, 1.27985813e+05,
+       1.30094831e+05, 1.32214860e+05, 1.34345937e+05, 1.36488092e+05,
+       1.38641348e+05, 1.40805721e+05, 1.42981220e+05, 1.45167845e+05,
+       1.47365588e+05, 1.49574434e+05, 1.51794358e+05, 1.54025327e+05,
+       1.56267298e+05, 1.58520219e+05, 1.60784029e+05, 1.63058655e+05,
+       1.65344014e+05, 1.67640015e+05, 1.69946552e+05, 1.72263509e+05,
+       1.74590761e+05, 1.76928166e+05, 1.79275574e+05, 1.81632820e+05,
+       1.83999726e+05, 1.86376100e+05, 1.88761737e+05, 1.91156419e+05,
+       1.93559910e+05, 1.95971961e+05, 1.98392308e+05, 2.00820670e+05,
+       2.03256751e+05, 2.05700237e+05, 2.08150797e+05, 2.10608084e+05,
+       2.13071732e+05, 2.15541355e+05, 2.18016553e+05, 2.20496901e+05,
+       2.22981959e+05, 2.25471265e+05, 2.27964336e+05, 2.30460669e+05,
+       2.32959741e+05, 2.35461004e+05, 2.37963891e+05, 2.40467810e+05,
+       2.42972148e+05, 2.45476268e+05, 2.47979508e+05, 2.50481183e+05,
+       2.52980584e+05, 2.55476975e+05, 2.57969597e+05, 2.60457663e+05,
+       2.62940361e+05, 2.65416852e+05, 2.67886272e+05, 2.70347728e+05,
+       2.72800301e+05, 2.75243042e+05, 2.77674976e+05, 2.80095100e+05,
+       2.82502381e+05, 2.84895759e+05, 2.87274143e+05, 2.89636416e+05,
+       2.91981429e+05, 2.94308004e+05, 2.96614936e+05, 2.98900988e+05,
+       3.01164894e+05, 3.03405361e+05, 3.05621063e+05, 3.07810648e+05,
+       3.09972732e+05, 3.12105903e+05, 3.14208722e+05, 3.16279717e+05,
+       3.18317392e+05, 3.20320221e+05, 3.22286652e+05, 3.24215103e+05,
+       3.26103969e+05, 3.27951615e+05, 3.29756383e+05, 3.31516590e+05,
+       3.33230528e+05, 3.34896467e+05, 3.36512652e+05, 3.38077308e+05,
+       3.39588639e+05, 3.41044830e+05, 3.42444046e+05, 3.43784436e+05,
+       3.45064132e+05, 3.46281250e+05, 3.47433895e+05, 3.48520159e+05,
+       3.49538121e+05, 3.50485855e+05, 3.51361424e+05, 3.52162888e+05,
+       3.52888303e+05, 3.53535720e+05, 3.54103194e+05, 3.54588781e+05,
+       3.54990538e+05, 3.55306533e+05, 3.55534840e+05, 3.55673543e+05,
+       3.55720742e+05, 3.55674550e+05, 3.55533100e+05, 3.55294544e+05,
+       3.54957060e+05, 3.54518848e+05, 3.53978142e+05, 3.53333202e+05,
+       3.52582326e+05, 3.51723848e+05, 3.50756143e+05, 3.49677628e+05,
+       3.48486767e+05, 3.47182072e+05, 3.45762108e+05, 3.44225494e+05,
+       3.42570909e+05, 3.40797091e+05, 3.38902844e+05, 3.36887039e+05,
+       3.34748616e+05, 3.32486590e+05, 3.30100052e+05, 3.27588170e+05,
+       3.24950198e+05, 3.22185471e+05, 3.19293415e+05, 3.16273544e+05,
+       3.13125468e+05, 3.09848890e+05, 3.06443611e+05, 3.02909536e+05,
+       2.99246668e+05, 2.95455121e+05, 2.91535111e+05, 2.87486964e+05,
+       2.83311120e+05, 2.79008129e+05, 2.74578653e+05, 2.70023475e+05,
+       2.65343490e+05, 2.60539713e+05, 2.55613272e+05, 2.50565425e+05,
+       2.45397540e+05, 2.40111108e+05, 2.34707743e+05, 2.29189174e+05,
+       2.23557253e+05, 2.17813951e+05, 2.11961358e+05, 2.06001677e+05,
+       1.99937234e+05, 1.93770465e+05, 1.87503924e+05, 1.81140273e+05,
+       1.74682285e+05, 1.68132841e+05, 1.61494926e+05, 1.54771628e+05,
+       1.47966137e+05, 1.41081739e+05, 1.34121808e+05, 1.27089815e+05,
+       1.19989315e+05, 1.12823944e+05, 1.05597416e+05, 9.83135264e+04,
+       9.09761316e+04, 8.35891614e+04, 7.61565987e+04, 6.86824926e+04,
+       6.11709347e+04, 5.36260665e+04, 4.60520736e+04, 3.84531753e+04,
+       3.08336210e+04, 2.31976879e+04, 1.55496739e+04, 7.89389107e+03,
+       2.34660135e+02, 0.00000000e+00, 0.00000000e+00, 0.00000000e+00,
+       0.00000000e+00, 0.00000000e+00, 0.00000000e+00, 0.00000000e+00,
+       0.00000000e+00, 0.00000000e+00, 0.00000000e+00, 0.00000000e+00,
+       0.00000000e+00, 0.00000000e+00, 0.00000000e+00, 0.00000000e+00,
+       0.00000000e+00, 0.00000000e+00, 0.00000000e+00, 0.00000000e+00,
+       0.00000000e+00, 0.00000000e+00, 0.00000000e+00, 0.00000000e+00,
+       0.00000000e+00, 0.00000000e+00, 0.00000000e+00, 0.00000000e+00,
+       0.00000000e+00, 0.00000000e+00, 0.00000000e+00, 0.00000000e+00,
+       0.00000000e+00, 0.00000000e+00, 0.00000000e+00, 0.00000000e+00,
+       0.00000000e+00, 0.00000000e+00, 0.00000000e+00, 0.00000000e+00,
+       0.00000000e+00, 0.00000000e+00, 0.00000000e+00, 0.00000000e+00,
+       0.00000000e+00, 0.00000000e+00, 0.00000000e+00, 0.00000000e+00,
+       0.00000000e+00, 0.00000000e+00, 0.00000000e+00, 0.00000000e+00,
+       0.00000000e+00, 0.00000000e+00, 0.00000000e+00, 0.00000000e+00,
+       0.00000000e+00, 0.00000000e+00, 0.00000000e+00, 0.00000000e+00,
+       0.00000000e+00, 0.00000000e+00, 0.00000000e+00, 0.00000000e+00,
+       0.00000000e+00, 0.00000000e+00, 0.00000000e+00, 0.00000000e+00,
+       0.00000000e+00, 0.00000000e+00, 0.00000000e+00, 0.00000000e+00,
+       0.00000000e+00, 0.00000000e+00, 0.00000000e+00, 0.00000000e+00,
+       0.00000000e+00, 0.00000000e+00, 0.00000000e+00, 0.00000000e+00,
+       0.00000000e+00, 0.00000000e+00, 0.00000000e+00, 0.00000000e+00,
+       0.00000000e+00, 0.00000000e+00, 0.00000000e+00, 0.00000000e+00,
+       0.00000000e+00, 0.00000000e+00, 0.00000000e+00, 0.00000000e+00,
+       0.00000000e+00, 0.00000000e+00, 0.00000000e+00, 0.00000000e+00,
+       0.00000000e+00, 0.00000000e+00, 0.00000000e+00, 0.00000000e+00,
+       0.00000000e+00, 0.00000000e+00, 0.00000000e+00, 0.00000000e+00,
+       0.00000000e+00, 0.00000000e+00, 0.00000000e+00, 0.00000000e+00,
+       0.00000000e+00, 0.00000000e+00, 0.00000000e+00, 0.00000000e+00,
+       0.00000000e+00, 0.00000000e+00, 0.00000000e+00, 0.00000000e+00,
+       0.00000000e+00, 0.00000000e+00, 0.00000000e+00, 0.00000000e+00,
+       0.00000000e+00, 0.00000000e+00, 0.00000000e+00, 0.00000000e+00,
+       0.00000000e+00, 0.00000000e+00, 0.00000000e+00, 0.00000000e+00,
+       0.00000000e+00, 0.00000000e+00, 0.00000000e+00, 0.00000000e+00,
+       0.00000000e+00, 0.00000000e+00, 0.00000000e+00, 0.00000000e+00,
+       0.00000000e+00, 0.00000000e+00, 0.00000000e+00, 0.00000000e+00,
+       0.00000000e+00, 0.00000000e+00, 0.00000000e+00, 0.00000000e+00,
+       0.00000000e+00, 0.00000000e+00, 0.00000000e+00, 0.00000000e+00,
+       0.00000000e+00, 0.00000000e+00, 0.00000000e+00, 0.00000000e+00,
+       0.00000000e+00, 0.00000000e+00, 0.00000000e+00, 0.00000000e+00,
+       0.00000000e+00, 0.00000000e+00, 0.00000000e+00, 0.00000000e+00,
+       0.00000000e+00, 0.00000000e+00, 0.00000000e+00, 0.00000000e+00,
+       0.00000000e+00, 0.00000000e+00, 0.00000000e+00, 0.00000000e+00,
+       0.00000000e+00, 0.00000000e+00, 0.00000000e+00, 0.00000000e+00,
+       0.00000000e+00, 0.00000000e+00, 0.00000000e+00, 0.00000000e+00,
+       0.00000000e+00, 0.00000000e+00, 0.00000000e+00, 0.00000000e+00,
+       0.00000000e+00, 0.00000000e+00, 0.00000000e+00, 0.00000000e+00,
+       0.00000000e+00, 0.00000000e+00, 0.00000000e+00, 0.00000000e+00,
+       0.00000000e+00, 0.00000000e+00, 0.00000000e+00, 0.00000000e+00,
+       0.00000000e+00, 0.00000000e+00, 0.00000000e+00, 0.00000000e+00,
+       0.00000000e+00, 0.00000000e+00, 0.00000000e+00, 0.00000000e+00,
+       0.00000000e+00, 0.00000000e+00, 0.00000000e+00, 0.00000000e+00,
+       0.00000000e+00, 0.00000000e+00, 0.00000000e+00, 0.00000000e+00,
+       0.00000000e+00, 0.00000000e+00, 0.00000000e+00, 0.00000000e+00,
+       0.00000000e+00, 0.00000000e+00, 0.00000000e+00, 0.00000000e+00,
+       0.00000000e+00, 0.00000000e+00, 0.00000000e+00, 0.00000000e+00,
+       0.00000000e+00, 0.00000000e+00, 0.00000000e+00, 0.00000000e+00,
+       0.00000000e+00, 0.00000000e+00, 0.00000000e+00, 0.00000000e+00,
+       0.00000000e+00, 0.00000000e+00, 0.00000000e+00, 0.00000000e+00,
+       0.00000000e+00, 0.00000000e+00, 0.00000000e+00, 0.00000000e+00,
+       0.00000000e+00, 0.00000000e+00, 0.00000000e+00, 0.00000000e+00,
+       0.00000000e+00, 0.00000000e+00, 0.00000000e+00, 0.00000000e+00,
+       0.00000000e+00, 0.00000000e+00, 0.00000000e+00, 0.00000000e+00,
+       0.00000000e+00, 0.00000000e+00, 0.00000000e+00, 0.00000000e+00,
+       0.00000000e+00, 0.00000000e+00, 0.00000000e+00, 0.00000000e+00,
+       0.00000000e+00, 0.00000000e+00, 0.00000000e+00, 0.00000000e+00,
+       0.00000000e+00, 0.00000000e+00, 0.00000000e+00, 0.00000000e+00])
 </pre></div></div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[18]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -889,7 +1022,7 @@ show(plot_pressure_theta(my_fluid_flow, z=int(nz/2)))
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area rendered_html docutils container">
-<div class="bk-root" id="8a72eeca-5eb0-4c4b-b425-ee8f17bb8fe1" data-root-id="1003"></div></div>
+<div class="bk-root" id="911a6c35-9ebe-4b76-b3c9-6177d4eb7ee4" data-root-id="1002"></div></div>
 </div>
 <div class="nboutput nblast docutils container">
 <div class="prompt empty docutils container">
@@ -901,8 +1034,8 @@ var element = document.currentScript.previousSibling.previousSibling;
 (function(root) {
   function embed_document(root) {
 
-  var docs_json = {"79866b02-e37b-4d36-926b-f876939daefd":{"roots":{"references":[{"attributes":{"below":[{"id":"1014","type":"LinearAxis"}],"center":[{"id":"1018","type":"Grid"},{"id":"1023","type":"Grid"},{"id":"1048","type":"Legend"}],"left":[{"id":"1019","type":"LinearAxis"}],"renderers":[{"id":"1040","type":"GlyphRenderer"}],"title":{"id":"1004","type":"Title"},"toolbar":{"id":"1030","type":"Toolbar"},"x_range":{"id":"1006","type":"DataRange1d"},"x_scale":{"id":"1010","type":"LinearScale"},"y_range":{"id":"1008","type":"DataRange1d"},"y_scale":{"id":"1012","type":"LinearScale"}},"id":"1003","subtype":"Figure","type":"Plot"},{"attributes":{},"id":"1025","type":"WheelZoomTool"},{"attributes":{},"id":"1012","type":"LinearScale"},{"attributes":{},"id":"1015","type":"BasicTicker"},{"attributes":{},"id":"1010","type":"LinearScale"},{"attributes":{"active_drag":"auto","active_inspect":"auto","active_multi":null,"active_scroll":"auto","active_tap":"auto","tools":[{"id":"1024","type":"PanTool"},{"id":"1025","type":"WheelZoomTool"},{"id":"1026","type":"BoxZoomTool"},{"id":"1027","type":"SaveTool"},{"id":"1028","type":"ResetTool"},{"id":"1029","type":"HelpTool"}]},"id":"1030","type":"Toolbar"},{"attributes":{},"id":"1027","type":"SaveTool"},{"attributes":{"label":{"value":"Numerical pressure"},"renderers":[{"id":"1040","type":"GlyphRenderer"}]},"id":"1049","type":"LegendItem"},{"attributes":{"overlay":{"id":"1047","type":"BoxAnnotation"}},"id":"1026","type":"BoxZoomTool"},{"attributes":{},"id":"1056","type":"UnionRenderers"},{"attributes":{},"id":"1024","type":"PanTool"},{"attributes":{"callback":null,"data":{"x":{"__ndarray__":"FJx2mR27/j9QRS6t0QICQJY8oY0UqARA3DMUbldNB0AiK4dOmvIJQGgi+i7dlwxArRltDyA9D0B6CPB3MfEQQByEKejSQxJAwP9iWHSWE0Bie5zIFekUQAb31Ti3OxZAqHIPqViOF0BL7kgZ+uAYQO5pgombMxpAkeW7+TyGG0A0YfVp3tgcQNfcLtp/Kx5AelhoSiF+H0AO6lBdYWggQA==","dtype":"float64","shape":[20]},"y":{"__ndarray__":"AAAAAAAAAAC8f903hzTbQD7+IDfZyfJAvsZUCe23AEFGXczy2m8JQdflxMmWjRFBp112cNr5FUEARH6xbR0YQSzGmS0fgBVB5qbXHf68CUGAKTw3PTK3QAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==","dtype":"float64","shape":[20]}},"selected":{"id":"1057","type":"Selection"},"selection_policy":{"id":"1056","type":"UnionRenderers"}},"id":"1037","type":"ColumnDataSource"},{"attributes":{"line_alpha":0.1,"line_color":"#1f77b4","line_width":2,"x":{"field":"x"},"y":{"field":"y"}},"id":"1039","type":"Line"},{"attributes":{"source":{"id":"1037","type":"ColumnDataSource"}},"id":"1041","type":"CDSView"},{"attributes":{"ticker":{"id":"1015","type":"BasicTicker"}},"id":"1018","type":"Grid"},{"attributes":{"callback":null},"id":"1008","type":"DataRange1d"},{"attributes":{},"id":"1044","type":"BasicTickFormatter"},{"attributes":{"dimension":1,"ticker":{"id":"1020","type":"BasicTicker"}},"id":"1023","type":"Grid"},{"attributes":{"bottom_units":"screen","fill_alpha":{"value":0.5},"fill_color":{"value":"lightgrey"},"left_units":"screen","level":"overlay","line_alpha":{"value":1.0},"line_color":{"value":"black"},"line_dash":[4,4],"line_width":{"value":2},"render_mode":"css","right_units":"screen","top_units":"screen"},"id":"1047","type":"BoxAnnotation"},{"attributes":{"text":"Pressure along Theta; Z=15"},"id":"1004","type":"Title"},{"attributes":{},"id":"1020","type":"BasicTicker"},{"attributes":{"axis_label":"Pressure","formatter":{"id":"1044","type":"BasicTickFormatter"},"ticker":{"id":"1020","type":"BasicTicker"}},"id":"1019","type":"LinearAxis"},{"attributes":{},"id":"1028","type":"ResetTool"},{"attributes":{"axis_label":"Points along Theta","formatter":{"id":"1046","type":"BasicTickFormatter"},"ticker":{"id":"1015","type":"BasicTicker"}},"id":"1014","type":"LinearAxis"},{"attributes":{},"id":"1029","type":"HelpTool"},{"attributes":{"callback":null},"id":"1006","type":"DataRange1d"},{"attributes":{"data_source":{"id":"1037","type":"ColumnDataSource"},"glyph":{"id":"1038","type":"Line"},"hover_glyph":null,"muted_glyph":null,"nonselection_glyph":{"id":"1039","type":"Line"},"selection_glyph":null,"view":{"id":"1041","type":"CDSView"}},"id":"1040","type":"GlyphRenderer"},{"attributes":{},"id":"1057","type":"Selection"},{"attributes":{},"id":"1046","type":"BasicTickFormatter"},{"attributes":{"line_color":"blue","line_width":2,"x":{"field":"x"},"y":{"field":"y"}},"id":"1038","type":"Line"},{"attributes":{"items":[{"id":"1049","type":"LegendItem"}]},"id":"1048","type":"Legend"}],"root_ids":["1003"]},"title":"Bokeh Application","version":"1.3.0"}};
-  var render_items = [{"docid":"79866b02-e37b-4d36-926b-f876939daefd","roots":{"1003":"8a72eeca-5eb0-4c4b-b425-ee8f17bb8fe1"}}];
+  var docs_json = {"426facd4-aaea-443f-8c7a-cbf57569946a":{"roots":{"references":[{"attributes":{"below":[{"id":"1013","type":"LinearAxis"}],"center":[{"id":"1017","type":"Grid"},{"id":"1022","type":"Grid"},{"id":"1047","type":"Legend"}],"left":[{"id":"1018","type":"LinearAxis"}],"renderers":[{"id":"1039","type":"GlyphRenderer"}],"title":{"id":"1003","type":"Title"},"toolbar":{"id":"1029","type":"Toolbar"},"x_range":{"id":"1005","type":"DataRange1d"},"x_scale":{"id":"1009","type":"LinearScale"},"y_range":{"id":"1007","type":"DataRange1d"},"y_scale":{"id":"1011","type":"LinearScale"}},"id":"1002","subtype":"Figure","type":"Plot"},{"attributes":{"line_alpha":0.1,"line_color":"#1f77b4","line_width":2,"x":{"field":"x"},"y":{"field":"y"}},"id":"1038","type":"Line"},{"attributes":{},"id":"1011","type":"LinearScale"},{"attributes":{"data_source":{"id":"1036","type":"ColumnDataSource"},"glyph":{"id":"1037","type":"Line"},"hover_glyph":null,"muted_glyph":null,"nonselection_glyph":{"id":"1038","type":"Line"},"selection_glyph":null,"view":{"id":"1040","type":"CDSView"}},"id":"1039","type":"GlyphRenderer"},{"attributes":{"callback":null,"data":{"x":{"__ndarray__":"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","dtype":"float64","shape":[528]},"y":{"__ndarray__":"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AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA","dtype":"float64","shape":[528]}},"selected":{"id":"1055","type":"Selection"},"selection_policy":{"id":"1054","type":"UnionRenderers"}},"id":"1036","type":"ColumnDataSource"},{"attributes":{"label":{"value":"Numerical pressure"},"renderers":[{"id":"1039","type":"GlyphRenderer"}]},"id":"1048","type":"LegendItem"},{"attributes":{},"id":"1023","type":"PanTool"},{"attributes":{},"id":"1024","type":"WheelZoomTool"},{"attributes":{},"id":"1009","type":"LinearScale"},{"attributes":{"axis_label":"Points along Theta","formatter":{"id":"1045","type":"BasicTickFormatter"},"ticker":{"id":"1014","type":"BasicTicker"}},"id":"1013","type":"LinearAxis"},{"attributes":{"items":[{"id":"1048","type":"LegendItem"}]},"id":"1047","type":"Legend"},{"attributes":{"text":"Pressure along Theta; Z=15"},"id":"1003","type":"Title"},{"attributes":{"overlay":{"id":"1046","type":"BoxAnnotation"}},"id":"1025","type":"BoxZoomTool"},{"attributes":{},"id":"1026","type":"SaveTool"},{"attributes":{"callback":null},"id":"1007","type":"DataRange1d"},{"attributes":{},"id":"1027","type":"ResetTool"},{"attributes":{"callback":null},"id":"1005","type":"DataRange1d"},{"attributes":{},"id":"1028","type":"HelpTool"},{"attributes":{"active_drag":"auto","active_inspect":"auto","active_multi":null,"active_scroll":"auto","active_tap":"auto","tools":[{"id":"1023","type":"PanTool"},{"id":"1024","type":"WheelZoomTool"},{"id":"1025","type":"BoxZoomTool"},{"id":"1026","type":"SaveTool"},{"id":"1027","type":"ResetTool"},{"id":"1028","type":"HelpTool"}]},"id":"1029","type":"Toolbar"},{"attributes":{"ticker":{"id":"1014","type":"BasicTicker"}},"id":"1017","type":"Grid"},{"attributes":{"source":{"id":"1036","type":"ColumnDataSource"}},"id":"1040","type":"CDSView"},{"attributes":{},"id":"1054","type":"UnionRenderers"},{"attributes":{},"id":"1043","type":"BasicTickFormatter"},{"attributes":{},"id":"1014","type":"BasicTicker"},{"attributes":{},"id":"1045","type":"BasicTickFormatter"},{"attributes":{"bottom_units":"screen","fill_alpha":{"value":0.5},"fill_color":{"value":"lightgrey"},"left_units":"screen","level":"overlay","line_alpha":{"value":1.0},"line_color":{"value":"black"},"line_dash":[4,4],"line_width":{"value":2},"render_mode":"css","right_units":"screen","top_units":"screen"},"id":"1046","type":"BoxAnnotation"},{"attributes":{},"id":"1019","type":"BasicTicker"},{"attributes":{},"id":"1055","type":"Selection"},{"attributes":{"axis_label":"Pressure","formatter":{"id":"1043","type":"BasicTickFormatter"},"ticker":{"id":"1019","type":"BasicTicker"}},"id":"1018","type":"LinearAxis"},{"attributes":{"line_color":"blue","line_width":2,"x":{"field":"x"},"y":{"field":"y"}},"id":"1037","type":"Line"},{"attributes":{"dimension":1,"ticker":{"id":"1019","type":"BasicTicker"}},"id":"1022","type":"Grid"}],"root_ids":["1002"]},"title":"Bokeh Application","version":"1.4.0"}};
+  var render_items = [{"docid":"426facd4-aaea-443f-8c7a-cbf57569946a","roots":{"1002":"911a6c35-9ebe-4b76-b3c9-6177d4eb7ee4"}}];
   root.Bokeh.embed.embed_items_notebook(docs_json, render_items);
 
   }
@@ -912,18 +1045,28 @@ var element = document.currentScript.previousSibling.previousSibling;
     var attempts = 0;
     var timer = setInterval(function(root) {
       if (root.Bokeh !== undefined) {
+        clearInterval(timer);
         embed_document(root);
-        clearInterval(timer);
-      }
-      attempts++;
-      if (attempts > 100) {
-        console.log("Bokeh: ERROR: Unable to run BokehJS code because BokehJS library is missing");
-        clearInterval(timer);
+      } else {
+        attempts++;
+        if (attempts > 100) {
+          clearInterval(timer);
+          console.log("Bokeh: ERROR: Unable to run BokehJS code because BokehJS library is missing");
+        }
       }
     }, 10, root)
   }
 })(window);
 </script></div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span>
+</pre></div>
+</div>
 </div>
 </div>
 
