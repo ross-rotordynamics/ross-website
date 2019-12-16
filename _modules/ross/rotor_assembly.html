@@ -195,7 +195,7 @@
     <span class="n">TimeResponseResults</span><span class="p">,</span>
     <span class="n">OrbitResponseResults</span>
 <span class="p">)</span>
-<span class="kn">from</span> <span class="nn">ross.shaft_element</span> <span class="kn">import</span> <span class="n">ShaftElement</span><span class="p">,</span> <span class="n">ShaftTaperedElement</span>
+<span class="kn">from</span> <span class="nn">ross.shaft_element</span> <span class="kn">import</span> <span class="n">ShaftElement</span>
 
 <span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Rotor&quot;</span><span class="p">,</span> <span class="s2">&quot;rotor_example&quot;</span><span class="p">]</span>
 
@@ -270,11 +270,13 @@
 <span class="sd">    &gt;&gt;&gt; le = 0.25</span>
 <span class="sd">    &gt;&gt;&gt; i_d = 0</span>
 <span class="sd">    &gt;&gt;&gt; o_d = 0.05</span>
-<span class="sd">    &gt;&gt;&gt; tim0 = rs.ShaftElement(le, i_d, o_d, steel,</span>
+<span class="sd">    &gt;&gt;&gt; tim0 = rs.ShaftElement(le, i_d, o_d,</span>
+<span class="sd">    ...                        material=steel,</span>
 <span class="sd">    ...                        shear_effects=True,</span>
 <span class="sd">    ...                        rotary_inertia=True,</span>
 <span class="sd">    ...                        gyroscopic=True)</span>
-<span class="sd">    &gt;&gt;&gt; tim1 = rs.ShaftElement(le, i_d, o_d, steel,</span>
+<span class="sd">    &gt;&gt;&gt; tim1 = rs.ShaftElement(le, i_d, o_d,</span>
+<span class="sd">    ...                        material=steel,</span>
 <span class="sd">    ...                        shear_effects=True,</span>
 <span class="sd">    ...                        rotary_inertia=True,</span>
 <span class="sd">    ...                        gyroscopic=True)</span>
@@ -398,8 +400,8 @@
             <span class="s2">&quot;y_pos&quot;</span><span class="p">,</span>
             <span class="s2">&quot;i_d&quot;</span><span class="p">,</span>
             <span class="s2">&quot;o_d&quot;</span><span class="p">,</span>
-            <span class="s2">&quot;i_d_r&quot;</span><span class="p">,</span>
-            <span class="s2">&quot;o_d_r&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;idr&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;odr&quot;</span><span class="p">,</span>
             <span class="s2">&quot;material&quot;</span><span class="p">,</span>
             <span class="s2">&quot;rho&quot;</span><span class="p">,</span>
             <span class="s2">&quot;volume&quot;</span><span class="p">,</span>
@@ -573,7 +575,7 @@
             <span class="k">if</span> <span class="n">z_pos</span> <span class="o">==</span> <span class="n">df_shaft</span><span class="p">[</span><span class="s2">&quot;nodes_pos_l&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span>
                 <span class="n">y_pos</span> <span class="o">=</span> <span class="p">(</span>
                     <span class="nb">max</span><span class="p">(</span>
-                        <span class="n">df_shaft</span><span class="p">[</span><span class="s2">&quot;o_d_l&quot;</span><span class="p">][</span>
+                        <span class="n">df_shaft</span><span class="p">[</span><span class="s2">&quot;odl&quot;</span><span class="p">][</span>
                             <span class="n">df_shaft</span><span class="o">.</span><span class="n">n_l</span> <span class="o">==</span> <span class="nb">int</span><span class="p">(</span><span class="n">dfb_z_pos</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s2">&quot;n_l&quot;</span><span class="p">])</span>
                         <span class="p">]</span><span class="o">.</span><span class="n">values</span>
                     <span class="p">)</span>
@@ -582,7 +584,7 @@
             <span class="k">elif</span> <span class="n">z_pos</span> <span class="o">==</span> <span class="n">df_shaft</span><span class="p">[</span><span class="s2">&quot;nodes_pos_r&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]:</span>
                 <span class="n">y_pos</span> <span class="o">=</span> <span class="p">(</span>
                     <span class="nb">max</span><span class="p">(</span>
-                        <span class="n">df_shaft</span><span class="p">[</span><span class="s2">&quot;o_d_r&quot;</span><span class="p">][</span>
+                        <span class="n">df_shaft</span><span class="p">[</span><span class="s2">&quot;odr&quot;</span><span class="p">][</span>
                             <span class="n">df_shaft</span><span class="o">.</span><span class="n">n_r</span> <span class="o">==</span> <span class="nb">int</span><span class="p">(</span><span class="n">dfb_z_pos</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s2">&quot;n_r&quot;</span><span class="p">])</span>
                         <span class="p">]</span><span class="o">.</span><span class="n">values</span>
                     <span class="p">)</span>
@@ -593,12 +595,12 @@
                     <span class="nb">max</span><span class="p">(</span>
                         <span class="p">[</span>
                             <span class="nb">max</span><span class="p">(</span>
-                                <span class="n">df_shaft</span><span class="p">[</span><span class="s2">&quot;o_d_l&quot;</span><span class="p">][</span>
+                                <span class="n">df_shaft</span><span class="p">[</span><span class="s2">&quot;odl&quot;</span><span class="p">][</span>
                                     <span class="n">df_shaft</span><span class="o">.</span><span class="n">_n</span> <span class="o">==</span> <span class="nb">int</span><span class="p">(</span><span class="n">dfb_z_pos</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s2">&quot;n_l&quot;</span><span class="p">])</span>
                                 <span class="p">]</span><span class="o">.</span><span class="n">values</span>
                             <span class="p">),</span>
                             <span class="nb">max</span><span class="p">(</span>
-                                <span class="n">df_shaft</span><span class="p">[</span><span class="s2">&quot;o_d_r&quot;</span><span class="p">][</span>
+                                <span class="n">df_shaft</span><span class="p">[</span><span class="s2">&quot;odr&quot;</span><span class="p">][</span>
                                     <span class="n">df_shaft</span><span class="o">.</span><span class="n">_n</span> <span class="o">==</span> <span class="nb">int</span><span class="p">(</span><span class="n">dfb_z_pos</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s2">&quot;n_l&quot;</span><span class="p">])</span> <span class="o">-</span> <span class="mi">1</span>
                                 <span class="p">]</span><span class="o">.</span><span class="n">values</span>
                             <span class="p">),</span>
@@ -728,7 +730,7 @@
 <span class="sd">        &gt;&gt;&gt; n = 6</span>
 <span class="sd">        &gt;&gt;&gt; L = [0.25 for _ in range(n)]</span>
 <span class="sd">        ...</span>
-<span class="sd">        &gt;&gt;&gt; shaft_elem = [rs.ShaftElement(l, i_d, o_d, steel,</span>
+<span class="sd">        &gt;&gt;&gt; shaft_elem = [rs.ShaftElement(l, i_d, o_d, material=steel,</span>
 <span class="sd">        ... shear_effects=True, rotary_inertia=True, gyroscopic=True) for l in L]</span>
 <span class="sd">        &gt;&gt;&gt; disk0 = DiskElement.from_geometry(2, steel, 0.07, 0.05, 0.28)</span>
 <span class="sd">        &gt;&gt;&gt; disk1 = DiskElement.from_geometry(4, steel, 0.07, 0.05, 0.35)</span>
@@ -749,7 +751,7 @@
         <span class="n">eigv_arr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">eigv_arr</span><span class="p">,</span> <span class="n">modal</span><span class="o">.</span><span class="n">wn</span><span class="p">[</span><span class="n">n_eigval</span><span class="p">])</span>
 
         <span class="c1"># this value is up to start the loop while</span>
-        <span class="n">error</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="n">error</span> <span class="o">=</span> <span class="mf">1.0e10</span>
         <span class="n">nel_r</span> <span class="o">=</span> <span class="mi">2</span>
 
         <span class="k">while</span> <span class="n">error</span> <span class="o">&gt;</span> <span class="n">err_max</span><span class="p">:</span>
@@ -759,25 +761,25 @@
 
             <span class="k">for</span> <span class="n">shaft</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">shaft_elements</span><span class="p">:</span>
                 <span class="n">le</span> <span class="o">=</span> <span class="n">shaft</span><span class="o">.</span><span class="n">L</span> <span class="o">/</span> <span class="n">nel_r</span>
-                <span class="n">odl</span> <span class="o">=</span> <span class="n">shaft</span><span class="o">.</span><span class="n">o_d_l</span>
-                <span class="n">odr</span> <span class="o">=</span> <span class="n">shaft</span><span class="o">.</span><span class="n">o_d_r</span>
-                <span class="n">idl</span> <span class="o">=</span> <span class="n">shaft</span><span class="o">.</span><span class="n">i_d_l</span>
-                <span class="n">idr</span> <span class="o">=</span> <span class="n">shaft</span><span class="o">.</span><span class="n">i_d_r</span>
+                <span class="n">odl</span> <span class="o">=</span> <span class="n">shaft</span><span class="o">.</span><span class="n">odl</span>
+                <span class="n">odr</span> <span class="o">=</span> <span class="n">shaft</span><span class="o">.</span><span class="n">odr</span>
+                <span class="n">idl</span> <span class="o">=</span> <span class="n">shaft</span><span class="o">.</span><span class="n">idl</span>
+                <span class="n">idr</span> <span class="o">=</span> <span class="n">shaft</span><span class="o">.</span><span class="n">idr</span>
 
                 <span class="c1"># loop to double the number of element</span>
                 <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nel_r</span><span class="p">):</span>
-                    <span class="n">o_d_r</span> <span class="o">=</span> <span class="p">((</span><span class="n">nel_r</span> <span class="o">-</span> <span class="n">j</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">odl</span> <span class="o">+</span> <span class="p">(</span><span class="n">j</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">odr</span><span class="p">)</span> <span class="o">/</span> <span class="n">nel_r</span>
-                    <span class="n">i_d_r</span> <span class="o">=</span> <span class="p">((</span><span class="n">nel_r</span> <span class="o">-</span> <span class="n">j</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">idl</span> <span class="o">+</span> <span class="p">(</span><span class="n">j</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">idr</span><span class="p">)</span> <span class="o">/</span> <span class="n">nel_r</span>
-                    <span class="n">o_d_l</span> <span class="o">=</span> <span class="p">((</span><span class="n">nel_r</span> <span class="o">-</span> <span class="n">j</span><span class="p">)</span> <span class="o">*</span> <span class="n">odl</span> <span class="o">+</span> <span class="n">j</span> <span class="o">*</span> <span class="n">odr</span><span class="p">)</span> <span class="o">/</span> <span class="n">nel_r</span>
-                    <span class="n">i_d_l</span> <span class="o">=</span> <span class="p">((</span><span class="n">nel_r</span> <span class="o">-</span> <span class="n">j</span><span class="p">)</span> <span class="o">*</span> <span class="n">idl</span> <span class="o">+</span> <span class="n">j</span> <span class="o">*</span> <span class="n">idr</span><span class="p">)</span> <span class="o">/</span> <span class="n">nel_r</span>
+                    <span class="n">odr</span> <span class="o">=</span> <span class="p">((</span><span class="n">nel_r</span> <span class="o">-</span> <span class="n">j</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">odl</span> <span class="o">+</span> <span class="p">(</span><span class="n">j</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">odr</span><span class="p">)</span> <span class="o">/</span> <span class="n">nel_r</span>
+                    <span class="n">idr</span> <span class="o">=</span> <span class="p">((</span><span class="n">nel_r</span> <span class="o">-</span> <span class="n">j</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">idl</span> <span class="o">+</span> <span class="p">(</span><span class="n">j</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">idr</span><span class="p">)</span> <span class="o">/</span> <span class="n">nel_r</span>
+                    <span class="n">odl</span> <span class="o">=</span> <span class="p">((</span><span class="n">nel_r</span> <span class="o">-</span> <span class="n">j</span><span class="p">)</span> <span class="o">*</span> <span class="n">odl</span> <span class="o">+</span> <span class="n">j</span> <span class="o">*</span> <span class="n">odr</span><span class="p">)</span> <span class="o">/</span> <span class="n">nel_r</span>
+                    <span class="n">idl</span> <span class="o">=</span> <span class="p">((</span><span class="n">nel_r</span> <span class="o">-</span> <span class="n">j</span><span class="p">)</span> <span class="o">*</span> <span class="n">idl</span> <span class="o">+</span> <span class="n">j</span> <span class="o">*</span> <span class="n">idr</span><span class="p">)</span> <span class="o">/</span> <span class="n">nel_r</span>
                     <span class="n">shaft_elem</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
-                        <span class="n">ShaftTaperedElement</span><span class="p">(</span>
-                            <span class="n">material</span><span class="o">=</span><span class="n">shaft</span><span class="o">.</span><span class="n">material</span><span class="p">,</span>
+                        <span class="n">ShaftElement</span><span class="p">(</span>
                             <span class="n">L</span><span class="o">=</span><span class="n">le</span><span class="p">,</span>
-                            <span class="n">i_d_l</span><span class="o">=</span><span class="n">i_d_l</span><span class="p">,</span>
-                            <span class="n">o_d_l</span><span class="o">=</span><span class="n">o_d_l</span><span class="p">,</span>
-                            <span class="n">i_d_r</span><span class="o">=</span><span class="n">i_d_r</span><span class="p">,</span>
-                            <span class="n">o_d_r</span><span class="o">=</span><span class="n">o_d_r</span><span class="p">,</span>
+                            <span class="n">idl</span><span class="o">=</span><span class="n">idl</span><span class="p">,</span>
+                            <span class="n">odl</span><span class="o">=</span><span class="n">odl</span><span class="p">,</span>
+                            <span class="n">idr</span><span class="o">=</span><span class="n">idr</span><span class="p">,</span>
+                            <span class="n">odr</span><span class="o">=</span><span class="n">odr</span><span class="p">,</span>
+                            <span class="n">material</span><span class="o">=</span><span class="n">shaft</span><span class="o">.</span><span class="n">material</span><span class="p">,</span>
                             <span class="n">shear_effects</span><span class="o">=</span><span class="n">shaft</span><span class="o">.</span><span class="n">shear_effects</span><span class="p">,</span>
                             <span class="n">rotary_inertia</span><span class="o">=</span><span class="n">shaft</span><span class="o">.</span><span class="n">rotary_inertia</span><span class="p">,</span>
                             <span class="n">gyroscopic</span><span class="o">=</span><span class="n">shaft</span><span class="o">.</span><span class="n">gyroscopic</span><span class="p">,</span>
@@ -1456,7 +1458,7 @@
         <span class="k">try</span><span class="p">:</span>
             <span class="n">max_diameter</span> <span class="o">=</span> <span class="nb">max</span><span class="p">([</span><span class="n">disk</span><span class="o">.</span><span class="n">o_d</span> <span class="k">for</span> <span class="n">disk</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">disk_elements</span><span class="p">])</span>
         <span class="k">except</span> <span class="p">(</span><span class="ne">ValueError</span><span class="p">,</span> <span class="ne">AttributeError</span><span class="p">):</span>
-            <span class="n">max_diameter</span> <span class="o">=</span> <span class="nb">max</span><span class="p">([</span><span class="n">shaft</span><span class="o">.</span><span class="n">o_d_l</span> <span class="k">for</span> <span class="n">shaft</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">shaft_elements</span><span class="p">])</span>
+            <span class="n">max_diameter</span> <span class="o">=</span> <span class="nb">max</span><span class="p">([</span><span class="n">shaft</span><span class="o">.</span><span class="n">odl</span> <span class="k">for</span> <span class="n">shaft</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">shaft_elements</span><span class="p">])</span>
 
         <span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="o">-</span><span class="mf">1.2</span> <span class="o">*</span> <span class="n">max_diameter</span><span class="p">,</span> <span class="mf">1.2</span> <span class="o">*</span> <span class="n">max_diameter</span><span class="p">)</span>
         <span class="n">ax</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s2">&quot;equal&quot;</span><span class="p">)</span>
@@ -1807,7 +1809,7 @@
 <span class="sd">        &gt;&gt;&gt; L = [0.25 for _ in range(n)]</span>
 <span class="sd">        &gt;&gt;&gt; shaft_elem = [</span>
 <span class="sd">        ...     ShaftElement(</span>
-<span class="sd">        ...         l, i_d, o_d, steel, shear_effects=True,</span>
+<span class="sd">        ...         l, i_d, o_d, material=steel, shear_effects=True,</span>
 <span class="sd">        ...         rotary_inertia=True, gyroscopic=True</span>
 <span class="sd">        ...     )</span>
 <span class="sd">        ...     for l in L</span>
@@ -1963,7 +1965,7 @@
 <span class="sd">        &gt;&gt;&gt; L = [0.25 for _ in range(n)]</span>
 <span class="sd">        &gt;&gt;&gt; shaft_elem = [</span>
 <span class="sd">        ...     ShaftElement(</span>
-<span class="sd">        ...         l, i_d, o_d, steel, shear_effects=True,</span>
+<span class="sd">        ...         l, i_d, o_d, material=steel, shear_effects=True,</span>
 <span class="sd">        ...         rotary_inertia=True, gyroscopic=True</span>
 <span class="sd">        ...     )</span>
 <span class="sd">        ...     for l in L</span>
@@ -2486,11 +2488,10 @@
         <span class="n">sparse</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
         <span class="n">min_w</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
         <span class="n">max_w</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">rated_w</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
         <span class="n">n_eigen</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span>
-        <span class="n">frequency</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
         <span class="n">nel_r</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
     <span class="p">):</span>
-
         <span class="sd">&quot;&quot;&quot;This class is an alternative to build rotors from separated</span>
 <span class="sd">        sections. Each section has the same number (n) of shaft elements.</span>
 
@@ -2521,7 +2522,7 @@
 <span class="sd">            Rotor speed.</span>
 <span class="sd">        nel_r : int, optional</span>
 <span class="sd">            Number or elements per shaft region.</span>
-<span class="sd">            Default is 1</span>
+<span class="sd">            Default is 1.</span>
 <span class="sd">        n_eigen : int, optional</span>
 <span class="sd">            Number of eigenvalues calculated by arpack.</span>
 <span class="sd">            Default is 12.</span>
@@ -2540,12 +2541,11 @@
 <span class="sd">        ...                        DiskElement.from_geometry(n=2, material=steel, width=0.07, i_d=0, o_d=0.35)],</span>
 <span class="sd">        ...             brg_seal_data=[BearingElement(n=0, kxx=1e6, cxx=0, kyy=1e6, cyy=0, kxy=0, cxy=0, kyx=0, cyx=0),</span>
 <span class="sd">        ...                            BearingElement(n=3, kxx=1e6, cxx=0, kyy=1e6, cyy=0, kxy=0, cxy=0, kyx=0, cyx=0)],</span>
-<span class="sd">        ...             frequency=0, nel_r=1)</span>
+<span class="sd">        ...             nel_r=1)</span>
 <span class="sd">        &gt;&gt;&gt; modal = rotor.run_modal(speed=0)</span>
 <span class="sd">        &gt;&gt;&gt; modal.wn.round(4)</span>
 <span class="sd">        array([ 85.7634,  85.7634, 271.9326, 271.9326, 718.58  , 718.58  ])</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-
         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">leng_data</span><span class="p">)</span> <span class="o">!=</span> <span class="nb">len</span><span class="p">(</span><span class="n">o_ds_data</span><span class="p">)</span> <span class="ow">or</span> <span class="nb">len</span><span class="p">(</span><span class="n">leng_data</span><span class="p">)</span> <span class="o">!=</span> <span class="nb">len</span><span class="p">(</span><span class="n">i_ds_data</span><span class="p">):</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;The matrices lenght do not match.&quot;</span><span class="p">)</span>
 
@@ -2623,8 +2623,9 @@
             <span class="n">n_eigen</span><span class="o">=</span><span class="n">n_eigen</span><span class="p">,</span>
             <span class="n">min_w</span><span class="o">=</span><span class="n">min_w</span><span class="p">,</span>
             <span class="n">max_w</span><span class="o">=</span><span class="n">max_w</span><span class="p">,</span>
-            <span class="n">rated_w</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+            <span class="n">rated_w</span><span class="o">=</span><span class="n">rated_w</span><span class="p">,</span>
         <span class="p">)</span></div></div>
+
 
 
 <span class="k">def</span> <span class="nf">rotor_example</span><span class="p">():</span>
@@ -2655,7 +2656,7 @@
 
     <span class="n">shaft_elem</span> <span class="o">=</span> <span class="p">[</span>
         <span class="n">ShaftElement</span><span class="p">(</span>
-            <span class="n">l</span><span class="p">,</span> <span class="n">i_d</span><span class="p">,</span> <span class="n">o_d</span><span class="p">,</span> <span class="n">steel</span><span class="p">,</span> <span class="n">shear_effects</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">rotary_inertia</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">gyroscopic</span><span class="o">=</span><span class="kc">True</span>
+            <span class="n">l</span><span class="p">,</span> <span class="n">i_d</span><span class="p">,</span> <span class="n">o_d</span><span class="p">,</span> <span class="n">material</span><span class="o">=</span><span class="n">steel</span><span class="p">,</span> <span class="n">shear_effects</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">rotary_inertia</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">gyroscopic</span><span class="o">=</span><span class="kc">True</span>
         <span class="p">)</span>
         <span class="k">for</span> <span class="n">l</span> <span class="ow">in</span> <span class="n">L</span>
     <span class="p">]</span>
@@ -2771,7 +2772,7 @@
     </p>
     <p>
         &copy; Copyright 2019, Team ROSS.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.2.2.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.3.0.<br/>
     </p>
   </div>
 </footer>

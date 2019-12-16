@@ -202,18 +202,20 @@ Default is 12.</p>
 </dd>
 </dl>
 <p class="rubric">Examples</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1">#  Rotor without damping with 2 shaft elements 1 disk and 2 bearings</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1">#  Rotor without damping with 2 shaft elements 1 disk and 2 bearings</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">ross</span> <span class="k">as</span> <span class="nn">rs</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">steel</span> <span class="o">=</span> <span class="n">rs</span><span class="o">.</span><span class="n">materials</span><span class="o">.</span><span class="n">steel</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">z</span> <span class="o">=</span> <span class="mi">0</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">le</span> <span class="o">=</span> <span class="mf">0.25</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">i_d</span> <span class="o">=</span> <span class="mi">0</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">o_d</span> <span class="o">=</span> <span class="mf">0.05</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">tim0</span> <span class="o">=</span> <span class="n">rs</span><span class="o">.</span><span class="n">ShaftElement</span><span class="p">(</span><span class="n">le</span><span class="p">,</span> <span class="n">i_d</span><span class="p">,</span> <span class="n">o_d</span><span class="p">,</span> <span class="n">steel</span><span class="p">,</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tim0</span> <span class="o">=</span> <span class="n">rs</span><span class="o">.</span><span class="n">ShaftElement</span><span class="p">(</span><span class="n">le</span><span class="p">,</span> <span class="n">i_d</span><span class="p">,</span> <span class="n">o_d</span><span class="p">,</span>
+<span class="gp">... </span>                       <span class="n">material</span><span class="o">=</span><span class="n">steel</span><span class="p">,</span>
 <span class="gp">... </span>                       <span class="n">shear_effects</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
 <span class="gp">... </span>                       <span class="n">rotary_inertia</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
 <span class="gp">... </span>                       <span class="n">gyroscopic</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">tim1</span> <span class="o">=</span> <span class="n">rs</span><span class="o">.</span><span class="n">ShaftElement</span><span class="p">(</span><span class="n">le</span><span class="p">,</span> <span class="n">i_d</span><span class="p">,</span> <span class="n">o_d</span><span class="p">,</span> <span class="n">steel</span><span class="p">,</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tim1</span> <span class="o">=</span> <span class="n">rs</span><span class="o">.</span><span class="n">ShaftElement</span><span class="p">(</span><span class="n">le</span><span class="p">,</span> <span class="n">i_d</span><span class="p">,</span> <span class="n">o_d</span><span class="p">,</span>
+<span class="gp">... </span>                       <span class="n">material</span><span class="o">=</span><span class="n">steel</span><span class="p">,</span>
 <span class="gp">... </span>                       <span class="n">shear_effects</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
 <span class="gp">... </span>                       <span class="n">rotary_inertia</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
 <span class="gp">... </span>                       <span class="n">gyroscopic</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
@@ -270,7 +272,7 @@ Default is 0.</p>
 </dd>
 </dl>
 <p class="rubric">Examples</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">rotor</span> <span class="o">=</span> <span class="n">rotor_example</span><span class="p">()</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">rotor</span> <span class="o">=</span> <span class="n">rotor_example</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">rotor</span><span class="o">.</span><span class="n">A</span><span class="p">()[</span><span class="mi">50</span><span class="p">:</span><span class="mi">56</span><span class="p">,</span> <span class="p">:</span><span class="mi">2</span><span class="p">])</span>
 <span class="go">array([[     0.,  10927.],</span>
 <span class="go">       [-10924.,     -0.],</span>
@@ -300,7 +302,7 @@ Default is 0.</p>
 </dd>
 </dl>
 <p class="rubric">Examples</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">rotor</span> <span class="o">=</span> <span class="n">rotor_example</span><span class="p">()</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">rotor</span> <span class="o">=</span> <span class="n">rotor_example</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">rotor</span><span class="o">.</span><span class="n">C</span><span class="p">(</span><span class="mi">0</span><span class="p">)[:</span><span class="mi">4</span><span class="p">,</span> <span class="p">:</span><span class="mi">4</span><span class="p">]</span>
 <span class="go">array([[0., 0., 0., 0.],</span>
 <span class="go">       [0., 0., 0., 0.],</span>
@@ -322,7 +324,7 @@ Default is 0.</p>
 </dd>
 </dl>
 <p class="rubric">Examples</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">rotor</span> <span class="o">=</span> <span class="n">rotor_example</span><span class="p">()</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">rotor</span> <span class="o">=</span> <span class="n">rotor_example</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">rotor</span><span class="o">.</span><span class="n">G</span><span class="p">()[:</span><span class="mi">4</span><span class="p">,</span> <span class="p">:</span><span class="mi">4</span><span class="p">]</span>
 <span class="go">array([[ 0.        ,  0.01943344, -0.00022681,  0.        ],</span>
 <span class="go">       [-0.01943344,  0.        ,  0.        , -0.00022681],</span>
@@ -350,7 +352,7 @@ Default is 0.</p>
 </dd>
 </dl>
 <p class="rubric">Examples</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">rotor</span> <span class="o">=</span> <span class="n">rotor_example</span><span class="p">()</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">rotor</span> <span class="o">=</span> <span class="n">rotor_example</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">rotor</span><span class="o">.</span><span class="n">K</span><span class="p">(</span><span class="mi">0</span><span class="p">)[:</span><span class="mi">4</span><span class="p">,</span> <span class="p">:</span><span class="mi">4</span><span class="p">]</span><span class="o">/</span><span class="mf">1e6</span><span class="p">)</span>
 <span class="go">array([[47.,  0.,  0.,  6.],</span>
 <span class="go">       [ 0., 46., -6.,  0.],</span>
@@ -372,7 +374,7 @@ Default is 0.</p>
 </dd>
 </dl>
 <p class="rubric">Examples</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">rotor</span> <span class="o">=</span> <span class="n">rotor_example</span><span class="p">()</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">rotor</span> <span class="o">=</span> <span class="n">rotor_example</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">rotor</span><span class="o">.</span><span class="n">M</span><span class="p">()[:</span><span class="mi">4</span><span class="p">,</span> <span class="p">:</span><span class="mi">4</span><span class="p">]</span>
 <span class="go">array([[ 1.42050794,  0.        ,  0.        ,  0.04931719],</span>
 <span class="go">       [ 0.        ,  1.42050794, -0.04931719,  0.        ],</span>
@@ -448,7 +450,7 @@ The natural frequency calculated in each run.</p>
 
 <dl class="method">
 <dt id="ross.Rotor.from_section">
-<em class="property">classmethod </em><code class="sig-name descname">from_section</code><span class="sig-paren">(</span><em class="sig-param">leng_data</em>, <em class="sig-param">o_ds_data</em>, <em class="sig-param">i_ds_data</em>, <em class="sig-param">disk_data=None</em>, <em class="sig-param">brg_seal_data=None</em>, <em class="sig-param">sparse=True</em>, <em class="sig-param">min_w=None</em>, <em class="sig-param">max_w=None</em>, <em class="sig-param">n_eigen=12</em>, <em class="sig-param">frequency=0</em>, <em class="sig-param">nel_r=1</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/rotor_assembly.html#Rotor.from_section"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.Rotor.from_section" title="Permalink to this definition">¶</a></dt>
+<em class="property">classmethod </em><code class="sig-name descname">from_section</code><span class="sig-paren">(</span><em class="sig-param">leng_data</em>, <em class="sig-param">o_ds_data</em>, <em class="sig-param">i_ds_data</em>, <em class="sig-param">disk_data=None</em>, <em class="sig-param">brg_seal_data=None</em>, <em class="sig-param">sparse=True</em>, <em class="sig-param">min_w=None</em>, <em class="sig-param">max_w=None</em>, <em class="sig-param">rated_w=None</em>, <em class="sig-param">n_eigen=12</em>, <em class="sig-param">nel_r=1</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/rotor_assembly.html#Rotor.from_section"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.Rotor.from_section" title="Permalink to this definition">¶</a></dt>
 <dd><p>This class is an alternative to build rotors from separated
 sections. Each section has the same number (n) of shaft elements.</p>
 <dl class="field-list">
@@ -482,7 +484,7 @@ cxy=0, kyx=0, cyx=0)</p>
 <dt><strong>w</strong><span class="classifier">float, optional</span></dt><dd><p>Rotor speed.</p>
 </dd>
 <dt><strong>nel_r</strong><span class="classifier">int, optional</span></dt><dd><p>Number or elements per shaft region.
-Default is 1</p>
+Default is 1.</p>
 </dd>
 <dt><strong>n_eigen</strong><span class="classifier">int, optional</span></dt><dd><p>Number of eigenvalues calculated by arpack.
 Default is 12.</p>
@@ -546,35 +548,35 @@ Default is False</p>
 </dl>
 <blockquote>
 <div></div></blockquote>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">i_d</span> <span class="o">=</span> <span class="mi">0</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">i_d</span> <span class="o">=</span> <span class="mi">0</span>
 <span class="go">    ..</span>
 </pre></div>
 </div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">o_d</span> <span class="o">=</span> <span class="mf">0.05</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">o_d</span> <span class="o">=</span> <span class="mf">0.05</span>
 <span class="go">    ..</span>
 </pre></div>
 </div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">n</span> <span class="o">=</span> <span class="mi">6</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">n</span> <span class="o">=</span> <span class="mi">6</span>
 <span class="go">    ..</span>
 </pre></div>
 </div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">L</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.25</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">)]</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">L</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.25</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">)]</span>
 <span class="go">    ..</span>
 </pre></div>
 </div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">shaft_elem</span> <span class="o">=</span> <span class="p">[</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">shaft_elem</span> <span class="o">=</span> <span class="p">[</span>
 <span class="go">    ..</span>
 </pre></div>
 </div>
 <dl class="simple">
 <dt>…     ShaftElement(</dt><dd></dd>
-<dt>…         l, i_d, o_d, steel, shear_effects=True,</dt><dd></dd>
+<dt>…         l, i_d, o_d, material=steel, shear_effects=True,</dt><dd></dd>
 <dt>…         rotary_inertia=True, gyroscopic=True</dt><dd></dd>
 <dt>…     )</dt><dd></dd>
 <dt>…     for l in L</dt><dd></dd>
 <dt>… ]</dt><dd></dd>
 </dl>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">disk0</span> <span class="o">=</span> <span class="n">DiskElement</span><span class="o">.</span><span class="n">from_geometry</span><span class="p">(</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">disk0</span> <span class="o">=</span> <span class="n">DiskElement</span><span class="o">.</span><span class="n">from_geometry</span><span class="p">(</span>
 <span class="go">    ..</span>
 </pre></div>
 </div>
@@ -582,7 +584,7 @@ Default is False</p>
 <dt>…     n=2, material=steel, width=0.07, i_d=0.05, o_d=0.28</dt><dd></dd>
 <dt>… )</dt><dd></dd>
 </dl>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">disk1</span> <span class="o">=</span> <span class="n">DiskElement</span><span class="o">.</span><span class="n">from_geometry</span><span class="p">(</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">disk1</span> <span class="o">=</span> <span class="n">DiskElement</span><span class="o">.</span><span class="n">from_geometry</span><span class="p">(</span>
 <span class="go">    ..</span>
 </pre></div>
 </div>
@@ -590,27 +592,27 @@ Default is False</p>
 <dt>…     n=4, material=steel, width=0.07, i_d=0.05, o_d=0.28</dt><dd></dd>
 <dt>… )</dt><dd></dd>
 </dl>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">stfx</span> <span class="o">=</span> <span class="mf">1e6</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">stfx</span> <span class="o">=</span> <span class="mf">1e6</span>
 <span class="go">    ..</span>
 </pre></div>
 </div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">stfy</span> <span class="o">=</span> <span class="mf">0.8e6</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">stfy</span> <span class="o">=</span> <span class="mf">0.8e6</span>
 <span class="go">    ..</span>
 </pre></div>
 </div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">bearing0</span> <span class="o">=</span> <span class="n">BearingElement</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">kxx</span><span class="o">=</span><span class="n">stfx</span><span class="p">,</span> <span class="n">kyy</span><span class="o">=</span><span class="n">stfy</span><span class="p">,</span> <span class="n">cxx</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">bearing0</span> <span class="o">=</span> <span class="n">BearingElement</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">kxx</span><span class="o">=</span><span class="n">stfx</span><span class="p">,</span> <span class="n">kyy</span><span class="o">=</span><span class="n">stfy</span><span class="p">,</span> <span class="n">cxx</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 <span class="go">    ..</span>
 </pre></div>
 </div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">bearing1</span> <span class="o">=</span> <span class="n">BearingElement</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="n">kxx</span><span class="o">=</span><span class="n">stfx</span><span class="p">,</span> <span class="n">kyy</span><span class="o">=</span><span class="n">stfy</span><span class="p">,</span> <span class="n">cxx</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">bearing1</span> <span class="o">=</span> <span class="n">BearingElement</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="n">kxx</span><span class="o">=</span><span class="n">stfx</span><span class="p">,</span> <span class="n">kyy</span><span class="o">=</span><span class="n">stfy</span><span class="p">,</span> <span class="n">cxx</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 <span class="go">    ..</span>
 </pre></div>
 </div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">rotor</span> <span class="o">=</span> <span class="n">Rotor</span><span class="p">(</span><span class="n">shaft_elem</span><span class="p">,</span> <span class="p">[</span><span class="n">disk0</span><span class="p">,</span> <span class="n">disk1</span><span class="p">],</span> <span class="p">[</span><span class="n">bearing0</span><span class="p">,</span> <span class="n">bearing1</span><span class="p">],</span> <span class="n">rated_w</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">rotor</span> <span class="o">=</span> <span class="n">Rotor</span><span class="p">(</span><span class="n">shaft_elem</span><span class="p">,</span> <span class="p">[</span><span class="n">disk0</span><span class="p">,</span> <span class="n">disk1</span><span class="p">],</span> <span class="p">[</span><span class="n">bearing0</span><span class="p">,</span> <span class="n">bearing1</span><span class="p">],</span> <span class="n">rated_w</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 <span class="go">    ..</span>
 </pre></div>
 </div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">rotor</span><span class="o">.</span><span class="n">plot_level1</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">stiffness_range</span><span class="o">=</span><span class="p">(</span><span class="mf">1e6</span><span class="p">,</span> <span class="mf">1e11</span><span class="p">))</span> 
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">rotor</span><span class="o">.</span><span class="n">plot_level1</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">stiffness_range</span><span class="o">=</span><span class="p">(</span><span class="mf">1e6</span><span class="p">,</span> <span class="mf">1e11</span><span class="p">))</span> 
 <span class="go">    ..</span>
 </pre></div>
 </div>
@@ -649,15 +651,15 @@ Default is matplotlib.</p>
 </dd>
 <dt>Examples:</dt><dd></dd>
 </dl>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">ross</span> <span class="k">as</span> <span class="nn">rs</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">ross</span> <span class="k">as</span> <span class="nn">rs</span>
 <span class="go">    ..</span>
 </pre></div>
 </div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">rotor</span> <span class="o">=</span> <span class="n">rs</span><span class="o">.</span><span class="n">rotor_example</span><span class="p">()</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">rotor</span> <span class="o">=</span> <span class="n">rs</span><span class="o">.</span><span class="n">rotor_example</span><span class="p">()</span>
 <span class="go">    ..</span>
 </pre></div>
 </div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">rotor</span><span class="o">.</span><span class="n">plot_rotor</span><span class="p">()</span> 
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">rotor</span><span class="o">.</span><span class="n">plot_rotor</span><span class="p">()</span> 
 <span class="go">    ..</span>
 </pre></div>
 </div>
@@ -740,7 +742,7 @@ It will be returned if plot=False.</p>
 </dd>
 </dl>
 <p class="rubric">Examples</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">rotor1</span> <span class="o">=</span> <span class="n">rotor_example</span><span class="p">()</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">rotor1</span> <span class="o">=</span> <span class="n">rotor_example</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">speed</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">400</span><span class="p">,</span> <span class="mi">101</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">camp</span> <span class="o">=</span> <span class="n">rotor1</span><span class="o">.</span><span class="n">run_campbell</span><span class="p">(</span><span class="n">speed</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">camp</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span> 
@@ -782,7 +784,7 @@ applied and a frequency range.</p>
 </dd>
 </dl>
 <p class="rubric">Examples</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">rotor</span> <span class="o">=</span> <span class="n">rotor_example</span><span class="p">()</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">rotor</span> <span class="o">=</span> <span class="n">rotor_example</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">speed</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1000</span><span class="p">,</span> <span class="mi">101</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">force</span> <span class="o">=</span> <span class="n">rotor</span><span class="o">.</span><span class="n">_unbalance_force</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mf">10.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="n">speed</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">resp</span> <span class="o">=</span> <span class="n">rotor</span><span class="o">.</span><span class="n">run_forced_response</span><span class="p">(</span><span class="n">force</span><span class="o">=</span><span class="n">force</span><span class="p">,</span> <span class="n">speed_range</span><span class="o">=</span><span class="n">speed</span><span class="p">)</span>
@@ -822,7 +824,7 @@ It will be returned if plot=False.</p>
 </dd>
 </dl>
 <p class="rubric">Examples</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">rotor</span> <span class="o">=</span> <span class="n">rotor_example</span><span class="p">()</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">rotor</span> <span class="o">=</span> <span class="n">rotor_example</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">speed</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1000</span><span class="p">,</span> <span class="mi">101</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">response</span> <span class="o">=</span> <span class="n">rotor</span><span class="o">.</span><span class="n">run_freq_response</span><span class="p">(</span><span class="n">speed_range</span><span class="o">=</span><span class="n">speed</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">response</span><span class="o">.</span><span class="n">magnitude</span> 
@@ -882,7 +884,7 @@ It will be returned if plot=False.</p>
 </dd>
 </dl>
 <p class="rubric">Examples</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">rotor</span> <span class="o">=</span> <span class="n">rotor_example</span><span class="p">()</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">rotor</span> <span class="o">=</span> <span class="n">rotor_example</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">speed</span> <span class="o">=</span> <span class="mf">500.0</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">size</span> <span class="o">=</span> <span class="mi">1000</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">node</span> <span class="o">=</span> <span class="mi">3</span>
@@ -957,7 +959,7 @@ It will be returned if plot=False.</p>
 </dd>
 </dl>
 <p class="rubric">Examples</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">rotor</span> <span class="o">=</span> <span class="n">rotor_example</span><span class="p">()</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">rotor</span> <span class="o">=</span> <span class="n">rotor_example</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">speed</span> <span class="o">=</span> <span class="mi">0</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">size</span> <span class="o">=</span> <span class="mi">28</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="n">size</span><span class="p">)</span>
@@ -982,7 +984,7 @@ It will be returned if plot=False.</p>
 </dd>
 </dl>
 <p class="rubric">Examples</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">rotor</span> <span class="o">=</span> <span class="n">rotor_example</span><span class="p">()</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">rotor</span> <span class="o">=</span> <span class="n">rotor_example</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">rotor</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s1">&#39;new_rotor&#39;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">Rotor</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="s1">&#39;new_rotor&#39;</span><span class="p">)</span>
 </pre></div>
@@ -1006,7 +1008,7 @@ Default is rotor speed.</p>
 </dd>
 </dl>
 <p class="rubric">Examples</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">rotor</span> <span class="o">=</span> <span class="n">rotor_example</span><span class="p">()</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">rotor</span> <span class="o">=</span> <span class="n">rotor_example</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">rotor</span><span class="o">.</span><span class="n">save_mat</span><span class="p">(</span><span class="s1">&#39;new_matrices.mat&#39;</span><span class="p">,</span> <span class="n">speed</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -1027,7 +1029,7 @@ rotor model. The data is presented in a table format.</p>
 </dd>
 </dl>
 <p class="rubric">Examples</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">rotor</span> <span class="o">=</span> <span class="n">rotor_example</span><span class="p">()</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">rotor</span> <span class="o">=</span> <span class="n">rotor_example</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">table</span> <span class="o">=</span> <span class="n">rotor</span><span class="o">.</span><span class="n">summary</span><span class="p">()</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="c1"># to display the plot use the command:</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="c1"># show(table)</span>
@@ -1064,7 +1066,7 @@ given a force, time and initial conditions.</p>
 </dd>
 </dl>
 <p class="rubric">Examples</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">rotor</span> <span class="o">=</span> <span class="n">rotor_example</span><span class="p">()</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">rotor</span> <span class="o">=</span> <span class="n">rotor_example</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">speed</span> <span class="o">=</span> <span class="mi">0</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">size</span> <span class="o">=</span> <span class="mi">28</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="n">size</span><span class="p">)</span>
@@ -1125,7 +1127,7 @@ The order of the array is: [output, input, phase]</p>
 </dd>
 </dl>
 <p class="rubric">Examples</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">rotor</span> <span class="o">=</span> <span class="n">rotor_example</span><span class="p">()</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">rotor</span> <span class="o">=</span> <span class="n">rotor_example</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">speed</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1000</span><span class="p">,</span> <span class="mi">101</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">response</span> <span class="o">=</span> <span class="n">rotor</span><span class="o">.</span><span class="n">unbalance_response</span><span class="p">(</span><span class="n">node</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">magnitude</span><span class="o">=</span><span class="mf">10.0</span><span class="p">,</span> <span class="n">phase</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">frequency_range</span><span class="o">=</span><span class="n">speed</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">response</span><span class="o">.</span><span class="n">magnitude</span> 
@@ -1151,7 +1153,7 @@ The order of the array is: [output, input, phase]</p>
     </p>
     <p>
         &copy; Copyright 2019, Team ROSS.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.2.2.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.3.0.<br/>
     </p>
   </div>
 </footer>
