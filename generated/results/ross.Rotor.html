@@ -450,7 +450,7 @@ The natural frequency calculated in each run.</p>
 
 <dl class="method">
 <dt id="ross.Rotor.from_section">
-<em class="property">classmethod </em><code class="sig-name descname">from_section</code><span class="sig-paren">(</span><em class="sig-param">leng_data</em>, <em class="sig-param">o_ds_data</em>, <em class="sig-param">i_ds_data</em>, <em class="sig-param">disk_data=None</em>, <em class="sig-param">brg_seal_data=None</em>, <em class="sig-param">sparse=True</em>, <em class="sig-param">min_w=None</em>, <em class="sig-param">max_w=None</em>, <em class="sig-param">rated_w=None</em>, <em class="sig-param">n_eigen=12</em>, <em class="sig-param">nel_r=1</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/rotor_assembly.html#Rotor.from_section"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.Rotor.from_section" title="Permalink to this definition">¶</a></dt>
+<em class="property">classmethod </em><code class="sig-name descname">from_section</code><span class="sig-paren">(</span><em class="sig-param">leng_data</em>, <em class="sig-param">idl_data</em>, <em class="sig-param">odl_data</em>, <em class="sig-param">idr_data=None</em>, <em class="sig-param">odr_data=None</em>, <em class="sig-param">material_data=None</em>, <em class="sig-param">disk_data=None</em>, <em class="sig-param">brg_seal_data=None</em>, <em class="sig-param">sparse=True</em>, <em class="sig-param">min_w=None</em>, <em class="sig-param">max_w=None</em>, <em class="sig-param">rated_w=None</em>, <em class="sig-param">n_eigen=12</em>, <em class="sig-param">nel_r=1</em>, <em class="sig-param">tag=None</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/rotor_assembly.html#Rotor.from_section"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.Rotor.from_section" title="Permalink to this definition">¶</a></dt>
 <dd><p>This class is an alternative to build rotors from separated
 sections. Each section has the same number (n) of shaft elements.</p>
 <dl class="field-list">
@@ -458,9 +458,18 @@ sections. Each section has the same number (n) of shaft elements.</p>
 <dd class="field-odd"><dl>
 <dt><strong>leng_data</strong><span class="classifier">list</span></dt><dd><p>List with the lengths of rotor regions.</p>
 </dd>
-<dt><strong>o_d_data</strong><span class="classifier">list</span></dt><dd><p>List with the outer diameters of rotor regions.</p>
+<dt><strong>idl_data</strong><span class="classifier">list</span></dt><dd><p>List with the inner diameters of rotor regions (Left Station).</p>
 </dd>
-<dt><strong>i_d_data</strong><span class="classifier">list</span></dt><dd><p>List with the inner diameters of rotor regions.</p>
+<dt><strong>odl_data</strong><span class="classifier">list</span></dt><dd><p>List with the outer diameters of rotor regions (Left Station).</p>
+</dd>
+<dt><strong>idr_data</strong><span class="classifier">list, optional</span></dt><dd><p>List with the inner diameters of rotor regions (Right Station).
+Default is equal to idl_data (cylindrical element).</p>
+</dd>
+<dt><strong>odr_data</strong><span class="classifier">list, optional</span></dt><dd><p>List with the outer diameters of rotor regions (Right Station).
+Default is equal to odl_data (cylindrical element).</p>
+</dd>
+<dt><strong>material_data</strong><span class="classifier">ross.material or list of ross.material</span></dt><dd><p>Defines a single material for all sections or each section can be
+defined by a material individually.</p>
 </dd>
 <dt><strong>disk_data</strong><span class="classifier">dict, optional</span></dt><dd><p>Dict holding disks datas.
 Example : disk_data=DiskElement.from_geometry(n=2,</p>
@@ -481,13 +490,13 @@ cxy=0, kyx=0, cyx=0)</p>
 </div></blockquote>
 <p><strong>*See ‘bearing_seal_element.py’ docstring for more information*</strong></p>
 </dd>
-<dt><strong>w</strong><span class="classifier">float, optional</span></dt><dd><p>Rotor speed.</p>
-</dd>
 <dt><strong>nel_r</strong><span class="classifier">int, optional</span></dt><dd><p>Number or elements per shaft region.
 Default is 1.</p>
 </dd>
 <dt><strong>n_eigen</strong><span class="classifier">int, optional</span></dt><dd><p>Number of eigenvalues calculated by arpack.
 Default is 12.</p>
+</dd>
+<dt><strong>tag</strong><span class="classifier">str</span></dt><dd><p>A tag for the rotor</p>
 </dd>
 </dl>
 </dd>
@@ -1153,7 +1162,7 @@ The order of the array is: [output, input, phase]</p>
     </p>
     <p>
         &copy; Copyright 2019, Team ROSS.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.3.0.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.3.1.<br/>
     </p>
   </div>
 </footer>

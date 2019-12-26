@@ -2481,8 +2481,11 @@
     <span class="k">def</span> <span class="nf">from_section</span><span class="p">(</span>
         <span class="bp">cls</span><span class="p">,</span>
         <span class="n">leng_data</span><span class="p">,</span>
-        <span class="n">o_ds_data</span><span class="p">,</span>
-        <span class="n">i_ds_data</span><span class="p">,</span>
+        <span class="n">idl_data</span><span class="p">,</span>
+        <span class="n">odl_data</span><span class="p">,</span>
+        <span class="n">idr_data</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">odr_data</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">material_data</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
         <span class="n">disk_data</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
         <span class="n">brg_seal_data</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
         <span class="n">sparse</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
@@ -2491,6 +2494,7 @@
         <span class="n">rated_w</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
         <span class="n">n_eigen</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span>
         <span class="n">nel_r</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+        <span class="n">tag</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
     <span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;This class is an alternative to build rotors from separated</span>
 <span class="sd">        sections. Each section has the same number (n) of shaft elements.</span>
@@ -2499,10 +2503,19 @@
 <span class="sd">        ----------</span>
 <span class="sd">        leng_data : list</span>
 <span class="sd">            List with the lengths of rotor regions.</span>
-<span class="sd">        o_d_data : list</span>
-<span class="sd">            List with the outer diameters of rotor regions.</span>
-<span class="sd">        i_d_data : list</span>
-<span class="sd">            List with the inner diameters of rotor regions.</span>
+<span class="sd">        idl_data : list</span>
+<span class="sd">            List with the inner diameters of rotor regions (Left Station).</span>
+<span class="sd">        odl_data : list</span>
+<span class="sd">            List with the outer diameters of rotor regions (Left Station).</span>
+<span class="sd">        idr_data : list, optional</span>
+<span class="sd">            List with the inner diameters of rotor regions (Right Station).</span>
+<span class="sd">            Default is equal to idl_data (cylindrical element).</span>
+<span class="sd">        odr_data : list, optional</span>
+<span class="sd">            List with the outer diameters of rotor regions (Right Station).</span>
+<span class="sd">            Default is equal to odl_data (cylindrical element).</span>
+<span class="sd">        material_data : ross.material or list of ross.material</span>
+<span class="sd">            Defines a single material for all sections or each section can be</span>
+<span class="sd">            defined by a material individually.</span>
 <span class="sd">        disk_data : dict, optional</span>
 <span class="sd">            Dict holding disks datas.</span>
 <span class="sd">            Example : disk_data=DiskElement.from_geometry(n=2,</span>
@@ -2518,14 +2531,14 @@
 <span class="sd">                                                   kyy=1e6, cyy=0, kxy=0,</span>
 <span class="sd">                                                   cxy=0, kyx=0, cyx=0)</span>
 <span class="sd">            ***See &#39;bearing_seal_element.py&#39; docstring for more information***</span>
-<span class="sd">        w : float, optional</span>
-<span class="sd">            Rotor speed.</span>
 <span class="sd">        nel_r : int, optional</span>
 <span class="sd">            Number or elements per shaft region.</span>
 <span class="sd">            Default is 1.</span>
 <span class="sd">        n_eigen : int, optional</span>
 <span class="sd">            Number of eigenvalues calculated by arpack.</span>
 <span class="sd">            Default is 12.</span>
+<span class="sd">        tag : str</span>
+<span class="sd">            A tag for the rotor</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
@@ -2533,10 +2546,11 @@
 
 <span class="sd">        Example</span>
 <span class="sd">        -------</span>
-
+<span class="sd">        &gt;&gt;&gt; from ross.materials import steel</span>
 <span class="sd">        &gt;&gt;&gt; rotor = Rotor.from_section(leng_data=[0.5,0.5,0.5],</span>
-<span class="sd">        ...             o_ds_data=[0.05,0.05,0.05],</span>
-<span class="sd">        ...             i_ds_data=[0,0,0],</span>
+<span class="sd">        ...             odl_data=[0.05,0.05,0.05],</span>
+<span class="sd">        ...             idl_data=[0,0,0],</span>
+<span class="sd">        ...             material_data=steel,</span>
 <span class="sd">        ...             disk_data=[DiskElement.from_geometry(n=1, material=steel, width=0.07, i_d=0, o_d=0.28),</span>
 <span class="sd">        ...                        DiskElement.from_geometry(n=2, material=steel, width=0.07, i_d=0, o_d=0.35)],</span>
 <span class="sd">        ...             brg_seal_data=[BearingElement(n=0, kxx=1e6, cxx=0, kyy=1e6, cyy=0, kxy=0, cxy=0, kyx=0, cyx=0),</span>
@@ -2546,8 +2560,20 @@
 <span class="sd">        &gt;&gt;&gt; modal.wn.round(4)</span>
 <span class="sd">        array([ 85.7634,  85.7634, 271.9326, 271.9326, 718.58  , 718.58  ])</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">leng_data</span><span class="p">)</span> <span class="o">!=</span> <span class="nb">len</span><span class="p">(</span><span class="n">o_ds_data</span><span class="p">)</span> <span class="ow">or</span> <span class="nb">len</span><span class="p">(</span><span class="n">leng_data</span><span class="p">)</span> <span class="o">!=</span> <span class="nb">len</span><span class="p">(</span><span class="n">i_ds_data</span><span class="p">):</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;The matrices lenght do not match.&quot;</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">leng_data</span><span class="p">)</span> <span class="o">!=</span> <span class="nb">len</span><span class="p">(</span><span class="n">odl_data</span><span class="p">)</span> <span class="ow">or</span> <span class="nb">len</span><span class="p">(</span><span class="n">leng_data</span><span class="p">)</span> <span class="o">!=</span> <span class="nb">len</span><span class="p">(</span><span class="n">idl_data</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;The lists size do not match (leng_data, odl_data and idl_data).&quot;</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">material_data</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">AttributeError</span><span class="p">(</span><span class="s2">&quot;Please define a material or a list of materials&quot;</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">idr_data</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">idr_data</span> <span class="o">=</span> <span class="n">idl_data</span>
+        <span class="k">if</span> <span class="n">odr_data</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">odr_data</span> <span class="o">=</span> <span class="n">odl_data</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">leng_data</span><span class="p">)</span> <span class="o">!=</span> <span class="nb">len</span><span class="p">(</span><span class="n">odr_data</span><span class="p">)</span> <span class="ow">or</span> <span class="nb">len</span><span class="p">(</span><span class="n">leng_data</span><span class="p">)</span> <span class="o">!=</span> <span class="nb">len</span><span class="p">(</span><span class="n">idr_data</span><span class="p">):</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;The lists size do not match (leng_data, odr_data and idr_data).&quot;</span><span class="p">)</span>
 
         <span class="k">def</span> <span class="nf">rotor_regions</span><span class="p">(</span><span class="n">nel_r</span><span class="p">):</span>
             <span class="sd">&quot;&quot;&quot;</span>
@@ -2562,47 +2588,73 @@
 <span class="sd">            -------</span>
 <span class="sd">            regions : list</span>
 <span class="sd">                List with elements</span>
-
-<span class="sd">            Example</span>
-<span class="sd">            -------</span>
 <span class="sd">            &quot;&quot;&quot;</span>
             <span class="n">regions</span> <span class="o">=</span> <span class="p">[]</span>
             <span class="n">shaft_elements</span> <span class="o">=</span> <span class="p">[]</span>
             <span class="n">disk_elements</span> <span class="o">=</span> <span class="p">[]</span>
             <span class="n">bearing_seal_elements</span> <span class="o">=</span> <span class="p">[]</span>
-            <span class="c1"># nel_r = initial number of elements per regions</span>
 
-            <span class="c1"># loop through rotor regions</span>
-            <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">leng</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">leng_data</span><span class="p">):</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">leng_data</span><span class="p">)</span> <span class="o">!=</span> <span class="nb">len</span><span class="p">(</span><span class="n">material_data</span><span class="p">):</span>
+                    <span class="k">raise</span> <span class="ne">IndexError</span><span class="p">(</span><span class="s2">&quot;material_data size does not match size of other lists&quot;</span><span class="p">)</span>
 
-                <span class="n">le</span> <span class="o">=</span> <span class="n">leng</span> <span class="o">/</span> <span class="n">nel_r</span>
-                <span class="n">o_ds</span> <span class="o">=</span> <span class="n">o_ds_data</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
-                <span class="n">i_ds</span> <span class="o">=</span> <span class="n">i_ds_data</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
-
-                <span class="c1"># loop to generate n elements per region</span>
-                <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nel_r</span><span class="p">):</span>
-                    <span class="n">shaft_elements</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
-                        <span class="n">ShaftElement</span><span class="p">(</span>
-                            <span class="n">le</span><span class="p">,</span>
-                            <span class="n">i_ds</span><span class="p">,</span>
-                            <span class="n">o_ds</span><span class="p">,</span>
-                            <span class="n">material</span><span class="o">=</span><span class="n">steel</span><span class="p">,</span>
-                            <span class="n">shear_effects</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-                            <span class="n">rotary_inertia</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-                            <span class="n">gyroscopic</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                <span class="c1"># loop through rotor regions</span>
+                <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">leng</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">leng_data</span><span class="p">):</span>
+                    <span class="n">le</span> <span class="o">=</span> <span class="n">leng</span> <span class="o">/</span> <span class="n">nel_r</span>
+                    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nel_r</span><span class="p">):</span>
+                        <span class="n">idl</span> <span class="o">=</span> <span class="p">(</span><span class="n">idr_data</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">-</span> <span class="n">idl_data</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="o">*</span> <span class="n">j</span> <span class="o">*</span> <span class="n">le</span> <span class="o">/</span> <span class="n">leng</span> <span class="o">+</span> <span class="n">idl_data</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+                        <span class="n">odl</span> <span class="o">=</span> <span class="p">(</span><span class="n">odr_data</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">-</span> <span class="n">odl_data</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="o">*</span> <span class="n">j</span> <span class="o">*</span> <span class="n">le</span> <span class="o">/</span> <span class="n">leng</span> <span class="o">+</span> <span class="n">odl_data</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+                        <span class="n">idr</span> <span class="o">=</span> <span class="p">(</span><span class="n">idr_data</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">-</span> <span class="n">idl_data</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="o">*</span> <span class="p">(</span><span class="n">j</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">le</span> <span class="o">/</span> <span class="n">leng</span> <span class="o">+</span> <span class="n">idl_data</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+                        <span class="n">odr</span> <span class="o">=</span> <span class="p">(</span><span class="n">odr_data</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">-</span> <span class="n">odl_data</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="o">*</span> <span class="p">(</span><span class="n">j</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">le</span> <span class="o">/</span> <span class="n">leng</span> <span class="o">+</span> <span class="n">odl_data</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+                        <span class="n">shaft_elements</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+                            <span class="n">ShaftElement</span><span class="p">(</span>
+                                <span class="n">le</span><span class="p">,</span>
+                                <span class="n">idl</span><span class="p">,</span>
+                                <span class="n">odl</span><span class="p">,</span>
+                                <span class="n">idr</span><span class="p">,</span>
+                                <span class="n">odr</span><span class="p">,</span>
+                                <span class="n">material</span><span class="o">=</span><span class="n">material_data</span><span class="p">[</span><span class="n">i</span><span class="p">],</span>
+                                <span class="n">shear_effects</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                                <span class="n">rotary_inertia</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                                <span class="n">gyroscopic</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                            <span class="p">)</span>
                         <span class="p">)</span>
-                    <span class="p">)</span>
+            <span class="k">except</span> <span class="ne">TypeError</span><span class="p">:</span>
+                <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">leng</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">leng_data</span><span class="p">):</span>
+                    <span class="n">le</span> <span class="o">=</span> <span class="n">leng</span> <span class="o">/</span> <span class="n">nel_r</span>
+                    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nel_r</span><span class="p">):</span>
+                        <span class="n">idl</span> <span class="o">=</span> <span class="p">(</span><span class="n">idr_data</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">-</span> <span class="n">idl_data</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="o">*</span> <span class="n">j</span> <span class="o">*</span> <span class="n">le</span> <span class="o">/</span> <span class="n">leng</span> <span class="o">+</span> <span class="n">idl_data</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+                        <span class="n">odl</span> <span class="o">=</span> <span class="p">(</span><span class="n">odr_data</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">-</span> <span class="n">odl_data</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="o">*</span> <span class="n">j</span> <span class="o">*</span> <span class="n">le</span> <span class="o">/</span> <span class="n">leng</span> <span class="o">+</span> <span class="n">odl_data</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+                        <span class="n">idr</span> <span class="o">=</span> <span class="p">(</span><span class="n">idr_data</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">-</span> <span class="n">idl_data</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="o">*</span> <span class="p">(</span><span class="n">j</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">le</span> <span class="o">/</span> <span class="n">leng</span> <span class="o">+</span> <span class="n">idl_data</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+                        <span class="n">odr</span> <span class="o">=</span> <span class="p">(</span><span class="n">odr_data</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">-</span> <span class="n">odl_data</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="o">*</span> <span class="p">(</span><span class="n">j</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">le</span> <span class="o">/</span> <span class="n">leng</span> <span class="o">+</span> <span class="n">odl_data</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+                        <span class="n">shaft_elements</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+                            <span class="n">ShaftElement</span><span class="p">(</span>
+                                <span class="n">le</span><span class="p">,</span>
+                                <span class="n">idl</span><span class="p">,</span>
+                                <span class="n">odl</span><span class="p">,</span>
+                                <span class="n">idr</span><span class="p">,</span>
+                                <span class="n">odr</span><span class="p">,</span>
+                                <span class="n">material</span><span class="o">=</span><span class="n">material_data</span><span class="p">,</span>
+                                <span class="n">shear_effects</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                                <span class="n">rotary_inertia</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                                <span class="n">gyroscopic</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                            <span class="p">)</span>
+                        <span class="p">)</span>
 
             <span class="n">regions</span><span class="o">.</span><span class="n">extend</span><span class="p">([</span><span class="n">shaft_elements</span><span class="p">])</span>
 
             <span class="k">for</span> <span class="n">DiskEl</span> <span class="ow">in</span> <span class="n">disk_data</span><span class="p">:</span>
                 <span class="n">aux_DiskEl</span> <span class="o">=</span> <span class="n">deepcopy</span><span class="p">(</span><span class="n">DiskEl</span><span class="p">)</span>
                 <span class="n">aux_DiskEl</span><span class="o">.</span><span class="n">n</span> <span class="o">=</span> <span class="n">nel_r</span> <span class="o">*</span> <span class="n">DiskEl</span><span class="o">.</span><span class="n">n</span>
+                <span class="n">aux_DiskEl</span><span class="o">.</span><span class="n">n_l</span> <span class="o">=</span> <span class="n">nel_r</span> <span class="o">*</span> <span class="n">DiskEl</span><span class="o">.</span><span class="n">n_l</span>
+                <span class="n">aux_DiskEl</span><span class="o">.</span><span class="n">n_r</span> <span class="o">=</span> <span class="n">nel_r</span> <span class="o">*</span> <span class="n">DiskEl</span><span class="o">.</span><span class="n">n_r</span>
                 <span class="n">disk_elements</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">aux_DiskEl</span><span class="p">)</span>
 
             <span class="k">for</span> <span class="n">Brg_SealEl</span> <span class="ow">in</span> <span class="n">brg_seal_data</span><span class="p">:</span>
                 <span class="n">aux_Brg_SealEl</span> <span class="o">=</span> <span class="n">deepcopy</span><span class="p">(</span><span class="n">Brg_SealEl</span><span class="p">)</span>
                 <span class="n">aux_Brg_SealEl</span><span class="o">.</span><span class="n">n</span> <span class="o">=</span> <span class="n">nel_r</span> <span class="o">*</span> <span class="n">Brg_SealEl</span><span class="o">.</span><span class="n">n</span>
+                <span class="n">aux_Brg_SealEl</span><span class="o">.</span><span class="n">n_l</span> <span class="o">=</span> <span class="n">nel_r</span> <span class="o">*</span> <span class="n">Brg_SealEl</span><span class="o">.</span><span class="n">n_l</span>
+                <span class="n">aux_Brg_SealEl</span><span class="o">.</span><span class="n">n_r</span> <span class="o">=</span> <span class="n">nel_r</span> <span class="o">*</span> <span class="n">Brg_SealEl</span><span class="o">.</span><span class="n">n_r</span>
                 <span class="n">bearing_seal_elements</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">aux_Brg_SealEl</span><span class="p">)</span>
 
             <span class="n">regions</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">disk_elements</span><span class="p">)</span>
@@ -2624,8 +2676,8 @@
             <span class="n">min_w</span><span class="o">=</span><span class="n">min_w</span><span class="p">,</span>
             <span class="n">max_w</span><span class="o">=</span><span class="n">max_w</span><span class="p">,</span>
             <span class="n">rated_w</span><span class="o">=</span><span class="n">rated_w</span><span class="p">,</span>
+            <span class="n">tag</span><span class="o">=</span><span class="n">tag</span>
         <span class="p">)</span></div></div>
-
 
 
 <span class="k">def</span> <span class="nf">rotor_example</span><span class="p">():</span>
@@ -2772,7 +2824,7 @@
     </p>
     <p>
         &copy; Copyright 2019, Team ROSS.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.3.0.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.3.1.<br/>
     </p>
   </div>
 </footer>
