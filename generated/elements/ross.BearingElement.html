@@ -517,7 +517,7 @@ The center of the stator is in position (0,0).</p>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">BearingElement</span><span class="o">.</span><span class="n">from_fluid_flow</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">nz</span><span class="p">,</span> <span class="n">ntheta</span><span class="p">,</span> <span class="n">nradius</span><span class="p">,</span> <span class="n">length</span><span class="p">,</span> <span class="n">omega</span><span class="p">,</span> <span class="n">p_in</span><span class="p">,</span>
 <span class="gp">... </span>                               <span class="n">p_out</span><span class="p">,</span> <span class="n">radius_rotor</span><span class="p">,</span> <span class="n">radius_stator</span><span class="p">,</span>
 <span class="gp">... </span>                               <span class="n">visc</span><span class="p">,</span> <span class="n">rho</span><span class="p">,</span> <span class="n">eccentricity</span><span class="o">=</span><span class="n">eccentricity</span><span class="p">)</span> 
-<span class="go">BearingElement(n=0,</span>
+<span class="go">BearingElement(n=0, n_link=None,</span>
 <span class="go"> kxx=[...</span>
 </pre></div>
 </div>
@@ -553,7 +553,7 @@ assumed to be the first sheet in the file.</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">os</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">file_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">realpath</span><span class="p">(</span><span class="vm">__file__</span><span class="p">))</span> <span class="o">+</span> <span class="s1">&#39;/tests/data/bearing_seal_si.xls&#39;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">BearingElement</span><span class="o">.</span><span class="n">from_table</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">file_path</span><span class="p">)</span> 
-<span class="go">BearingElement(n=0,</span>
+<span class="go">BearingElement(n=0, n_link=None,</span>
 <span class="go"> kxx=[...</span>
 </pre></div>
 </div>
@@ -677,15 +677,16 @@ function of the save function in the Rotor class.</p>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">ross.disk_element</span> <span class="kn">import</span> <span class="n">disk_example</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">disk</span> <span class="o">=</span> <span class="n">disk_example</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">disk</span><span class="o">.</span><span class="n">summary</span><span class="p">()</span>
-<span class="go">n                  0</span>
-<span class="go">n_l                0</span>
-<span class="go">n_r                0</span>
-<span class="go">m            32.5897</span>
-<span class="go">Id          0.178089</span>
-<span class="go">Ip          0.329564</span>
-<span class="go">tag             None</span>
-<span class="go">color        #b2182b</span>
-<span class="go">type     DiskElement</span>
+<span class="go">n                             0</span>
+<span class="go">n_l                           0</span>
+<span class="go">n_r                           0</span>
+<span class="go">m                       32.5897</span>
+<span class="go">Id                     0.178089</span>
+<span class="go">Ip                     0.329564</span>
+<span class="go">tag                        None</span>
+<span class="go">color                   #b2182b</span>
+<span class="go">dof_global_index           None</span>
+<span class="go">type                DiskElement</span>
 <span class="go">dtype: object</span>
 </pre></div>
 </div>

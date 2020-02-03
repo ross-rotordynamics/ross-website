@@ -430,28 +430,6 @@ the elements in yellow if slenderness ratio &lt; 1.6</p>
 </dd></dl>
 
 <dl class="method">
-<dt id="ross.ShaftElement.dof_global_index">
-<code class="sig-name descname">dof_global_index</code><span class="sig-paren">(</span><em class="sig-param">self</em><span class="sig-paren">)</span><a class="headerlink" href="#ross.ShaftElement.dof_global_index" title="Permalink to this definition">¶</a></dt>
-<dd><p>Get the global index for a element specific degree of freedom.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
-<dd class="field-odd"><dl class="simple">
-<dt>global_index: namedtupple</dt><dd><p>A named tuple containing the global index.</p>
-</dd>
-</dl>
-</dd>
-</dl>
-<p class="rubric">Examples</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># Example using BearingElement</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">ross.bearing_seal_element</span> <span class="kn">import</span> <span class="n">bearing_example</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">bearing</span> <span class="o">=</span> <span class="n">bearing_example</span><span class="p">()</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">bearing</span><span class="o">.</span><span class="n">dof_global_index</span><span class="p">()</span>
-<span class="go">GlobalIndex(x_0=0, y_0=1)</span>
-</pre></div>
-</div>
-</dd></dl>
-
-<dl class="method">
 <dt id="ross.ShaftElement.dof_local_index">
 <code class="sig-name descname">dof_local_index</code><span class="sig-paren">(</span><em class="sig-param">self</em><span class="sig-paren">)</span><a class="headerlink" href="#ross.ShaftElement.dof_local_index" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get the local index for a element specific degree of freedom.</p>
@@ -723,15 +701,16 @@ Default is False.</p>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">ross.disk_element</span> <span class="kn">import</span> <span class="n">disk_example</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">disk</span> <span class="o">=</span> <span class="n">disk_example</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">disk</span><span class="o">.</span><span class="n">summary</span><span class="p">()</span>
-<span class="go">n                  0</span>
-<span class="go">n_l                0</span>
-<span class="go">n_r                0</span>
-<span class="go">m            32.5897</span>
-<span class="go">Id          0.178089</span>
-<span class="go">Ip          0.329564</span>
-<span class="go">tag             None</span>
-<span class="go">color        #b2182b</span>
-<span class="go">type     DiskElement</span>
+<span class="go">n                             0</span>
+<span class="go">n_l                           0</span>
+<span class="go">n_r                           0</span>
+<span class="go">m                       32.5897</span>
+<span class="go">Id                     0.178089</span>
+<span class="go">Ip                     0.329564</span>
+<span class="go">tag                        None</span>
+<span class="go">color                   #b2182b</span>
+<span class="go">dof_global_index           None</span>
+<span class="go">type                DiskElement</span>
 <span class="go">dtype: object</span>
 </pre></div>
 </div>

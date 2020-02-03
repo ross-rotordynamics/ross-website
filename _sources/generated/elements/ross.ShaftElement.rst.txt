@@ -22,7 +22,6 @@ ross.ShaftElement
    .. automethod:: M
    .. automethod:: __init__
    .. automethod:: bokeh_patch
-   .. automethod:: dof_global_index
    .. automethod:: dof_local_index
    .. automethod:: dof_mapping
    .. automethod:: dump_data

@@ -396,7 +396,8 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">frequency</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">frequency</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">tag</span> <span class="o">=</span> <span class="n">tag</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">color</span> <span class="o">=</span> <span class="s2">&quot;#355d7a&quot;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">scale_factor</span> <span class="o">=</span> <span class="n">scale_factor</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">scale_factor</span> <span class="o">=</span> <span class="n">scale_factor</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">dof_global_index</span> <span class="o">=</span> <span class="kc">None</span></div>
 
     <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;This function returns a string representation of a bearing element.</span>
@@ -410,12 +411,12 @@
 <span class="sd">        --------</span>
 <span class="sd">        &gt;&gt;&gt; bearing = bearing_example()</span>
 <span class="sd">        &gt;&gt;&gt; bearing # doctest: +ELLIPSIS</span>
-<span class="sd">        BearingElement(n=0,</span>
+<span class="sd">        BearingElement(n=0, n_link=None,</span>
 <span class="sd">         kxx=[...</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="p">(</span>
             <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{self.__class__.__name__}</span><span class="s2">&quot;</span>
-            <span class="sa">f</span><span class="s2">&quot;(n=</span><span class="si">{self.n}</span><span class="s2">,</span><span class="se">\n</span><span class="s2">&quot;</span>
+            <span class="sa">f</span><span class="s2">&quot;(n=</span><span class="si">{self.n}</span><span class="s2">, n_link=</span><span class="si">{self.n_link}</span><span class="s2">,</span><span class="se">\n</span><span class="s2">&quot;</span>
             <span class="sa">f</span><span class="s2">&quot; kxx=</span><span class="si">{self.kxx}</span><span class="s2">, kxy=</span><span class="si">{self.kxy}</span><span class="s2">,</span><span class="se">\n</span><span class="s2">&quot;</span>
             <span class="sa">f</span><span class="s2">&quot; kyx=</span><span class="si">{self.kyx}</span><span class="s2">, kyy=</span><span class="si">{self.kyy}</span><span class="s2">,</span><span class="se">\n</span><span class="s2">&quot;</span>
             <span class="sa">f</span><span class="s2">&quot; cxx=</span><span class="si">{self.cxx}</span><span class="s2">, cxy=</span><span class="si">{self.cxy}</span><span class="s2">,</span><span class="se">\n</span><span class="s2">&quot;</span>
@@ -965,7 +966,7 @@
 <span class="sd">        &gt;&gt;&gt; import os</span>
 <span class="sd">        &gt;&gt;&gt; file_path = os.path.dirname(os.path.realpath(__file__)) + &#39;/tests/data/bearing_seal_si.xls&#39;</span>
 <span class="sd">        &gt;&gt;&gt; BearingElement.from_table(0, file_path) # doctest: +ELLIPSIS</span>
-<span class="sd">        BearingElement(n=0,</span>
+<span class="sd">        BearingElement(n=0, n_link=None,</span>
 <span class="sd">         kxx=[...</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">parameters</span> <span class="o">=</span> <span class="n">read_table_file</span><span class="p">(</span><span class="n">file</span><span class="p">,</span> <span class="s2">&quot;bearing&quot;</span><span class="p">,</span> <span class="n">sheet_name</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
@@ -1073,7 +1074,7 @@
 <span class="sd">        &gt;&gt;&gt; BearingElement.from_fluid_flow(0, nz, ntheta, nradius, length, omega, p_in,</span>
 <span class="sd">        ...                                p_out, radius_rotor, radius_stator,</span>
 <span class="sd">        ...                                visc, rho, eccentricity=eccentricity) # doctest: +ELLIPSIS</span>
-<span class="sd">        BearingElement(n=0,</span>
+<span class="sd">        BearingElement(n=0, n_link=None,</span>
 <span class="sd">         kxx=[...</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">fluid_flow</span> <span class="o">=</span> <span class="n">flow</span><span class="o">.</span><span class="n">FluidFlow</span><span class="p">(</span>

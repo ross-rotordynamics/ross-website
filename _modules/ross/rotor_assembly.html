@@ -161,7 +161,7 @@
 <span></span><span class="kn">import</span> <span class="nn">os</span>
 <span class="kn">import</span> <span class="nn">shutil</span>
 <span class="kn">import</span> <span class="nn">warnings</span>
-<span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">Iterable</span>
+<span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">Iterable</span><span class="p">,</span> <span class="n">namedtuple</span>
 <span class="kn">from</span> <span class="nn">copy</span> <span class="kn">import</span> <span class="n">copy</span><span class="p">,</span> <span class="n">deepcopy</span>
 <span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">cycle</span>
 <span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
@@ -396,13 +396,15 @@
             <span class="s2">&quot;L&quot;</span><span class="p">,</span>
             <span class="s2">&quot;node_pos&quot;</span><span class="p">,</span>
             <span class="s2">&quot;node_pos_r&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;idl&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;odl&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;idr&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;odr&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;i_d&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;o_d&quot;</span><span class="p">,</span>
             <span class="s2">&quot;beam_cg&quot;</span><span class="p">,</span>
             <span class="s2">&quot;axial_cg_pos&quot;</span><span class="p">,</span>
             <span class="s2">&quot;y_pos&quot;</span><span class="p">,</span>
-            <span class="s2">&quot;i_d&quot;</span><span class="p">,</span>
-            <span class="s2">&quot;o_d&quot;</span><span class="p">,</span>
-            <span class="s2">&quot;idr&quot;</span><span class="p">,</span>
-            <span class="s2">&quot;odr&quot;</span><span class="p">,</span>
             <span class="s2">&quot;material&quot;</span><span class="p">,</span>
             <span class="s2">&quot;rho&quot;</span><span class="p">,</span>
             <span class="s2">&quot;volume&quot;</span><span class="p">,</span>
@@ -524,6 +526,35 @@
             <span class="o">+</span> <span class="mi">8</span>
             <span class="o">+</span> <span class="mi">2</span> <span class="o">*</span> <span class="nb">len</span><span class="p">([</span><span class="n">el</span> <span class="k">for</span> <span class="n">el</span> <span class="ow">in</span> <span class="n">point_mass_elements</span><span class="p">])</span>
         <span class="p">)</span>
+
+        <span class="c1"># global indexes for dofs</span>
+        <span class="n">n_last</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">shaft_elements</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">n</span>
+        <span class="k">for</span> <span class="n">elm</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">elements</span><span class="p">:</span>
+            <span class="n">dof_mapping</span> <span class="o">=</span> <span class="n">elm</span><span class="o">.</span><span class="n">dof_mapping</span><span class="p">()</span>
+            <span class="n">global_dof_mapping</span> <span class="o">=</span> <span class="p">{}</span>
+            <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">dof_mapping</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+                <span class="n">dof_letter</span><span class="p">,</span> <span class="n">dof_number</span> <span class="o">=</span> <span class="n">k</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;_&quot;</span><span class="p">)</span>
+                <span class="n">global_dof_mapping</span><span class="p">[</span><span class="n">dof_letter</span> <span class="o">+</span> <span class="s2">&quot;_&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">dof_number</span><span class="p">)</span> <span class="o">+</span> <span class="n">elm</span><span class="o">.</span><span class="n">n</span><span class="p">)]</span> <span class="o">=</span> <span class="n">v</span>
+            <span class="n">dof_tuple</span> <span class="o">=</span> <span class="n">namedtuple</span><span class="p">(</span><span class="s2">&quot;GlobalIndex&quot;</span><span class="p">,</span> <span class="n">global_dof_mapping</span><span class="p">)</span>
+
+            <span class="k">if</span> <span class="n">elm</span><span class="o">.</span><span class="n">n</span> <span class="o">&lt;=</span> <span class="n">n_last</span> <span class="o">+</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">global_dof_mapping</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+                    <span class="n">global_dof_mapping</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="mi">4</span> <span class="o">*</span> <span class="n">elm</span><span class="o">.</span><span class="n">n</span> <span class="o">+</span> <span class="n">v</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">global_dof_mapping</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+                    <span class="n">global_dof_mapping</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">n_last</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">elm</span><span class="o">.</span><span class="n">n</span> <span class="o">+</span> <span class="mi">4</span> <span class="o">+</span> <span class="n">v</span>                
+
+            <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">elm</span><span class="p">,</span> <span class="s2">&quot;n_link&quot;</span><span class="p">)</span> <span class="ow">and</span> <span class="n">elm</span><span class="o">.</span><span class="n">n_link</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">elm</span><span class="o">.</span><span class="n">n_link</span> <span class="o">&lt;=</span> <span class="n">n_last</span> <span class="o">+</span> <span class="mi">1</span><span class="p">:</span>                
+                    <span class="n">global_dof_mapping</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;x_</span><span class="si">{elm.n_link}</span><span class="s2">&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">4</span> <span class="o">*</span> <span class="n">elm</span><span class="o">.</span><span class="n">n_link</span>
+                    <span class="n">global_dof_mapping</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;y_</span><span class="si">{elm.n_link}</span><span class="s2">&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">4</span> <span class="o">*</span> <span class="n">elm</span><span class="o">.</span><span class="n">n_link</span> <span class="o">+</span> <span class="mi">1</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">global_dof_mapping</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;x_</span><span class="si">{elm.n_link}</span><span class="s2">&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">n_last</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">elm</span><span class="o">.</span><span class="n">n_link</span> <span class="o">+</span> <span class="mi">4</span>
+                    <span class="n">global_dof_mapping</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;y_</span><span class="si">{elm.n_link}</span><span class="s2">&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">n_last</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">elm</span><span class="o">.</span><span class="n">n_link</span> <span class="o">+</span> <span class="mi">5</span>
+
+            <span class="n">dof_tuple</span> <span class="o">=</span> <span class="n">namedtuple</span><span class="p">(</span><span class="s2">&quot;GlobalIndex&quot;</span><span class="p">,</span> <span class="n">global_dof_mapping</span><span class="p">)</span>
+            <span class="n">elm</span><span class="o">.</span><span class="n">dof_global_index</span> <span class="o">=</span> <span class="n">dof_tuple</span><span class="p">(</span><span class="o">**</span><span class="n">global_dof_mapping</span><span class="p">)</span>
+            <span class="n">df</span><span class="o">.</span><span class="n">at</span><span class="p">[</span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="o">.</span><span class="n">tag</span> <span class="o">==</span> <span class="n">elm</span><span class="o">.</span><span class="n">tag</span><span class="p">]</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="s2">&quot;dof_global_index&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">elm</span><span class="o">.</span><span class="n">dof_global_index</span>
 
         <span class="c1">#  values for static analysis will be calculated by def static</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">Vx</span> <span class="o">=</span> <span class="kc">None</span>
@@ -835,7 +866,7 @@
         <span class="n">M0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">ndof</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">ndof</span><span class="p">))</span>
 
         <span class="k">for</span> <span class="n">elm</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">elements</span><span class="p">:</span>
-            <span class="n">dofs</span> <span class="o">=</span> <span class="n">elm</span><span class="o">.</span><span class="n">dof_global_index</span><span class="p">()</span>
+            <span class="n">dofs</span> <span class="o">=</span> <span class="n">elm</span><span class="o">.</span><span class="n">dof_global_index</span>
             <span class="n">M0</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ix_</span><span class="p">(</span><span class="n">dofs</span><span class="p">,</span> <span class="n">dofs</span><span class="p">)]</span> <span class="o">+=</span> <span class="n">elm</span><span class="o">.</span><span class="n">M</span><span class="p">()</span>
 
         <span class="k">return</span> <span class="n">M0</span></div>
@@ -864,7 +895,7 @@
         <span class="n">K0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">ndof</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">ndof</span><span class="p">))</span>
 
         <span class="k">for</span> <span class="n">elm</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">elements</span><span class="p">:</span>
-            <span class="n">dofs</span> <span class="o">=</span> <span class="n">elm</span><span class="o">.</span><span class="n">dof_global_index</span><span class="p">()</span>
+            <span class="n">dofs</span> <span class="o">=</span> <span class="n">elm</span><span class="o">.</span><span class="n">dof_global_index</span>
             <span class="k">try</span><span class="p">:</span>
                 <span class="n">K0</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ix_</span><span class="p">(</span><span class="n">dofs</span><span class="p">,</span> <span class="n">dofs</span><span class="p">)]</span> <span class="o">+=</span> <span class="n">elm</span><span class="o">.</span><span class="n">K</span><span class="p">(</span><span class="n">frequency</span><span class="p">)</span>
             <span class="k">except</span> <span class="ne">TypeError</span><span class="p">:</span>
@@ -896,7 +927,7 @@
         <span class="n">C0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">ndof</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">ndof</span><span class="p">))</span>
 
         <span class="k">for</span> <span class="n">elm</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">elements</span><span class="p">:</span>
-            <span class="n">dofs</span> <span class="o">=</span> <span class="n">elm</span><span class="o">.</span><span class="n">dof_global_index</span><span class="p">()</span>
+            <span class="n">dofs</span> <span class="o">=</span> <span class="n">elm</span><span class="o">.</span><span class="n">dof_global_index</span>
 
             <span class="k">try</span><span class="p">:</span>
                 <span class="n">C0</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ix_</span><span class="p">(</span><span class="n">dofs</span><span class="p">,</span> <span class="n">dofs</span><span class="p">)]</span> <span class="o">+=</span> <span class="n">elm</span><span class="o">.</span><span class="n">C</span><span class="p">(</span><span class="n">frequency</span><span class="p">)</span>
@@ -924,7 +955,7 @@
         <span class="n">G0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">ndof</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">ndof</span><span class="p">))</span>
 
         <span class="k">for</span> <span class="n">elm</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">elements</span><span class="p">:</span>
-            <span class="n">dofs</span> <span class="o">=</span> <span class="n">elm</span><span class="o">.</span><span class="n">dof_global_index</span><span class="p">()</span>
+            <span class="n">dofs</span> <span class="o">=</span> <span class="n">elm</span><span class="o">.</span><span class="n">dof_global_index</span>
             <span class="n">G0</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ix_</span><span class="p">(</span><span class="n">dofs</span><span class="p">,</span> <span class="n">dofs</span><span class="p">)]</span> <span class="o">+=</span> <span class="n">elm</span><span class="o">.</span><span class="n">G</span><span class="p">()</span>
 
         <span class="k">return</span> <span class="n">G0</span></div>
@@ -2328,7 +2359,7 @@
 
             <span class="k">for</span> <span class="n">elm</span> <span class="ow">in</span> <span class="n">aux_rotor</span><span class="o">.</span><span class="n">elements</span><span class="p">:</span>
                 <span class="k">if</span> <span class="n">elm</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span> <span class="o">!=</span> <span class="s2">&quot;SealElement&quot;</span><span class="p">:</span>
-                    <span class="n">dofs</span> <span class="o">=</span> <span class="n">elm</span><span class="o">.</span><span class="n">dof_global_index</span><span class="p">()</span>
+                    <span class="n">dofs</span> <span class="o">=</span> <span class="n">elm</span><span class="o">.</span><span class="n">dof_global_index</span>
                     <span class="n">n0</span> <span class="o">=</span> <span class="n">dofs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
                     <span class="n">n1</span> <span class="o">=</span> <span class="n">dofs</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span>  <span class="c1"># +1 to include this dof in the slice</span>
                     <span class="k">try</span><span class="p">:</span>
