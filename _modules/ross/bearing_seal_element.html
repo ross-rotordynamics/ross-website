@@ -171,8 +171,8 @@
 <span class="kn">from</span> <span class="nn">ross.element</span> <span class="kn">import</span> <span class="n">Element</span>
 <span class="kn">from</span> <span class="nn">ross.fluid_flow</span> <span class="kn">import</span> <span class="n">fluid_flow</span> <span class="k">as</span> <span class="n">flow</span>
 <span class="kn">from</span> <span class="nn">ross.fluid_flow.fluid_flow_coefficients</span> <span class="kn">import</span> <span class="p">(</span>
-    <span class="n">calculate_analytical_stiffness_matrix</span><span class="p">,</span>
-    <span class="n">calculate_analytical_damping_matrix</span><span class="p">,</span>
+    <span class="n">calculate_stiffness_matrix</span><span class="p">,</span>
+    <span class="n">calculate_damping_matrix</span><span class="p">,</span>
 <span class="p">)</span>
 
 <span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span>
@@ -1091,14 +1091,11 @@
             <span class="n">eccentricity</span><span class="o">=</span><span class="n">eccentricity</span><span class="p">,</span>
             <span class="n">load</span><span class="o">=</span><span class="n">load</span><span class="p">,</span>
         <span class="p">)</span>
-        <span class="n">c</span> <span class="o">=</span> <span class="n">calculate_analytical_damping_matrix</span><span class="p">(</span>
-            <span class="n">fluid_flow</span><span class="o">.</span><span class="n">load</span><span class="p">,</span>
-            <span class="n">fluid_flow</span><span class="o">.</span><span class="n">eccentricity_ratio</span><span class="p">,</span>
-            <span class="n">fluid_flow</span><span class="o">.</span><span class="n">radial_clearance</span><span class="p">,</span>
-            <span class="n">fluid_flow</span><span class="o">.</span><span class="n">omega</span><span class="p">,</span>
+        <span class="n">c</span> <span class="o">=</span> <span class="n">calculate_damping_matrix</span><span class="p">(</span>
+            <span class="n">fluid_flow</span><span class="p">,</span> <span class="n">force_type</span><span class="o">=</span><span class="s1">&#39;short&#39;</span>
         <span class="p">)</span>
-        <span class="n">k</span> <span class="o">=</span> <span class="n">calculate_analytical_stiffness_matrix</span><span class="p">(</span>
-            <span class="n">fluid_flow</span><span class="o">.</span><span class="n">load</span><span class="p">,</span> <span class="n">fluid_flow</span><span class="o">.</span><span class="n">eccentricity_ratio</span><span class="p">,</span> <span class="n">fluid_flow</span><span class="o">.</span><span class="n">radial_clearance</span>
+        <span class="n">k</span> <span class="o">=</span> <span class="n">calculate_stiffness_matrix</span><span class="p">(</span>
+            <span class="n">fluid_flow</span><span class="p">,</span> <span class="n">force_type</span><span class="o">=</span><span class="s1">&#39;short&#39;</span>
         <span class="p">)</span>
         <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span>
             <span class="n">n</span><span class="p">,</span>
