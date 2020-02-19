@@ -165,7 +165,9 @@
 <span class="kn">import</span> <span class="nn">matplotlib.lines</span> <span class="k">as</span> <span class="nn">mlines</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">scipy.interpolate</span> <span class="k">as</span> <span class="nn">interpolate</span>
+<span class="kn">import</span> <span class="nn">os</span>
 
+<span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
 <span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">namedtuple</span>
 <span class="kn">from</span> <span class="nn">ross.utils</span> <span class="kn">import</span> <span class="n">read_table_file</span>
 <span class="kn">from</span> <span class="nn">ross.element</span> <span class="kn">import</span> <span class="n">Element</span>
@@ -344,6 +346,7 @@
         <span class="n">tag</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
         <span class="n">n_link</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
         <span class="n">scale_factor</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+        <span class="n">color</span><span class="o">=</span><span class="s2">&quot;#355d7a&quot;</span>
     <span class="p">):</span>
 
         <span class="n">args</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;kxx&quot;</span><span class="p">,</span> <span class="s2">&quot;kyy&quot;</span><span class="p">,</span> <span class="s2">&quot;kxy&quot;</span><span class="p">,</span> <span class="s2">&quot;kyx&quot;</span><span class="p">,</span> <span class="s2">&quot;cxx&quot;</span><span class="p">,</span> <span class="s2">&quot;cyy&quot;</span><span class="p">,</span> <span class="s2">&quot;cxy&quot;</span><span class="p">,</span> <span class="s2">&quot;cyx&quot;</span><span class="p">]</span>
@@ -394,7 +397,7 @@
 
         <span class="bp">self</span><span class="o">.</span><span class="n">frequency</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">frequency</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">tag</span> <span class="o">=</span> <span class="n">tag</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">color</span> <span class="o">=</span> <span class="s2">&quot;#355d7a&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">color</span> <span class="o">=</span> <span class="n">color</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">scale_factor</span> <span class="o">=</span> <span class="n">scale_factor</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">dof_global_index</span> <span class="o">=</span> <span class="kc">None</span></div>
 
@@ -482,15 +485,17 @@
 <span class="sd">        Examples</span>
 <span class="sd">        --------</span>
 <span class="sd">        &gt;&gt;&gt; bearing = bearing_example()</span>
-<span class="sd">        &gt;&gt;&gt; bearing.save(&#39;BearingElement.toml&#39;)</span>
+<span class="sd">        &gt;&gt;&gt; bearing.save(Path(os.getcwd()))</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">load_data</span><span class="p">(</span><span class="n">file_name</span><span class="p">)</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_data</span><span class="p">(</span><span class="n">Path</span><span class="p">(</span><span class="n">file_name</span><span class="p">)</span><span class="o">/</span><span class="s1">&#39;BearingElement.toml&#39;</span><span class="p">)</span>
+
         <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">frequency</span><span class="p">)</span> <span class="o">==</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
             <span class="k">try</span><span class="p">:</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">frequency</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
                 <span class="n">frequency</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">frequency</span><span class="p">)</span>
             <span class="k">except</span> <span class="ne">IndexError</span><span class="p">:</span>
                 <span class="n">frequency</span> <span class="o">=</span> <span class="kc">None</span>
+
         <span class="n">data</span><span class="p">[</span><span class="s2">&quot;BearingElement&quot;</span><span class="p">][</span><span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">n</span><span class="p">)]</span> <span class="o">=</span> <span class="p">{</span>
             <span class="s2">&quot;n&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">n</span><span class="p">,</span>
             <span class="s2">&quot;kxx&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">kxx</span><span class="o">.</span><span class="n">coefficient</span><span class="p">,</span>
@@ -504,10 +509,10 @@
             <span class="s2">&quot;frequency&quot;</span><span class="p">:</span> <span class="n">frequency</span><span class="p">,</span>
             <span class="s2">&quot;tag&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">tag</span><span class="p">,</span>
         <span class="p">}</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">dump_data</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">file_name</span><span class="p">)</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">dump_data</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">Path</span><span class="p">(</span><span class="n">file_name</span><span class="p">)</span><span class="o">/</span><span class="s1">&#39;BearingElement.toml&#39;</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="BearingElement.load"><a class="viewcode-back" href="../../generated/elements/ross.BearingElement.html#ross.BearingElement.load">[docs]</a>    <span class="nd">@staticmethod</span>
-    <span class="k">def</span> <span class="nf">load</span><span class="p">(</span><span class="n">file_name</span><span class="o">=</span><span class="s2">&quot;BearingElement&quot;</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">load</span><span class="p">(</span><span class="n">file_name</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Loads a list of bearing elements saved in a toml format.</span>
 
 <span class="sd">        Parameters</span>
@@ -522,14 +527,14 @@
 <span class="sd">        Examples</span>
 <span class="sd">        --------</span>
 <span class="sd">        &gt;&gt;&gt; bearing1 = bearing_example()</span>
-<span class="sd">        &gt;&gt;&gt; bearing1.save(&#39;BearingElement.toml&#39;)</span>
-<span class="sd">        &gt;&gt;&gt; list_of_bearings = BearingElement.load(&#39;BearingElement.toml&#39;)</span>
+<span class="sd">        &gt;&gt;&gt; bearing1.save(os.getcwd())</span>
+<span class="sd">        &gt;&gt;&gt; list_of_bearings = BearingElement.load(os.getcwd())</span>
 <span class="sd">        &gt;&gt;&gt; bearing1 == list_of_bearings[0]</span>
 <span class="sd">        True</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">bearing_elements</span> <span class="o">=</span> <span class="p">[]</span>
-        <span class="n">bearing_elements_dict</span> <span class="o">=</span> <span class="n">BearingElement</span><span class="o">.</span><span class="n">load_data</span><span class="p">(</span>
-            <span class="n">file_name</span><span class="o">=</span><span class="s2">&quot;BearingElement.toml&quot;</span>
+        <span class="n">bearing_elements_dict</span> <span class="o">=</span> <span class="n">BearingElement</span><span class="o">.</span><span class="n">get_data</span><span class="p">(</span>
+            <span class="n">file_name</span><span class="o">=</span><span class="n">Path</span><span class="p">(</span><span class="n">file_name</span><span class="p">)</span><span class="o">/</span><span class="s2">&quot;BearingElement.toml&quot;</span>
         <span class="p">)</span>
         <span class="k">for</span> <span class="n">element</span> <span class="ow">in</span> <span class="n">bearing_elements_dict</span><span class="p">[</span><span class="s2">&quot;BearingElement&quot;</span><span class="p">]:</span>
             <span class="n">bearing</span> <span class="o">=</span> <span class="n">BearingElement</span><span class="p">(</span><span class="o">**</span><span class="n">bearing_elements_dict</span><span class="p">[</span><span class="s2">&quot;BearingElement&quot;</span><span class="p">][</span><span class="n">element</span><span class="p">])</span>

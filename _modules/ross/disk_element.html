@@ -158,12 +158,14 @@
       
   <h1>Source code for ross.disk_element</h1><div class="highlight"><pre>
 <span></span><span class="kn">import</span> <span class="nn">bokeh.palettes</span> <span class="k">as</span> <span class="nn">bp</span>
-<span class="kn">from</span> <span class="nn">bokeh.models</span> <span class="kn">import</span> <span class="n">ColumnDataSource</span><span class="p">,</span> <span class="n">HoverTool</span>
 <span class="kn">import</span> <span class="nn">matplotlib.patches</span> <span class="k">as</span> <span class="nn">mpatches</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">toml</span>
-<span class="kn">from</span> <span class="nn">ross.utils</span> <span class="kn">import</span> <span class="n">read_table_file</span>
+<span class="kn">import</span> <span class="nn">os</span>
 
+<span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
+<span class="kn">from</span> <span class="nn">bokeh.models</span> <span class="kn">import</span> <span class="n">ColumnDataSource</span><span class="p">,</span> <span class="n">HoverTool</span>
+<span class="kn">from</span> <span class="nn">ross.utils</span> <span class="kn">import</span> <span class="n">read_table_file</span>
 <span class="kn">from</span> <span class="nn">ross.element</span> <span class="kn">import</span> <span class="n">Element</span>
 
 <span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;DiskElement&quot;</span><span class="p">]</span>
@@ -188,7 +190,9 @@
 <span class="sd">     tag : str, optional</span>
 <span class="sd">         A tag to name the element</span>
 <span class="sd">         Default is None</span>
-
+<span class="sd">     color : str, optional</span>
+<span class="sd">         A color to be used when the element is represented.</span>
+<span class="sd">         Default is &#39;#b2182b&#39; (Cardinal).</span>
 <span class="sd">     Examples</span>
 <span class="sd">     --------</span>
 <span class="sd">     &gt;&gt;&gt; disk = DiskElement(n=0, m=32, Id=0.2, Ip=0.3)</span>
@@ -196,7 +200,7 @@
 <span class="sd">     0.3</span>
 <span class="sd">     &quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="DiskElement.__init__"><a class="viewcode-back" href="../../generated/elements/ross.DiskElement.html#ross.DiskElement.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">m</span><span class="p">,</span> <span class="n">Id</span><span class="p">,</span> <span class="n">Ip</span><span class="p">,</span> <span class="n">tag</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="DiskElement.__init__"><a class="viewcode-back" href="../../generated/elements/ross.DiskElement.html#ross.DiskElement.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">m</span><span class="p">,</span> <span class="n">Id</span><span class="p">,</span> <span class="n">Ip</span><span class="p">,</span> <span class="n">tag</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">bokeh_colors</span><span class="p">[</span><span class="mi">9</span><span class="p">]):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">n</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">n_l</span> <span class="o">=</span> <span class="n">n</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">n_r</span> <span class="o">=</span> <span class="n">n</span>
@@ -205,8 +209,9 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">Id</span> <span class="o">=</span> <span class="n">Id</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">Ip</span> <span class="o">=</span> <span class="n">Ip</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">tag</span> <span class="o">=</span> <span class="n">tag</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">color</span> <span class="o">=</span> <span class="n">bokeh_colors</span><span class="p">[</span><span class="mi">9</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">color</span> <span class="o">=</span> <span class="n">color</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">dof_global_index</span> <span class="o">=</span> <span class="kc">None</span></div>
+
 
     <span class="k">def</span> <span class="fm">__eq__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;This function allows disk elements to be compared.</span>
@@ -269,7 +274,7 @@
     <span class="k">def</span> <span class="fm">__hash__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="nb">hash</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">tag</span><span class="p">)</span>
 
-<div class="viewcode-block" id="DiskElement.save"><a class="viewcode-back" href="../../generated/elements/ross.DiskElement.html#ross.DiskElement.save">[docs]</a>    <span class="k">def</span> <span class="nf">save</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">file_name</span><span class="p">):</span>
+<div class="viewcode-block" id="DiskElement.save"><a class="viewcode-back" href="../../generated/elements/ross.DiskElement.html#ross.DiskElement.save">[docs]</a>    <span class="k">def</span> <span class="nf">save</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">file_name</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">()):</span>
         <span class="sd">&quot;&quot;&quot;Saves a disk element in a toml format.</span>
 
 <span class="sd">        It works as an auxiliary function of the save function in the Rotor</span>
@@ -287,9 +292,9 @@
 <span class="sd">        Examples</span>
 <span class="sd">        --------</span>
 <span class="sd">        &gt;&gt;&gt; disk = disk_example()</span>
-<span class="sd">        &gt;&gt;&gt; disk.save(&#39;DiskElement.toml&#39;)</span>
+<span class="sd">        &gt;&gt;&gt; disk.save()</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">load_data</span><span class="p">(</span><span class="n">file_name</span><span class="p">)</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_data</span><span class="p">(</span><span class="n">Path</span><span class="p">(</span><span class="n">file_name</span><span class="p">)</span><span class="o">/</span><span class="s1">&#39;DiskElement.toml&#39;</span><span class="p">)</span>
         <span class="n">data</span><span class="p">[</span><span class="s2">&quot;DiskElement&quot;</span><span class="p">][</span><span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">n</span><span class="p">)]</span> <span class="o">=</span> <span class="p">{</span>
             <span class="s2">&quot;n&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">n</span><span class="p">,</span>
             <span class="s2">&quot;m&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">m</span><span class="p">,</span>
@@ -297,10 +302,10 @@
             <span class="s2">&quot;Ip&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">Ip</span><span class="p">,</span>
             <span class="s2">&quot;tag&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">tag</span><span class="p">,</span>
         <span class="p">}</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">dump_data</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">file_name</span><span class="p">)</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">dump_data</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">Path</span><span class="p">(</span><span class="n">file_name</span><span class="p">)</span><span class="o">/</span><span class="s1">&#39;DiskElement.toml&#39;</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="DiskElement.load"><a class="viewcode-back" href="../../generated/elements/ross.DiskElement.html#ross.DiskElement.load">[docs]</a>    <span class="nd">@staticmethod</span>
-    <span class="k">def</span> <span class="nf">load</span><span class="p">(</span><span class="n">file_name</span><span class="o">=</span><span class="s2">&quot;DiskElement&quot;</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">load</span><span class="p">(</span><span class="n">file_name</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">()):</span>
         <span class="sd">&quot;&quot;&quot;Loads a list of disk elements saved in a toml format.</span>
 
 <span class="sd">        Parameters</span>
@@ -316,8 +321,8 @@
 <span class="sd">        Examples</span>
 <span class="sd">        --------</span>
 <span class="sd">        &gt;&gt;&gt; disk1 = disk_example()</span>
-<span class="sd">        &gt;&gt;&gt; disk1.save(&#39;DiskElement.toml&#39;)</span>
-<span class="sd">        &gt;&gt;&gt; list_of_disks = DiskElement.load(&#39;DiskElement.toml&#39;)</span>
+<span class="sd">        &gt;&gt;&gt; disk1.save(os.getcwd())</span>
+<span class="sd">        &gt;&gt;&gt; list_of_disks = DiskElement.load(os.getcwd())</span>
 <span class="sd">        &gt;&gt;&gt; disk1 == list_of_disks[0]</span>
 <span class="sd">        True</span>
 <span class="sd">        &quot;&quot;&quot;</span>

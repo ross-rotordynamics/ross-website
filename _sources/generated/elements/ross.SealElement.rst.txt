@@ -28,8 +28,8 @@ ross.SealElement
    .. automethod:: dump_data
    .. automethod:: from_fluid_flow
    .. automethod:: from_table
+   .. automethod:: get_data
    .. automethod:: load
-   .. automethod:: load_data
    .. automethod:: patch
    .. automethod:: save
    .. automethod:: summary

@@ -22,7 +22,6 @@ ross.Rotor
    .. automethod:: K
    .. automethod:: M
    .. automethod:: __init__
-   .. automethod:: available_rotors
    .. automethod:: check_slenderness_ratio
    .. automethod:: convergence
    .. automethod:: from_section

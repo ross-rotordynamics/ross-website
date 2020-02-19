@@ -19,7 +19,7 @@ ross.Material
    .. automethod:: __init__
    .. automethod:: available_materials
    .. automethod:: dump_data
-   .. automethod:: load_data
+   .. automethod:: get_data
    .. automethod:: remove_material
    .. automethod:: save_material
    .. automethod:: use_material

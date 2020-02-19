@@ -27,8 +27,8 @@ ross.DiskElement
    .. automethod:: dump_data
    .. automethod:: from_geometry
    .. automethod:: from_table
+   .. automethod:: get_data
    .. automethod:: load
-   .. automethod:: load_data
    .. automethod:: patch
    .. automethod:: save
    .. automethod:: summary

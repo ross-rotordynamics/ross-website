@@ -170,7 +170,7 @@
 <h1>ross.Rotor<a class="headerlink" href="#ross-rotor" title="Permalink to this headline">¶</a></h1>
 <dl class="class">
 <dt id="ross.Rotor">
-<em class="property">class </em><code class="sig-prename descclassname">ross.</code><code class="sig-name descname">Rotor</code><span class="sig-paren">(</span><em class="sig-param">shaft_elements</em>, <em class="sig-param">disk_elements=None</em>, <em class="sig-param">bearing_seal_elements=None</em>, <em class="sig-param">point_mass_elements=None</em>, <em class="sig-param">sparse=True</em>, <em class="sig-param">n_eigen=12</em>, <em class="sig-param">min_w=None</em>, <em class="sig-param">max_w=None</em>, <em class="sig-param">rated_w=None</em>, <em class="sig-param">tag=None</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/rotor_assembly.html#Rotor"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.Rotor" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">ross.</code><code class="sig-name descname">Rotor</code><span class="sig-paren">(</span><em class="sig-param">shaft_elements</em>, <em class="sig-param">disk_elements=None</em>, <em class="sig-param">bearing_elements=None</em>, <em class="sig-param">point_mass_elements=None</em>, <em class="sig-param">sparse=True</em>, <em class="sig-param">n_eigen=12</em>, <em class="sig-param">min_w=None</em>, <em class="sig-param">max_w=None</em>, <em class="sig-param">rated_w=None</em>, <em class="sig-param">tag=None</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/rotor_assembly.html#Rotor"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.Rotor" title="Permalink to this definition">¶</a></dt>
 <dd><p>A rotor object.</p>
 <p>This class will create a rotor with the shaft,
 disk, bearing and seal elements provided.</p>
@@ -181,7 +181,7 @@ disk, bearing and seal elements provided.</p>
 </dd>
 <dt><strong>disk_elements</strong><span class="classifier">list</span></dt><dd><p>List with the disk elements</p>
 </dd>
-<dt><strong>bearing_seal_elements</strong><span class="classifier">list</span></dt><dd><p>List with the bearing elements</p>
+<dt><strong>bearing_elements</strong><span class="classifier">list</span></dt><dd><p>List with the bearing elements</p>
 </dd>
 <dt><strong>point_mass_elements: list</strong></dt><dd><p>List with the point mass elements</p>
 </dd>
@@ -246,7 +246,7 @@ Default is 12.</p>
 </dl>
 <dl class="method">
 <dt id="ross.Rotor.__init__">
-<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">shaft_elements</em>, <em class="sig-param">disk_elements=None</em>, <em class="sig-param">bearing_seal_elements=None</em>, <em class="sig-param">point_mass_elements=None</em>, <em class="sig-param">sparse=True</em>, <em class="sig-param">n_eigen=12</em>, <em class="sig-param">min_w=None</em>, <em class="sig-param">max_w=None</em>, <em class="sig-param">rated_w=None</em>, <em class="sig-param">tag=None</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/rotor_assembly.html#Rotor.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.Rotor.__init__" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">shaft_elements</em>, <em class="sig-param">disk_elements=None</em>, <em class="sig-param">bearing_elements=None</em>, <em class="sig-param">point_mass_elements=None</em>, <em class="sig-param">sparse=True</em>, <em class="sig-param">n_eigen=12</em>, <em class="sig-param">min_w=None</em>, <em class="sig-param">max_w=None</em>, <em class="sig-param">rated_w=None</em>, <em class="sig-param">tag=None</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/rotor_assembly.html#Rotor.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.Rotor.__init__" title="Permalink to this definition">¶</a></dt>
 <dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
 </dd></dl>
 
@@ -386,14 +386,8 @@ Default is 0.</p>
 
 <dl class="method">
 <dt>
-<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">shaft_elements</em>, <em class="sig-param">disk_elements=None</em>, <em class="sig-param">bearing_seal_elements=None</em>, <em class="sig-param">point_mass_elements=None</em>, <em class="sig-param">sparse=True</em>, <em class="sig-param">n_eigen=12</em>, <em class="sig-param">min_w=None</em>, <em class="sig-param">max_w=None</em>, <em class="sig-param">rated_w=None</em>, <em class="sig-param">tag=None</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/rotor_assembly.html#Rotor.__init__"><span class="viewcode-link">[source]</span></a></dt>
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">shaft_elements</em>, <em class="sig-param">disk_elements=None</em>, <em class="sig-param">bearing_elements=None</em>, <em class="sig-param">point_mass_elements=None</em>, <em class="sig-param">sparse=True</em>, <em class="sig-param">n_eigen=12</em>, <em class="sig-param">min_w=None</em>, <em class="sig-param">max_w=None</em>, <em class="sig-param">rated_w=None</em>, <em class="sig-param">tag=None</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/rotor_assembly.html#Rotor.__init__"><span class="viewcode-link">[source]</span></a></dt>
 <dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="ross.Rotor.available_rotors">
-<em class="property">static </em><code class="sig-name descname">available_rotors</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/rotor_assembly.html#Rotor.available_rotors"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.Rotor.available_rotors" title="Permalink to this definition">¶</a></dt>
-<dd><p>Displays previously saved rotors</p>
 </dd></dl>
 
 <dl class="method">
@@ -510,12 +504,12 @@ Default is 12.</p>
 
 <dl class="method">
 <dt id="ross.Rotor.load">
-<em class="property">static </em><code class="sig-name descname">load</code><span class="sig-paren">(</span><em class="sig-param">file_name</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/rotor_assembly.html#Rotor.load"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.Rotor.load" title="Permalink to this definition">¶</a></dt>
+<em class="property">static </em><code class="sig-name descname">load</code><span class="sig-paren">(</span><em class="sig-param">file_path</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/rotor_assembly.html#Rotor.load"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.Rotor.load" title="Permalink to this definition">¶</a></dt>
 <dd><p>Load rotor from toml file.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>file_name</strong><span class="classifier">str</span></dt><dd></dd>
+<dt><strong>file_path</strong><span class="classifier">str</span></dt><dd></dd>
 </dl>
 </dd>
 <dt class="field-even">Returns</dt>
@@ -714,12 +708,12 @@ Default is False</p>
 
 <dl class="method">
 <dt id="ross.Rotor.remove">
-<em class="property">static </em><code class="sig-name descname">remove</code><span class="sig-paren">(</span><em class="sig-param">rotor_name</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/rotor_assembly.html#Rotor.remove"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.Rotor.remove" title="Permalink to this definition">¶</a></dt>
-<dd><p>Remove a previously saved rotor</p>
+<em class="property">static </em><code class="sig-name descname">remove</code><span class="sig-paren">(</span><em class="sig-param">file_path</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/rotor_assembly.html#Rotor.remove"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.Rotor.remove" title="Permalink to this definition">¶</a></dt>
+<dd><p>Remove a previously saved rotor in rotors folder.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>file_name</strong><span class="classifier">str</span></dt><dd></dd>
+<dt><strong>file_path</strong><span class="classifier">str</span></dt><dd></dd>
 </dl>
 </dd>
 </dl>
@@ -983,12 +977,12 @@ It will be returned if plot=False.</p>
 
 <dl class="method">
 <dt id="ross.Rotor.save">
-<code class="sig-name descname">save</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">file_name</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/rotor_assembly.html#Rotor.save"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.Rotor.save" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">save</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">rotor_name='rotor'</em>, <em class="sig-param">file_path=PosixPath('.')</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/rotor_assembly.html#Rotor.save"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.Rotor.save" title="Permalink to this definition">¶</a></dt>
 <dd><p>Save rotor to toml file.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>file_name</strong><span class="classifier">str</span></dt><dd></dd>
+<dt><strong>file_path</strong><span class="classifier">str</span></dt><dd></dd>
 </dl>
 </dd>
 </dl>
@@ -1002,12 +996,12 @@ It will be returned if plot=False.</p>
 
 <dl class="method">
 <dt id="ross.Rotor.save_mat">
-<code class="sig-name descname">save_mat</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">file_name</em>, <em class="sig-param">speed</em>, <em class="sig-param">frequency=None</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/rotor_assembly.html#Rotor.save_mat"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.Rotor.save_mat" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">save_mat</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">file_path</em>, <em class="sig-param">speed</em>, <em class="sig-param">frequency=None</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/rotor_assembly.html#Rotor.save_mat"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.Rotor.save_mat" title="Permalink to this definition">¶</a></dt>
 <dd><p>Save matrices and rotor model to a .mat file.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>file_name</strong><span class="classifier">str</span></dt><dd></dd>
+<dt><strong>file_path</strong><span class="classifier">str</span></dt><dd></dd>
 <dt><strong>speed: float</strong></dt><dd><p>Rotor speed.</p>
 </dd>
 <dt><strong>frequency: float, optional</strong></dt><dd><p>Excitation frequency.

@@ -319,7 +319,6 @@
             <span class="k">raise</span> <span class="ne">AttributeError</span><span class="p">(</span><span class="s2">&quot;Material is not defined.&quot;</span><span class="p">)</span>
 
         <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">material</span><span class="p">)</span> <span class="ow">is</span> <span class="nb">str</span><span class="p">:</span>
-            <span class="n">os</span><span class="o">.</span><span class="n">chdir</span><span class="p">(</span><span class="n">Path</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">ross</span><span class="o">.</span><span class="vm">__file__</span><span class="p">)))</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">material</span> <span class="o">=</span> <span class="n">Material</span><span class="o">.</span><span class="n">use_material</span><span class="p">(</span><span class="n">material</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">material</span> <span class="o">=</span> <span class="n">material</span>
@@ -501,7 +500,7 @@
     <span class="k">def</span> <span class="fm">__hash__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="nb">hash</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">tag</span><span class="p">)</span>
 
-<div class="viewcode-block" id="ShaftElement.save"><a class="viewcode-back" href="../../generated/elements/ross.ShaftElement.html#ross.ShaftElement.save">[docs]</a>    <span class="k">def</span> <span class="nf">save</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">file_name</span><span class="p">):</span>
+<div class="viewcode-block" id="ShaftElement.save"><a class="viewcode-back" href="../../generated/elements/ross.ShaftElement.html#ross.ShaftElement.save">[docs]</a>    <span class="k">def</span> <span class="nf">save</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">file_name</span><span class="o">=</span><span class="n">Path</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">())):</span>
         <span class="sd">&quot;&quot;&quot;Save shaft elements to toml file.</span>
 
 <span class="sd">        Parameters</span>
@@ -515,9 +514,9 @@
 <span class="sd">        ...        L=0.25, idl=0, idr=0, odl=0.05, odr=0.08,</span>
 <span class="sd">        ...        material=steel, rotary_inertia=True, shear_effects=True</span>
 <span class="sd">        ... )</span>
-<span class="sd">        &gt;&gt;&gt; shaft1.save(&#39;ShaftElement.toml&#39;)</span>
+<span class="sd">        &gt;&gt;&gt; shaft1.save()</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">load_data</span><span class="p">(</span><span class="n">file_name</span><span class="p">)</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_data</span><span class="p">(</span><span class="n">Path</span><span class="p">(</span><span class="n">file_name</span><span class="p">)</span><span class="o">/</span><span class="s1">&#39;ShaftElement.toml&#39;</span><span class="p">)</span>
         <span class="n">data</span><span class="p">[</span><span class="s2">&quot;ShaftElement&quot;</span><span class="p">][</span><span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">n</span><span class="p">)]</span> <span class="o">=</span> <span class="p">{</span>
             <span class="s2">&quot;L&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">L</span><span class="p">,</span>
             <span class="s2">&quot;idl&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">idl</span><span class="p">,</span>
@@ -533,7 +532,7 @@
             <span class="s2">&quot;gyroscopic&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">gyroscopic</span><span class="p">,</span>
             <span class="s2">&quot;shear_method_calc&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">shear_method_calc</span><span class="p">,</span>
         <span class="p">}</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">dump_data</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">file_name</span><span class="p">)</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">dump_data</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">Path</span><span class="p">(</span><span class="n">file_name</span><span class="p">)</span><span class="o">/</span><span class="s1">&#39;ShaftElement.toml&#39;</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="ShaftElement.load"><a class="viewcode-back" href="../../generated/elements/ross.ShaftElement.html#ross.ShaftElement.load">[docs]</a>    <span class="nd">@staticmethod</span>
     <span class="k">def</span> <span class="nf">load</span><span class="p">(</span><span class="n">file_name</span><span class="o">=</span><span class="s2">&quot;ShaftElement&quot;</span><span class="p">):</span>
@@ -550,8 +549,8 @@
 <span class="sd">        ...        L=0.25, idl=0, idr=0, odl=0.05, odr=0.08,</span>
 <span class="sd">        ...        material=steel, rotary_inertia=True, shear_effects=True</span>
 <span class="sd">        ... )</span>
-<span class="sd">        &gt;&gt;&gt; shaft1.save(&#39;ShaftElement.toml&#39;)</span>
-<span class="sd">        &gt;&gt;&gt; shaft2 = ShaftElement.load(&quot;ShaftElement.toml&quot;)</span>
+<span class="sd">        &gt;&gt;&gt; shaft1.save(os.getcwd())</span>
+<span class="sd">        &gt;&gt;&gt; shaft2 = ShaftElement.load(os.getcwd())</span>
 <span class="sd">        &gt;&gt;&gt; shaft2 # doctest: +ELLIPSIS</span>
 <span class="sd">        [ShaftElement(L=0.25, idl=0.0...</span>
 <span class="sd">        &quot;&quot;&quot;</span>

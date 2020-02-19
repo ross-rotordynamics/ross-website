@@ -484,9 +484,9 @@ the elements in yellow if slenderness ratio &lt; 1.6</p>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">ross.bearing_seal_element</span> <span class="kn">import</span> <span class="n">bearing_example</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">ross.bearing_seal_element</span> <span class="kn">import</span> <span class="n">BearingElement</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">bearing</span> <span class="o">=</span> <span class="n">bearing_example</span><span class="p">()</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">bearing</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s1">&#39;BearingElement.toml&#39;</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">data</span> <span class="o">=</span> <span class="n">BearingElement</span><span class="o">.</span><span class="n">load_data</span><span class="p">(</span><span class="s1">&#39;BearingElement.toml&#39;</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">BearingElement</span><span class="o">.</span><span class="n">dump_data</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="s1">&#39;bearing_data.toml&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">bearing</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">Path</span><span class="p">(</span><span class="s1">&#39;.&#39;</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">data</span> <span class="o">=</span> <span class="n">BearingElement</span><span class="o">.</span><span class="n">get_data</span><span class="p">(</span><span class="s1">&#39;BearingElement.toml&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">BearingElement</span><span class="o">.</span><span class="n">dump_data</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="s1">&#39;BearingElement.toml&#39;</span><span class="p">)</span> 
 </pre></div>
 </div>
 </dd></dl>
@@ -527,33 +527,8 @@ assumed to be the first sheet in the file.</p>
 </dd></dl>
 
 <dl class="method">
-<dt id="ross.ShaftElement.load">
-<em class="property">static </em><code class="sig-name descname">load</code><span class="sig-paren">(</span><em class="sig-param">file_name='ShaftElement'</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/shaft_element.html#ShaftElement.load"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.ShaftElement.load" title="Permalink to this definition">¶</a></dt>
-<dd><p>Load previously saved shaft elements from toml file.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>file_name</strong><span class="classifier">str, optional</span></dt><dd></dd>
-</dl>
-</dd>
-</dl>
-<p class="rubric">Examples</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">ross.materials</span> <span class="kn">import</span> <span class="n">steel</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">shaft1</span> <span class="o">=</span> <span class="n">ShaftElement</span><span class="p">(</span>
-<span class="gp">... </span>       <span class="n">L</span><span class="o">=</span><span class="mf">0.25</span><span class="p">,</span> <span class="n">idl</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">idr</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">odl</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span> <span class="n">odr</span><span class="o">=</span><span class="mf">0.08</span><span class="p">,</span>
-<span class="gp">... </span>       <span class="n">material</span><span class="o">=</span><span class="n">steel</span><span class="p">,</span> <span class="n">rotary_inertia</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">shear_effects</span><span class="o">=</span><span class="kc">True</span>
-<span class="gp">... </span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">shaft1</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s1">&#39;ShaftElement.toml&#39;</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">shaft2</span> <span class="o">=</span> <span class="n">ShaftElement</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s2">&quot;ShaftElement.toml&quot;</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">shaft2</span> 
-<span class="go">[ShaftElement(L=0.25, idl=0.0...</span>
-</pre></div>
-</div>
-</dd></dl>
-
-<dl class="method">
-<dt id="ross.ShaftElement.load_data">
-<em class="property">static </em><code class="sig-name descname">load_data</code><span class="sig-paren">(</span><em class="sig-param">file_name</em><span class="sig-paren">)</span><a class="headerlink" href="#ross.ShaftElement.load_data" title="Permalink to this definition">¶</a></dt>
+<dt id="ross.ShaftElement.get_data">
+<em class="property">static </em><code class="sig-name descname">get_data</code><span class="sig-paren">(</span><em class="sig-param">file_name</em><span class="sig-paren">)</span><a class="headerlink" href="#ross.ShaftElement.get_data" title="Permalink to this definition">¶</a></dt>
 <dd><p>Loads elements data saved in a toml format.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -574,9 +549,34 @@ assumed to be the first sheet in the file.</p>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">ross.bearing_seal_element</span> <span class="kn">import</span> <span class="n">bearing_example</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">ross.bearing_seal_element</span> <span class="kn">import</span> <span class="n">BearingElement</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">bearing</span> <span class="o">=</span> <span class="n">bearing_example</span><span class="p">()</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">bearing</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s1">&#39;BearingElement.toml&#39;</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">BearingElement</span><span class="o">.</span><span class="n">load_data</span><span class="p">(</span><span class="s1">&#39;BearingElement.toml&#39;</span><span class="p">)</span> 
+<span class="gp">&gt;&gt;&gt; </span><span class="n">bearing</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">Path</span><span class="p">(</span><span class="s1">&#39;.&#39;</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">BearingElement</span><span class="o">.</span><span class="n">get_data</span><span class="p">(</span><span class="s1">&#39;BearingElement.toml&#39;</span><span class="p">)</span> 
 <span class="go">{&#39;BearingElement&#39;: {&#39;0&#39;: {&#39;n&#39;: 0, &#39;kxx&#39;: [1000000.0, 1000000.0,...</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="ross.ShaftElement.load">
+<em class="property">static </em><code class="sig-name descname">load</code><span class="sig-paren">(</span><em class="sig-param">file_name='ShaftElement'</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/shaft_element.html#ShaftElement.load"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.ShaftElement.load" title="Permalink to this definition">¶</a></dt>
+<dd><p>Load previously saved shaft elements from toml file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>file_name</strong><span class="classifier">str, optional</span></dt><dd></dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">ross.materials</span> <span class="kn">import</span> <span class="n">steel</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">shaft1</span> <span class="o">=</span> <span class="n">ShaftElement</span><span class="p">(</span>
+<span class="gp">... </span>       <span class="n">L</span><span class="o">=</span><span class="mf">0.25</span><span class="p">,</span> <span class="n">idl</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">idr</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">odl</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span> <span class="n">odr</span><span class="o">=</span><span class="mf">0.08</span><span class="p">,</span>
+<span class="gp">... </span>       <span class="n">material</span><span class="o">=</span><span class="n">steel</span><span class="p">,</span> <span class="n">rotary_inertia</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">shear_effects</span><span class="o">=</span><span class="kc">True</span>
+<span class="gp">... </span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">shaft1</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">())</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">shaft2</span> <span class="o">=</span> <span class="n">ShaftElement</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">())</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">shaft2</span> 
+<span class="go">[ShaftElement(L=0.25, idl=0.0...</span>
 </pre></div>
 </div>
 </dd></dl>
@@ -602,7 +602,7 @@ position : float</p>
 
 <dl class="method">
 <dt id="ross.ShaftElement.save">
-<code class="sig-name descname">save</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">file_name</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/shaft_element.html#ShaftElement.save"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.ShaftElement.save" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">save</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">file_name=PosixPath('/home/travis/build/ross-rotordynamics/ross/docs')</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/shaft_element.html#ShaftElement.save"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.ShaftElement.save" title="Permalink to this definition">¶</a></dt>
 <dd><p>Save shaft elements to toml file.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -617,7 +617,7 @@ position : float</p>
 <span class="gp">... </span>       <span class="n">L</span><span class="o">=</span><span class="mf">0.25</span><span class="p">,</span> <span class="n">idl</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">idr</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">odl</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span> <span class="n">odr</span><span class="o">=</span><span class="mf">0.08</span><span class="p">,</span>
 <span class="gp">... </span>       <span class="n">material</span><span class="o">=</span><span class="n">steel</span><span class="p">,</span> <span class="n">rotary_inertia</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">shear_effects</span><span class="o">=</span><span class="kc">True</span>
 <span class="gp">... </span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">shaft1</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s1">&#39;ShaftElement.toml&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">shaft1</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
 </pre></div>
 </div>
 </dd></dl>

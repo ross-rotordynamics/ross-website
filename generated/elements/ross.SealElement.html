@@ -433,9 +433,9 @@ and its index.</p>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">ross.bearing_seal_element</span> <span class="kn">import</span> <span class="n">bearing_example</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">ross.bearing_seal_element</span> <span class="kn">import</span> <span class="n">BearingElement</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">bearing</span> <span class="o">=</span> <span class="n">bearing_example</span><span class="p">()</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">bearing</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s1">&#39;BearingElement.toml&#39;</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">data</span> <span class="o">=</span> <span class="n">BearingElement</span><span class="o">.</span><span class="n">load_data</span><span class="p">(</span><span class="s1">&#39;BearingElement.toml&#39;</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">BearingElement</span><span class="o">.</span><span class="n">dump_data</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="s1">&#39;bearing_data.toml&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">bearing</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">Path</span><span class="p">(</span><span class="s1">&#39;.&#39;</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">data</span> <span class="o">=</span> <span class="n">BearingElement</span><span class="o">.</span><span class="n">get_data</span><span class="p">(</span><span class="s1">&#39;BearingElement.toml&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">BearingElement</span><span class="o">.</span><span class="n">dump_data</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="s1">&#39;BearingElement.toml&#39;</span><span class="p">)</span> 
 </pre></div>
 </div>
 </dd></dl>
@@ -556,35 +556,8 @@ assumed to be the first sheet in the file.</p>
 </dd></dl>
 
 <dl class="method">
-<dt id="ross.SealElement.load">
-<em class="property">static </em><code class="sig-name descname">load</code><span class="sig-paren">(</span><em class="sig-param">file_name='BearingElement'</em><span class="sig-paren">)</span><a class="headerlink" href="#ross.SealElement.load" title="Permalink to this definition">¶</a></dt>
-<dd><p>Loads a list of bearing elements saved in a toml format.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>file_name: string</strong></dt><dd><p>The name of the file of the bearing element to be loaded.</p>
-</dd>
-</dl>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><dl class="simple">
-<dt>A list of bearing elements.</dt><dd></dd>
-</dl>
-</dd>
-</dl>
-<p class="rubric">Examples</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">bearing1</span> <span class="o">=</span> <span class="n">bearing_example</span><span class="p">()</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">bearing1</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s1">&#39;BearingElement.toml&#39;</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">list_of_bearings</span> <span class="o">=</span> <span class="n">BearingElement</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;BearingElement.toml&#39;</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">bearing1</span> <span class="o">==</span> <span class="n">list_of_bearings</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-<span class="go">True</span>
-</pre></div>
-</div>
-</dd></dl>
-
-<dl class="method">
-<dt id="ross.SealElement.load_data">
-<em class="property">static </em><code class="sig-name descname">load_data</code><span class="sig-paren">(</span><em class="sig-param">file_name</em><span class="sig-paren">)</span><a class="headerlink" href="#ross.SealElement.load_data" title="Permalink to this definition">¶</a></dt>
+<dt id="ross.SealElement.get_data">
+<em class="property">static </em><code class="sig-name descname">get_data</code><span class="sig-paren">(</span><em class="sig-param">file_name</em><span class="sig-paren">)</span><a class="headerlink" href="#ross.SealElement.get_data" title="Permalink to this definition">¶</a></dt>
 <dd><p>Loads elements data saved in a toml format.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -605,9 +578,36 @@ assumed to be the first sheet in the file.</p>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">ross.bearing_seal_element</span> <span class="kn">import</span> <span class="n">bearing_example</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">ross.bearing_seal_element</span> <span class="kn">import</span> <span class="n">BearingElement</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">bearing</span> <span class="o">=</span> <span class="n">bearing_example</span><span class="p">()</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">bearing</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s1">&#39;BearingElement.toml&#39;</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">BearingElement</span><span class="o">.</span><span class="n">load_data</span><span class="p">(</span><span class="s1">&#39;BearingElement.toml&#39;</span><span class="p">)</span> 
+<span class="gp">&gt;&gt;&gt; </span><span class="n">bearing</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">Path</span><span class="p">(</span><span class="s1">&#39;.&#39;</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">BearingElement</span><span class="o">.</span><span class="n">get_data</span><span class="p">(</span><span class="s1">&#39;BearingElement.toml&#39;</span><span class="p">)</span> 
 <span class="go">{&#39;BearingElement&#39;: {&#39;0&#39;: {&#39;n&#39;: 0, &#39;kxx&#39;: [1000000.0, 1000000.0,...</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="ross.SealElement.load">
+<em class="property">static </em><code class="sig-name descname">load</code><span class="sig-paren">(</span><em class="sig-param">file_name=''</em><span class="sig-paren">)</span><a class="headerlink" href="#ross.SealElement.load" title="Permalink to this definition">¶</a></dt>
+<dd><p>Loads a list of bearing elements saved in a toml format.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>file_name: string</strong></dt><dd><p>The name of the file of the bearing element to be loaded.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt>A list of bearing elements.</dt><dd></dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">bearing1</span> <span class="o">=</span> <span class="n">bearing_example</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">bearing1</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">())</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">list_of_bearings</span> <span class="o">=</span> <span class="n">BearingElement</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">())</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">bearing1</span> <span class="o">==</span> <span class="n">list_of_bearings</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="go">True</span>
 </pre></div>
 </div>
 </dd></dl>
@@ -653,7 +653,7 @@ function of the save function in the Rotor class.</p>
 </dl>
 <p class="rubric">Examples</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">bearing</span> <span class="o">=</span> <span class="n">bearing_example</span><span class="p">()</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">bearing</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s1">&#39;BearingElement.toml&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">bearing</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">Path</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">()))</span>
 </pre></div>
 </div>
 </dd></dl>
