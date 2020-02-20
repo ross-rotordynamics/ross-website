@@ -371,8 +371,8 @@
                 <span class="n">p_mass</span><span class="o">.</span><span class="n">tag</span> <span class="o">=</span> <span class="s2">&quot;Point Mass &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">shaft_elements</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">shaft_elements</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">el</span><span class="p">:</span> <span class="n">el</span><span class="o">.</span><span class="n">n</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">bearing_elements</span> <span class="o">=</span> <span class="n">bearing_elements</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">bearing_seal_elements</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">bearing_elements</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">el</span><span class="p">:</span> <span class="n">el</span><span class="o">.</span><span class="n">n</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">bearing_elements</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">bearing_elements</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">el</span><span class="p">:</span> <span class="n">el</span><span class="o">.</span><span class="n">n</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">disk_elements</span> <span class="o">=</span> <span class="n">disk_elements</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">point_mass_elements</span> <span class="o">=</span> <span class="n">point_mass_elements</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">elements</span> <span class="o">=</span> <span class="p">[</span>
@@ -578,6 +578,7 @@
             <span class="k">if</span> <span class="n">pd</span><span class="o">.</span><span class="n">isna</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="o">.</span><span class="n">tag</span> <span class="o">==</span> <span class="n">b</span><span class="o">.</span><span class="n">tag</span><span class="p">,</span> <span class="s2">&quot;nodes_pos_l&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
         <span class="p">}</span>
         <span class="c1"># cycle while there are bearings without a z location</span>
+        
         <span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="n">cycle</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">bearing_elements</span><span class="p">):</span>
             <span class="k">if</span> <span class="n">bearings_no_zloc</span><span class="p">:</span>
                 <span class="k">if</span> <span class="n">b</span> <span class="ow">in</span> <span class="n">bearings_no_zloc</span><span class="p">:</span>

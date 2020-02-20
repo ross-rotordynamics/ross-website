@@ -469,7 +469,7 @@
     <span class="k">def</span> <span class="fm">__hash__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="nb">hash</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">tag</span><span class="p">)</span>
 
-<div class="viewcode-block" id="BearingElement.save"><a class="viewcode-back" href="../../generated/elements/ross.BearingElement.html#ross.BearingElement.save">[docs]</a>    <span class="k">def</span> <span class="nf">save</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">file_name</span><span class="p">):</span>
+<div class="viewcode-block" id="BearingElement.save"><a class="viewcode-back" href="../../generated/elements/ross.BearingElement.html#ross.BearingElement.save">[docs]</a>    <span class="k">def</span> <span class="nf">save</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">file_name</span><span class="o">=</span><span class="n">Path</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">())):</span>
         <span class="sd">&quot;&quot;&quot;Saves a bearing element in a toml format. It works as an auxiliary</span>
 <span class="sd">        function of the save function in the Rotor class.</span>
 

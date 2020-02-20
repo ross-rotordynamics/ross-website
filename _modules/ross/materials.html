@@ -229,7 +229,28 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">Poisson</span> <span class="o">=</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">E</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">G_s</span><span class="p">))</span> <span class="o">-</span> <span class="mi">1</span></div>
 
     <span class="k">def</span> <span class="fm">__eq__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Material is considered equal if properties are equal.&quot;&quot;&quot;</span>
+        <span class="sd">&quot;&quot;&quot;Function used to compare two Materials.</span>
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+
+<span class="sd">        self : Material</span>
+
+<span class="sd">        other: Material</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        ----------</span>
+
+<span class="sd">        bool</span>
+<span class="sd">            True if all the Materials properties are equivalent.</span>
+
+<span class="sd">        Examples</span>
+<span class="sd">        ----------</span>
+<span class="sd">        &gt;&gt;&gt; import ross as rs</span>
+<span class="sd">        &gt;&gt;&gt; steel = rs.Material.use_material(&#39;Steel&#39;)</span>
+<span class="sd">        &gt;&gt;&gt; AISI4140 = rs.Material.use_material(&#39;AISI4140&#39;)</span>
+<span class="sd">        &gt;&gt;&gt; steel == AISI4140</span>
+<span class="sd">        False</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">self_list</span> <span class="o">=</span> <span class="p">[</span><span class="n">v</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span><span class="o">.</span><span class="n">values</span><span class="p">()</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="p">(</span><span class="nb">float</span><span class="p">,</span> <span class="nb">int</span><span class="p">))]</span>
         <span class="n">other_list</span> <span class="o">=</span> <span class="p">[</span><span class="n">v</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">other</span><span class="o">.</span><span class="vm">__dict__</span><span class="o">.</span><span class="n">values</span><span class="p">()</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="p">(</span><span class="nb">float</span><span class="p">,</span> <span class="nb">int</span><span class="p">))]</span>
 
@@ -239,6 +260,25 @@
             <span class="k">return</span> <span class="kc">False</span>
 
     <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Function used to give a representation of a Material element, when called.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+
+<span class="sd">        self : Material</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        ----------</span>
+
+<span class="sd">        string : Representation of the given rs.Material.</span>
+
+<span class="sd">        Examples</span>
+<span class="sd">        ----------</span>
+<span class="sd">        &gt;&gt;&gt; import ross as rs</span>
+<span class="sd">        &gt;&gt;&gt; steel = rs.Material.use_material(&#39;Steel&#39;)</span>
+<span class="sd">        &gt;&gt;&gt; steel # doctest: +ELLIPSIS</span>
+<span class="sd">        Material(name=&quot;Steel&quot;, rho=7.81000e+03, G_s=8.12000e+10, E=2.11000e+11, Poisson=2.99261e-01, color=&#39;#525252&#39;)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">selfE</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="si">{:.5e}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">E</span><span class="p">)</span>
         <span class="n">selfPoisson</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="si">{:.5e}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">Poisson</span><span class="p">)</span>
         <span class="n">selfrho</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="si">{:.5e}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">rho</span><span class="p">)</span>
@@ -251,6 +291,30 @@
         <span class="p">)</span>
 
     <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Function used to set what is shown when a Material is printed.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+
+<span class="sd">        self : Material</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        ----------</span>
+
+<span class="sd">        str</span>
+<span class="sd">            Containing all the Materials properties organized in a table.</span>
+
+<span class="sd">        Examples</span>
+<span class="sd">        ----------</span>
+<span class="sd">        &gt;&gt;&gt; import ross as rs</span>
+<span class="sd">        &gt;&gt;&gt; print(rs.Material.use_material(&#39;Steel&#39;))</span>
+<span class="sd">        Steel</span>
+<span class="sd">        -----------------------------------</span>
+<span class="sd">        Density         (N/m**3): 7810.0</span>
+<span class="sd">        Young`s modulus (N/m**2): 2.11e+11</span>
+<span class="sd">        Shear modulus   (N/m**2): 8.12e+10</span>
+<span class="sd">        Poisson coefficient     : 0.29926108</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="p">(</span>
             <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{self.name}</span><span class="s2">&quot;</span>
             <span class="sa">f</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">{35*&quot;-&quot;}&#39;</span>
@@ -262,22 +326,69 @@
 
 <div class="viewcode-block" id="Material.dump_data"><a class="viewcode-back" href="../../generated/material/ross.Material.html#ross.Material.dump_data">[docs]</a>    <span class="nd">@staticmethod</span>
     <span class="k">def</span> <span class="nf">dump_data</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+
+        <span class="sd">&quot;&quot;&quot;Auxiliary function to save the materials properties in the save method.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+
+<span class="sd">        data : dict</span>
+<span class="sd">            Dictionary containing all data needed to instantiate the Object.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        ----------</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">Path</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">rs</span><span class="o">.</span><span class="vm">__file__</span><span class="p">))</span><span class="o">/</span><span class="s2">&quot;available_materials.toml&quot;</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
             <span class="n">toml</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="Material.get_data"><a class="viewcode-back" href="../../generated/material/ross.Material.html#ross.Material.get_data">[docs]</a>    <span class="nd">@staticmethod</span>
     <span class="k">def</span> <span class="nf">get_data</span><span class="p">():</span>
+
+        <span class="sd">&quot;&quot;&quot;Auxiliary function to load all saved materials properties in the use_material method.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        ----------</span>
+
+<span class="sd">        data : dict</span>
+<span class="sd">            Containing all data needed to instantiate a Material Object.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">Path</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">rs</span><span class="o">.</span><span class="vm">__file__</span><span class="p">))</span><span class="o">/</span><span class="s2">&quot;available_materials.toml&quot;</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
                 <span class="n">data</span> <span class="o">=</span> <span class="n">toml</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
         <span class="k">except</span> <span class="ne">FileNotFoundError</span><span class="p">:</span>
             <span class="n">data</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;Materials&quot;</span><span class="p">:</span> <span class="p">{}}</span>
-            <span class="n">Material</span><span class="o">.</span><span class="n">dump_data</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+            <span class="n">rs</span><span class="o">.</span><span class="n">Material</span><span class="o">.</span><span class="n">dump_data</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">data</span></div>
 
 <div class="viewcode-block" id="Material.use_material"><a class="viewcode-back" href="../../generated/material/ross.Material.html#ross.Material.use_material">[docs]</a>    <span class="nd">@staticmethod</span>
     <span class="k">def</span> <span class="nf">use_material</span><span class="p">(</span><span class="n">name</span><span class="p">):</span>
+
+        <span class="sd">&quot;&quot;&quot;Function to load the materials properties and instantiate a Material Object.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+
+<span class="sd">        name : string</span>
+<span class="sd">            Material&#39;s name.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        ----------</span>
+
+<span class="sd">        Material : Material Object</span>
+
+<span class="sd">        Examples</span>
+<span class="sd">        ----------</span>
+<span class="sd">        &gt;&gt;&gt; import ross as rs</span>
+<span class="sd">        &gt;&gt;&gt; AISI4140 = rs.Material.use_material(&#39;AISI4140&#39;)</span>
+<span class="sd">        &gt;&gt;&gt; AISI4140</span>
+<span class="sd">        Material(name=&quot;AISI4140&quot;, rho=7.85000e+03, G_s=8.00000e+10, E=2.03200e+11, Poisson=2.70000e-01, color=&#39;#525252&#39;)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">data</span> <span class="o">=</span> <span class="n">Material</span><span class="o">.</span><span class="n">get_data</span><span class="p">()</span>
+
         <span class="k">try</span><span class="p">:</span>
             <span class="n">material</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s2">&quot;Materials&quot;</span><span class="p">][</span><span class="n">name</span><span class="p">]</span>
             <span class="k">return</span> <span class="n">Material</span><span class="p">(</span><span class="o">**</span><span class="n">material</span><span class="p">)</span>
@@ -286,22 +397,82 @@
 
 <div class="viewcode-block" id="Material.remove_material"><a class="viewcode-back" href="../../generated/material/ross.Material.html#ross.Material.remove_material">[docs]</a>    <span class="nd">@staticmethod</span>
     <span class="k">def</span> <span class="nf">remove_material</span><span class="p">(</span><span class="n">name</span><span class="p">):</span>
+
+        <span class="sd">&quot;&quot;&quot;Function used to delete a saved rs.Material.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+
+<span class="sd">        name : string</span>
+<span class="sd">            Name of Material Object to be deleted.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        ----------</span>
+
+<span class="sd">        Examples</span>
+<span class="sd">        ----------</span>
+<span class="sd">        &gt;&gt;&gt; import ross as rs</span>
+<span class="sd">        &gt;&gt;&gt; steel = rs.Material.use_material(&#39;Steel&#39;)</span>
+<span class="sd">        &gt;&gt;&gt; steel.name = &#39;test_material&#39;</span>
+<span class="sd">        &gt;&gt;&gt; steel.save_material()</span>
+<span class="sd">        &gt;&gt;&gt; steel.remove_material(&#39;test_material&#39;)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">data</span> <span class="o">=</span> <span class="n">Material</span><span class="o">.</span><span class="n">get_data</span><span class="p">()</span>
+        
         <span class="k">try</span><span class="p">:</span>
             <span class="k">del</span> <span class="n">data</span><span class="p">[</span><span class="s2">&quot;Materials&quot;</span><span class="p">][</span><span class="n">name</span><span class="p">]</span>
         <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
             <span class="k">return</span> <span class="s2">&quot;There isn&#39;t a saved material with this name.&quot;</span>
+
         <span class="n">Material</span><span class="o">.</span><span class="n">dump_data</span><span class="p">(</span><span class="n">data</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="Material.available_materials"><a class="viewcode-back" href="../../generated/material/ross.Material.html#ross.Material.available_materials">[docs]</a>    <span class="nd">@staticmethod</span>
     <span class="k">def</span> <span class="nf">available_materials</span><span class="p">():</span>
+        <span class="sd">&quot;&quot;&quot;Function used to get a list of all saved material&#39;s names.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        ----------</span>
+
+<span class="sd">        list</span>
+<span class="sd">            A list containing all saved material&#39;s names.</span>
+
+<span class="sd">        Examples</span>
+<span class="sd">        ----------</span>
+<span class="sd">        &gt;&gt;&gt; import ross as rs</span>
+<span class="sd">        &gt;&gt;&gt; steel = rs.Material.use_material(&#39;Steel&#39;)</span>
+<span class="sd">        &gt;&gt;&gt; steel.name = &#39;test_material&#39;</span>
+<span class="sd">        &gt;&gt;&gt; steel.save_material()</span>
+<span class="sd">        &gt;&gt;&gt; steel.remove_material(&#39;test_material&#39;)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
         <span class="k">try</span><span class="p">:</span>
             <span class="n">data</span> <span class="o">=</span> <span class="n">Material</span><span class="o">.</span><span class="n">get_data</span><span class="p">()</span>
             <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;Materials&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
         <span class="k">except</span> <span class="ne">FileNotFoundError</span><span class="p">:</span>
             <span class="k">return</span> <span class="s2">&quot;There is no saved materials.&quot;</span></div>
-
+          
 <div class="viewcode-block" id="Material.save_material"><a class="viewcode-back" href="../../generated/material/ross.Material.html#ross.Material.save_material">[docs]</a>    <span class="k">def</span> <span class="nf">save_material</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Function used to delete a saved rs.Material.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+
+<span class="sd">        self : rs.Material.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        ----------</span>
+
+<span class="sd">        Examples</span>
+<span class="sd">        ----------</span>
+<span class="sd">        &gt;&gt;&gt; import ross as rs</span>
+<span class="sd">        &gt;&gt;&gt; steel = rs.Material.use_material(&#39;Steel&#39;)</span>
+<span class="sd">        &gt;&gt;&gt; steel.name = &#39;test_material&#39;</span>
+<span class="sd">        &gt;&gt;&gt; steel.save_material()</span>
+<span class="sd">        &gt;&gt;&gt; steel.remove_material(&#39;test_material&#39;)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="sd">&quot;&quot;&quot;Saves the material in the available_materials list.&quot;&quot;&quot;</span>
         <span class="n">data</span> <span class="o">=</span> <span class="n">Material</span><span class="o">.</span><span class="n">get_data</span><span class="p">()</span>
         <span class="n">data</span><span class="p">[</span><span class="s2">&quot;Materials&quot;</span><span class="p">][</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span>
