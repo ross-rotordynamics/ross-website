@@ -697,16 +697,14 @@
 
         <span class="k">return</span> <span class="n">G</span></div>
 
-<div class="viewcode-block" id="BearingElement.patch"><a class="viewcode-back" href="../../generated/elements/ross.BearingElement.html#ross.BearingElement.patch">[docs]</a>    <span class="k">def</span> <span class="nf">patch</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">position</span><span class="p">,</span> <span class="n">mean</span><span class="p">,</span> <span class="n">ax</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<div class="viewcode-block" id="BearingElement.patch"><a class="viewcode-back" href="../../generated/elements/ross.BearingElement.html#ross.BearingElement.patch">[docs]</a>    <span class="k">def</span> <span class="nf">patch</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">position</span><span class="p">,</span> <span class="n">ax</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Bearing element patch.</span>
 <span class="sd">        Patch that will be used to draw the bearing element.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
 <span class="sd">        position : tuple</span>
-<span class="sd">            Position (z, y) in which the patch will be drawn.</span>
-<span class="sd">        mean : float</span>
-<span class="sd">            Mean value of shaft element outer diameters</span>
+<span class="sd">            Position (z, y_low, y_upp) in which the patch will be drawn.</span>
 <span class="sd">        ax : matplotlib axes, optional</span>
 <span class="sd">            Axes in which the plot will be drawn.</span>
 
@@ -718,15 +716,17 @@
             <span class="n">kwargs</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span>
 
         <span class="c1"># geometric factors</span>
-        <span class="n">mean</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">scale_factor</span> <span class="o">*</span> <span class="n">mean</span>
-        <span class="n">zpos</span><span class="p">,</span> <span class="n">ypos</span> <span class="o">=</span> <span class="n">position</span>
+        <span class="n">zpos</span><span class="p">,</span> <span class="n">ypos</span><span class="p">,</span> <span class="n">ypos_s</span> <span class="o">=</span> <span class="n">position</span>
+
+        <span class="n">icon_h</span> <span class="o">=</span> <span class="n">ypos_s</span> <span class="o">-</span> <span class="n">ypos</span>  <span class="c1"># bearing icon height</span>
+        <span class="n">icon_w</span> <span class="o">=</span> <span class="n">icon_h</span> <span class="o">/</span> <span class="mf">2.0</span>  <span class="c1"># bearing icon width</span>
         <span class="n">coils</span> <span class="o">=</span> <span class="mi">6</span>  <span class="c1"># number of points to generate spring</span>
         <span class="n">n</span> <span class="o">=</span> <span class="mi">5</span>  <span class="c1"># number of ground lines</span>
-        <span class="n">step</span> <span class="o">=</span> <span class="n">mean</span> <span class="o">/</span> <span class="p">(</span><span class="n">coils</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>  <span class="c1"># spring step</span>
+        <span class="n">step</span> <span class="o">=</span> <span class="n">icon_w</span> <span class="o">/</span> <span class="p">(</span><span class="n">coils</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>  <span class="c1"># spring step</span>
 
-        <span class="n">zs0</span> <span class="o">=</span> <span class="n">zpos</span> <span class="o">-</span> <span class="p">(</span><span class="n">mean</span> <span class="o">/</span> <span class="mf">2.0</span><span class="p">)</span>
-        <span class="n">zs1</span> <span class="o">=</span> <span class="n">zpos</span> <span class="o">+</span> <span class="p">(</span><span class="n">mean</span> <span class="o">/</span> <span class="mf">2.0</span><span class="p">)</span>
-        <span class="n">ys0</span> <span class="o">=</span> <span class="n">ypos</span> <span class="o">+</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">mean</span>
+        <span class="n">zs0</span> <span class="o">=</span> <span class="n">zpos</span> <span class="o">-</span> <span class="p">(</span><span class="n">icon_w</span> <span class="o">/</span> <span class="mf">2.0</span><span class="p">)</span>
+        <span class="n">zs1</span> <span class="o">=</span> <span class="n">zpos</span> <span class="o">+</span> <span class="p">(</span><span class="n">icon_w</span> <span class="o">/</span> <span class="mf">2.0</span><span class="p">)</span>
+        <span class="n">ys0</span> <span class="o">=</span> <span class="n">ypos</span> <span class="o">+</span> <span class="mf">0.25</span> <span class="o">*</span> <span class="n">icon_h</span>
 
         <span class="c1"># plot bottom base</span>
         <span class="n">x_bot</span> <span class="o">=</span> <span class="p">[</span><span class="n">zpos</span><span class="p">,</span> <span class="n">zpos</span><span class="p">,</span> <span class="n">zs0</span><span class="p">,</span> <span class="n">zs1</span><span class="p">]</span>
@@ -738,10 +738,10 @@
         <span class="c1"># plot top base</span>
         <span class="n">x_top</span> <span class="o">=</span> <span class="p">[</span><span class="n">zpos</span><span class="p">,</span> <span class="n">zpos</span><span class="p">,</span> <span class="n">zs0</span><span class="p">,</span> <span class="n">zs1</span><span class="p">]</span>
         <span class="n">yl_top</span> <span class="o">=</span> <span class="p">[</span>
-            <span class="n">ypos</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">mean</span><span class="p">,</span>
-            <span class="n">ypos</span> <span class="o">+</span> <span class="mf">1.5</span> <span class="o">*</span> <span class="n">mean</span><span class="p">,</span>
-            <span class="n">ypos</span> <span class="o">+</span> <span class="mf">1.5</span> <span class="o">*</span> <span class="n">mean</span><span class="p">,</span>
-            <span class="n">ypos</span> <span class="o">+</span> <span class="mf">1.5</span> <span class="o">*</span> <span class="n">mean</span><span class="p">,</span>
+            <span class="n">ypos</span> <span class="o">+</span> <span class="n">icon_h</span><span class="p">,</span>
+            <span class="n">ypos</span> <span class="o">+</span> <span class="mf">0.75</span> <span class="o">*</span> <span class="n">icon_h</span><span class="p">,</span>
+            <span class="n">ypos</span> <span class="o">+</span> <span class="mf">0.75</span> <span class="o">*</span> <span class="n">icon_h</span><span class="p">,</span>
+            <span class="n">ypos</span> <span class="o">+</span> <span class="mf">0.75</span> <span class="o">*</span> <span class="n">icon_h</span><span class="p">,</span>
         <span class="p">]</span>
         <span class="n">yu_top</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="n">y</span> <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="n">yl_top</span><span class="p">]</span>
         <span class="n">ax</span><span class="o">.</span><span class="n">add_line</span><span class="p">(</span><span class="n">mlines</span><span class="o">.</span><span class="n">Line2D</span><span class="p">(</span><span class="n">x_top</span><span class="p">,</span> <span class="n">yl_top</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">))</span>
@@ -765,7 +765,7 @@
 
         <span class="c1"># plot spring</span>
         <span class="n">z_spring</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">zs0</span><span class="p">,</span> <span class="n">zs0</span><span class="p">,</span> <span class="n">zs0</span><span class="p">,</span> <span class="n">zs0</span><span class="p">])</span>
-        <span class="n">yl_spring</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">ys0</span><span class="p">,</span> <span class="n">ys0</span> <span class="o">+</span> <span class="n">step</span><span class="p">,</span> <span class="n">ys0</span> <span class="o">+</span> <span class="n">mean</span> <span class="o">-</span> <span class="n">step</span><span class="p">,</span> <span class="n">ys0</span> <span class="o">+</span> <span class="n">mean</span><span class="p">])</span>
+        <span class="n">yl_spring</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">ys0</span><span class="p">,</span> <span class="n">ys0</span> <span class="o">+</span> <span class="n">step</span><span class="p">,</span> <span class="n">ys0</span> <span class="o">+</span> <span class="n">icon_w</span> <span class="o">-</span> <span class="n">step</span><span class="p">,</span> <span class="n">ys0</span> <span class="o">+</span> <span class="n">icon_w</span><span class="p">])</span>
 
         <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">coils</span><span class="p">):</span>
             <span class="n">z_spring</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">z_spring</span><span class="p">,</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">2</span><span class="p">,</span> <span class="n">zs0</span> <span class="o">-</span> <span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">**</span> <span class="n">i</span> <span class="o">*</span> <span class="n">step</span><span class="p">)</span>
@@ -793,22 +793,20 @@
 
         <span class="c1"># plot damper - top</span>
         <span class="n">z_damper3</span> <span class="o">=</span> <span class="p">[</span><span class="n">z_damper2</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">z_damper2</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">zs1</span><span class="p">,</span> <span class="n">zs1</span><span class="p">]</span>
-        <span class="n">yl_damper3</span> <span class="o">=</span> <span class="p">[</span><span class="n">ys0</span> <span class="o">+</span> <span class="mi">4</span> <span class="o">*</span> <span class="n">step</span><span class="p">,</span> <span class="n">ys0</span> <span class="o">+</span> <span class="mi">4</span> <span class="o">*</span> <span class="n">step</span><span class="p">,</span> <span class="n">ys0</span> <span class="o">+</span> <span class="mi">4</span> <span class="o">*</span> <span class="n">step</span><span class="p">,</span> <span class="n">ypos</span> <span class="o">+</span> <span class="mf">1.5</span> <span class="o">*</span> <span class="n">mean</span><span class="p">]</span>
+        <span class="n">yl_damper3</span> <span class="o">=</span> <span class="p">[</span><span class="n">ys0</span> <span class="o">+</span> <span class="mi">4</span> <span class="o">*</span> <span class="n">step</span><span class="p">,</span> <span class="n">ys0</span> <span class="o">+</span> <span class="mi">4</span> <span class="o">*</span> <span class="n">step</span><span class="p">,</span> <span class="n">ys0</span> <span class="o">+</span> <span class="mi">4</span> <span class="o">*</span> <span class="n">step</span><span class="p">,</span> <span class="n">ypos</span> <span class="o">+</span> <span class="mf">1.5</span> <span class="o">*</span> <span class="n">icon_w</span><span class="p">]</span>
         <span class="n">yu_damper3</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="n">y</span> <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="n">yl_damper3</span><span class="p">]</span>
 
         <span class="n">ax</span><span class="o">.</span><span class="n">add_line</span><span class="p">(</span><span class="n">mlines</span><span class="o">.</span><span class="n">Line2D</span><span class="p">(</span><span class="n">z_damper3</span><span class="p">,</span> <span class="n">yl_damper3</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">))</span>
         <span class="n">ax</span><span class="o">.</span><span class="n">add_line</span><span class="p">(</span><span class="n">mlines</span><span class="o">.</span><span class="n">Line2D</span><span class="p">(</span><span class="n">z_damper3</span><span class="p">,</span> <span class="n">yu_damper3</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">))</span></div>
 
-<div class="viewcode-block" id="BearingElement.bokeh_patch"><a class="viewcode-back" href="../../generated/elements/ross.BearingElement.html#ross.BearingElement.bokeh_patch">[docs]</a>    <span class="k">def</span> <span class="nf">bokeh_patch</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">position</span><span class="p">,</span> <span class="n">mean</span><span class="p">,</span> <span class="n">bk_ax</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<div class="viewcode-block" id="BearingElement.bokeh_patch"><a class="viewcode-back" href="../../generated/elements/ross.BearingElement.html#ross.BearingElement.bokeh_patch">[docs]</a>    <span class="k">def</span> <span class="nf">bokeh_patch</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">position</span><span class="p">,</span> <span class="n">bk_ax</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Bearing element patch.</span>
 <span class="sd">        Patch that will be used to draw the bearing element.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
 <span class="sd">        position : tuple</span>
-<span class="sd">            Position (z, y) in which the patch will be drawn.</span>
-<span class="sd">        mean : float</span>
-<span class="sd">            Mean value of shaft element outer diameters</span>
+<span class="sd">            Position (z, y_low, y_upp) in which the patch will be drawn.</span>
 <span class="sd">        bk_ax : bokeh plotting axes, optional</span>
 <span class="sd">            Axes in which the plot will be drawn.</span>
 
@@ -820,15 +818,17 @@
             <span class="n">kwargs</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span>
 
         <span class="c1"># geometric factors</span>
-        <span class="n">mean</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">scale_factor</span> <span class="o">*</span> <span class="n">mean</span>
-        <span class="n">zpos</span><span class="p">,</span> <span class="n">ypos</span> <span class="o">=</span> <span class="n">position</span>
+        <span class="n">zpos</span><span class="p">,</span> <span class="n">ypos</span><span class="p">,</span> <span class="n">ypos_s</span> <span class="o">=</span> <span class="n">position</span>
+
+        <span class="n">icon_h</span> <span class="o">=</span> <span class="n">ypos_s</span> <span class="o">-</span> <span class="n">ypos</span>  <span class="c1"># bearing icon height</span>
+        <span class="n">icon_w</span> <span class="o">=</span> <span class="n">icon_h</span> <span class="o">/</span> <span class="mf">2.0</span>  <span class="c1"># bearing icon width</span>
         <span class="n">coils</span> <span class="o">=</span> <span class="mi">6</span>  <span class="c1"># number of points to generate spring</span>
         <span class="n">n</span> <span class="o">=</span> <span class="mi">5</span>  <span class="c1"># number of ground lines</span>
-        <span class="n">step</span> <span class="o">=</span> <span class="n">mean</span> <span class="o">/</span> <span class="p">(</span><span class="n">coils</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>  <span class="c1"># spring step</span>
+        <span class="n">step</span> <span class="o">=</span> <span class="n">icon_w</span> <span class="o">/</span> <span class="p">(</span><span class="n">coils</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>  <span class="c1"># spring step</span>
 
-        <span class="n">zs0</span> <span class="o">=</span> <span class="n">zpos</span> <span class="o">-</span> <span class="p">(</span><span class="n">mean</span> <span class="o">/</span> <span class="mf">2.0</span><span class="p">)</span>
-        <span class="n">zs1</span> <span class="o">=</span> <span class="n">zpos</span> <span class="o">+</span> <span class="p">(</span><span class="n">mean</span> <span class="o">/</span> <span class="mf">2.0</span><span class="p">)</span>
-        <span class="n">ys0</span> <span class="o">=</span> <span class="n">ypos</span> <span class="o">+</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">mean</span>
+        <span class="n">zs0</span> <span class="o">=</span> <span class="n">zpos</span> <span class="o">-</span> <span class="p">(</span><span class="n">icon_w</span> <span class="o">/</span> <span class="mf">2.0</span><span class="p">)</span>
+        <span class="n">zs1</span> <span class="o">=</span> <span class="n">zpos</span> <span class="o">+</span> <span class="p">(</span><span class="n">icon_w</span> <span class="o">/</span> <span class="mf">2.0</span><span class="p">)</span>
+        <span class="n">ys0</span> <span class="o">=</span> <span class="n">ypos</span> <span class="o">+</span> <span class="mf">0.25</span> <span class="o">*</span> <span class="n">icon_h</span>
 
         <span class="c1"># plot bottom base</span>
         <span class="n">x_bot</span> <span class="o">=</span> <span class="p">[</span><span class="n">zpos</span><span class="p">,</span> <span class="n">zpos</span><span class="p">,</span> <span class="n">zs0</span><span class="p">,</span> <span class="n">zs1</span><span class="p">]</span>
@@ -840,10 +840,10 @@
         <span class="c1"># plot top base</span>
         <span class="n">x_top</span> <span class="o">=</span> <span class="p">[</span><span class="n">zpos</span><span class="p">,</span> <span class="n">zpos</span><span class="p">,</span> <span class="n">zs0</span><span class="p">,</span> <span class="n">zs1</span><span class="p">]</span>
         <span class="n">yl_top</span> <span class="o">=</span> <span class="p">[</span>
-            <span class="n">ypos</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">mean</span><span class="p">,</span>
-            <span class="n">ypos</span> <span class="o">+</span> <span class="mf">1.5</span> <span class="o">*</span> <span class="n">mean</span><span class="p">,</span>
-            <span class="n">ypos</span> <span class="o">+</span> <span class="mf">1.5</span> <span class="o">*</span> <span class="n">mean</span><span class="p">,</span>
-            <span class="n">ypos</span> <span class="o">+</span> <span class="mf">1.5</span> <span class="o">*</span> <span class="n">mean</span><span class="p">,</span>
+            <span class="n">ypos</span> <span class="o">+</span> <span class="n">icon_h</span><span class="p">,</span>
+            <span class="n">ypos</span> <span class="o">+</span> <span class="mf">0.75</span> <span class="o">*</span> <span class="n">icon_h</span><span class="p">,</span>
+            <span class="n">ypos</span> <span class="o">+</span> <span class="mf">0.75</span> <span class="o">*</span> <span class="n">icon_h</span><span class="p">,</span>
+            <span class="n">ypos</span> <span class="o">+</span> <span class="mf">0.75</span> <span class="o">*</span> <span class="n">icon_h</span><span class="p">,</span>
         <span class="p">]</span>
         <span class="n">yu_top</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="n">y</span> <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="n">yl_top</span><span class="p">]</span>
         <span class="n">bk_ax</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">x_top</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">yl_top</span><span class="p">,</span> <span class="n">legend_label</span><span class="o">=</span><span class="s2">&quot;Bearing&quot;</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
@@ -867,7 +867,7 @@
 
         <span class="c1"># plot spring</span>
         <span class="n">z_spring</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">zs0</span><span class="p">,</span> <span class="n">zs0</span><span class="p">,</span> <span class="n">zs0</span><span class="p">,</span> <span class="n">zs0</span><span class="p">])</span>
-        <span class="n">yl_spring</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">ys0</span><span class="p">,</span> <span class="n">ys0</span> <span class="o">+</span> <span class="n">step</span><span class="p">,</span> <span class="n">ys0</span> <span class="o">+</span> <span class="n">mean</span> <span class="o">-</span> <span class="n">step</span><span class="p">,</span> <span class="n">ys0</span> <span class="o">+</span> <span class="n">mean</span><span class="p">])</span>
+        <span class="n">yl_spring</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">ys0</span><span class="p">,</span> <span class="n">ys0</span> <span class="o">+</span> <span class="n">step</span><span class="p">,</span> <span class="n">ys0</span> <span class="o">+</span> <span class="n">icon_w</span> <span class="o">-</span> <span class="n">step</span><span class="p">,</span> <span class="n">ys0</span> <span class="o">+</span> <span class="n">icon_w</span><span class="p">])</span>
 
         <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">coils</span><span class="p">):</span>
             <span class="n">z_spring</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">z_spring</span><span class="p">,</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">2</span><span class="p">,</span> <span class="n">zs0</span> <span class="o">-</span> <span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">**</span> <span class="n">i</span> <span class="o">*</span> <span class="n">step</span><span class="p">)</span>
@@ -895,7 +895,7 @@
 
         <span class="c1"># plot damper - top</span>
         <span class="n">z_damper3</span> <span class="o">=</span> <span class="p">[</span><span class="n">z_damper2</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">z_damper2</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">zs1</span><span class="p">,</span> <span class="n">zs1</span><span class="p">]</span>
-        <span class="n">yl_damper3</span> <span class="o">=</span> <span class="p">[</span><span class="n">ys0</span> <span class="o">+</span> <span class="mi">4</span> <span class="o">*</span> <span class="n">step</span><span class="p">,</span> <span class="n">ys0</span> <span class="o">+</span> <span class="mi">4</span> <span class="o">*</span> <span class="n">step</span><span class="p">,</span> <span class="n">ys0</span> <span class="o">+</span> <span class="mi">4</span> <span class="o">*</span> <span class="n">step</span><span class="p">,</span> <span class="n">ypos</span> <span class="o">+</span> <span class="mf">1.5</span> <span class="o">*</span> <span class="n">mean</span><span class="p">]</span>
+        <span class="n">yl_damper3</span> <span class="o">=</span> <span class="p">[</span><span class="n">ys0</span> <span class="o">+</span> <span class="mi">4</span> <span class="o">*</span> <span class="n">step</span><span class="p">,</span> <span class="n">ys0</span> <span class="o">+</span> <span class="mi">4</span> <span class="o">*</span> <span class="n">step</span><span class="p">,</span> <span class="n">ys0</span> <span class="o">+</span> <span class="mi">4</span> <span class="o">*</span> <span class="n">step</span><span class="p">,</span> <span class="n">ypos</span> <span class="o">+</span> <span class="mf">1.5</span> <span class="o">*</span> <span class="n">icon_w</span><span class="p">]</span>
         <span class="n">yu_damper3</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="n">y</span> <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="n">yl_damper3</span><span class="p">]</span>
 
         <span class="n">bk_ax</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">z_damper3</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">yl_damper3</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
@@ -1208,84 +1208,7 @@
         <span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">seal_leakage</span> <span class="o">=</span> <span class="n">seal_leakage</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">color</span> <span class="o">=</span> <span class="s2">&quot;#77ACA2&quot;</span></div>
-
-<div class="viewcode-block" id="SealElement.patch"><a class="viewcode-back" href="../../generated/elements/ross.SealElement.html#ross.SealElement.patch">[docs]</a>    <span class="k">def</span> <span class="nf">patch</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">position</span><span class="p">,</span> <span class="n">length</span><span class="p">,</span> <span class="n">ax</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Seal element patch.</span>
-<span class="sd">        Patch that will be used to draw the seal element.</span>
-<span class="sd">        Parameters</span>
-<span class="sd">        ----------</span>
-<span class="sd">        ax : matplotlib axes, optional</span>
-<span class="sd">            Axes in which the plot will be drawn.</span>
-<span class="sd">        position : tuple</span>
-<span class="sd">            Position in which the patch will be drawn.</span>
-<span class="sd">        Returns</span>
-<span class="sd">        -------</span>
-<span class="sd">        ax : matplotlib axes</span>
-<span class="sd">            Returns the axes object with the plot.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">zpos</span><span class="p">,</span> <span class="n">ypos</span> <span class="o">=</span> <span class="n">position</span>
-        <span class="n">step</span> <span class="o">=</span> <span class="n">ypos</span> <span class="o">/</span> <span class="mi">3</span>
-
-        <span class="c1">#  node (x pos), outer diam. (y pos)</span>
-        <span class="n">bearing_points_u</span> <span class="o">=</span> <span class="p">[</span>
-            <span class="p">[</span><span class="n">zpos</span> <span class="o">-</span> <span class="n">step</span><span class="p">,</span> <span class="mf">1.1</span> <span class="o">*</span> <span class="n">ypos</span><span class="p">],</span>  <span class="c1"># upper</span>
-            <span class="p">[</span><span class="n">zpos</span> <span class="o">-</span> <span class="n">step</span><span class="p">,</span> <span class="mf">1.1</span> <span class="o">*</span> <span class="n">ypos</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">step</span><span class="p">],</span>
-            <span class="p">[</span><span class="n">zpos</span> <span class="o">+</span> <span class="n">step</span><span class="p">,</span> <span class="mf">1.1</span> <span class="o">*</span> <span class="n">ypos</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">step</span><span class="p">],</span>
-            <span class="p">[</span><span class="n">zpos</span> <span class="o">+</span> <span class="n">step</span><span class="p">,</span> <span class="mf">1.1</span> <span class="o">*</span> <span class="n">ypos</span><span class="p">],</span>
-            <span class="p">[</span><span class="n">zpos</span> <span class="o">-</span> <span class="n">step</span><span class="p">,</span> <span class="mf">1.1</span> <span class="o">*</span> <span class="n">ypos</span><span class="p">],</span>
-        <span class="p">]</span>
-        <span class="n">bearing_points_l</span> <span class="o">=</span> <span class="p">[</span>
-            <span class="p">[</span><span class="n">zpos</span> <span class="o">-</span> <span class="n">step</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.1</span> <span class="o">*</span> <span class="n">ypos</span><span class="p">],</span>  <span class="c1"># upper</span>
-            <span class="p">[</span><span class="n">zpos</span> <span class="o">-</span> <span class="n">step</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.1</span> <span class="o">*</span> <span class="n">ypos</span> <span class="o">-</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">step</span><span class="p">],</span>
-            <span class="p">[</span><span class="n">zpos</span> <span class="o">+</span> <span class="n">step</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.1</span> <span class="o">*</span> <span class="n">ypos</span> <span class="o">-</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">step</span><span class="p">],</span>
-            <span class="p">[</span><span class="n">zpos</span> <span class="o">+</span> <span class="n">step</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.1</span> <span class="o">*</span> <span class="n">ypos</span><span class="p">],</span>
-            <span class="p">[</span><span class="n">zpos</span> <span class="o">-</span> <span class="n">step</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.1</span> <span class="o">*</span> <span class="n">ypos</span><span class="p">],</span>
-        <span class="p">]</span>
-
-        <span class="n">ax</span><span class="o">.</span><span class="n">add_patch</span><span class="p">(</span><span class="n">mpatches</span><span class="o">.</span><span class="n">Polygon</span><span class="p">(</span><span class="n">bearing_points_u</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">color</span><span class="p">,</span> <span class="n">picker</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
-        <span class="n">ax</span><span class="o">.</span><span class="n">add_patch</span><span class="p">(</span><span class="n">mpatches</span><span class="o">.</span><span class="n">Polygon</span><span class="p">(</span><span class="n">bearing_points_l</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">color</span><span class="p">,</span> <span class="n">picker</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span></div>
-
-<div class="viewcode-block" id="SealElement.bokeh_patch"><a class="viewcode-back" href="../../generated/elements/ross.SealElement.html#ross.SealElement.bokeh_patch">[docs]</a>    <span class="k">def</span> <span class="nf">bokeh_patch</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">position</span><span class="p">,</span> <span class="n">length</span><span class="p">,</span> <span class="n">bk_ax</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Seal element patch.</span>
-<span class="sd">        Patch that will be used to draw the seal element.</span>
-<span class="sd">        Parameters</span>
-<span class="sd">        ----------</span>
-<span class="sd">        bk_ax : bokeh plotting axes, optional</span>
-<span class="sd">            Axes in which the plot will be drawn.</span>
-<span class="sd">        position : tuple</span>
-<span class="sd">            Position in which the patch will be drawn.</span>
-<span class="sd">        Returns</span>
-<span class="sd">        -------</span>
-<span class="sd">        bk_ax : bokeh plotting axes</span>
-<span class="sd">            Returns the axes object with the plot.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">zpos</span><span class="p">,</span> <span class="n">ypos</span> <span class="o">=</span> <span class="n">position</span>
-        <span class="n">step</span> <span class="o">=</span> <span class="n">ypos</span> <span class="o">/</span> <span class="mi">3</span>
-
-        <span class="c1"># bokeh plot - upper seal visual representation</span>
-        <span class="n">bk_ax</span><span class="o">.</span><span class="n">quad</span><span class="p">(</span>
-            <span class="n">top</span><span class="o">=</span><span class="mf">1.1</span> <span class="o">*</span> <span class="n">ypos</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">step</span><span class="p">,</span>
-            <span class="n">bottom</span><span class="o">=</span><span class="mf">1.1</span> <span class="o">*</span> <span class="n">ypos</span><span class="p">,</span>
-            <span class="n">left</span><span class="o">=</span><span class="n">zpos</span> <span class="o">-</span> <span class="n">step</span><span class="p">,</span>
-            <span class="n">right</span><span class="o">=</span><span class="n">zpos</span> <span class="o">+</span> <span class="n">step</span><span class="p">,</span>
-            <span class="n">line_color</span><span class="o">=</span><span class="n">bokeh_colors</span><span class="p">[</span><span class="mi">6</span><span class="p">],</span>
-            <span class="n">line_width</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
-            <span class="n">fill_alpha</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span>
-            <span class="n">fill_color</span><span class="o">=</span><span class="n">bokeh_colors</span><span class="p">[</span><span class="mi">6</span><span class="p">],</span>
-            <span class="n">legend_label</span><span class="o">=</span><span class="s2">&quot;Seal&quot;</span><span class="p">,</span>
-        <span class="p">)</span>
-        <span class="c1"># bokeh plot - lower seal visual representation</span>
-        <span class="n">bk_ax</span><span class="o">.</span><span class="n">quad</span><span class="p">(</span>
-            <span class="n">top</span><span class="o">=-</span><span class="mf">1.1</span> <span class="o">*</span> <span class="n">ypos</span><span class="p">,</span>
-            <span class="n">bottom</span><span class="o">=-</span><span class="mf">1.1</span> <span class="o">*</span> <span class="n">ypos</span> <span class="o">-</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">step</span><span class="p">,</span>
-            <span class="n">left</span><span class="o">=</span><span class="n">zpos</span> <span class="o">-</span> <span class="n">step</span><span class="p">,</span>
-            <span class="n">right</span><span class="o">=</span><span class="n">zpos</span> <span class="o">+</span> <span class="n">step</span><span class="p">,</span>
-            <span class="n">line_color</span><span class="o">=</span><span class="n">bokeh_colors</span><span class="p">[</span><span class="mi">6</span><span class="p">],</span>
-            <span class="n">line_width</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
-            <span class="n">fill_alpha</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span>
-            <span class="n">fill_color</span><span class="o">=</span><span class="n">bokeh_colors</span><span class="p">[</span><span class="mi">6</span><span class="p">],</span>
-        <span class="p">)</span></div></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">color</span> <span class="o">=</span> <span class="s2">&quot;#77ACA2&quot;</span></div></div>
 
 
 <span class="k">class</span> <span class="nc">BallBearingElement</span><span class="p">(</span><span class="n">BearingElement</span><span class="p">):</span>
@@ -1372,208 +1295,6 @@
         <span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">color</span> <span class="o">=</span> <span class="s2">&quot;#77ACA2&quot;</span>
-
-    <span class="k">def</span> <span class="nf">patch</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">position</span><span class="p">,</span> <span class="n">mean</span><span class="p">,</span> <span class="n">ax</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Bearing element patch.</span>
-<span class="sd">        Patch that will be used to draw the bearing element.</span>
-
-<span class="sd">        Parameters</span>
-<span class="sd">        ----------</span>
-<span class="sd">        position : tuple</span>
-<span class="sd">            Position (z, y) in which the patch will be drawn.</span>
-<span class="sd">        mean : float</span>
-<span class="sd">            Mean value of shaft element outer diameters</span>
-<span class="sd">        ax : matplotlib axes, optional</span>
-<span class="sd">            Axes in which the plot will be drawn.</span>
-
-<span class="sd">        Returns</span>
-<span class="sd">        -------</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">default_values</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">lw</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s2">&quot;k&quot;</span><span class="p">)</span>
-        <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">default_values</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
-            <span class="n">kwargs</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span>
-
-        <span class="c1"># geometric factors</span>
-        <span class="n">zpos</span><span class="p">,</span> <span class="n">ypos</span> <span class="o">=</span> <span class="n">position</span>
-        <span class="n">coils</span> <span class="o">=</span> <span class="mi">6</span>  <span class="c1"># number of points to generate spring</span>
-        <span class="n">n</span> <span class="o">=</span> <span class="mi">5</span>  <span class="c1"># number of ground lines</span>
-        <span class="n">step</span> <span class="o">=</span> <span class="n">mean</span> <span class="o">/</span> <span class="p">(</span><span class="n">coils</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>  <span class="c1"># spring step</span>
-
-        <span class="n">zs0</span> <span class="o">=</span> <span class="n">zpos</span> <span class="o">-</span> <span class="p">(</span><span class="n">mean</span> <span class="o">/</span> <span class="mf">2.0</span><span class="p">)</span>
-        <span class="n">zs1</span> <span class="o">=</span> <span class="n">zpos</span> <span class="o">+</span> <span class="p">(</span><span class="n">mean</span> <span class="o">/</span> <span class="mf">2.0</span><span class="p">)</span>
-        <span class="n">ys0</span> <span class="o">=</span> <span class="n">ypos</span> <span class="o">+</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">mean</span>
-
-        <span class="c1"># plot bottom base</span>
-        <span class="n">x_bot</span> <span class="o">=</span> <span class="p">[</span><span class="n">zpos</span><span class="p">,</span> <span class="n">zpos</span><span class="p">,</span> <span class="n">zs0</span><span class="p">,</span> <span class="n">zs1</span><span class="p">]</span>
-        <span class="n">yl_bot</span> <span class="o">=</span> <span class="p">[</span><span class="n">ypos</span><span class="p">,</span> <span class="n">ys0</span><span class="p">,</span> <span class="n">ys0</span><span class="p">,</span> <span class="n">ys0</span><span class="p">]</span>
-        <span class="n">yu_bot</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="n">y</span> <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="n">yl_bot</span><span class="p">]</span>
-        <span class="n">ax</span><span class="o">.</span><span class="n">add_line</span><span class="p">(</span><span class="n">mlines</span><span class="o">.</span><span class="n">Line2D</span><span class="p">(</span><span class="n">x_bot</span><span class="p">,</span> <span class="n">yl_bot</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">))</span>
-        <span class="n">ax</span><span class="o">.</span><span class="n">add_line</span><span class="p">(</span><span class="n">mlines</span><span class="o">.</span><span class="n">Line2D</span><span class="p">(</span><span class="n">x_bot</span><span class="p">,</span> <span class="n">yu_bot</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">))</span>
-
-        <span class="c1"># plot top base</span>
-        <span class="n">x_top</span> <span class="o">=</span> <span class="p">[</span><span class="n">zpos</span><span class="p">,</span> <span class="n">zpos</span><span class="p">,</span> <span class="n">zs0</span><span class="p">,</span> <span class="n">zs1</span><span class="p">]</span>
-        <span class="n">yl_top</span> <span class="o">=</span> <span class="p">[</span>
-            <span class="n">ypos</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">mean</span><span class="p">,</span>
-            <span class="n">ypos</span> <span class="o">+</span> <span class="mf">1.5</span> <span class="o">*</span> <span class="n">mean</span><span class="p">,</span>
-            <span class="n">ypos</span> <span class="o">+</span> <span class="mf">1.5</span> <span class="o">*</span> <span class="n">mean</span><span class="p">,</span>
-            <span class="n">ypos</span> <span class="o">+</span> <span class="mf">1.5</span> <span class="o">*</span> <span class="n">mean</span><span class="p">,</span>
-        <span class="p">]</span>
-        <span class="n">yu_top</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="n">y</span> <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="n">yl_top</span><span class="p">]</span>
-        <span class="n">ax</span><span class="o">.</span><span class="n">add_line</span><span class="p">(</span><span class="n">mlines</span><span class="o">.</span><span class="n">Line2D</span><span class="p">(</span><span class="n">x_top</span><span class="p">,</span> <span class="n">yl_top</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">))</span>
-        <span class="n">ax</span><span class="o">.</span><span class="n">add_line</span><span class="p">(</span><span class="n">mlines</span><span class="o">.</span><span class="n">Line2D</span><span class="p">(</span><span class="n">x_top</span><span class="p">,</span> <span class="n">yu_top</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">))</span>
-
-        <span class="c1"># plot ground</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_link</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="n">zl_g</span> <span class="o">=</span> <span class="p">[</span><span class="n">zs0</span> <span class="o">-</span> <span class="n">step</span><span class="p">,</span> <span class="n">zs1</span> <span class="o">+</span> <span class="n">step</span><span class="p">]</span>
-            <span class="n">yl_g</span> <span class="o">=</span> <span class="p">[</span><span class="n">yl_top</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">yl_top</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span>
-            <span class="n">yu_g</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="n">y</span> <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="n">yl_g</span><span class="p">]</span>
-            <span class="n">ax</span><span class="o">.</span><span class="n">add_line</span><span class="p">(</span><span class="n">mlines</span><span class="o">.</span><span class="n">Line2D</span><span class="p">(</span><span class="n">zl_g</span><span class="p">,</span> <span class="n">yl_g</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">))</span>
-            <span class="n">ax</span><span class="o">.</span><span class="n">add_line</span><span class="p">(</span><span class="n">mlines</span><span class="o">.</span><span class="n">Line2D</span><span class="p">(</span><span class="n">zl_g</span><span class="p">,</span> <span class="n">yu_g</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">))</span>
-
-            <span class="n">step2</span> <span class="o">=</span> <span class="p">(</span><span class="n">zl_g</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">zl_g</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">/</span> <span class="n">n</span>
-            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
-                <span class="n">zl_g2</span> <span class="o">=</span> <span class="p">[(</span><span class="n">zs0</span> <span class="o">-</span> <span class="n">step</span><span class="p">)</span> <span class="o">+</span> <span class="n">step2</span> <span class="o">*</span> <span class="p">(</span><span class="n">i</span><span class="p">),</span> <span class="p">(</span><span class="n">zs0</span> <span class="o">-</span> <span class="n">step</span><span class="p">)</span> <span class="o">+</span> <span class="n">step2</span> <span class="o">*</span> <span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)]</span>
-                <span class="n">yl_g2</span> <span class="o">=</span> <span class="p">[</span><span class="n">yl_g</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="mf">1.1</span> <span class="o">*</span> <span class="n">yl_g</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span>
-                <span class="n">yu_g2</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="n">y</span> <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="n">yl_g2</span><span class="p">]</span>
-                <span class="n">ax</span><span class="o">.</span><span class="n">add_line</span><span class="p">(</span><span class="n">mlines</span><span class="o">.</span><span class="n">Line2D</span><span class="p">(</span><span class="n">zl_g2</span><span class="p">,</span> <span class="n">yl_g2</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">))</span>
-                <span class="n">ax</span><span class="o">.</span><span class="n">add_line</span><span class="p">(</span><span class="n">mlines</span><span class="o">.</span><span class="n">Line2D</span><span class="p">(</span><span class="n">zl_g2</span><span class="p">,</span> <span class="n">yu_g2</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">))</span>
-
-        <span class="c1"># plot spring</span>
-        <span class="n">z_spring</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">zs0</span><span class="p">,</span> <span class="n">zs0</span><span class="p">,</span> <span class="n">zs0</span><span class="p">,</span> <span class="n">zs0</span><span class="p">])</span>
-        <span class="n">yl_spring</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">ys0</span><span class="p">,</span> <span class="n">ys0</span> <span class="o">+</span> <span class="n">step</span><span class="p">,</span> <span class="n">ys0</span> <span class="o">+</span> <span class="n">mean</span> <span class="o">-</span> <span class="n">step</span><span class="p">,</span> <span class="n">ys0</span> <span class="o">+</span> <span class="n">mean</span><span class="p">])</span>
-
-        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">coils</span><span class="p">):</span>
-            <span class="n">z_spring</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">z_spring</span><span class="p">,</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">2</span><span class="p">,</span> <span class="n">zs0</span> <span class="o">-</span> <span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">**</span> <span class="n">i</span> <span class="o">*</span> <span class="n">step</span><span class="p">)</span>
-            <span class="n">yl_spring</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">yl_spring</span><span class="p">,</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">2</span><span class="p">,</span> <span class="n">ys0</span> <span class="o">+</span> <span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">step</span><span class="p">)</span>
-        <span class="n">yu_spring</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="n">y</span> <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="n">yl_spring</span><span class="p">]</span>
-
-        <span class="n">ax</span><span class="o">.</span><span class="n">add_line</span><span class="p">(</span><span class="n">mlines</span><span class="o">.</span><span class="n">Line2D</span><span class="p">(</span><span class="n">z_spring</span><span class="p">,</span> <span class="n">yl_spring</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">))</span>
-        <span class="n">ax</span><span class="o">.</span><span class="n">add_line</span><span class="p">(</span><span class="n">mlines</span><span class="o">.</span><span class="n">Line2D</span><span class="p">(</span><span class="n">z_spring</span><span class="p">,</span> <span class="n">yu_spring</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">))</span>
-
-        <span class="c1"># plot damper - base</span>
-        <span class="n">z_damper1</span> <span class="o">=</span> <span class="p">[</span><span class="n">zs1</span><span class="p">,</span> <span class="n">zs1</span><span class="p">]</span>
-        <span class="n">yl_damper1</span> <span class="o">=</span> <span class="p">[</span><span class="n">ys0</span><span class="p">,</span> <span class="n">ys0</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">step</span><span class="p">]</span>
-        <span class="n">yu_damper1</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="n">y</span> <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="n">yl_damper1</span><span class="p">]</span>
-
-        <span class="n">ax</span><span class="o">.</span><span class="n">add_line</span><span class="p">(</span><span class="n">mlines</span><span class="o">.</span><span class="n">Line2D</span><span class="p">(</span><span class="n">z_damper1</span><span class="p">,</span> <span class="n">yl_damper1</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">))</span>
-        <span class="n">ax</span><span class="o">.</span><span class="n">add_line</span><span class="p">(</span><span class="n">mlines</span><span class="o">.</span><span class="n">Line2D</span><span class="p">(</span><span class="n">z_damper1</span><span class="p">,</span> <span class="n">yu_damper1</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">))</span>
-
-        <span class="c1"># plot damper - center</span>
-        <span class="n">z_damper2</span> <span class="o">=</span> <span class="p">[</span><span class="n">zs1</span> <span class="o">-</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">step</span><span class="p">,</span> <span class="n">zs1</span> <span class="o">-</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">step</span><span class="p">,</span> <span class="n">zs1</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">step</span><span class="p">,</span> <span class="n">zs1</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">step</span><span class="p">]</span>
-        <span class="n">yl_damper2</span> <span class="o">=</span> <span class="p">[</span><span class="n">ys0</span> <span class="o">+</span> <span class="mi">5</span> <span class="o">*</span> <span class="n">step</span><span class="p">,</span> <span class="n">ys0</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">step</span><span class="p">,</span> <span class="n">ys0</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">step</span><span class="p">,</span> <span class="n">ys0</span> <span class="o">+</span> <span class="mi">5</span> <span class="o">*</span> <span class="n">step</span><span class="p">]</span>
-        <span class="n">yu_damper2</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="n">y</span> <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="n">yl_damper2</span><span class="p">]</span>
-
-        <span class="n">ax</span><span class="o">.</span><span class="n">add_line</span><span class="p">(</span><span class="n">mlines</span><span class="o">.</span><span class="n">Line2D</span><span class="p">(</span><span class="n">z_damper2</span><span class="p">,</span> <span class="n">yl_damper2</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">))</span>
-        <span class="n">ax</span><span class="o">.</span><span class="n">add_line</span><span class="p">(</span><span class="n">mlines</span><span class="o">.</span><span class="n">Line2D</span><span class="p">(</span><span class="n">z_damper2</span><span class="p">,</span> <span class="n">yu_damper2</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">))</span>
-
-        <span class="c1"># plot damper - top</span>
-        <span class="n">z_damper3</span> <span class="o">=</span> <span class="p">[</span><span class="n">z_damper2</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">z_damper2</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">zs1</span><span class="p">,</span> <span class="n">zs1</span><span class="p">]</span>
-        <span class="n">yl_damper3</span> <span class="o">=</span> <span class="p">[</span><span class="n">ys0</span> <span class="o">+</span> <span class="mi">4</span> <span class="o">*</span> <span class="n">step</span><span class="p">,</span> <span class="n">ys0</span> <span class="o">+</span> <span class="mi">4</span> <span class="o">*</span> <span class="n">step</span><span class="p">,</span> <span class="n">ys0</span> <span class="o">+</span> <span class="mi">4</span> <span class="o">*</span> <span class="n">step</span><span class="p">,</span> <span class="n">ypos</span> <span class="o">+</span> <span class="mf">1.5</span> <span class="o">*</span> <span class="n">mean</span><span class="p">]</span>
-        <span class="n">yu_damper3</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="n">y</span> <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="n">yl_damper3</span><span class="p">]</span>
-
-        <span class="n">ax</span><span class="o">.</span><span class="n">add_line</span><span class="p">(</span><span class="n">mlines</span><span class="o">.</span><span class="n">Line2D</span><span class="p">(</span><span class="n">z_damper3</span><span class="p">,</span> <span class="n">yl_damper3</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">))</span>
-        <span class="n">ax</span><span class="o">.</span><span class="n">add_line</span><span class="p">(</span><span class="n">mlines</span><span class="o">.</span><span class="n">Line2D</span><span class="p">(</span><span class="n">z_damper3</span><span class="p">,</span> <span class="n">yu_damper3</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">))</span>
-
-    <span class="k">def</span> <span class="nf">bokeh_patch</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">position</span><span class="p">,</span> <span class="n">mean</span><span class="p">,</span> <span class="n">bk_ax</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Bearing element patch.</span>
-<span class="sd">        Patch that will be used to draw the bearing element.</span>
-
-<span class="sd">        Parameters</span>
-<span class="sd">        ----------</span>
-<span class="sd">        position : tuple</span>
-<span class="sd">            Position (z, y) in which the patch will be drawn.</span>
-<span class="sd">        mean : float</span>
-<span class="sd">            Mean value of shaft element outer diameters</span>
-<span class="sd">        bk_ax : bokeh plotting axes, optional</span>
-<span class="sd">            Axes in which the plot will be drawn.</span>
-
-<span class="sd">        Returns</span>
-<span class="sd">        -------</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">default_values</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">line_width</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">line_alpha</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">bokeh_colors</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
-        <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">default_values</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
-            <span class="n">kwargs</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span>
-
-        <span class="c1"># geometric factors</span>
-        <span class="n">zpos</span><span class="p">,</span> <span class="n">ypos</span> <span class="o">=</span> <span class="n">position</span>
-        <span class="n">coils</span> <span class="o">=</span> <span class="mi">6</span>  <span class="c1"># number of points to generate spring</span>
-        <span class="n">n</span> <span class="o">=</span> <span class="mi">5</span>  <span class="c1"># number of ground lines</span>
-        <span class="n">step</span> <span class="o">=</span> <span class="n">mean</span> <span class="o">/</span> <span class="p">(</span><span class="n">coils</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>  <span class="c1"># spring step</span>
-
-        <span class="n">zs0</span> <span class="o">=</span> <span class="n">zpos</span> <span class="o">-</span> <span class="p">(</span><span class="n">mean</span> <span class="o">/</span> <span class="mf">2.0</span><span class="p">)</span>
-        <span class="n">zs1</span> <span class="o">=</span> <span class="n">zpos</span> <span class="o">+</span> <span class="p">(</span><span class="n">mean</span> <span class="o">/</span> <span class="mf">2.0</span><span class="p">)</span>
-        <span class="n">ys0</span> <span class="o">=</span> <span class="n">ypos</span> <span class="o">+</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">mean</span>
-
-        <span class="c1"># plot bottom base</span>
-        <span class="n">x_bot</span> <span class="o">=</span> <span class="p">[</span><span class="n">zpos</span><span class="p">,</span> <span class="n">zpos</span><span class="p">,</span> <span class="n">zs0</span><span class="p">,</span> <span class="n">zs1</span><span class="p">]</span>
-        <span class="n">yl_bot</span> <span class="o">=</span> <span class="p">[</span><span class="n">ypos</span><span class="p">,</span> <span class="n">ys0</span><span class="p">,</span> <span class="n">ys0</span><span class="p">,</span> <span class="n">ys0</span><span class="p">]</span>
-        <span class="n">yu_bot</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="n">y</span> <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="n">yl_bot</span><span class="p">]</span>
-        <span class="n">bk_ax</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">x_bot</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">yl_bot</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-        <span class="n">bk_ax</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">x_bot</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">yu_bot</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-
-        <span class="c1"># plot top base</span>
-        <span class="n">x_top</span> <span class="o">=</span> <span class="p">[</span><span class="n">zpos</span><span class="p">,</span> <span class="n">zpos</span><span class="p">,</span> <span class="n">zs0</span><span class="p">,</span> <span class="n">zs1</span><span class="p">]</span>
-        <span class="n">yl_top</span> <span class="o">=</span> <span class="p">[</span>
-            <span class="n">ypos</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">mean</span><span class="p">,</span>
-            <span class="n">ypos</span> <span class="o">+</span> <span class="mf">1.5</span> <span class="o">*</span> <span class="n">mean</span><span class="p">,</span>
-            <span class="n">ypos</span> <span class="o">+</span> <span class="mf">1.5</span> <span class="o">*</span> <span class="n">mean</span><span class="p">,</span>
-            <span class="n">ypos</span> <span class="o">+</span> <span class="mf">1.5</span> <span class="o">*</span> <span class="n">mean</span><span class="p">,</span>
-        <span class="p">]</span>
-        <span class="n">yu_top</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="n">y</span> <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="n">yl_top</span><span class="p">]</span>
-        <span class="n">bk_ax</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">x_top</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">yl_top</span><span class="p">,</span> <span class="n">legend_label</span><span class="o">=</span><span class="s2">&quot;Bearing&quot;</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-        <span class="n">bk_ax</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">x_top</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">yu_top</span><span class="p">,</span> <span class="n">legend_label</span><span class="o">=</span><span class="s2">&quot;Bearing&quot;</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-
-        <span class="c1"># plot ground</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_link</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="n">zl_g</span> <span class="o">=</span> <span class="p">[</span><span class="n">zs0</span> <span class="o">-</span> <span class="n">step</span><span class="p">,</span> <span class="n">zs1</span> <span class="o">+</span> <span class="n">step</span><span class="p">]</span>
-            <span class="n">yl_g</span> <span class="o">=</span> <span class="p">[</span><span class="n">yl_top</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">yl_top</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span>
-            <span class="n">yu_g</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="n">y</span> <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="n">yl_g</span><span class="p">]</span>
-            <span class="n">bk_ax</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">zl_g</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">yl_g</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-            <span class="n">bk_ax</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">zl_g</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">yu_g</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-
-            <span class="n">step2</span> <span class="o">=</span> <span class="p">(</span><span class="n">zl_g</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">zl_g</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">/</span> <span class="n">n</span>
-            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
-                <span class="n">zl_g2</span> <span class="o">=</span> <span class="p">[(</span><span class="n">zs0</span> <span class="o">-</span> <span class="n">step</span><span class="p">)</span> <span class="o">+</span> <span class="n">step2</span> <span class="o">*</span> <span class="p">(</span><span class="n">i</span><span class="p">),</span> <span class="p">(</span><span class="n">zs0</span> <span class="o">-</span> <span class="n">step</span><span class="p">)</span> <span class="o">+</span> <span class="n">step2</span> <span class="o">*</span> <span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)]</span>
-                <span class="n">yl_g2</span> <span class="o">=</span> <span class="p">[</span><span class="n">yl_g</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="mf">1.1</span> <span class="o">*</span> <span class="n">yl_g</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span>
-                <span class="n">yu_g2</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="n">y</span> <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="n">yl_g2</span><span class="p">]</span>
-                <span class="n">bk_ax</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">zl_g2</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">yl_g2</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-                <span class="n">bk_ax</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">zl_g2</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">yu_g2</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-
-        <span class="c1"># plot spring</span>
-        <span class="n">z_spring</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">zs0</span><span class="p">,</span> <span class="n">zs0</span><span class="p">,</span> <span class="n">zs0</span><span class="p">,</span> <span class="n">zs0</span><span class="p">])</span>
-        <span class="n">yl_spring</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">ys0</span><span class="p">,</span> <span class="n">ys0</span> <span class="o">+</span> <span class="n">step</span><span class="p">,</span> <span class="n">ys0</span> <span class="o">+</span> <span class="n">mean</span> <span class="o">-</span> <span class="n">step</span><span class="p">,</span> <span class="n">ys0</span> <span class="o">+</span> <span class="n">mean</span><span class="p">])</span>
-
-        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">coils</span><span class="p">):</span>
-            <span class="n">z_spring</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">z_spring</span><span class="p">,</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">2</span><span class="p">,</span> <span class="n">zs0</span> <span class="o">-</span> <span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">**</span> <span class="n">i</span> <span class="o">*</span> <span class="n">step</span><span class="p">)</span>
-            <span class="n">yl_spring</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">yl_spring</span><span class="p">,</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">2</span><span class="p">,</span> <span class="n">ys0</span> <span class="o">+</span> <span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">step</span><span class="p">)</span>
-        <span class="n">yu_spring</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="n">y</span> <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="n">yl_spring</span><span class="p">]</span>
-
-        <span class="n">bk_ax</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">z_spring</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">yl_spring</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-        <span class="n">bk_ax</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">z_spring</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">yu_spring</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-
-        <span class="c1"># plot damper - base</span>
-        <span class="n">z_damper1</span> <span class="o">=</span> <span class="p">[</span><span class="n">zs1</span><span class="p">,</span> <span class="n">zs1</span><span class="p">]</span>
-        <span class="n">yl_damper1</span> <span class="o">=</span> <span class="p">[</span><span class="n">ys0</span><span class="p">,</span> <span class="n">ys0</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">step</span><span class="p">]</span>
-        <span class="n">yu_damper1</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="n">y</span> <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="n">yl_damper1</span><span class="p">]</span>
-
-        <span class="n">bk_ax</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">z_damper1</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">yl_damper1</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-        <span class="n">bk_ax</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">z_damper1</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">yu_damper1</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-
-        <span class="c1"># plot damper - center</span>
-        <span class="n">z_damper2</span> <span class="o">=</span> <span class="p">[</span><span class="n">zs1</span> <span class="o">-</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">step</span><span class="p">,</span> <span class="n">zs1</span> <span class="o">-</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">step</span><span class="p">,</span> <span class="n">zs1</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">step</span><span class="p">,</span> <span class="n">zs1</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">step</span><span class="p">]</span>
-        <span class="n">yl_damper2</span> <span class="o">=</span> <span class="p">[</span><span class="n">ys0</span> <span class="o">+</span> <span class="mi">5</span> <span class="o">*</span> <span class="n">step</span><span class="p">,</span> <span class="n">ys0</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">step</span><span class="p">,</span> <span class="n">ys0</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">step</span><span class="p">,</span> <span class="n">ys0</span> <span class="o">+</span> <span class="mi">5</span> <span class="o">*</span> <span class="n">step</span><span class="p">]</span>
-        <span class="n">yu_damper2</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="n">y</span> <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="n">yl_damper2</span><span class="p">]</span>
-
-        <span class="n">bk_ax</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">z_damper2</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">yl_damper2</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-        <span class="n">bk_ax</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">z_damper2</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">yu_damper2</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-
-        <span class="c1"># plot damper - top</span>
-        <span class="n">z_damper3</span> <span class="o">=</span> <span class="p">[</span><span class="n">z_damper2</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">z_damper2</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">zs1</span><span class="p">,</span> <span class="n">zs1</span><span class="p">]</span>
-        <span class="n">yl_damper3</span> <span class="o">=</span> <span class="p">[</span><span class="n">ys0</span> <span class="o">+</span> <span class="mi">4</span> <span class="o">*</span> <span class="n">step</span><span class="p">,</span> <span class="n">ys0</span> <span class="o">+</span> <span class="mi">4</span> <span class="o">*</span> <span class="n">step</span><span class="p">,</span> <span class="n">ys0</span> <span class="o">+</span> <span class="mi">4</span> <span class="o">*</span> <span class="n">step</span><span class="p">,</span> <span class="n">ypos</span> <span class="o">+</span> <span class="mf">1.5</span> <span class="o">*</span> <span class="n">mean</span><span class="p">]</span>
-        <span class="n">yu_damper3</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="n">y</span> <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="n">yl_damper3</span><span class="p">]</span>
-
-        <span class="n">bk_ax</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">z_damper3</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">yl_damper3</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-        <span class="n">bk_ax</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">z_damper3</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">yu_damper3</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
 
 <span class="k">class</span> <span class="nc">RollerBearingElement</span><span class="p">(</span><span class="n">BearingElement</span><span class="p">):</span>
@@ -1662,209 +1383,6 @@
         <span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">color</span> <span class="o">=</span> <span class="s2">&quot;#77ACA2&quot;</span>
-
-    <span class="k">def</span> <span class="nf">patch</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">position</span><span class="p">,</span> <span class="n">mean</span><span class="p">,</span> <span class="n">ax</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Bearing element patch.</span>
-<span class="sd">        Patch that will be used to draw the bearing element.</span>
-
-<span class="sd">        Parameters</span>
-<span class="sd">        ----------</span>
-<span class="sd">        position : tuple</span>
-<span class="sd">            Position (z, y) in which the patch will be drawn.</span>
-<span class="sd">        mean : float</span>
-<span class="sd">            Mean value of shaft element outer diameters</span>
-<span class="sd">        ax : matplotlib axes, optional</span>
-<span class="sd">            Axes in which the plot will be drawn.</span>
-
-<span class="sd">        Returns</span>
-<span class="sd">        -------</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">default_values</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">lw</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s2">&quot;k&quot;</span><span class="p">)</span>
-        <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">default_values</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
-            <span class="n">kwargs</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span>
-
-        <span class="c1"># geometric factors</span>
-        <span class="n">zpos</span><span class="p">,</span> <span class="n">ypos</span> <span class="o">=</span> <span class="n">position</span>
-        <span class="n">coils</span> <span class="o">=</span> <span class="mi">6</span>  <span class="c1"># number of points to generate spring</span>
-        <span class="n">n</span> <span class="o">=</span> <span class="mi">5</span>  <span class="c1"># number of ground lines</span>
-        <span class="n">step</span> <span class="o">=</span> <span class="n">mean</span> <span class="o">/</span> <span class="p">(</span><span class="n">coils</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>  <span class="c1"># spring step</span>
-
-        <span class="n">zs0</span> <span class="o">=</span> <span class="n">zpos</span> <span class="o">-</span> <span class="p">(</span><span class="n">mean</span> <span class="o">/</span> <span class="mf">2.0</span><span class="p">)</span>
-        <span class="n">zs1</span> <span class="o">=</span> <span class="n">zpos</span> <span class="o">+</span> <span class="p">(</span><span class="n">mean</span> <span class="o">/</span> <span class="mf">2.0</span><span class="p">)</span>
-        <span class="n">ys0</span> <span class="o">=</span> <span class="n">ypos</span> <span class="o">+</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">mean</span>
-
-        <span class="c1"># plot bottom base</span>
-        <span class="n">x_bot</span> <span class="o">=</span> <span class="p">[</span><span class="n">zpos</span><span class="p">,</span> <span class="n">zpos</span><span class="p">,</span> <span class="n">zs0</span><span class="p">,</span> <span class="n">zs1</span><span class="p">]</span>
-        <span class="n">yl_bot</span> <span class="o">=</span> <span class="p">[</span><span class="n">ypos</span><span class="p">,</span> <span class="n">ys0</span><span class="p">,</span> <span class="n">ys0</span><span class="p">,</span> <span class="n">ys0</span><span class="p">]</span>
-        <span class="n">yu_bot</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="n">y</span> <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="n">yl_bot</span><span class="p">]</span>
-        <span class="n">ax</span><span class="o">.</span><span class="n">add_line</span><span class="p">(</span><span class="n">mlines</span><span class="o">.</span><span class="n">Line2D</span><span class="p">(</span><span class="n">x_bot</span><span class="p">,</span> <span class="n">yl_bot</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">))</span>
-        <span class="n">ax</span><span class="o">.</span><span class="n">add_line</span><span class="p">(</span><span class="n">mlines</span><span class="o">.</span><span class="n">Line2D</span><span class="p">(</span><span class="n">x_bot</span><span class="p">,</span> <span class="n">yu_bot</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">))</span>
-
-        <span class="c1"># plot top base</span>
-        <span class="n">x_top</span> <span class="o">=</span> <span class="p">[</span><span class="n">zpos</span><span class="p">,</span> <span class="n">zpos</span><span class="p">,</span> <span class="n">zs0</span><span class="p">,</span> <span class="n">zs1</span><span class="p">]</span>
-        <span class="n">yl_top</span> <span class="o">=</span> <span class="p">[</span>
-            <span class="n">ypos</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">mean</span><span class="p">,</span>
-            <span class="n">ypos</span> <span class="o">+</span> <span class="mf">1.5</span> <span class="o">*</span> <span class="n">mean</span><span class="p">,</span>
-            <span class="n">ypos</span> <span class="o">+</span> <span class="mf">1.5</span> <span class="o">*</span> <span class="n">mean</span><span class="p">,</span>
-            <span class="n">ypos</span> <span class="o">+</span> <span class="mf">1.5</span> <span class="o">*</span> <span class="n">mean</span><span class="p">,</span>
-        <span class="p">]</span>
-        <span class="n">yu_top</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="n">y</span> <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="n">yl_top</span><span class="p">]</span>
-        <span class="n">ax</span><span class="o">.</span><span class="n">add_line</span><span class="p">(</span><span class="n">mlines</span><span class="o">.</span><span class="n">Line2D</span><span class="p">(</span><span class="n">x_top</span><span class="p">,</span> <span class="n">yl_top</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">))</span>
-        <span class="n">ax</span><span class="o">.</span><span class="n">add_line</span><span class="p">(</span><span class="n">mlines</span><span class="o">.</span><span class="n">Line2D</span><span class="p">(</span><span class="n">x_top</span><span class="p">,</span> <span class="n">yu_top</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">))</span>
-
-        <span class="c1"># plot ground</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_link</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="n">zl_g</span> <span class="o">=</span> <span class="p">[</span><span class="n">zs0</span> <span class="o">-</span> <span class="n">step</span><span class="p">,</span> <span class="n">zs1</span> <span class="o">+</span> <span class="n">step</span><span class="p">]</span>
-            <span class="n">yl_g</span> <span class="o">=</span> <span class="p">[</span><span class="n">yl_top</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">yl_top</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span>
-            <span class="n">yu_g</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="n">y</span> <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="n">yl_g</span><span class="p">]</span>
-            <span class="n">ax</span><span class="o">.</span><span class="n">add_line</span><span class="p">(</span><span class="n">mlines</span><span class="o">.</span><span class="n">Line2D</span><span class="p">(</span><span class="n">zl_g</span><span class="p">,</span> <span class="n">yl_g</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">))</span>
-            <span class="n">ax</span><span class="o">.</span><span class="n">add_line</span><span class="p">(</span><span class="n">mlines</span><span class="o">.</span><span class="n">Line2D</span><span class="p">(</span><span class="n">zl_g</span><span class="p">,</span> <span class="n">yu_g</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">))</span>
-
-            <span class="n">step2</span> <span class="o">=</span> <span class="p">(</span><span class="n">zl_g</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">zl_g</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">/</span> <span class="n">n</span>
-            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
-                <span class="n">zl_g2</span> <span class="o">=</span> <span class="p">[(</span><span class="n">zs0</span> <span class="o">-</span> <span class="n">step</span><span class="p">)</span> <span class="o">+</span> <span class="n">step2</span> <span class="o">*</span> <span class="p">(</span><span class="n">i</span><span class="p">),</span> <span class="p">(</span><span class="n">zs0</span> <span class="o">-</span> <span class="n">step</span><span class="p">)</span> <span class="o">+</span> <span class="n">step2</span> <span class="o">*</span> <span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)]</span>
-                <span class="n">yl_g2</span> <span class="o">=</span> <span class="p">[</span><span class="n">yl_g</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="mf">1.1</span> <span class="o">*</span> <span class="n">yl_g</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span>
-                <span class="n">yu_g2</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="n">y</span> <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="n">yl_g2</span><span class="p">]</span>
-                <span class="n">ax</span><span class="o">.</span><span class="n">add_line</span><span class="p">(</span><span class="n">mlines</span><span class="o">.</span><span class="n">Line2D</span><span class="p">(</span><span class="n">zl_g2</span><span class="p">,</span> <span class="n">yl_g2</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">))</span>
-                <span class="n">ax</span><span class="o">.</span><span class="n">add_line</span><span class="p">(</span><span class="n">mlines</span><span class="o">.</span><span class="n">Line2D</span><span class="p">(</span><span class="n">zl_g2</span><span class="p">,</span> <span class="n">yu_g2</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">))</span>
-
-        <span class="c1"># plot spring</span>
-        <span class="n">z_spring</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">zs0</span><span class="p">,</span> <span class="n">zs0</span><span class="p">,</span> <span class="n">zs0</span><span class="p">,</span> <span class="n">zs0</span><span class="p">])</span>
-        <span class="n">yl_spring</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">ys0</span><span class="p">,</span> <span class="n">ys0</span> <span class="o">+</span> <span class="n">step</span><span class="p">,</span> <span class="n">ys0</span> <span class="o">+</span> <span class="n">mean</span> <span class="o">-</span> <span class="n">step</span><span class="p">,</span> <span class="n">ys0</span> <span class="o">+</span> <span class="n">mean</span><span class="p">])</span>
-
-        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">coils</span><span class="p">):</span>
-            <span class="n">z_spring</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">z_spring</span><span class="p">,</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">2</span><span class="p">,</span> <span class="n">zs0</span> <span class="o">-</span> <span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">**</span> <span class="n">i</span> <span class="o">*</span> <span class="n">step</span><span class="p">)</span>
-            <span class="n">yl_spring</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">yl_spring</span><span class="p">,</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">2</span><span class="p">,</span> <span class="n">ys0</span> <span class="o">+</span> <span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">step</span><span class="p">)</span>
-        <span class="n">yu_spring</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="n">y</span> <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="n">yl_spring</span><span class="p">]</span>
-
-        <span class="n">ax</span><span class="o">.</span><span class="n">add_line</span><span class="p">(</span><span class="n">mlines</span><span class="o">.</span><span class="n">Line2D</span><span class="p">(</span><span class="n">z_spring</span><span class="p">,</span> <span class="n">yl_spring</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">))</span>
-        <span class="n">ax</span><span class="o">.</span><span class="n">add_line</span><span class="p">(</span><span class="n">mlines</span><span class="o">.</span><span class="n">Line2D</span><span class="p">(</span><span class="n">z_spring</span><span class="p">,</span> <span class="n">yu_spring</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">))</span>
-
-        <span class="c1"># plot damper - base</span>
-        <span class="n">z_damper1</span> <span class="o">=</span> <span class="p">[</span><span class="n">zs1</span><span class="p">,</span> <span class="n">zs1</span><span class="p">]</span>
-        <span class="n">yl_damper1</span> <span class="o">=</span> <span class="p">[</span><span class="n">ys0</span><span class="p">,</span> <span class="n">ys0</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">step</span><span class="p">]</span>
-        <span class="n">yu_damper1</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="n">y</span> <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="n">yl_damper1</span><span class="p">]</span>
-
-        <span class="n">ax</span><span class="o">.</span><span class="n">add_line</span><span class="p">(</span><span class="n">mlines</span><span class="o">.</span><span class="n">Line2D</span><span class="p">(</span><span class="n">z_damper1</span><span class="p">,</span> <span class="n">yl_damper1</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">))</span>
-        <span class="n">ax</span><span class="o">.</span><span class="n">add_line</span><span class="p">(</span><span class="n">mlines</span><span class="o">.</span><span class="n">Line2D</span><span class="p">(</span><span class="n">z_damper1</span><span class="p">,</span> <span class="n">yu_damper1</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">))</span>
-
-        <span class="c1"># plot damper - center</span>
-        <span class="n">z_damper2</span> <span class="o">=</span> <span class="p">[</span><span class="n">zs1</span> <span class="o">-</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">step</span><span class="p">,</span> <span class="n">zs1</span> <span class="o">-</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">step</span><span class="p">,</span> <span class="n">zs1</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">step</span><span class="p">,</span> <span class="n">zs1</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">step</span><span class="p">]</span>
-        <span class="n">yl_damper2</span> <span class="o">=</span> <span class="p">[</span><span class="n">ys0</span> <span class="o">+</span> <span class="mi">5</span> <span class="o">*</span> <span class="n">step</span><span class="p">,</span> <span class="n">ys0</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">step</span><span class="p">,</span> <span class="n">ys0</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">step</span><span class="p">,</span> <span class="n">ys0</span> <span class="o">+</span> <span class="mi">5</span> <span class="o">*</span> <span class="n">step</span><span class="p">]</span>
-        <span class="n">yu_damper2</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="n">y</span> <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="n">yl_damper2</span><span class="p">]</span>
-
-        <span class="n">ax</span><span class="o">.</span><span class="n">add_line</span><span class="p">(</span><span class="n">mlines</span><span class="o">.</span><span class="n">Line2D</span><span class="p">(</span><span class="n">z_damper2</span><span class="p">,</span> <span class="n">yl_damper2</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">))</span>
-        <span class="n">ax</span><span class="o">.</span><span class="n">add_line</span><span class="p">(</span><span class="n">mlines</span><span class="o">.</span><span class="n">Line2D</span><span class="p">(</span><span class="n">z_damper2</span><span class="p">,</span> <span class="n">yu_damper2</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">))</span>
-
-        <span class="c1"># plot damper - top</span>
-        <span class="n">z_damper3</span> <span class="o">=</span> <span class="p">[</span><span class="n">z_damper2</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">z_damper2</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">zs1</span><span class="p">,</span> <span class="n">zs1</span><span class="p">]</span>
-        <span class="n">yl_damper3</span> <span class="o">=</span> <span class="p">[</span><span class="n">ys0</span> <span class="o">+</span> <span class="mi">4</span> <span class="o">*</span> <span class="n">step</span><span class="p">,</span> <span class="n">ys0</span> <span class="o">+</span> <span class="mi">4</span> <span class="o">*</span> <span class="n">step</span><span class="p">,</span> <span class="n">ys0</span> <span class="o">+</span> <span class="mi">4</span> <span class="o">*</span> <span class="n">step</span><span class="p">,</span> <span class="n">ypos</span> <span class="o">+</span> <span class="mf">1.5</span> <span class="o">*</span> <span class="n">mean</span><span class="p">]</span>
-        <span class="n">yu_damper3</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="n">y</span> <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="n">yl_damper3</span><span class="p">]</span>
-
-        <span class="n">ax</span><span class="o">.</span><span class="n">add_line</span><span class="p">(</span><span class="n">mlines</span><span class="o">.</span><span class="n">Line2D</span><span class="p">(</span><span class="n">z_damper3</span><span class="p">,</span> <span class="n">yl_damper3</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">))</span>
-        <span class="n">ax</span><span class="o">.</span><span class="n">add_line</span><span class="p">(</span><span class="n">mlines</span><span class="o">.</span><span class="n">Line2D</span><span class="p">(</span><span class="n">z_damper3</span><span class="p">,</span> <span class="n">yu_damper3</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">))</span>
-
-    <span class="k">def</span> <span class="nf">bokeh_patch</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">position</span><span class="p">,</span> <span class="n">mean</span><span class="p">,</span> <span class="n">bk_ax</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Bearing element patch.</span>
-<span class="sd">        Patch that will be used to draw the bearing element.</span>
-
-<span class="sd">        Parameters</span>
-<span class="sd">        ----------</span>
-<span class="sd">        position : tuple</span>
-<span class="sd">            Position (z, y) in which the patch will be drawn.</span>
-<span class="sd">        mean : float</span>
-<span class="sd">            Mean value of shaft element outer diameters</span>
-<span class="sd">        bk_ax : bokeh plotting axes, optional</span>
-<span class="sd">            Axes in which the plot will be drawn.</span>
-
-<span class="sd">        Returns</span>
-<span class="sd">        -------</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">default_values</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">line_width</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">line_alpha</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">bokeh_colors</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
-        <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">default_values</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
-            <span class="n">kwargs</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span>
-
-        <span class="n">mean</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">scale_factor</span>
-        <span class="c1"># geometric factors</span>
-        <span class="n">zpos</span><span class="p">,</span> <span class="n">ypos</span> <span class="o">=</span> <span class="n">position</span>
-        <span class="n">coils</span> <span class="o">=</span> <span class="mi">6</span>  <span class="c1"># number of points to generate spring</span>
-        <span class="n">n</span> <span class="o">=</span> <span class="mi">5</span>  <span class="c1"># number of ground lines</span>
-        <span class="n">step</span> <span class="o">=</span> <span class="n">mean</span> <span class="o">/</span> <span class="p">(</span><span class="n">coils</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>  <span class="c1"># spring step</span>
-
-        <span class="n">zs0</span> <span class="o">=</span> <span class="n">zpos</span> <span class="o">-</span> <span class="p">(</span><span class="n">mean</span> <span class="o">/</span> <span class="mf">2.0</span><span class="p">)</span>
-        <span class="n">zs1</span> <span class="o">=</span> <span class="n">zpos</span> <span class="o">+</span> <span class="p">(</span><span class="n">mean</span> <span class="o">/</span> <span class="mf">2.0</span><span class="p">)</span>
-        <span class="n">ys0</span> <span class="o">=</span> <span class="n">ypos</span> <span class="o">+</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">mean</span>
-
-        <span class="c1"># plot bottom base</span>
-        <span class="n">x_bot</span> <span class="o">=</span> <span class="p">[</span><span class="n">zpos</span><span class="p">,</span> <span class="n">zpos</span><span class="p">,</span> <span class="n">zs0</span><span class="p">,</span> <span class="n">zs1</span><span class="p">]</span>
-        <span class="n">yl_bot</span> <span class="o">=</span> <span class="p">[</span><span class="n">ypos</span><span class="p">,</span> <span class="n">ys0</span><span class="p">,</span> <span class="n">ys0</span><span class="p">,</span> <span class="n">ys0</span><span class="p">]</span>
-        <span class="n">yu_bot</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="n">y</span> <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="n">yl_bot</span><span class="p">]</span>
-        <span class="n">bk_ax</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">x_bot</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">yl_bot</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-        <span class="n">bk_ax</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">x_bot</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">yu_bot</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-
-        <span class="c1"># plot top base</span>
-        <span class="n">x_top</span> <span class="o">=</span> <span class="p">[</span><span class="n">zpos</span><span class="p">,</span> <span class="n">zpos</span><span class="p">,</span> <span class="n">zs0</span><span class="p">,</span> <span class="n">zs1</span><span class="p">]</span>
-        <span class="n">yl_top</span> <span class="o">=</span> <span class="p">[</span>
-            <span class="n">ypos</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">mean</span><span class="p">,</span>
-            <span class="n">ypos</span> <span class="o">+</span> <span class="mf">1.5</span> <span class="o">*</span> <span class="n">mean</span><span class="p">,</span>
-            <span class="n">ypos</span> <span class="o">+</span> <span class="mf">1.5</span> <span class="o">*</span> <span class="n">mean</span><span class="p">,</span>
-            <span class="n">ypos</span> <span class="o">+</span> <span class="mf">1.5</span> <span class="o">*</span> <span class="n">mean</span><span class="p">,</span>
-        <span class="p">]</span>
-        <span class="n">yu_top</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="n">y</span> <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="n">yl_top</span><span class="p">]</span>
-        <span class="n">bk_ax</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">x_top</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">yl_top</span><span class="p">,</span> <span class="n">legend_label</span><span class="o">=</span><span class="s2">&quot;Bearing&quot;</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-        <span class="n">bk_ax</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">x_top</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">yu_top</span><span class="p">,</span> <span class="n">legend_label</span><span class="o">=</span><span class="s2">&quot;Bearing&quot;</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-
-        <span class="c1"># plot ground</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_link</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="n">zl_g</span> <span class="o">=</span> <span class="p">[</span><span class="n">zs0</span> <span class="o">-</span> <span class="n">step</span><span class="p">,</span> <span class="n">zs1</span> <span class="o">+</span> <span class="n">step</span><span class="p">]</span>
-            <span class="n">yl_g</span> <span class="o">=</span> <span class="p">[</span><span class="n">yl_top</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">yl_top</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span>
-            <span class="n">yu_g</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="n">y</span> <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="n">yl_g</span><span class="p">]</span>
-            <span class="n">bk_ax</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">zl_g</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">yl_g</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-            <span class="n">bk_ax</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">zl_g</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">yu_g</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-
-            <span class="n">step2</span> <span class="o">=</span> <span class="p">(</span><span class="n">zl_g</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">zl_g</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">/</span> <span class="n">n</span>
-            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
-                <span class="n">zl_g2</span> <span class="o">=</span> <span class="p">[(</span><span class="n">zs0</span> <span class="o">-</span> <span class="n">step</span><span class="p">)</span> <span class="o">+</span> <span class="n">step2</span> <span class="o">*</span> <span class="p">(</span><span class="n">i</span><span class="p">),</span> <span class="p">(</span><span class="n">zs0</span> <span class="o">-</span> <span class="n">step</span><span class="p">)</span> <span class="o">+</span> <span class="n">step2</span> <span class="o">*</span> <span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)]</span>
-                <span class="n">yl_g2</span> <span class="o">=</span> <span class="p">[</span><span class="n">yl_g</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="mf">1.1</span> <span class="o">*</span> <span class="n">yl_g</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span>
-                <span class="n">yu_g2</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="n">y</span> <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="n">yl_g2</span><span class="p">]</span>
-                <span class="n">bk_ax</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">zl_g2</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">yl_g2</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-                <span class="n">bk_ax</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">zl_g2</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">yu_g2</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-
-        <span class="c1"># plot spring</span>
-        <span class="n">z_spring</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">zs0</span><span class="p">,</span> <span class="n">zs0</span><span class="p">,</span> <span class="n">zs0</span><span class="p">,</span> <span class="n">zs0</span><span class="p">])</span>
-        <span class="n">yl_spring</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">ys0</span><span class="p">,</span> <span class="n">ys0</span> <span class="o">+</span> <span class="n">step</span><span class="p">,</span> <span class="n">ys0</span> <span class="o">+</span> <span class="n">mean</span> <span class="o">-</span> <span class="n">step</span><span class="p">,</span> <span class="n">ys0</span> <span class="o">+</span> <span class="n">mean</span><span class="p">])</span>
-
-        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">coils</span><span class="p">):</span>
-            <span class="n">z_spring</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">z_spring</span><span class="p">,</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">2</span><span class="p">,</span> <span class="n">zs0</span> <span class="o">-</span> <span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">**</span> <span class="n">i</span> <span class="o">*</span> <span class="n">step</span><span class="p">)</span>
-            <span class="n">yl_spring</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">yl_spring</span><span class="p">,</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">2</span><span class="p">,</span> <span class="n">ys0</span> <span class="o">+</span> <span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">step</span><span class="p">)</span>
-        <span class="n">yu_spring</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="n">y</span> <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="n">yl_spring</span><span class="p">]</span>
-
-        <span class="n">bk_ax</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">z_spring</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">yl_spring</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-        <span class="n">bk_ax</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">z_spring</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">yu_spring</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-
-        <span class="c1"># plot damper - base</span>
-        <span class="n">z_damper1</span> <span class="o">=</span> <span class="p">[</span><span class="n">zs1</span><span class="p">,</span> <span class="n">zs1</span><span class="p">]</span>
-        <span class="n">yl_damper1</span> <span class="o">=</span> <span class="p">[</span><span class="n">ys0</span><span class="p">,</span> <span class="n">ys0</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">step</span><span class="p">]</span>
-        <span class="n">yu_damper1</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="n">y</span> <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="n">yl_damper1</span><span class="p">]</span>
-
-        <span class="n">bk_ax</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">z_damper1</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">yl_damper1</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-        <span class="n">bk_ax</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">z_damper1</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">yu_damper1</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-
-        <span class="c1"># plot damper - center</span>
-        <span class="n">z_damper2</span> <span class="o">=</span> <span class="p">[</span><span class="n">zs1</span> <span class="o">-</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">step</span><span class="p">,</span> <span class="n">zs1</span> <span class="o">-</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">step</span><span class="p">,</span> <span class="n">zs1</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">step</span><span class="p">,</span> <span class="n">zs1</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">step</span><span class="p">]</span>
-        <span class="n">yl_damper2</span> <span class="o">=</span> <span class="p">[</span><span class="n">ys0</span> <span class="o">+</span> <span class="mi">5</span> <span class="o">*</span> <span class="n">step</span><span class="p">,</span> <span class="n">ys0</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">step</span><span class="p">,</span> <span class="n">ys0</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">step</span><span class="p">,</span> <span class="n">ys0</span> <span class="o">+</span> <span class="mi">5</span> <span class="o">*</span> <span class="n">step</span><span class="p">]</span>
-        <span class="n">yu_damper2</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="n">y</span> <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="n">yl_damper2</span><span class="p">]</span>
-
-        <span class="n">bk_ax</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">z_damper2</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">yl_damper2</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-        <span class="n">bk_ax</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">z_damper2</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">yu_damper2</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-
-        <span class="c1"># plot damper - top</span>
-        <span class="n">z_damper3</span> <span class="o">=</span> <span class="p">[</span><span class="n">z_damper2</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">z_damper2</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">zs1</span><span class="p">,</span> <span class="n">zs1</span><span class="p">]</span>
-        <span class="n">yl_damper3</span> <span class="o">=</span> <span class="p">[</span><span class="n">ys0</span> <span class="o">+</span> <span class="mi">4</span> <span class="o">*</span> <span class="n">step</span><span class="p">,</span> <span class="n">ys0</span> <span class="o">+</span> <span class="mi">4</span> <span class="o">*</span> <span class="n">step</span><span class="p">,</span> <span class="n">ys0</span> <span class="o">+</span> <span class="mi">4</span> <span class="o">*</span> <span class="n">step</span><span class="p">,</span> <span class="n">ypos</span> <span class="o">+</span> <span class="mf">1.5</span> <span class="o">*</span> <span class="n">mean</span><span class="p">]</span>
-        <span class="n">yu_damper3</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="n">y</span> <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="n">yl_damper3</span><span class="p">]</span>
-
-        <span class="n">bk_ax</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">z_damper3</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">yl_damper3</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-        <span class="n">bk_ax</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">z_damper3</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">yu_damper3</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
 
 <span class="k">def</span> <span class="nf">bearing_example</span><span class="p">():</span>

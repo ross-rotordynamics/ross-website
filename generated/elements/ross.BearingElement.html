@@ -348,15 +348,13 @@ Default is 1.</p>
 
 <dl class="method">
 <dt id="ross.BearingElement.bokeh_patch">
-<code class="sig-name descname">bokeh_patch</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">position</em>, <em class="sig-param">mean</em>, <em class="sig-param">bk_ax</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/bearing_seal_element.html#BearingElement.bokeh_patch"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.BearingElement.bokeh_patch" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">bokeh_patch</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">position</em>, <em class="sig-param">bk_ax</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/bearing_seal_element.html#BearingElement.bokeh_patch"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.BearingElement.bokeh_patch" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bearing element patch.
 Patch that will be used to draw the bearing element.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>position</strong><span class="classifier">tuple</span></dt><dd><p>Position (z, y) in which the patch will be drawn.</p>
-</dd>
-<dt><strong>mean</strong><span class="classifier">float</span></dt><dd><p>Mean value of shaft element outer diameters</p>
+<dt><strong>position</strong><span class="classifier">tuple</span></dt><dd><p>Position (z, y_low, y_upp) in which the patch will be drawn.</p>
 </dd>
 <dt><strong>bk_ax</strong><span class="classifier">bokeh plotting axes, optional</span></dt><dd><p>Axes in which the plot will be drawn.</p>
 </dd>
@@ -617,15 +615,13 @@ assumed to be the first sheet in the file.</p>
 
 <dl class="method">
 <dt id="ross.BearingElement.patch">
-<code class="sig-name descname">patch</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">position</em>, <em class="sig-param">mean</em>, <em class="sig-param">ax</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/bearing_seal_element.html#BearingElement.patch"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.BearingElement.patch" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">patch</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">position</em>, <em class="sig-param">ax</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/bearing_seal_element.html#BearingElement.patch"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.BearingElement.patch" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bearing element patch.
 Patch that will be used to draw the bearing element.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>position</strong><span class="classifier">tuple</span></dt><dd><p>Position (z, y) in which the patch will be drawn.</p>
-</dd>
-<dt><strong>mean</strong><span class="classifier">float</span></dt><dd><p>Mean value of shaft element outer diameters</p>
+<dt><strong>position</strong><span class="classifier">tuple</span></dt><dd><p>Position (z, y_low, y_upp) in which the patch will be drawn.</p>
 </dd>
 <dt><strong>ax</strong><span class="classifier">matplotlib axes, optional</span></dt><dd><p>Axes in which the plot will be drawn.</p>
 </dd>
