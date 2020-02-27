@@ -170,7 +170,7 @@
 <h1>ross.Material<a class="headerlink" href="#ross-material" title="Permalink to this headline">¶</a></h1>
 <dl class="class">
 <dt id="ross.Material">
-<em class="property">class </em><code class="sig-prename descclassname">ross.</code><code class="sig-name descname">Material</code><span class="sig-paren">(</span><em class="sig-param">name</em>, <em class="sig-param">rho</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/materials.html#Material"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.Material" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">ross.</code><code class="sig-name descname">Material</code><span class="sig-paren">(</span><em class="sig-param">name</em>, <em class="sig-param">rho</em>, <em class="sig-param">E=None</em>, <em class="sig-param">G_s=None</em>, <em class="sig-param">Poisson=None</em>, <em class="sig-param">color='#525252'</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/materials.html#Material"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.Material" title="Permalink to this definition">¶</a></dt>
 <dd><p>Material used on shaft and disks.</p>
 <p>Class used to create a material and define its properties.
 Density and at least 2 arguments from E, G_s and Poisson should be
@@ -182,11 +182,13 @@ already provided.</p>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>name</strong><span class="classifier">str</span></dt><dd><p>Material name.</p>
 </dd>
-<dt><strong>E</strong><span class="classifier">float</span></dt><dd><p>Young’s modulus (N/m**2).</p>
+<dt><strong>rho</strong><span class="classifier">float, pint.Quantity</span></dt><dd><p>Density (N/m**3).</p>
 </dd>
-<dt><strong>G_s</strong><span class="classifier">float</span></dt><dd><p>Shear modulus (N/m**2).</p>
+<dt><strong>E</strong><span class="classifier">float, pint.Quantity</span></dt><dd><p>Young’s modulus (N/m**2).</p>
 </dd>
-<dt><strong>rho</strong><span class="classifier">float</span></dt><dd><p>Density (kg/m**3).</p>
+<dt><strong>G_s</strong><span class="classifier">float,</span></dt><dd><p>Shear modulus (N/m**2).</p>
+</dd>
+<dt><strong>Poisson</strong><span class="classifier">float</span></dt><dd><p>Poisson ratio (dimensionless).</p>
 </dd>
 <dt><strong>color</strong><span class="classifier">str</span></dt><dd><p>Can be used on plots.</p>
 </dd>
@@ -194,7 +196,7 @@ already provided.</p>
 </dd>
 </dl>
 <p class="rubric">Examples</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">AISI4140</span> <span class="o">=</span> <span class="n">Material</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;AISI4140&#39;</span><span class="p">,</span> <span class="n">rho</span><span class="o">=</span><span class="mi">7850</span><span class="p">,</span> <span class="n">E</span><span class="o">=</span><span class="mf">203.2e9</span><span class="p">,</span> <span class="n">G_s</span><span class="o">=</span><span class="mf">80e9</span><span class="p">)</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">AISI4140</span> <span class="o">=</span> <span class="n">Material</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;AISI4140&quot;</span><span class="p">,</span> <span class="n">rho</span><span class="o">=</span><span class="mi">7850</span><span class="p">,</span> <span class="n">E</span><span class="o">=</span><span class="mf">203.2e9</span><span class="p">,</span> <span class="n">G_s</span><span class="o">=</span><span class="mf">80e9</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">Steel</span> <span class="o">=</span> <span class="n">Material</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;Steel&quot;</span><span class="p">,</span> <span class="n">rho</span><span class="o">=</span><span class="mi">7810</span><span class="p">,</span> <span class="n">E</span><span class="o">=</span><span class="mf">211e9</span><span class="p">,</span> <span class="n">G_s</span><span class="o">=</span><span class="mf">81.2e9</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">AISI4140</span><span class="o">.</span><span class="n">Poisson</span>
 <span class="go">0.27</span>
@@ -202,14 +204,14 @@ already provided.</p>
 </div>
 <dl class="method">
 <dt id="ross.Material.__init__">
-<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">name</em>, <em class="sig-param">rho</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/materials.html#Material.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.Material.__init__" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">name</em>, <em class="sig-param">rho</em>, <em class="sig-param">E=None</em>, <em class="sig-param">G_s=None</em>, <em class="sig-param">Poisson=None</em>, <em class="sig-param">color='#525252'</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/materials.html#Material.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.Material.__init__" title="Permalink to this definition">¶</a></dt>
 <dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
 </dd></dl>
 
 <p class="rubric">Methods</p>
 <dl class="method">
 <dt>
-<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">name</em>, <em class="sig-param">rho</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/materials.html#Material.__init__"><span class="viewcode-link">[source]</span></a></dt>
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">name</em>, <em class="sig-param">rho</em>, <em class="sig-param">E=None</em>, <em class="sig-param">G_s=None</em>, <em class="sig-param">Poisson=None</em>, <em class="sig-param">color='#525252'</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/materials.html#Material.__init__"><span class="viewcode-link">[source]</span></a></dt>
 <dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
 </dd></dl>
 
@@ -220,7 +222,7 @@ already provided.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
 <dd class="field-odd"><dl class="simple">
-<dt>list</dt><dd><p>A list containing all saved material’s names.</p>
+<dt><strong>available_materials</strong><span class="classifier">list</span></dt><dd><p>A list containing all saved material’s names.</p>
 </dd>
 </dl>
 </dd>
@@ -288,48 +290,13 @@ already provided.</p>
 <dl class="method">
 <dt id="ross.Material.save_material">
 <code class="sig-name descname">save_material</code><span class="sig-paren">(</span><em class="sig-param">self</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/materials.html#Material.save_material"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.Material.save_material" title="Permalink to this definition">¶</a></dt>
-<dd><p>Function used to delete a saved rs.Material.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>self</strong><span class="classifier">rs.Material.</span></dt><dd></dd>
-</dl>
-</dd>
-</dl>
-<p class="rubric">Examples</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">ross</span> <span class="k">as</span> <span class="nn">rs</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">steel</span> <span class="o">=</span> <span class="n">rs</span><span class="o">.</span><span class="n">Material</span><span class="o">.</span><span class="n">use_material</span><span class="p">(</span><span class="s1">&#39;Steel&#39;</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">steel</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;test_material&#39;</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">steel</span><span class="o">.</span><span class="n">save_material</span><span class="p">()</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">steel</span><span class="o">.</span><span class="n">remove_material</span><span class="p">(</span><span class="s1">&#39;test_material&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
+<dd><p>Saves the material in the available_materials list.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="ross.Material.use_material">
 <em class="property">static </em><code class="sig-name descname">use_material</code><span class="sig-paren">(</span><em class="sig-param">name</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/materials.html#Material.use_material"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.Material.use_material" title="Permalink to this definition">¶</a></dt>
-<dd><p>Function to load the materials properties and instantiate a Material Object.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>name</strong><span class="classifier">string</span></dt><dd><p>Material’s name.</p>
-</dd>
-</dl>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><dl class="simple">
-<dt><strong>Material</strong><span class="classifier">Material Object</span></dt><dd></dd>
-</dl>
-</dd>
-</dl>
-<p class="rubric">Examples</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">ross</span> <span class="k">as</span> <span class="nn">rs</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">AISI4140</span> <span class="o">=</span> <span class="n">rs</span><span class="o">.</span><span class="n">Material</span><span class="o">.</span><span class="n">use_material</span><span class="p">(</span><span class="s1">&#39;AISI4140&#39;</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">AISI4140</span>
-<span class="go">Material(name=&quot;AISI4140&quot;, rho=7.85000e+03, G_s=8.00000e+10, E=2.03200e+11, Poisson=2.70000e-01, color=&#39;#525252&#39;)</span>
-</pre></div>
-</div>
+<dd><p>Use material that is available in the data file.</p>
 </dd></dl>
 
 </dd></dl>
@@ -350,7 +317,7 @@ already provided.</p>
     </p>
     <p>
         &copy; Copyright 2019, Team ROSS.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.4.2.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.4.3.<br/>
     </p>
   </div>
 </footer>

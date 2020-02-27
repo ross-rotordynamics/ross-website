@@ -162,15 +162,16 @@
 <span class="sd">This module defines the Material class and defines</span>
 <span class="sd">some of the most common materials used in rotors.</span>
 <span class="sd">&quot;&quot;&quot;</span>
-<span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
-
-<span class="kn">import</span> <span class="nn">os</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">toml</span>
+<span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
+<span class="kn">from</span> <span class="nn">.units</span> <span class="kn">import</span> <span class="n">check_units</span>
 
-<span class="kn">import</span> <span class="nn">ross</span> <span class="k">as</span> <span class="nn">rs</span>
 
 <span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Material&quot;</span><span class="p">,</span> <span class="s2">&quot;steel&quot;</span><span class="p">]</span>
+
+<span class="n">ROSS_PATH</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="vm">__file__</span><span class="p">)</span><span class="o">.</span><span class="n">parent</span>
+<span class="n">AVAILABLE_MATERIALS_PATH</span> <span class="o">=</span> <span class="n">ROSS_PATH</span> <span class="o">/</span> <span class="s2">&quot;available_materials.toml&quot;</span>
 
 
 <div class="viewcode-block" id="Material"><a class="viewcode-back" href="../../generated/material/ross.Material.html#ross.Material">[docs]</a><span class="k">class</span> <span class="nc">Material</span><span class="p">:</span>
@@ -187,39 +188,47 @@
 <span class="sd">    ----------</span>
 <span class="sd">    name : str</span>
 <span class="sd">        Material name.</span>
-<span class="sd">    E : float</span>
+<span class="sd">    rho : float, pint.Quantity</span>
+<span class="sd">        Density (N/m**3).</span>
+<span class="sd">    E : float, pint.Quantity</span>
 <span class="sd">        Young&#39;s modulus (N/m**2).</span>
-<span class="sd">    G_s : float</span>
+<span class="sd">    G_s : float,</span>
 <span class="sd">        Shear modulus (N/m**2).</span>
-<span class="sd">    rho : float</span>
-<span class="sd">        Density (kg/m**3).</span>
+<span class="sd">    Poisson : float</span>
+<span class="sd">        Poisson ratio (dimensionless).</span>
 <span class="sd">    color : str</span>
 <span class="sd">        Can be used on plots.</span>
 
 <span class="sd">    Examples</span>
-<span class="sd">    ------------</span>
-<span class="sd">    &gt;&gt;&gt; AISI4140 = Material(name=&#39;AISI4140&#39;, rho=7850, E=203.2e9, G_s=80e9)</span>
+<span class="sd">    --------</span>
+<span class="sd">    &gt;&gt;&gt; AISI4140 = Material(name=&quot;AISI4140&quot;, rho=7850, E=203.2e9, G_s=80e9)</span>
 <span class="sd">    &gt;&gt;&gt; Steel = Material(name=&quot;Steel&quot;, rho=7810, E=211e9, G_s=81.2e9)</span>
 <span class="sd">    &gt;&gt;&gt; AISI4140.Poisson</span>
 <span class="sd">    0.27</span>
-
 <span class="sd">    &quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="Material.__init__"><a class="viewcode-back" href="../../generated/material/ross.Material.html#ross.Material.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">rho</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<div class="viewcode-block" id="Material.__init__"><a class="viewcode-back" href="../../generated/material/ross.Material.html#ross.Material.__init__">[docs]</a>    <span class="nd">@check_units</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">rho</span><span class="p">,</span> <span class="n">E</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">G_s</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">Poisson</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;#525252&quot;</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span>
+    <span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+        <span class="k">if</span> <span class="s2">&quot; &quot;</span> <span class="ow">in</span> <span class="n">name</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Spaces are not allowed in Material name&quot;</span><span class="p">)</span>
 
-        <span class="k">assert</span> <span class="n">name</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">,</span> <span class="s2">&quot;Name not provided&quot;</span>
-        <span class="k">assert</span> <span class="nb">type</span><span class="p">(</span><span class="n">name</span><span class="p">)</span> <span class="ow">is</span> <span class="nb">str</span><span class="p">,</span> <span class="s2">&quot;Name must be a string&quot;</span>
-        <span class="k">assert</span> <span class="s2">&quot; &quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">name</span><span class="p">,</span> <span class="s2">&quot;Spaces are not allowed in Material name&quot;</span>
-        <span class="k">assert</span> <span class="p">(</span>
-            <span class="nb">sum</span><span class="p">([</span><span class="mi">1</span> <span class="k">if</span> <span class="n">i</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;E&quot;</span><span class="p">,</span> <span class="s2">&quot;G_s&quot;</span><span class="p">,</span> <span class="s2">&quot;Poisson&quot;</span><span class="p">]</span> <span class="k">else</span> <span class="mi">0</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">])</span> <span class="o">&gt;</span> <span class="mi">1</span>
-        <span class="p">),</span> <span class="s2">&quot;At least 2 arguments from E, G_s and Poisson should be provided&quot;</span>
-
+        <span class="n">given_args</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">arg</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;E&quot;</span><span class="p">,</span> <span class="s2">&quot;G_s&quot;</span><span class="p">,</span> <span class="s2">&quot;Poisson&quot;</span><span class="p">]:</span>
+            <span class="k">if</span> <span class="nb">locals</span><span class="p">()[</span><span class="n">arg</span><span class="p">]</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">given_args</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">arg</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">given_args</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">2</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                <span class="s2">&quot;Exactly 2 arguments from E, G_s and Poisson should be provided&quot;</span>
+            <span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">rho</span> <span class="o">=</span> <span class="n">rho</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">E</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;E&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">Poisson</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;Poisson&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">G_s</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;G_s&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">color</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;color&quot;</span><span class="p">,</span> <span class="s2">&quot;#525252&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">E</span> <span class="o">=</span> <span class="n">E</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">G_s</span> <span class="o">=</span> <span class="n">G_s</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">Poisson</span> <span class="o">=</span> <span class="n">Poisson</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">color</span> <span class="o">=</span> <span class="n">color</span>
 
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">E</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">E</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">G_s</span> <span class="o">*</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">Poisson</span><span class="p">))</span>
@@ -238,13 +247,13 @@
 <span class="sd">        other: Material</span>
 
 <span class="sd">        Returns</span>
-<span class="sd">        ----------</span>
+<span class="sd">        -------</span>
 
 <span class="sd">        bool</span>
 <span class="sd">            True if all the Materials properties are equivalent.</span>
 
 <span class="sd">        Examples</span>
-<span class="sd">        ----------</span>
+<span class="sd">        --------</span>
 <span class="sd">        &gt;&gt;&gt; import ross as rs</span>
 <span class="sd">        &gt;&gt;&gt; steel = rs.Material.use_material(&#39;Steel&#39;)</span>
 <span class="sd">        &gt;&gt;&gt; AISI4140 = rs.Material.use_material(&#39;AISI4140&#39;)</span>
@@ -268,26 +277,25 @@
 <span class="sd">        self : Material</span>
 
 <span class="sd">        Returns</span>
-<span class="sd">        ----------</span>
+<span class="sd">        -------</span>
 
 <span class="sd">        string : Representation of the given rs.Material.</span>
 
 <span class="sd">        Examples</span>
-<span class="sd">        ----------</span>
+<span class="sd">        --------</span>
 <span class="sd">        &gt;&gt;&gt; import ross as rs</span>
 <span class="sd">        &gt;&gt;&gt; steel = rs.Material.use_material(&#39;Steel&#39;)</span>
 <span class="sd">        &gt;&gt;&gt; steel # doctest: +ELLIPSIS</span>
-<span class="sd">        Material(name=&quot;Steel&quot;, rho=7.81000e+03, G_s=8.12000e+10, E=2.11000e+11, Poisson=2.99261e-01, color=&#39;#525252&#39;)</span>
+<span class="sd">        Material(name=&quot;Steel&quot;, rho=7.81000e+03, G_s=8.12000e+10, E=2.11000e+11, color=&#39;#525252&#39;)</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">selfE</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="si">{:.5e}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">E</span><span class="p">)</span>
-        <span class="n">selfPoisson</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="si">{:.5e}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">Poisson</span><span class="p">)</span>
         <span class="n">selfrho</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="si">{:.5e}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">rho</span><span class="p">)</span>
         <span class="n">selfGs</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="si">{:.5e}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">G_s</span><span class="p">)</span>
 
         <span class="k">return</span> <span class="p">(</span>
             <span class="sa">f</span><span class="s2">&quot;Material&quot;</span>
             <span class="sa">f</span><span class="s1">&#39;(name=&quot;</span><span class="si">{self.name}</span><span class="s1">&quot;, rho=</span><span class="si">{selfrho}</span><span class="s1">, G_s=</span><span class="si">{selfGs}</span><span class="s1">, &#39;</span>
-            <span class="sa">f</span><span class="s2">&quot;E=</span><span class="si">{selfE}</span><span class="s2">, Poisson=</span><span class="si">{selfPoisson}</span><span class="s2">, color=</span><span class="si">{self.color!r}</span><span class="s2">)&quot;</span>
+            <span class="sa">f</span><span class="s2">&quot;E=</span><span class="si">{selfE}</span><span class="s2">, color=</span><span class="si">{self.color!r}</span><span class="s2">)&quot;</span>
         <span class="p">)</span>
 
     <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -299,13 +307,13 @@
 <span class="sd">        self : Material</span>
 
 <span class="sd">        Returns</span>
-<span class="sd">        ----------</span>
+<span class="sd">        -------</span>
 
 <span class="sd">        str</span>
 <span class="sd">            Containing all the Materials properties organized in a table.</span>
 
 <span class="sd">        Examples</span>
-<span class="sd">        ----------</span>
+<span class="sd">        --------</span>
 <span class="sd">        &gt;&gt;&gt; import ross as rs</span>
 <span class="sd">        &gt;&gt;&gt; print(rs.Material.use_material(&#39;Steel&#39;))</span>
 <span class="sd">        Steel</span>
@@ -326,7 +334,6 @@
 
 <div class="viewcode-block" id="Material.dump_data"><a class="viewcode-back" href="../../generated/material/ross.Material.html#ross.Material.dump_data">[docs]</a>    <span class="nd">@staticmethod</span>
     <span class="k">def</span> <span class="nf">dump_data</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
-
         <span class="sd">&quot;&quot;&quot;Auxiliary function to save the materials properties in the save method.</span>
 
 <span class="sd">        Parameters</span>
@@ -336,9 +343,9 @@
 <span class="sd">            Dictionary containing all data needed to instantiate the Object.</span>
 
 <span class="sd">        Returns</span>
-<span class="sd">        ----------</span>
+<span class="sd">        -------</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">Path</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">rs</span><span class="o">.</span><span class="vm">__file__</span><span class="p">))</span><span class="o">/</span><span class="s2">&quot;available_materials.toml&quot;</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">AVAILABLE_MATERIALS_PATH</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
             <span class="n">toml</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="Material.get_data"><a class="viewcode-back" href="../../generated/material/ross.Material.html#ross.Material.get_data">[docs]</a>    <span class="nd">@staticmethod</span>
@@ -350,46 +357,27 @@
 <span class="sd">        ----------</span>
 
 <span class="sd">        Returns</span>
-<span class="sd">        ----------</span>
+<span class="sd">        -------</span>
 
 <span class="sd">        data : dict</span>
 <span class="sd">            Containing all data needed to instantiate a Material Object.</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">try</span><span class="p">:</span>
-            <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">Path</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">rs</span><span class="o">.</span><span class="vm">__file__</span><span class="p">))</span><span class="o">/</span><span class="s2">&quot;available_materials.toml&quot;</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+            <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">AVAILABLE_MATERIALS_PATH</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
                 <span class="n">data</span> <span class="o">=</span> <span class="n">toml</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
         <span class="k">except</span> <span class="ne">FileNotFoundError</span><span class="p">:</span>
             <span class="n">data</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;Materials&quot;</span><span class="p">:</span> <span class="p">{}}</span>
-            <span class="n">rs</span><span class="o">.</span><span class="n">Material</span><span class="o">.</span><span class="n">dump_data</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+            <span class="n">Material</span><span class="o">.</span><span class="n">dump_data</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">data</span></div>
 
 <div class="viewcode-block" id="Material.use_material"><a class="viewcode-back" href="../../generated/material/ross.Material.html#ross.Material.use_material">[docs]</a>    <span class="nd">@staticmethod</span>
     <span class="k">def</span> <span class="nf">use_material</span><span class="p">(</span><span class="n">name</span><span class="p">):</span>
-
-        <span class="sd">&quot;&quot;&quot;Function to load the materials properties and instantiate a Material Object.</span>
-
-<span class="sd">        Parameters</span>
-<span class="sd">        ----------</span>
-
-<span class="sd">        name : string</span>
-<span class="sd">            Material&#39;s name.</span>
-
-<span class="sd">        Returns</span>
-<span class="sd">        ----------</span>
-
-<span class="sd">        Material : Material Object</span>
-
-<span class="sd">        Examples</span>
-<span class="sd">        ----------</span>
-<span class="sd">        &gt;&gt;&gt; import ross as rs</span>
-<span class="sd">        &gt;&gt;&gt; AISI4140 = rs.Material.use_material(&#39;AISI4140&#39;)</span>
-<span class="sd">        &gt;&gt;&gt; AISI4140</span>
-<span class="sd">        Material(name=&quot;AISI4140&quot;, rho=7.85000e+03, G_s=8.00000e+10, E=2.03200e+11, Poisson=2.70000e-01, color=&#39;#525252&#39;)</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="sd">&quot;&quot;&quot;Use material that is available in the data file.&quot;&quot;&quot;</span>
         <span class="n">data</span> <span class="o">=</span> <span class="n">Material</span><span class="o">.</span><span class="n">get_data</span><span class="p">()</span>
-
         <span class="k">try</span><span class="p">:</span>
+            <span class="c1"># Remove Poisson from dict and create material from E and G_s</span>
+            <span class="n">data</span><span class="p">[</span><span class="s2">&quot;Materials&quot;</span><span class="p">][</span><span class="n">name</span><span class="p">]</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;Poisson&quot;</span><span class="p">)</span>
             <span class="n">material</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s2">&quot;Materials&quot;</span><span class="p">][</span><span class="n">name</span><span class="p">]</span>
             <span class="k">return</span> <span class="n">Material</span><span class="p">(</span><span class="o">**</span><span class="n">material</span><span class="p">)</span>
         <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
@@ -397,7 +385,6 @@
 
 <div class="viewcode-block" id="Material.remove_material"><a class="viewcode-back" href="../../generated/material/ross.Material.html#ross.Material.remove_material">[docs]</a>    <span class="nd">@staticmethod</span>
     <span class="k">def</span> <span class="nf">remove_material</span><span class="p">(</span><span class="n">name</span><span class="p">):</span>
-
         <span class="sd">&quot;&quot;&quot;Function used to delete a saved rs.Material.</span>
 
 <span class="sd">        Parameters</span>
@@ -407,10 +394,10 @@
 <span class="sd">            Name of Material Object to be deleted.</span>
 
 <span class="sd">        Returns</span>
-<span class="sd">        ----------</span>
+<span class="sd">        -------</span>
 
 <span class="sd">        Examples</span>
-<span class="sd">        ----------</span>
+<span class="sd">        --------</span>
 <span class="sd">        &gt;&gt;&gt; import ross as rs</span>
 <span class="sd">        &gt;&gt;&gt; steel = rs.Material.use_material(&#39;Steel&#39;)</span>
 <span class="sd">        &gt;&gt;&gt; steel.name = &#39;test_material&#39;</span>
@@ -418,12 +405,11 @@
 <span class="sd">        &gt;&gt;&gt; steel.remove_material(&#39;test_material&#39;)</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">data</span> <span class="o">=</span> <span class="n">Material</span><span class="o">.</span><span class="n">get_data</span><span class="p">()</span>
-        
+
         <span class="k">try</span><span class="p">:</span>
             <span class="k">del</span> <span class="n">data</span><span class="p">[</span><span class="s2">&quot;Materials&quot;</span><span class="p">][</span><span class="n">name</span><span class="p">]</span>
         <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
             <span class="k">return</span> <span class="s2">&quot;There isn&#39;t a saved material with this name.&quot;</span>
-
         <span class="n">Material</span><span class="o">.</span><span class="n">dump_data</span><span class="p">(</span><span class="n">data</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="Material.available_materials"><a class="viewcode-back" href="../../generated/material/ross.Material.html#ross.Material.available_materials">[docs]</a>    <span class="nd">@staticmethod</span>
@@ -434,13 +420,12 @@
 <span class="sd">        ----------</span>
 
 <span class="sd">        Returns</span>
-<span class="sd">        ----------</span>
-
-<span class="sd">        list</span>
+<span class="sd">        -------</span>
+<span class="sd">        available_materials : list</span>
 <span class="sd">            A list containing all saved material&#39;s names.</span>
 
 <span class="sd">        Examples</span>
-<span class="sd">        ----------</span>
+<span class="sd">        --------</span>
 <span class="sd">        &gt;&gt;&gt; import ross as rs</span>
 <span class="sd">        &gt;&gt;&gt; steel = rs.Material.use_material(&#39;Steel&#39;)</span>
 <span class="sd">        &gt;&gt;&gt; steel.name = &#39;test_material&#39;</span>
@@ -453,26 +438,8 @@
             <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;Materials&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
         <span class="k">except</span> <span class="ne">FileNotFoundError</span><span class="p">:</span>
             <span class="k">return</span> <span class="s2">&quot;There is no saved materials.&quot;</span></div>
-          
+
 <div class="viewcode-block" id="Material.save_material"><a class="viewcode-back" href="../../generated/material/ross.Material.html#ross.Material.save_material">[docs]</a>    <span class="k">def</span> <span class="nf">save_material</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Function used to delete a saved rs.Material.</span>
-
-<span class="sd">        Parameters</span>
-<span class="sd">        ----------</span>
-
-<span class="sd">        self : rs.Material.</span>
-
-<span class="sd">        Returns</span>
-<span class="sd">        ----------</span>
-
-<span class="sd">        Examples</span>
-<span class="sd">        ----------</span>
-<span class="sd">        &gt;&gt;&gt; import ross as rs</span>
-<span class="sd">        &gt;&gt;&gt; steel = rs.Material.use_material(&#39;Steel&#39;)</span>
-<span class="sd">        &gt;&gt;&gt; steel.name = &#39;test_material&#39;</span>
-<span class="sd">        &gt;&gt;&gt; steel.save_material()</span>
-<span class="sd">        &gt;&gt;&gt; steel.remove_material(&#39;test_material&#39;)</span>
-<span class="sd">        &quot;&quot;&quot;</span>
         <span class="sd">&quot;&quot;&quot;Saves the material in the available_materials list.&quot;&quot;&quot;</span>
         <span class="n">data</span> <span class="o">=</span> <span class="n">Material</span><span class="o">.</span><span class="n">get_data</span><span class="p">()</span>
         <span class="n">data</span><span class="p">[</span><span class="s2">&quot;Materials&quot;</span><span class="p">][</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span>
@@ -495,7 +462,7 @@
     </p>
     <p>
         &copy; Copyright 2019, Team ROSS.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.4.2.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.4.3.<br/>
     </p>
   </div>
 </footer>
