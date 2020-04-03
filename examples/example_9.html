@@ -1,0 +1,1119 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>Example 9 - Hydrodinamic Journal Bearings (using Fluid Flow methods) &#8212; ross 0.3.0 documentation</title>
+    <link rel="stylesheet" href="../_static/bootstrap-sphinx.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx_copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/style.css" />
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../_static/sphinx_copybutton.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
+    <link rel="shortcut icon" href="../_static/ross-logo.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<script type="text/javascript" src="../_static/js/jquery-1.11.0.min.js "></script>
+<script type="text/javascript" src="../_static/js/jquery-fix.js "></script>
+<script type="text/javascript" src="../_static/bootstrap-3.3.7/js/bootstrap.min.js "></script>
+<script type="text/javascript" src="../_static/bootstrap-sphinx.js "></script>
+
+  </head><body>
+
+  <div id="navbar" class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="../index.html"><span><img src="../_static/ross-logo.svg"></span>
+          ROSS</a>
+        <span class="navbar-text navbar-version pull-left"><b>0.3</b></span>
+      </div>
+
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            
+                <li><a href="tutorial.html">Tutorial</a></li>
+                <li><a href="../examples.html">Examples</a></li>
+                <li><a href="../api.html">API</a></li>
+            
+            
+              <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="../index.html">Site <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"><p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../installation.html#install-python">Install Python</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation.html#install-ross">Install ROSS</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial.html">Tutorial</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="tutorial.html#Materials">Materials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorial.html#ShaftElement">ShaftElement</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorial.html#DiskElement">DiskElement</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorial.html#BearingElement">BearingElement</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorial.html#Rotor">Rotor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorial.html#Running-the-simulation">Running the simulation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorial.html#Obtaining-results">Obtaining results</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../examples.html">Examples</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="example_1.html">Example 1 - Number of DOF influence in Natural Frequency</a></li>
+<li class="toctree-l2"><a class="reference internal" href="example_2.html">Example 2 - Effect of varying slenderness ratio</a></li>
+<li class="toctree-l2"><a class="reference internal" href="example_3.html">Example 3 - Isotropic Bearings, asymmetrical rotor.</a></li>
+<li class="toctree-l2"><a class="reference internal" href="example_4.html">Example 4 - Anisotropic Bearings.</a></li>
+<li class="toctree-l2"><a class="reference internal" href="example_5.html">Example 5 - Cross-coupled bearings.</a></li>
+<li class="toctree-l2"><a class="reference internal" href="example_6.html">Example 6 - Isotropic bearings with damping.</a></li>
+<li class="toctree-l2"><a class="reference internal" href="example_7.html">Example 7 - Hydrodinamic Bearings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="example_8.html">Example 8 - Overhung rotor.</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../download.html">Download notebooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api.html">API Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../api.html#material">Material</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api.html#elements">Elements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api.html#rotor">Rotor</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing.html">Contributing</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../contributing.html#feedback-and-contribution">Feedback and Contribution</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../contributing.html#version-control-system-git">Version-control system: Git</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../contributing.html#code-style-black">Code style: Black</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../contributing.html#documentation">Documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../contributing.html#integrated-development-environment-pycharm">Integrated development environment: PyCharm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../contributing.html#how-to-contribute-to-ross-using-git">How to contribute to ROSS using git</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../contributing.html#making-new-releases">Making new releases</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../release_notes.html">Release notes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../release_notes.html#version-0-2-0-beta-release">Version 0.2.0 (beta release)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../release_notes.html#version-0-1-0-alpha-release">Version 0.1.0 (alpha release)</a></li>
+</ul>
+</li>
+</ul>
+</ul>
+</li>
+              
+                <li class="dropdown">
+  <a role="button"
+     id="dLabelLocalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="#">Page <b class="caret"></b></a>
+  <ul class="dropdown-menu localtoc"
+      role="menu"
+      aria-labelledby="dLabelLocalToc"><ul>
+<li><a class="reference internal" href="#">Example 9 - Hydrodinamic Journal Bearings (using Fluid Flow methods)</a></li>
+</ul>
+</ul>
+</li>
+              
+            
+            
+            
+            
+            
+              <li class="hidden-sm">
+<div id="sourcelink">
+  <a href="../_sources/examples/example_9.ipynb.txt"
+     rel="nofollow">Source</a>
+</div></li>
+            
+          </ul>
+
+          
+            
+<form class="navbar-form navbar-right" action="../search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+        </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="body col-md-12 content" role="main">
+      
+  
+<style>
+/* CSS for nbsphinx extension */
+
+/* remove conflicting styling from Sphinx themes */
+div.nbinput.container,
+div.nbinput.container div.prompt,
+div.nbinput.container div.input_area,
+div.nbinput.container div[class*=highlight],
+div.nbinput.container div[class*=highlight] pre,
+div.nboutput.container,
+div.nboutput.container div.prompt,
+div.nboutput.container div.output_area,
+div.nboutput.container div[class*=highlight],
+div.nboutput.container div[class*=highlight] pre {
+    background: none;
+    border: none;
+    padding: 0 0;
+    margin: 0;
+    box-shadow: none;
+}
+
+/* avoid gaps between output lines */
+div.nboutput.container div[class*=highlight] pre {
+    line-height: normal;
+}
+
+/* input/output containers */
+div.nbinput.container,
+div.nboutput.container {
+    display: -webkit-flex;
+    display: flex;
+    align-items: flex-start;
+    margin: 0;
+    width: 100%;
+}
+@media (max-width: 540px) {
+    div.nbinput.container,
+    div.nboutput.container {
+        flex-direction: column;
+    }
+}
+
+/* input container */
+div.nbinput.container {
+    padding-top: 5px;
+}
+
+/* last container */
+div.nblast.container {
+    padding-bottom: 5px;
+}
+
+/* input prompt */
+div.nbinput.container div.prompt pre {
+    color: #307FC1;
+}
+
+/* output prompt */
+div.nboutput.container div.prompt pre {
+    color: #BF5B3D;
+}
+
+/* all prompts */
+div.nbinput.container div.prompt,
+div.nboutput.container div.prompt {
+    min-width: 5.5ex;
+    padding-top: 0.3rem;
+    padding-right: 0.3rem;
+    text-align: right;
+    flex: 0;
+}
+@media (max-width: 540px) {
+    div.nbinput.container div.prompt,
+    div.nboutput.container div.prompt {
+        text-align: left;
+        padding: 0.4em;
+    }
+    div.nboutput.container div.prompt.empty {
+        padding: 0;
+    }
+}
+
+/* disable scrollbars on prompts */
+div.nbinput.container div.prompt pre,
+div.nboutput.container div.prompt pre {
+    overflow: hidden;
+}
+
+/* input/output area */
+div.nbinput.container div.input_area,
+div.nboutput.container div.output_area {
+    -webkit-flex: 1;
+    flex: 1;
+    overflow: auto;
+}
+@media (max-width: 540px) {
+    div.nbinput.container div.input_area,
+    div.nboutput.container div.output_area {
+        width: 100%;
+    }
+}
+
+/* input area */
+div.nbinput.container div.input_area {
+    border: 1px solid #e0e0e0;
+    border-radius: 2px;
+    background: #f5f5f5;
+}
+
+/* override MathJax center alignment in output cells */
+div.nboutput.container div[class*=MathJax] {
+    text-align: left !important;
+}
+
+/* override sphinx.ext.imgmath center alignment in output cells */
+div.nboutput.container div.math p {
+    text-align: left;
+}
+
+/* standard error */
+div.nboutput.container div.output_area.stderr {
+    background: #fdd;
+}
+
+/* ANSI colors */
+.ansi-black-fg { color: #3E424D; }
+.ansi-black-bg { background-color: #3E424D; }
+.ansi-black-intense-fg { color: #282C36; }
+.ansi-black-intense-bg { background-color: #282C36; }
+.ansi-red-fg { color: #E75C58; }
+.ansi-red-bg { background-color: #E75C58; }
+.ansi-red-intense-fg { color: #B22B31; }
+.ansi-red-intense-bg { background-color: #B22B31; }
+.ansi-green-fg { color: #00A250; }
+.ansi-green-bg { background-color: #00A250; }
+.ansi-green-intense-fg { color: #007427; }
+.ansi-green-intense-bg { background-color: #007427; }
+.ansi-yellow-fg { color: #DDB62B; }
+.ansi-yellow-bg { background-color: #DDB62B; }
+.ansi-yellow-intense-fg { color: #B27D12; }
+.ansi-yellow-intense-bg { background-color: #B27D12; }
+.ansi-blue-fg { color: #208FFB; }
+.ansi-blue-bg { background-color: #208FFB; }
+.ansi-blue-intense-fg { color: #0065CA; }
+.ansi-blue-intense-bg { background-color: #0065CA; }
+.ansi-magenta-fg { color: #D160C4; }
+.ansi-magenta-bg { background-color: #D160C4; }
+.ansi-magenta-intense-fg { color: #A03196; }
+.ansi-magenta-intense-bg { background-color: #A03196; }
+.ansi-cyan-fg { color: #60C6C8; }
+.ansi-cyan-bg { background-color: #60C6C8; }
+.ansi-cyan-intense-fg { color: #258F8F; }
+.ansi-cyan-intense-bg { background-color: #258F8F; }
+.ansi-white-fg { color: #C5C1B4; }
+.ansi-white-bg { background-color: #C5C1B4; }
+.ansi-white-intense-fg { color: #A1A6B2; }
+.ansi-white-intense-bg { background-color: #A1A6B2; }
+
+.ansi-default-inverse-fg { color: #FFFFFF; }
+.ansi-default-inverse-bg { background-color: #000000; }
+
+.ansi-bold { font-weight: bold; }
+.ansi-underline { text-decoration: underline; }
+
+
+div.nbinput.container div.input_area div[class*=highlight] > pre,
+div.nboutput.container div.output_area div[class*=highlight] > pre,
+div.nboutput.container div.output_area div[class*=highlight].math,
+div.nboutput.container div.output_area.rendered_html,
+div.nboutput.container div.output_area > div.output_javascript,
+div.nboutput.container div.output_area:not(.rendered_html) > img{
+    padding: 0.3rem;
+}
+
+/* fix copybtn overflow problem in chromium (needed for 'sphinx_copybutton') */
+div.nbinput.container div.input_area > div[class^='highlight'],
+div.nboutput.container div.output_area > div[class^='highlight']{
+    overflow-y: hidden;
+}
+
+/* hide copybtn icon on prompts (needed for 'sphinx_copybutton') */
+.prompt a.copybtn {
+    display: none;
+}
+
+/* Some additional styling taken form the Jupyter notebook CSS */
+div.rendered_html table {
+  border: none;
+  border-collapse: collapse;
+  border-spacing: 0;
+  color: black;
+  font-size: 12px;
+  table-layout: fixed;
+}
+div.rendered_html thead {
+  border-bottom: 1px solid black;
+  vertical-align: bottom;
+}
+div.rendered_html tr,
+div.rendered_html th,
+div.rendered_html td {
+  text-align: right;
+  vertical-align: middle;
+  padding: 0.5em 0.5em;
+  line-height: normal;
+  white-space: normal;
+  max-width: none;
+  border: none;
+}
+div.rendered_html th {
+  font-weight: bold;
+}
+div.rendered_html tbody tr:nth-child(odd) {
+  background: #f5f5f5;
+}
+div.rendered_html tbody tr:hover {
+  background: rgba(66, 165, 245, 0.2);
+}
+</style>
+<div class="section" id="Example-9---Hydrodinamic-Journal-Bearings-(using-Fluid-Flow-methods)">
+<h1>Example 9 - Hydrodinamic Journal Bearings (using Fluid Flow methods)<a class="headerlink" href="#Example-9---Hydrodinamic-Journal-Bearings-(using-Fluid-Flow-methods)" title="Permalink to this headline">¶</a></h1>
+<p>In this example, we use the hydrodinamic bearing seen in Example 5.5.1 from ‘Dynamics of Rotating Machinery’ by MI Friswell, JET Penny, SD Garvey &amp; AW Lees, published by Cambridge University Press, 2010.</p>
+<p>It is the same bearing of Example 7, only this time we stick to the methods provided by the Fluid Flow subpackage of ROSS. We instantiate a Pressure Matrix object with the data given by the Example 5.5.1 from the book: The oil-film bearing has a diameter of 100 mm, is 30 mm long, and supports a static load of 525 N. The radial clearance is 0.1 mm and the oil film has a viscosity of 0.1 Pa s. When instantiated, a Pressure Matrix must be given either the eccentricity, or load of the bearing, or
+both. The one not parameter not given is them calculated based on the other one.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span>from bokeh.io import output_notebook, show
+from ross.fluid_flow import fluid_flow as flow
+from ross.fluid_flow.fluid_flow_geometry import sommerfeld_number,\
+    modified_sommerfeld_number
+from ross.fluid_flow.fluid_flow_graphics import matplot_eccentricity,\
+    plot_pressure_theta
+from ross.fluid_flow.fluid_flow_coefficients import calculate_stiffness_matrix,\
+    calculate_damping_matrix
+
+import numpy as np
+output_notebook()
+
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area rendered_html docutils container">
+<div class="bk-root">
+    <a href="https://bokeh.org" target="_blank" class="bk-logo bk-logo-small bk-logo-notebook"></a>
+    <span id="1001">Loading BokehJS ...</span>
+</div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="output_javascript"></div>
+<script type="text/javascript">
+var element = document.currentScript.previousSibling.previousSibling;
+
+(function(root) {
+  function now() {
+    return new Date();
+  }
+
+  var force = true;
+
+  if (typeof root._bokeh_onload_callbacks === "undefined" || force === true) {
+    root._bokeh_onload_callbacks = [];
+    root._bokeh_is_loading = undefined;
+  }
+
+  var JS_MIME_TYPE = 'application/javascript';
+  var HTML_MIME_TYPE = 'text/html';
+  var EXEC_MIME_TYPE = 'application/vnd.bokehjs_exec.v0+json';
+  var CLASS_NAME = 'output_bokeh rendered_html';
+
+  /**
+   * Render data to the DOM node
+   */
+  function render(props, node) {
+    var script = document.createElement("script");
+    node.appendChild(script);
+  }
+
+  /**
+   * Handle when an output is cleared or removed
+   */
+  function handleClearOutput(event, handle) {
+    var cell = handle.cell;
+
+    var id = cell.output_area._bokeh_element_id;
+    var server_id = cell.output_area._bokeh_server_id;
+    // Clean up Bokeh references
+    if (id != null && id in Bokeh.index) {
+      Bokeh.index[id].model.document.clear();
+      delete Bokeh.index[id];
+    }
+
+    if (server_id !== undefined) {
+      // Clean up Bokeh references
+      var cmd = "from bokeh.io.state import curstate; print(curstate().uuid_to_server['" + server_id + "'].get_sessions()[0].document.roots[0]._id)";
+      cell.notebook.kernel.execute(cmd, {
+        iopub: {
+          output: function(msg) {
+            var id = msg.content.text.trim();
+            if (id in Bokeh.index) {
+              Bokeh.index[id].model.document.clear();
+              delete Bokeh.index[id];
+            }
+          }
+        }
+      });
+      // Destroy server and session
+      var cmd = "import bokeh.io.notebook as ion; ion.destroy_server('" + server_id + "')";
+      cell.notebook.kernel.execute(cmd);
+    }
+  }
+
+  /**
+   * Handle when a new output is added
+   */
+  function handleAddOutput(event, handle) {
+    var output_area = handle.output_area;
+    var output = handle.output;
+
+    // limit handleAddOutput to display_data with EXEC_MIME_TYPE content only
+    if ((output.output_type != "display_data") || (!output.data.hasOwnProperty(EXEC_MIME_TYPE))) {
+      return
+    }
+
+    var toinsert = output_area.element.find("." + CLASS_NAME.split(' ')[0]);
+
+    if (output.metadata[EXEC_MIME_TYPE]["id"] !== undefined) {
+      toinsert[toinsert.length - 1].firstChild.textContent = output.data[JS_MIME_TYPE];
+      // store reference to embed id on output_area
+      output_area._bokeh_element_id = output.metadata[EXEC_MIME_TYPE]["id"];
+    }
+    if (output.metadata[EXEC_MIME_TYPE]["server_id"] !== undefined) {
+      var bk_div = document.createElement("div");
+      bk_div.innerHTML = output.data[HTML_MIME_TYPE];
+      var script_attrs = bk_div.children[0].attributes;
+      for (var i = 0; i < script_attrs.length; i++) {
+        toinsert[toinsert.length - 1].firstChild.setAttribute(script_attrs[i].name, script_attrs[i].value);
+      }
+      // store reference to server id on output_area
+      output_area._bokeh_server_id = output.metadata[EXEC_MIME_TYPE]["server_id"];
+    }
+  }
+
+  function register_renderer(events, OutputArea) {
+
+    function append_mime(data, metadata, element) {
+      // create a DOM node to render to
+      var toinsert = this.create_output_subarea(
+        metadata,
+        CLASS_NAME,
+        EXEC_MIME_TYPE
+      );
+      this.keyboard_manager.register_events(toinsert);
+      // Render to node
+      var props = {data: data, metadata: metadata[EXEC_MIME_TYPE]};
+      render(props, toinsert[toinsert.length - 1]);
+      element.append(toinsert);
+      return toinsert
+    }
+
+    /* Handle when an output is cleared or removed */
+    events.on('clear_output.CodeCell', handleClearOutput);
+    events.on('delete.Cell', handleClearOutput);
+
+    /* Handle when a new output is added */
+    events.on('output_added.OutputArea', handleAddOutput);
+
+    /**
+     * Register the mime type and append_mime function with output_area
+     */
+    OutputArea.prototype.register_mime_type(EXEC_MIME_TYPE, append_mime, {
+      /* Is output safe? */
+      safe: true,
+      /* Index of renderer in `output_area.display_order` */
+      index: 0
+    });
+  }
+
+  // register the mime type if in Jupyter Notebook environment and previously unregistered
+  if (root.Jupyter !== undefined) {
+    var events = require('base/js/events');
+    var OutputArea = require('notebook/js/outputarea').OutputArea;
+
+    if (OutputArea.prototype.mime_types().indexOf(EXEC_MIME_TYPE) == -1) {
+      register_renderer(events, OutputArea);
+    }
+  }
+
+
+  if (typeof (root._bokeh_timeout) === "undefined" || force === true) {
+    root._bokeh_timeout = Date.now() + 5000;
+    root._bokeh_failed_load = false;
+  }
+
+  var NB_LOAD_WARNING = {'data': {'text/html':
+     "<div style='background-color: #fdd'>\n"+
+     "<p>\n"+
+     "BokehJS does not appear to have successfully loaded. If loading BokehJS from CDN, this \n"+
+     "may be due to a slow or bad network connection. Possible fixes:\n"+
+     "</p>\n"+
+     "<ul>\n"+
+     "<li>re-rerun `output_notebook()` to attempt to load from CDN again, or</li>\n"+
+     "<li>use INLINE resources instead, as so:</li>\n"+
+     "</ul>\n"+
+     "<code>\n"+
+     "from bokeh.resources import INLINE\n"+
+     "output_notebook(resources=INLINE)\n"+
+     "</code>\n"+
+     "</div>"}};
+
+  function display_loaded() {
+    var el = document.getElementById("1001");
+    if (el != null) {
+      el.textContent = "BokehJS is loading...";
+    }
+    if (root.Bokeh !== undefined) {
+      if (el != null) {
+        el.textContent = "BokehJS " + root.Bokeh.version + " successfully loaded.";
+      }
+    } else if (Date.now() < root._bokeh_timeout) {
+      setTimeout(display_loaded, 100)
+    }
+  }
+
+
+  function run_callbacks() {
+    try {
+      root._bokeh_onload_callbacks.forEach(function(callback) {
+        if (callback != null)
+          callback();
+      });
+    } finally {
+      delete root._bokeh_onload_callbacks
+    }
+    console.debug("Bokeh: all callbacks have finished");
+  }
+
+  function load_libs(css_urls, js_urls, callback) {
+    if (css_urls == null) css_urls = [];
+    if (js_urls == null) js_urls = [];
+
+    root._bokeh_onload_callbacks.push(callback);
+    if (root._bokeh_is_loading > 0) {
+      console.debug("Bokeh: BokehJS is being loaded, scheduling callback at", now());
+      return null;
+    }
+    if (js_urls == null || js_urls.length === 0) {
+      run_callbacks();
+      return null;
+    }
+    console.debug("Bokeh: BokehJS not loaded, scheduling load and callback at", now());
+    root._bokeh_is_loading = css_urls.length + js_urls.length;
+
+    function on_load() {
+      root._bokeh_is_loading--;
+      if (root._bokeh_is_loading === 0) {
+        console.debug("Bokeh: all BokehJS libraries/stylesheets loaded");
+        run_callbacks()
+      }
+    }
+
+    function on_error() {
+      console.error("failed to load " + url);
+    }
+
+    for (var i = 0; i < css_urls.length; i++) {
+      var url = css_urls[i];
+      const element = document.createElement("link");
+      element.onload = on_load;
+      element.onerror = on_error;
+      element.rel = "stylesheet";
+      element.type = "text/css";
+      element.href = url;
+      console.debug("Bokeh: injecting link tag for BokehJS stylesheet: ", url);
+      document.body.appendChild(element);
+    }
+
+    for (var i = 0; i < js_urls.length; i++) {
+      var url = js_urls[i];
+      var element = document.createElement('script');
+      element.onload = on_load;
+      element.onerror = on_error;
+      element.async = false;
+      element.src = url;
+      console.debug("Bokeh: injecting script tag for BokehJS library: ", url);
+      document.head.appendChild(element);
+    }
+  };var element = document.getElementById("1001");
+  if (element == null) {
+    console.error("Bokeh: ERROR: autoload.js configured with elementid '1001' but no matching script tag was found. ")
+    return false;
+  }
+
+  function inject_raw_css(css) {
+    const element = document.createElement("style");
+    element.appendChild(document.createTextNode(css));
+    document.body.appendChild(element);
+  }
+
+
+  var js_urls = ["https://cdn.pydata.org/bokeh/release/bokeh-1.4.0.min.js", "https://cdn.pydata.org/bokeh/release/bokeh-widgets-1.4.0.min.js", "https://cdn.pydata.org/bokeh/release/bokeh-tables-1.4.0.min.js", "https://cdn.pydata.org/bokeh/release/bokeh-gl-1.4.0.min.js"];
+  var css_urls = [];
+
+
+  var inline_js = [
+    function(Bokeh) {
+      Bokeh.set_log_level("info");
+    },
+    function(Bokeh) {
+
+
+    }
+  ];
+
+  function run_inline_js() {
+
+    if (root.Bokeh !== undefined || force === true) {
+
+    for (var i = 0; i < inline_js.length; i++) {
+      inline_js[i].call(root, root.Bokeh);
+    }
+    if (force === true) {
+        display_loaded();
+      }} else if (Date.now() < root._bokeh_timeout) {
+      setTimeout(run_inline_js, 100);
+    } else if (!root._bokeh_failed_load) {
+      console.log("Bokeh: BokehJS failed to load within specified timeout.");
+      root._bokeh_failed_load = true;
+    } else if (force !== true) {
+      var cell = $(document.getElementById("1001")).parents('.cell').data().cell;
+      cell.output_area.append_execute_result(NB_LOAD_WARNING)
+    }
+
+  }
+
+  if (root._bokeh_is_loading === 0) {
+    console.debug("Bokeh: BokehJS loaded, going straight to plotting");
+    run_inline_js();
+  } else {
+    load_libs(css_urls, js_urls, function() {
+      console.debug("Bokeh: BokehJS plotting callback run at", now());
+      run_inline_js();
+    });
+  }
+}(window));
+</script></div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span># Instantiating a Pressure Matrix
+nz = 30
+ntheta = 528
+nradius = 11
+length = 0.03
+omega = 157.1
+p_in = 0.
+p_out = 0.
+radius_rotor = 0.0499
+radius_stator = 0.05
+load = 525
+visc = 0.1
+rho = 860.
+my_fluid_flow = flow.FluidFlow(nz, ntheta, nradius, length, omega, p_in,
+                                    p_out, radius_rotor, radius_stator,
+                                    visc, rho, load=load)
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span># Getting the eccentricity
+
+my_fluid_flow.eccentricity
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+2.6627188685691435e-05
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span># Calculating the modified sommerfeld number and the sommerfeld number
+
+modified_s = modified_sommerfeld_number(
+    my_fluid_flow.radius_stator,
+    my_fluid_flow.omega,
+    my_fluid_flow.viscosity,
+    my_fluid_flow.length,
+    my_fluid_flow.load,
+    my_fluid_flow.radial_clearance
+)
+
+sommerfeld_number(
+    modified_s,
+    my_fluid_flow.radius_stator,
+    my_fluid_flow.length
+)
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+3.5718916513907613
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span># Plotting the eccentricity
+
+matplot_eccentricity(my_fluid_flow)
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+&lt;matplotlib.axes._subplots.AxesSubplot at 0x7f307a9aec10&gt;
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/examples_example_9_5_1.png" src="../_images/examples_example_9_5_1.png" />
+</div>
+</div>
+<p>The graphic above plots two circles: one representing the stator and one representing the rotor, considering the eccentricity. In this case, since the space between the stator and the rotor is very small, it is not seen in the graphic.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span># Getting the stiffness matrix
+
+calculate_stiffness_matrix(my_fluid_flow)
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+[11793013.59985914, 15884985.735096537, -23718258.53112859, 7744099.182528209]
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span># Getting the damping matrix
+
+calculate_damping_matrix(my_fluid_flow, force_type=&quot;short&quot;)
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+[232892.5172631672, -81914.33449011963, -81914.33449011963, 294893.1749179313]
+</pre></div></div>
+</div>
+<p>The stiffness and damping matrices can be calculated analytically using the methods above.</p>
+<p>Once the object Fluid Flow is instantiated, the user must call a method to calculate its pressure matrix. There are 3 methods available: two that calculate the pressure analyticaly and one that calculate it numerically. The first one is based on the book Tribology Series vol. 33, by Frene et al., chapter 5. The second one is based on chapter Linear and Nonlinear Rotordynamics, by Ishida and Yamamoto, from the book Flow-Induced Vibrations. The numerical method was developed as part of project
+ROSS and it was based on the undergraduate dissertation by Luiz Henrique Mamede Queiroz: Analysis of fluid flow inside rotary machines components.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span># Calculating pressure matrix
+
+my_fluid_flow.calculate_pressure_matrix_numerical()[int(nz/2)]
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+array([0.00000000e+00, 8.88285016e+02, 2.54301785e+03, 4.19822219e+03,
+       5.85408340e+03, 7.51078660e+03, 9.16851653e+03, 1.08274578e+04,
+       1.24877947e+04, 1.41497110e+04, 1.58133907e+04, 1.74790168e+04,
+       1.91467724e+04, 2.08168400e+04, 2.24894022e+04, 2.41646406e+04,
+       2.58427367e+04, 2.75238714e+04, 2.92082252e+04, 3.08959783e+04,
+       3.25873101e+04, 3.42823996e+04, 3.59814250e+04, 3.76845639e+04,
+       3.93919937e+04, 4.11038904e+04, 4.28204294e+04, 4.45417855e+04,
+       4.62681323e+04, 4.79996429e+04, 4.97364889e+04, 5.14788411e+04,
+       5.32268693e+04, 5.49807421e+04, 5.67406264e+04, 5.85066886e+04,
+       6.02790932e+04, 6.20580030e+04, 6.38435801e+04, 6.56359843e+04,
+       6.74353738e+04, 6.92419054e+04, 7.10557339e+04, 7.28770119e+04,
+       7.47058904e+04, 7.65425178e+04, 7.83870409e+04, 8.02396036e+04,
+       8.21003477e+04, 8.39694124e+04, 8.58469340e+04, 8.77330466e+04,
+       8.96278810e+04, 9.15315651e+04, 9.34442236e+04, 9.53659782e+04,
+       9.72969470e+04, 9.92372446e+04, 1.01186982e+05, 1.03146266e+05,
+       1.05115201e+05, 1.07093885e+05, 1.09082413e+05, 1.11080875e+05,
+       1.13089357e+05, 1.15107941e+05, 1.17136701e+05, 1.19175710e+05,
+       1.21225032e+05, 1.23284726e+05, 1.25354848e+05, 1.27435446e+05,
+       1.29526561e+05, 1.31628230e+05, 1.33740481e+05, 1.35863336e+05,
+       1.37996811e+05, 1.40140914e+05, 1.42295645e+05, 1.44460996e+05,
+       1.46636952e+05, 1.48823489e+05, 1.51020574e+05, 1.53228166e+05,
+       1.55446215e+05, 1.57674660e+05, 1.59913431e+05, 1.62162450e+05,
+       1.64421625e+05, 1.66690857e+05, 1.68970033e+05, 1.71259030e+05,
+       1.73557713e+05, 1.75865936e+05, 1.78183540e+05, 1.80510353e+05,
+       1.82846191e+05, 1.85190855e+05, 1.87544135e+05, 1.89905803e+05,
+       1.92275620e+05, 1.94653331e+05, 1.97038664e+05, 1.99431336e+05,
+       2.01831043e+05, 2.04237466e+05, 2.06650272e+05, 2.09069108e+05,
+       2.11493603e+05, 2.13923371e+05, 2.16358005e+05, 2.18797079e+05,
+       2.21240150e+05, 2.23686754e+05, 2.26136407e+05, 2.28588606e+05,
+       2.31042824e+05, 2.33498516e+05, 2.35955114e+05, 2.38412027e+05,
+       2.40868645e+05, 2.43324330e+05, 2.45778426e+05, 2.48230251e+05,
+       2.50679098e+05, 2.53124238e+05, 2.55564917e+05, 2.58000353e+05,
+       2.60429743e+05, 2.62852256e+05, 2.65267036e+05, 2.67673199e+05,
+       2.70069836e+05, 2.72456012e+05, 2.74830763e+05, 2.77193099e+05,
+       2.79542001e+05, 2.81876426e+05, 2.84195299e+05, 2.86497519e+05,
+       2.88781957e+05, 2.91047455e+05, 2.93292828e+05, 2.95516863e+05,
+       2.97718316e+05, 2.99895918e+05, 3.02048371e+05, 3.04174347e+05,
+       3.06272493e+05, 3.08341427e+05, 3.10379739e+05, 3.12385993e+05,
+       3.14358724e+05, 3.16296444e+05, 3.18197634e+05, 3.20060754e+05,
+       3.21884235e+05, 3.23666487e+05, 3.25405893e+05, 3.27100814e+05,
+       3.28749588e+05, 3.30350531e+05, 3.31901938e+05, 3.33402083e+05,
+       3.34849222e+05, 3.36241592e+05, 3.37577414e+05, 3.38854892e+05,
+       3.40072215e+05, 3.41227559e+05, 3.42319087e+05, 3.43344954e+05,
+       3.44303302e+05, 3.45192267e+05, 3.46009980e+05, 3.46754566e+05,
+       3.47424147e+05, 3.48016847e+05, 3.48530787e+05, 3.48964095e+05,
+       3.49314902e+05, 3.49581345e+05, 3.49761573e+05, 3.49853745e+05,
+       3.49856035e+05, 3.49766631e+05, 3.49583743e+05, 3.49305599e+05,
+       3.48930451e+05, 3.48456580e+05, 3.47882293e+05, 3.47205929e+05,
+       3.46425863e+05, 3.45540504e+05, 3.44548302e+05, 3.43447752e+05,
+       3.42237390e+05, 3.40915805e+05, 3.39481633e+05, 3.37933567e+05,
+       3.36270355e+05, 3.34490805e+05, 3.32593791e+05, 3.30578248e+05,
+       3.28443183e+05, 3.26187673e+05, 3.23810868e+05, 3.21311997e+05,
+       3.18690368e+05, 3.15945372e+05, 3.13076484e+05, 3.10083269e+05,
+       3.06965378e+05, 3.03722557e+05, 3.00354650e+05, 2.96861593e+05,
+       2.93243423e+05, 2.89500279e+05, 2.85632406e+05, 2.81640147e+05,
+       2.77523960e+05, 2.73284405e+05, 2.68922155e+05, 2.64437992e+05,
+       2.59832815e+05, 2.55107629e+05, 2.50263557e+05, 2.45301836e+05,
+       2.40223817e+05, 2.35030967e+05, 2.29724867e+05, 2.24307217e+05,
+       2.18779826e+05, 2.13144618e+05, 2.07403636e+05, 2.01559031e+05,
+       1.95613066e+05, 1.89568113e+05, 1.83426655e+05, 1.77191282e+05,
+       1.70864688e+05, 1.64449671e+05, 1.57949125e+05, 1.51366048e+05,
+       1.44703530e+05, 1.37964756e+05, 1.31152995e+05, 1.24271605e+05,
+       1.17324029e+05, 1.10313783e+05, 1.03244463e+05, 9.61197359e+04,
+       8.89433313e+04, 8.17190477e+04, 7.44507378e+04, 6.71423080e+04,
+       5.97977129e+04, 5.24209554e+04, 4.50160774e+04, 3.75871523e+04,
+       3.01382838e+04, 2.26736026e+04, 1.51972587e+04, 7.71341225e+03,
+       2.26235245e+02, 0.00000000e+00, 0.00000000e+00, 0.00000000e+00,
+       0.00000000e+00, 0.00000000e+00, 0.00000000e+00, 0.00000000e+00,
+       0.00000000e+00, 0.00000000e+00, 0.00000000e+00, 0.00000000e+00,
+       0.00000000e+00, 0.00000000e+00, 0.00000000e+00, 0.00000000e+00,
+       0.00000000e+00, 0.00000000e+00, 0.00000000e+00, 0.00000000e+00,
+       0.00000000e+00, 0.00000000e+00, 0.00000000e+00, 0.00000000e+00,
+       0.00000000e+00, 0.00000000e+00, 0.00000000e+00, 0.00000000e+00,
+       0.00000000e+00, 0.00000000e+00, 0.00000000e+00, 0.00000000e+00,
+       0.00000000e+00, 0.00000000e+00, 0.00000000e+00, 0.00000000e+00,
+       0.00000000e+00, 0.00000000e+00, 0.00000000e+00, 0.00000000e+00,
+       0.00000000e+00, 0.00000000e+00, 0.00000000e+00, 0.00000000e+00,
+       0.00000000e+00, 0.00000000e+00, 0.00000000e+00, 0.00000000e+00,
+       0.00000000e+00, 0.00000000e+00, 0.00000000e+00, 0.00000000e+00,
+       0.00000000e+00, 0.00000000e+00, 0.00000000e+00, 0.00000000e+00,
+       0.00000000e+00, 0.00000000e+00, 0.00000000e+00, 0.00000000e+00,
+       0.00000000e+00, 0.00000000e+00, 0.00000000e+00, 0.00000000e+00,
+       0.00000000e+00, 0.00000000e+00, 0.00000000e+00, 0.00000000e+00,
+       0.00000000e+00, 0.00000000e+00, 0.00000000e+00, 0.00000000e+00,
+       0.00000000e+00, 0.00000000e+00, 0.00000000e+00, 0.00000000e+00,
+       0.00000000e+00, 0.00000000e+00, 0.00000000e+00, 0.00000000e+00,
+       0.00000000e+00, 0.00000000e+00, 0.00000000e+00, 0.00000000e+00,
+       0.00000000e+00, 0.00000000e+00, 0.00000000e+00, 0.00000000e+00,
+       0.00000000e+00, 0.00000000e+00, 0.00000000e+00, 0.00000000e+00,
+       0.00000000e+00, 0.00000000e+00, 0.00000000e+00, 0.00000000e+00,
+       0.00000000e+00, 0.00000000e+00, 0.00000000e+00, 0.00000000e+00,
+       0.00000000e+00, 0.00000000e+00, 0.00000000e+00, 0.00000000e+00,
+       0.00000000e+00, 0.00000000e+00, 0.00000000e+00, 0.00000000e+00,
+       0.00000000e+00, 0.00000000e+00, 0.00000000e+00, 0.00000000e+00,
+       0.00000000e+00, 0.00000000e+00, 0.00000000e+00, 0.00000000e+00,
+       0.00000000e+00, 0.00000000e+00, 0.00000000e+00, 0.00000000e+00,
+       0.00000000e+00, 0.00000000e+00, 0.00000000e+00, 0.00000000e+00,
+       0.00000000e+00, 0.00000000e+00, 0.00000000e+00, 0.00000000e+00,
+       0.00000000e+00, 0.00000000e+00, 0.00000000e+00, 0.00000000e+00,
+       0.00000000e+00, 0.00000000e+00, 0.00000000e+00, 0.00000000e+00,
+       0.00000000e+00, 0.00000000e+00, 0.00000000e+00, 0.00000000e+00,
+       0.00000000e+00, 0.00000000e+00, 0.00000000e+00, 0.00000000e+00,
+       0.00000000e+00, 0.00000000e+00, 0.00000000e+00, 0.00000000e+00,
+       0.00000000e+00, 0.00000000e+00, 0.00000000e+00, 0.00000000e+00,
+       0.00000000e+00, 0.00000000e+00, 0.00000000e+00, 0.00000000e+00,
+       0.00000000e+00, 0.00000000e+00, 0.00000000e+00, 0.00000000e+00,
+       0.00000000e+00, 0.00000000e+00, 0.00000000e+00, 0.00000000e+00,
+       0.00000000e+00, 0.00000000e+00, 0.00000000e+00, 0.00000000e+00,
+       0.00000000e+00, 0.00000000e+00, 0.00000000e+00, 0.00000000e+00,
+       0.00000000e+00, 0.00000000e+00, 0.00000000e+00, 0.00000000e+00,
+       0.00000000e+00, 0.00000000e+00, 0.00000000e+00, 0.00000000e+00,
+       0.00000000e+00, 0.00000000e+00, 0.00000000e+00, 0.00000000e+00,
+       0.00000000e+00, 0.00000000e+00, 0.00000000e+00, 0.00000000e+00,
+       0.00000000e+00, 0.00000000e+00, 0.00000000e+00, 0.00000000e+00,
+       0.00000000e+00, 0.00000000e+00, 0.00000000e+00, 0.00000000e+00,
+       0.00000000e+00, 0.00000000e+00, 0.00000000e+00, 0.00000000e+00,
+       0.00000000e+00, 0.00000000e+00, 0.00000000e+00, 0.00000000e+00,
+       0.00000000e+00, 0.00000000e+00, 0.00000000e+00, 0.00000000e+00,
+       0.00000000e+00, 0.00000000e+00, 0.00000000e+00, 0.00000000e+00,
+       0.00000000e+00, 0.00000000e+00, 0.00000000e+00, 0.00000000e+00,
+       0.00000000e+00, 0.00000000e+00, 0.00000000e+00, 0.00000000e+00,
+       0.00000000e+00, 0.00000000e+00, 0.00000000e+00, 0.00000000e+00,
+       0.00000000e+00, 0.00000000e+00, 0.00000000e+00, 0.00000000e+00,
+       0.00000000e+00, 0.00000000e+00, 0.00000000e+00, 0.00000000e+00,
+       0.00000000e+00, 0.00000000e+00, 0.00000000e+00, 0.00000000e+00,
+       0.00000000e+00, 0.00000000e+00, 0.00000000e+00, 0.00000000e+00,
+       0.00000000e+00, 0.00000000e+00, 0.00000000e+00, 0.00000000e+00,
+       0.00000000e+00, 0.00000000e+00, 0.00000000e+00, 0.00000000e+00,
+       0.00000000e+00, 0.00000000e+00, 0.00000000e+00, 0.00000000e+00,
+       0.00000000e+00, 0.00000000e+00, 0.00000000e+00, 0.00000000e+00,
+       0.00000000e+00, 0.00000000e+00, 0.00000000e+00, 0.00000000e+00,
+       0.00000000e+00, 0.00000000e+00, 0.00000000e+00, 0.00000000e+00])
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span># Plotting pressure along theta in a chosen z
+
+show(plot_pressure_theta(my_fluid_flow, z=int(nz/2)))
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+BokehDeprecationWarning: &#39;legend&#39; keyword is deprecated, use explicit &#39;legend_label&#39;, &#39;legend_field&#39;, or &#39;legend_group&#39; keywords instead
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area rendered_html docutils container">
+<div class="bk-root" id="47d33727-7d1a-45c3-960c-12b87090f5a9" data-root-id="1002"></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="output_javascript"></div>
+<script type="text/javascript">
+var element = document.currentScript.previousSibling.previousSibling;
+(function(root) {
+  function embed_document(root) {
+
+  var docs_json = {"166115b3-f21c-4baf-b0fd-bc817971e27c":{"roots":{"references":[{"attributes":{"below":[{"id":"1013","type":"LinearAxis"}],"center":[{"id":"1017","type":"Grid"},{"id":"1022","type":"Grid"},{"id":"1047","type":"Legend"}],"left":[{"id":"1018","type":"LinearAxis"}],"renderers":[{"id":"1039","type":"GlyphRenderer"}],"title":{"id":"1003","type":"Title"},"toolbar":{"id":"1029","type":"Toolbar"},"x_range":{"id":"1005","type":"DataRange1d"},"x_scale":{"id":"1009","type":"LinearScale"},"y_range":{"id":"1007","type":"DataRange1d"},"y_scale":{"id":"1011","type":"LinearScale"}},"id":"1002","subtype":"Figure","type":"Plot"},{"attributes":{"axis_label":"Points along Theta","formatter":{"id":"1044","type":"BasicTickFormatter"},"ticker":{"id":"1014","type":"BasicTicker"}},"id":"1013","type":"LinearAxis"},{"attributes":{"callback":null,"data":{"x":{"__ndarray__":"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","dtype":"float64","shape":[528]},"y":{"__ndarray__":"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AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA","dtype":"float64","shape":[528]}},"selected":{"id":"1055","type":"Selection"},"selection_policy":{"id":"1056","type":"UnionRenderers"}},"id":"1036","type":"ColumnDataSource"},{"attributes":{"callback":null},"id":"1007","type":"DataRange1d"},{"attributes":{},"id":"1014","type":"BasicTicker"},{"attributes":{"data_source":{"id":"1036","type":"ColumnDataSource"},"glyph":{"id":"1037","type":"Line"},"hover_glyph":null,"muted_glyph":null,"nonselection_glyph":{"id":"1038","type":"Line"},"selection_glyph":null,"view":{"id":"1040","type":"CDSView"}},"id":"1039","type":"GlyphRenderer"},{"attributes":{"ticker":{"id":"1014","type":"BasicTicker"}},"id":"1017","type":"Grid"},{"attributes":{},"id":"1009","type":"LinearScale"},{"attributes":{},"id":"1028","type":"HelpTool"},{"attributes":{"text":"Pressure along Theta; Z=15"},"id":"1003","type":"Title"},{"attributes":{"line_alpha":0.1,"line_color":"#1f77b4","line_width":2,"x":{"field":"x"},"y":{"field":"y"}},"id":"1038","type":"Line"},{"attributes":{"line_color":"blue","line_width":2,"x":{"field":"x"},"y":{"field":"y"}},"id":"1037","type":"Line"},{"attributes":{},"id":"1042","type":"BasicTickFormatter"},{"attributes":{"callback":null},"id":"1005","type":"DataRange1d"},{"attributes":{"dimension":1,"ticker":{"id":"1019","type":"BasicTicker"}},"id":"1022","type":"Grid"},{"attributes":{},"id":"1011","type":"LinearScale"},{"attributes":{},"id":"1056","type":"UnionRenderers"},{"attributes":{},"id":"1026","type":"SaveTool"},{"attributes":{"bottom_units":"screen","fill_alpha":{"value":0.5},"fill_color":{"value":"lightgrey"},"left_units":"screen","level":"overlay","line_alpha":{"value":1.0},"line_color":{"value":"black"},"line_dash":[4,4],"line_width":{"value":2},"render_mode":"css","right_units":"screen","top_units":"screen"},"id":"1046","type":"BoxAnnotation"},{"attributes":{"active_drag":"auto","active_inspect":"auto","active_multi":null,"active_scroll":"auto","active_tap":"auto","tools":[{"id":"1023","type":"PanTool"},{"id":"1024","type":"WheelZoomTool"},{"id":"1025","type":"BoxZoomTool"},{"id":"1026","type":"SaveTool"},{"id":"1027","type":"ResetTool"},{"id":"1028","type":"HelpTool"}]},"id":"1029","type":"Toolbar"},{"attributes":{},"id":"1023","type":"PanTool"},{"attributes":{"axis_label":"Pressure","formatter":{"id":"1042","type":"BasicTickFormatter"},"ticker":{"id":"1019","type":"BasicTicker"}},"id":"1018","type":"LinearAxis"},{"attributes":{"overlay":{"id":"1046","type":"BoxAnnotation"}},"id":"1025","type":"BoxZoomTool"},{"attributes":{},"id":"1044","type":"BasicTickFormatter"},{"attributes":{},"id":"1027","type":"ResetTool"},{"attributes":{},"id":"1055","type":"Selection"},{"attributes":{"items":[{"id":"1048","type":"LegendItem"}]},"id":"1047","type":"Legend"},{"attributes":{},"id":"1024","type":"WheelZoomTool"},{"attributes":{"source":{"id":"1036","type":"ColumnDataSource"}},"id":"1040","type":"CDSView"},{"attributes":{},"id":"1019","type":"BasicTicker"},{"attributes":{"label":{"value":"Numerical pressure"},"renderers":[{"id":"1039","type":"GlyphRenderer"}]},"id":"1048","type":"LegendItem"}],"root_ids":["1002"]},"title":"Bokeh Application","version":"1.4.0"}};
+  var render_items = [{"docid":"166115b3-f21c-4baf-b0fd-bc817971e27c","roots":{"1002":"47d33727-7d1a-45c3-960c-12b87090f5a9"}}];
+  root.Bokeh.embed.embed_items_notebook(docs_json, render_items);
+
+  }
+  if (root.Bokeh !== undefined) {
+    embed_document(root);
+  } else {
+    var attempts = 0;
+    var timer = setInterval(function(root) {
+      if (root.Bokeh !== undefined) {
+        clearInterval(timer);
+        embed_document(root);
+      } else {
+        attempts++;
+        if (attempts > 100) {
+          clearInterval(timer);
+          console.log("Bokeh: ERROR: Unable to run BokehJS code because BokehJS library is missing");
+        }
+      }
+    }, 10, root)
+  }
+})(window);
+</script></div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+    </div>
+      
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
+    </p>
+    <p>
+        &copy; Copyright 2019, Team ROSS.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.4.4.<br/>
+    </p>
+  </div>
+</footer>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-157532410-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-157532410-1');
+</script>
+
+  </body>
+</html>
