@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
   <head>
     <meta charset="utf-8" />
-    <title>ross.rotor_assembly &#8212; ross 0.3.0 documentation</title>
+    <title>ross.rotor_assembly &#8212; ross 0.3.3 documentation</title>
     <link rel="stylesheet" href="../../_static/bootstrap-sphinx.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx_copybutton.css" />
@@ -155,12 +155,14 @@
     <div class="body col-md-12 content" role="main">
       
   <h1>Source code for ross.rotor_assembly</h1><div class="highlight"><pre>
-<span></span><span class="kn">import</span> <span class="nn">os</span>
+<span></span><span class="c1"># fmt: off</span>
+<span class="kn">import</span> <span class="nn">os</span>
 <span class="kn">import</span> <span class="nn">shutil</span>
 <span class="kn">import</span> <span class="nn">warnings</span>
-<span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">Iterable</span><span class="p">,</span> <span class="n">namedtuple</span><span class="p">,</span> <span class="n">Counter</span>
+<span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">Counter</span><span class="p">,</span> <span class="n">namedtuple</span>
+<span class="kn">from</span> <span class="nn">collections.abc</span> <span class="kn">import</span> <span class="n">Iterable</span>
 <span class="kn">from</span> <span class="nn">copy</span> <span class="kn">import</span> <span class="n">copy</span><span class="p">,</span> <span class="n">deepcopy</span>
-<span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">cycle</span><span class="p">,</span> <span class="n">chain</span>
+<span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">chain</span><span class="p">,</span> <span class="n">cycle</span>
 <span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
 
 <span class="kn">import</span> <span class="nn">bokeh.palettes</span> <span class="k">as</span> <span class="nn">bp</span>
@@ -175,26 +177,20 @@
 <span class="kn">import</span> <span class="nn">toml</span>
 <span class="kn">from</span> <span class="nn">bokeh.models</span> <span class="kn">import</span> <span class="n">ColumnDataSource</span>
 <span class="kn">from</span> <span class="nn">bokeh.models.glyphs</span> <span class="kn">import</span> <span class="n">Text</span>
-<span class="kn">from</span> <span class="nn">bokeh.plotting</span> <span class="kn">import</span> <span class="n">figure</span><span class="p">,</span> <span class="n">output_file</span><span class="p">,</span> <span class="n">show</span>
+<span class="kn">from</span> <span class="nn">bokeh.plotting</span> <span class="kn">import</span> <span class="n">figure</span><span class="p">,</span> <span class="n">output_file</span>
 <span class="kn">from</span> <span class="nn">cycler</span> <span class="kn">import</span> <span class="n">cycler</span>
-<span class="kn">from</span> <span class="nn">ross.utils</span> <span class="kn">import</span> <span class="n">convert</span>
 
-<span class="kn">import</span> <span class="nn">ross</span>
 <span class="kn">from</span> <span class="nn">ross.bearing_seal_element</span> <span class="kn">import</span> <span class="n">BearingElement</span><span class="p">,</span> <span class="n">SealElement</span>
 <span class="kn">from</span> <span class="nn">ross.disk_element</span> <span class="kn">import</span> <span class="n">DiskElement</span>
 <span class="kn">from</span> <span class="nn">ross.materials</span> <span class="kn">import</span> <span class="n">steel</span>
-<span class="kn">from</span> <span class="nn">ross.results</span> <span class="kn">import</span> <span class="p">(</span>
-    <span class="n">CampbellResults</span><span class="p">,</span>
-    <span class="n">ConvergenceResults</span><span class="p">,</span>
-    <span class="n">ForcedResponseResults</span><span class="p">,</span>
-    <span class="n">FrequencyResponseResults</span><span class="p">,</span>
-    <span class="n">ModalResults</span><span class="p">,</span>
-    <span class="n">StaticResults</span><span class="p">,</span>
-    <span class="n">SummaryResults</span><span class="p">,</span>
-    <span class="n">TimeResponseResults</span><span class="p">,</span>
-    <span class="n">OrbitResponseResults</span><span class="p">,</span>
-<span class="p">)</span>
+<span class="kn">from</span> <span class="nn">ross.results</span> <span class="kn">import</span> <span class="p">(</span><span class="n">CampbellResults</span><span class="p">,</span> <span class="n">ConvergenceResults</span><span class="p">,</span>
+                          <span class="n">ForcedResponseResults</span><span class="p">,</span> <span class="n">FrequencyResponseResults</span><span class="p">,</span>
+                          <span class="n">ModalResults</span><span class="p">,</span> <span class="n">OrbitResponseResults</span><span class="p">,</span> <span class="n">StaticResults</span><span class="p">,</span>
+                          <span class="n">SummaryResults</span><span class="p">,</span> <span class="n">TimeResponseResults</span><span class="p">)</span>
 <span class="kn">from</span> <span class="nn">ross.shaft_element</span> <span class="kn">import</span> <span class="n">ShaftElement</span>
+<span class="kn">from</span> <span class="nn">ross.utils</span> <span class="kn">import</span> <span class="n">convert</span>
+
+<span class="c1"># fmt: on</span>
 
 <span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Rotor&quot;</span><span class="p">,</span> <span class="s2">&quot;CoAxialRotor&quot;</span><span class="p">,</span> <span class="s2">&quot;rotor_example&quot;</span><span class="p">,</span> <span class="s2">&quot;coaxrotor_example&quot;</span><span class="p">]</span>
 
@@ -2795,8 +2791,12 @@
                     <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nel_r</span><span class="p">):</span>
                         <span class="n">idl</span> <span class="o">=</span> <span class="p">(</span><span class="n">idr_data</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">-</span> <span class="n">idl_data</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="o">*</span> <span class="n">j</span> <span class="o">*</span> <span class="n">le</span> <span class="o">/</span> <span class="n">leng</span> <span class="o">+</span> <span class="n">idl_data</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
                         <span class="n">odl</span> <span class="o">=</span> <span class="p">(</span><span class="n">odr_data</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">-</span> <span class="n">odl_data</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="o">*</span> <span class="n">j</span> <span class="o">*</span> <span class="n">le</span> <span class="o">/</span> <span class="n">leng</span> <span class="o">+</span> <span class="n">odl_data</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
-                        <span class="n">idr</span> <span class="o">=</span> <span class="p">(</span><span class="n">idr_data</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">-</span> <span class="n">idl_data</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="o">*</span> <span class="p">(</span><span class="n">j</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">le</span> <span class="o">/</span> <span class="n">leng</span> <span class="o">+</span> <span class="n">idl_data</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
-                        <span class="n">odr</span> <span class="o">=</span> <span class="p">(</span><span class="n">odr_data</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">-</span> <span class="n">odl_data</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="o">*</span> <span class="p">(</span><span class="n">j</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">le</span> <span class="o">/</span> <span class="n">leng</span> <span class="o">+</span> <span class="n">odl_data</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+                        <span class="n">idr</span> <span class="o">=</span> <span class="p">(</span><span class="n">idr_data</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">-</span> <span class="n">idl_data</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="o">*</span> <span class="p">(</span>
+                            <span class="n">j</span> <span class="o">+</span> <span class="mi">1</span>
+                        <span class="p">)</span> <span class="o">*</span> <span class="n">le</span> <span class="o">/</span> <span class="n">leng</span> <span class="o">+</span> <span class="n">idl_data</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+                        <span class="n">odr</span> <span class="o">=</span> <span class="p">(</span><span class="n">odr_data</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">-</span> <span class="n">odl_data</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="o">*</span> <span class="p">(</span>
+                            <span class="n">j</span> <span class="o">+</span> <span class="mi">1</span>
+                        <span class="p">)</span> <span class="o">*</span> <span class="n">le</span> <span class="o">/</span> <span class="n">leng</span> <span class="o">+</span> <span class="n">odl_data</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
                         <span class="n">shaft_elements</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
                             <span class="n">ShaftElement</span><span class="p">(</span>
                                 <span class="n">le</span><span class="p">,</span>
@@ -3624,7 +3624,7 @@
     </p>
     <p>
         &copy; Copyright 2019, Team ROSS.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.4.4.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.0.1.<br/>
     </p>
   </div>
 </footer>

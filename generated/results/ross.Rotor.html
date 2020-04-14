@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
   <head>
     <meta charset="utf-8" />
-    <title>ross.Rotor &#8212; ross 0.3.0 documentation</title>
+    <title>ross.Rotor &#8212; ross 0.3.3 documentation</title>
     <link rel="stylesheet" href="../../_static/bootstrap-sphinx.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx_copybutton.css" />
@@ -166,9 +166,9 @@
   </div>
 <div class=col-md-9 content><div class="section" id="ross-rotor">
 <h1>ross.Rotor<a class="headerlink" href="#ross-rotor" title="Permalink to this headline">¶</a></h1>
-<dl class="class">
+<dl class="py class">
 <dt id="ross.Rotor">
-<em class="property">class </em><code class="sig-prename descclassname">ross.</code><code class="sig-name descname">Rotor</code><span class="sig-paren">(</span><em class="sig-param">shaft_elements</em>, <em class="sig-param">disk_elements=None</em>, <em class="sig-param">bearing_elements=None</em>, <em class="sig-param">point_mass_elements=None</em>, <em class="sig-param">sparse=True</em>, <em class="sig-param">n_eigen=12</em>, <em class="sig-param">min_w=None</em>, <em class="sig-param">max_w=None</em>, <em class="sig-param">rated_w=None</em>, <em class="sig-param">tag=None</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/rotor_assembly.html#Rotor"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.Rotor" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">ross.</code><code class="sig-name descname">Rotor</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">shaft_elements</span></em>, <em class="sig-param"><span class="n">disk_elements</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">bearing_elements</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">point_mass_elements</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">sparse</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">n_eigen</span><span class="o">=</span><span class="default_value">12</span></em>, <em class="sig-param"><span class="n">min_w</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">max_w</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">rated_w</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">tag</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/rotor_assembly.html#Rotor"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.Rotor" title="Permalink to this definition">¶</a></dt>
 <dd><p>A rotor object.</p>
 <p>This class will create a rotor with the shaft,
 disk, bearing and seal elements provided.</p>
@@ -242,16 +242,16 @@ Default is 12.</p>
 </dl>
 </dd>
 </dl>
-<dl class="method">
+<dl class="py method">
 <dt id="ross.Rotor.__init__">
-<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">shaft_elements</em>, <em class="sig-param">disk_elements=None</em>, <em class="sig-param">bearing_elements=None</em>, <em class="sig-param">point_mass_elements=None</em>, <em class="sig-param">sparse=True</em>, <em class="sig-param">n_eigen=12</em>, <em class="sig-param">min_w=None</em>, <em class="sig-param">max_w=None</em>, <em class="sig-param">rated_w=None</em>, <em class="sig-param">tag=None</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/rotor_assembly.html#Rotor.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.Rotor.__init__" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">shaft_elements</span></em>, <em class="sig-param"><span class="n">disk_elements</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">bearing_elements</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">point_mass_elements</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">sparse</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">n_eigen</span><span class="o">=</span><span class="default_value">12</span></em>, <em class="sig-param"><span class="n">min_w</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">max_w</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">rated_w</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">tag</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/rotor_assembly.html#Rotor.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.Rotor.__init__" title="Permalink to this definition">¶</a></dt>
 <dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
 </dd></dl>
 
 <p class="rubric">Methods</p>
-<dl class="method">
+<dl class="py method">
 <dt id="ross.Rotor.A">
-<code class="sig-name descname">A</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">speed=0</em>, <em class="sig-param">frequency=None</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/rotor_assembly.html#Rotor.A"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.Rotor.A" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">A</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">speed</span><span class="o">=</span><span class="default_value">0</span></em>, <em class="sig-param"><span class="n">frequency</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/rotor_assembly.html#Rotor.A"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.Rotor.A" title="Permalink to this definition">¶</a></dt>
 <dd><p>State space matrix for an instance of a rotor.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -282,9 +282,9 @@ Default is 0.</p>
 </div>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="ross.Rotor.C">
-<code class="sig-name descname">C</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">frequency</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/rotor_assembly.html#Rotor.C"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.Rotor.C" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">C</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">frequency</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/rotor_assembly.html#Rotor.C"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.Rotor.C" title="Permalink to this definition">¶</a></dt>
 <dd><p>Damping matrix for an instance of a rotor.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -310,9 +310,9 @@ Default is 0.</p>
 </div>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="ross.Rotor.G">
-<code class="sig-name descname">G</code><span class="sig-paren">(</span><em class="sig-param">self</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/rotor_assembly.html#Rotor.G"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.Rotor.G" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">G</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/rotor_assembly.html#Rotor.G"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.Rotor.G" title="Permalink to this definition">¶</a></dt>
 <dd><p>Gyroscopic matrix for an instance of a rotor.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
@@ -332,9 +332,9 @@ Default is 0.</p>
 </div>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="ross.Rotor.K">
-<code class="sig-name descname">K</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">frequency</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/rotor_assembly.html#Rotor.K"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.Rotor.K" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">K</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">frequency</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/rotor_assembly.html#Rotor.K"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.Rotor.K" title="Permalink to this definition">¶</a></dt>
 <dd><p>Stiffness matrix for an instance of a rotor.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -360,9 +360,9 @@ Default is 0.</p>
 </div>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="ross.Rotor.M">
-<code class="sig-name descname">M</code><span class="sig-paren">(</span><em class="sig-param">self</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/rotor_assembly.html#Rotor.M"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.Rotor.M" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">M</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/rotor_assembly.html#Rotor.M"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.Rotor.M" title="Permalink to this definition">¶</a></dt>
 <dd><p>Mass matrix for an instance of a rotor.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
@@ -382,15 +382,15 @@ Default is 0.</p>
 </div>
 </dd></dl>
 
-<dl class="method">
-<dt>
-<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">shaft_elements</em>, <em class="sig-param">disk_elements=None</em>, <em class="sig-param">bearing_elements=None</em>, <em class="sig-param">point_mass_elements=None</em>, <em class="sig-param">sparse=True</em>, <em class="sig-param">n_eigen=12</em>, <em class="sig-param">min_w=None</em>, <em class="sig-param">max_w=None</em>, <em class="sig-param">rated_w=None</em>, <em class="sig-param">tag=None</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/rotor_assembly.html#Rotor.__init__"><span class="viewcode-link">[source]</span></a></dt>
+<dl class="py method">
+<dt id="id0">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">shaft_elements</span></em>, <em class="sig-param"><span class="n">disk_elements</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">bearing_elements</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">point_mass_elements</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">sparse</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">n_eigen</span><span class="o">=</span><span class="default_value">12</span></em>, <em class="sig-param"><span class="n">min_w</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">max_w</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">rated_w</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">tag</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/rotor_assembly.html#Rotor.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#id0" title="Permalink to this definition">¶</a></dt>
 <dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="ross.Rotor.check_slenderness_ratio">
-<code class="sig-name descname">check_slenderness_ratio</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">nodes=1</em>, <em class="sig-param">*args</em>, <em class="sig-param">plot_type='matplotlib'</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/rotor_assembly.html#Rotor.check_slenderness_ratio"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.Rotor.check_slenderness_ratio" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">check_slenderness_ratio</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">nodes=1</em>, <em class="sig-param">\*args</em>, <em class="sig-param">plot_type='matplotlib'</em>, <em class="sig-param">\*\*kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/rotor_assembly.html#Rotor.check_slenderness_ratio"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.Rotor.check_slenderness_ratio" title="Permalink to this definition">¶</a></dt>
 <dd><p>Plots a rotor object and check the slenderness ratio</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -413,9 +413,9 @@ Default is matplotlib.</p>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="ross.Rotor.convergence">
-<code class="sig-name descname">convergence</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">n_eigval=0</em>, <em class="sig-param">err_max=0.01</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/rotor_assembly.html#Rotor.convergence"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.Rotor.convergence" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">convergence</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">n_eigval</span><span class="o">=</span><span class="default_value">0</span></em>, <em class="sig-param"><span class="n">err_max</span><span class="o">=</span><span class="default_value">0.01</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/rotor_assembly.html#Rotor.convergence"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.Rotor.convergence" title="Permalink to this definition">¶</a></dt>
 <dd><p>Function to analyze the eigenvalues convergence through the number of
 shaft elements. Every new run doubles the number os shaft elements.</p>
 <dl class="field-list simple">
@@ -440,9 +440,9 @@ The natural frequency calculated in each run.</p>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="ross.Rotor.from_section">
-<em class="property">classmethod </em><code class="sig-name descname">from_section</code><span class="sig-paren">(</span><em class="sig-param">leng_data</em>, <em class="sig-param">idl_data</em>, <em class="sig-param">odl_data</em>, <em class="sig-param">idr_data=None</em>, <em class="sig-param">odr_data=None</em>, <em class="sig-param">material_data=None</em>, <em class="sig-param">disk_data=None</em>, <em class="sig-param">brg_seal_data=None</em>, <em class="sig-param">sparse=True</em>, <em class="sig-param">min_w=None</em>, <em class="sig-param">max_w=None</em>, <em class="sig-param">rated_w=None</em>, <em class="sig-param">n_eigen=12</em>, <em class="sig-param">nel_r=1</em>, <em class="sig-param">tag=None</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/rotor_assembly.html#Rotor.from_section"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.Rotor.from_section" title="Permalink to this definition">¶</a></dt>
+<em class="property">classmethod </em><code class="sig-name descname">from_section</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">leng_data</span></em>, <em class="sig-param"><span class="n">idl_data</span></em>, <em class="sig-param"><span class="n">odl_data</span></em>, <em class="sig-param"><span class="n">idr_data</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">odr_data</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">material_data</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">disk_data</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">brg_seal_data</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">sparse</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">min_w</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">max_w</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">rated_w</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">n_eigen</span><span class="o">=</span><span class="default_value">12</span></em>, <em class="sig-param"><span class="n">nel_r</span><span class="o">=</span><span class="default_value">1</span></em>, <em class="sig-param"><span class="n">tag</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/rotor_assembly.html#Rotor.from_section"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.Rotor.from_section" title="Permalink to this definition">¶</a></dt>
 <dd><p>This class is an alternative to build rotors from separated
 sections. Each section has the same number (n) of shaft elements.</p>
 <dl class="field-list">
@@ -500,9 +500,9 @@ Default is 12.</p>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="ross.Rotor.load">
-<em class="property">static </em><code class="sig-name descname">load</code><span class="sig-paren">(</span><em class="sig-param">file_path</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/rotor_assembly.html#Rotor.load"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.Rotor.load" title="Permalink to this definition">¶</a></dt>
+<em class="property">static </em><code class="sig-name descname">load</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">file_path</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/rotor_assembly.html#Rotor.load"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.Rotor.load" title="Permalink to this definition">¶</a></dt>
 <dd><p>Load rotor from toml file.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -518,9 +518,9 @@ Default is 12.</p>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="ross.Rotor.plot_level1">
-<code class="sig-name descname">plot_level1</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">n=None</em>, <em class="sig-param">stiffness_range=None</em>, <em class="sig-param">num=5</em>, <em class="sig-param">ax=None</em>, <em class="sig-param">output_html=False</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/rotor_assembly.html#Rotor.plot_level1"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.Rotor.plot_level1" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">plot_level1</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">n=None</em>, <em class="sig-param">stiffness_range=None</em>, <em class="sig-param">num=5</em>, <em class="sig-param">ax=None</em>, <em class="sig-param">output_html=False</em>, <em class="sig-param">\*\*kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/rotor_assembly.html#Rotor.plot_level1"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.Rotor.plot_level1" title="Permalink to this definition">¶</a></dt>
 <dd><p>Plot level 1 stability analysis.</p>
 <p>This method will plot the stability 1 analysis for a
 given stiffness range.</p>
@@ -624,9 +624,9 @@ Default is False</p>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="ross.Rotor.plot_rotor">
-<code class="sig-name descname">plot_rotor</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">nodes=1</em>, <em class="sig-param">*args</em>, <em class="sig-param">plot_type='bokeh'</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/rotor_assembly.html#Rotor.plot_rotor"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.Rotor.plot_rotor" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">plot_rotor</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">nodes=1</em>, <em class="sig-param">\*args</em>, <em class="sig-param">plot_type='bokeh'</em>, <em class="sig-param">\*\*kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/rotor_assembly.html#Rotor.plot_rotor"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.Rotor.plot_rotor" title="Permalink to this definition">¶</a></dt>
 <dd><p>Plots a rotor object.</p>
 <p>This function will take a rotor object and plot its shaft,
 disks and bearing elements</p>
@@ -671,9 +671,9 @@ Default is matplotlib.</p>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="ross.Rotor.plot_ucs">
-<code class="sig-name descname">plot_ucs</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">stiffness_range=None</em>, <em class="sig-param">num=20</em>, <em class="sig-param">ax=None</em>, <em class="sig-param">output_html=False</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/rotor_assembly.html#Rotor.plot_ucs"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.Rotor.plot_ucs" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">plot_ucs</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">stiffness_range</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">num</span><span class="o">=</span><span class="default_value">20</span></em>, <em class="sig-param"><span class="n">ax</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">output_html</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/rotor_assembly.html#Rotor.plot_ucs"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.Rotor.plot_ucs" title="Permalink to this definition">¶</a></dt>
 <dd><p>Plot undamped critical speed map.</p>
 <p>This method will plot the undamped critical speed map for a given range
 of stiffness values. If the range is not provided, the bearing
@@ -704,9 +704,9 @@ Default is False</p>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="ross.Rotor.remove">
-<em class="property">static </em><code class="sig-name descname">remove</code><span class="sig-paren">(</span><em class="sig-param">file_path</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/rotor_assembly.html#Rotor.remove"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.Rotor.remove" title="Permalink to this definition">¶</a></dt>
+<em class="property">static </em><code class="sig-name descname">remove</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">file_path</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/rotor_assembly.html#Rotor.remove"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.Rotor.remove" title="Permalink to this definition">¶</a></dt>
 <dd><p>Remove a previously saved rotor in rotors folder.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -717,9 +717,9 @@ Default is False</p>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="ross.Rotor.run_campbell">
-<code class="sig-name descname">run_campbell</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">speed_range</em>, <em class="sig-param">frequencies=6</em>, <em class="sig-param">frequency_type='wd'</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/rotor_assembly.html#Rotor.run_campbell"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.Rotor.run_campbell" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">run_campbell</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">speed_range</span></em>, <em class="sig-param"><span class="n">frequencies</span><span class="o">=</span><span class="default_value">6</span></em>, <em class="sig-param"><span class="n">frequency_type</span><span class="o">=</span><span class="default_value">'wd'</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/rotor_assembly.html#Rotor.run_campbell"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.Rotor.run_campbell" title="Permalink to this definition">¶</a></dt>
 <dd><p>Calculates the Campbell diagram.</p>
 <p>This function will calculate the damped natural frequencies
 for a speed range.</p>
@@ -752,9 +752,9 @@ It will be returned if plot=False.</p>
 </div>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="ross.Rotor.run_forced_response">
-<code class="sig-name descname">run_forced_response</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">force=None</em>, <em class="sig-param">speed_range=None</em>, <em class="sig-param">modes=None</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/rotor_assembly.html#Rotor.run_forced_response"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.Rotor.run_forced_response" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">run_forced_response</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">force</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">speed_range</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">modes</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/rotor_assembly.html#Rotor.run_forced_response"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.Rotor.run_forced_response" title="Permalink to this definition">¶</a></dt>
 <dd><p>Unbalanced response for a mdof system.</p>
 <p>This method returns the unbalanced response for a mdof system
 given magnitude and phase of the unbalance, the node where it’s
@@ -795,9 +795,9 @@ applied and a frequency range.</p>
 </div>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="ross.Rotor.run_freq_response">
-<code class="sig-name descname">run_freq_response</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">speed_range=None</em>, <em class="sig-param">modes=None</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/rotor_assembly.html#Rotor.run_freq_response"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.Rotor.run_freq_response" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">run_freq_response</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">speed_range</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">modes</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/rotor_assembly.html#Rotor.run_freq_response"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.Rotor.run_freq_response" title="Permalink to this definition">¶</a></dt>
 <dd><p>Frequency response for a mdof system.</p>
 <p>This method returns the frequency response for a mdof system
 given a range of frequencies and the modes that will be used.</p>
@@ -834,9 +834,9 @@ It will be returned if plot=False.</p>
 </div>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="ross.Rotor.run_modal">
-<code class="sig-name descname">run_modal</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">speed</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/rotor_assembly.html#Rotor.run_modal"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.Rotor.run_modal" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">run_modal</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">speed</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/rotor_assembly.html#Rotor.run_modal"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.Rotor.run_modal" title="Permalink to this definition">¶</a></dt>
 <dd><p>Method to calculate eigenvalues and eigvectors for a given rotor system
 This method is automatically called when a rotor is instantiated.</p>
 <dl class="field-list simple">
@@ -857,9 +857,9 @@ This method is automatically called when a rotor is instantiated.</p>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="ross.Rotor.run_orbit_response">
-<code class="sig-name descname">run_orbit_response</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">speed</em>, <em class="sig-param">F</em>, <em class="sig-param">t</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/rotor_assembly.html#Rotor.run_orbit_response"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.Rotor.run_orbit_response" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">run_orbit_response</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">speed</span></em>, <em class="sig-param"><span class="n">F</span></em>, <em class="sig-param"><span class="n">t</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/rotor_assembly.html#Rotor.run_orbit_response"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.Rotor.run_orbit_response" title="Permalink to this definition">¶</a></dt>
 <dd><p>Calculates the orbit for a given node.</p>
 <p>This function will take a rotor object and plot the orbit for a single
 (2D graph) or all nodes (3D graph).</p>
@@ -900,9 +900,9 @@ It will be returned if plot=False.</p>
 </div>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="ross.Rotor.run_static">
-<code class="sig-name descname">run_static</code><span class="sig-paren">(</span><em class="sig-param">self</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/rotor_assembly.html#Rotor.run_static"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.Rotor.run_static" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">run_static</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/rotor_assembly.html#Rotor.run_static"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.Rotor.run_static" title="Permalink to this definition">¶</a></dt>
 <dd><p>Rotor static analysis.
 Static analysis calculates free-body diagram, deformed shaft, shearing
 force diagram and bending moment diagram.</p>
@@ -932,9 +932,9 @@ force diagram and bending moment diagram.</p>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="ross.Rotor.run_time_response">
-<code class="sig-name descname">run_time_response</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">speed</em>, <em class="sig-param">F</em>, <em class="sig-param">t</em>, <em class="sig-param">dof</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/rotor_assembly.html#Rotor.run_time_response"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.Rotor.run_time_response" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">run_time_response</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">speed</span></em>, <em class="sig-param"><span class="n">F</span></em>, <em class="sig-param"><span class="n">t</span></em>, <em class="sig-param"><span class="n">dof</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/rotor_assembly.html#Rotor.run_time_response"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.Rotor.run_time_response" title="Permalink to this definition">¶</a></dt>
 <dd><p>Calculates the time response.</p>
 <p>This function will take a rotor object and plot its time response
 given a force and a time.</p>
@@ -973,9 +973,9 @@ It will be returned if plot=False.</p>
 </div>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="ross.Rotor.save">
-<code class="sig-name descname">save</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">rotor_name='rotor'</em>, <em class="sig-param">file_path=PosixPath('.')</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/rotor_assembly.html#Rotor.save"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.Rotor.save" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">save</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">rotor_name</span><span class="o">=</span><span class="default_value">'rotor'</span></em>, <em class="sig-param"><span class="n">file_path</span><span class="o">=</span><span class="default_value">PosixPath('.')</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/rotor_assembly.html#Rotor.save"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.Rotor.save" title="Permalink to this definition">¶</a></dt>
 <dd><p>Save rotor to toml file.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -992,9 +992,9 @@ It will be returned if plot=False.</p>
 </div>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="ross.Rotor.save_mat">
-<code class="sig-name descname">save_mat</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">file_path</em>, <em class="sig-param">speed</em>, <em class="sig-param">frequency=None</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/rotor_assembly.html#Rotor.save_mat"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.Rotor.save_mat" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">save_mat</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">file_path</span></em>, <em class="sig-param"><span class="n">speed</span></em>, <em class="sig-param"><span class="n">frequency</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/rotor_assembly.html#Rotor.save_mat"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.Rotor.save_mat" title="Permalink to this definition">¶</a></dt>
 <dd><p>Save matrices and rotor model to a .mat file.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -1015,9 +1015,9 @@ Default is rotor speed.</p>
 </div>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="ross.Rotor.summary">
-<code class="sig-name descname">summary</code><span class="sig-paren">(</span><em class="sig-param">self</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/rotor_assembly.html#Rotor.summary"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.Rotor.summary" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">summary</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/rotor_assembly.html#Rotor.summary"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.Rotor.summary" title="Permalink to this definition">¶</a></dt>
 <dd><p>Rotor summary.</p>
 <p>This creates a summary of the main parameters and attributes from the
 rotor model. The data is presented in a table format.</p>
@@ -1038,9 +1038,9 @@ rotor model. The data is presented in a table format.</p>
 </div>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="ross.Rotor.time_response">
-<code class="sig-name descname">time_response</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">speed</em>, <em class="sig-param">F</em>, <em class="sig-param">t</em>, <em class="sig-param">ic=None</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/rotor_assembly.html#Rotor.time_response"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.Rotor.time_response" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">time_response</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">speed</span></em>, <em class="sig-param"><span class="n">F</span></em>, <em class="sig-param"><span class="n">t</span></em>, <em class="sig-param"><span class="n">ic</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/rotor_assembly.html#Rotor.time_response"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.Rotor.time_response" title="Permalink to this definition">¶</a></dt>
 <dd><p>Time response for a rotor.</p>
 <p>This method returns the time response for a rotor
 given a force, time and initial conditions.</p>
@@ -1078,9 +1078,9 @@ given a force, time and initial conditions.</p>
 </div>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="ross.Rotor.transfer_matrix">
-<code class="sig-name descname">transfer_matrix</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">speed=None</em>, <em class="sig-param">frequency=None</em>, <em class="sig-param">modes=None</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/rotor_assembly.html#Rotor.transfer_matrix"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.Rotor.transfer_matrix" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">transfer_matrix</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">speed</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">frequency</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">modes</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/rotor_assembly.html#Rotor.transfer_matrix"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.Rotor.transfer_matrix" title="Permalink to this definition">¶</a></dt>
 <dd><p>Calculates the fer matrix for the frequency response function (FRF)</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
@@ -1092,9 +1092,9 @@ given a force, time and initial conditions.</p>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="ross.Rotor.unbalance_response">
-<code class="sig-name descname">unbalance_response</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">node</em>, <em class="sig-param">magnitude</em>, <em class="sig-param">phase</em>, <em class="sig-param">frequency_range=None</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/rotor_assembly.html#Rotor.unbalance_response"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.Rotor.unbalance_response" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">unbalance_response</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">node</span></em>, <em class="sig-param"><span class="n">magnitude</span></em>, <em class="sig-param"><span class="n">phase</span></em>, <em class="sig-param"><span class="n">frequency_range</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/rotor_assembly.html#Rotor.unbalance_response"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.Rotor.unbalance_response" title="Permalink to this definition">¶</a></dt>
 <dd><p>Unbalanced response for a mdof system.</p>
 <p>This method returns the unbalanced response for a mdof system
 given magnitide and phase of the unbalance, the node where it’s
@@ -1155,7 +1155,7 @@ The order of the array is: [output, input, phase]</p>
     </p>
     <p>
         &copy; Copyright 2019, Team ROSS.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.4.4.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.0.1.<br/>
     </p>
   </div>
 </footer>

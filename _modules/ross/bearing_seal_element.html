@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
   <head>
     <meta charset="utf-8" />
-    <title>ross.bearing_seal_element &#8212; ross 0.3.0 documentation</title>
+    <title>ross.bearing_seal_element &#8212; ross 0.3.3 documentation</title>
     <link rel="stylesheet" href="../../_static/bootstrap-sphinx.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx_copybutton.css" />
@@ -155,32 +155,32 @@
     <div class="body col-md-12 content" role="main">
       
   <h1>Source code for ross.bearing_seal_element</h1><div class="highlight"><pre>
-<span></span><span class="kn">import</span> <span class="nn">warnings</span>
+<span></span><span class="c1"># fmt: off</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">warnings</span>
+<span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">namedtuple</span>
+<span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
 
 <span class="kn">import</span> <span class="nn">bokeh.palettes</span> <span class="k">as</span> <span class="nn">bp</span>
-<span class="kn">import</span> <span class="nn">matplotlib.patches</span> <span class="k">as</span> <span class="nn">mpatches</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="kn">import</span> <span class="nn">matplotlib.lines</span> <span class="k">as</span> <span class="nn">mlines</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">scipy.interpolate</span> <span class="k">as</span> <span class="nn">interpolate</span>
-<span class="kn">import</span> <span class="nn">os</span>
 
-<span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
-<span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">namedtuple</span>
-<span class="kn">from</span> <span class="nn">ross.utils</span> <span class="kn">import</span> <span class="n">read_table_file</span>
 <span class="kn">from</span> <span class="nn">ross.element</span> <span class="kn">import</span> <span class="n">Element</span>
 <span class="kn">from</span> <span class="nn">ross.fluid_flow</span> <span class="kn">import</span> <span class="n">fluid_flow</span> <span class="k">as</span> <span class="n">flow</span>
 <span class="kn">from</span> <span class="nn">ross.fluid_flow.fluid_flow_coefficients</span> <span class="kn">import</span> <span class="p">(</span>
-    <span class="n">calculate_stiffness_matrix</span><span class="p">,</span>
-    <span class="n">calculate_damping_matrix</span><span class="p">,</span>
-<span class="p">)</span>
+    <span class="n">calculate_damping_matrix</span><span class="p">,</span> <span class="n">calculate_stiffness_matrix</span><span class="p">)</span>
+<span class="kn">from</span> <span class="nn">ross.utils</span> <span class="kn">import</span> <span class="n">read_table_file</span>
 
 <span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span>
     <span class="s2">&quot;BearingElement&quot;</span><span class="p">,</span>
     <span class="s2">&quot;SealElement&quot;</span><span class="p">,</span>
     <span class="s2">&quot;BallBearingElement&quot;</span><span class="p">,</span>
     <span class="s2">&quot;RollerBearingElement&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;MagneticBearingElement&quot;</span><span class="p">,</span>
 <span class="p">]</span>
+<span class="c1"># fmt: on</span>
 <span class="n">bokeh_colors</span> <span class="o">=</span> <span class="n">bp</span><span class="o">.</span><span class="n">RdGy</span><span class="p">[</span><span class="mi">11</span><span class="p">]</span>
 
 
@@ -344,7 +344,7 @@
         <span class="n">tag</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
         <span class="n">n_link</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
         <span class="n">scale_factor</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
-        <span class="n">color</span><span class="o">=</span><span class="s2">&quot;#355d7a&quot;</span>
+        <span class="n">color</span><span class="o">=</span><span class="s2">&quot;#355d7a&quot;</span><span class="p">,</span>
     <span class="p">):</span>
 
         <span class="n">args</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;kxx&quot;</span><span class="p">,</span> <span class="s2">&quot;kyy&quot;</span><span class="p">,</span> <span class="s2">&quot;kxy&quot;</span><span class="p">,</span> <span class="s2">&quot;kyx&quot;</span><span class="p">,</span> <span class="s2">&quot;cxx&quot;</span><span class="p">,</span> <span class="s2">&quot;cyy&quot;</span><span class="p">,</span> <span class="s2">&quot;cxy&quot;</span><span class="p">,</span> <span class="s2">&quot;cyx&quot;</span><span class="p">]</span>
@@ -485,7 +485,7 @@
 <span class="sd">        &gt;&gt;&gt; bearing = bearing_example()</span>
 <span class="sd">        &gt;&gt;&gt; bearing.save(Path(os.getcwd()))</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_data</span><span class="p">(</span><span class="n">Path</span><span class="p">(</span><span class="n">file_name</span><span class="p">)</span><span class="o">/</span><span class="s1">&#39;BearingElement.toml&#39;</span><span class="p">)</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_data</span><span class="p">(</span><span class="n">Path</span><span class="p">(</span><span class="n">file_name</span><span class="p">)</span> <span class="o">/</span> <span class="s2">&quot;BearingElement.toml&quot;</span><span class="p">)</span>
 
         <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">frequency</span><span class="p">)</span> <span class="o">==</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
             <span class="k">try</span><span class="p">:</span>
@@ -507,7 +507,7 @@
             <span class="s2">&quot;frequency&quot;</span><span class="p">:</span> <span class="n">frequency</span><span class="p">,</span>
             <span class="s2">&quot;tag&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">tag</span><span class="p">,</span>
         <span class="p">}</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">dump_data</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">Path</span><span class="p">(</span><span class="n">file_name</span><span class="p">)</span><span class="o">/</span><span class="s1">&#39;BearingElement.toml&#39;</span><span class="p">)</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">dump_data</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">Path</span><span class="p">(</span><span class="n">file_name</span><span class="p">)</span> <span class="o">/</span> <span class="s2">&quot;BearingElement.toml&quot;</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="BearingElement.load"><a class="viewcode-back" href="../../generated/elements/ross.BearingElement.html#ross.BearingElement.load">[docs]</a>    <span class="nd">@staticmethod</span>
     <span class="k">def</span> <span class="nf">load</span><span class="p">(</span><span class="n">file_name</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">):</span>
@@ -532,7 +532,7 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">bearing_elements</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="n">bearing_elements_dict</span> <span class="o">=</span> <span class="n">BearingElement</span><span class="o">.</span><span class="n">get_data</span><span class="p">(</span>
-            <span class="n">file_name</span><span class="o">=</span><span class="n">Path</span><span class="p">(</span><span class="n">file_name</span><span class="p">)</span><span class="o">/</span><span class="s2">&quot;BearingElement.toml&quot;</span>
+            <span class="n">file_name</span><span class="o">=</span><span class="n">Path</span><span class="p">(</span><span class="n">file_name</span><span class="p">)</span> <span class="o">/</span> <span class="s2">&quot;BearingElement.toml&quot;</span>
         <span class="p">)</span>
         <span class="k">for</span> <span class="n">element</span> <span class="ow">in</span> <span class="n">bearing_elements_dict</span><span class="p">[</span><span class="s2">&quot;BearingElement&quot;</span><span class="p">]:</span>
             <span class="n">bearing</span> <span class="o">=</span> <span class="n">BearingElement</span><span class="p">(</span><span class="o">**</span><span class="n">bearing_elements_dict</span><span class="p">[</span><span class="s2">&quot;BearingElement&quot;</span><span class="p">][</span><span class="n">element</span><span class="p">])</span>
@@ -791,7 +791,12 @@
 
         <span class="c1"># plot damper - top</span>
         <span class="n">z_damper3</span> <span class="o">=</span> <span class="p">[</span><span class="n">z_damper2</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">z_damper2</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">zs1</span><span class="p">,</span> <span class="n">zs1</span><span class="p">]</span>
-        <span class="n">yl_damper3</span> <span class="o">=</span> <span class="p">[</span><span class="n">ys0</span> <span class="o">+</span> <span class="mi">4</span> <span class="o">*</span> <span class="n">step</span><span class="p">,</span> <span class="n">ys0</span> <span class="o">+</span> <span class="mi">4</span> <span class="o">*</span> <span class="n">step</span><span class="p">,</span> <span class="n">ys0</span> <span class="o">+</span> <span class="mi">4</span> <span class="o">*</span> <span class="n">step</span><span class="p">,</span> <span class="n">ypos</span> <span class="o">+</span> <span class="mf">1.5</span> <span class="o">*</span> <span class="n">icon_w</span><span class="p">]</span>
+        <span class="n">yl_damper3</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="n">ys0</span> <span class="o">+</span> <span class="mi">4</span> <span class="o">*</span> <span class="n">step</span><span class="p">,</span>
+            <span class="n">ys0</span> <span class="o">+</span> <span class="mi">4</span> <span class="o">*</span> <span class="n">step</span><span class="p">,</span>
+            <span class="n">ys0</span> <span class="o">+</span> <span class="mi">4</span> <span class="o">*</span> <span class="n">step</span><span class="p">,</span>
+            <span class="n">ypos</span> <span class="o">+</span> <span class="mf">1.5</span> <span class="o">*</span> <span class="n">icon_w</span><span class="p">,</span>
+        <span class="p">]</span>
         <span class="n">yu_damper3</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="n">y</span> <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="n">yl_damper3</span><span class="p">]</span>
 
         <span class="n">ax</span><span class="o">.</span><span class="n">add_line</span><span class="p">(</span><span class="n">mlines</span><span class="o">.</span><span class="n">Line2D</span><span class="p">(</span><span class="n">z_damper3</span><span class="p">,</span> <span class="n">yl_damper3</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">))</span>
@@ -893,7 +898,12 @@
 
         <span class="c1"># plot damper - top</span>
         <span class="n">z_damper3</span> <span class="o">=</span> <span class="p">[</span><span class="n">z_damper2</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">z_damper2</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">zs1</span><span class="p">,</span> <span class="n">zs1</span><span class="p">]</span>
-        <span class="n">yl_damper3</span> <span class="o">=</span> <span class="p">[</span><span class="n">ys0</span> <span class="o">+</span> <span class="mi">4</span> <span class="o">*</span> <span class="n">step</span><span class="p">,</span> <span class="n">ys0</span> <span class="o">+</span> <span class="mi">4</span> <span class="o">*</span> <span class="n">step</span><span class="p">,</span> <span class="n">ys0</span> <span class="o">+</span> <span class="mi">4</span> <span class="o">*</span> <span class="n">step</span><span class="p">,</span> <span class="n">ypos</span> <span class="o">+</span> <span class="mf">1.5</span> <span class="o">*</span> <span class="n">icon_w</span><span class="p">]</span>
+        <span class="n">yl_damper3</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="n">ys0</span> <span class="o">+</span> <span class="mi">4</span> <span class="o">*</span> <span class="n">step</span><span class="p">,</span>
+            <span class="n">ys0</span> <span class="o">+</span> <span class="mi">4</span> <span class="o">*</span> <span class="n">step</span><span class="p">,</span>
+            <span class="n">ys0</span> <span class="o">+</span> <span class="mi">4</span> <span class="o">*</span> <span class="n">step</span><span class="p">,</span>
+            <span class="n">ypos</span> <span class="o">+</span> <span class="mf">1.5</span> <span class="o">*</span> <span class="n">icon_w</span><span class="p">,</span>
+        <span class="p">]</span>
         <span class="n">yu_damper3</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="n">y</span> <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="n">yl_damper3</span><span class="p">]</span>
 
         <span class="n">bk_ax</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">z_damper3</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">yl_damper3</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
@@ -1094,12 +1104,8 @@
             <span class="n">eccentricity</span><span class="o">=</span><span class="n">eccentricity</span><span class="p">,</span>
             <span class="n">load</span><span class="o">=</span><span class="n">load</span><span class="p">,</span>
         <span class="p">)</span>
-        <span class="n">c</span> <span class="o">=</span> <span class="n">calculate_damping_matrix</span><span class="p">(</span>
-            <span class="n">fluid_flow</span><span class="p">,</span> <span class="n">force_type</span><span class="o">=</span><span class="s1">&#39;short&#39;</span>
-        <span class="p">)</span>
-        <span class="n">k</span> <span class="o">=</span> <span class="n">calculate_stiffness_matrix</span><span class="p">(</span>
-            <span class="n">fluid_flow</span><span class="p">,</span> <span class="n">force_type</span><span class="o">=</span><span class="s1">&#39;short&#39;</span>
-        <span class="p">)</span>
+        <span class="n">c</span> <span class="o">=</span> <span class="n">calculate_damping_matrix</span><span class="p">(</span><span class="n">fluid_flow</span><span class="p">,</span> <span class="n">force_type</span><span class="o">=</span><span class="s2">&quot;short&quot;</span><span class="p">)</span>
+        <span class="n">k</span> <span class="o">=</span> <span class="n">calculate_stiffness_matrix</span><span class="p">(</span><span class="n">fluid_flow</span><span class="p">,</span> <span class="n">force_type</span><span class="o">=</span><span class="s2">&quot;short&quot;</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span>
             <span class="n">n</span><span class="p">,</span>
             <span class="n">kxx</span><span class="o">=</span><span class="n">k</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
@@ -1213,7 +1219,7 @@
     <span class="sd">&quot;&quot;&quot;A bearing element for ball bearings.</span>
 <span class="sd">    This class will create a bearing element based on some geometric and</span>
 <span class="sd">    constructive parameters of ball bearings. The main difference is that</span>
-<span class="sd">    cross-coupling stiffness and damping are not modeled in this case.    </span>
+<span class="sd">    cross-coupling stiffness and damping are not modeled in this case.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -1299,7 +1305,7 @@
     <span class="sd">&quot;&quot;&quot;A bearing element for roller bearings.</span>
 <span class="sd">    This class will create a bearing element based on some geometric and</span>
 <span class="sd">    constructive parameters of roller bearings. The main difference is that</span>
-<span class="sd">    cross-coupling stiffness and damping are not modeled in this case.    </span>
+<span class="sd">    cross-coupling stiffness and damping are not modeled in this case.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -1383,6 +1389,227 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">color</span> <span class="o">=</span> <span class="s2">&quot;#77ACA2&quot;</span>
 
 
+<span class="k">class</span> <span class="nc">MagneticBearingElement</span><span class="p">(</span><span class="n">BearingElement</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Magnetic bearing.</span>
+
+<span class="sd">    This class creates a magnetic bearing element.</span>
+<span class="sd">    Parameters can be a constant value or speed dependent.</span>
+<span class="sd">    For speed dependent parameters, each argument should be passed</span>
+<span class="sd">    as an array and the correspondent speed values should also be</span>
+<span class="sd">    passed as an array.</span>
+
+<span class="sd">     Parameters</span>
+<span class="sd">     ----------</span>
+<span class="sd">    n: int</span>
+<span class="sd">        Node which the bearing will be located in</span>
+<span class="sd">    kxx: float, array</span>
+<span class="sd">        Direct stiffness in the x direction.</span>
+<span class="sd">    cxx: float, array</span>
+<span class="sd">        Direct damping in the x direction.</span>
+<span class="sd">    kyy: float, array, optional</span>
+<span class="sd">        Direct stiffness in the y direction.</span>
+<span class="sd">        (defaults to kxx)</span>
+<span class="sd">    cyy: float, array, optional</span>
+<span class="sd">        Direct damping in the y direction.</span>
+<span class="sd">        (defaults to cxx)</span>
+<span class="sd">    kxy: float, array, optional</span>
+<span class="sd">        Cross coupled stiffness in the x direction.</span>
+<span class="sd">        (defaults to 0)</span>
+<span class="sd">    cxy: float, array, optional</span>
+<span class="sd">        Cross coupled damping in the x direction.</span>
+<span class="sd">        (defaults to 0)</span>
+<span class="sd">    kyx: float, array, optional</span>
+<span class="sd">        Cross coupled stiffness in the y direction.</span>
+<span class="sd">        (defaults to 0)</span>
+<span class="sd">    cyx: float, array, optional</span>
+<span class="sd">        Cross coupled damping in the y direction.</span>
+<span class="sd">        (defaults to 0)</span>
+<span class="sd">    frequency: array, optional</span>
+<span class="sd">        Array with the speeds (rad/s).</span>
+<span class="sd">    tag : str, optional</span>
+<span class="sd">        A tag to name the element</span>
+<span class="sd">        Default is None</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    &gt;&gt;&gt; # A seal element located in the first rotor node, with these</span>
+<span class="sd">    &gt;&gt;&gt; # following stiffness and damping coefficients and speed range from</span>
+<span class="sd">    &gt;&gt;&gt; # 0 to 200 rad/s</span>
+<span class="sd">    &gt;&gt;&gt; kxx = 1e3</span>
+<span class="sd">    &gt;&gt;&gt; kyy = 1e3</span>
+<span class="sd">    &gt;&gt;&gt; kxy = 1e1</span>
+<span class="sd">    &gt;&gt;&gt; kyx = 1e1</span>
+<span class="sd">    &gt;&gt;&gt; cxx = 1e3</span>
+<span class="sd">    &gt;&gt;&gt; cyy = 1e3</span>
+<span class="sd">    &gt;&gt;&gt; cxy = 1e1</span>
+<span class="sd">    &gt;&gt;&gt; cyx = 1e3</span>
+<span class="sd">    &gt;&gt;&gt; frequency = np.linspace(0, 100, 4)</span>
+<span class="sd">    &gt;&gt;&gt; mb = MagneticBearingElement(n=0,kxx=kxx,kyy=kyy,kxy=kxy,kyx=kyx,cxx=cxx,cyy=cyy,cxy=cxy,cyx=cyx,frequency=frequency)</span>
+<span class="sd">    &gt;&gt;&gt; mb.kxx</span>
+<span class="sd">    [&#39;1.00e+03&#39;, &#39;1.00e+03&#39;, &#39;1.00e+03&#39;, &#39;1.00e+03&#39;]</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">n</span><span class="p">,</span>
+        <span class="n">kxx</span><span class="p">,</span>
+        <span class="n">cxx</span><span class="p">,</span>
+        <span class="n">kyy</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">kxy</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+        <span class="n">kyx</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+        <span class="n">cyy</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">cxy</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+        <span class="n">cyx</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+        <span class="n">frequency</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">tag</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span>
+            <span class="n">n</span><span class="o">=</span><span class="n">n</span><span class="p">,</span>
+            <span class="n">frequency</span><span class="o">=</span><span class="n">frequency</span><span class="p">,</span>
+            <span class="n">kxx</span><span class="o">=</span><span class="n">kxx</span><span class="p">,</span>
+            <span class="n">kxy</span><span class="o">=</span><span class="n">kxy</span><span class="p">,</span>
+            <span class="n">kyx</span><span class="o">=</span><span class="n">kyx</span><span class="p">,</span>
+            <span class="n">kyy</span><span class="o">=</span><span class="n">kyy</span><span class="p">,</span>
+            <span class="n">cxx</span><span class="o">=</span><span class="n">cxx</span><span class="p">,</span>
+            <span class="n">cxy</span><span class="o">=</span><span class="n">cxy</span><span class="p">,</span>
+            <span class="n">cyx</span><span class="o">=</span><span class="n">cyx</span><span class="p">,</span>
+            <span class="n">cyy</span><span class="o">=</span><span class="n">cyy</span><span class="p">,</span>
+            <span class="n">tag</span><span class="o">=</span><span class="n">tag</span><span class="p">,</span>
+        <span class="p">)</span>
+
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">param_to_coef</span><span class="p">(</span>
+        <span class="bp">cls</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">g0</span><span class="p">,</span> <span class="n">i0</span><span class="p">,</span> <span class="n">ag</span><span class="p">,</span> <span class="n">nw</span><span class="p">,</span> <span class="n">alpha</span><span class="p">,</span> <span class="n">kp_pid</span><span class="p">,</span> <span class="n">kd_pid</span><span class="p">,</span> <span class="n">k_amp</span><span class="p">,</span> <span class="n">k_sense</span><span class="p">,</span> <span class="n">tag</span><span class="o">=</span><span class="kc">None</span>
+    <span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Convert electromagnetic parameters and PID gains to stiffness and damping coefficients.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        n : int</span>
+<span class="sd">            The node in which the magnetic bearing will be located in the rotor.</span>
+<span class="sd">        g0: float</span>
+<span class="sd">            Air gap in m^2.</span>
+<span class="sd">        i0: float</span>
+<span class="sd">            Bias current in Ampere</span>
+<span class="sd">        ag: float</span>
+<span class="sd">            Pole area in m^2.</span>
+<span class="sd">        nw: float or int</span>
+<span class="sd">            Number of windings</span>
+<span class="sd">        alpha: float or int</span>
+<span class="sd">            Pole angle in radians.</span>
+<span class="sd">        kp_pid: float or int</span>
+<span class="sd">            Proportional gain of the PID controller.</span>
+<span class="sd">        kd_pid: float or int</span>
+<span class="sd">            Derivative gain of the PID controller.</span>
+<span class="sd">        k_amp: float or int</span>
+<span class="sd">            Gain of the amplifier model.</span>
+<span class="sd">        k_sense: float or int</span>
+<span class="sd">            Gain of the sensor model.</span>
+<span class="sd">        ----------</span>
+<span class="sd">        See the following reference for the electromagnetic parameters g0, i0, ag, nw, alpha:</span>
+<span class="sd">        Book: Magnetic Bearings. Theory, Design, and Application to Rotating Machinery</span>
+<span class="sd">        Authors: Gerhard Schweitzer and Eric H. Maslen</span>
+<span class="sd">        Page: 84-95</span>
+
+<span class="sd">        Examples</span>
+<span class="sd">        --------</span>
+<span class="sd">        &gt;&gt;&gt; n = 0</span>
+<span class="sd">        &gt;&gt;&gt; g0 = 1e-3</span>
+<span class="sd">        &gt;&gt;&gt; i0 = 1.0</span>
+<span class="sd">        &gt;&gt;&gt; ag = 1e-4</span>
+<span class="sd">        &gt;&gt;&gt; nw = 200</span>
+<span class="sd">        &gt;&gt;&gt; alpha = 0.392</span>
+<span class="sd">        &gt;&gt;&gt; kp_pid = 1.0</span>
+<span class="sd">        &gt;&gt;&gt; kd_pid = 1.0</span>
+<span class="sd">        &gt;&gt;&gt; k_amp = 1.0</span>
+<span class="sd">        &gt;&gt;&gt; k_sense = 1.0</span>
+<span class="sd">        &gt;&gt;&gt; tag = &quot;magneticbearing&quot;</span>
+<span class="sd">        &gt;&gt;&gt; mbearing = MagneticBearingElement.param_to_coef(n=n,g0=g0,i0=i0,ag=ag,nw=nw,alpha=alpha, kp_pid=kp_pid,kd_pid=kd_pid, k_amp=k_amp, k_sense=k_sense)</span>
+<span class="sd">        &gt;&gt;&gt; mbearing.kxx</span>
+<span class="sd">        [&#39;-4.64e+03&#39;]</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">pL</span> <span class="o">=</span> <span class="p">[</span><span class="n">g0</span><span class="p">,</span> <span class="n">i0</span><span class="p">,</span> <span class="n">ag</span><span class="p">,</span> <span class="n">nw</span><span class="p">,</span> <span class="n">alpha</span><span class="p">,</span> <span class="n">kp_pid</span><span class="p">,</span> <span class="n">kd_pid</span><span class="p">,</span> <span class="n">k_amp</span><span class="p">,</span> <span class="n">k_sense</span><span class="p">]</span>
+        <span class="n">pA</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
+
+        <span class="c1"># Check if it is a number or a list with 2 items</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">9</span><span class="p">):</span>
+            <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">pL</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="o">==</span> <span class="nb">float</span> <span class="ow">or</span> <span class="nb">int</span><span class="p">:</span>
+                <span class="n">pA</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">pL</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">pL</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="o">==</span> <span class="nb">list</span><span class="p">:</span>
+                    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">pL</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="o">&gt;</span> <span class="mi">2</span><span class="p">:</span>
+                        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                            <span class="s2">&quot;Parameters must be scalar or a list with 2 items&quot;</span>
+                        <span class="p">)</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="n">pA</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">pL</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Parameters must be scalar or a list with 2 items&quot;</span><span class="p">)</span>
+
+        <span class="c1"># From: &quot;Magnetic Bearings. Theory, Design, and Application to Rotating Machinery&quot;</span>
+        <span class="c1"># Authors: Gerhard Schweitzer and Eric H. Maslen</span>
+        <span class="c1"># Page: 354</span>
+        <span class="n">ks</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="o">-</span><span class="mf">4.0</span>
+            <span class="o">*</span> <span class="n">pA</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">**</span> <span class="mf">2.0</span>
+            <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">pA</span><span class="p">[</span><span class="mi">4</span><span class="p">])</span>
+            <span class="o">*</span> <span class="mf">4.0</span>
+            <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span>
+            <span class="o">*</span> <span class="mf">1e-7</span>
+            <span class="o">*</span> <span class="n">pA</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">**</span> <span class="mf">2.0</span>
+            <span class="o">*</span> <span class="n">pA</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+            <span class="o">/</span> <span class="p">(</span><span class="mf">4.0</span> <span class="o">*</span> <span class="n">pA</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">**</span> <span class="mi">3</span><span class="p">)</span>
+        <span class="p">)</span>
+        <span class="n">ki</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="mf">4.0</span>
+            <span class="o">*</span> <span class="n">pA</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+            <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">pA</span><span class="p">[</span><span class="mi">4</span><span class="p">])</span>
+            <span class="o">*</span> <span class="mf">4.0</span>
+            <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span>
+            <span class="o">*</span> <span class="mf">1e-7</span>
+            <span class="o">*</span> <span class="n">pA</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">**</span> <span class="mf">2.0</span>
+            <span class="o">*</span> <span class="n">pA</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+            <span class="o">/</span> <span class="p">(</span><span class="mf">4.0</span> <span class="o">*</span> <span class="n">pA</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span>
+        <span class="p">)</span>
+        <span class="n">k</span> <span class="o">=</span> <span class="n">ki</span> <span class="o">*</span> <span class="n">pA</span><span class="p">[</span><span class="mi">7</span><span class="p">]</span> <span class="o">*</span> <span class="n">pA</span><span class="p">[</span><span class="mi">8</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="n">pA</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">divide</span><span class="p">(</span><span class="n">ks</span><span class="p">,</span> <span class="n">ki</span> <span class="o">*</span> <span class="n">pA</span><span class="p">[</span><span class="mi">7</span><span class="p">]</span> <span class="o">*</span> <span class="n">pA</span><span class="p">[</span><span class="mi">8</span><span class="p">]))</span>
+        <span class="n">c</span> <span class="o">=</span> <span class="n">ki</span> <span class="o">*</span> <span class="n">pA</span><span class="p">[</span><span class="mi">7</span><span class="p">]</span> <span class="o">*</span> <span class="n">pA</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span> <span class="o">*</span> <span class="n">pA</span><span class="p">[</span><span class="mi">8</span><span class="p">]</span>
+        <span class="c1"># k = ki * k_amp*k_sense*(kp_pid+ np.divide(ks, ki*k_amp*k_sense))</span>
+        <span class="c1"># c = ki*k_amp*kd_pid*k_sense</span>
+
+        <span class="c1"># Get the parameters from k and c</span>
+        <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">isscalar</span><span class="p">(</span><span class="n">k</span><span class="p">):</span>
+            <span class="c1"># If k is scalar, symmetry is assumed</span>
+            <span class="n">kxx</span> <span class="o">=</span> <span class="n">k</span>
+            <span class="n">kyy</span> <span class="o">=</span> <span class="n">k</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">kxx</span> <span class="o">=</span> <span class="n">k</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="n">kyy</span> <span class="o">=</span> <span class="n">k</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+
+        <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">isscalar</span><span class="p">(</span><span class="n">c</span><span class="p">):</span>
+            <span class="c1"># If c is scalar, symmetry is assumed</span>
+            <span class="n">cxx</span> <span class="o">=</span> <span class="n">c</span>
+            <span class="n">cyy</span> <span class="o">=</span> <span class="n">c</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">cxx</span> <span class="o">=</span> <span class="n">c</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="n">cyy</span> <span class="o">=</span> <span class="n">c</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+
+        <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span>
+            <span class="n">n</span><span class="o">=</span><span class="n">n</span><span class="p">,</span>
+            <span class="n">frequency</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+            <span class="n">kxx</span><span class="o">=</span><span class="n">kxx</span><span class="p">,</span>
+            <span class="n">kxy</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span>
+            <span class="n">kyx</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span>
+            <span class="n">kyy</span><span class="o">=</span><span class="n">kyy</span><span class="p">,</span>
+            <span class="n">cxx</span><span class="o">=</span><span class="n">cxx</span><span class="p">,</span>
+            <span class="n">cxy</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span>
+            <span class="n">cyx</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span>
+            <span class="n">cyy</span><span class="o">=</span><span class="n">cyy</span><span class="p">,</span>
+            <span class="n">tag</span><span class="o">=</span><span class="n">tag</span><span class="p">,</span>
+        <span class="p">)</span>
+
+
 <span class="k">def</span> <span class="nf">bearing_example</span><span class="p">():</span>
     <span class="sd">&quot;&quot;&quot;This function returns an instance of a simple bearing.</span>
 <span class="sd">    The purpose is to make available a simple model</span>
@@ -1450,7 +1677,7 @@
     </p>
     <p>
         &copy; Copyright 2019, Team ROSS.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.4.4.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.0.1.<br/>
     </p>
   </div>
 </footer>

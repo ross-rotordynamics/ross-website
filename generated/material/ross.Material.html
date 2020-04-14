@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
   <head>
     <meta charset="utf-8" />
-    <title>ross.Material &#8212; ross 0.3.0 documentation</title>
+    <title>ross.Material &#8212; ross 0.3.3 documentation</title>
     <link rel="stylesheet" href="../../_static/bootstrap-sphinx.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx_copybutton.css" />
@@ -166,9 +166,9 @@
   </div>
 <div class=col-md-9 content><div class="section" id="ross-material">
 <h1>ross.Material<a class="headerlink" href="#ross-material" title="Permalink to this headline">¶</a></h1>
-<dl class="class">
+<dl class="py class">
 <dt id="ross.Material">
-<em class="property">class </em><code class="sig-prename descclassname">ross.</code><code class="sig-name descname">Material</code><span class="sig-paren">(</span><em class="sig-param">name</em>, <em class="sig-param">rho</em>, <em class="sig-param">E=None</em>, <em class="sig-param">G_s=None</em>, <em class="sig-param">Poisson=None</em>, <em class="sig-param">color='#525252'</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/materials.html#Material"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.Material" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">ross.</code><code class="sig-name descname">Material</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span></em>, <em class="sig-param"><span class="n">rho</span></em>, <em class="sig-param"><span class="n">E</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">G_s</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">Poisson</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">color</span><span class="o">=</span><span class="default_value">'#525252'</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/materials.html#Material"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.Material" title="Permalink to this definition">¶</a></dt>
 <dd><p>Material used on shaft and disks.</p>
 <p>Class used to create a material and define its properties.
 Density and at least 2 arguments from E, G_s and Poisson should be
@@ -200,20 +200,20 @@ already provided.</p>
 <span class="go">0.27</span>
 </pre></div>
 </div>
-<dl class="method">
+<dl class="py method">
 <dt id="ross.Material.__init__">
-<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">name</em>, <em class="sig-param">rho</em>, <em class="sig-param">E=None</em>, <em class="sig-param">G_s=None</em>, <em class="sig-param">Poisson=None</em>, <em class="sig-param">color='#525252'</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/materials.html#Material.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.Material.__init__" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">name</em>, <em class="sig-param">rho</em>, <em class="sig-param">E=None</em>, <em class="sig-param">G_s=None</em>, <em class="sig-param">Poisson=None</em>, <em class="sig-param">color='#525252'</em>, <em class="sig-param">\*\*kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/materials.html#Material.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.Material.__init__" title="Permalink to this definition">¶</a></dt>
 <dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
 </dd></dl>
 
 <p class="rubric">Methods</p>
-<dl class="method">
-<dt>
-<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">name</em>, <em class="sig-param">rho</em>, <em class="sig-param">E=None</em>, <em class="sig-param">G_s=None</em>, <em class="sig-param">Poisson=None</em>, <em class="sig-param">color='#525252'</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/materials.html#Material.__init__"><span class="viewcode-link">[source]</span></a></dt>
+<dl class="py method">
+<dt id="id0">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">name</em>, <em class="sig-param">rho</em>, <em class="sig-param">E=None</em>, <em class="sig-param">G_s=None</em>, <em class="sig-param">Poisson=None</em>, <em class="sig-param">color='#525252'</em>, <em class="sig-param">\*\*kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/materials.html#Material.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#id0" title="Permalink to this definition">¶</a></dt>
 <dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="ross.Material.available_materials">
 <em class="property">static </em><code class="sig-name descname">available_materials</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/materials.html#Material.available_materials"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.Material.available_materials" title="Permalink to this definition">¶</a></dt>
 <dd><p>Function used to get a list of all saved material’s names.</p>
@@ -235,9 +235,9 @@ already provided.</p>
 </div>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="ross.Material.dump_data">
-<em class="property">static </em><code class="sig-name descname">dump_data</code><span class="sig-paren">(</span><em class="sig-param">data</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/materials.html#Material.dump_data"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.Material.dump_data" title="Permalink to this definition">¶</a></dt>
+<em class="property">static </em><code class="sig-name descname">dump_data</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">data</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/materials.html#Material.dump_data"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.Material.dump_data" title="Permalink to this definition">¶</a></dt>
 <dd><p>Auxiliary function to save the materials properties in the save method.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -249,7 +249,7 @@ already provided.</p>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="ross.Material.get_data">
 <em class="property">static </em><code class="sig-name descname">get_data</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/materials.html#Material.get_data"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.Material.get_data" title="Permalink to this definition">¶</a></dt>
 <dd><p>Auxiliary function to load all saved materials properties in the use_material method.</p>
@@ -263,9 +263,9 @@ already provided.</p>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="ross.Material.remove_material">
-<em class="property">static </em><code class="sig-name descname">remove_material</code><span class="sig-paren">(</span><em class="sig-param">name</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/materials.html#Material.remove_material"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.Material.remove_material" title="Permalink to this definition">¶</a></dt>
+<em class="property">static </em><code class="sig-name descname">remove_material</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/materials.html#Material.remove_material"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.Material.remove_material" title="Permalink to this definition">¶</a></dt>
 <dd><p>Function used to delete a saved rs.Material.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -285,15 +285,15 @@ already provided.</p>
 </div>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="ross.Material.save_material">
-<code class="sig-name descname">save_material</code><span class="sig-paren">(</span><em class="sig-param">self</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/materials.html#Material.save_material"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.Material.save_material" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">save_material</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/materials.html#Material.save_material"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.Material.save_material" title="Permalink to this definition">¶</a></dt>
 <dd><p>Saves the material in the available_materials list.</p>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="ross.Material.use_material">
-<em class="property">static </em><code class="sig-name descname">use_material</code><span class="sig-paren">(</span><em class="sig-param">name</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/materials.html#Material.use_material"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.Material.use_material" title="Permalink to this definition">¶</a></dt>
+<em class="property">static </em><code class="sig-name descname">use_material</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/materials.html#Material.use_material"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.Material.use_material" title="Permalink to this definition">¶</a></dt>
 <dd><p>Use material that is available in the data file.</p>
 </dd></dl>
 
@@ -315,7 +315,7 @@ already provided.</p>
     </p>
     <p>
         &copy; Copyright 2019, Team ROSS.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.4.4.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.0.1.<br/>
     </p>
   </div>
 </footer>
