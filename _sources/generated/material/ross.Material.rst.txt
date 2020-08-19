@@ -1,4 +1,4 @@
-.. raw:: html
+﻿.. raw:: html
 
     </div>
     <div class=col-md-9 content>
@@ -20,9 +20,9 @@ ross.Material
    .. automethod:: available_materials
    .. automethod:: dump_data
    .. automethod:: get_data
+   .. automethod:: load_material
    .. automethod:: remove_material
    .. automethod:: save_material
-   .. automethod:: use_material
    
    
 

@@ -3,7 +3,8 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <title>ross.DiskElement &#8212; ross 0.3.3 documentation</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ross.DiskElement &#8212; ross 0.4.0 documentation</title>
     <link rel="stylesheet" href="../../_static/bootstrap-sphinx.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx_copybutton.css" />
@@ -16,7 +17,7 @@
     <script src="../../_static/sphinx_copybutton.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js"></script>
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
     <link rel="shortcut icon" href="../../_static/ross-logo.ico"/>
     <link rel="index" title="Index" href="../../genindex.html" />
@@ -45,7 +46,7 @@
         </button>
         <a class="navbar-brand" href="../../index.html"><span><img src="../../_static/ross-logo.svg"></span>
           ROSS</a>
-        <span class="navbar-text navbar-version pull-left"><b>0.3</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>0.4</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -72,13 +73,15 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../examples/tutorial.html">Tutorial</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../examples/tutorial.html#Materials">Materials</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../examples/tutorial.html#ShaftElement">ShaftElement</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../examples/tutorial.html#DiskElement">DiskElement</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../examples/tutorial.html#BearingElement">BearingElement</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../examples/tutorial.html#Rotor">Rotor</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../examples/tutorial.html#Running-the-simulation">Running the simulation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../examples/tutorial.html#Obtaining-results">Obtaining results</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/tutorial.html#Table-of-Contents">Table of Contents</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/tutorial.html#Section-1:-Material-Class">Section 1: Material Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/tutorial.html#Section-2:-ShaftElement-Class">Section 2: ShaftElement Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/tutorial.html#Section-3:-DiskElement-Class">Section 3: DiskElement Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/tutorial.html#Section-4:-Bearing-and-Seal-Classes">Section 4: Bearing and Seal Classes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/tutorial.html#Section-5:-PointMass-Class">Section 5: PointMass Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/tutorial.html#Section-6:-Rotor-Class">Section 6: Rotor Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/tutorial.html#Section-7:-ROSS-Units-System">Section 7: ROSS Units System</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/tutorial.html#Section-8:-Rotor-Analyses">Section 8: Rotor Analyses</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../examples.html">Examples</a><ul>
@@ -111,6 +114,8 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../release_notes.html">Release notes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../release_notes.html#version-0-4-0">Version 0.4.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../release_notes.html#version-0-3-0">Version 0.3.0</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../release_notes.html#version-0-2-0-beta-release">Version 0.2.0 (beta release)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../release_notes.html#version-0-1-0-alpha-release">Version 0.1.0 (alpha release)</a></li>
 </ul>
@@ -169,37 +174,41 @@
 <h1>ross.DiskElement<a class="headerlink" href="#ross-diskelement" title="Permalink to this headline">¶</a></h1>
 <dl class="py class">
 <dt id="ross.DiskElement">
-<em class="property">class </em><code class="sig-prename descclassname">ross.</code><code class="sig-name descname">DiskElement</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">n</span></em>, <em class="sig-param"><span class="n">m</span></em>, <em class="sig-param"><span class="n">Id</span></em>, <em class="sig-param"><span class="n">Ip</span></em>, <em class="sig-param"><span class="n">tag</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">color</span><span class="o">=</span><span class="default_value">'#b2182b'</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/disk_element.html#DiskElement"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.DiskElement" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">ross.</code><code class="sig-name descname">DiskElement</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/disk_element.html#DiskElement"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.DiskElement" title="Permalink to this definition">¶</a></dt>
 <dd><p>A disk element.</p>
-<p>This class will create a disk element from input data of inertia and mass.</p>
+<p>This class creates a disk element from input data of inertia and mass.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>n: int</strong></dt><dd><p>Node in which the disk will be inserted.</p>
 </dd>
-<dt><strong>m</strong><span class="classifier">float</span></dt><dd><p>Mass of the disk element.</p>
+<dt><strong>m</strong><span class="classifier">float, pint.Quantity</span></dt><dd><p>Mass of the disk element.</p>
 </dd>
-<dt><strong>Id</strong><span class="classifier">float</span></dt><dd><p>Diametral moment of inertia.</p>
+<dt><strong>Id</strong><span class="classifier">float, pint.Quantity</span></dt><dd><p>Diametral moment of inertia.</p>
 </dd>
-<dt><strong>Ip</strong><span class="classifier">float</span></dt><dd><p>Polar moment of inertia</p>
+<dt><strong>Ip</strong><span class="classifier">float, pint.Quantity</span></dt><dd><p>Polar moment of inertia</p>
 </dd>
 <dt><strong>tag</strong><span class="classifier">str, optional</span></dt><dd><p>A tag to name the element
 Default is None</p>
 </dd>
+<dt><strong>scale_factor: float, optional</strong></dt><dd><p>The scale factor is used to scale the disk drawing.
+Default is 1.</p>
+</dd>
 <dt><strong>color</strong><span class="classifier">str, optional</span></dt><dd><p>A color to be used when the element is represented.
-Default is ‘#b2182b’ (Cardinal).</p>
+Default is ‘Firebrick’.</p>
 </dd>
-<dt><strong>Examples</strong></dt><dd></dd>
-<dt><strong>——–</strong></dt><dd></dd>
-<dt><strong>&gt;&gt;&gt; disk = DiskElement(n=0, m=32, Id=0.2, Ip=0.3)</strong></dt><dd></dd>
-<dt><strong>&gt;&gt;&gt; disk.Ip</strong></dt><dd></dd>
-<dt><strong>0.3</strong></dt><dd></dd>
 </dl>
 </dd>
 </dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">disk</span> <span class="o">=</span> <span class="n">DiskElement</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">m</span><span class="o">=</span><span class="mi">32</span><span class="p">,</span> <span class="n">Id</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">Ip</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">disk</span><span class="o">.</span><span class="n">Ip</span>
+<span class="go">0.3</span>
+</pre></div>
+</div>
 <dl class="py method">
 <dt id="ross.DiskElement.__init__">
-<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">n</span></em>, <em class="sig-param"><span class="n">m</span></em>, <em class="sig-param"><span class="n">Id</span></em>, <em class="sig-param"><span class="n">Ip</span></em>, <em class="sig-param"><span class="n">tag</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">color</span><span class="o">=</span><span class="default_value">'#b2182b'</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/disk_element.html#DiskElement.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.DiskElement.__init__" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">n</span></em>, <em class="sig-param"><span class="n">m</span></em>, <em class="sig-param"><span class="n">Id</span></em>, <em class="sig-param"><span class="n">Ip</span></em>, <em class="sig-param"><span class="n">tag</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">scale_factor</span><span class="o">=</span><span class="default_value">1.0</span></em>, <em class="sig-param"><span class="n">color</span><span class="o">=</span><span class="default_value">'Firebrick'</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/disk_element.html#DiskElement.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.DiskElement.__init__" title="Permalink to this definition">¶</a></dt>
 <dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
 </dd></dl>
 
@@ -207,11 +216,13 @@ Default is ‘#b2182b’ (Cardinal).</p>
 <dl class="py method">
 <dt id="ross.DiskElement.C">
 <code class="sig-name descname">C</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/disk_element.html#DiskElement.C"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.DiskElement.C" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns the damping matrix.</p>
+<dd><p>Damping matrix for an instance of a disk element.</p>
+<p>This method will return the damping matrix for an instance of a disk
+element.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
 <dd class="field-odd"><dl class="simple">
-<dt>C: np.ndarray</dt><dd><p>A matrix of floats containing the values of the damping matrix.</p>
+<dt><strong>C</strong><span class="classifier">np.ndarray</span></dt><dd><p>A matrix of floats containing the values of the damping matrix.</p>
 </dd>
 </dl>
 </dd>
@@ -230,7 +241,7 @@ Default is ‘#b2182b’ (Cardinal).</p>
 <dl class="py method">
 <dt id="ross.DiskElement.G">
 <code class="sig-name descname">G</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/disk_element.html#DiskElement.G"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.DiskElement.G" title="Permalink to this definition">¶</a></dt>
-<dd><p>Gyroscopic matrix.</p>
+<dd><p>Gyroscopic matrix for an instance of a disk element.</p>
 <p>This method will return the gyroscopic matrix for an instance of a disk
 element.</p>
 <dl class="field-list simple">
@@ -255,13 +266,13 @@ element.</p>
 <dl class="py method">
 <dt id="ross.DiskElement.K">
 <code class="sig-name descname">K</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/disk_element.html#DiskElement.K"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.DiskElement.K" title="Permalink to this definition">¶</a></dt>
-<dd><p>Stiffness matrix.</p>
+<dd><p>Stiffness matrix for an instance of a disk element.</p>
 <p>This method will return the stiffness matrix for an instance of a disk
 element.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
 <dd class="field-odd"><dl class="simple">
-<dt>K: np.ndarray</dt><dd><p>A matrix of floats containing the values of the stiffness matrix.</p>
+<dt><strong>K</strong><span class="classifier">np.ndarray</span></dt><dd><p>A matrix of floats containing the values of the stiffness matrix.</p>
 </dd>
 </dl>
 </dd>
@@ -280,13 +291,13 @@ element.</p>
 <dl class="py method">
 <dt id="ross.DiskElement.M">
 <code class="sig-name descname">M</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/disk_element.html#DiskElement.M"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.DiskElement.M" title="Permalink to this definition">¶</a></dt>
-<dd><p>Mass matrix.</p>
-<p>This method will return the mass matrix for an instance of a disk
-element.</p>
+<dd><p>Mass matrix for an instance of a disk element.</p>
+<p>This method will return the mass matrix for an instance of a disk element.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
 <dd class="field-odd"><dl class="simple">
-<dt>Mass matrix for the disk element.</dt><dd></dd>
+<dt><strong>M</strong><span class="classifier">np.ndarray</span></dt><dd><p>A matrix of floats containing the values of the mass matrix.</p>
+</dd>
 </dl>
 </dd>
 </dl>
@@ -303,29 +314,8 @@ element.</p>
 
 <dl class="py method">
 <dt id="id0">
-<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">n</span></em>, <em class="sig-param"><span class="n">m</span></em>, <em class="sig-param"><span class="n">Id</span></em>, <em class="sig-param"><span class="n">Ip</span></em>, <em class="sig-param"><span class="n">tag</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">color</span><span class="o">=</span><span class="default_value">'#b2182b'</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/disk_element.html#DiskElement.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#id0" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">n</span></em>, <em class="sig-param"><span class="n">m</span></em>, <em class="sig-param"><span class="n">Id</span></em>, <em class="sig-param"><span class="n">Ip</span></em>, <em class="sig-param"><span class="n">tag</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">scale_factor</span><span class="o">=</span><span class="default_value">1.0</span></em>, <em class="sig-param"><span class="n">color</span><span class="o">=</span><span class="default_value">'Firebrick'</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/disk_element.html#DiskElement.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#id0" title="Permalink to this definition">¶</a></dt>
 <dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt id="ross.DiskElement.bokeh_patch">
-<code class="sig-name descname">bokeh_patch</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">position</span></em>, <em class="sig-param"><span class="n">bk_ax</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/disk_element.html#DiskElement.bokeh_patch"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.DiskElement.bokeh_patch" title="Permalink to this definition">¶</a></dt>
-<dd><p>Disk element patch.
-Patch that will be used to draw the disk element.
-Parameters
-———-
-bk_ax : bokeh plotting axes, optional</p>
-<blockquote>
-<div><p>Axes in which the plot will be drawn.</p>
-</div></blockquote>
-<dl class="simple">
-<dt>position<span class="classifier">float</span></dt><dd><p>Position in which the patch will be drawn.</p>
-</dd>
-</dl>
-<dl class="simple">
-<dt>bk_ax<span class="classifier">bokeh plotting axes</span></dt><dd><p>Returns the axes object with the plot.</p>
-</dd>
-</dl>
 </dd></dl>
 
 <dl class="py method">
@@ -354,17 +344,22 @@ bk_ax : bokeh plotting axes, optional</p>
 <dt id="ross.DiskElement.dof_mapping">
 <code class="sig-name descname">dof_mapping</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/disk_element.html#DiskElement.dof_mapping"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.DiskElement.dof_mapping" title="Permalink to this definition">¶</a></dt>
 <dd><p>Degrees of freedom mapping.</p>
-<p>Returns a dictionary with a mapping between degree of freedom and its
-index.</p>
+<p>Returns a dictionary with a mapping between degree of freedom and its index.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
 <dd class="field-odd"><dl class="simple">
-<dt>dof_mapping: dict</dt><dd><p>A dictionary containing the degrees of freedom and their indexes.</p>
+<dt><strong>dof_mapping</strong><span class="classifier">dict</span></dt><dd><p>A dictionary containing the degrees of freedom and their indexes.</p>
 </dd>
 </dl>
 </dd>
 </dl>
 <p class="rubric">Examples</p>
+<p>The numbering of the degrees of freedom for each node.</p>
+<p>Being the following their ordering for a node:</p>
+<p>x_0 - horizontal translation
+y_0 - vertical translation
+alpha_0 - rotation around horizontal
+beta_0  - rotation around vertical</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">disk</span> <span class="o">=</span> <span class="n">disk_example</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">disk</span><span class="o">.</span><span class="n">dof_mapping</span><span class="p">()</span>
 <span class="go">{&#39;x_0&#39;: 0, &#39;y_0&#39;: 1, &#39;alpha_0&#39;: 2, &#39;beta_0&#39;: 3}</span>
@@ -373,48 +368,31 @@ index.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="ross.DiskElement.dump_data">
-<em class="property">static </em><code class="sig-name descname">dump_data</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">data</span></em>, <em class="sig-param"><span class="n">file_name</span></em><span class="sig-paren">)</span><a class="headerlink" href="#ross.DiskElement.dump_data" title="Permalink to this definition">¶</a></dt>
-<dd><p>Dumps element data in a toml file.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>data: dict</strong></dt><dd><p>The data that should be dumped.</p>
-</dd>
-<dt><strong>file_name: string</strong></dt><dd><p>The name of the file the data will be dumped in.</p>
-</dd>
-</dl>
-</dd>
-</dl>
-<p class="rubric">Examples</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># Example using BearingElement</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">ross.bearing_seal_element</span> <span class="kn">import</span> <span class="n">bearing_example</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">ross.bearing_seal_element</span> <span class="kn">import</span> <span class="n">BearingElement</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">bearing</span> <span class="o">=</span> <span class="n">bearing_example</span><span class="p">()</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">bearing</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">Path</span><span class="p">(</span><span class="s1">&#39;.&#39;</span><span class="p">))</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">data</span> <span class="o">=</span> <span class="n">BearingElement</span><span class="o">.</span><span class="n">get_data</span><span class="p">(</span><span class="s1">&#39;BearingElement.toml&#39;</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">BearingElement</span><span class="o">.</span><span class="n">dump_data</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="s1">&#39;BearingElement.toml&#39;</span><span class="p">)</span> 
-</pre></div>
-</div>
-</dd></dl>
-
-<dl class="py method">
 <dt id="ross.DiskElement.from_geometry">
-<em class="property">classmethod </em><code class="sig-name descname">from_geometry</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">n</span></em>, <em class="sig-param"><span class="n">material</span></em>, <em class="sig-param"><span class="n">width</span></em>, <em class="sig-param"><span class="n">i_d</span></em>, <em class="sig-param"><span class="n">o_d</span></em>, <em class="sig-param"><span class="n">tag</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/disk_element.html#DiskElement.from_geometry"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.DiskElement.from_geometry" title="Permalink to this definition">¶</a></dt>
-<dd><p>A disk element.</p>
+<em class="property">classmethod </em><code class="sig-name descname">from_geometry</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">n</span></em>, <em class="sig-param"><span class="n">material</span></em>, <em class="sig-param"><span class="n">width</span></em>, <em class="sig-param"><span class="n">i_d</span></em>, <em class="sig-param"><span class="n">o_d</span></em>, <em class="sig-param"><span class="n">tag</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">scale_factor</span><span class="o">=</span><span class="default_value">1.0</span></em>, <em class="sig-param"><span class="n">color</span><span class="o">=</span><span class="default_value">'Firebrick'</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/disk_element.html#DiskElement.from_geometry"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.DiskElement.from_geometry" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a disk element from geometry properties.</p>
 <p>This class method will create a disk element from geometry data.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>n: int</strong></dt><dd><p>Node in which the disk will be inserted.</p>
+<dt><strong>n</strong><span class="classifier">int</span></dt><dd><p>Node in which the disk will be inserted.</p>
 </dd>
-<dt><strong>material: ross.Material</strong></dt><dd><p>Shaft material.</p>
+<dt><strong>material: ross.Material</strong></dt><dd><p>Disk material.</p>
 </dd>
-<dt><strong>width: float</strong></dt><dd><p>The disk width.</p>
+<dt><strong>width</strong><span class="classifier">float, pint.Quantity</span></dt><dd><p>The disk width.</p>
 </dd>
-<dt><strong>i_d: float</strong></dt><dd><p>Inner diameter.</p>
+<dt><strong>i_d</strong><span class="classifier">float, pint.Quantity</span></dt><dd><p>Inner diameter.</p>
 </dd>
-<dt><strong>o_d: float</strong></dt><dd><p>Outer diameter.</p>
+<dt><strong>o_d</strong><span class="classifier">float, pint.Quantity</span></dt><dd><p>Outer diameter.</p>
+</dd>
+<dt><strong>tag</strong><span class="classifier">str, optional</span></dt><dd><p>A tag to name the element
+Default is None</p>
+</dd>
+<dt><strong>scale_factor: float, optional</strong></dt><dd><p>The scale factor is used to scale the disk drawing.
+Default is 1.</p>
+</dd>
+<dt><strong>color</strong><span class="classifier">str, optional</span></dt><dd><p>A color to be used when the element is represented.
+Default is ‘Firebrick’ (Cardinal).</p>
 </dd>
 </dl>
 </dd>
@@ -435,9 +413,6 @@ index.</p>
 </dd>
 <dt><strong>Ip</strong><span class="classifier">float</span></dt><dd><p>Polar moment of inertia</p>
 </dd>
-<dt><strong>tag</strong><span class="classifier">str, optional</span></dt><dd><p>A tag to name the element
-Default is None</p>
-</dd>
 </dl>
 </dd>
 </dl>
@@ -445,7 +420,7 @@ Default is None</p>
 
 <dl class="py method">
 <dt id="ross.DiskElement.from_table">
-<em class="property">classmethod </em><code class="sig-name descname">from_table</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">file</span></em>, <em class="sig-param"><span class="n">sheet_name</span><span class="o">=</span><span class="default_value">0</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/disk_element.html#DiskElement.from_table"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.DiskElement.from_table" title="Permalink to this definition">¶</a></dt>
+<em class="property">classmethod </em><code class="sig-name descname">from_table</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">file</span></em>, <em class="sig-param"><span class="n">sheet_name</span><span class="o">=</span><span class="default_value">0</span></em>, <em class="sig-param"><span class="n">tag</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">scale_factor</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">color</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/disk_element.html#DiskElement.from_table"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.DiskElement.from_table" title="Permalink to this definition">¶</a></dt>
 <dd><p>Instantiate one or more disks using inputs from an Excel table.</p>
 <p>A header with the names of the columns is required. These names should
 match the names expected by the routine (usually the names of the
@@ -454,13 +429,25 @@ bellow the header until they end or it reaches a NaN.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>file: str</strong></dt><dd><p>Path to the file containing the disk parameters.</p>
+<dt><strong>file</strong><span class="classifier">str</span></dt><dd><p>Path to the file containing the disk parameters.</p>
 </dd>
-<dt><strong>sheet_name: int or str, optional</strong></dt><dd><p>Position of the sheet in the file (starting from 0) or its name.
+<dt><strong>sheet_name</strong><span class="classifier">int or str, optional</span></dt><dd><p>Position of the sheet in the file (starting from 0) or its name.
 If none is passed, it is assumed to be the first sheet in the file.</p>
 </dd>
-<dt><strong>Returns</strong></dt><dd></dd>
-<dt><strong>——-</strong></dt><dd></dd>
+<dt><strong>tag_list</strong><span class="classifier">list, optional</span></dt><dd><p>list of tags for the disk elements.
+Default is None</p>
+</dd>
+<dt><strong>scale_factor: list, optional</strong></dt><dd><p>List of scale factors for the disk elements patches.
+The scale factor is used to scale the disk drawing.
+Default is 1.</p>
+</dd>
+<dt><strong>color</strong><span class="classifier">list, optional</span></dt><dd><p>A color to be used when the element is represented.
+Default is ‘Firebrick’.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
 <dt><strong>disk</strong><span class="classifier">list</span></dt><dd><p>A list of disk objects.</p>
 </dd>
 </dl>
@@ -471,108 +458,76 @@ If none is passed, it is assumed to be the first sheet in the file.</p>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">file_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">realpath</span><span class="p">(</span><span class="vm">__file__</span><span class="p">))</span> <span class="o">+</span> <span class="s1">&#39;/tests/data/shaft_si.xls&#39;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">list_of_disks</span> <span class="o">=</span> <span class="n">DiskElement</span><span class="o">.</span><span class="n">from_table</span><span class="p">(</span><span class="n">file_path</span><span class="p">,</span> <span class="n">sheet_name</span><span class="o">=</span><span class="s2">&quot;More&quot;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">list_of_disks</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-<span class="go">DiskElement(Id=0.0, Ip=0.0, m=15.12, color=&#39;#b2182b&#39;, n=3, tag=None)</span>
-</pre></div>
-</div>
-</dd></dl>
-
-<dl class="py method">
-<dt id="ross.DiskElement.get_data">
-<em class="property">static </em><code class="sig-name descname">get_data</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">file_name</span></em><span class="sig-paren">)</span><a class="headerlink" href="#ross.DiskElement.get_data" title="Permalink to this definition">¶</a></dt>
-<dd><p>Loads elements data saved in a toml format.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>file_name: string</strong></dt><dd><p>The name of the file to be loaded.</p>
-</dd>
-</dl>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><dl class="simple">
-<dt>data: dict</dt><dd><p>The element parameters presented as a dictionary.</p>
-</dd>
-</dl>
-</dd>
-</dl>
-<p class="rubric">Examples</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># Example using BearingElement</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">ross.bearing_seal_element</span> <span class="kn">import</span> <span class="n">bearing_example</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">ross.bearing_seal_element</span> <span class="kn">import</span> <span class="n">BearingElement</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">bearing</span> <span class="o">=</span> <span class="n">bearing_example</span><span class="p">()</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">bearing</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">Path</span><span class="p">(</span><span class="s1">&#39;.&#39;</span><span class="p">))</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">BearingElement</span><span class="o">.</span><span class="n">get_data</span><span class="p">(</span><span class="s1">&#39;BearingElement.toml&#39;</span><span class="p">)</span> 
-<span class="go">{&#39;BearingElement&#39;: {&#39;0&#39;: {&#39;n&#39;: 0, &#39;kxx&#39;: [1000000.0, 1000000.0,...</span>
+<span class="go">DiskElement(Id=0.0, Ip=0.0, m=15.12, color=&#39;Firebrick&#39;, n=3, tag=None)</span>
 </pre></div>
 </div>
 </dd></dl>
 
 <dl class="py method">
 <dt id="ross.DiskElement.load">
-<em class="property">static </em><code class="sig-name descname">load</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">file_name</span><span class="o">=</span><span class="default_value">'/home/travis/build/ross-rotordynamics/ross/docs'</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/disk_element.html#DiskElement.load"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.DiskElement.load" title="Permalink to this definition">¶</a></dt>
-<dd><p>Loads a list of disk elements saved in a toml format.</p>
+<em class="property">classmethod </em><code class="sig-name descname">load</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">file</span></em><span class="sig-paren">)</span><a class="headerlink" href="#ross.DiskElement.load" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="ross.DiskElement.read_toml_data">
+<em class="property">classmethod </em><code class="sig-name descname">read_toml_data</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">data</span></em><span class="sig-paren">)</span><a class="headerlink" href="#ross.DiskElement.read_toml_data" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read and parse data stored in a .toml file.</p>
+<p>The data passed to this method needs to be according to the
+format saved in the .toml file by the .save() method.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>file_name: str</strong></dt><dd><p>The name of the file of the disk element to be loaded.</p>
+<dt><strong>data</strong><span class="classifier">dict</span></dt><dd><p>Dictionary obtained from toml.load().</p>
 </dd>
 </dl>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><dl class="simple">
-<dt>disk_elements: list</dt><dd><p>A list of disk elements.</p>
-</dd>
+<dt>The element object.</dt><dd></dd>
 </dl>
 </dd>
 </dl>
 <p class="rubric">Examples</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">disk1</span> <span class="o">=</span> <span class="n">disk_example</span><span class="p">()</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">disk1</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">())</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">list_of_disks</span> <span class="o">=</span> <span class="n">DiskElement</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">())</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">disk1</span> <span class="o">==</span> <span class="n">list_of_disks</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># Example using BearingElement</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">tempfile</span> <span class="kn">import</span> <span class="n">tempdir</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">ross.bearing_seal_element</span> <span class="kn">import</span> <span class="n">bearing_example</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">ross.bearing_seal_element</span> <span class="kn">import</span> <span class="n">BearingElement</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># create path for a temporary file </span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">file</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">tempdir</span><span class="p">)</span> <span class="o">/</span> <span class="s1">&#39;bearing1.toml&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">bearing1</span> <span class="o">=</span> <span class="n">bearing_example</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">bearing1</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">file</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">bearing1_loaded</span> <span class="o">=</span> <span class="n">BearingElement</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">file</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">bearing1</span> <span class="o">==</span> <span class="n">bearing1_loaded</span>
 <span class="go">True</span>
 </pre></div>
 </div>
 </dd></dl>
 
 <dl class="py method">
-<dt id="ross.DiskElement.patch">
-<code class="sig-name descname">patch</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">position</span></em>, <em class="sig-param"><span class="n">ax</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/disk_element.html#DiskElement.patch"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.DiskElement.patch" title="Permalink to this definition">¶</a></dt>
-<dd><p>Disk element patch.</p>
-<p>Patch that will be used to draw the disk element.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>ax</strong><span class="classifier">matplotlib axes, optional</span></dt><dd><p>Axes in which the plot will be drawn.</p>
-</dd>
-<dt><strong>position</strong><span class="classifier">float</span></dt><dd><p>Position in which the patch will be drawn.</p>
-</dd>
-</dl>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
 <dt id="ross.DiskElement.save">
-<code class="sig-name descname">save</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">file_name</span><span class="o">=</span><span class="default_value">'/home/travis/build/ross-rotordynamics/ross/docs'</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/disk_element.html#DiskElement.save"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.DiskElement.save" title="Permalink to this definition">¶</a></dt>
-<dd><p>Saves a disk element in a toml format.</p>
-<p>It works as an auxiliary function of the save function in the Rotor
-class.</p>
+<code class="sig-name descname">save</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">file</span></em><span class="sig-paren">)</span><a class="headerlink" href="#ross.DiskElement.save" title="Permalink to this definition">¶</a></dt>
+<dd><p>Save the element in a .toml file.</p>
+<p>This function will save the element to a .toml file.
+The file will have all the argument’s names and values that are needed to
+reinstantiate the element.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>file_name: string</strong></dt><dd><p>The name of the file the disk element will be saved in.</p>
+<dt><strong>file</strong><span class="classifier">str, pathlib.Path</span></dt><dd><p>The name of the file the element will be saved in.</p>
 </dd>
-</dl>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><dl class="simple">
-<dt>None</dt><dd></dd>
 </dl>
 </dd>
 </dl>
 <p class="rubric">Examples</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">disk</span> <span class="o">=</span> <span class="n">disk_example</span><span class="p">()</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">disk</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># Example using DiskElement</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">tempfile</span> <span class="kn">import</span> <span class="n">tempdir</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">ross.disk_element</span> <span class="kn">import</span> <span class="n">disk_example</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># create path for a temporary file </span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">file</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">tempdir</span><span class="p">)</span> <span class="o">/</span> <span class="s1">&#39;disk.toml&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">disk</span> <span class="o">=</span> <span class="n">disk_example</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">disk</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">file</span><span class="p">)</span>
 </pre></div>
 </div>
 </dd></dl>
@@ -580,7 +535,7 @@ class.</p>
 <dl class="py method">
 <dt id="ross.DiskElement.summary">
 <code class="sig-name descname">summary</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em><span class="sig-paren">)</span><a class="headerlink" href="#ross.DiskElement.summary" title="Permalink to this definition">¶</a></dt>
-<dd><p>A summary for the element.</p>
+<dd><p>Present a summary for the element.</p>
 <p>A pandas series with the element properties as variables.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
@@ -601,7 +556,8 @@ class.</p>
 <span class="go">Id                     0.178089</span>
 <span class="go">Ip                     0.329564</span>
 <span class="go">tag                        None</span>
-<span class="go">color                   #b2182b</span>
+<span class="go">color                 Firebrick</span>
+<span class="go">scale_factor                  1</span>
 <span class="go">dof_global_index           None</span>
 <span class="go">type                DiskElement</span>
 <span class="go">dtype: object</span>
@@ -627,7 +583,7 @@ class.</p>
     </p>
     <p>
         &copy; Copyright 2019, Team ROSS.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.0.1.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.2.1.<br/>
     </p>
   </div>
 </footer>

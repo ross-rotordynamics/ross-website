@@ -3,7 +3,8 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <title>Download notebooks &#8212; ross 0.3.3 documentation</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Download notebooks &#8212; ross 0.4.0 documentation</title>
     <link rel="stylesheet" href="_static/bootstrap-sphinx.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx_copybutton.css" />
@@ -16,7 +17,7 @@
     <script src="_static/sphinx_copybutton.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js"></script>
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
     <link rel="shortcut icon" href="_static/ross-logo.ico"/>
     <link rel="index" title="Index" href="genindex.html" />
@@ -45,7 +46,7 @@
         </button>
         <a class="navbar-brand" href="index.html"><span><img src="_static/ross-logo.svg"></span>
           ROSS</a>
-        <span class="navbar-text navbar-version pull-left"><b>0.3</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>0.4</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -72,13 +73,15 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="examples/tutorial.html">Tutorial</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="examples/tutorial.html#Materials">Materials</a></li>
-<li class="toctree-l2"><a class="reference internal" href="examples/tutorial.html#ShaftElement">ShaftElement</a></li>
-<li class="toctree-l2"><a class="reference internal" href="examples/tutorial.html#DiskElement">DiskElement</a></li>
-<li class="toctree-l2"><a class="reference internal" href="examples/tutorial.html#BearingElement">BearingElement</a></li>
-<li class="toctree-l2"><a class="reference internal" href="examples/tutorial.html#Rotor">Rotor</a></li>
-<li class="toctree-l2"><a class="reference internal" href="examples/tutorial.html#Running-the-simulation">Running the simulation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="examples/tutorial.html#Obtaining-results">Obtaining results</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples/tutorial.html#Table-of-Contents">Table of Contents</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples/tutorial.html#Section-1:-Material-Class">Section 1: Material Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples/tutorial.html#Section-2:-ShaftElement-Class">Section 2: ShaftElement Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples/tutorial.html#Section-3:-DiskElement-Class">Section 3: DiskElement Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples/tutorial.html#Section-4:-Bearing-and-Seal-Classes">Section 4: Bearing and Seal Classes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples/tutorial.html#Section-5:-PointMass-Class">Section 5: PointMass Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples/tutorial.html#Section-6:-Rotor-Class">Section 6: Rotor Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples/tutorial.html#Section-7:-ROSS-Units-System">Section 7: ROSS Units System</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples/tutorial.html#Section-8:-Rotor-Analyses">Section 8: Rotor Analyses</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="examples.html">Examples</a><ul>
@@ -111,6 +114,8 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="release_notes.html">Release notes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="release_notes.html#version-0-4-0">Version 0.4.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release_notes.html#version-0-3-0">Version 0.3.0</a></li>
 <li class="toctree-l2"><a class="reference internal" href="release_notes.html#version-0-2-0-beta-release">Version 0.2.0 (beta release)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="release_notes.html#version-0-1-0-alpha-release">Version 0.1.0 (alpha release)</a></li>
 </ul>
@@ -177,6 +182,7 @@
 <div class="line"><a class="reference download internal" download="" href="_downloads/cfd18e473185eedf14592dde45768c72/example_6.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Example</span> <span class="pre">6</span></code></a></div>
 <div class="line"><a class="reference download internal" download="" href="_downloads/827dff115f542ebb444f538bac8e056b/example_7.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Example</span> <span class="pre">7</span></code></a></div>
 <div class="line"><a class="reference download internal" download="" href="_downloads/341bb7ffb2afcabedca87db36b97d0de/example_8.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Example</span> <span class="pre">8</span></code></a></div>
+<div class="line"><a class="reference download internal" download="" href="_downloads/f105e961cfda974d8abd8768d500a2e9/example_stochastic_ross.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Stochastic</span> <span class="pre">ROSS</span> <span class="pre">-</span> <span class="pre">Tutorial</span></code></a></div>
 </div>
 </div>
 
@@ -194,7 +200,7 @@
     </p>
     <p>
         &copy; Copyright 2019, Team ROSS.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.0.1.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.2.1.<br/>
     </p>
   </div>
 </footer>

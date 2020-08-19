@@ -3,7 +3,8 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <title>Release notes &#8212; ross 0.3.3 documentation</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Release notes &#8212; ross 0.4.0 documentation</title>
     <link rel="stylesheet" href="_static/bootstrap-sphinx.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx_copybutton.css" />
@@ -16,7 +17,7 @@
     <script src="_static/sphinx_copybutton.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js"></script>
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
     <link rel="shortcut icon" href="_static/ross-logo.ico"/>
     <link rel="index" title="Index" href="genindex.html" />
@@ -44,7 +45,7 @@
         </button>
         <a class="navbar-brand" href="index.html"><span><img src="_static/ross-logo.svg"></span>
           ROSS</a>
-        <span class="navbar-text navbar-version pull-left"><b>0.3</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>0.4</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -71,13 +72,15 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="examples/tutorial.html">Tutorial</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="examples/tutorial.html#Materials">Materials</a></li>
-<li class="toctree-l2"><a class="reference internal" href="examples/tutorial.html#ShaftElement">ShaftElement</a></li>
-<li class="toctree-l2"><a class="reference internal" href="examples/tutorial.html#DiskElement">DiskElement</a></li>
-<li class="toctree-l2"><a class="reference internal" href="examples/tutorial.html#BearingElement">BearingElement</a></li>
-<li class="toctree-l2"><a class="reference internal" href="examples/tutorial.html#Rotor">Rotor</a></li>
-<li class="toctree-l2"><a class="reference internal" href="examples/tutorial.html#Running-the-simulation">Running the simulation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="examples/tutorial.html#Obtaining-results">Obtaining results</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples/tutorial.html#Table-of-Contents">Table of Contents</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples/tutorial.html#Section-1:-Material-Class">Section 1: Material Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples/tutorial.html#Section-2:-ShaftElement-Class">Section 2: ShaftElement Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples/tutorial.html#Section-3:-DiskElement-Class">Section 3: DiskElement Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples/tutorial.html#Section-4:-Bearing-and-Seal-Classes">Section 4: Bearing and Seal Classes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples/tutorial.html#Section-5:-PointMass-Class">Section 5: PointMass Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples/tutorial.html#Section-6:-Rotor-Class">Section 6: Rotor Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples/tutorial.html#Section-7:-ROSS-Units-System">Section 7: ROSS Units System</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples/tutorial.html#Section-8:-Rotor-Analyses">Section 8: Rotor Analyses</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="examples.html">Examples</a><ul>
@@ -110,6 +113,8 @@
 </ul>
 </li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Release notes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#version-0-4-0">Version 0.4.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#version-0-3-0">Version 0.3.0</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#version-0-2-0-beta-release">Version 0.2.0 (beta release)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#version-0-1-0-alpha-release">Version 0.1.0 (alpha release)</a></li>
 </ul>
@@ -128,8 +133,47 @@
       role="menu"
       aria-labelledby="dLabelLocalToc"><ul>
 <li><a class="reference internal" href="#">Release notes</a><ul>
-<li><a class="reference internal" href="#version-0-2-0-beta-release">Version 0.2.0 (beta release)</a><ul>
+<li><a class="reference internal" href="#version-0-4-0">Version 0.4.0</a><ul>
 <li><a class="reference internal" href="#enhancements">Enhancements</a><ul>
+<li><a class="reference internal" href="#class-magneticbearingelement-was-created">Class MagneticBearingElement was created</a></li>
+<li><a class="reference internal" href="#stochastic-ross-module">Stochastic Ross module</a></li>
+<li><a class="reference internal" href="#dof-assembly">6dof assembly</a></li>
+<li><a class="reference internal" href="#add-scale-factor-argument-to-diskelement-class">Add scale_factor argument to DiskElement class</a></li>
+<li><a class="reference internal" href="#add-units-to-the-diskelement-bearingelement-and-pointmass-classes">Add units to the DiskElement, BearingElement and PointMass classes</a></li>
+<li><a class="reference internal" href="#replacing-plotting-libraries">Replacing plotting libraries</a></li>
+<li><a class="reference internal" href="#move-sparse-argument-to-run-modal">Move “sparse” argument to run_modal()</a></li>
+<li><a class="reference internal" href="#set-default-values-to-log-dec-color-scale">Set default values to log_dec color scale</a></li>
+<li><a class="reference internal" href="#replace-interp1d-by-line-shape-from-plotly">Replace interp1d by line_shape from Plotly</a></li>
+<li><a class="reference internal" href="#add-probe-argument-to-forcedresponseresults">Add probe argument to ForcedResponseResults</a></li>
+<li><a class="reference internal" href="#change-use-material-to-load-material">Change .use_material() to .load_material()</a></li>
+<li><a class="reference internal" href="#id3">Move “sparse” argument to run_modal()</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#bug-fixes">Bug fixes</a><ul>
+<li><a class="reference internal" href="#fix-issue-with-check-units">Fix issue with check_units</a></li>
+<li><a class="reference internal" href="#fix-missing-parameters-in-st-shaftelement">Fix missing parameters in ST_ShaftElement</a></li>
+<li><a class="reference internal" href="#fix-missing-y-pos-and-y-pos-sup-in-df-seals">Fix missing y_pos and y_pos_sup in df_seals</a></li>
+<li><a class="reference internal" href="#fix-valueerror-when-inputting-an-integer-to-disk-properties">Fix ValueError when inputting an integer to disk properties</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#version-0-3-0">Version 0.3.0</a><ul>
+<li><a class="reference internal" href="#id4">Enhancements</a><ul>
+<li><a class="reference internal" href="#remove-shaftelement-and-replace-with-the-shafttaperedelement">Remove ShaftElement and replace with the ShaftTaperedElement</a></li>
+<li><a class="reference internal" href="#allow-user-choose-material-in-rotor-from-section">Allow user choose material in “Rotor.from_section()”</a></li>
+<li><a class="reference internal" href="#coaxialrotor-class">CoAxialRotor class</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id5">Bug fixes</a><ul>
+<li><a class="reference internal" href="#fix-links-not-working-for-more-than-one-support">Fix links not working for more than one support</a></li>
+<li><a class="reference internal" href="#fix-bearing-position-bug">Fix bearing position bug</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#version-0-2-0-beta-release">Version 0.2.0 (beta release)</a><ul>
+<li><a class="reference internal" href="#id6">Enhancements</a><ul>
 <li><a class="reference internal" href="#improvements-for-plotting-results">Improvements for plotting results</a></li>
 <li><a class="reference internal" href="#index-method">Index method</a></li>
 <li><a class="reference internal" href="#interactions-with-rotor-plotting">interactions with rotor plotting</a></li>
@@ -161,21 +205,21 @@
 </ul>
 </li>
 <li><a class="reference internal" href="#api-changes">API changes</a></li>
-<li><a class="reference internal" href="#bug-fixes">Bug fixes</a><ul>
+<li><a class="reference internal" href="#id7">Bug fixes</a><ul>
 <li><a class="reference internal" href="#fix-equality-for-bearing-element">Fix equality for bearing element</a></li>
 <li><a class="reference internal" href="#add-import-to-axes3d">Add import to Axes3d</a></li>
 <li><a class="reference internal" href="#fix-bearing-type-definition-and-add-new-test">Fix bearing type definition and add new test</a></li>
-<li><a class="reference internal" href="#id1">Improvements for plotting results</a></li>
+<li><a class="reference internal" href="#id8">Improvements for plotting results</a></li>
 <li><a class="reference internal" href="#fix-bug-plotting-unbalance-response">Fix bug - plotting unbalance response</a></li>
-<li><a class="reference internal" href="#id2">Make Free-Body Diagram more readable</a></li>
+<li><a class="reference internal" href="#id9">Make Free-Body Diagram more readable</a></li>
 <li><a class="reference internal" href="#fix-typo-in-repr">Fix typo in __repr__</a></li>
 <li><a class="reference internal" href="#fix-inconsistencies-in-the-stiffness-matrix">Fix inconsistencies in the stiffness matrix</a></li>
 <li><a class="reference internal" href="#fixing-doctests">Fixing doctests</a></li>
 <li><a class="reference internal" href="#adapt-convergence-analysis-to-shafttaperedelement">Adapt convergence analysis to ShaftTaperedElement</a></li>
-<li><a class="reference internal" href="#id3">Add separated DataFrame to seals</a></li>
+<li><a class="reference internal" href="#id10">Add separated DataFrame to seals</a></li>
 <li><a class="reference internal" href="#fix-warning-when-changing-number-of-nodes-to-be-plotted">Fix warning when changing number of nodes to be plotted</a></li>
 <li><a class="reference internal" href="#remove-unit-conversion-factor">Remove unit conversion factor</a></li>
-<li><a class="reference internal" href="#id4">Improvements to Static Analysis Documentation</a></li>
+<li><a class="reference internal" href="#id11">Improvements to Static Analysis Documentation</a></li>
 <li><a class="reference internal" href="#fix-bearings-not-connecting-to-tapered-elements">Fix bearings not connecting to tapered elements</a></li>
 <li><a class="reference internal" href="#fix-bug-when-plotting-bearings">Fix bug when plotting bearings</a></li>
 <li><a class="reference internal" href="#fix-bug-in-run-freq-response">Fix bug in .run_freq_response()</a></li>
@@ -184,7 +228,7 @@
 </ul>
 </li>
 <li><a class="reference internal" href="#version-0-1-0-alpha-release">Version 0.1.0 (alpha release)</a><ul>
-<li><a class="reference internal" href="#id5">Enhancements</a><ul>
+<li><a class="reference internal" href="#id12">Enhancements</a><ul>
 <li><a class="reference internal" href="#implementation-of-the-material-class">Implementation of the Material class</a></li>
 <li><a class="reference internal" href="#create-shaftelement-diskelement-and-bearingsealelement">Create ShaftElement, DiskElement and BearingSealElement</a></li>
 <li><a class="reference internal" href="#add-rotor-assembly-and-results">Add rotor assembly and results</a></li>
@@ -203,16 +247,16 @@
 <li><a class="reference internal" href="#adds-a-binder-badge">Adds a binder badge</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#id6">API changes</a><ul>
+<li><a class="reference internal" href="#id13">API changes</a><ul>
 <li><a class="reference internal" href="#add-run-modal-method">Add run_modal method</a></li>
 <li><a class="reference internal" href="#change-methods-names">Change methods’ names</a></li>
 <li><a class="reference internal" href="#remove-show-from-convergence-and-static">Remove show() from convergence and static</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#id7">Bug fixes</a><ul>
+<li><a class="reference internal" href="#id14">Bug fixes</a><ul>
 <li><a class="reference internal" href="#added-interpolate-to-rotor-assembly-py">Added interpolate to rotor_assembly.py</a></li>
 <li><a class="reference internal" href="#fix-eccentricity-ratio-function">Fix eccentricity ratio function</a></li>
-<li><a class="reference internal" href="#id8">Improving plot_rotor</a></li>
+<li><a class="reference internal" href="#id15">Improving plot_rotor</a></li>
 </ul>
 </li>
 </ul>
@@ -256,12 +300,164 @@
       
   <div class="section" id="release-notes">
 <h1>Release notes<a class="headerlink" href="#release-notes" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="version-0-4-0">
+<h2>Version 0.4.0<a class="headerlink" href="#version-0-4-0" title="Permalink to this headline">¶</a></h2>
+<p>The following enhancements and bug fixes were implemented for this release:</p>
+<div class="section" id="enhancements">
+<h3>Enhancements<a class="headerlink" href="#enhancements" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="class-magneticbearingelement-was-created">
+<h4>Class MagneticBearingElement was created<a class="headerlink" href="#class-magneticbearingelement-was-created" title="Permalink to this headline">¶</a></h4>
+<p>This class creates a magnetic bearing element.
+The element can be created by:</p>
+<ul class="simple">
+<li><p>defining directly the stifness and damping coefficients with the method <strong>**init</strong><a href="#id1"><span class="problematic" id="id2">**</span></a>;</p></li>
+<li><p>defining the magnetic parameters g0, i0, ag, nw, alpha and the porportional and derivative gains of a PID controller  kp_pid, kd_pid with the method <strong>param_to_coef</strong>.</p></li>
+</ul>
+<p>The reference for the equations is:
+<strong>Book</strong>: Magnetic Bearings. Theory, Design, and Application to Rotating Machinery
+<strong>Authors</strong>: Gerhard Schweitzer and Eric H. Maslen
+<strong>Page</strong>: 84-95 (magnetic parameters) and 354 (PID gains)</p>
+</div>
+<div class="section" id="stochastic-ross-module">
+<h4>Stochastic Ross module<a class="headerlink" href="#stochastic-ross-module" title="Permalink to this headline">¶</a></h4>
+<p>The files follows the hierarchy than ROSS: different files to build the elements and a main file to build the rotors.</p>
+<p>The main difference between these new files and and the element files from ROSS is that the stochastic elements files build list of elements instead a single one.</p>
+<p>The analysis will also follow the ROSS structure, but it’s not added yet.</p>
+</div>
+<div class="section" id="dof-assembly">
+<h4>6dof assembly<a class="headerlink" href="#dof-assembly" title="Permalink to this headline">¶</a></h4>
+<p>Generalization of the assembly and evaluation codes of ROSS for a generic “N” DoF sized formulation. This is intended to enable the 6 DoF implementation to be executed appropriately, and is made in a generalized fashion by default.</p>
+</div>
+<div class="section" id="add-scale-factor-argument-to-diskelement-class">
+<h4>Add scale_factor argument to DiskElement class<a class="headerlink" href="#add-scale-factor-argument-to-diskelement-class" title="Permalink to this headline">¶</a></h4>
+<p>Argument to scale the disk patch. Used to increase (scale_factor &gt; 1.0) or reduce (scale_factor &lt; 1.0) the size of disk patches when plotting the rotor.</p>
+</div>
+<div class="section" id="add-units-to-the-diskelement-bearingelement-and-pointmass-classes">
+<h4>Add units to the DiskElement, BearingElement and PointMass classes<a class="headerlink" href="#add-units-to-the-diskelement-bearingelement-and-pointmass-classes" title="Permalink to this headline">¶</a></h4>
+<p>Arguments for these classes can be passed as pint.Quantity now.</p>
+</div>
+<div class="section" id="replacing-plotting-libraries">
+<h4>Replacing plotting libraries<a class="headerlink" href="#replacing-plotting-libraries" title="Permalink to this headline">¶</a></h4>
+<p>We have replaced Matplotlib and Bokeh plotting libraries with Plotly.</p>
+<p>Add methods to plot the deflected shape</p>
+</div>
+<div class="section" id="move-sparse-argument-to-run-modal">
+<h4>Move “sparse” argument to run_modal()<a class="headerlink" href="#move-sparse-argument-to-run-modal" title="Permalink to this headline">¶</a></h4>
+<p>The eigenvalue / eigenvector solver is chosen when running the run_modal() method, and not anymore an parameter from the rotor model</p>
+</div>
+<div class="section" id="set-default-values-to-log-dec-color-scale">
+<h4>Set default values to log_dec color scale<a class="headerlink" href="#set-default-values-to-log-dec-color-scale" title="Permalink to this headline">¶</a></h4>
+<p>The color scale to represent the log_dec values ranges between 0 and 1, independently of the log_dec values calculated.
+It can be manually modified by insert 2 simple kwargs: coloraxis_cmin and coloraxis_cmax. It will change
+respectively the minimum and maximum values for the color scale.
+Also adds exponentformat = “none” to X and Y axis for better visualization of values</p>
+<p>Example with default options:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">speed_range</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3000</span><span class="p">,</span> <span class="mi">51</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">campbell</span> <span class="o">=</span> <span class="n">rotor</span><span class="o">.</span><span class="n">run_campbell</span><span class="p">(</span><span class="n">speed_range</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">campbell</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">harmonics</span><span class="o">=</span><span class="p">[</span><span class="mf">0.5</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+</pre></div>
+</div>
+<a class="reference external image-reference" href="https://user-images.githubusercontent.com/45969994/87157591-def88a00-c294-11ea-9f26-8807122feb08.png"><img alt="image" src="https://user-images.githubusercontent.com/45969994/87157591-def88a00-c294-11ea-9f26-8807122feb08.png" /></a>
+<p>Example changing the max value for the scale:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">speed_range</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3000</span><span class="p">,</span> <span class="mi">51</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">campbell</span> <span class="o">=</span> <span class="n">rotor</span><span class="o">.</span><span class="n">run_campbell</span><span class="p">(</span><span class="n">speed_range</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">campbell</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">harmonics</span><span class="o">=</span><span class="p">[</span><span class="mf">0.5</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">coloraxis_cmax</span><span class="o">=</span><span class="mf">2.0</span><span class="p">)</span>
+</pre></div>
+</div>
+<a class="reference external image-reference" href="https://user-images.githubusercontent.com/45969994/87157716-06e7ed80-c295-11ea-9eff-89e5a2c6164c.png"><img alt="image" src="https://user-images.githubusercontent.com/45969994/87157716-06e7ed80-c295-11ea-9eff-89e5a2c6164c.png" /></a>
+</div>
+<div class="section" id="replace-interp1d-by-line-shape-from-plotly">
+<h4>Replace interp1d by line_shape from Plotly<a class="headerlink" href="#replace-interp1d-by-line-shape-from-plotly" title="Permalink to this headline">¶</a></h4>
+<p>It removes the need of creating sub arrays from interpolation to smooth some results in StaticResults.</p>
+</div>
+<div class="section" id="add-probe-argument-to-forcedresponseresults">
+<h4>Add probe argument to ForcedResponseResults<a class="headerlink" href="#add-probe-argument-to-forcedresponseresults" title="Permalink to this headline">¶</a></h4>
+<p>Replace <code class="docutils literal notranslate"><span class="pre">dof</span></code> by <code class="docutils literal notranslate"><span class="pre">probe</span></code>argument probe is a list of tuples.
+Each tuple refers to a probe, which must include de node and the
+orientation.</p>
+<p>The orientation units is set by <code class="docutils literal notranslate"><span class="pre">probe_units</span></code> argument.
+in <code class="docutils literal notranslate"><span class="pre">plot()</span></code> method, <code class="docutils literal notranslate"><span class="pre">data.showlegend</span></code> is turn off to
+avoid repetitive legend marks on graphs</p>
+</div>
+<div class="section" id="change-use-material-to-load-material">
+<h4>Change .use_material() to .load_material()<a class="headerlink" href="#change-use-material-to-load-material" title="Permalink to this headline">¶</a></h4>
+<p>We have change most methods to use the word ‘save’ and ‘load’
+instead of ‘get’, ‘use’ etc.</p>
+</div>
+<div class="section" id="id3">
+<h4>Move “sparse” argument to run_modal()<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h4>
+<p>The eigenvalue / eigenvector solver is chosen when running the run_modal() method, and not anymore an parameter from the rotor model</p>
+</div>
+</div>
+<div class="section" id="bug-fixes">
+<h3>Bug fixes<a class="headerlink" href="#bug-fixes" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="fix-issue-with-check-units">
+<h4>Fix issue with check_units<a class="headerlink" href="#fix-issue-with-check-units" title="Permalink to this headline">¶</a></h4>
+<p>Related to Issue #511</p>
+<p>Add a condition to verify if the argument value is None. It allows the user to pass “None” args without getting an error with the code trying to assign a unit to a None value.</p>
+</div>
+<div class="section" id="fix-missing-parameters-in-st-shaftelement">
+<h4>Fix missing parameters in ST_ShaftElement<a class="headerlink" href="#fix-missing-parameters-in-st-shaftelement" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li><p>The parameters <code class="docutils literal notranslate"><span class="pre">axial_force</span></code> and <code class="docutils literal notranslate"><span class="pre">torque</span></code> were missing from the <code class="docutils literal notranslate"><span class="pre">ST_ShaftElement.__init__()</span></code>.</p></li>
+</ul>
+</div>
+<div class="section" id="fix-missing-y-pos-and-y-pos-sup-in-df-seals">
+<h4>Fix missing y_pos and y_pos_sup in df_seals<a class="headerlink" href="#fix-missing-y-pos-and-y-pos-sup-in-df-seals" title="Permalink to this headline">¶</a></h4>
+<p>Related to Issue #571.</p>
+<p>Seals can be displayed in different colors than bearings</p>
+<a class="reference external image-reference" href="https://user-images.githubusercontent.com/45969994/83309725-6e177a00-a1e0-11ea-95a3-8a69ebce9eda.png"><img alt="image" src="https://user-images.githubusercontent.com/45969994/83309725-6e177a00-a1e0-11ea-95a3-8a69ebce9eda.png" /></a>
+</div>
+<div class="section" id="fix-valueerror-when-inputting-an-integer-to-disk-properties">
+<h4>Fix ValueError when inputting an integer to disk properties<a class="headerlink" href="#fix-valueerror-when-inputting-an-integer-to-disk-properties" title="Permalink to this headline">¶</a></h4>
+<p>Related to Issue #593.</p>
+</div>
+</div>
+</div>
+<div class="section" id="version-0-3-0">
+<h2>Version 0.3.0<a class="headerlink" href="#version-0-3-0" title="Permalink to this headline">¶</a></h2>
+<p>The following enhancements and bug fixes were implemented for this release:</p>
+<div class="section" id="id4">
+<h3>Enhancements<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="remove-shaftelement-and-replace-with-the-shafttaperedelement">
+<h4>Remove ShaftElement and replace with the ShaftTaperedElement<a class="headerlink" href="#remove-shaftelement-and-replace-with-the-shafttaperedelement" title="Permalink to this headline">¶</a></h4>
+<p>Now we only have one class for the shaft element which is capable of handling
+cylindrical and tapered elements.</p>
+</div>
+<div class="section" id="allow-user-choose-material-in-rotor-from-section">
+<h4>Allow user choose material in “Rotor.from_section()”<a class="headerlink" href="#allow-user-choose-material-in-rotor-from-section" title="Permalink to this headline">¶</a></h4>
+<p>As requested in Issue #401, the user will be able to define a material when using <code class="docutils literal notranslate"><span class="pre">.from_section()</span></code> classmethod.
+In addition, more modifications have been done regarding the new ShaftElement API.
+Now, the user has the option to instantiate tapered sections.</p>
+</div>
+<div class="section" id="coaxialrotor-class">
+<h4>CoAxialRotor class<a class="headerlink" href="#coaxialrotor-class" title="Permalink to this headline">¶</a></h4>
+<p>A class is now available for modeling coaxial rotors.</p>
+</div>
+</div>
+<div class="section" id="id5">
+<h3>Bug fixes<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="fix-links-not-working-for-more-than-one-support">
+<h4>Fix links not working for more than one support<a class="headerlink" href="#fix-links-not-working-for-more-than-one-support" title="Permalink to this headline">¶</a></h4>
+<p>Related to Issue #382.</p>
+<p>We were having problems to define de global indexes for the elements using this method intenally to a element class.
+It makes more sense to use .dof_global_index() when build the rotor model.
+The routine to calculate the elements’ global indexes have been moved to rotor_assembly (<code class="docutils literal notranslate"><span class="pre">.__init__()</span></code> method).
+Now, each element has an attribute that keeps those index, instead of calling a function to this job.</p>
+</div>
+<div class="section" id="fix-bearing-position-bug">
+<h4>Fix bearing position bug<a class="headerlink" href="#fix-bearing-position-bug" title="Permalink to this headline">¶</a></h4>
+<p>Fix bug mentioned in Issue #276</p>
+<p>Sorting the bearing_seal_elements make it to cycle correctly while assuming <code class="docutils literal notranslate"><span class="pre">y_pos</span></code> values to them.</p>
+</div>
+</div>
+</div>
 <div class="section" id="version-0-2-0-beta-release">
 <h2>Version 0.2.0 (beta release)<a class="headerlink" href="#version-0-2-0-beta-release" title="Permalink to this headline">¶</a></h2>
 <p>The following enhancements and bug fixes were implemented
 for this release:</p>
-<div class="section" id="enhancements">
-<h3>Enhancements<a class="headerlink" href="#enhancements" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id6">
+<h3>Enhancements<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h3>
 <div class="section" id="improvements-for-plotting-results">
 <h4>Improvements for plotting results<a class="headerlink" href="#improvements-for-plotting-results" title="Permalink to this headline">¶</a></h4>
 <p>This PR make some modifications in results.py</p>
@@ -746,8 +942,8 @@ The next step is to implement the Level 2 analysis. Once I get to work on it, I�
 <div class="section" id="api-changes">
 <h3>API changes<a class="headerlink" href="#api-changes" title="Permalink to this headline">¶</a></h3>
 </div>
-<div class="section" id="bug-fixes">
-<h3>Bug fixes<a class="headerlink" href="#bug-fixes" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id7">
+<h3>Bug fixes<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h3>
 <blockquote>
 <div><p>Fix Campbell’s strange behavior for precession</p>
 </div></blockquote>
@@ -773,8 +969,8 @@ if this import is removed.</p>
 <p>Fix the bearing type definition and also add a new test that checks if a second analytical way to calculate the pressure matrix matches the numerical way.
 Close #175</p>
 </div>
-<div class="section" id="id1">
-<h4>Improvements for plotting results<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id8">
+<h4>Improvements for plotting results<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h4>
 <p>This PR make some modifications in results.py</p>
 <ul class="simple">
 <li><p>Add show(camp) to show campbell bokeh plotting</p></li>
@@ -791,8 +987,8 @@ Close #175</p>
 <h4>Fix bug - plotting unbalance response<a class="headerlink" href="#fix-bug-plotting-unbalance-response" title="Permalink to this headline">¶</a></h4>
 <p>Unbalance response was not plotting when calling it using matplotlib</p>
 </div>
-<div class="section" id="id2">
-<h4>Make Free-Body Diagram more readable<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id9">
+<h4>Make Free-Body Diagram more readable<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h4>
 <p>Pull Request to fix Issue #243</p>
 <ul class="simple">
 <li><p>Slightly increases the size of the figures</p></li>
@@ -838,8 +1034,8 @@ Close #175</p>
 <p>Now the convergence analysis uses the class ShaftTaperedElement to generate shaft elements since it’s more generic.
 This should solve issue #280.</p>
 </div>
-<div class="section" id="id3">
-<h4>Add separated DataFrame to seals<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id10">
+<h4>Add separated DataFrame to seals<a class="headerlink" href="#id10" title="Permalink to this headline">¶</a></h4>
 <p>This splits bearings from seals in two different dataframes:</p>
 <ul class="simple">
 <li><p>df_bearings for bearings</p></li>
@@ -863,8 +1059,8 @@ It uses axuliar bearings with high stiffness, considering almost zero displaceme
 So the x and y axis units get to be the same.</p>
 <p>Related to Issue #312</p>
 </div>
-<div class="section" id="id4">
-<h4>Improvements to Static Analysis Documentation<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id11">
+<h4>Improvements to Static Analysis Documentation<a class="headerlink" href="#id11" title="Permalink to this headline">¶</a></h4>
 <ul class="simple">
 <li><p>Related to Issue #327</p></li>
 <li><p>Remove force_data dictionary</p></li>
@@ -912,8 +1108,8 @@ So the x and y axis units get to be the same.</p>
 important analyses have been implemented.</p>
 <p>The following gives a list of enhancements, api changes and bug fixes that were
 implemented for this release:</p>
-<div class="section" id="id5">
-<h3>Enhancements<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id12">
+<h3>Enhancements<a class="headerlink" href="#id12" title="Permalink to this headline">¶</a></h3>
 <div class="section" id="implementation-of-the-material-class">
 <h4>Implementation of the Material class<a class="headerlink" href="#implementation-of-the-material-class" title="Permalink to this headline">¶</a></h4>
 <p>A class has been implemented to represent any material that can be used when
@@ -1012,8 +1208,8 @@ documentation page.</p>
 <p>Binder is available to test the library in a cloud virtual environment.</p>
 </div>
 </div>
-<div class="section" id="id6">
-<h3>API changes<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id13">
+<h3>API changes<a class="headerlink" href="#id13" title="Permalink to this headline">¶</a></h3>
 <div class="section" id="add-run-modal-method">
 <h4>Add run_modal method<a class="headerlink" href="#add-run-modal-method" title="Permalink to this headline">¶</a></h4>
 <p>The modal analysis changed from <code class="docutils literal notranslate"><span class="pre">.run()</span></code> to <code class="docutils literal notranslate"><span class="pre">.run_modal()</span></code>.</p>
@@ -1046,8 +1242,8 @@ show(static_analysis)
 </div>
 </div>
 </div>
-<div class="section" id="id7">
-<h3>Bug fixes<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id14">
+<h3>Bug fixes<a class="headerlink" href="#id14" title="Permalink to this headline">¶</a></h3>
 <div class="section" id="added-interpolate-to-rotor-assembly-py">
 <h4>Added interpolate to rotor_assembly.py<a class="headerlink" href="#added-interpolate-to-rotor-assembly-py" title="Permalink to this headline">¶</a></h4>
 <p>The function interp1d was used but the interpolate function was not
@@ -1059,8 +1255,8 @@ being  imported.</p>
 sommerfeld number instead of the modified one, as it was supposed to
 use.</p>
 </div>
-<div class="section" id="id8">
-<h4>Improving plot_rotor<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id15">
+<h4>Improving plot_rotor<a class="headerlink" href="#id15" title="Permalink to this headline">¶</a></h4>
 <p>There was an error that shaft elements were plotting with 2 times their
 respective radius.  I enlarged the plot window size and distributed the
 axis size so that the rotor is presented with the correct proportions in
@@ -1089,7 +1285,7 @@ the convergence analysis.</p>
     </p>
     <p>
         &copy; Copyright 2019, Team ROSS.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.0.1.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.2.1.<br/>
     </p>
   </div>
 </footer>

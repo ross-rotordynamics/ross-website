@@ -1,10 +1,10 @@
-
 <!DOCTYPE html>
 
 <html>
   <head>
     <meta charset="utf-8" />
-    <title>Index &#8212; ross 0.3.3 documentation</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Index &#8212; ross 0.4.0 documentation</title>
     <link rel="stylesheet" href="_static/bootstrap-sphinx.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx_copybutton.css" />
@@ -17,7 +17,7 @@
     <script src="_static/sphinx_copybutton.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js"></script>
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
     <link rel="shortcut icon" href="_static/ross-logo.ico"/>
     <link rel="index" title="Index" href="#" />
@@ -44,7 +44,7 @@
         </button>
         <a class="navbar-brand" href="index.html"><span><img src="_static/ross-logo.svg"></span>
           ROSS</a>
-        <span class="navbar-text navbar-version pull-left"><b>0.3</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>0.4</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -71,13 +71,15 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="examples/tutorial.html">Tutorial</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="examples/tutorial.html#Materials">Materials</a></li>
-<li class="toctree-l2"><a class="reference internal" href="examples/tutorial.html#ShaftElement">ShaftElement</a></li>
-<li class="toctree-l2"><a class="reference internal" href="examples/tutorial.html#DiskElement">DiskElement</a></li>
-<li class="toctree-l2"><a class="reference internal" href="examples/tutorial.html#BearingElement">BearingElement</a></li>
-<li class="toctree-l2"><a class="reference internal" href="examples/tutorial.html#Rotor">Rotor</a></li>
-<li class="toctree-l2"><a class="reference internal" href="examples/tutorial.html#Running-the-simulation">Running the simulation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="examples/tutorial.html#Obtaining-results">Obtaining results</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples/tutorial.html#Table-of-Contents">Table of Contents</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples/tutorial.html#Section-1:-Material-Class">Section 1: Material Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples/tutorial.html#Section-2:-ShaftElement-Class">Section 2: ShaftElement Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples/tutorial.html#Section-3:-DiskElement-Class">Section 3: DiskElement Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples/tutorial.html#Section-4:-Bearing-and-Seal-Classes">Section 4: Bearing and Seal Classes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples/tutorial.html#Section-5:-PointMass-Class">Section 5: PointMass Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples/tutorial.html#Section-6:-Rotor-Class">Section 6: Rotor Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples/tutorial.html#Section-7:-ROSS-Units-System">Section 7: ROSS Units System</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples/tutorial.html#Section-8:-Rotor-Analyses">Section 8: Rotor Analyses</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="examples.html">Examples</a><ul>
@@ -110,6 +112,8 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="release_notes.html">Release notes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="release_notes.html#version-0-4-0">Version 0.4.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release_notes.html#version-0-3-0">Version 0.3.0</a></li>
 <li class="toctree-l2"><a class="reference internal" href="release_notes.html#version-0-2-0-beta-release">Version 0.2.0 (beta release)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="release_notes.html#version-0-1-0-alpha-release">Version 0.1.0 (alpha release)</a></li>
 </ul>
@@ -174,7 +178,6 @@
  | <a href="#R"><strong>R</strong></a>
  | <a href="#S"><strong>S</strong></a>
  | <a href="#T"><strong>T</strong></a>
- | <a href="#U"><strong>U</strong></a>
  
 </div>
 <h2 id="_">_</h2>
@@ -214,16 +217,6 @@
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="generated/elements/ross.BearingElement.html#ross.BearingElement">BearingElement (class in ross)</a>
 </li>
-      <li><a href="generated/elements/ross.BearingElement.html#ross.BearingElement.bokeh_patch">bokeh_patch() (ross.BearingElement method)</a>
-
-      <ul>
-        <li><a href="generated/elements/ross.DiskElement.html#ross.DiskElement.bokeh_patch">(ross.DiskElement method)</a>
-</li>
-        <li><a href="generated/elements/ross.SealElement.html#ross.SealElement.bokeh_patch">(ross.SealElement method)</a>
-</li>
-        <li><a href="generated/elements/ross.ShaftElement.html#ross.ShaftElement.bokeh_patch">(ross.ShaftElement method)</a>
-</li>
-      </ul></li>
   </ul></td>
 </tr></table>
 
@@ -244,8 +237,6 @@
       </ul></li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="generated/results/ross.Rotor.html#ross.Rotor.check_slenderness_ratio">check_slenderness_ratio() (ross.Rotor method)</a>
-</li>
       <li><a href="generated/results/ross.Rotor.html#ross.Rotor.convergence">convergence() (ross.Rotor method)</a>
 </li>
   </ul></td>
@@ -256,12 +247,6 @@
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="generated/elements/ross.DiskElement.html#ross.DiskElement">DiskElement (class in ross)</a>
 </li>
-      <li><a href="generated/elements/ross.BearingElement.html#ross.BearingElement.dof_global_index">dof_global_index() (ross.BearingElement method)</a>
-
-      <ul>
-        <li><a href="generated/elements/ross.SealElement.html#ross.SealElement.dof_global_index">(ross.SealElement method)</a>
-</li>
-      </ul></li>
       <li><a href="generated/elements/ross.BearingElement.html#ross.BearingElement.dof_local_index">dof_local_index() (ross.BearingElement method)</a>
 
       <ul>
@@ -272,6 +257,8 @@
         <li><a href="generated/elements/ross.ShaftElement.html#ross.ShaftElement.dof_local_index">(ross.ShaftElement method)</a>
 </li>
       </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="generated/elements/ross.BearingElement.html#ross.BearingElement.dof_mapping">dof_mapping() (ross.BearingElement method)</a>
 
       <ul>
@@ -282,26 +269,16 @@
         <li><a href="generated/elements/ross.ShaftElement.html#ross.ShaftElement.dof_mapping">(ross.ShaftElement method)</a>
 </li>
       </ul></li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="generated/elements/ross.BearingElement.html#ross.BearingElement.dump_data">dump_data() (ross.BearingElement static method)</a>
-
-      <ul>
-        <li><a href="generated/elements/ross.DiskElement.html#ross.DiskElement.dump_data">(ross.DiskElement static method)</a>
+      <li><a href="generated/material/ross.Material.html#ross.Material.dump_data">dump_data() (ross.Material static method)</a>
 </li>
-        <li><a href="generated/material/ross.Material.html#ross.Material.dump_data">(ross.Material static method)</a>
-</li>
-        <li><a href="generated/elements/ross.SealElement.html#ross.SealElement.dump_data">(ross.SealElement static method)</a>
-</li>
-        <li><a href="generated/elements/ross.ShaftElement.html#ross.ShaftElement.dump_data">(ross.ShaftElement static method)</a>
-</li>
-      </ul></li>
   </ul></td>
 </tr></table>
 
 <h2 id="F">F</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="generated/results/ross.Rotor.html#ross.Rotor.forced_response">forced_response() (ross.Rotor method)</a>
+</li>
       <li><a href="generated/elements/ross.BearingElement.html#ross.BearingElement.from_fluid_flow">from_fluid_flow() (ross.BearingElement class method)</a>
 
       <ul>
@@ -310,10 +287,10 @@
       </ul></li>
       <li><a href="generated/elements/ross.DiskElement.html#ross.DiskElement.from_geometry">from_geometry() (ross.DiskElement class method)</a>
 </li>
-      <li><a href="generated/results/ross.Rotor.html#ross.Rotor.from_section">from_section() (ross.Rotor class method)</a>
-</li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="generated/results/ross.Rotor.html#ross.Rotor.from_section">from_section() (ross.Rotor class method)</a>
+</li>
       <li><a href="generated/elements/ross.BearingElement.html#ross.BearingElement.from_table">from_table() (ross.BearingElement class method)</a>
 
       <ul>
@@ -344,18 +321,8 @@
       </ul></li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="generated/elements/ross.BearingElement.html#ross.BearingElement.get_data">get_data() (ross.BearingElement static method)</a>
-
-      <ul>
-        <li><a href="generated/elements/ross.DiskElement.html#ross.DiskElement.get_data">(ross.DiskElement static method)</a>
+      <li><a href="generated/material/ross.Material.html#ross.Material.get_data">get_data() (ross.Material static method)</a>
 </li>
-        <li><a href="generated/material/ross.Material.html#ross.Material.get_data">(ross.Material static method)</a>
-</li>
-        <li><a href="generated/elements/ross.SealElement.html#ross.SealElement.get_data">(ross.SealElement static method)</a>
-</li>
-        <li><a href="generated/elements/ross.ShaftElement.html#ross.ShaftElement.get_data">(ross.ShaftElement static method)</a>
-</li>
-      </ul></li>
   </ul></td>
 </tr></table>
 
@@ -380,18 +347,22 @@
 <h2 id="L">L</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="generated/elements/ross.BearingElement.html#ross.BearingElement.load">load() (ross.BearingElement static method)</a>
+      <li><a href="generated/elements/ross.BearingElement.html#ross.BearingElement.load">load() (ross.BearingElement class method)</a>
 
       <ul>
-        <li><a href="generated/elements/ross.DiskElement.html#ross.DiskElement.load">(ross.DiskElement static method)</a>
+        <li><a href="generated/elements/ross.DiskElement.html#ross.DiskElement.load">(ross.DiskElement class method)</a>
 </li>
-        <li><a href="generated/results/ross.Rotor.html#ross.Rotor.load">(ross.Rotor static method)</a>
+        <li><a href="generated/results/ross.Rotor.html#ross.Rotor.load">(ross.Rotor class method)</a>
 </li>
-        <li><a href="generated/elements/ross.SealElement.html#ross.SealElement.load">(ross.SealElement static method)</a>
+        <li><a href="generated/elements/ross.SealElement.html#ross.SealElement.load">(ross.SealElement class method)</a>
 </li>
-        <li><a href="generated/elements/ross.ShaftElement.html#ross.ShaftElement.load">(ross.ShaftElement static method)</a>
+        <li><a href="generated/elements/ross.ShaftElement.html#ross.ShaftElement.load">(ross.ShaftElement class method)</a>
 </li>
       </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="generated/material/ross.Material.html#ross.Material.load_material">load_material() (ross.Material static method)</a>
+</li>
   </ul></td>
 </tr></table>
 
@@ -420,20 +391,10 @@
 <h2 id="P">P</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="generated/elements/ross.BearingElement.html#ross.BearingElement.patch">patch() (ross.BearingElement method)</a>
-
-      <ul>
-        <li><a href="generated/elements/ross.DiskElement.html#ross.DiskElement.patch">(ross.DiskElement method)</a>
-</li>
-        <li><a href="generated/elements/ross.SealElement.html#ross.SealElement.patch">(ross.SealElement method)</a>
-</li>
-        <li><a href="generated/elements/ross.ShaftElement.html#ross.ShaftElement.patch">(ross.ShaftElement method)</a>
-</li>
-      </ul></li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="generated/results/ross.Rotor.html#ross.Rotor.plot_level1">plot_level1() (ross.Rotor method)</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="generated/results/ross.Rotor.html#ross.Rotor.plot_rotor">plot_rotor() (ross.Rotor method)</a>
 </li>
       <li><a href="generated/results/ross.Rotor.html#ross.Rotor.plot_ucs">plot_ucs() (ross.Rotor method)</a>
@@ -444,27 +405,35 @@
 <h2 id="R">R</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="generated/results/ross.Rotor.html#ross.Rotor.remove">remove() (ross.Rotor static method)</a>
+      <li><a href="generated/elements/ross.BearingElement.html#ross.BearingElement.read_toml_data">read_toml_data() (ross.BearingElement class method)</a>
+
+      <ul>
+        <li><a href="generated/elements/ross.DiskElement.html#ross.DiskElement.read_toml_data">(ross.DiskElement class method)</a>
 </li>
+        <li><a href="generated/elements/ross.SealElement.html#ross.SealElement.read_toml_data">(ross.SealElement class method)</a>
+</li>
+        <li><a href="generated/elements/ross.ShaftElement.html#ross.ShaftElement.read_toml_data">(ross.ShaftElement class method)</a>
+</li>
+      </ul></li>
       <li><a href="generated/material/ross.Material.html#ross.Material.remove_material">remove_material() (ross.Material static method)</a>
 </li>
       <li><a href="generated/results/ross.Rotor.html#ross.Rotor">Rotor (class in ross)</a>
 </li>
-      <li><a href="generated/results/ross.Rotor.html#ross.Rotor.run_campbell">run_campbell() (ross.Rotor method)</a>
-</li>
-      <li><a href="generated/results/ross.Rotor.html#ross.Rotor.run_forced_response">run_forced_response() (ross.Rotor method)</a>
-</li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="generated/results/ross.Rotor.html#ross.Rotor.run_campbell">run_campbell() (ross.Rotor method)</a>
+</li>
+      <li><a href="generated/results/ross.Rotor.html#ross.Rotor.run_critical_speed">run_critical_speed() (ross.Rotor method)</a>
+</li>
       <li><a href="generated/results/ross.Rotor.html#ross.Rotor.run_freq_response">run_freq_response() (ross.Rotor method)</a>
 </li>
       <li><a href="generated/results/ross.Rotor.html#ross.Rotor.run_modal">run_modal() (ross.Rotor method)</a>
 </li>
-      <li><a href="generated/results/ross.Rotor.html#ross.Rotor.run_orbit_response">run_orbit_response() (ross.Rotor method)</a>
-</li>
       <li><a href="generated/results/ross.Rotor.html#ross.Rotor.run_static">run_static() (ross.Rotor method)</a>
 </li>
       <li><a href="generated/results/ross.Rotor.html#ross.Rotor.run_time_response">run_time_response() (ross.Rotor method)</a>
+</li>
+      <li><a href="generated/results/ross.Rotor.html#ross.Rotor.run_unbalance_response">run_unbalance_response() (ross.Rotor method)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -529,18 +498,6 @@
   </ul></td>
 </tr></table>
 
-<h2 id="U">U</h2>
-<table style="width: 100%" class="indextable genindextable"><tr>
-  <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="generated/results/ross.Rotor.html#ross.Rotor.unbalance_response">unbalance_response() (ross.Rotor method)</a>
-</li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="generated/material/ross.Material.html#ross.Material.use_material">use_material() (ross.Material static method)</a>
-</li>
-  </ul></td>
-</tr></table>
-
 
 
     </div>
@@ -556,7 +513,7 @@
     </p>
     <p>
         &copy; Copyright 2019, Team ROSS.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.0.1.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.2.1.<br/>
     </p>
   </div>
 </footer>

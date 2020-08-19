@@ -3,7 +3,8 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <title>ross.ShaftElement &#8212; ross 0.3.3 documentation</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ross.ShaftElement &#8212; ross 0.4.0 documentation</title>
     <link rel="stylesheet" href="../../_static/bootstrap-sphinx.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx_copybutton.css" />
@@ -16,7 +17,7 @@
     <script src="../../_static/sphinx_copybutton.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js"></script>
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
     <link rel="shortcut icon" href="../../_static/ross-logo.ico"/>
     <link rel="index" title="Index" href="../../genindex.html" />
@@ -45,7 +46,7 @@
         </button>
         <a class="navbar-brand" href="../../index.html"><span><img src="../../_static/ross-logo.svg"></span>
           ROSS</a>
-        <span class="navbar-text navbar-version pull-left"><b>0.3</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>0.4</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -72,13 +73,15 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../examples/tutorial.html">Tutorial</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../examples/tutorial.html#Materials">Materials</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../examples/tutorial.html#ShaftElement">ShaftElement</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../examples/tutorial.html#DiskElement">DiskElement</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../examples/tutorial.html#BearingElement">BearingElement</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../examples/tutorial.html#Rotor">Rotor</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../examples/tutorial.html#Running-the-simulation">Running the simulation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../examples/tutorial.html#Obtaining-results">Obtaining results</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/tutorial.html#Table-of-Contents">Table of Contents</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/tutorial.html#Section-1:-Material-Class">Section 1: Material Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/tutorial.html#Section-2:-ShaftElement-Class">Section 2: ShaftElement Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/tutorial.html#Section-3:-DiskElement-Class">Section 3: DiskElement Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/tutorial.html#Section-4:-Bearing-and-Seal-Classes">Section 4: Bearing and Seal Classes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/tutorial.html#Section-5:-PointMass-Class">Section 5: PointMass Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/tutorial.html#Section-6:-Rotor-Class">Section 6: Rotor Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/tutorial.html#Section-7:-ROSS-Units-System">Section 7: ROSS Units System</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/tutorial.html#Section-8:-Rotor-Analyses">Section 8: Rotor Analyses</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../examples.html">Examples</a><ul>
@@ -111,6 +114,8 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../release_notes.html">Release notes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../release_notes.html#version-0-4-0">Version 0.4.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../release_notes.html#version-0-3-0">Version 0.3.0</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../release_notes.html#version-0-2-0-beta-release">Version 0.2.0 (beta release)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../release_notes.html#version-0-1-0-alpha-release">Version 0.1.0 (alpha release)</a></li>
 </ul>
@@ -169,30 +174,30 @@
 <h1>ross.ShaftElement<a class="headerlink" href="#ross-shaftelement" title="Permalink to this headline">¶</a></h1>
 <dl class="py class">
 <dt id="ross.ShaftElement">
-<em class="property">class </em><code class="sig-prename descclassname">ross.</code><code class="sig-name descname">ShaftElement</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">L</span></em>, <em class="sig-param"><span class="n">idl</span></em>, <em class="sig-param"><span class="n">odl</span></em>, <em class="sig-param"><span class="n">idr</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">odr</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">material</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">n</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">axial_force</span><span class="o">=</span><span class="default_value">0</span></em>, <em class="sig-param"><span class="n">torque</span><span class="o">=</span><span class="default_value">0</span></em>, <em class="sig-param"><span class="n">shear_effects</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">rotary_inertia</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">gyroscopic</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">shear_method_calc</span><span class="o">=</span><span class="default_value">'cowper'</span></em>, <em class="sig-param"><span class="n">tag</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/shaft_element.html#ShaftElement"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.ShaftElement" title="Permalink to this definition">¶</a></dt>
-<dd><p>A shaft element.
-This class will create a shaft element that may take into
+<em class="property">class </em><code class="sig-prename descclassname">ross.</code><code class="sig-name descname">ShaftElement</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/shaft_element.html#ShaftElement"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.ShaftElement" title="Permalink to this definition">¶</a></dt>
+<dd><p>A shaft element.</p>
+<p>This class will create a shaft element that may take into
 account shear, rotary inertia an gyroscopic effects.
 The matrices will be defined considering the following local
 coordinate vector:</p>
 <div class="math notranslate nohighlight">
-\[[x_0, y_0, \alpha_0, \beta_0, x_1, y_1, \alpha_1, \beta_1]^T\]</div>
+\[[x_0, y_0, \alpha_0, \beta_0, x_1, y_1, \alpha_1, \beta_1]**T\]</div>
 <p>Where <span class="math notranslate nohighlight">\(\alpha_0\)</span> and <span class="math notranslate nohighlight">\(\alpha_1\)</span> are the bending on the yz plane
 and <span class="math notranslate nohighlight">\(\beta_0\)</span> and <span class="math notranslate nohighlight">\(\beta_1\)</span> are the bending on the xz plane.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>L</strong><span class="classifier">float, pint.Quantity</span></dt><dd><p>Element length.</p>
+<dt><strong>L</strong><span class="classifier">float, pint.Quantity</span></dt><dd><p>Element length (m).</p>
 </dd>
-<dt><strong>idl</strong><span class="classifier">float, pint.Quantity</span></dt><dd><p>Inner diameter of the element at the left position..</p>
+<dt><strong>idl</strong><span class="classifier">float, pint.Quantity</span></dt><dd><p>Inner diameter of the element at the left position (m).</p>
 </dd>
-<dt><strong>odl</strong><span class="classifier">float, pint.Quantity</span></dt><dd><p>Outer diameter of the element at the left position.</p>
+<dt><strong>odl</strong><span class="classifier">float, pint.Quantity</span></dt><dd><p>Outer diameter of the element at the left position (m).</p>
 </dd>
-<dt><strong>idr</strong><span class="classifier">float, pint.Quantity, optional</span></dt><dd><p>Inner diameter of the element at the right position
-Default is equal to idl value (cylindrical element)</p>
+<dt><strong>idr</strong><span class="classifier">float, pint.Quantity, optional</span></dt><dd><p>Inner diameter of the element at the right position (m).
+Default is equal to idl value (cylindrical element).</p>
 </dd>
-<dt><strong>odr</strong><span class="classifier">float, pint.Quantity, optional</span></dt><dd><p>Outer diameter of the element at the right position.
-Default is equal to odl value (cylindrical element)</p>
+<dt><strong>odr</strong><span class="classifier">float, pint.Quantity, optional</span></dt><dd><p>Outer diameter of the element at the right position (m).
+Default is equal to odl value (cylindrical element).</p>
 </dd>
 <dt><strong>material</strong><span class="classifier">ross.material</span></dt><dd><p>Shaft material.</p>
 </dd>
@@ -201,9 +206,9 @@ If not given, it will be set when the rotor is assembled
 according to the element’s position in the list supplied to
 the rotor constructor.</p>
 </dd>
-<dt><strong>axial_force</strong><span class="classifier">float, optional</span></dt><dd><p>Axial force.</p>
+<dt><strong>axial_force</strong><span class="classifier">float, optional</span></dt><dd><p>Axial force (N).</p>
 </dd>
-<dt><strong>torque</strong><span class="classifier">float, optional</span></dt><dd><p>Torque.</p>
+<dt><strong>torque</strong><span class="classifier">float, optional</span></dt><dd><p>Torque (N*m).</p>
 </dd>
 <dt><strong>shear_effects</strong><span class="classifier">bool, optional</span></dt><dd><p>Determine if shear effects are taken into account.
 Default is True.</p>
@@ -257,20 +262,20 @@ Default is None.</p>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>Poisson</strong><span class="classifier">float</span></dt><dd><p>Poisson coefficient for the element.</p>
 </dd>
-<dt><strong>A</strong><span class="classifier">float</span></dt><dd><p>Element section area at half length.</p>
+<dt><strong>A</strong><span class="classifier">float</span></dt><dd><p>Element section area at half length (m**2).</p>
 </dd>
-<dt><strong>A_l</strong><span class="classifier">float</span></dt><dd><p>Element section area at left end.</p>
+<dt><strong>A_l</strong><span class="classifier">float</span></dt><dd><p>Element section area at left end (m**2).</p>
 </dd>
-<dt><strong>A_r</strong><span class="classifier">float</span></dt><dd><p>Element section area at right end.</p>
+<dt><strong>A_r</strong><span class="classifier">float</span></dt><dd><p>Element section area at right end (m**2).</p>
 </dd>
-<dt><strong>beam_cg</strong><span class="classifier">float</span></dt><dd><p>Element center of gravity local position.</p>
+<dt><strong>beam_cg</strong><span class="classifier">float</span></dt><dd><p>Element center of gravity local position (m).</p>
 </dd>
-<dt><strong>axial_cg_pos</strong><span class="classifier">float</span></dt><dd><p>Element center of gravity global position.
+<dt><strong>axial_cg_pos</strong><span class="classifier">float</span></dt><dd><p>Element center of gravity global position (m).
 This should be used only after the rotor is built.
 Default is None.</p>
 </dd>
 <dt><strong>Ie</strong><span class="classifier">float</span></dt><dd><p>Ie is the second moment of area of the cross section about
-the neutral plane.</p>
+the neutral plane (m**4).</p>
 </dd>
 <dt><strong>phi</strong><span class="classifier">float</span></dt><dd><p>Constant that is used according to <a class="bibtex reference internal" href="#friswell2010dynamics" id="id1">[Fri10]</a> to
 consider rotary inertia and shear effects. If these are not considered
@@ -323,7 +328,8 @@ consider rotary inertia and shear effects. If these are not considered
 <dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
 <dd class="field-odd"><dl class="simple">
-<dt>Gyroscopic matrix for the shaft element.</dt><dd></dd>
+<dt><strong>G</strong><span class="classifier">np.ndarray</span></dt><dd><p>Gyroscopic matrix for the shaft element.</p>
+</dd>
 </dl>
 </dd>
 </dl>
@@ -351,7 +357,8 @@ consider rotary inertia and shear effects. If these are not considered
 <dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
 <dd class="field-odd"><dl class="simple">
-<dt>Stiffness matrix for the shaft element.</dt><dd></dd>
+<dt><strong>K</strong><span class="classifier">np.ndarray</span></dt><dd><p>Stiffness matrix for the shaft element.</p>
+</dd>
 </dl>
 </dd>
 </dl>
@@ -378,7 +385,8 @@ consider rotary inertia and shear effects. If these are not considered
 <dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
 <dd class="field-odd"><dl class="simple">
-<dt>Mass matrix for the shaft element.</dt><dd></dd>
+<dt><strong>M</strong><span class="classifier">np.ndarray</span></dt><dd><p>Mass matrix for the shaft element.</p>
+</dd>
 </dl>
 </dd>
 </dl>
@@ -401,30 +409,6 @@ consider rotary inertia and shear effects. If these are not considered
 <dt id="id0">
 <code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">L</span></em>, <em class="sig-param"><span class="n">idl</span></em>, <em class="sig-param"><span class="n">odl</span></em>, <em class="sig-param"><span class="n">idr</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">odr</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">material</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">n</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">axial_force</span><span class="o">=</span><span class="default_value">0</span></em>, <em class="sig-param"><span class="n">torque</span><span class="o">=</span><span class="default_value">0</span></em>, <em class="sig-param"><span class="n">shear_effects</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">rotary_inertia</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">gyroscopic</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">shear_method_calc</span><span class="o">=</span><span class="default_value">'cowper'</span></em>, <em class="sig-param"><span class="n">tag</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/shaft_element.html#ShaftElement.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#id0" title="Permalink to this definition">¶</a></dt>
 <dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt id="ross.ShaftElement.bokeh_patch">
-<code class="sig-name descname">bokeh_patch</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">position</span></em>, <em class="sig-param"><span class="n">check_sld</span></em>, <em class="sig-param"><span class="n">bk_ax</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/shaft_element.html#ShaftElement.bokeh_patch"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.ShaftElement.bokeh_patch" title="Permalink to this definition">¶</a></dt>
-<dd><p>Shaft element patch.
-Patch that will be used to draw the shaft element.
-Parameters
-———-
-position : float</p>
-<blockquote>
-<div><p>Position in which the patch will be drawn.</p>
-</div></blockquote>
-<dl class="simple">
-<dt>check_sld<span class="classifier">bool</span></dt><dd><p>If True, HoverTool displays only the slenderness ratio and color
-the elements in yellow if slenderness ratio &lt; 1.6</p>
-</dd>
-<dt>bk_ax<span class="classifier">bokeh plotting axes, optional</span></dt><dd><p>Axes in which the plot will be drawn.</p>
-</dd>
-</dl>
-<dl class="simple">
-<dt>hover<span class="classifier">Bokeh HoverTool</span></dt><dd><p>Bokeh HoverTool axes</p>
-</dd>
-</dl>
 </dd></dl>
 
 <dl class="py method">
@@ -452,40 +436,29 @@ the elements in yellow if slenderness ratio &lt; 1.6</p>
 <dl class="py method">
 <dt id="ross.ShaftElement.dof_mapping">
 <code class="sig-name descname">dof_mapping</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/shaft_element.html#ShaftElement.dof_mapping"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.ShaftElement.dof_mapping" title="Permalink to this definition">¶</a></dt>
-<dd><p>Method to map the element’s degrees of freedom</p>
+<dd><p>Degrees of freedom mapping.</p>
+<p>Returns a dictionary with a mapping between degree of freedom and its index.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Returns</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>Returns</strong></dt><dd></dd>
-<dt><strong>——-</strong></dt><dd></dd>
-<dt><strong>The numbering of degrees of freedom of each element node.</strong></dt><dd></dd>
-</dl>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt id="ross.ShaftElement.dump_data">
-<em class="property">static </em><code class="sig-name descname">dump_data</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">data</span></em>, <em class="sig-param"><span class="n">file_name</span></em><span class="sig-paren">)</span><a class="headerlink" href="#ross.ShaftElement.dump_data" title="Permalink to this definition">¶</a></dt>
-<dd><p>Dumps element data in a toml file.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>data: dict</strong></dt><dd><p>The data that should be dumped.</p>
-</dd>
-<dt><strong>file_name: string</strong></dt><dd><p>The name of the file the data will be dumped in.</p>
+<dt><strong>dof_mapping</strong><span class="classifier">dict</span></dt><dd><p>A dictionary containing the degrees of freedom and their indexes.</p>
 </dd>
 </dl>
 </dd>
 </dl>
 <p class="rubric">Examples</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># Example using BearingElement</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">ross.bearing_seal_element</span> <span class="kn">import</span> <span class="n">bearing_example</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">ross.bearing_seal_element</span> <span class="kn">import</span> <span class="n">BearingElement</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">bearing</span> <span class="o">=</span> <span class="n">bearing_example</span><span class="p">()</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">bearing</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">Path</span><span class="p">(</span><span class="s1">&#39;.&#39;</span><span class="p">))</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">data</span> <span class="o">=</span> <span class="n">BearingElement</span><span class="o">.</span><span class="n">get_data</span><span class="p">(</span><span class="s1">&#39;BearingElement.toml&#39;</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">BearingElement</span><span class="o">.</span><span class="n">dump_data</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="s1">&#39;BearingElement.toml&#39;</span><span class="p">)</span> 
+<p>The numbering of the degrees of freedom for each node.</p>
+<p>Being the following their ordering for a node:</p>
+<p>x_0 - horizontal translation
+y_0 - vertical translation
+z_0 - axial translation
+alpha_0 - rotation around horizontal
+beta_0  - rotation around vertical
+theta_0 - torsion around axial</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">sh</span> <span class="o">=</span> <span class="n">ShaftElement</span><span class="p">(</span><span class="n">L</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">idl</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span> <span class="n">odl</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">material</span><span class="o">=</span><span class="n">steel</span><span class="p">,</span>
+<span class="gp">... </span>                  <span class="n">rotary_inertia</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">shear_effects</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">sh</span><span class="o">.</span><span class="n">dof_mapping</span><span class="p">()[</span><span class="s2">&quot;x_0&quot;</span><span class="p">]</span>
+<span class="go">0</span>
 </pre></div>
 </div>
 </dd></dl>
@@ -501,24 +474,26 @@ bellow the header until they end or it reaches a NaN.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>file: str</strong></dt><dd><p>Path to the file containing the shaft parameters.</p>
+<dt><strong>file</strong><span class="classifier">str</span></dt><dd><p>Path to the file containing the shaft parameters.</p>
 </dd>
-<dt><strong>sheet_type: str, optional</strong></dt><dd><dl class="simple">
-<dt>Describes the kind of sheet the function should expect:</dt><dd><p>Simple: The input table should specify only the number of the materials to be used.
+<dt><strong>sheet_type</strong><span class="classifier">str, optional</span></dt><dd><dl class="simple">
+<dt>Describes the kind of sheet the function should expect:</dt><dd><p>Simple: The input table should specify only the number of the materials
+to be used.
 They must be saved prior to calling the method.
-Model: The materials parameters must be passed along with the shaft parameters. Each
-material must have an id number and each shaft must reference one of the materials ids.</p>
+Model: The materials parameters must be passed along with the shaft
+parameters. Each material must have an id number and each shaft must
+reference one of the materials ids.</p>
 </dd>
 </dl>
 </dd>
-<dt><strong>sheet_name: int or str, optional</strong></dt><dd><p>Position of the sheet in the file (starting from 0) or its name. If none is passed, it is
-assumed to be the first sheet in the file.</p>
+<dt><strong>sheet_name</strong><span class="classifier">int or str, optional</span></dt><dd><p>Position of the sheet in the file (starting from 0) or its name. If none is
+passed, it is assumed to be the first sheet in the file.</p>
 </dd>
 </dl>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><dl class="simple">
-<dt>shaft: list</dt><dd><p>A list of shaft objects.</p>
+<dt><strong>shaft</strong><span class="classifier">list</span></dt><dd><p>A list of shaft objects.</p>
 </dd>
 </dl>
 </dd>
@@ -526,97 +501,70 @@ assumed to be the first sheet in the file.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="ross.ShaftElement.get_data">
-<em class="property">static </em><code class="sig-name descname">get_data</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">file_name</span></em><span class="sig-paren">)</span><a class="headerlink" href="#ross.ShaftElement.get_data" title="Permalink to this definition">¶</a></dt>
-<dd><p>Loads elements data saved in a toml format.</p>
+<dt id="ross.ShaftElement.load">
+<em class="property">classmethod </em><code class="sig-name descname">load</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">file</span></em><span class="sig-paren">)</span><a class="headerlink" href="#ross.ShaftElement.load" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="ross.ShaftElement.read_toml_data">
+<em class="property">classmethod </em><code class="sig-name descname">read_toml_data</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">data</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/shaft_element.html#ShaftElement.read_toml_data"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.ShaftElement.read_toml_data" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read and parse data stored in a .toml file.</p>
+<p>The data passed to this method needs to be according to the
+format saved in the .toml file by the .save() method.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>file_name: string</strong></dt><dd><p>The name of the file to be loaded.</p>
+<dt><strong>data</strong><span class="classifier">dict</span></dt><dd><p>Dictionary obtained from toml.load().</p>
 </dd>
 </dl>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><dl class="simple">
-<dt>data: dict</dt><dd><p>The element parameters presented as a dictionary.</p>
-</dd>
+<dt>The element object.</dt><dd></dd>
 </dl>
 </dd>
 </dl>
 <p class="rubric">Examples</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># Example using BearingElement</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">tempfile</span> <span class="kn">import</span> <span class="n">tempdir</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">ross.bearing_seal_element</span> <span class="kn">import</span> <span class="n">bearing_example</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">ross.bearing_seal_element</span> <span class="kn">import</span> <span class="n">BearingElement</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">bearing</span> <span class="o">=</span> <span class="n">bearing_example</span><span class="p">()</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">bearing</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">Path</span><span class="p">(</span><span class="s1">&#39;.&#39;</span><span class="p">))</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">BearingElement</span><span class="o">.</span><span class="n">get_data</span><span class="p">(</span><span class="s1">&#39;BearingElement.toml&#39;</span><span class="p">)</span> 
-<span class="go">{&#39;BearingElement&#39;: {&#39;0&#39;: {&#39;n&#39;: 0, &#39;kxx&#39;: [1000000.0, 1000000.0,...</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># create path for a temporary file </span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">file</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">tempdir</span><span class="p">)</span> <span class="o">/</span> <span class="s1">&#39;bearing1.toml&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">bearing1</span> <span class="o">=</span> <span class="n">bearing_example</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">bearing1</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">file</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">bearing1_loaded</span> <span class="o">=</span> <span class="n">BearingElement</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">file</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">bearing1</span> <span class="o">==</span> <span class="n">bearing1_loaded</span>
+<span class="go">True</span>
 </pre></div>
 </div>
-</dd></dl>
-
-<dl class="py method">
-<dt id="ross.ShaftElement.load">
-<em class="property">static </em><code class="sig-name descname">load</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">file_name</span><span class="o">=</span><span class="default_value">'ShaftElement'</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/shaft_element.html#ShaftElement.load"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.ShaftElement.load" title="Permalink to this definition">¶</a></dt>
-<dd><p>Load previously saved shaft elements from toml file.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>file_name</strong><span class="classifier">str, optional</span></dt><dd></dd>
-</dl>
-</dd>
-</dl>
-<p class="rubric">Examples</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">ross.materials</span> <span class="kn">import</span> <span class="n">steel</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">shaft1</span> <span class="o">=</span> <span class="n">ShaftElement</span><span class="p">(</span>
-<span class="gp">... </span>       <span class="n">L</span><span class="o">=</span><span class="mf">0.25</span><span class="p">,</span> <span class="n">idl</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">idr</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">odl</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span> <span class="n">odr</span><span class="o">=</span><span class="mf">0.08</span><span class="p">,</span>
-<span class="gp">... </span>       <span class="n">material</span><span class="o">=</span><span class="n">steel</span><span class="p">,</span> <span class="n">rotary_inertia</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">shear_effects</span><span class="o">=</span><span class="kc">True</span>
-<span class="gp">... </span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">shaft1</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">())</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">shaft2</span> <span class="o">=</span> <span class="n">ShaftElement</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">())</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">shaft2</span> 
-<span class="go">[ShaftElement(L=0.25, idl=0.0...</span>
-</pre></div>
-</div>
-</dd></dl>
-
-<dl class="py method">
-<dt id="ross.ShaftElement.patch">
-<code class="sig-name descname">patch</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">position</span></em>, <em class="sig-param"><span class="n">check_sld</span></em>, <em class="sig-param"><span class="n">ax</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/shaft_element.html#ShaftElement.patch"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.ShaftElement.patch" title="Permalink to this definition">¶</a></dt>
-<dd><p>Shaft element patch.
-Patch that will be used to draw the shaft element.
-Parameters
-———-
-position : float</p>
-<blockquote>
-<div><p>Position in which the patch will be drawn.</p>
-</div></blockquote>
-<dl class="simple">
-<dt>check_sld<span class="classifier">bool</span></dt><dd><p>If True, color the elements in yellow if slenderness ratio &lt; 1.6</p>
-</dd>
-<dt>ax<span class="classifier">matplotlib axes, optional</span></dt><dd><p>Axes in which the plot will be drawn.</p>
-</dd>
-</dl>
 </dd></dl>
 
 <dl class="py method">
 <dt id="ross.ShaftElement.save">
-<code class="sig-name descname">save</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">file_name</span><span class="o">=</span><span class="default_value">PosixPath('/home/travis/build/ross-rotordynamics/ross/docs')</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/shaft_element.html#ShaftElement.save"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.ShaftElement.save" title="Permalink to this definition">¶</a></dt>
-<dd><p>Save shaft elements to toml file.</p>
+<code class="sig-name descname">save</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">file</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/shaft_element.html#ShaftElement.save"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.ShaftElement.save" title="Permalink to this definition">¶</a></dt>
+<dd><p>Save the element in a .toml file.</p>
+<p>This function will save the element to a .toml file.
+The file will have all the argument’s names and values that are needed to
+reinstantiate the element.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>file_name</strong><span class="classifier">str</span></dt><dd></dd>
+<dt><strong>file</strong><span class="classifier">str, pathlib.Path</span></dt><dd><p>The name of the file the element will be saved in.</p>
+</dd>
 </dl>
 </dd>
 </dl>
 <p class="rubric">Examples</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">ross.materials</span> <span class="kn">import</span> <span class="n">steel</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">shaft1</span> <span class="o">=</span> <span class="n">ShaftElement</span><span class="p">(</span>
-<span class="gp">... </span>       <span class="n">L</span><span class="o">=</span><span class="mf">0.25</span><span class="p">,</span> <span class="n">idl</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">idr</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">odl</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span> <span class="n">odr</span><span class="o">=</span><span class="mf">0.08</span><span class="p">,</span>
-<span class="gp">... </span>       <span class="n">material</span><span class="o">=</span><span class="n">steel</span><span class="p">,</span> <span class="n">rotary_inertia</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">shear_effects</span><span class="o">=</span><span class="kc">True</span>
-<span class="gp">... </span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">shaft1</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># Example using DiskElement</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">tempfile</span> <span class="kn">import</span> <span class="n">tempdir</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">ross.disk_element</span> <span class="kn">import</span> <span class="n">disk_example</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># create path for a temporary file </span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">file</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">tempdir</span><span class="p">)</span> <span class="o">/</span> <span class="s1">&#39;disk.toml&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">disk</span> <span class="o">=</span> <span class="n">disk_example</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">disk</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">file</span><span class="p">)</span>
 </pre></div>
 </div>
 </dd></dl>
@@ -662,7 +610,7 @@ Default is False.</p>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><dl class="simple">
-<dt>elements: list</dt><dd><p>List with the ‘ne’ shaft elements.</p>
+<dt><strong>elements</strong><span class="classifier">list</span></dt><dd><p>List with the ‘ne’ shaft elements.</p>
 </dd>
 </dl>
 </dd>
@@ -685,7 +633,7 @@ Default is False.</p>
 <dl class="py method">
 <dt id="ross.ShaftElement.summary">
 <code class="sig-name descname">summary</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em><span class="sig-paren">)</span><a class="headerlink" href="#ross.ShaftElement.summary" title="Permalink to this definition">¶</a></dt>
-<dd><p>A summary for the element.</p>
+<dd><p>Present a summary for the element.</p>
 <p>A pandas series with the element properties as variables.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
@@ -706,7 +654,8 @@ Default is False.</p>
 <span class="go">Id                     0.178089</span>
 <span class="go">Ip                     0.329564</span>
 <span class="go">tag                        None</span>
-<span class="go">color                   #b2182b</span>
+<span class="go">color                 Firebrick</span>
+<span class="go">scale_factor                  1</span>
 <span class="go">dof_global_index           None</span>
 <span class="go">type                DiskElement</span>
 <span class="go">dtype: object</span>
@@ -722,7 +671,7 @@ Default is False.</p>
 </colgroup>
 <tbody>
 <tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">n</span></code></p></td>
-<td><p>Set the element number as property</p></td>
+<td><p>Set the element number as property.</p></td>
 </tr>
 </tbody>
 </table>
@@ -744,7 +693,7 @@ Default is False.</p>
     </p>
     <p>
         &copy; Copyright 2019, Team ROSS.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.0.1.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.2.1.<br/>
     </p>
   </div>
 </footer>

@@ -3,7 +3,8 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <title>ross.disk_element &#8212; ross 0.3.3 documentation</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ross.disk_element &#8212; ross 0.4.0 documentation</title>
     <link rel="stylesheet" href="../../_static/bootstrap-sphinx.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx_copybutton.css" />
@@ -16,7 +17,7 @@
     <script src="../../_static/sphinx_copybutton.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js"></script>
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
     <link rel="shortcut icon" href="../../_static/ross-logo.ico"/>
     <link rel="index" title="Index" href="../../genindex.html" />
@@ -43,7 +44,7 @@
         </button>
         <a class="navbar-brand" href="../../index.html"><span><img src="../../_static/ross-logo.svg"></span>
           ROSS</a>
-        <span class="navbar-text navbar-version pull-left"><b>0.3</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>0.4</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -70,13 +71,15 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../examples/tutorial.html">Tutorial</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../examples/tutorial.html#Materials">Materials</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../examples/tutorial.html#ShaftElement">ShaftElement</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../examples/tutorial.html#DiskElement">DiskElement</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../examples/tutorial.html#BearingElement">BearingElement</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../examples/tutorial.html#Rotor">Rotor</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../examples/tutorial.html#Running-the-simulation">Running the simulation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../examples/tutorial.html#Obtaining-results">Obtaining results</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/tutorial.html#Table-of-Contents">Table of Contents</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/tutorial.html#Section-1:-Material-Class">Section 1: Material Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/tutorial.html#Section-2:-ShaftElement-Class">Section 2: ShaftElement Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/tutorial.html#Section-3:-DiskElement-Class">Section 3: DiskElement Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/tutorial.html#Section-4:-Bearing-and-Seal-Classes">Section 4: Bearing and Seal Classes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/tutorial.html#Section-5:-PointMass-Class">Section 5: PointMass Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/tutorial.html#Section-6:-Rotor-Class">Section 6: Rotor Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/tutorial.html#Section-7:-ROSS-Units-System">Section 7: ROSS Units System</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/tutorial.html#Section-8:-Rotor-Analyses">Section 8: Rotor Analyses</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../examples.html">Examples</a><ul>
@@ -109,6 +112,8 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../release_notes.html">Release notes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../release_notes.html#version-0-4-0">Version 0.4.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../release_notes.html#version-0-3-0">Version 0.3.0</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../release_notes.html#version-0-2-0-beta-release">Version 0.2.0 (beta release)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../release_notes.html#version-0-1-0-alpha-release">Version 0.1.0 (alpha release)</a></li>
 </ul>
@@ -156,64 +161,75 @@
     <div class="body col-md-12 content" role="main">
       
   <h1>Source code for ross.disk_element</h1><div class="highlight"><pre>
-<span></span><span class="kn">import</span> <span class="nn">os</span>
+<span></span><span class="sd">&quot;&quot;&quot;Disk Element module.</span>
+
+<span class="sd">This module defines the DiskElement classes which will be used to represent equipments</span>
+<span class="sd">attached to the rotor shaft, which add mainly mass and inertia to the system.</span>
+<span class="sd">There&#39;re 2 options, an element with 4 or 6 degrees of freedom.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="kn">import</span> <span class="nn">os</span>
 <span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
 
-<span class="kn">import</span> <span class="nn">bokeh.palettes</span> <span class="k">as</span> <span class="nn">bp</span>
-<span class="kn">import</span> <span class="nn">matplotlib.patches</span> <span class="k">as</span> <span class="nn">mpatches</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">toml</span>
-<span class="kn">from</span> <span class="nn">bokeh.models</span> <span class="kn">import</span> <span class="n">ColumnDataSource</span><span class="p">,</span> <span class="n">HoverTool</span>
+<span class="kn">from</span> <span class="nn">plotly</span> <span class="kn">import</span> <span class="n">graph_objects</span> <span class="k">as</span> <span class="n">go</span>
 
 <span class="kn">from</span> <span class="nn">ross.element</span> <span class="kn">import</span> <span class="n">Element</span>
+<span class="kn">from</span> <span class="nn">ross.units</span> <span class="kn">import</span> <span class="n">check_units</span>
 <span class="kn">from</span> <span class="nn">ross.utils</span> <span class="kn">import</span> <span class="n">read_table_file</span>
 
-<span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;DiskElement&quot;</span><span class="p">]</span>
-<span class="n">bokeh_colors</span> <span class="o">=</span> <span class="n">bp</span><span class="o">.</span><span class="n">RdGy</span><span class="p">[</span><span class="mi">11</span><span class="p">]</span>
+<span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;DiskElement&quot;</span><span class="p">,</span> <span class="s2">&quot;DiskElement6DoF&quot;</span><span class="p">]</span>
 
 
 <div class="viewcode-block" id="DiskElement"><a class="viewcode-back" href="../../generated/elements/ross.DiskElement.html#ross.DiskElement">[docs]</a><span class="k">class</span> <span class="nc">DiskElement</span><span class="p">(</span><span class="n">Element</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;A disk element.</span>
 
-<span class="sd">     This class will create a disk element from input data of inertia and mass.</span>
+<span class="sd">    This class creates a disk element from input data of inertia and mass.</span>
 
-<span class="sd">     Parameters</span>
-<span class="sd">     ----------</span>
-<span class="sd">     n: int</span>
-<span class="sd">         Node in which the disk will be inserted.</span>
-<span class="sd">     m : float</span>
-<span class="sd">         Mass of the disk element.</span>
-<span class="sd">     Id : float</span>
-<span class="sd">         Diametral moment of inertia.</span>
-<span class="sd">     Ip : float</span>
-<span class="sd">         Polar moment of inertia</span>
-<span class="sd">     tag : str, optional</span>
-<span class="sd">         A tag to name the element</span>
-<span class="sd">         Default is None</span>
-<span class="sd">     color : str, optional</span>
-<span class="sd">         A color to be used when the element is represented.</span>
-<span class="sd">         Default is &#39;#b2182b&#39; (Cardinal).</span>
-<span class="sd">     Examples</span>
-<span class="sd">     --------</span>
-<span class="sd">     &gt;&gt;&gt; disk = DiskElement(n=0, m=32, Id=0.2, Ip=0.3)</span>
-<span class="sd">     &gt;&gt;&gt; disk.Ip</span>
-<span class="sd">     0.3</span>
-<span class="sd">     &quot;&quot;&quot;</span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    n: int</span>
+<span class="sd">        Node in which the disk will be inserted.</span>
+<span class="sd">    m : float, pint.Quantity</span>
+<span class="sd">        Mass of the disk element.</span>
+<span class="sd">    Id : float, pint.Quantity</span>
+<span class="sd">        Diametral moment of inertia.</span>
+<span class="sd">    Ip : float, pint.Quantity</span>
+<span class="sd">        Polar moment of inertia</span>
+<span class="sd">    tag : str, optional</span>
+<span class="sd">        A tag to name the element</span>
+<span class="sd">        Default is None</span>
+<span class="sd">    scale_factor: float, optional</span>
+<span class="sd">        The scale factor is used to scale the disk drawing.</span>
+<span class="sd">        Default is 1.</span>
+<span class="sd">    color : str, optional</span>
+<span class="sd">        A color to be used when the element is represented.</span>
+<span class="sd">        Default is &#39;Firebrick&#39;.</span>
 
-<div class="viewcode-block" id="DiskElement.__init__"><a class="viewcode-back" href="../../generated/elements/ross.DiskElement.html#ross.DiskElement.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">m</span><span class="p">,</span> <span class="n">Id</span><span class="p">,</span> <span class="n">Ip</span><span class="p">,</span> <span class="n">tag</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">bokeh_colors</span><span class="p">[</span><span class="mi">9</span><span class="p">]):</span>
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    &gt;&gt;&gt; disk = DiskElement(n=0, m=32, Id=0.2, Ip=0.3)</span>
+<span class="sd">    &gt;&gt;&gt; disk.Ip</span>
+<span class="sd">    0.3</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="DiskElement.__init__"><a class="viewcode-back" href="../../generated/elements/ross.DiskElement.html#ross.DiskElement.__init__">[docs]</a>    <span class="nd">@check_units</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">m</span><span class="p">,</span> <span class="n">Id</span><span class="p">,</span> <span class="n">Ip</span><span class="p">,</span> <span class="n">tag</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">scale_factor</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;Firebrick&quot;</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">n</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">n_l</span> <span class="o">=</span> <span class="n">n</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">n_r</span> <span class="o">=</span> <span class="n">n</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">m</span> <span class="o">=</span> <span class="n">m</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">Id</span> <span class="o">=</span> <span class="n">Id</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">Ip</span> <span class="o">=</span> <span class="n">Ip</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">m</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">m</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">Id</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">Id</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">Ip</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">Ip</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">tag</span> <span class="o">=</span> <span class="n">tag</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">color</span> <span class="o">=</span> <span class="n">color</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">scale_factor</span> <span class="o">=</span> <span class="n">scale_factor</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">dof_global_index</span> <span class="o">=</span> <span class="kc">None</span></div>
 
     <span class="k">def</span> <span class="fm">__eq__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;This function allows disk elements to be compared.</span>
+        <span class="sd">&quot;&quot;&quot;Equality method for comparasions.</span>
+
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
 <span class="sd">        other: object</span>
@@ -223,6 +239,7 @@
 <span class="sd">        -------</span>
 <span class="sd">        bool</span>
 <span class="sd">            True if the comparison is true; False otherwise.</span>
+
 <span class="sd">        Examples</span>
 <span class="sd">        --------</span>
 <span class="sd">        &gt;&gt;&gt; disk1 = disk_example()</span>
@@ -250,13 +267,12 @@
             <span class="k">return</span> <span class="kc">False</span>
 
     <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;This function returns a string representation of a disk element.</span>
-<span class="sd">        Parameters</span>
-<span class="sd">        ----------</span>
+        <span class="sd">&quot;&quot;&quot;Return a string representation of a disk element.</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        A string representation of a disk object.</span>
+<span class="sd">        A string representation of a disk element object.</span>
+
 <span class="sd">        Examples</span>
 <span class="sd">        --------</span>
 <span class="sd">        &gt;&gt;&gt; disk = disk_example()</span>
@@ -270,83 +286,54 @@
             <span class="sa">f</span><span class="s2">&quot;n=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">n</span><span class="si">}</span><span class="s2">, tag=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">tag</span><span class="si">!r}</span><span class="s2">)&quot;</span>
         <span class="p">)</span>
 
+    <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Convert object into string.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        The object&#39;s parameters translated to strings</span>
+
+<span class="sd">        Example</span>
+<span class="sd">        -------</span>
+<span class="sd">        &gt;&gt;&gt; print(DiskElement(n=0, m=32, Id=0.223, Ip=0.31223, tag=&quot;Disk&quot;))</span>
+<span class="sd">        Tag:                      Disk</span>
+<span class="sd">        Node:                     0</span>
+<span class="sd">        Mass           (kg):      32.0</span>
+<span class="sd">        Diam. inertia  (kg*m**2): 0.223</span>
+<span class="sd">        Polar. inertia (kg*m**2): 0.31223</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="p">(</span>
+            <span class="sa">f</span><span class="s2">&quot;Tag:                      </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">tag</span><span class="si">}</span><span class="s2">&quot;</span>
+            <span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Node:                     </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">n</span><span class="si">}</span><span class="s2">&quot;</span>
+            <span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Mass           (kg):      </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">m</span><span class="si">:{</span><span class="mi">2</span><span class="si">}</span><span class="s2">.</span><span class="si">{</span><span class="mi">5</span><span class="si">}}</span><span class="s2">&quot;</span>
+            <span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Diam. inertia  (kg*m**2): </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">Id</span><span class="si">:{</span><span class="mi">2</span><span class="si">}</span><span class="s2">.</span><span class="si">{</span><span class="mi">5</span><span class="si">}}</span><span class="s2">&quot;</span>
+            <span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Polar. inertia (kg*m**2): </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">Ip</span><span class="si">:{</span><span class="mi">2</span><span class="si">}</span><span class="s2">.</span><span class="si">{</span><span class="mi">5</span><span class="si">}}</span><span class="s2">&quot;</span>
+        <span class="p">)</span>
+
     <span class="k">def</span> <span class="fm">__hash__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="nb">hash</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">tag</span><span class="p">)</span>
-
-<div class="viewcode-block" id="DiskElement.save"><a class="viewcode-back" href="../../generated/elements/ross.DiskElement.html#ross.DiskElement.save">[docs]</a>    <span class="k">def</span> <span class="nf">save</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">file_name</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">()):</span>
-        <span class="sd">&quot;&quot;&quot;Saves a disk element in a toml format.</span>
-
-<span class="sd">        It works as an auxiliary function of the save function in the Rotor</span>
-<span class="sd">        class.</span>
-
-<span class="sd">        Parameters</span>
-<span class="sd">        ----------</span>
-<span class="sd">        file_name: string</span>
-<span class="sd">            The name of the file the disk element will be saved in.</span>
-
-<span class="sd">        Returns</span>
-<span class="sd">        -------</span>
-<span class="sd">        None</span>
-
-<span class="sd">        Examples</span>
-<span class="sd">        --------</span>
-<span class="sd">        &gt;&gt;&gt; disk = disk_example()</span>
-<span class="sd">        &gt;&gt;&gt; disk.save()</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_data</span><span class="p">(</span><span class="n">Path</span><span class="p">(</span><span class="n">file_name</span><span class="p">)</span> <span class="o">/</span> <span class="s2">&quot;DiskElement.toml&quot;</span><span class="p">)</span>
-        <span class="n">data</span><span class="p">[</span><span class="s2">&quot;DiskElement&quot;</span><span class="p">][</span><span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">n</span><span class="p">)]</span> <span class="o">=</span> <span class="p">{</span>
-            <span class="s2">&quot;n&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">n</span><span class="p">,</span>
-            <span class="s2">&quot;m&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">m</span><span class="p">,</span>
-            <span class="s2">&quot;Id&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">Id</span><span class="p">,</span>
-            <span class="s2">&quot;Ip&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">Ip</span><span class="p">,</span>
-            <span class="s2">&quot;tag&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">tag</span><span class="p">,</span>
-        <span class="p">}</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">dump_data</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">Path</span><span class="p">(</span><span class="n">file_name</span><span class="p">)</span> <span class="o">/</span> <span class="s2">&quot;DiskElement.toml&quot;</span><span class="p">)</span></div>
-
-<div class="viewcode-block" id="DiskElement.load"><a class="viewcode-back" href="../../generated/elements/ross.DiskElement.html#ross.DiskElement.load">[docs]</a>    <span class="nd">@staticmethod</span>
-    <span class="k">def</span> <span class="nf">load</span><span class="p">(</span><span class="n">file_name</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">()):</span>
-        <span class="sd">&quot;&quot;&quot;Loads a list of disk elements saved in a toml format.</span>
-
-<span class="sd">        Parameters</span>
-<span class="sd">        ----------</span>
-<span class="sd">        file_name: str</span>
-<span class="sd">            The name of the file of the disk element to be loaded.</span>
-
-<span class="sd">        Returns</span>
-<span class="sd">        -------</span>
-<span class="sd">        disk_elements: list</span>
-<span class="sd">            A list of disk elements.</span>
-
-<span class="sd">        Examples</span>
-<span class="sd">        --------</span>
-<span class="sd">        &gt;&gt;&gt; disk1 = disk_example()</span>
-<span class="sd">        &gt;&gt;&gt; disk1.save(os.getcwd())</span>
-<span class="sd">        &gt;&gt;&gt; list_of_disks = DiskElement.load(os.getcwd())</span>
-<span class="sd">        &gt;&gt;&gt; disk1 == list_of_disks[0]</span>
-<span class="sd">        True</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">disk_elements</span> <span class="o">=</span> <span class="p">[]</span>
-        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;DiskElement.toml&quot;</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
-            <span class="n">disk_elements_dict</span> <span class="o">=</span> <span class="n">toml</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
-            <span class="k">for</span> <span class="n">element</span> <span class="ow">in</span> <span class="n">disk_elements_dict</span><span class="p">[</span><span class="s2">&quot;DiskElement&quot;</span><span class="p">]:</span>
-                <span class="n">disk_elements</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
-                    <span class="n">DiskElement</span><span class="p">(</span><span class="o">**</span><span class="n">disk_elements_dict</span><span class="p">[</span><span class="s2">&quot;DiskElement&quot;</span><span class="p">][</span><span class="n">element</span><span class="p">])</span>
-                <span class="p">)</span>
-        <span class="k">return</span> <span class="n">disk_elements</span></div>
 
 <div class="viewcode-block" id="DiskElement.dof_mapping"><a class="viewcode-back" href="../../generated/elements/ross.DiskElement.html#ross.DiskElement.dof_mapping">[docs]</a>    <span class="k">def</span> <span class="nf">dof_mapping</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Degrees of freedom mapping.</span>
 
-<span class="sd">        Returns a dictionary with a mapping between degree of freedom and its</span>
-<span class="sd">        index.</span>
+<span class="sd">        Returns a dictionary with a mapping between degree of freedom and its index.</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        dof_mapping: dict</span>
+<span class="sd">        dof_mapping : dict</span>
 <span class="sd">            A dictionary containing the degrees of freedom and their indexes.</span>
 
 <span class="sd">        Examples</span>
 <span class="sd">        --------</span>
+<span class="sd">        The numbering of the degrees of freedom for each node.</span>
+
+<span class="sd">        Being the following their ordering for a node:</span>
+
+<span class="sd">        x_0 - horizontal translation</span>
+<span class="sd">        y_0 - vertical translation</span>
+<span class="sd">        alpha_0 - rotation around horizontal</span>
+<span class="sd">        beta_0  - rotation around vertical</span>
+
 <span class="sd">        &gt;&gt;&gt; disk = disk_example()</span>
 <span class="sd">        &gt;&gt;&gt; disk.dof_mapping()</span>
 <span class="sd">        {&#39;x_0&#39;: 0, &#39;y_0&#39;: 1, &#39;alpha_0&#39;: 2, &#39;beta_0&#39;: 3}</span>
@@ -354,14 +341,14 @@
         <span class="k">return</span> <span class="nb">dict</span><span class="p">(</span><span class="n">x_0</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">y_0</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">alpha_0</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">beta_0</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="DiskElement.M"><a class="viewcode-back" href="../../generated/elements/ross.DiskElement.html#ross.DiskElement.M">[docs]</a>    <span class="k">def</span> <span class="nf">M</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Mass matrix.</span>
+        <span class="sd">&quot;&quot;&quot;Mass matrix for an instance of a disk element.</span>
 
-<span class="sd">        This method will return the mass matrix for an instance of a disk</span>
-<span class="sd">        element.</span>
+<span class="sd">        This method will return the mass matrix for an instance of a disk element.</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        Mass matrix for the disk element.</span>
+<span class="sd">        M : np.ndarray</span>
+<span class="sd">            A matrix of floats containing the values of the mass matrix.</span>
 
 <span class="sd">        Examples</span>
 <span class="sd">        --------</span>
@@ -383,14 +370,14 @@
         <span class="k">return</span> <span class="n">M</span></div>
 
 <div class="viewcode-block" id="DiskElement.K"><a class="viewcode-back" href="../../generated/elements/ross.DiskElement.html#ross.DiskElement.K">[docs]</a>    <span class="k">def</span> <span class="nf">K</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Stiffness matrix.</span>
+        <span class="sd">&quot;&quot;&quot;Stiffness matrix for an instance of a disk element.</span>
 
 <span class="sd">        This method will return the stiffness matrix for an instance of a disk</span>
 <span class="sd">        element.</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        K: np.ndarray</span>
+<span class="sd">        K : np.ndarray</span>
 <span class="sd">            A matrix of floats containing the values of the stiffness matrix.</span>
 
 <span class="sd">        Examples</span>
@@ -407,11 +394,14 @@
         <span class="k">return</span> <span class="n">K</span></div>
 
 <div class="viewcode-block" id="DiskElement.C"><a class="viewcode-back" href="../../generated/elements/ross.DiskElement.html#ross.DiskElement.C">[docs]</a>    <span class="k">def</span> <span class="nf">C</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Returns the damping matrix.</span>
+        <span class="sd">&quot;&quot;&quot;Damping matrix for an instance of a disk element.</span>
+
+<span class="sd">        This method will return the damping matrix for an instance of a disk</span>
+<span class="sd">        element.</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        C: np.ndarray</span>
+<span class="sd">        C : np.ndarray</span>
 <span class="sd">            A matrix of floats containing the values of the damping matrix.</span>
 
 <span class="sd">        Examples</span>
@@ -428,7 +418,7 @@
         <span class="k">return</span> <span class="n">C</span></div>
 
 <div class="viewcode-block" id="DiskElement.G"><a class="viewcode-back" href="../../generated/elements/ross.DiskElement.html#ross.DiskElement.G">[docs]</a>    <span class="k">def</span> <span class="nf">G</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Gyroscopic matrix.</span>
+        <span class="sd">&quot;&quot;&quot;Gyroscopic matrix for an instance of a disk element.</span>
 
 <span class="sd">        This method will return the gyroscopic matrix for an instance of a disk</span>
 <span class="sd">        element.</span>
@@ -447,7 +437,6 @@
 <span class="sd">               [ 0.        ,  0.        ,  0.        ,  0.32956362],</span>
 <span class="sd">               [ 0.        ,  0.        , -0.32956362,  0.        ]])</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-
         <span class="n">Ip</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">Ip</span>
         <span class="c1"># fmt: off</span>
         <span class="n">G</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span>   <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">],</span>
@@ -457,168 +446,128 @@
         <span class="c1"># fmt: on</span>
         <span class="k">return</span> <span class="n">G</span></div>
 
-<div class="viewcode-block" id="DiskElement.patch"><a class="viewcode-back" href="../../generated/elements/ross.DiskElement.html#ross.DiskElement.patch">[docs]</a>    <span class="k">def</span> <span class="nf">patch</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">position</span><span class="p">,</span> <span class="n">ax</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">_patch</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">position</span><span class="p">,</span> <span class="n">fig</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Disk element patch.</span>
 
-<span class="sd">        Patch that will be used to draw the disk element.</span>
+<span class="sd">        Patch that will be used to draw the shaft element using plotly library.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-<span class="sd">        ax : matplotlib axes, optional</span>
-<span class="sd">            Axes in which the plot will be drawn.</span>
 <span class="sd">        position : float</span>
 <span class="sd">            Position in which the patch will be drawn.</span>
+<span class="sd">        fig : plotly.graph_objects.Figure</span>
+<span class="sd">            The figure object which traces are added on.</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
+<span class="sd">        fig : plotly.graph_objects.Figure</span>
+<span class="sd">            The figure object which traces are added on.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">zpos</span><span class="p">,</span> <span class="n">ypos</span><span class="p">,</span> <span class="n">step</span> <span class="o">=</span> <span class="n">position</span>
         <span class="n">radius</span> <span class="o">=</span> <span class="n">step</span> <span class="o">/</span> <span class="mi">6</span>
 
-        <span class="c1">#  matplotlib node (x pos), outer diam. (y pos)</span>
-        <span class="n">disk_points_u</span> <span class="o">=</span> <span class="p">[</span>
-            <span class="p">[</span><span class="n">zpos</span><span class="p">,</span> <span class="n">ypos</span><span class="p">],</span>  <span class="c1"># upper</span>
-            <span class="p">[</span><span class="n">zpos</span> <span class="o">+</span> <span class="n">step</span> <span class="o">/</span> <span class="mi">6</span><span class="p">,</span> <span class="n">ypos</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">step</span><span class="p">],</span>
-            <span class="p">[</span><span class="n">zpos</span> <span class="o">-</span> <span class="n">step</span> <span class="o">/</span> <span class="mi">6</span><span class="p">,</span> <span class="n">ypos</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">step</span><span class="p">],</span>
-            <span class="p">[</span><span class="n">zpos</span><span class="p">,</span> <span class="n">ypos</span><span class="p">],</span>
-        <span class="p">]</span>
-        <span class="n">disk_points_l</span> <span class="o">=</span> <span class="p">[</span>
-            <span class="p">[</span><span class="n">zpos</span><span class="p">,</span> <span class="o">-</span><span class="n">ypos</span><span class="p">],</span>  <span class="c1"># lower</span>
-            <span class="p">[</span><span class="n">zpos</span> <span class="o">+</span> <span class="n">step</span> <span class="o">/</span> <span class="mi">6</span><span class="p">,</span> <span class="o">-</span><span class="n">ypos</span> <span class="o">-</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">step</span><span class="p">],</span>
-            <span class="p">[</span><span class="n">zpos</span> <span class="o">-</span> <span class="n">step</span> <span class="o">/</span> <span class="mi">6</span><span class="p">,</span> <span class="o">-</span><span class="n">ypos</span> <span class="o">-</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">step</span><span class="p">],</span>
-            <span class="p">[</span><span class="n">zpos</span><span class="p">,</span> <span class="o">-</span><span class="n">ypos</span><span class="p">],</span>
-        <span class="p">]</span>
+        <span class="c1"># coordinates to plot disks elements</span>
+        <span class="n">z_upper</span> <span class="o">=</span> <span class="p">[</span><span class="n">zpos</span><span class="p">,</span> <span class="n">zpos</span> <span class="o">+</span> <span class="n">step</span> <span class="o">/</span> <span class="mi">6</span><span class="p">,</span> <span class="n">zpos</span> <span class="o">-</span> <span class="n">step</span> <span class="o">/</span> <span class="mi">6</span><span class="p">,</span> <span class="n">zpos</span><span class="p">]</span>
+        <span class="n">y_upper</span> <span class="o">=</span> <span class="p">[</span><span class="n">ypos</span><span class="p">,</span> <span class="n">ypos</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">step</span><span class="p">,</span> <span class="n">ypos</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">step</span><span class="p">,</span> <span class="n">ypos</span><span class="p">]</span>
 
-        <span class="n">ax</span><span class="o">.</span><span class="n">add_patch</span><span class="p">(</span><span class="n">mpatches</span><span class="o">.</span><span class="n">Polygon</span><span class="p">(</span><span class="n">disk_points_u</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">color</span><span class="p">))</span>
-        <span class="n">ax</span><span class="o">.</span><span class="n">add_patch</span><span class="p">(</span><span class="n">mpatches</span><span class="o">.</span><span class="n">Polygon</span><span class="p">(</span><span class="n">disk_points_l</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">color</span><span class="p">))</span>
+        <span class="n">z_lower</span> <span class="o">=</span> <span class="p">[</span><span class="n">zpos</span><span class="p">,</span> <span class="n">zpos</span> <span class="o">+</span> <span class="n">step</span> <span class="o">/</span> <span class="mi">6</span><span class="p">,</span> <span class="n">zpos</span> <span class="o">-</span> <span class="n">step</span> <span class="o">/</span> <span class="mi">6</span><span class="p">,</span> <span class="n">zpos</span><span class="p">]</span>
+        <span class="n">y_lower</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="n">ypos</span><span class="p">,</span> <span class="o">-</span><span class="n">ypos</span> <span class="o">-</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">step</span><span class="p">,</span> <span class="o">-</span><span class="n">ypos</span> <span class="o">-</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">step</span><span class="p">,</span> <span class="o">-</span><span class="n">ypos</span><span class="p">]</span>
 
-        <span class="n">ax</span><span class="o">.</span><span class="n">add_patch</span><span class="p">(</span>
-            <span class="n">mpatches</span><span class="o">.</span><span class="n">Circle</span><span class="p">(</span><span class="n">xy</span><span class="o">=</span><span class="p">(</span><span class="n">zpos</span><span class="p">,</span> <span class="n">ypos</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">step</span><span class="p">),</span> <span class="n">radius</span><span class="o">=</span><span class="n">radius</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">color</span><span class="p">)</span>
+        <span class="n">z_pos</span> <span class="o">=</span> <span class="n">z_upper</span>
+        <span class="n">z_pos</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="kc">None</span><span class="p">)</span>
+        <span class="n">z_pos</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">z_lower</span><span class="p">)</span>
+
+        <span class="n">y_pos</span> <span class="o">=</span> <span class="n">y_upper</span>
+        <span class="n">y_upper</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="kc">None</span><span class="p">)</span>
+        <span class="n">y_pos</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">y_lower</span><span class="p">)</span>
+
+        <span class="n">customdata</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">n</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">Ip</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">Id</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">m</span><span class="p">]</span>
+        <span class="n">hovertemplate</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="sa">f</span><span class="s2">&quot;Disk Node: </span><span class="si">{</span><span class="n">customdata</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2">&lt;br&gt;&quot;</span>
+            <span class="o">+</span> <span class="sa">f</span><span class="s2">&quot;Polar Inertia: </span><span class="si">{</span><span class="n">customdata</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">:</span><span class="s2">.3e</span><span class="si">}</span><span class="s2">&lt;br&gt;&quot;</span>
+            <span class="o">+</span> <span class="sa">f</span><span class="s2">&quot;Diametral Inertia: </span><span class="si">{</span><span class="n">customdata</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="si">:</span><span class="s2">.3e</span><span class="si">}</span><span class="s2">&lt;br&gt;&quot;</span>
+            <span class="o">+</span> <span class="sa">f</span><span class="s2">&quot;Disk mass: </span><span class="si">{</span><span class="n">customdata</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">&lt;br&gt;&quot;</span>
         <span class="p">)</span>
-        <span class="n">ax</span><span class="o">.</span><span class="n">add_patch</span><span class="p">(</span>
-            <span class="n">mpatches</span><span class="o">.</span><span class="n">Circle</span><span class="p">(</span>
-                <span class="n">xy</span><span class="o">=</span><span class="p">(</span><span class="n">zpos</span><span class="p">,</span> <span class="o">-</span><span class="n">ypos</span> <span class="o">-</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">step</span><span class="p">),</span> <span class="n">radius</span><span class="o">=</span><span class="n">radius</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">color</span>
+
+        <span class="n">fig</span><span class="o">.</span><span class="n">add_trace</span><span class="p">(</span>
+            <span class="n">go</span><span class="o">.</span><span class="n">Scatter</span><span class="p">(</span>
+                <span class="n">x</span><span class="o">=</span><span class="n">z_pos</span><span class="p">,</span>
+                <span class="n">y</span><span class="o">=</span><span class="n">y_pos</span><span class="p">,</span>
+                <span class="n">customdata</span><span class="o">=</span><span class="p">[</span><span class="n">customdata</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">z_pos</span><span class="p">),</span>
+                <span class="n">text</span><span class="o">=</span><span class="n">hovertemplate</span><span class="p">,</span>
+                <span class="n">mode</span><span class="o">=</span><span class="s2">&quot;lines&quot;</span><span class="p">,</span>
+                <span class="n">fill</span><span class="o">=</span><span class="s2">&quot;toself&quot;</span><span class="p">,</span>
+                <span class="n">fillcolor</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">color</span><span class="p">,</span>
+                <span class="n">line</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">width</span><span class="o">=</span><span class="mf">2.0</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">color</span><span class="p">),</span>
+                <span class="n">showlegend</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                <span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">tag</span><span class="p">,</span>
+                <span class="n">legendgroup</span><span class="o">=</span><span class="s2">&quot;disks&quot;</span><span class="p">,</span>
+                <span class="n">hoveron</span><span class="o">=</span><span class="s2">&quot;points+fills&quot;</span><span class="p">,</span>
+                <span class="n">hoverinfo</span><span class="o">=</span><span class="s2">&quot;text&quot;</span><span class="p">,</span>
+                <span class="n">hovertemplate</span><span class="o">=</span><span class="n">hovertemplate</span><span class="p">,</span>
+                <span class="n">hoverlabel</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">bgcolor</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">color</span><span class="p">),</span>
             <span class="p">)</span>
-        <span class="p">)</span></div>
+        <span class="p">)</span>
 
-<div class="viewcode-block" id="DiskElement.bokeh_patch"><a class="viewcode-back" href="../../generated/elements/ross.DiskElement.html#ross.DiskElement.bokeh_patch">[docs]</a>    <span class="k">def</span> <span class="nf">bokeh_patch</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">position</span><span class="p">,</span> <span class="n">bk_ax</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Disk element patch.</span>
-<span class="sd">        Patch that will be used to draw the disk element.</span>
-<span class="sd">        Parameters</span>
-<span class="sd">        ----------</span>
-<span class="sd">        bk_ax : bokeh plotting axes, optional</span>
-<span class="sd">            Axes in which the plot will be drawn.</span>
-<span class="sd">        position : float</span>
-<span class="sd">            Position in which the patch will be drawn.</span>
-<span class="sd">        Returns</span>
-<span class="sd">        -------</span>
-<span class="sd">        bk_ax : bokeh plotting axes</span>
-<span class="sd">            Returns the axes object with the plot.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">zpos</span><span class="p">,</span> <span class="n">ypos</span><span class="p">,</span> <span class="n">step</span> <span class="o">=</span> <span class="n">position</span>
-
-        <span class="c1"># bokeh plot - coordinates to plot disks elements</span>
-        <span class="n">z_upper</span> <span class="o">=</span> <span class="p">[</span><span class="n">zpos</span><span class="p">,</span> <span class="n">zpos</span> <span class="o">+</span> <span class="n">step</span> <span class="o">/</span> <span class="mi">6</span><span class="p">,</span> <span class="n">zpos</span> <span class="o">-</span> <span class="n">step</span> <span class="o">/</span> <span class="mi">6</span><span class="p">]</span>
-        <span class="n">y_upper</span> <span class="o">=</span> <span class="p">[</span><span class="n">ypos</span><span class="p">,</span> <span class="n">ypos</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">step</span><span class="p">,</span> <span class="n">ypos</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">step</span><span class="p">]</span>
-
-        <span class="n">z_lower</span> <span class="o">=</span> <span class="p">[</span><span class="n">zpos</span><span class="p">,</span> <span class="n">zpos</span> <span class="o">+</span> <span class="n">step</span> <span class="o">/</span> <span class="mi">6</span><span class="p">,</span> <span class="n">zpos</span> <span class="o">-</span> <span class="n">step</span> <span class="o">/</span> <span class="mi">6</span><span class="p">]</span>
-        <span class="n">y_lower</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="n">ypos</span><span class="p">,</span> <span class="o">-</span><span class="n">ypos</span> <span class="o">-</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">step</span><span class="p">,</span> <span class="o">-</span><span class="n">ypos</span> <span class="o">-</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">step</span><span class="p">]</span>
-
-        <span class="n">source</span> <span class="o">=</span> <span class="n">ColumnDataSource</span><span class="p">(</span>
+        <span class="n">fig</span><span class="o">.</span><span class="n">add_shape</span><span class="p">(</span>
             <span class="nb">dict</span><span class="p">(</span>
-                <span class="n">z_l</span><span class="o">=</span><span class="p">[</span><span class="n">z_lower</span><span class="p">],</span>
-                <span class="n">y_l</span><span class="o">=</span><span class="p">[</span><span class="n">y_lower</span><span class="p">],</span>
-                <span class="n">z_u</span><span class="o">=</span><span class="p">[</span><span class="n">z_upper</span><span class="p">],</span>
-                <span class="n">y_u</span><span class="o">=</span><span class="p">[</span><span class="n">y_upper</span><span class="p">],</span>
-                <span class="n">elnum</span><span class="o">=</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">n</span><span class="p">],</span>
-                <span class="n">IP</span><span class="o">=</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">Ip</span><span class="p">],</span>
-                <span class="n">ID</span><span class="o">=</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">Id</span><span class="p">],</span>
-                <span class="n">mass</span><span class="o">=</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">m</span><span class="p">],</span>
-                <span class="n">tag</span><span class="o">=</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">tag</span><span class="p">],</span>
+                <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;circle&quot;</span><span class="p">,</span>
+                <span class="n">xref</span><span class="o">=</span><span class="s2">&quot;x&quot;</span><span class="p">,</span>
+                <span class="n">yref</span><span class="o">=</span><span class="s2">&quot;y&quot;</span><span class="p">,</span>
+                <span class="n">x0</span><span class="o">=</span><span class="n">z_upper</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
+                <span class="n">y0</span><span class="o">=</span><span class="n">y_upper</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">radius</span><span class="p">,</span>
+                <span class="n">x1</span><span class="o">=</span><span class="n">z_upper</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span>
+                <span class="n">y1</span><span class="o">=</span><span class="n">y_upper</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">radius</span><span class="p">,</span>
+                <span class="n">fillcolor</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">color</span><span class="p">,</span>
+                <span class="n">line_color</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">color</span><span class="p">,</span>
             <span class="p">)</span>
         <span class="p">)</span>
-        <span class="n">source_c</span> <span class="o">=</span> <span class="n">ColumnDataSource</span><span class="p">(</span>
+        <span class="n">fig</span><span class="o">.</span><span class="n">add_shape</span><span class="p">(</span>
             <span class="nb">dict</span><span class="p">(</span>
-                <span class="n">z_circle</span><span class="o">=</span><span class="p">[</span><span class="n">z_upper</span><span class="p">[</span><span class="mi">0</span><span class="p">]],</span>
-                <span class="n">yu_circle</span><span class="o">=</span><span class="p">[</span><span class="n">y_upper</span><span class="p">[</span><span class="mi">1</span><span class="p">]],</span>
-                <span class="n">yl_circle</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="n">y_upper</span><span class="p">[</span><span class="mi">1</span><span class="p">]],</span>
-                <span class="n">radius</span><span class="o">=</span><span class="p">[</span><span class="n">step</span> <span class="o">/</span> <span class="mi">6</span><span class="p">],</span>
-                <span class="n">elnum</span><span class="o">=</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">n</span><span class="p">],</span>
-                <span class="n">IP</span><span class="o">=</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">Ip</span><span class="p">],</span>
-                <span class="n">ID</span><span class="o">=</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">Id</span><span class="p">],</span>
-                <span class="n">mass</span><span class="o">=</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">m</span><span class="p">],</span>
-                <span class="n">tag</span><span class="o">=</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">tag</span><span class="p">],</span>
+                <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;circle&quot;</span><span class="p">,</span>
+                <span class="n">xref</span><span class="o">=</span><span class="s2">&quot;x&quot;</span><span class="p">,</span>
+                <span class="n">yref</span><span class="o">=</span><span class="s2">&quot;y&quot;</span><span class="p">,</span>
+                <span class="n">x0</span><span class="o">=</span><span class="n">z_lower</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
+                <span class="n">y0</span><span class="o">=</span><span class="n">y_lower</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">radius</span><span class="p">,</span>
+                <span class="n">x1</span><span class="o">=</span><span class="n">z_lower</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span>
+                <span class="n">y1</span><span class="o">=</span><span class="n">y_lower</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">radius</span><span class="p">,</span>
+                <span class="n">fillcolor</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">color</span><span class="p">,</span>
+                <span class="n">line_color</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">color</span><span class="p">,</span>
             <span class="p">)</span>
         <span class="p">)</span>
 
-        <span class="n">bk_ax</span><span class="o">.</span><span class="n">patches</span><span class="p">(</span>
-            <span class="n">xs</span><span class="o">=</span><span class="s2">&quot;z_u&quot;</span><span class="p">,</span>
-            <span class="n">ys</span><span class="o">=</span><span class="s2">&quot;y_u&quot;</span><span class="p">,</span>
-            <span class="n">source</span><span class="o">=</span><span class="n">source</span><span class="p">,</span>
-            <span class="n">alpha</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
-            <span class="n">line_width</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
-            <span class="n">color</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">color</span><span class="p">,</span>
-            <span class="n">legend_label</span><span class="o">=</span><span class="s2">&quot;Disk&quot;</span><span class="p">,</span>
-            <span class="n">name</span><span class="o">=</span><span class="s2">&quot;ub_disk&quot;</span><span class="p">,</span>
-        <span class="p">)</span>
-        <span class="n">bk_ax</span><span class="o">.</span><span class="n">patches</span><span class="p">(</span>
-            <span class="n">xs</span><span class="o">=</span><span class="s2">&quot;z_l&quot;</span><span class="p">,</span>
-            <span class="n">ys</span><span class="o">=</span><span class="s2">&quot;y_l&quot;</span><span class="p">,</span>
-            <span class="n">source</span><span class="o">=</span><span class="n">source</span><span class="p">,</span>
-            <span class="n">alpha</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
-            <span class="n">line_width</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
-            <span class="n">color</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">color</span><span class="p">,</span>
-            <span class="n">name</span><span class="o">=</span><span class="s2">&quot;ub_disk&quot;</span><span class="p">,</span>
-        <span class="p">)</span>
-        <span class="n">bk_ax</span><span class="o">.</span><span class="n">circle</span><span class="p">(</span>
-            <span class="n">x</span><span class="o">=</span><span class="s2">&quot;z_circle&quot;</span><span class="p">,</span>
-            <span class="n">y</span><span class="o">=</span><span class="s2">&quot;yu_circle&quot;</span><span class="p">,</span>
-            <span class="n">radius</span><span class="o">=</span><span class="s2">&quot;radius&quot;</span><span class="p">,</span>
-            <span class="n">source</span><span class="o">=</span><span class="n">source_c</span><span class="p">,</span>
-            <span class="n">fill_alpha</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
-            <span class="n">color</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">color</span><span class="p">,</span>
-            <span class="n">name</span><span class="o">=</span><span class="s2">&quot;uc_disk&quot;</span><span class="p">,</span>
-        <span class="p">)</span>
-        <span class="n">bk_ax</span><span class="o">.</span><span class="n">circle</span><span class="p">(</span>
-            <span class="n">x</span><span class="o">=</span><span class="s2">&quot;z_circle&quot;</span><span class="p">,</span>
-            <span class="n">y</span><span class="o">=</span><span class="s2">&quot;yl_circle&quot;</span><span class="p">,</span>
-            <span class="n">radius</span><span class="o">=</span><span class="s2">&quot;radius&quot;</span><span class="p">,</span>
-            <span class="n">source</span><span class="o">=</span><span class="n">source_c</span><span class="p">,</span>
-            <span class="n">fill_alpha</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
-            <span class="n">color</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">color</span><span class="p">,</span>
-            <span class="n">name</span><span class="o">=</span><span class="s2">&quot;lc_disk&quot;</span><span class="p">,</span>
-        <span class="p">)</span>
-
-        <span class="n">hover</span> <span class="o">=</span> <span class="n">HoverTool</span><span class="p">(</span><span class="n">names</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;uc_disk&quot;</span><span class="p">,</span> <span class="s2">&quot;lc_disk&quot;</span><span class="p">,</span> <span class="s2">&quot;ub_disk&quot;</span><span class="p">,</span> <span class="s2">&quot;lb_disk&quot;</span><span class="p">])</span>
-        <span class="n">hover</span><span class="o">.</span><span class="n">tooltips</span> <span class="o">=</span> <span class="p">[</span>
-            <span class="p">(</span><span class="s2">&quot;Disk Node :&quot;</span><span class="p">,</span> <span class="s2">&quot;@elnum&quot;</span><span class="p">),</span>
-            <span class="p">(</span><span class="s2">&quot;Polar Moment of Inertia :&quot;</span><span class="p">,</span> <span class="s2">&quot;@IP&quot;</span><span class="p">),</span>
-            <span class="p">(</span><span class="s2">&quot;Diametral Moment of Inertia :&quot;</span><span class="p">,</span> <span class="s2">&quot;@ID&quot;</span><span class="p">),</span>
-            <span class="p">(</span><span class="s2">&quot;Disk mass :&quot;</span><span class="p">,</span> <span class="s2">&quot;@mass&quot;</span><span class="p">),</span>
-            <span class="p">(</span><span class="s2">&quot;Tag :&quot;</span><span class="p">,</span> <span class="s2">&quot;@tag&quot;</span><span class="p">),</span>
-        <span class="p">]</span>
-        <span class="n">hover</span><span class="o">.</span><span class="n">mode</span> <span class="o">=</span> <span class="s2">&quot;mouse&quot;</span>
-
-        <span class="k">return</span> <span class="n">hover</span></div>
+        <span class="k">return</span> <span class="n">fig</span>
 
 <div class="viewcode-block" id="DiskElement.from_geometry"><a class="viewcode-back" href="../../generated/elements/ross.DiskElement.html#ross.DiskElement.from_geometry">[docs]</a>    <span class="nd">@classmethod</span>
-    <span class="k">def</span> <span class="nf">from_geometry</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">material</span><span class="p">,</span> <span class="n">width</span><span class="p">,</span> <span class="n">i_d</span><span class="p">,</span> <span class="n">o_d</span><span class="p">,</span> <span class="n">tag</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;A disk element.</span>
+    <span class="nd">@check_units</span>
+    <span class="k">def</span> <span class="nf">from_geometry</span><span class="p">(</span>
+        <span class="bp">cls</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">material</span><span class="p">,</span> <span class="n">width</span><span class="p">,</span> <span class="n">i_d</span><span class="p">,</span> <span class="n">o_d</span><span class="p">,</span> <span class="n">tag</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">scale_factor</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;Firebrick&quot;</span>
+    <span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Create a disk element from geometry properties.</span>
 
 <span class="sd">        This class method will create a disk element from geometry data.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-<span class="sd">        n: int</span>
+<span class="sd">        n : int</span>
 <span class="sd">            Node in which the disk will be inserted.</span>
 <span class="sd">        material: ross.Material</span>
-<span class="sd">             Shaft material.</span>
-<span class="sd">        width: float</span>
+<span class="sd">             Disk material.</span>
+<span class="sd">        width : float, pint.Quantity</span>
 <span class="sd">            The disk width.</span>
-<span class="sd">        i_d: float</span>
+<span class="sd">        i_d : float, pint.Quantity</span>
 <span class="sd">            Inner diameter.</span>
-<span class="sd">        o_d: float</span>
+<span class="sd">        o_d : float, pint.Quantity</span>
 <span class="sd">            Outer diameter.</span>
+<span class="sd">        tag : str, optional</span>
+<span class="sd">            A tag to name the element</span>
+<span class="sd">            Default is None</span>
+<span class="sd">        scale_factor: float, optional</span>
+<span class="sd">            The scale factor is used to scale the disk drawing.</span>
+<span class="sd">            Default is 1.</span>
+<span class="sd">        color : str, optional</span>
+<span class="sd">            A color to be used when the element is represented.</span>
+<span class="sd">            Default is &#39;Firebrick&#39; (Cardinal).</span>
 
 <span class="sd">        Attributes</span>
 <span class="sd">        ----------</span>
@@ -628,9 +577,6 @@
 <span class="sd">            Diametral moment of inertia.</span>
 <span class="sd">        Ip : float</span>
 <span class="sd">            Polar moment of inertia</span>
-<span class="sd">        tag : str, optional</span>
-<span class="sd">            A tag to name the element</span>
-<span class="sd">            Default is None</span>
 
 <span class="sd">        Examples</span>
 <span class="sd">        --------</span>
@@ -650,10 +596,10 @@
 
         <span class="n">tag</span> <span class="o">=</span> <span class="n">tag</span>
 
-        <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">m</span><span class="p">,</span> <span class="n">Id</span><span class="p">,</span> <span class="n">Ip</span><span class="p">,</span> <span class="n">tag</span><span class="p">)</span></div>
+        <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">m</span><span class="p">,</span> <span class="n">Id</span><span class="p">,</span> <span class="n">Ip</span><span class="p">,</span> <span class="n">tag</span><span class="p">,</span> <span class="n">scale_factor</span><span class="p">,</span> <span class="n">color</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="DiskElement.from_table"><a class="viewcode-back" href="../../generated/elements/ross.DiskElement.html#ross.DiskElement.from_table">[docs]</a>    <span class="nd">@classmethod</span>
-    <span class="k">def</span> <span class="nf">from_table</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">file</span><span class="p">,</span> <span class="n">sheet_name</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">from_table</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">file</span><span class="p">,</span> <span class="n">sheet_name</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">tag</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">scale_factor</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Instantiate one or more disks using inputs from an Excel table.</span>
 
 <span class="sd">        A header with the names of the columns is required. These names should</span>
@@ -663,11 +609,22 @@
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-<span class="sd">        file: str</span>
+<span class="sd">        file : str</span>
 <span class="sd">            Path to the file containing the disk parameters.</span>
-<span class="sd">        sheet_name: int or str, optional</span>
+<span class="sd">        sheet_name : int or str, optional</span>
 <span class="sd">            Position of the sheet in the file (starting from 0) or its name.</span>
 <span class="sd">            If none is passed, it is assumed to be the first sheet in the file.</span>
+<span class="sd">        tag_list : list, optional</span>
+<span class="sd">            list of tags for the disk elements.</span>
+<span class="sd">            Default is None</span>
+<span class="sd">        scale_factor: list, optional</span>
+<span class="sd">            List of scale factors for the disk elements patches.</span>
+<span class="sd">            The scale factor is used to scale the disk drawing.</span>
+<span class="sd">            Default is 1.</span>
+<span class="sd">        color : list, optional</span>
+<span class="sd">            A color to be used when the element is represented.</span>
+<span class="sd">            Default is &#39;Firebrick&#39;.</span>
+
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
 <span class="sd">        disk : list</span>
@@ -679,9 +636,16 @@
 <span class="sd">        &gt;&gt;&gt; file_path = os.path.dirname(os.path.realpath(__file__)) + &#39;/tests/data/shaft_si.xls&#39;</span>
 <span class="sd">        &gt;&gt;&gt; list_of_disks = DiskElement.from_table(file_path, sheet_name=&quot;More&quot;)</span>
 <span class="sd">        &gt;&gt;&gt; list_of_disks[0]</span>
-<span class="sd">        DiskElement(Id=0.0, Ip=0.0, m=15.12, color=&#39;#b2182b&#39;, n=3, tag=None)</span>
+<span class="sd">        DiskElement(Id=0.0, Ip=0.0, m=15.12, color=&#39;Firebrick&#39;, n=3, tag=None)</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">parameters</span> <span class="o">=</span> <span class="n">read_table_file</span><span class="p">(</span><span class="n">file</span><span class="p">,</span> <span class="s2">&quot;disk&quot;</span><span class="p">,</span> <span class="n">sheet_name</span><span class="o">=</span><span class="n">sheet_name</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">tag</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">tag</span> <span class="o">=</span> <span class="p">[</span><span class="kc">None</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">parameters</span><span class="p">[</span><span class="s2">&quot;n&quot;</span><span class="p">])</span>
+        <span class="k">if</span> <span class="n">scale_factor</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">scale_factor</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">parameters</span><span class="p">[</span><span class="s2">&quot;n&quot;</span><span class="p">])</span>
+        <span class="k">if</span> <span class="n">color</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">color</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Firebrick&quot;</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">parameters</span><span class="p">[</span><span class="s2">&quot;n&quot;</span><span class="p">])</span>
+
         <span class="n">list_of_disks</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">parameters</span><span class="p">[</span><span class="s2">&quot;n&quot;</span><span class="p">])):</span>
             <span class="n">list_of_disks</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
@@ -690,22 +654,217 @@
                     <span class="n">m</span><span class="o">=</span><span class="n">parameters</span><span class="p">[</span><span class="s2">&quot;m&quot;</span><span class="p">][</span><span class="n">i</span><span class="p">],</span>
                     <span class="n">Id</span><span class="o">=</span><span class="nb">float</span><span class="p">(</span><span class="n">parameters</span><span class="p">[</span><span class="s2">&quot;Id&quot;</span><span class="p">][</span><span class="n">i</span><span class="p">]),</span>
                     <span class="n">Ip</span><span class="o">=</span><span class="nb">float</span><span class="p">(</span><span class="n">parameters</span><span class="p">[</span><span class="s2">&quot;Ip&quot;</span><span class="p">][</span><span class="n">i</span><span class="p">]),</span>
+                    <span class="n">tag</span><span class="o">=</span><span class="n">tag</span><span class="p">[</span><span class="n">i</span><span class="p">],</span>
+                    <span class="n">scale_factor</span><span class="o">=</span><span class="n">scale_factor</span><span class="p">[</span><span class="n">i</span><span class="p">],</span>
+                    <span class="n">color</span><span class="o">=</span><span class="n">color</span><span class="p">[</span><span class="n">i</span><span class="p">],</span>
                 <span class="p">)</span>
             <span class="p">)</span>
         <span class="k">return</span> <span class="n">list_of_disks</span></div></div>
 
 
-<span class="k">def</span> <span class="nf">disk_example</span><span class="p">():</span>
-    <span class="sd">&quot;&quot;&quot;This function returns an instance of a simple disk.</span>
-<span class="sd">    The purpose is to make available a simple model</span>
-<span class="sd">    so that doctest can be written using it.</span>
+<span class="k">class</span> <span class="nc">DiskElement6DoF</span><span class="p">(</span><span class="n">DiskElement</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;A disk element for 6 DoFs.</span>
+
+<span class="sd">    This class will create a disk element with 6 DoF from input data of inertia and</span>
+<span class="sd">    mass.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
+<span class="sd">    n: int</span>
+<span class="sd">        Node in which the disk will be inserted.</span>
+<span class="sd">    m : float, pint.Quantity</span>
+<span class="sd">        Mass of the disk element.</span>
+<span class="sd">    Id : float, pint.Quantity</span>
+<span class="sd">        Diametral moment of inertia.</span>
+<span class="sd">    Ip : float, pint.Quantity</span>
+<span class="sd">        Polar moment of inertia</span>
+<span class="sd">    tag : str, optional</span>
+<span class="sd">        A tag to name the element</span>
+<span class="sd">        Default is None</span>
+<span class="sd">    scale_factor: float, optional</span>
+<span class="sd">        The scale factor is used to scale the disk drawing.</span>
+<span class="sd">        Default is 1.</span>
+<span class="sd">    color : str, optional</span>
+<span class="sd">        A color to be used when the element is represented.</span>
+<span class="sd">        Default is &#39;Firebrick&#39;.</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    &gt;&gt;&gt; disk = DiskElement6DoF(n=0, m=32, Id=0.2, Ip=0.3)</span>
+<span class="sd">    &gt;&gt;&gt; disk.Ip</span>
+<span class="sd">    0.3</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">dof_mapping</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Degrees of freedom mapping.</span>
+
+<span class="sd">        Returns a dictionary with a mapping between degree of freedom and its index.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        dof_mapping : dict</span>
+<span class="sd">            A dictionary containing the degrees of freedom and their indexes.</span>
+
+<span class="sd">        Examples</span>
+<span class="sd">        --------</span>
+<span class="sd">        The numbering of the degrees of freedom for each node.</span>
+
+<span class="sd">        Being the following their ordering for a node:</span>
+
+<span class="sd">        x_0 - horizontal translation</span>
+<span class="sd">        y_0 - vertical translation</span>
+<span class="sd">        z_0 - axial translation</span>
+<span class="sd">        alpha_0 - rotation around horizontal</span>
+<span class="sd">        beta_0  - rotation around vertical</span>
+<span class="sd">        theta_0 - torsion around axial</span>
+
+<span class="sd">        &gt;&gt;&gt; disk = disk_example_6dof()</span>
+<span class="sd">        &gt;&gt;&gt; disk.dof_mapping()</span>
+<span class="sd">        {&#39;x_0&#39;: 0, &#39;y_0&#39;: 1, &#39;z_0&#39;: 2, &#39;alpha_0&#39;: 3, &#39;beta_0&#39;: 4, &#39;theta_0&#39;: 5}</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">dict</span><span class="p">(</span><span class="n">x_0</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">y_0</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">z_0</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">alpha_0</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">beta_0</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">theta_0</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">M</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Mass matrix for an instance of a 6 DoF disk element.</span>
+
+<span class="sd">        This method will return the mass matrix for an instance of a disk</span>
+<span class="sd">        element with 6DoFs.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        M : np.ndarray</span>
+<span class="sd">            Mass matrix for the 6DoFs disk element.</span>
+
+<span class="sd">        Examples</span>
+<span class="sd">        --------</span>
+<span class="sd">        &gt;&gt;&gt; disk = DiskElement6DoF(0, 32.58972765, 0.17808928, 0.32956362)</span>
+<span class="sd">        &gt;&gt;&gt; disk.M().round(2)</span>
+<span class="sd">        array([[32.59,  0.  ,  0.  ,  0.  ,  0.  ,  0.  ],</span>
+<span class="sd">               [ 0.  , 32.59,  0.  ,  0.  ,  0.  ,  0.  ],</span>
+<span class="sd">               [ 0.  ,  0.  , 32.59,  0.  ,  0.  ,  0.  ],</span>
+<span class="sd">               [ 0.  ,  0.  ,  0.  ,  0.18,  0.  ,  0.  ],</span>
+<span class="sd">               [ 0.  ,  0.  ,  0.  ,  0.  ,  0.18,  0.  ],</span>
+<span class="sd">               [ 0.  ,  0.  ,  0.  ,  0.  ,  0.  ,  0.33]])</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">m</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">m</span>
+        <span class="n">Id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">Id</span>
+        <span class="n">Ip</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">Ip</span>
+        <span class="c1"># fmt: off</span>
+        <span class="n">M</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span>
+            <span class="p">[</span><span class="n">m</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">],</span>
+            <span class="p">[</span><span class="mi">0</span><span class="p">,</span>  <span class="n">m</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">],</span>
+            <span class="p">[</span><span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span>  <span class="n">m</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">],</span>
+            <span class="p">[</span><span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span> <span class="n">Id</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">],</span>
+            <span class="p">[</span><span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span> <span class="n">Id</span><span class="p">,</span>  <span class="mi">0</span><span class="p">],</span>
+            <span class="p">[</span><span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span> <span class="n">Ip</span><span class="p">],</span>
+        <span class="p">])</span>
+        <span class="c1"># fmt: on</span>
+        <span class="k">return</span> <span class="n">M</span>
+
+    <span class="k">def</span> <span class="nf">K</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Stiffness matrix for an instance of a 6 DoF disk element.</span>
+
+<span class="sd">        This method will return the stiffness matrix for an instance of a disk</span>
+<span class="sd">        element with 6DoFs.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        K : np.ndarray</span>
+<span class="sd">            A matrix of floats containing the values of the stiffness matrix.</span>
+
+<span class="sd">        Examples</span>
+<span class="sd">        --------</span>
+<span class="sd">        &gt;&gt;&gt; disk = disk_example_6dof()</span>
+<span class="sd">        &gt;&gt;&gt; disk.K().round(2)</span>
+<span class="sd">        array([[0.  , 0.  , 0.  , 0.  , 0.  , 0.  ],</span>
+<span class="sd">               [0.  , 0.  , 0.  , 0.  , 0.  , 0.  ],</span>
+<span class="sd">               [0.  , 0.  , 0.  , 0.  , 0.  , 0.  ],</span>
+<span class="sd">               [0.  , 0.  , 0.  , 0.  , 0.  , 0.  ],</span>
+<span class="sd">               [0.  , 0.  , 0.  , 0.  , 0.  , 0.  ],</span>
+<span class="sd">               [0.  , 0.  , 0.  , 0.33, 0.  , 0.  ]])</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">Ip</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">Ip</span>
+        <span class="c1"># fmt: off</span>
+        <span class="n">K</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span>
+            <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+            <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+            <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+            <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+            <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+            <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">Ip</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+        <span class="p">])</span>
+        <span class="c1"># fmt: on</span>
+        <span class="k">return</span> <span class="n">K</span>
+
+    <span class="k">def</span> <span class="nf">C</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Damping matrix for an instance of a 6 DoF disk element.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        C : np.ndarray</span>
+<span class="sd">            A matrix of floats containing the values of the damping matrix.</span>
+
+<span class="sd">        Examples</span>
+<span class="sd">        --------</span>
+<span class="sd">        &gt;&gt;&gt; disk = disk_example_6dof()</span>
+<span class="sd">        &gt;&gt;&gt; disk.C()</span>
+<span class="sd">        array([[0., 0., 0., 0., 0., 0.],</span>
+<span class="sd">               [0., 0., 0., 0., 0., 0.],</span>
+<span class="sd">               [0., 0., 0., 0., 0., 0.],</span>
+<span class="sd">               [0., 0., 0., 0., 0., 0.],</span>
+<span class="sd">               [0., 0., 0., 0., 0., 0.],</span>
+<span class="sd">               [0., 0., 0., 0., 0., 0.]])</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">C</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+
+        <span class="k">return</span> <span class="n">C</span>
+
+    <span class="k">def</span> <span class="nf">G</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Gyroscopic matrix for an instance of a 6 DoF disk element.</span>
+
+<span class="sd">        This method will return the gyroscopic matrix for an instance of a disk</span>
+<span class="sd">        element.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        G : np.ndarray</span>
+<span class="sd">            Gyroscopic matrix for the disk element.</span>
+
+<span class="sd">        Examples</span>
+<span class="sd">        --------</span>
+<span class="sd">        &gt;&gt;&gt; disk = DiskElement6DoF(0, 32.58972765, 0.17808928, 0.32956362)</span>
+<span class="sd">        &gt;&gt;&gt; disk.G().round(2)</span>
+<span class="sd">        array([[ 0.  ,  0.  ,  0.  ,  0.  ,  0.  ,  0.  ],</span>
+<span class="sd">               [ 0.  ,  0.  ,  0.  ,  0.  ,  0.  ,  0.  ],</span>
+<span class="sd">               [ 0.  ,  0.  ,  0.  ,  0.  ,  0.  ,  0.  ],</span>
+<span class="sd">               [ 0.  ,  0.  ,  0.  ,  0.  ,  0.33,  0.  ],</span>
+<span class="sd">               [ 0.  ,  0.  ,  0.  , -0.33,  0.  ,  0.  ],</span>
+<span class="sd">               [ 0.  ,  0.  ,  0.  ,  0.  ,  0.  ,  0.  ]])</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">Ip</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">Ip</span>
+        <span class="c1"># fmt: off</span>
+        <span class="n">G</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span>
+            <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span>   <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+            <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span>   <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+            <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span>   <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+            <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span>   <span class="mi">0</span><span class="p">,</span> <span class="n">Ip</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+            <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="n">Ip</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+            <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span>   <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+        <span class="p">])</span>
+        <span class="c1"># fmt: on</span>
+        <span class="k">return</span> <span class="n">G</span>
+
+
+<span class="k">def</span> <span class="nf">disk_example</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;Create an example of disk element.</span>
+
+<span class="sd">    This function returns an instance of a simple disk. The purpose is to make available</span>
+<span class="sd">    a simple model so that doctest can be written using it.</span>
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
-<span class="sd">    An instance of a disk object.</span>
+<span class="sd">    disk : ross.DiskElement</span>
+<span class="sd">        An instance of a disk object.</span>
 
 <span class="sd">    Examples</span>
 <span class="sd">    --------</span>
@@ -714,6 +873,27 @@
 <span class="sd">    0.32956362</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">disk</span> <span class="o">=</span> <span class="n">DiskElement</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">32.589_727_65</span><span class="p">,</span> <span class="mf">0.178_089_28</span><span class="p">,</span> <span class="mf">0.329_563_62</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">disk</span>
+
+
+<span class="k">def</span> <span class="nf">disk_example_6dof</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;Create an example of disk element.</span>
+
+<span class="sd">    This function returns an instance of a simple disk. The purpose is to make available</span>
+<span class="sd">    a simple model so that doctest can be written using it.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    disk : ross.DiskElement6DoF</span>
+<span class="sd">        An instance of a disk object.</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    &gt;&gt;&gt; disk = disk_example_6dof()</span>
+<span class="sd">    &gt;&gt;&gt; disk.Ip</span>
+<span class="sd">    0.32956362</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">disk</span> <span class="o">=</span> <span class="n">DiskElement6DoF</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">32.589_727_65</span><span class="p">,</span> <span class="mf">0.178_089_28</span><span class="p">,</span> <span class="mf">0.329_563_62</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">disk</span>
 </pre></div>
 
@@ -730,7 +910,7 @@
     </p>
     <p>
         &copy; Copyright 2019, Team ROSS.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.0.1.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.2.1.<br/>
     </p>
   </div>
 </footer>

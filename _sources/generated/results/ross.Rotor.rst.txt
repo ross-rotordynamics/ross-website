@@ -1,4 +1,4 @@
-.. raw:: html
+﻿.. raw:: html
 
     </div>
     <div class=col-md-9 content>
@@ -22,27 +22,25 @@ ross.Rotor
    .. automethod:: K
    .. automethod:: M
    .. automethod:: __init__
-   .. automethod:: check_slenderness_ratio
    .. automethod:: convergence
+   .. automethod:: forced_response
    .. automethod:: from_section
    .. automethod:: load
    .. automethod:: plot_level1
    .. automethod:: plot_rotor
    .. automethod:: plot_ucs
-   .. automethod:: remove
    .. automethod:: run_campbell
-   .. automethod:: run_forced_response
+   .. automethod:: run_critical_speed
    .. automethod:: run_freq_response
    .. automethod:: run_modal
-   .. automethod:: run_orbit_response
    .. automethod:: run_static
    .. automethod:: run_time_response
+   .. automethod:: run_unbalance_response
    .. automethod:: save
    .. automethod:: save_mat
    .. automethod:: summary
    .. automethod:: time_response
    .. automethod:: transfer_matrix
-   .. automethod:: unbalance_response
    
    
 

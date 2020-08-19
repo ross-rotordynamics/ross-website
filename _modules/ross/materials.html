@@ -3,7 +3,8 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <title>ross.materials &#8212; ross 0.3.3 documentation</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ross.materials &#8212; ross 0.4.0 documentation</title>
     <link rel="stylesheet" href="../../_static/bootstrap-sphinx.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx_copybutton.css" />
@@ -16,7 +17,7 @@
     <script src="../../_static/sphinx_copybutton.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js"></script>
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
     <link rel="shortcut icon" href="../../_static/ross-logo.ico"/>
     <link rel="index" title="Index" href="../../genindex.html" />
@@ -43,7 +44,7 @@
         </button>
         <a class="navbar-brand" href="../../index.html"><span><img src="../../_static/ross-logo.svg"></span>
           ROSS</a>
-        <span class="navbar-text navbar-version pull-left"><b>0.3</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>0.4</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -70,13 +71,15 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../examples/tutorial.html">Tutorial</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../examples/tutorial.html#Materials">Materials</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../examples/tutorial.html#ShaftElement">ShaftElement</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../examples/tutorial.html#DiskElement">DiskElement</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../examples/tutorial.html#BearingElement">BearingElement</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../examples/tutorial.html#Rotor">Rotor</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../examples/tutorial.html#Running-the-simulation">Running the simulation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../examples/tutorial.html#Obtaining-results">Obtaining results</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/tutorial.html#Table-of-Contents">Table of Contents</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/tutorial.html#Section-1:-Material-Class">Section 1: Material Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/tutorial.html#Section-2:-ShaftElement-Class">Section 2: ShaftElement Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/tutorial.html#Section-3:-DiskElement-Class">Section 3: DiskElement Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/tutorial.html#Section-4:-Bearing-and-Seal-Classes">Section 4: Bearing and Seal Classes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/tutorial.html#Section-5:-PointMass-Class">Section 5: PointMass Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/tutorial.html#Section-6:-Rotor-Class">Section 6: Rotor Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/tutorial.html#Section-7:-ROSS-Units-System">Section 7: ROSS Units System</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/tutorial.html#Section-8:-Rotor-Analyses">Section 8: Rotor Analyses</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../examples.html">Examples</a><ul>
@@ -109,6 +112,8 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../release_notes.html">Release notes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../release_notes.html#version-0-4-0">Version 0.4.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../release_notes.html#version-0-3-0">Version 0.3.0</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../release_notes.html#version-0-2-0-beta-release">Version 0.2.0 (beta release)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../release_notes.html#version-0-1-0-alpha-release">Version 0.1.0 (alpha release)</a></li>
 </ul>
@@ -197,7 +202,7 @@
 <span class="sd">    Poisson : float</span>
 <span class="sd">        Poisson ratio (dimensionless).</span>
 <span class="sd">    color : str</span>
-<span class="sd">        Can be used on plots.</span>
+<span class="sd">        Color that will be used on plots.</span>
 
 <span class="sd">    Examples</span>
 <span class="sd">    --------</span>
@@ -237,25 +242,23 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">color</span> <span class="o">=</span> <span class="n">color</span></div>
 
     <span class="k">def</span> <span class="fm">__eq__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Function used to compare two Materials.</span>
+        <span class="sd">&quot;&quot;&quot;Equality method for comparasions.</span>
+
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-
-<span class="sd">        self : Material</span>
-
-<span class="sd">        other: Material</span>
+<span class="sd">        other: object</span>
+<span class="sd">            The second object to be compared with.</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-
 <span class="sd">        bool</span>
-<span class="sd">            True if all the Materials properties are equivalent.</span>
+<span class="sd">            True if the comparison is true; False otherwise.</span>
 
 <span class="sd">        Examples</span>
 <span class="sd">        --------</span>
 <span class="sd">        &gt;&gt;&gt; import ross as rs</span>
-<span class="sd">        &gt;&gt;&gt; steel = rs.Material.use_material(&#39;Steel&#39;)</span>
-<span class="sd">        &gt;&gt;&gt; AISI4140 = rs.Material.use_material(&#39;AISI4140&#39;)</span>
+<span class="sd">        &gt;&gt;&gt; steel = rs.Material.load_material(&#39;Steel&#39;)</span>
+<span class="sd">        &gt;&gt;&gt; AISI4140 = rs.Material.load_material(&#39;AISI4140&#39;)</span>
 <span class="sd">        &gt;&gt;&gt; steel == AISI4140</span>
 <span class="sd">        False</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -268,22 +271,16 @@
             <span class="k">return</span> <span class="kc">False</span>
 
     <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Function used to give a representation of a Material element, when called.</span>
-
-<span class="sd">        Parameters</span>
-<span class="sd">        ----------</span>
-
-<span class="sd">        self : Material</span>
+        <span class="sd">&quot;&quot;&quot;Return a string representation of a material.</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-
-<span class="sd">        string : Representation of the given rs.Material.</span>
+<span class="sd">        A string representation of a material object.</span>
 
 <span class="sd">        Examples</span>
 <span class="sd">        --------</span>
 <span class="sd">        &gt;&gt;&gt; import ross as rs</span>
-<span class="sd">        &gt;&gt;&gt; steel = rs.Material.use_material(&#39;Steel&#39;)</span>
+<span class="sd">        &gt;&gt;&gt; steel = rs.Material.load_material(&#39;Steel&#39;)</span>
 <span class="sd">        &gt;&gt;&gt; steel # doctest: +ELLIPSIS</span>
 <span class="sd">        Material(name=&quot;Steel&quot;, rho=7.81000e+03, G_s=8.12000e+10, E=2.11000e+11, color=&#39;#525252&#39;)</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -298,69 +295,58 @@
         <span class="p">)</span>
 
     <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Function used to set what is shown when a Material is printed.</span>
-
-<span class="sd">        Parameters</span>
-<span class="sd">        ----------</span>
-
-<span class="sd">        self : Material</span>
+        <span class="sd">&quot;&quot;&quot;Convert object into string.</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-
-<span class="sd">        str</span>
-<span class="sd">            Containing all the Materials properties organized in a table.</span>
+<span class="sd">        The object&#39;s parameters translated to strings</span>
 
 <span class="sd">        Examples</span>
 <span class="sd">        --------</span>
 <span class="sd">        &gt;&gt;&gt; import ross as rs</span>
-<span class="sd">        &gt;&gt;&gt; print(rs.Material.use_material(&#39;Steel&#39;))</span>
+<span class="sd">        &gt;&gt;&gt; print(rs.Material.load_material(&#39;Steel&#39;))</span>
 <span class="sd">        Steel</span>
 <span class="sd">        -----------------------------------</span>
-<span class="sd">        Density         (N/m**3): 7810.0</span>
-<span class="sd">        Young`s modulus (N/m**2): 2.11e+11</span>
-<span class="sd">        Shear modulus   (N/m**2): 8.12e+10</span>
-<span class="sd">        Poisson coefficient     : 0.29926108</span>
+<span class="sd">        Density         (kg/m**3): 7810.0</span>
+<span class="sd">        Young`s modulus (N/m**2):  2.11e+11</span>
+<span class="sd">        Shear modulus   (N/m**2):  8.12e+10</span>
+<span class="sd">        Poisson coefficient     :  0.29926108</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="p">(</span>
             <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">&quot;</span>
             <span class="sa">f</span><span class="s1">&#39;</span><span class="se">\n</span><span class="si">{</span><span class="mi">35</span><span class="o">*</span><span class="s2">&quot;-&quot;</span><span class="si">}</span><span class="s1">&#39;</span>
-            <span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Density         (N/m**3): </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">rho</span><span class="si">:{</span><span class="mi">2</span><span class="si">}</span><span class="s2">.</span><span class="si">{</span><span class="mi">8</span><span class="si">}}</span><span class="s2">&quot;</span>
-            <span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Young`s modulus (N/m**2): </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">E</span><span class="si">:{</span><span class="mi">2</span><span class="si">}</span><span class="s2">.</span><span class="si">{</span><span class="mi">8</span><span class="si">}}</span><span class="s2">&quot;</span>
-            <span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Shear modulus   (N/m**2): </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">G_s</span><span class="si">:{</span><span class="mi">2</span><span class="si">}</span><span class="s2">.</span><span class="si">{</span><span class="mi">8</span><span class="si">}}</span><span class="s2">&quot;</span>
-            <span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Poisson coefficient     : </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">Poisson</span><span class="si">:{</span><span class="mi">2</span><span class="si">}</span><span class="s2">.</span><span class="si">{</span><span class="mi">8</span><span class="si">}}</span><span class="s2">&quot;</span>
+            <span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Density         (kg/m**3): </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">rho</span><span class="si">:{</span><span class="mi">2</span><span class="si">}</span><span class="s2">.</span><span class="si">{</span><span class="mi">8</span><span class="si">}}</span><span class="s2">&quot;</span>
+            <span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Young`s modulus (N/m**2):  </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">E</span><span class="si">:{</span><span class="mi">2</span><span class="si">}</span><span class="s2">.</span><span class="si">{</span><span class="mi">8</span><span class="si">}}</span><span class="s2">&quot;</span>
+            <span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Shear modulus   (N/m**2):  </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">G_s</span><span class="si">:{</span><span class="mi">2</span><span class="si">}</span><span class="s2">.</span><span class="si">{</span><span class="mi">8</span><span class="si">}}</span><span class="s2">&quot;</span>
+            <span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Poisson coefficient     :  </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">Poisson</span><span class="si">:{</span><span class="mi">2</span><span class="si">}</span><span class="s2">.</span><span class="si">{</span><span class="mi">8</span><span class="si">}}</span><span class="s2">&quot;</span>
         <span class="p">)</span>
 
 <div class="viewcode-block" id="Material.dump_data"><a class="viewcode-back" href="../../generated/material/ross.Material.html#ross.Material.dump_data">[docs]</a>    <span class="nd">@staticmethod</span>
     <span class="k">def</span> <span class="nf">dump_data</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Auxiliary function to save the materials properties in the save method.</span>
+        <span class="sd">&quot;&quot;&quot;Save material properties.</span>
+
+<span class="sd">        This is an auxiliary function to save the materials properties in the save</span>
+<span class="sd">        method.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-
 <span class="sd">        data : dict</span>
 <span class="sd">            Dictionary containing all data needed to instantiate the Object.</span>
-
-<span class="sd">        Returns</span>
-<span class="sd">        -------</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">AVAILABLE_MATERIALS_PATH</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
             <span class="n">toml</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="Material.get_data"><a class="viewcode-back" href="../../generated/material/ross.Material.html#ross.Material.get_data">[docs]</a>    <span class="nd">@staticmethod</span>
     <span class="k">def</span> <span class="nf">get_data</span><span class="p">():</span>
+        <span class="sd">&quot;&quot;&quot;Load material properties.</span>
 
-        <span class="sd">&quot;&quot;&quot;Auxiliary function to load all saved materials properties in the use_material method.</span>
-
-<span class="sd">        Parameters</span>
-<span class="sd">        ----------</span>
+<span class="sd">        This is an auxiliary function to load all saved materials properties in the</span>
+<span class="sd">        load_material method.</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-
 <span class="sd">        data : dict</span>
 <span class="sd">            Containing all data needed to instantiate a Material Object.</span>
-
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">AVAILABLE_MATERIALS_PATH</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
@@ -370,9 +356,25 @@
             <span class="n">Material</span><span class="o">.</span><span class="n">dump_data</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">data</span></div>
 
-<div class="viewcode-block" id="Material.use_material"><a class="viewcode-back" href="../../generated/material/ross.Material.html#ross.Material.use_material">[docs]</a>    <span class="nd">@staticmethod</span>
-    <span class="k">def</span> <span class="nf">use_material</span><span class="p">(</span><span class="n">name</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Use material that is available in the data file.&quot;&quot;&quot;</span>
+<div class="viewcode-block" id="Material.load_material"><a class="viewcode-back" href="../../generated/material/ross.Material.html#ross.Material.load_material">[docs]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">load_material</span><span class="p">(</span><span class="n">name</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Load a material that is available in the data file.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        ross.Material</span>
+<span class="sd">            An object with the material properties.</span>
+
+<span class="sd">        Raises</span>
+<span class="sd">        ------</span>
+<span class="sd">        KeyError</span>
+<span class="sd">            Error raised if argument name does not match any material name in the file.</span>
+
+<span class="sd">        Examples</span>
+<span class="sd">        --------</span>
+<span class="sd">        &gt;&gt;&gt; import ross as rs</span>
+<span class="sd">        &gt;&gt;&gt; steel = rs.Material.load_material(&#39;Steel&#39;)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">data</span> <span class="o">=</span> <span class="n">Material</span><span class="o">.</span><span class="n">get_data</span><span class="p">()</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="c1"># Remove Poisson from dict and create material from E and G_s</span>
@@ -384,21 +386,17 @@
 
 <div class="viewcode-block" id="Material.remove_material"><a class="viewcode-back" href="../../generated/material/ross.Material.html#ross.Material.remove_material">[docs]</a>    <span class="nd">@staticmethod</span>
     <span class="k">def</span> <span class="nf">remove_material</span><span class="p">(</span><span class="n">name</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Function used to delete a saved rs.Material.</span>
+        <span class="sd">&quot;&quot;&quot;Delete a saved ross.Material.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-
 <span class="sd">        name : string</span>
 <span class="sd">            Name of Material Object to be deleted.</span>
-
-<span class="sd">        Returns</span>
-<span class="sd">        -------</span>
 
 <span class="sd">        Examples</span>
 <span class="sd">        --------</span>
 <span class="sd">        &gt;&gt;&gt; import ross as rs</span>
-<span class="sd">        &gt;&gt;&gt; steel = rs.Material.use_material(&#39;Steel&#39;)</span>
+<span class="sd">        &gt;&gt;&gt; steel = rs.Material.load_material(&#39;Steel&#39;)</span>
 <span class="sd">        &gt;&gt;&gt; steel.name = &#39;test_material&#39;</span>
 <span class="sd">        &gt;&gt;&gt; steel.save_material()</span>
 <span class="sd">        &gt;&gt;&gt; steel.remove_material(&#39;test_material&#39;)</span>
@@ -413,10 +411,7 @@
 
 <div class="viewcode-block" id="Material.available_materials"><a class="viewcode-back" href="../../generated/material/ross.Material.html#ross.Material.available_materials">[docs]</a>    <span class="nd">@staticmethod</span>
     <span class="k">def</span> <span class="nf">available_materials</span><span class="p">():</span>
-        <span class="sd">&quot;&quot;&quot;Function used to get a list of all saved material&#39;s names.</span>
-
-<span class="sd">        Parameters</span>
-<span class="sd">        ----------</span>
+        <span class="sd">&quot;&quot;&quot;Return a list of all saved material&#39;s name.</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
@@ -426,12 +421,11 @@
 <span class="sd">        Examples</span>
 <span class="sd">        --------</span>
 <span class="sd">        &gt;&gt;&gt; import ross as rs</span>
-<span class="sd">        &gt;&gt;&gt; steel = rs.Material.use_material(&#39;Steel&#39;)</span>
+<span class="sd">        &gt;&gt;&gt; steel = rs.Material.load_material(&#39;Steel&#39;)</span>
 <span class="sd">        &gt;&gt;&gt; steel.name = &#39;test_material&#39;</span>
 <span class="sd">        &gt;&gt;&gt; steel.save_material()</span>
 <span class="sd">        &gt;&gt;&gt; steel.remove_material(&#39;test_material&#39;)</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-
         <span class="k">try</span><span class="p">:</span>
             <span class="n">data</span> <span class="o">=</span> <span class="n">Material</span><span class="o">.</span><span class="n">get_data</span><span class="p">()</span>
             <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;Materials&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
@@ -439,7 +433,7 @@
             <span class="k">return</span> <span class="s2">&quot;There is no saved materials.&quot;</span></div>
 
 <div class="viewcode-block" id="Material.save_material"><a class="viewcode-back" href="../../generated/material/ross.Material.html#ross.Material.save_material">[docs]</a>    <span class="k">def</span> <span class="nf">save_material</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Saves the material in the available_materials list.&quot;&quot;&quot;</span>
+        <span class="sd">&quot;&quot;&quot;Save the material in the available_materials list.&quot;&quot;&quot;</span>
         <span class="n">data</span> <span class="o">=</span> <span class="n">Material</span><span class="o">.</span><span class="n">get_data</span><span class="p">()</span>
         <span class="n">data</span><span class="p">[</span><span class="s2">&quot;Materials&quot;</span><span class="p">][</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span>
         <span class="n">Material</span><span class="o">.</span><span class="n">dump_data</span><span class="p">(</span><span class="n">data</span><span class="p">)</span></div></div>
@@ -461,7 +455,7 @@
     </p>
     <p>
         &copy; Copyright 2019, Team ROSS.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.0.1.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.2.1.<br/>
     </p>
   </div>
 </footer>

@@ -3,7 +3,8 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <title>ross.element &#8212; ross 0.3.3 documentation</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ross.element &#8212; ross 0.4.0 documentation</title>
     <link rel="stylesheet" href="../../_static/bootstrap-sphinx.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx_copybutton.css" />
@@ -16,7 +17,7 @@
     <script src="../../_static/sphinx_copybutton.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js"></script>
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
     <link rel="shortcut icon" href="../../_static/ross-logo.ico"/>
     <link rel="index" title="Index" href="../../genindex.html" />
@@ -43,7 +44,7 @@
         </button>
         <a class="navbar-brand" href="../../index.html"><span><img src="../../_static/ross-logo.svg"></span>
           ROSS</a>
-        <span class="navbar-text navbar-version pull-left"><b>0.3</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>0.4</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -70,13 +71,15 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../examples/tutorial.html">Tutorial</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../examples/tutorial.html#Materials">Materials</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../examples/tutorial.html#ShaftElement">ShaftElement</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../examples/tutorial.html#DiskElement">DiskElement</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../examples/tutorial.html#BearingElement">BearingElement</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../examples/tutorial.html#Rotor">Rotor</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../examples/tutorial.html#Running-the-simulation">Running the simulation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../examples/tutorial.html#Obtaining-results">Obtaining results</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/tutorial.html#Table-of-Contents">Table of Contents</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/tutorial.html#Section-1:-Material-Class">Section 1: Material Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/tutorial.html#Section-2:-ShaftElement-Class">Section 2: ShaftElement Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/tutorial.html#Section-3:-DiskElement-Class">Section 3: DiskElement Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/tutorial.html#Section-4:-Bearing-and-Seal-Classes">Section 4: Bearing and Seal Classes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/tutorial.html#Section-5:-PointMass-Class">Section 5: PointMass Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/tutorial.html#Section-6:-Rotor-Class">Section 6: Rotor Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/tutorial.html#Section-7:-ROSS-Units-System">Section 7: ROSS Units System</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/tutorial.html#Section-8:-Rotor-Analyses">Section 8: Rotor Analyses</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../examples.html">Examples</a><ul>
@@ -109,6 +112,8 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../release_notes.html">Release notes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../release_notes.html#version-0-4-0">Version 0.4.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../release_notes.html#version-0-3-0">Version 0.3.0</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../release_notes.html#version-0-2-0-beta-release">Version 0.2.0 (beta release)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../release_notes.html#version-0-1-0-alpha-release">Version 0.1.0 (alpha release)</a></li>
 </ul>
@@ -156,7 +161,8 @@
     <div class="body col-md-12 content" role="main">
       
   <h1>Source code for ross.element</h1><div class="highlight"><pre>
-<span></span><span class="kn">from</span> <span class="nn">abc</span> <span class="kn">import</span> <span class="n">ABC</span><span class="p">,</span> <span class="n">abstractmethod</span>
+<span></span><span class="kn">import</span> <span class="nn">inspect</span>
+<span class="kn">from</span> <span class="nn">abc</span> <span class="kn">import</span> <span class="n">ABC</span><span class="p">,</span> <span class="n">abstractmethod</span>
 <span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">namedtuple</span>
 <span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
 
@@ -166,61 +172,94 @@
 
 <span class="k">class</span> <span class="nc">Element</span><span class="p">(</span><span class="n">ABC</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Element class.</span>
+
 <span class="sd">    This class is a general abstract class to be implemented in other files, in order to</span>
 <span class="sd">    create specific elements for the user.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">tag</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">n</span> <span class="o">=</span> <span class="n">n</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">dof_mapping</span> <span class="o">=</span> <span class="kc">None</span>
-        <span class="k">pass</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">tag</span> <span class="o">=</span> <span class="n">tag</span>
 
-    <span class="k">def</span> <span class="nf">save</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">file_name</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Saves the element in a file.</span>
+    <span class="k">def</span> <span class="nf">save</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">file</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Save the element in a .toml file.</span>
+
+<span class="sd">        This function will save the element to a .toml file.</span>
+<span class="sd">        The file will have all the argument&#39;s names and values that are needed to</span>
+<span class="sd">        reinstantiate the element.</span>
+
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-<span class="sd">        file_name: string</span>
+<span class="sd">        file : str, pathlib.Path</span>
 <span class="sd">            The name of the file the element will be saved in.</span>
-<span class="sd">        Returns</span>
-<span class="sd">        -------</span>
-<span class="sd">        None</span>
+
 <span class="sd">        Examples</span>
 <span class="sd">        --------</span>
 <span class="sd">        &gt;&gt;&gt; # Example using DiskElement</span>
+<span class="sd">        &gt;&gt;&gt; from tempfile import tempdir</span>
+<span class="sd">        &gt;&gt;&gt; from pathlib import Path</span>
 <span class="sd">        &gt;&gt;&gt; from ross.disk_element import disk_example</span>
+<span class="sd">        &gt;&gt;&gt; # create path for a temporary file </span>
+<span class="sd">        &gt;&gt;&gt; file = Path(tempdir) / &#39;disk.toml&#39;</span>
 <span class="sd">        &gt;&gt;&gt; disk = disk_example()</span>
-<span class="sd">        &gt;&gt;&gt; disk.save()</span>
+<span class="sd">        &gt;&gt;&gt; disk.save(file)</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">pass</span>
+        <span class="c1"># get __init__ arguments</span>
+        <span class="n">signature</span> <span class="o">=</span> <span class="n">inspect</span><span class="o">.</span><span class="n">signature</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="fm">__init__</span><span class="p">)</span>
+        <span class="n">args_list</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">signature</span><span class="o">.</span><span class="n">parameters</span><span class="p">)</span>
+        <span class="n">args</span> <span class="o">=</span> <span class="p">{</span><span class="n">arg</span><span class="p">:</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">arg</span><span class="p">)</span> <span class="k">for</span> <span class="n">arg</span> <span class="ow">in</span> <span class="n">args_list</span><span class="p">}</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">data</span> <span class="o">=</span> <span class="n">toml</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">file</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">FileNotFoundError</span><span class="p">:</span>
+            <span class="n">data</span> <span class="o">=</span> <span class="p">{}</span>
 
-    <span class="nd">@staticmethod</span>
-    <span class="k">def</span> <span class="nf">load</span><span class="p">(</span><span class="n">file_name</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Loads elements saved in a file.</span>
+        <span class="n">data</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">tag</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">args</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">file</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+            <span class="n">toml</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span>
+
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">read_toml_data</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Read and parse data stored in a .toml file.</span>
+
+<span class="sd">        The data passed to this method needs to be according to the</span>
+<span class="sd">        format saved in the .toml file by the .save() method.</span>
+
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-<span class="sd">        file_name: string</span>
-<span class="sd">            The name of the file to be loaded.</span>
+<span class="sd">        data : dict</span>
+<span class="sd">            Dictionary obtained from toml.load().</span>
+
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
 <span class="sd">        The element object.</span>
+
 <span class="sd">        Examples</span>
 <span class="sd">        --------</span>
 <span class="sd">        &gt;&gt;&gt; # Example using BearingElement</span>
+<span class="sd">        &gt;&gt;&gt; from tempfile import tempdir</span>
+<span class="sd">        &gt;&gt;&gt; from pathlib import Path</span>
 <span class="sd">        &gt;&gt;&gt; from ross.bearing_seal_element import bearing_example</span>
 <span class="sd">        &gt;&gt;&gt; from ross.bearing_seal_element import BearingElement</span>
+<span class="sd">        &gt;&gt;&gt; # create path for a temporary file </span>
+<span class="sd">        &gt;&gt;&gt; file = Path(tempdir) / &#39;bearing1.toml&#39;</span>
 <span class="sd">        &gt;&gt;&gt; bearing1 = bearing_example()</span>
-<span class="sd">        &gt;&gt;&gt; bearing1.save(Path(&#39;.&#39;))</span>
-<span class="sd">        &gt;&gt;&gt; list_of_bearings = BearingElement.load()</span>
-<span class="sd">        &gt;&gt;&gt; bearing1 == list_of_bearings[0]</span>
+<span class="sd">        &gt;&gt;&gt; bearing1.save(file)</span>
+<span class="sd">        &gt;&gt;&gt; bearing1_loaded = BearingElement.load(file)</span>
+<span class="sd">        &gt;&gt;&gt; bearing1 == bearing1_loaded</span>
 <span class="sd">        True</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">pass</span>
+        <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="o">**</span><span class="n">data</span><span class="p">)</span>
+
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">load</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">file</span><span class="p">):</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">toml</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">file</span><span class="p">)</span>
+        <span class="c1"># extract single dictionary in the data</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">values</span><span class="p">())[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="k">return</span> <span class="bp">cls</span><span class="o">.</span><span class="n">read_toml_data</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
 
     <span class="nd">@abstractmethod</span>
     <span class="k">def</span> <span class="nf">M</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Mass matrix.</span>
-<span class="sd">        Parameters</span>
-<span class="sd">        ----------</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
@@ -240,6 +279,7 @@
     <span class="nd">@abstractmethod</span>
     <span class="k">def</span> <span class="nf">C</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">frequency</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Frequency dependent damping coefficients matrix.</span>
+
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
 <span class="sd">        frequency: float</span>
@@ -263,6 +303,7 @@
     <span class="nd">@abstractmethod</span>
     <span class="k">def</span> <span class="nf">K</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">frequency</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Frequency dependent stiffness coefficients matrix.</span>
+
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
 <span class="sd">        frequency: float</span>
@@ -286,8 +327,6 @@
     <span class="nd">@abstractmethod</span>
     <span class="k">def</span> <span class="nf">G</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Gyroscopic matrix.</span>
-<span class="sd">        Parameters</span>
-<span class="sd">        ----------</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
@@ -305,12 +344,9 @@
         <span class="k">pass</span>
 
     <span class="k">def</span> <span class="nf">summary</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;A summary for the element.</span>
+        <span class="sd">&quot;&quot;&quot;Present a summary for the element.</span>
 
 <span class="sd">        A pandas series with the element properties as variables.</span>
-
-<span class="sd">        Parameters</span>
-<span class="sd">        ----------</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
@@ -329,7 +365,8 @@
 <span class="sd">        Id                     0.178089</span>
 <span class="sd">        Ip                     0.329564</span>
 <span class="sd">        tag                        None</span>
-<span class="sd">        color                   #b2182b</span>
+<span class="sd">        color                 Firebrick</span>
+<span class="sd">        scale_factor                  1</span>
 <span class="sd">        dof_global_index           None</span>
 <span class="sd">        type                DiskElement</span>
 <span class="sd">        dtype: object</span>
@@ -337,68 +374,6 @@
         <span class="n">attributes</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span>
         <span class="n">attributes</span><span class="p">[</span><span class="s2">&quot;type&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span>
         <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">attributes</span><span class="p">)</span>
-
-    <span class="nd">@staticmethod</span>
-    <span class="k">def</span> <span class="nf">get_data</span><span class="p">(</span><span class="n">file_name</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Loads elements data saved in a toml format.</span>
-
-<span class="sd">        Parameters</span>
-<span class="sd">        ----------</span>
-<span class="sd">        file_name: string</span>
-<span class="sd">            The name of the file to be loaded.</span>
-
-<span class="sd">        Returns</span>
-<span class="sd">        -------</span>
-<span class="sd">        data: dict</span>
-<span class="sd">            The element parameters presented as a dictionary.</span>
-
-<span class="sd">        Examples</span>
-<span class="sd">        --------</span>
-<span class="sd">        &gt;&gt;&gt; # Example using BearingElement</span>
-<span class="sd">        &gt;&gt;&gt; from ross.bearing_seal_element import bearing_example</span>
-<span class="sd">        &gt;&gt;&gt; from ross.bearing_seal_element import BearingElement</span>
-<span class="sd">        &gt;&gt;&gt; bearing = bearing_example()</span>
-<span class="sd">        &gt;&gt;&gt; bearing.save(Path(&#39;.&#39;))</span>
-<span class="sd">        &gt;&gt;&gt; BearingElement.get_data(&#39;BearingElement.toml&#39;) # doctest: +ELLIPSIS</span>
-<span class="sd">        {&#39;BearingElement&#39;: {&#39;0&#39;: {&#39;n&#39;: 0, &#39;kxx&#39;: [1000000.0, 1000000.0,...</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">try</span><span class="p">:</span>
-            <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">file_name</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
-                <span class="n">data</span> <span class="o">=</span> <span class="n">toml</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
-                <span class="k">if</span> <span class="n">data</span> <span class="o">==</span> <span class="p">{</span><span class="s2">&quot;&quot;</span><span class="p">:</span> <span class="p">{}}:</span>
-                    <span class="n">data</span> <span class="o">=</span> <span class="p">{</span><span class="nb">str</span><span class="p">(</span><span class="n">file_name</span><span class="o">.</span><span class="n">name</span><span class="p">)[:</span><span class="o">-</span><span class="mi">5</span><span class="p">]:</span> <span class="p">{}}</span>
-
-        <span class="k">except</span> <span class="ne">FileNotFoundError</span><span class="p">:</span>
-            <span class="n">data</span> <span class="o">=</span> <span class="p">{</span><span class="nb">str</span><span class="p">(</span><span class="n">file_name</span><span class="o">.</span><span class="n">name</span><span class="p">)[:</span><span class="o">-</span><span class="mi">5</span><span class="p">]:</span> <span class="p">{}}</span>
-            <span class="n">Element</span><span class="o">.</span><span class="n">dump_data</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">file_name</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">data</span>
-
-    <span class="nd">@staticmethod</span>
-    <span class="k">def</span> <span class="nf">dump_data</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">file_name</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Dumps element data in a toml file.</span>
-
-<span class="sd">        Parameters</span>
-<span class="sd">        ----------</span>
-<span class="sd">        data: dict</span>
-<span class="sd">            The data that should be dumped.</span>
-<span class="sd">        file_name: string</span>
-<span class="sd">            The name of the file the data will be dumped in.</span>
-
-<span class="sd">        Returns</span>
-<span class="sd">        -------</span>
-
-<span class="sd">        Examples</span>
-<span class="sd">        --------</span>
-<span class="sd">        &gt;&gt;&gt; # Example using BearingElement</span>
-<span class="sd">        &gt;&gt;&gt; from ross.bearing_seal_element import bearing_example</span>
-<span class="sd">        &gt;&gt;&gt; from ross.bearing_seal_element import BearingElement</span>
-<span class="sd">        &gt;&gt;&gt; bearing = bearing_example()</span>
-<span class="sd">        &gt;&gt;&gt; bearing.save(Path(&#39;.&#39;))</span>
-<span class="sd">        &gt;&gt;&gt; data = BearingElement.get_data(&#39;BearingElement.toml&#39;)</span>
-<span class="sd">        &gt;&gt;&gt; BearingElement.dump_data(data, &#39;BearingElement.toml&#39;) # doctest: +ELLIPSIS</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">file_name</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
-            <span class="n">toml</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span>
 
     <span class="nd">@abstractmethod</span>
     <span class="k">def</span> <span class="nf">dof_mapping</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -458,7 +433,7 @@
     </p>
     <p>
         &copy; Copyright 2019, Team ROSS.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.0.1.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.2.1.<br/>
     </p>
   </div>
 </footer>

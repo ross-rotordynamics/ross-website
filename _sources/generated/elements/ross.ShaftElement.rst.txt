@@ -1,4 +1,4 @@
-.. raw:: html
+﻿.. raw:: html
 
     </div>
     <div class=col-md-9 content>
@@ -21,14 +21,11 @@ ross.ShaftElement
    .. automethod:: K
    .. automethod:: M
    .. automethod:: __init__
-   .. automethod:: bokeh_patch
    .. automethod:: dof_local_index
    .. automethod:: dof_mapping
-   .. automethod:: dump_data
    .. automethod:: from_table
-   .. automethod:: get_data
    .. automethod:: load
-   .. automethod:: patch
+   .. automethod:: read_toml_data
    .. automethod:: save
    .. automethod:: section
    .. automethod:: summary
