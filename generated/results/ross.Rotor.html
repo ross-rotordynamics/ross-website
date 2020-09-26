@@ -4,7 +4,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>ross.Rotor &#8212; ross 0.4.0 documentation</title>
+    <title>ross.Rotor &#8212; ross 0.4.1 documentation</title>
     <link rel="stylesheet" href="../../_static/bootstrap-sphinx.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx_copybutton.css" />
@@ -597,7 +597,7 @@ to create a better visualization (see np.logspace).</p>
 
 <dl class="py method">
 <dt id="ross.Rotor.plot_rotor">
-<code class="sig-name descname">plot_rotor</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">nodes=1</em>, <em class="sig-param">check_sld=False</em>, <em class="sig-param">\*\*kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/rotor_assembly.html#Rotor.plot_rotor"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.Rotor.plot_rotor" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">plot_rotor</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">nodes=1</em>, <em class="sig-param">check_sld=False</em>, <em class="sig-param">length_units='m'</em>, <em class="sig-param">\*\*kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/rotor_assembly.html#Rotor.plot_rotor"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.Rotor.plot_rotor" title="Permalink to this definition">¶</a></dt>
 <dd><p>Plot a rotor object.</p>
 <p>This function will take a rotor object and plot its elements representation
 using Plotly.</p>
@@ -609,6 +609,9 @@ using Plotly.</p>
 <dt><strong>check_sld</strong><span class="classifier">bool</span></dt><dd><p>If True, checks the slenderness ratio for each element.
 The shaft elements which has a slenderness ratio &lt; 1.6 will be displayed in
 yellow color.</p>
+</dd>
+<dt><strong>length_units</strong><span class="classifier">str, optional</span></dt><dd><p>length units to length and diameter.
+Default is ‘m’.</p>
 </dd>
 <dt><strong>kwargs</strong><span class="classifier">optional</span></dt><dd><p>Additional key word arguments can be passed to change the plot layout only
 (e.g. width=1000, height=800, …).

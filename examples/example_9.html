@@ -4,7 +4,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Example 9 - Hydrodinamic Journal Bearings (using Fluid Flow methods) &#8212; ross 0.4.0 documentation</title>
+    <title>Example 9 - Hydrodinamic Journal Bearings (using Fluid Flow methods) &#8212; ross 0.4.1 documentation</title>
     <link rel="stylesheet" href="../_static/bootstrap-sphinx.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx_copybutton.css" />
@@ -405,346 +405,29 @@ div.rendered_html tbody tr:hover {
 <p>In this example, we use the hydrodinamic bearing seen in Example 5.5.1 from ‘Dynamics of Rotating Machinery’ by MI Friswell, JET Penny, SD Garvey &amp; AW Lees, published by Cambridge University Press, 2010.</p>
 <p>It is the same bearing of Example 7, only this time we stick to the methods provided by the Fluid Flow subpackage of ROSS. We instantiate a Pressure Matrix object with the data given by the Example 5.5.1 from the book: The oil-film bearing has a diameter of 100 mm, is 30 mm long, and supports a static load of 525 N. The radial clearance is 0.1 mm and the oil film has a viscosity of 0.1 Pa s. When instantiated, a Pressure Matrix must be given either the eccentricity, or load of the bearing, or
 both. The one not parameter not given is them calculated based on the other one.</p>
-<div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[20]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>from bokeh.io import output_notebook, show
-from ross.fluid_flow import fluid_flow as flow
-from ross.fluid_flow.fluid_flow_geometry import sommerfeld_number,\
-    modified_sommerfeld_number
-from ross.fluid_flow.fluid_flow_graphics import matplot_eccentricity,\
-    plot_pressure_theta
-from ross.fluid_flow.fluid_flow_coefficients import calculate_stiffness_matrix,\
-    calculate_damping_matrix
+<span></span>from ross.fluid_flow import fluid_flow as flow
+from ross.fluid_flow.fluid_flow_geometry import sommerfeld_number, modified_sommerfeld_number
+from ross.fluid_flow.fluid_flow_graphics import plot_eccentricity, plot_pressure_theta
+from ross.fluid_flow.fluid_flow_coefficients import calculate_stiffness_and_damping_coefficients
 
 import numpy as np
-output_notebook()
 
 </pre></div>
 </div>
 </div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area rendered_html docutils container">
-<div class="bk-root">
-    <a href="https://bokeh.org" target="_blank" class="bk-logo bk-logo-small bk-logo-notebook"></a>
-    <span id="1001">Loading BokehJS ...</span>
-</div></div>
-</div>
-<div class="nboutput nblast docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="output_javascript"></div>
-<script type="text/javascript">
-var element = document.currentScript.previousSibling.previousSibling;
-
-(function(root) {
-  function now() {
-    return new Date();
-  }
-
-  var force = true;
-
-  if (typeof root._bokeh_onload_callbacks === "undefined" || force === true) {
-    root._bokeh_onload_callbacks = [];
-    root._bokeh_is_loading = undefined;
-  }
-
-  var JS_MIME_TYPE = 'application/javascript';
-  var HTML_MIME_TYPE = 'text/html';
-  var EXEC_MIME_TYPE = 'application/vnd.bokehjs_exec.v0+json';
-  var CLASS_NAME = 'output_bokeh rendered_html';
-
-  /**
-   * Render data to the DOM node
-   */
-  function render(props, node) {
-    var script = document.createElement("script");
-    node.appendChild(script);
-  }
-
-  /**
-   * Handle when an output is cleared or removed
-   */
-  function handleClearOutput(event, handle) {
-    var cell = handle.cell;
-
-    var id = cell.output_area._bokeh_element_id;
-    var server_id = cell.output_area._bokeh_server_id;
-    // Clean up Bokeh references
-    if (id != null && id in Bokeh.index) {
-      Bokeh.index[id].model.document.clear();
-      delete Bokeh.index[id];
-    }
-
-    if (server_id !== undefined) {
-      // Clean up Bokeh references
-      var cmd = "from bokeh.io.state import curstate; print(curstate().uuid_to_server['" + server_id + "'].get_sessions()[0].document.roots[0]._id)";
-      cell.notebook.kernel.execute(cmd, {
-        iopub: {
-          output: function(msg) {
-            var id = msg.content.text.trim();
-            if (id in Bokeh.index) {
-              Bokeh.index[id].model.document.clear();
-              delete Bokeh.index[id];
-            }
-          }
-        }
-      });
-      // Destroy server and session
-      var cmd = "import bokeh.io.notebook as ion; ion.destroy_server('" + server_id + "')";
-      cell.notebook.kernel.execute(cmd);
-    }
-  }
-
-  /**
-   * Handle when a new output is added
-   */
-  function handleAddOutput(event, handle) {
-    var output_area = handle.output_area;
-    var output = handle.output;
-
-    // limit handleAddOutput to display_data with EXEC_MIME_TYPE content only
-    if ((output.output_type != "display_data") || (!output.data.hasOwnProperty(EXEC_MIME_TYPE))) {
-      return
-    }
-
-    var toinsert = output_area.element.find("." + CLASS_NAME.split(' ')[0]);
-
-    if (output.metadata[EXEC_MIME_TYPE]["id"] !== undefined) {
-      toinsert[toinsert.length - 1].firstChild.textContent = output.data[JS_MIME_TYPE];
-      // store reference to embed id on output_area
-      output_area._bokeh_element_id = output.metadata[EXEC_MIME_TYPE]["id"];
-    }
-    if (output.metadata[EXEC_MIME_TYPE]["server_id"] !== undefined) {
-      var bk_div = document.createElement("div");
-      bk_div.innerHTML = output.data[HTML_MIME_TYPE];
-      var script_attrs = bk_div.children[0].attributes;
-      for (var i = 0; i < script_attrs.length; i++) {
-        toinsert[toinsert.length - 1].firstChild.setAttribute(script_attrs[i].name, script_attrs[i].value);
-      }
-      // store reference to server id on output_area
-      output_area._bokeh_server_id = output.metadata[EXEC_MIME_TYPE]["server_id"];
-    }
-  }
-
-  function register_renderer(events, OutputArea) {
-
-    function append_mime(data, metadata, element) {
-      // create a DOM node to render to
-      var toinsert = this.create_output_subarea(
-        metadata,
-        CLASS_NAME,
-        EXEC_MIME_TYPE
-      );
-      this.keyboard_manager.register_events(toinsert);
-      // Render to node
-      var props = {data: data, metadata: metadata[EXEC_MIME_TYPE]};
-      render(props, toinsert[toinsert.length - 1]);
-      element.append(toinsert);
-      return toinsert
-    }
-
-    /* Handle when an output is cleared or removed */
-    events.on('clear_output.CodeCell', handleClearOutput);
-    events.on('delete.Cell', handleClearOutput);
-
-    /* Handle when a new output is added */
-    events.on('output_added.OutputArea', handleAddOutput);
-
-    /**
-     * Register the mime type and append_mime function with output_area
-     */
-    OutputArea.prototype.register_mime_type(EXEC_MIME_TYPE, append_mime, {
-      /* Is output safe? */
-      safe: true,
-      /* Index of renderer in `output_area.display_order` */
-      index: 0
-    });
-  }
-
-  // register the mime type if in Jupyter Notebook environment and previously unregistered
-  if (root.Jupyter !== undefined) {
-    var events = require('base/js/events');
-    var OutputArea = require('notebook/js/outputarea').OutputArea;
-
-    if (OutputArea.prototype.mime_types().indexOf(EXEC_MIME_TYPE) == -1) {
-      register_renderer(events, OutputArea);
-    }
-  }
-
-
-  if (typeof (root._bokeh_timeout) === "undefined" || force === true) {
-    root._bokeh_timeout = Date.now() + 5000;
-    root._bokeh_failed_load = false;
-  }
-
-  var NB_LOAD_WARNING = {'data': {'text/html':
-     "<div style='background-color: #fdd'>\n"+
-     "<p>\n"+
-     "BokehJS does not appear to have successfully loaded. If loading BokehJS from CDN, this \n"+
-     "may be due to a slow or bad network connection. Possible fixes:\n"+
-     "</p>\n"+
-     "<ul>\n"+
-     "<li>re-rerun `output_notebook()` to attempt to load from CDN again, or</li>\n"+
-     "<li>use INLINE resources instead, as so:</li>\n"+
-     "</ul>\n"+
-     "<code>\n"+
-     "from bokeh.resources import INLINE\n"+
-     "output_notebook(resources=INLINE)\n"+
-     "</code>\n"+
-     "</div>"}};
-
-  function display_loaded() {
-    var el = document.getElementById("1001");
-    if (el != null) {
-      el.textContent = "BokehJS is loading...";
-    }
-    if (root.Bokeh !== undefined) {
-      if (el != null) {
-        el.textContent = "BokehJS " + root.Bokeh.version + " successfully loaded.";
-      }
-    } else if (Date.now() < root._bokeh_timeout) {
-      setTimeout(display_loaded, 100)
-    }
-  }
-
-
-  function run_callbacks() {
-    try {
-      root._bokeh_onload_callbacks.forEach(function(callback) {
-        if (callback != null)
-          callback();
-      });
-    } finally {
-      delete root._bokeh_onload_callbacks
-    }
-    console.debug("Bokeh: all callbacks have finished");
-  }
-
-  function load_libs(css_urls, js_urls, callback) {
-    if (css_urls == null) css_urls = [];
-    if (js_urls == null) js_urls = [];
-
-    root._bokeh_onload_callbacks.push(callback);
-    if (root._bokeh_is_loading > 0) {
-      console.debug("Bokeh: BokehJS is being loaded, scheduling callback at", now());
-      return null;
-    }
-    if (js_urls == null || js_urls.length === 0) {
-      run_callbacks();
-      return null;
-    }
-    console.debug("Bokeh: BokehJS not loaded, scheduling load and callback at", now());
-    root._bokeh_is_loading = css_urls.length + js_urls.length;
-
-    function on_load() {
-      root._bokeh_is_loading--;
-      if (root._bokeh_is_loading === 0) {
-        console.debug("Bokeh: all BokehJS libraries/stylesheets loaded");
-        run_callbacks()
-      }
-    }
-
-    function on_error() {
-      console.error("failed to load " + url);
-    }
-
-    for (var i = 0; i < css_urls.length; i++) {
-      var url = css_urls[i];
-      const element = document.createElement("link");
-      element.onload = on_load;
-      element.onerror = on_error;
-      element.rel = "stylesheet";
-      element.type = "text/css";
-      element.href = url;
-      console.debug("Bokeh: injecting link tag for BokehJS stylesheet: ", url);
-      document.body.appendChild(element);
-    }
-
-    for (var i = 0; i < js_urls.length; i++) {
-      var url = js_urls[i];
-      var element = document.createElement('script');
-      element.onload = on_load;
-      element.onerror = on_error;
-      element.async = false;
-      element.src = url;
-      console.debug("Bokeh: injecting script tag for BokehJS library: ", url);
-      document.head.appendChild(element);
-    }
-  };var element = document.getElementById("1001");
-  if (element == null) {
-    console.error("Bokeh: ERROR: autoload.js configured with elementid '1001' but no matching script tag was found. ")
-    return false;
-  }
-
-  function inject_raw_css(css) {
-    const element = document.createElement("style");
-    element.appendChild(document.createTextNode(css));
-    document.body.appendChild(element);
-  }
-
-
-  var js_urls = ["https://cdn.pydata.org/bokeh/release/bokeh-1.4.0.min.js", "https://cdn.pydata.org/bokeh/release/bokeh-widgets-1.4.0.min.js", "https://cdn.pydata.org/bokeh/release/bokeh-tables-1.4.0.min.js", "https://cdn.pydata.org/bokeh/release/bokeh-gl-1.4.0.min.js"];
-  var css_urls = [];
-
-
-  var inline_js = [
-    function(Bokeh) {
-      Bokeh.set_log_level("info");
-    },
-    function(Bokeh) {
-
-
-    }
-  ];
-
-  function run_inline_js() {
-
-    if (root.Bokeh !== undefined || force === true) {
-
-    for (var i = 0; i < inline_js.length; i++) {
-      inline_js[i].call(root, root.Bokeh);
-    }
-    if (force === true) {
-        display_loaded();
-      }} else if (Date.now() < root._bokeh_timeout) {
-      setTimeout(run_inline_js, 100);
-    } else if (!root._bokeh_failed_load) {
-      console.log("Bokeh: BokehJS failed to load within specified timeout.");
-      root._bokeh_failed_load = true;
-    } else if (force !== true) {
-      var cell = $(document.getElementById("1001")).parents('.cell').data().cell;
-      cell.output_area.append_execute_result(NB_LOAD_WARNING)
-    }
-
-  }
-
-  if (root._bokeh_is_loading === 0) {
-    console.debug("Bokeh: BokehJS loaded, going straight to plotting");
-    run_inline_js();
-  } else {
-    load_libs(css_urls, js_urls, function() {
-      console.debug("Bokeh: BokehJS plotting callback run at", now());
-      run_inline_js();
-    });
-  }
-}(window));
-</script></div>
-</div>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
 <span></span># Instantiating a Pressure Matrix
-nz = 30
-ntheta = 528
-nradius = 11
+nz = 8
+ntheta = 128
 length = 0.03
 omega = 157.1
 p_in = 0.
@@ -754,14 +437,14 @@ radius_stator = 0.05
 load = 525
 visc = 0.1
 rho = 860.
-my_fluid_flow = flow.FluidFlow(nz, ntheta, nradius, length, omega, p_in,
-                                    p_out, radius_rotor, radius_stator,
-                                    visc, rho, load=load)
+my_fluid_flow = flow.FluidFlow(nz, ntheta, length, omega, p_in,
+                               p_out, radius_rotor, radius_stator,
+                               visc, rho, load=load)
 </pre></div>
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -772,16 +455,16 @@ my_fluid_flow.eccentricity
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-2.6627188685691435e-05
+2.7489700126738794e-05
 </pre></div></div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -805,7 +488,7 @@ sommerfeld_number(
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -814,78 +497,98 @@ sommerfeld_number(
 </pre></div></div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
 <span></span># Plotting the eccentricity
 
-matplot_eccentricity(my_fluid_flow)
+plot_eccentricity(my_fluid_flow, scale_factor=0.5)
 </pre></div>
 </div>
 </div>
-<div class="nboutput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+
+
+            <div id="fa6a9bb5-6824-482c-8828-926b68f133c9" class="plotly-graph-div" style="height:525px; width:100%;"></div>
+            <script type="text/javascript">
+                require(["plotly"], function(Plotly) {
+                    window.PLOTLYENV=window.PLOTLYENV || {};
+
+                if (document.getElementById("fa6a9bb5-6824-482c-8828-926b68f133c9")) {
+                    Plotly.newPlot(
+                        'fa6a9bb5-6824-482c-8828-926b68f133c9',
+                        [{"customdata": [[69.88111317525653, 2.7489700126738794e-05, 0.0499, 0.05, 0.05, "cylindrical"], [69.88111317525653, 2.7489700126738794e-05, 0.0499, 0.05, 0.05, "cylindrical"], [69.88111317525653, 2.7489700126738794e-05, 0.0499, 0.05, 0.05, "cylindrical"], [69.88111317525653, 2.7489700126738794e-05, 0.0499, 0.05, 0.05, "cylindrical"], [69.88111317525653, 2.7489700126738794e-05, 0.0499, 0.05, 0.05, "cylindrical"], [69.88111317525653, 2.7489700126738794e-05, 0.0499, 0.05, 0.05, "cylindrical"], [69.88111317525653, 2.7489700126738794e-05, 0.0499, 0.05, 0.05, "cylindrical"], [69.88111317525653, 2.7489700126738794e-05, 0.0499, 0.05, 0.05, "cylindrical"], [69.88111317525653, 2.7489700126738794e-05, 0.0499, 0.05, 0.05, "cylindrical"], [69.88111317525653, 2.7489700126738794e-05, 0.0499, 0.05, 0.05, "cylindrical"], [69.88111317525653, 2.7489700126738794e-05, 0.0499, 0.05, 0.05, "cylindrical"], [69.88111317525653, 2.7489700126738794e-05, 0.0499, 0.05, 0.05, "cylindrical"], [69.88111317525653, 2.7489700126738794e-05, 0.0499, 0.05, 0.05, "cylindrical"], [69.88111317525653, 2.7489700126738794e-05, 0.0499, 0.05, 0.05, "cylindrical"], [69.88111317525653, 2.7489700126738794e-05, 0.0499, 0.05, 0.05, "cylindrical"], [69.88111317525653, 2.7489700126738794e-05, 0.0499, 0.05, 0.05, "cylindrical"], [69.88111317525653, 2.7489700126738794e-05, 0.0499, 0.05, 0.05, "cylindrical"], [69.88111317525653, 2.7489700126738794e-05, 0.0499, 0.05, 0.05, "cylindrical"], [69.88111317525653, 2.7489700126738794e-05, 0.0499, 0.05, 0.05, "cylindrical"], [69.88111317525653, 2.7489700126738794e-05, 0.0499, 0.05, 0.05, "cylindrical"], [69.88111317525653, 2.7489700126738794e-05, 0.0499, 0.05, 0.05, "cylindrical"], [69.88111317525653, 2.7489700126738794e-05, 0.0499, 0.05, 0.05, "cylindrical"], [69.88111317525653, 2.7489700126738794e-05, 0.0499, 0.05, 0.05, "cylindrical"], [69.88111317525653, 2.7489700126738794e-05, 0.0499, 0.05, 0.05, "cylindrical"], [69.88111317525653, 2.7489700126738794e-05, 0.0499, 0.05, 0.05, "cylindrical"], [69.88111317525653, 2.7489700126738794e-05, 0.0499, 0.05, 0.05, "cylindrical"], [69.88111317525653, 2.7489700126738794e-05, 0.0499, 0.05, 0.05, "cylindrical"], [69.88111317525653, 2.7489700126738794e-05, 0.0499, 0.05, 0.05, "cylindrical"], [69.88111317525653, 2.7489700126738794e-05, 0.0499, 0.05, 0.05, "cylindrical"], [69.88111317525653, 2.7489700126738794e-05, 0.0499, 0.05, 0.05, "cylindrical"], [69.88111317525653, 2.7489700126738794e-05, 0.0499, 0.05, 0.05, "cylindrical"], [69.88111317525653, 2.7489700126738794e-05, 0.0499, 0.05, 0.05, "cylindrical"], [69.88111317525653, 2.7489700126738794e-05, 0.0499, 0.05, 0.05, "cylindrical"], [69.88111317525653, 2.7489700126738794e-05, 0.0499, 0.05, 0.05, "cylindrical"], [69.88111317525653, 2.7489700126738794e-05, 0.0499, 0.05, 0.05, "cylindrical"], [69.88111317525653, 2.7489700126738794e-05, 0.0499, 0.05, 0.05, "cylindrical"], [69.88111317525653, 2.7489700126738794e-05, 0.0499, 0.05, 0.05, "cylindrical"], [69.88111317525653, 2.7489700126738794e-05, 0.0499, 0.05, 0.05, "cylindrical"], [69.88111317525653, 2.7489700126738794e-05, 0.0499, 0.05, 0.05, "cylindrical"], [69.88111317525653, 2.7489700126738794e-05, 0.0499, 0.05, 0.05, "cylindrical"], [69.88111317525653, 2.7489700126738794e-05, 0.0499, 0.05, 0.05, "cylindrical"], [69.88111317525653, 2.7489700126738794e-05, 0.0499, 0.05, 0.05, "cylindrical"], [69.88111317525653, 2.7489700126738794e-05, 0.0499, 0.05, 0.05, "cylindrical"], [69.88111317525653, 2.7489700126738794e-05, 0.0499, 0.05, 0.05, "cylindrical"], [69.88111317525653, 2.7489700126738794e-05, 0.0499, 0.05, 0.05, "cylindrical"], [69.88111317525653, 2.7489700126738794e-05, 0.0499, 0.05, 0.05, "cylindrical"], [69.88111317525653, 2.7489700126738794e-05, 0.0499, 0.05, 0.05, "cylindrical"], [69.88111317525653, 2.7489700126738794e-05, 0.0499, 0.05, 0.05, "cylindrical"], [69.88111317525653, 2.7489700126738794e-05, 0.0499, 0.05, 0.05, "cylindrical"], [69.88111317525653, 2.7489700126738794e-05, 0.0499, 0.05, 0.05, "cylindrical"], [69.88111317525653, 2.7489700126738794e-05, 0.0499, 0.05, 0.05, "cylindrical"], [69.88111317525653, 2.7489700126738794e-05, 0.0499, 0.05, 0.05, "cylindrical"], [69.88111317525653, 2.7489700126738794e-05, 0.0499, 0.05, 0.05, "cylindrical"], [69.88111317525653, 2.7489700126738794e-05, 0.0499, 0.05, 0.05, "cylindrical"], [69.88111317525653, 2.7489700126738794e-05, 0.0499, 0.05, 0.05, "cylindrical"], [69.88111317525653, 2.7489700126738794e-05, 0.0499, 0.05, 0.05, "cylindrical"], [69.88111317525653, 2.7489700126738794e-05, 0.0499, 0.05, 0.05, "cylindrical"], [69.88111317525653, 2.7489700126738794e-05, 0.0499, 0.05, 0.05, "cylindrical"], [69.88111317525653, 2.7489700126738794e-05, 0.0499, 0.05, 0.05, "cylindrical"], [69.88111317525653, 2.7489700126738794e-05, 0.0499, 0.05, 0.05, "cylindrical"], [69.88111317525653, 2.7489700126738794e-05, 0.0499, 0.05, 0.05, "cylindrical"], [69.88111317525653, 2.7489700126738794e-05, 0.0499, 0.05, 0.05, "cylindrical"], [69.88111317525653, 2.7489700126738794e-05, 0.0499, 0.05, 0.05, "cylindrical"], [69.88111317525653, 2.7489700126738794e-05, 0.0499, 0.05, 0.05, "cylindrical"], [69.88111317525653, 2.7489700126738794e-05, 0.0499, 0.05, 0.05, "cylindrical"], [69.88111317525653, 2.7489700126738794e-05, 0.0499, 0.05, 0.05, "cylindrical"], [69.88111317525653, 2.7489700126738794e-05, 0.0499, 0.05, 0.05, "cylindrical"], [69.88111317525653, 2.7489700126738794e-05, 0.0499, 0.05, 0.05, "cylindrical"], [69.88111317525653, 2.7489700126738794e-05, 0.0499, 0.05, 0.05, "cylindrical"], [69.88111317525653, 2.7489700126738794e-05, 0.0499, 0.05, 0.05, "cylindrical"], [69.88111317525653, 2.7489700126738794e-05, 0.0499, 0.05, 0.05, "cylindrical"], [69.88111317525653, 2.7489700126738794e-05, 0.0499, 0.05, 0.05, "cylindrical"], [69.88111317525653, 2.7489700126738794e-05, 0.0499, 0.05, 0.05, "cylindrical"], [69.88111317525653, 2.7489700126738794e-05, 0.0499, 0.05, 0.05, "cylindrical"], [69.88111317525653, 2.7489700126738794e-05, 0.0499, 0.05, 0.05, "cylindrical"], [69.88111317525653, 2.7489700126738794e-05, 0.0499, 0.05, 0.05, "cylindrical"], [69.88111317525653, 2.7489700126738794e-05, 0.0499, 0.05, 0.05, "cylindrical"], [69.88111317525653, 2.7489700126738794e-05, 0.0499, 0.05, 0.05, "cylindrical"], [69.88111317525653, 2.7489700126738794e-05, 0.0499, 0.05, 0.05, "cylindrical"], [69.88111317525653, 2.7489700126738794e-05, 0.0499, 0.05, 0.05, "cylindrical"], [69.88111317525653, 2.7489700126738794e-05, 0.0499, 0.05, 0.05, "cylindrical"], [69.88111317525653, 2.7489700126738794e-05, 0.0499, 0.05, 0.05, "cylindrical"], [69.88111317525653, 2.7489700126738794e-05, 0.0499, 0.05, 0.05, "cylindrical"], [69.88111317525653, 2.7489700126738794e-05, 0.0499, 0.05, 0.05, "cylindrical"], [69.88111317525653, 2.7489700126738794e-05, 0.0499, 0.05, 0.05, "cylindrical"], [69.88111317525653, 2.7489700126738794e-05, 0.0499, 0.05, 0.05, "cylindrical"], [69.88111317525653, 2.7489700126738794e-05, 0.0499, 0.05, 0.05, "cylindrical"], [69.88111317525653, 2.7489700126738794e-05, 0.0499, 0.05, 0.05, "cylindrical"], [69.88111317525653, 2.7489700126738794e-05, 0.0499, 0.05, 0.05, "cylindrical"], [69.88111317525653, 2.7489700126738794e-05, 0.0499, 0.05, 0.05, "cylindrical"], [69.88111317525653, 2.7489700126738794e-05, 0.0499, 0.05, 0.05, "cylindrical"], [69.88111317525653, 2.7489700126738794e-05, 0.0499, 0.05, 0.05, "cylindrical"], [69.88111317525653, 2.7489700126738794e-05, 0.0499, 0.05, 0.05, "cylindrical"], [69.88111317525653, 2.7489700126738794e-05, 0.0499, 0.05, 0.05, "cylindrical"], [69.88111317525653, 2.7489700126738794e-05, 0.0499, 0.05, 0.05, "cylindrical"], [69.88111317525653, 2.7489700126738794e-05, 0.0499, 0.05, 0.05, "cylindrical"], [69.88111317525653, 2.7489700126738794e-05, 0.0499, 0.05, 0.05, "cylindrical"], [69.88111317525653, 2.7489700126738794e-05, 0.0499, 0.05, 0.05, "cylindrical"], [69.88111317525653, 2.7489700126738794e-05, 0.0499, 0.05, 0.05, "cylindrical"], [69.88111317525653, 2.7489700126738794e-05, 0.0499, 0.05, 0.05, "cylindrical"], [69.88111317525653, 2.7489700126738794e-05, 0.0499, 0.05, 0.05, "cylindrical"], [69.88111317525653, 2.7489700126738794e-05, 0.0499, 0.05, 0.05, "cylindrical"], [69.88111317525653, 2.7489700126738794e-05, 0.0499, 0.05, 0.05, "cylindrical"], [69.88111317525653, 2.7489700126738794e-05, 0.0499, 0.05, 0.05, "cylindrical"], [69.88111317525653, 2.7489700126738794e-05, 0.0499, 0.05, 0.05, "cylindrical"], [69.88111317525653, 2.7489700126738794e-05, 0.0499, 0.05, 0.05, "cylindrical"], [69.88111317525653, 2.7489700126738794e-05, 0.0499, 0.05, 0.05, "cylindrical"], [69.88111317525653, 2.7489700126738794e-05, 0.0499, 0.05, 0.05, "cylindrical"], [69.88111317525653, 2.7489700126738794e-05, 0.0499, 0.05, 0.05, "cylindrical"], [69.88111317525653, 2.7489700126738794e-05, 0.0499, 0.05, 0.05, "cylindrical"], [69.88111317525653, 2.7489700126738794e-05, 0.0499, 0.05, 0.05, "cylindrical"], [69.88111317525653, 2.7489700126738794e-05, 0.0499, 0.05, 0.05, "cylindrical"], [69.88111317525653, 2.7489700126738794e-05, 0.0499, 0.05, 0.05, "cylindrical"], [69.88111317525653, 2.7489700126738794e-05, 0.0499, 0.05, 0.05, "cylindrical"], [69.88111317525653, 2.7489700126738794e-05, 0.0499, 0.05, 0.05, "cylindrical"], [69.88111317525653, 2.7489700126738794e-05, 0.0499, 0.05, 0.05, "cylindrical"], [69.88111317525653, 2.7489700126738794e-05, 0.0499, 0.05, 0.05, "cylindrical"], [69.88111317525653, 2.7489700126738794e-05, 0.0499, 0.05, 0.05, "cylindrical"], [69.88111317525653, 2.7489700126738794e-05, 0.0499, 0.05, 0.05, "cylindrical"], [69.88111317525653, 2.7489700126738794e-05, 0.0499, 0.05, 0.05, "cylindrical"], [69.88111317525653, 2.7489700126738794e-05, 0.0499, 0.05, 0.05, "cylindrical"], [69.88111317525653, 2.7489700126738794e-05, 0.0499, 0.05, 0.05, "cylindrical"], [69.88111317525653, 2.7489700126738794e-05, 0.0499, 0.05, 0.05, "cylindrical"], [69.88111317525653, 2.7489700126738794e-05, 0.0499, 0.05, 0.05, "cylindrical"], [69.88111317525653, 2.7489700126738794e-05, 0.0499, 0.05, 0.05, "cylindrical"], [69.88111317525653, 2.7489700126738794e-05, 0.0499, 0.05, 0.05, "cylindrical"], [69.88111317525653, 2.7489700126738794e-05, 0.0499, 0.05, 0.05, "cylindrical"], [69.88111317525653, 2.7489700126738794e-05, 0.0499, 0.05, 0.05, "cylindrical"]], "hovertemplate": "Stator radius: 5.00e-02<br>Ellipticity ratio: 0.05<br>Shape Geometry: cylindrical<br>", "legendgroup": "Stator", "line": {"color": "#d62728"}, "marker": {"color": "#d62728"}, "mode": "markers+lines", "name": "Stator", "type": "scatter", "x": [-0.04694904590147403, -0.047742127724054256, -0.04841837655987483, -0.0489761375147145, -0.04941404565405195, -0.049731029343289296, -0.04992631287022154, -0.04999941834333435, -0.04995016686128462, -0.049778678950702065, -0.04948537427124037, -0.04907097058859966, -0.04853648201803362, -0.04788321654263945, -0.04711277281250409, -0.04622703623253959, -0.045228174348581306, -0.04411863154304004, -0.042901123053088706, -0.041578628326021876, -0.04015438372804908, -0.03863187462436437, -0.03701482684987351, -0.035307197591451796, -0.03351316570404453, -0.03163712148430877, -0.02968365592682176, -0.027657549489147667, -0.025563760393257275, -0.023407412491927442, -0.021193782729815168, -0.018928288229889553, -0.016616473036824172, -0.014263994549790793, -0.011876609677855346, -0.009460160751857245, -0.007020561227246189, -0.004563781212866247, -0.002095832861098859, 0.00037724434488144664, 0.0028493983707344353, 0.005314579441296341, 0.007766754845393423, 0.010199923698897329, 0.012608131629893663, 0.014985485350028447, 0.017326167076371787, 0.019624448768507836, 0.02187470614600947, 0.02407143245199495, 0.02620925192908498, 0.02828293297478139, 0.030287400944075685, 0.032217750567955304, 0.034069257957419066, 0.03583739216362514, 0.03751782626588204, 0.03910644796034881, 0.04059936962353128, 0.04199293782594865, 0.043283742272687296, 0.04446862414896403, 0.04554468385027519, 0.046509288078214764, 0.04736007628459685, 0.04809496644811255, 0.04871216016938515, 0.049210147071954605, 0.049587708498421944, 0.04984392049270806, 0.04997815606112913, 0.04999008670675517, 0.049879683233297084, 0.0496472158165549, 0.049293253343252325, 0.048818662018875504, 0.04822460324792318, 0.047512530791755166, 0.046684187210994744, 0.04574159960119081, 0.04468707463217531, 0.04352319290325579, 0.04225280262805625, 0.0408790126644613, 0.039405184906719855, 0.03783492605832661, 0.03617207880581418, 0.03442071241505528, 0.032585112773087066, 0.03066977189982762, 0.028679376955350305, 0.02661879876961768, 0.02449307992274436, 0.022307422404958498, 0.02006717488645997, 0.017777819628328174, 0.015444959066510318, 0.013074302101722097, 0.010671650128810845, 0.008242882839770215, 0.005793943835148609, 0.0033308260790626677, 0.0008595572334098561, -0.0016138150928304289, -0.0040832381431091785, -0.006542668825417492, -0.008986088500745327, -0.011407517711699754, -0.013801030815238969, -0.01616077048371417, -0.018480962038731622, -0.020755927582758103, -0.022980099893888124, -0.025148036049768587, -0.02725443074734171, -0.02929412928581079, -0.03126214018105696, -0.03315364738063714, -0.034964022049471154, -0.036688833897377295, -0.03832386202073451, -0.0398651052317408, -0.04130879184999038, -0.04265138893240776, -0.04388961091895133, -0.04502042767292923, -0.046041071896251895, -0.04694904590147403], "y": [0.017198461819048952, 0.014855613093376198, 0.012476410193086939, 0.010066675426364685, 0.007632305817986445, 0.005179258678314827, 0.002713537024761368, 0.00024117489139688673, -0.0022317774373408756, -0.004699268232707222, -0.007155259131244792, -0.009593739911670883, -0.012008743202895945, -0.014394359087180656, -0.016744749562695043, -0.01905416283008709, -0.021316947368099692, -0.023527565763790195, -0.025680608263507727, -0.027770806011467003, -0.02979304394352123, -0.03174237330458125, -0.03361402375904859, -0.03540341506462591, -0.03710616828093752, -0.03871811648553024, -0.040235314971030854, -0.04165405089850623, -0.042970852383402064, -0.04418249699182652, -0.045286019626385676, -0.04627871978227385, -0.04715816815586135, -0.047922212589607535, -0.04856898333875101, -0.04909689764688824, -0.049504663619243876, -0.04979128338415359, -0.04995605553502336, -0.049998576846788906, -0.04991874326267495, -0.04971675014883968, -0.04939309181628093, -0.04894856031117435, -0.04838424347660378, -0.04770152229042678, -0.04690206748579054, -0.045987835462567836, -0.044961063499718686, -0.04382426428029391, -0.0425802197424785, -0.041231974271722954, -0.03978282725062164, -0.03823632498477091, -0.03659625202436498, -0.0348666219027674, -0.03305166731472244, -0.031155829758241573, -0.02918374866551392, -0.027140250049437847, -0.025030334693559, -0.022859165914314847, -0.02063205692553416, -0.018354457836112472, -0.016031942312682113, -0.013670193939916447, -0.011274992311845172, -0.008852198888219687, -0.006407742650538684, -0.00394760559283691, -0.001477808082743406, 0.0009956058713671433, 0.0034665834110752212, 0.005929077640275983, 0.008377062422946602, 0.010804547130111586, 0.013205591299915262, 0.015574319174927602, 0.01790493408110722, 0.020191732613234068, 0.022429118592097952, 0.024611616759286345, 0.026733886176059825, 0.028790733293523687, 0.030777124662112576, 0.032688199249285024, 0.03451928033528463, 0.03626588695785696, 0.03792374487791519, 0.03948879703931919, 0.04095721349717193, 0.0423254007903363, 0.04359001073523677, 0.04474794861942563, 0.04579638077486288, 0.046732741512376844, 0.0475547394003355, 0.048260362872163586, 0.04884788514898318, 0.04931586846533093, 0.04966316758761108, 0.04988893261667397, 0.04999261106766172, 0.0499739492220312, 0.04983299274844587, 0.04957008659101687, 0.049185874125167006, 0.048681295583183244, 0.04805758575331084, 0.047316270958019435, 0.04645916531883629, 0.04548836631688702, 0.044406249660007585, 0.0432154634689892, 0.04191892179718313, 0.040519797499323745, 0.03902151446702119, 0.03742773924992494, 0.03574237208306263, 0.033969537342310965, 0.032113573451357035, 0.030179022264848688, 0.028170617953714977, 0.026093275419856454, 0.023952078268556762, 0.021752266368048837, 0.01949922302667889, 0.017198461819048962]}, {"customdata": [[69.88111317525653, 2.7489700126738794e-05, 0.0499, 0.05, 0.05, "cylindrical"], [69.88111317525653, 2.7489700126738794e-05, 0.0499, 0.05, 0.05, "cylindrical"], [69.88111317525653, 2.7489700126738794e-05, 0.0499, 0.05, 0.05, "cylindrical"], [69.88111317525653, 2.7489700126738794e-05, 0.0499, 0.05, 0.05, "cylindrical"], [69.88111317525653, 2.7489700126738794e-05, 0.0499, 0.05, 0.05, "cylindrical"], [69.88111317525653, 2.7489700126738794e-05, 0.0499, 0.05, 0.05, "cylindrical"], [69.88111317525653, 2.7489700126738794e-05, 0.0499, 0.05, 0.05, "cylindrical"], [69.88111317525653, 2.7489700126738794e-05, 0.0499, 0.05, 0.05, "cylindrical"], [69.88111317525653, 2.7489700126738794e-05, 0.0499, 0.05, 0.05, "cylindrical"], [69.88111317525653, 2.7489700126738794e-05, 0.0499, 0.05, 0.05, "cylindrical"], [69.88111317525653, 2.7489700126738794e-05, 0.0499, 0.05, 0.05, "cylindrical"], [69.88111317525653, 2.7489700126738794e-05, 0.0499, 0.05, 0.05, "cylindrical"], [69.88111317525653, 2.7489700126738794e-05, 0.0499, 0.05, 0.05, "cylindrical"], [69.88111317525653, 2.7489700126738794e-05, 0.0499, 0.05, 0.05, "cylindrical"], [69.88111317525653, 2.7489700126738794e-05, 0.0499, 0.05, 0.05, "cylindrical"], [69.88111317525653, 2.7489700126738794e-05, 0.0499, 0.05, 0.05, "cylindrical"], [69.88111317525653, 2.7489700126738794e-05, 0.0499, 0.05, 0.05, "cylindrical"], [69.88111317525653, 2.7489700126738794e-05, 0.0499, 0.05, 0.05, "cylindrical"], [69.88111317525653, 2.7489700126738794e-05, 0.0499, 0.05, 0.05, "cylindrical"], [69.88111317525653, 2.7489700126738794e-05, 0.0499, 0.05, 0.05, "cylindrical"], [69.88111317525653, 2.7489700126738794e-05, 0.0499, 0.05, 0.05, "cylindrical"], [69.88111317525653, 2.7489700126738794e-05, 0.0499, 0.05, 0.05, "cylindrical"], [69.88111317525653, 2.7489700126738794e-05, 0.0499, 0.05, 0.05, "cylindrical"], [69.88111317525653, 2.7489700126738794e-05, 0.0499, 0.05, 0.05, "cylindrical"], [69.88111317525653, 2.7489700126738794e-05, 0.0499, 0.05, 0.05, "cylindrical"], [69.88111317525653, 2.7489700126738794e-05, 0.0499, 0.05, 0.05, "cylindrical"], [69.88111317525653, 2.7489700126738794e-05, 0.0499, 0.05, 0.05, "cylindrical"], [69.88111317525653, 2.7489700126738794e-05, 0.0499, 0.05, 0.05, "cylindrical"], [69.88111317525653, 2.7489700126738794e-05, 0.0499, 0.05, 0.05, "cylindrical"], [69.88111317525653, 2.7489700126738794e-05, 0.0499, 0.05, 0.05, "cylindrical"], [69.88111317525653, 2.7489700126738794e-05, 0.0499, 0.05, 0.05, "cylindrical"], [69.88111317525653, 2.7489700126738794e-05, 0.0499, 0.05, 0.05, "cylindrical"], [69.88111317525653, 2.7489700126738794e-05, 0.0499, 0.05, 0.05, "cylindrical"], [69.88111317525653, 2.7489700126738794e-05, 0.0499, 0.05, 0.05, "cylindrical"], [69.88111317525653, 2.7489700126738794e-05, 0.0499, 0.05, 0.05, "cylindrical"], [69.88111317525653, 2.7489700126738794e-05, 0.0499, 0.05, 0.05, "cylindrical"], [69.88111317525653, 2.7489700126738794e-05, 0.0499, 0.05, 0.05, "cylindrical"], [69.88111317525653, 2.7489700126738794e-05, 0.0499, 0.05, 0.05, "cylindrical"], [69.88111317525653, 2.7489700126738794e-05, 0.0499, 0.05, 0.05, "cylindrical"], [69.88111317525653, 2.7489700126738794e-05, 0.0499, 0.05, 0.05, "cylindrical"], [69.88111317525653, 2.7489700126738794e-05, 0.0499, 0.05, 0.05, "cylindrical"], [69.88111317525653, 2.7489700126738794e-05, 0.0499, 0.05, 0.05, "cylindrical"], [69.88111317525653, 2.7489700126738794e-05, 0.0499, 0.05, 0.05, "cylindrical"], [69.88111317525653, 2.7489700126738794e-05, 0.0499, 0.05, 0.05, "cylindrical"], [69.88111317525653, 2.7489700126738794e-05, 0.0499, 0.05, 0.05, "cylindrical"], [69.88111317525653, 2.7489700126738794e-05, 0.0499, 0.05, 0.05, "cylindrical"], [69.88111317525653, 2.7489700126738794e-05, 0.0499, 0.05, 0.05, "cylindrical"], [69.88111317525653, 2.7489700126738794e-05, 0.0499, 0.05, 0.05, "cylindrical"], [69.88111317525653, 2.7489700126738794e-05, 0.0499, 0.05, 0.05, "cylindrical"], [69.88111317525653, 2.7489700126738794e-05, 0.0499, 0.05, 0.05, "cylindrical"], [69.88111317525653, 2.7489700126738794e-05, 0.0499, 0.05, 0.05, "cylindrical"], [69.88111317525653, 2.7489700126738794e-05, 0.0499, 0.05, 0.05, "cylindrical"], [69.88111317525653, 2.7489700126738794e-05, 0.0499, 0.05, 0.05, "cylindrical"], [69.88111317525653, 2.7489700126738794e-05, 0.0499, 0.05, 0.05, "cylindrical"], [69.88111317525653, 2.7489700126738794e-05, 0.0499, 0.05, 0.05, "cylindrical"], [69.88111317525653, 2.7489700126738794e-05, 0.0499, 0.05, 0.05, "cylindrical"], [69.88111317525653, 2.7489700126738794e-05, 0.0499, 0.05, 0.05, "cylindrical"], [69.88111317525653, 2.7489700126738794e-05, 0.0499, 0.05, 0.05, "cylindrical"], [69.88111317525653, 2.7489700126738794e-05, 0.0499, 0.05, 0.05, "cylindrical"], [69.88111317525653, 2.7489700126738794e-05, 0.0499, 0.05, 0.05, "cylindrical"], [69.88111317525653, 2.7489700126738794e-05, 0.0499, 0.05, 0.05, "cylindrical"], [69.88111317525653, 2.7489700126738794e-05, 0.0499, 0.05, 0.05, "cylindrical"], [69.88111317525653, 2.7489700126738794e-05, 0.0499, 0.05, 0.05, "cylindrical"], [69.88111317525653, 2.7489700126738794e-05, 0.0499, 0.05, 0.05, "cylindrical"], [69.88111317525653, 2.7489700126738794e-05, 0.0499, 0.05, 0.05, "cylindrical"], [69.88111317525653, 2.7489700126738794e-05, 0.0499, 0.05, 0.05, "cylindrical"], [69.88111317525653, 2.7489700126738794e-05, 0.0499, 0.05, 0.05, "cylindrical"], [69.88111317525653, 2.7489700126738794e-05, 0.0499, 0.05, 0.05, "cylindrical"], [69.88111317525653, 2.7489700126738794e-05, 0.0499, 0.05, 0.05, "cylindrical"], [69.88111317525653, 2.7489700126738794e-05, 0.0499, 0.05, 0.05, "cylindrical"], [69.88111317525653, 2.7489700126738794e-05, 0.0499, 0.05, 0.05, "cylindrical"], [69.88111317525653, 2.7489700126738794e-05, 0.0499, 0.05, 0.05, "cylindrical"], [69.88111317525653, 2.7489700126738794e-05, 0.0499, 0.05, 0.05, "cylindrical"], [69.88111317525653, 2.7489700126738794e-05, 0.0499, 0.05, 0.05, "cylindrical"], [69.88111317525653, 2.7489700126738794e-05, 0.0499, 0.05, 0.05, "cylindrical"], [69.88111317525653, 2.7489700126738794e-05, 0.0499, 0.05, 0.05, "cylindrical"], [69.88111317525653, 2.7489700126738794e-05, 0.0499, 0.05, 0.05, "cylindrical"], [69.88111317525653, 2.7489700126738794e-05, 0.0499, 0.05, 0.05, "cylindrical"], [69.88111317525653, 2.7489700126738794e-05, 0.0499, 0.05, 0.05, "cylindrical"], [69.88111317525653, 2.7489700126738794e-05, 0.0499, 0.05, 0.05, "cylindrical"], [69.88111317525653, 2.7489700126738794e-05, 0.0499, 0.05, 0.05, "cylindrical"], [69.88111317525653, 2.7489700126738794e-05, 0.0499, 0.05, 0.05, "cylindrical"], [69.88111317525653, 2.7489700126738794e-05, 0.0499, 0.05, 0.05, "cylindrical"], [69.88111317525653, 2.7489700126738794e-05, 0.0499, 0.05, 0.05, "cylindrical"], [69.88111317525653, 2.7489700126738794e-05, 0.0499, 0.05, 0.05, "cylindrical"], [69.88111317525653, 2.7489700126738794e-05, 0.0499, 0.05, 0.05, "cylindrical"], [69.88111317525653, 2.7489700126738794e-05, 0.0499, 0.05, 0.05, "cylindrical"], [69.88111317525653, 2.7489700126738794e-05, 0.0499, 0.05, 0.05, "cylindrical"], [69.88111317525653, 2.7489700126738794e-05, 0.0499, 0.05, 0.05, "cylindrical"], [69.88111317525653, 2.7489700126738794e-05, 0.0499, 0.05, 0.05, "cylindrical"], [69.88111317525653, 2.7489700126738794e-05, 0.0499, 0.05, 0.05, "cylindrical"], [69.88111317525653, 2.7489700126738794e-05, 0.0499, 0.05, 0.05, "cylindrical"], [69.88111317525653, 2.7489700126738794e-05, 0.0499, 0.05, 0.05, "cylindrical"], [69.88111317525653, 2.7489700126738794e-05, 0.0499, 0.05, 0.05, "cylindrical"], [69.88111317525653, 2.7489700126738794e-05, 0.0499, 0.05, 0.05, "cylindrical"], [69.88111317525653, 2.7489700126738794e-05, 0.0499, 0.05, 0.05, "cylindrical"], [69.88111317525653, 2.7489700126738794e-05, 0.0499, 0.05, 0.05, "cylindrical"], [69.88111317525653, 2.7489700126738794e-05, 0.0499, 0.05, 0.05, "cylindrical"], [69.88111317525653, 2.7489700126738794e-05, 0.0499, 0.05, 0.05, "cylindrical"], [69.88111317525653, 2.7489700126738794e-05, 0.0499, 0.05, 0.05, "cylindrical"], [69.88111317525653, 2.7489700126738794e-05, 0.0499, 0.05, 0.05, "cylindrical"], [69.88111317525653, 2.7489700126738794e-05, 0.0499, 0.05, 0.05, "cylindrical"], [69.88111317525653, 2.7489700126738794e-05, 0.0499, 0.05, 0.05, "cylindrical"], [69.88111317525653, 2.7489700126738794e-05, 0.0499, 0.05, 0.05, "cylindrical"], [69.88111317525653, 2.7489700126738794e-05, 0.0499, 0.05, 0.05, "cylindrical"], [69.88111317525653, 2.7489700126738794e-05, 0.0499, 0.05, 0.05, "cylindrical"], [69.88111317525653, 2.7489700126738794e-05, 0.0499, 0.05, 0.05, "cylindrical"], [69.88111317525653, 2.7489700126738794e-05, 0.0499, 0.05, 0.05, "cylindrical"], [69.88111317525653, 2.7489700126738794e-05, 0.0499, 0.05, 0.05, "cylindrical"], [69.88111317525653, 2.7489700126738794e-05, 0.0499, 0.05, 0.05, "cylindrical"], [69.88111317525653, 2.7489700126738794e-05, 0.0499, 0.05, 0.05, "cylindrical"], [69.88111317525653, 2.7489700126738794e-05, 0.0499, 0.05, 0.05, "cylindrical"], [69.88111317525653, 2.7489700126738794e-05, 0.0499, 0.05, 0.05, "cylindrical"], [69.88111317525653, 2.7489700126738794e-05, 0.0499, 0.05, 0.05, "cylindrical"], [69.88111317525653, 2.7489700126738794e-05, 0.0499, 0.05, 0.05, "cylindrical"], [69.88111317525653, 2.7489700126738794e-05, 0.0499, 0.05, 0.05, "cylindrical"], [69.88111317525653, 2.7489700126738794e-05, 0.0499, 0.05, 0.05, "cylindrical"], [69.88111317525653, 2.7489700126738794e-05, 0.0499, 0.05, 0.05, "cylindrical"], [69.88111317525653, 2.7489700126738794e-05, 0.0499, 0.05, 0.05, "cylindrical"], [69.88111317525653, 2.7489700126738794e-05, 0.0499, 0.05, 0.05, "cylindrical"], [69.88111317525653, 2.7489700126738794e-05, 0.0499, 0.05, 0.05, "cylindrical"], [69.88111317525653, 2.7489700126738794e-05, 0.0499, 0.05, 0.05, "cylindrical"], [69.88111317525653, 2.7489700126738794e-05, 0.0499, 0.05, 0.05, "cylindrical"], [69.88111317525653, 2.7489700126738794e-05, 0.0499, 0.05, 0.05, "cylindrical"], [69.88111317525653, 2.7489700126738794e-05, 0.0499, 0.05, 0.05, "cylindrical"], [69.88111317525653, 2.7489700126738794e-05, 0.0499, 0.05, 0.05, "cylindrical"], [69.88111317525653, 2.7489700126738794e-05, 0.0499, 0.05, 0.05, "cylindrical"], [69.88111317525653, 2.7489700126738794e-05, 0.0499, 0.05, 0.05, "cylindrical"]], "hovertemplate": "Attitude angle: 69.88\u00b0<br>Eccentricity: 2.75e-05<br>Rotor radius: 4.99e-02<br>", "legendgroup": "Rotor", "line": {"color": "#1f77b4"}, "marker": {"color": "#1f77b4"}, "mode": "markers+lines", "name": "Rotor", "type": "scatter", "x": [-0.026331823089589382, -0.026925141884585044, -0.02743110881795554, -0.02784848720913518, -0.02817625643808625, -0.028413614435346374, -0.028559979644458798, -0.02861499245198707, -0.02857851608154771, -0.028450636949536943, -0.02823166448147575, -0.02792213038915141, -0.0275227874099893, -0.02703460751134394, -0.02645877956365126, -0.025796706487631424, -0.025050001881971082, -0.024220486139143453, -0.023310182058240862, -0.022321309964895272, -0.021256282349544825, -0.020117698036466222, -0.018908335897130646, -0.017631148122553474, -0.016289253070390163, -0.014885927703582826, -0.013424599638378784, -0.011908838820522303, -0.010342348849362406, -0.008728957970515991, -0.007072609758581995, -0.005377353512206121, -0.0036473343845543123, -0.0018867832729571408, -0.00010000649213761856, 0.001708624743969987, 0.003534685006269635, 0.005373705474402691, 0.007221184874068703, 0.009072600500989347, 0.010923419304455225, 0.012769109003179301, 0.014605149206033174, 0.016427042510164476, 0.018230325548984544, 0.020010579962580165, 0.021763443263234046, 0.023484619568946805, 0.02516989017812766, 0.026815123958970087, 0.02841628752744666, 0.029969455188345623, 0.03147081861433085, 0.032916696238630416, 0.034303542337653564, 0.035627955780591775, 0.03688668842388097, 0.03807665312928339, 0.039194931385287825, 0.04023878051252508, 0.04120564043494403, 0.04209313999959715, 0.04289910282903173, 0.043621552691477425, 0.044258718375254844, 0.04480903805510171, 0.04527116313941974, 0.04564396158877968, 0.045926520697385224, 0.04611814933057938, 0.04621837961287918, 0.046226968062440296, 0.04614389616927837, 0.04596937041600521, 0.04570382174126991, 0.04534790444752465, 0.04490249455615725, 0.044368687614444305, 0.04374779596017439, 0.04304134545116879, 0.04225107166828076, 0.04137891560178285, 0.040427018832347957, 0.03939771821909454, 0.03829354010839182, 0.03711719407830717, 0.03587156623472068, 0.034559712076227676, 0.03318484894599805, 0.031750348089757165, 0.03025972633999497, 0.028716637447397303, 0.027124863081321823, 0.02548830352191076, 0.02381096806714126, 0.022096965178760995, 0.02035049239163958, 0.01857582601158652, 0.016777310627139906, 0.014959348461220184, 0.013126388588866632, 0.011282916047532359, 0.009433440866605887, 0.007582487042954248, 0.0057345814893450175, 0.0038942429826009867, 0.0020659711382758836, 0.00025423543850935926, -0.0015365356604715736, -0.0033019655149908785, -0.005037739948798664, -0.006739617750652455, -0.008403440989501998, -0.010025145122657226, -0.011600768872858444, -0.01312646385075797, -0.014598503899963247, -0.016013294142481822, -0.017367379703146807, -0.018657454092384736, -0.019880367227513136, -0.021033133073624935, -0.022112936886024337, -0.02311714203712424, -0.024043296411696696, -0.02488913835538306, -0.025652602162417104, -0.026331823089589382], "y": [0.00964592241091818, 0.007893273693999406, 0.006113439035755562, 0.004310766667783265, 0.002489660596493743, 0.0006545698984546269, -0.0011900220941683587, -0.003039608692318806, -0.0048896708069455985, -0.0067356879379751305, -0.008573149169151494, -0.01039756414249894, -0.012204473986180367, -0.013989462169604073, -0.015748165259766717, -0.017476283553014744, -0.019169591556659715, -0.020823948295193035, -0.02243530741621475, -0.02399972707161724, -0.02551337955004788, -0.02697256063721541, -0.02837369868120034, -0.02971336334058129, -0.030988273993895022, -0.032195307789706515, -0.03333150731737674, -0.03439408787947757, -0.03538044434771408, -0.036288157585174355, -0.0371150004187302, -0.037858943146462556, -0.03851815856607542, -0.03909102651139304, -0.03957613788520325, -0.03997229817791276, -0.0402785304627159, -0.040494077859242486, -0.040618405458942436, -0.04065120170677938, -0.040592379235140384, -0.040442075147221535, -0.0402006507485143, -0.039868690726393624, -0.03944700177919082, -0.038936610697519, -0.03833876190200303, -0.03765491444294491, -0.03688673846882551, -0.03603611117190237, -0.03510511222050354, -0.03409601868893954, -0.03301129949725149, -0.03185360937428332, -0.030625782358801926, -0.02933082485459149, -0.02797190825661016, -0.026552361166416537, -0.02507566121614809, -0.023545426521355484, -0.02196540678397099, -0.020339474067602337, -0.018671613268202616, -0.016965912303962202, -0.015226552049001673, -0.013457796036112468, -0.011663979954389338, -0.009849500968131234, -0.008018806883842816, -0.006176385192556826, -0.004326752015009112, -0.0024744409774361104, -0.0006239920459285529, 0.0012200596526392832, 0.0030531949950698112, 0.0048709219837238475, 0.006668786797989525, 0.008442384747719347, 0.010187371101299289, 0.01189947176137204, 0.013574493761664298, 0.015208335558864385, 0.016796997094062655, 0.018336589598894035, 0.019823345122217974, 0.021253625753922405, 0.02262393252325146, 0.02393091394992353, 0.02517137422722699, 0.026342281017250144, 0.02744077283941967, 0.028464166034581444, 0.02940996128795852, 0.030275849695459277, 0.031059718358979433, 0.03175965549754446, 0.032373955062366726, 0.032901120845144446, 0.03333987007020184, 0.03368913646235817, 0.03394807278371596, 0.0341160528338704, 0.03419267290936002, 0.03417775271950099, 0.034071335757068326, 0.03387368912360643, 0.03358530281046324, 0.033206888437945795, 0.03273937745628572, 0.03218391881337956, 0.031541876095527215, 0.030814824148630234, 0.030004545188526643, 0.029113024410330073, 0.028142445107803195, 0.02709518331492819, 0.025973801982938704, 0.024781044707144605, 0.023519829018912208, 0.022193239259155794, 0.02080451905065145, 0.01935706338739673, 0.01785441036010965, 0.016300232537787725, 0.014698328026028318, 0.013052611223545181, 0.011367103299001563, 0.009645922410918186]}, {"customdata": [[69.88111317525653, 2.7489700126738794e-05, 0.0499, 0.05, 0.05, "cylindrical"]], "hovertemplate": "Attitude angle: 69.88\u00b0<br>Eccentricity: 2.75e-05<br>Rotor radius: 4.99e-02<br>", "legendgroup": "Rotor", "marker": {"color": "#1f77b4", "size": 8}, "name": "Rotor", "showlegend": false, "type": "scatter", "x": [0.008809537767663925], "y": [-0.00322712626063996]}, {"customdata": [[69.88111317525653, 2.7489700126738794e-05, 0.0499, 0.05, 0.05, "cylindrical"]], "hovertemplate": "Stator radius: 5.00e-02<br>Ellipticity ratio: 0.05<br>Shape Geometry: cylindrical<br>", "legendgroup": "Stator", "marker": {"color": "#d62728", "size": 8}, "name": "Stator", "showlegend": false, "type": "scatter", "x": [0], "y": [0]}],
+                        {"template": {"data": {"bar": [{"error_x": {"color": "#2a3f5f"}, "error_y": {"color": "#2a3f5f"}, "marker": {"line": {"color": "white", "width": 0.5}}, "type": "bar"}], "barpolar": [{"marker": {"line": {"color": "white", "width": 0.5}}, "type": "barpolar"}], "carpet": [{"aaxis": {"endlinecolor": "#2a3f5f", "gridcolor": "#C8D4E3", "linecolor": "#C8D4E3", "minorgridcolor": "#C8D4E3", "startlinecolor": "#2a3f5f"}, "baxis": {"endlinecolor": "#2a3f5f", "gridcolor": "#C8D4E3", "linecolor": "#C8D4E3", "minorgridcolor": "#C8D4E3", "startlinecolor": "#2a3f5f"}, "type": "carpet"}], "choropleth": [{"colorbar": {"outlinewidth": 0, "ticks": ""}, "type": "choropleth"}], "contour": [{"colorbar": {"outlinewidth": 0, "ticks": ""}, "colorscale": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]], "type": "contour"}], "contourcarpet": [{"colorbar": {"outlinewidth": 0, "ticks": ""}, "type": "contourcarpet"}], "heatmap": [{"colorbar": {"outlinewidth": 0, "ticks": ""}, "colorscale": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]], "type": "heatmap"}], "heatmapgl": [{"colorbar": {"outlinewidth": 0, "ticks": ""}, "colorscale": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]], "type": "heatmapgl"}], "histogram": [{"marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "type": "histogram"}], "histogram2d": [{"colorbar": {"outlinewidth": 0, "ticks": ""}, "colorscale": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]], "type": "histogram2d"}], "histogram2dcontour": [{"colorbar": {"outlinewidth": 0, "ticks": ""}, "colorscale": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]], "type": "histogram2dcontour"}], "mesh3d": [{"colorbar": {"outlinewidth": 0, "ticks": ""}, "type": "mesh3d"}], "parcoords": [{"line": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "type": "parcoords"}], "pie": [{"automargin": true, "type": "pie"}], "scatter": [{"marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "type": "scatter"}], "scatter3d": [{"line": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "type": "scatter3d"}], "scattercarpet": [{"marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "type": "scattercarpet"}], "scattergeo": [{"marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "type": "scattergeo"}], "scattergl": [{"marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "type": "scattergl"}], "scattermapbox": [{"marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "type": "scattermapbox"}], "scatterpolar": [{"marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "type": "scatterpolar"}], "scatterpolargl": [{"marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "type": "scatterpolargl"}], "scatterternary": [{"marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "type": "scatterternary"}], "surface": [{"colorbar": {"outlinewidth": 0, "ticks": ""}, "colorscale": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]], "type": "surface"}], "table": [{"cells": {"fill": {"color": "#EBF0F8"}, "line": {"color": "white"}}, "header": {"fill": {"color": "#C8D4E3"}, "line": {"color": "white"}}, "type": "table"}]}, "layout": {"annotationdefaults": {"arrowcolor": "#2a3f5f", "arrowhead": 0, "arrowwidth": 1}, "coloraxis": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "colorscale": {"diverging": [[0, "#8e0152"], [0.1, "#c51b7d"], [0.2, "#de77ae"], [0.3, "#f1b6da"], [0.4, "#fde0ef"], [0.5, "#f7f7f7"], [0.6, "#e6f5d0"], [0.7, "#b8e186"], [0.8, "#7fbc41"], [0.9, "#4d9221"], [1, "#276419"]], "sequential": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]], "sequentialminus": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]]}, "colorway": ["#1f77b4", "#ff7f0e", "#2ca02c", "#d62728", "#9467bd", "#8c564b", "#e377c2", "#7f7f7f", "#bcbd22", "#17becf"], "font": {"color": "#2a3f5f"}, "geo": {"bgcolor": "white", "lakecolor": "white", "landcolor": "white", "showlakes": true, "showland": true, "subunitcolor": "#C8D4E3"}, "hoverlabel": {"align": "left"}, "hovermode": "closest", "mapbox": {"style": "light"}, "paper_bgcolor": "white", "plot_bgcolor": "white", "polar": {"angularaxis": {"gridcolor": "#EBF0F8", "linecolor": "#EBF0F8", "ticks": ""}, "bgcolor": "white", "radialaxis": {"gridcolor": "#EBF0F8", "linecolor": "#EBF0F8", "ticks": ""}}, "scene": {"camera": {"center": {"x": 0, "y": 0, "z": 0}, "eye": {"x": 2.0, "y": 2.0, "z": 2.0}, "up": {"x": 0, "y": 0, "z": 1}}, "xaxis": {"backgroundcolor": "white", "gridcolor": "#DFE8F3", "gridwidth": 2, "linecolor": "#EBF0F8", "showbackground": true, "showspikes": false, "ticks": "", "zerolinecolor": "#EBF0F8"}, "yaxis": {"backgroundcolor": "white", "gridcolor": "#DFE8F3", "gridwidth": 2, "linecolor": "#EBF0F8", "showbackground": true, "showspikes": false, "ticks": "", "zerolinecolor": "#EBF0F8"}, "zaxis": {"backgroundcolor": "white", "gridcolor": "#DFE8F3", "gridwidth": 2, "linecolor": "#EBF0F8", "showbackground": true, "showspikes": false, "ticks": "", "zerolinecolor": "#EBF0F8"}}, "shapedefaults": {"line": {"color": "#2a3f5f"}}, "ternary": {"aaxis": {"gridcolor": "#DFE8F3", "linecolor": "#A2B1C6", "ticks": ""}, "baxis": {"gridcolor": "#DFE8F3", "linecolor": "#A2B1C6", "ticks": ""}, "bgcolor": "white", "caxis": {"gridcolor": "#DFE8F3", "linecolor": "#A2B1C6", "ticks": ""}}, "title": {"x": 0.05}, "xaxis": {"automargin": true, "gridcolor": "#EBF0F8", "linecolor": "black", "linewidth": 2.0, "mirror": true, "showline": true, "ticks": "", "title": {"standoff": 15}, "zeroline": false, "zerolinecolor": "#EBF0F8", "zerolinewidth": 2}, "yaxis": {"automargin": true, "gridcolor": "#EBF0F8", "linecolor": "black", "linewidth": 2.0, "mirror": true, "showline": true, "ticks": "", "title": {"standoff": 15}, "zeroline": false, "zerolinecolor": "#EBF0F8", "zerolinewidth": 2}}}, "title": {"text": "<b>Cut in plane Z=0</b>"}, "xaxis": {"title": {"text": "<b>X axis</b>"}}, "yaxis": {"scaleanchor": "x", "scaleratio": 1, "title": {"text": "<b>Y axis</b>"}}},
+                        {"responsive": true}
+                    ).then(function(){
+
+var gd = document.getElementById('fa6a9bb5-6824-482c-8828-926b68f133c9');
+var x = new MutationObserver(function (mutations, observer) {{
+        var display = window.getComputedStyle(gd).display;
+        if (!display || display === 'none') {{
+            console.log([gd, 'removed!']);
+            Plotly.purge(gd);
+            observer.disconnect();
+        }}
+}});
+
+// Listen for the removal of the full notebook cells
+var notebookContainer = gd.closest('#notebook-container');
+if (notebookContainer) {{
+    x.observe(notebookContainer, {childList: true});
+}}
+
+// Listen for the clearing of the current output cell
+var outputEl = gd.closest('.output');
+if (outputEl) {{
+    x.observe(outputEl, {childList: true});
+}}
+
+                        })
+                };
+                });
+            </script>
+        </div></div>
+</div>
+<p>The graphic above plots two circles: one representing the stator and one representing the rotor, considering the eccentricity. In this case, since the space between the stator and the rotor is very small, it is not seen in the graphic.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
 </pre></div>
 </div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-&lt;matplotlib.axes._subplots.AxesSubplot at 0x7f307a9aec10&gt;
-</pre></div></div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span># Getting the stiffness and damping matrices
+
+K, C = calculate_stiffness_and_damping_coefficients(my_fluid_flow)
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[17]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span>print(f&quot;Kxx, Kxy, Kyx, Kyy = {K}&quot;)
+print(f&quot;Cxx, Cxy, Cyx, Cyy = {C}&quot;)
+</pre></div>
+</div>
 </div>
 <div class="nboutput nblast docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../_images/examples_example_9_5_1.png" src="../_images/examples_example_9_5_1.png" />
-</div>
-</div>
-<p>The graphic above plots two circles: one representing the stator and one representing the rotor, considering the eccentricity. In this case, since the space between the stator and the rotor is very small, it is not seen in the graphic.</p>
-<div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
-</pre></div>
-</div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span># Getting the stiffness matrix
-
-calculate_stiffness_matrix(my_fluid_flow)
-</pre></div>
-</div>
-</div>
-<div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
-</pre></div>
-</div>
-<div class="output_area docutils container">
 <div class="highlight"><pre>
-[11793013.59985914, 15884985.735096537, -23718258.53112859, 7744099.182528209]
-</pre></div></div>
-</div>
-<div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
-</pre></div>
-</div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span># Getting the damping matrix
-
-calculate_damping_matrix(my_fluid_flow, force_type=&quot;short&quot;)
-</pre></div>
-</div>
-</div>
-<div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
-</pre></div>
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-[232892.5172631672, -81914.33449011963, -81914.33449011963, 294893.1749179313]
+Kxx, Kxy, Kyx, Kyy = [12423066.55445325, 15788292.981480794, -24261835.546539307, 8887571.434942245]
+Cxx, Cxy, Cyx, Cyy = [231998.5397491176, -85019.62210425804, -80904.90677967668, 288774.98007804155]
 </pre></div></div>
 </div>
 <p>The stiffness and damping matrices can be calculated analytically using the methods above.</p>
-<p>Once the object Fluid Flow is instantiated, the user must call a method to calculate its pressure matrix. There are 3 methods available: two that calculate the pressure analyticaly and one that calculate it numerically. The first one is based on the book Tribology Series vol. 33, by Frene et al., chapter 5. The second one is based on chapter Linear and Nonlinear Rotordynamics, by Ishida and Yamamoto, from the book Flow-Induced Vibrations. The numerical method was developed as part of project
-ROSS and it was based on the undergraduate dissertation by Luiz Henrique Mamede Queiroz: Analysis of fluid flow inside rotary machines components.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[19]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -896,204 +599,103 @@ my_fluid_flow.calculate_pressure_matrix_numerical()[int(nz/2)]
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[19]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-array([0.00000000e+00, 8.88285016e+02, 2.54301785e+03, 4.19822219e+03,
-       5.85408340e+03, 7.51078660e+03, 9.16851653e+03, 1.08274578e+04,
-       1.24877947e+04, 1.41497110e+04, 1.58133907e+04, 1.74790168e+04,
-       1.91467724e+04, 2.08168400e+04, 2.24894022e+04, 2.41646406e+04,
-       2.58427367e+04, 2.75238714e+04, 2.92082252e+04, 3.08959783e+04,
-       3.25873101e+04, 3.42823996e+04, 3.59814250e+04, 3.76845639e+04,
-       3.93919937e+04, 4.11038904e+04, 4.28204294e+04, 4.45417855e+04,
-       4.62681323e+04, 4.79996429e+04, 4.97364889e+04, 5.14788411e+04,
-       5.32268693e+04, 5.49807421e+04, 5.67406264e+04, 5.85066886e+04,
-       6.02790932e+04, 6.20580030e+04, 6.38435801e+04, 6.56359843e+04,
-       6.74353738e+04, 6.92419054e+04, 7.10557339e+04, 7.28770119e+04,
-       7.47058904e+04, 7.65425178e+04, 7.83870409e+04, 8.02396036e+04,
-       8.21003477e+04, 8.39694124e+04, 8.58469340e+04, 8.77330466e+04,
-       8.96278810e+04, 9.15315651e+04, 9.34442236e+04, 9.53659782e+04,
-       9.72969470e+04, 9.92372446e+04, 1.01186982e+05, 1.03146266e+05,
-       1.05115201e+05, 1.07093885e+05, 1.09082413e+05, 1.11080875e+05,
-       1.13089357e+05, 1.15107941e+05, 1.17136701e+05, 1.19175710e+05,
-       1.21225032e+05, 1.23284726e+05, 1.25354848e+05, 1.27435446e+05,
-       1.29526561e+05, 1.31628230e+05, 1.33740481e+05, 1.35863336e+05,
-       1.37996811e+05, 1.40140914e+05, 1.42295645e+05, 1.44460996e+05,
-       1.46636952e+05, 1.48823489e+05, 1.51020574e+05, 1.53228166e+05,
-       1.55446215e+05, 1.57674660e+05, 1.59913431e+05, 1.62162450e+05,
-       1.64421625e+05, 1.66690857e+05, 1.68970033e+05, 1.71259030e+05,
-       1.73557713e+05, 1.75865936e+05, 1.78183540e+05, 1.80510353e+05,
-       1.82846191e+05, 1.85190855e+05, 1.87544135e+05, 1.89905803e+05,
-       1.92275620e+05, 1.94653331e+05, 1.97038664e+05, 1.99431336e+05,
-       2.01831043e+05, 2.04237466e+05, 2.06650272e+05, 2.09069108e+05,
-       2.11493603e+05, 2.13923371e+05, 2.16358005e+05, 2.18797079e+05,
-       2.21240150e+05, 2.23686754e+05, 2.26136407e+05, 2.28588606e+05,
-       2.31042824e+05, 2.33498516e+05, 2.35955114e+05, 2.38412027e+05,
-       2.40868645e+05, 2.43324330e+05, 2.45778426e+05, 2.48230251e+05,
-       2.50679098e+05, 2.53124238e+05, 2.55564917e+05, 2.58000353e+05,
-       2.60429743e+05, 2.62852256e+05, 2.65267036e+05, 2.67673199e+05,
-       2.70069836e+05, 2.72456012e+05, 2.74830763e+05, 2.77193099e+05,
-       2.79542001e+05, 2.81876426e+05, 2.84195299e+05, 2.86497519e+05,
-       2.88781957e+05, 2.91047455e+05, 2.93292828e+05, 2.95516863e+05,
-       2.97718316e+05, 2.99895918e+05, 3.02048371e+05, 3.04174347e+05,
-       3.06272493e+05, 3.08341427e+05, 3.10379739e+05, 3.12385993e+05,
-       3.14358724e+05, 3.16296444e+05, 3.18197634e+05, 3.20060754e+05,
-       3.21884235e+05, 3.23666487e+05, 3.25405893e+05, 3.27100814e+05,
-       3.28749588e+05, 3.30350531e+05, 3.31901938e+05, 3.33402083e+05,
-       3.34849222e+05, 3.36241592e+05, 3.37577414e+05, 3.38854892e+05,
-       3.40072215e+05, 3.41227559e+05, 3.42319087e+05, 3.43344954e+05,
-       3.44303302e+05, 3.45192267e+05, 3.46009980e+05, 3.46754566e+05,
-       3.47424147e+05, 3.48016847e+05, 3.48530787e+05, 3.48964095e+05,
-       3.49314902e+05, 3.49581345e+05, 3.49761573e+05, 3.49853745e+05,
-       3.49856035e+05, 3.49766631e+05, 3.49583743e+05, 3.49305599e+05,
-       3.48930451e+05, 3.48456580e+05, 3.47882293e+05, 3.47205929e+05,
-       3.46425863e+05, 3.45540504e+05, 3.44548302e+05, 3.43447752e+05,
-       3.42237390e+05, 3.40915805e+05, 3.39481633e+05, 3.37933567e+05,
-       3.36270355e+05, 3.34490805e+05, 3.32593791e+05, 3.30578248e+05,
-       3.28443183e+05, 3.26187673e+05, 3.23810868e+05, 3.21311997e+05,
-       3.18690368e+05, 3.15945372e+05, 3.13076484e+05, 3.10083269e+05,
-       3.06965378e+05, 3.03722557e+05, 3.00354650e+05, 2.96861593e+05,
-       2.93243423e+05, 2.89500279e+05, 2.85632406e+05, 2.81640147e+05,
-       2.77523960e+05, 2.73284405e+05, 2.68922155e+05, 2.64437992e+05,
-       2.59832815e+05, 2.55107629e+05, 2.50263557e+05, 2.45301836e+05,
-       2.40223817e+05, 2.35030967e+05, 2.29724867e+05, 2.24307217e+05,
-       2.18779826e+05, 2.13144618e+05, 2.07403636e+05, 2.01559031e+05,
-       1.95613066e+05, 1.89568113e+05, 1.83426655e+05, 1.77191282e+05,
-       1.70864688e+05, 1.64449671e+05, 1.57949125e+05, 1.51366048e+05,
-       1.44703530e+05, 1.37964756e+05, 1.31152995e+05, 1.24271605e+05,
-       1.17324029e+05, 1.10313783e+05, 1.03244463e+05, 9.61197359e+04,
-       8.89433313e+04, 8.17190477e+04, 7.44507378e+04, 6.71423080e+04,
-       5.97977129e+04, 5.24209554e+04, 4.50160774e+04, 3.75871523e+04,
-       3.01382838e+04, 2.26736026e+04, 1.51972587e+04, 7.71341225e+03,
-       2.26235245e+02, 0.00000000e+00, 0.00000000e+00, 0.00000000e+00,
-       0.00000000e+00, 0.00000000e+00, 0.00000000e+00, 0.00000000e+00,
-       0.00000000e+00, 0.00000000e+00, 0.00000000e+00, 0.00000000e+00,
-       0.00000000e+00, 0.00000000e+00, 0.00000000e+00, 0.00000000e+00,
-       0.00000000e+00, 0.00000000e+00, 0.00000000e+00, 0.00000000e+00,
-       0.00000000e+00, 0.00000000e+00, 0.00000000e+00, 0.00000000e+00,
-       0.00000000e+00, 0.00000000e+00, 0.00000000e+00, 0.00000000e+00,
-       0.00000000e+00, 0.00000000e+00, 0.00000000e+00, 0.00000000e+00,
-       0.00000000e+00, 0.00000000e+00, 0.00000000e+00, 0.00000000e+00,
-       0.00000000e+00, 0.00000000e+00, 0.00000000e+00, 0.00000000e+00,
-       0.00000000e+00, 0.00000000e+00, 0.00000000e+00, 0.00000000e+00,
-       0.00000000e+00, 0.00000000e+00, 0.00000000e+00, 0.00000000e+00,
-       0.00000000e+00, 0.00000000e+00, 0.00000000e+00, 0.00000000e+00,
-       0.00000000e+00, 0.00000000e+00, 0.00000000e+00, 0.00000000e+00,
-       0.00000000e+00, 0.00000000e+00, 0.00000000e+00, 0.00000000e+00,
-       0.00000000e+00, 0.00000000e+00, 0.00000000e+00, 0.00000000e+00,
-       0.00000000e+00, 0.00000000e+00, 0.00000000e+00, 0.00000000e+00,
-       0.00000000e+00, 0.00000000e+00, 0.00000000e+00, 0.00000000e+00,
-       0.00000000e+00, 0.00000000e+00, 0.00000000e+00, 0.00000000e+00,
-       0.00000000e+00, 0.00000000e+00, 0.00000000e+00, 0.00000000e+00,
-       0.00000000e+00, 0.00000000e+00, 0.00000000e+00, 0.00000000e+00,
-       0.00000000e+00, 0.00000000e+00, 0.00000000e+00, 0.00000000e+00,
-       0.00000000e+00, 0.00000000e+00, 0.00000000e+00, 0.00000000e+00,
-       0.00000000e+00, 0.00000000e+00, 0.00000000e+00, 0.00000000e+00,
-       0.00000000e+00, 0.00000000e+00, 0.00000000e+00, 0.00000000e+00,
-       0.00000000e+00, 0.00000000e+00, 0.00000000e+00, 0.00000000e+00,
-       0.00000000e+00, 0.00000000e+00, 0.00000000e+00, 0.00000000e+00,
-       0.00000000e+00, 0.00000000e+00, 0.00000000e+00, 0.00000000e+00,
-       0.00000000e+00, 0.00000000e+00, 0.00000000e+00, 0.00000000e+00,
-       0.00000000e+00, 0.00000000e+00, 0.00000000e+00, 0.00000000e+00,
-       0.00000000e+00, 0.00000000e+00, 0.00000000e+00, 0.00000000e+00,
-       0.00000000e+00, 0.00000000e+00, 0.00000000e+00, 0.00000000e+00,
-       0.00000000e+00, 0.00000000e+00, 0.00000000e+00, 0.00000000e+00,
-       0.00000000e+00, 0.00000000e+00, 0.00000000e+00, 0.00000000e+00,
-       0.00000000e+00, 0.00000000e+00, 0.00000000e+00, 0.00000000e+00,
-       0.00000000e+00, 0.00000000e+00, 0.00000000e+00, 0.00000000e+00,
-       0.00000000e+00, 0.00000000e+00, 0.00000000e+00, 0.00000000e+00,
-       0.00000000e+00, 0.00000000e+00, 0.00000000e+00, 0.00000000e+00,
-       0.00000000e+00, 0.00000000e+00, 0.00000000e+00, 0.00000000e+00,
-       0.00000000e+00, 0.00000000e+00, 0.00000000e+00, 0.00000000e+00,
-       0.00000000e+00, 0.00000000e+00, 0.00000000e+00, 0.00000000e+00,
-       0.00000000e+00, 0.00000000e+00, 0.00000000e+00, 0.00000000e+00,
-       0.00000000e+00, 0.00000000e+00, 0.00000000e+00, 0.00000000e+00,
-       0.00000000e+00, 0.00000000e+00, 0.00000000e+00, 0.00000000e+00,
-       0.00000000e+00, 0.00000000e+00, 0.00000000e+00, 0.00000000e+00,
-       0.00000000e+00, 0.00000000e+00, 0.00000000e+00, 0.00000000e+00,
-       0.00000000e+00, 0.00000000e+00, 0.00000000e+00, 0.00000000e+00,
-       0.00000000e+00, 0.00000000e+00, 0.00000000e+00, 0.00000000e+00,
-       0.00000000e+00, 0.00000000e+00, 0.00000000e+00, 0.00000000e+00,
-       0.00000000e+00, 0.00000000e+00, 0.00000000e+00, 0.00000000e+00,
-       0.00000000e+00, 0.00000000e+00, 0.00000000e+00, 0.00000000e+00,
-       0.00000000e+00, 0.00000000e+00, 0.00000000e+00, 0.00000000e+00,
-       0.00000000e+00, 0.00000000e+00, 0.00000000e+00, 0.00000000e+00,
-       0.00000000e+00, 0.00000000e+00, 0.00000000e+00, 0.00000000e+00,
-       0.00000000e+00, 0.00000000e+00, 0.00000000e+00, 0.00000000e+00,
-       0.00000000e+00, 0.00000000e+00, 0.00000000e+00, 0.00000000e+00,
-       0.00000000e+00, 0.00000000e+00, 0.00000000e+00, 0.00000000e+00,
-       0.00000000e+00, 0.00000000e+00, 0.00000000e+00, 0.00000000e+00,
-       0.00000000e+00, 0.00000000e+00, 0.00000000e+00, 0.00000000e+00,
-       0.00000000e+00, 0.00000000e+00, 0.00000000e+00, 0.00000000e+00,
-       0.00000000e+00, 0.00000000e+00, 0.00000000e+00, 0.00000000e+00,
-       0.00000000e+00, 0.00000000e+00, 0.00000000e+00, 0.00000000e+00,
-       0.00000000e+00, 0.00000000e+00, 0.00000000e+00, 0.00000000e+00,
-       0.00000000e+00, 0.00000000e+00, 0.00000000e+00, 0.00000000e+00,
-       0.00000000e+00, 0.00000000e+00, 0.00000000e+00, 0.00000000e+00,
-       0.00000000e+00, 0.00000000e+00, 0.00000000e+00, 0.00000000e+00])
+array([     0.        ,   3918.69567687,  10727.26080589,  17581.37987039,
+        24493.19718552,  31474.86735178,  38538.69550311,  45697.14449412,
+        52962.77611312,  60348.15793613,  67865.75020671,  75527.78318711,
+        83346.12683986,  91332.14644513,  99496.54923553, 107849.21126724,
+       116398.98425179, 125153.48403454, 134118.85019192, 143299.47549671,
+       152697.70696763, 162313.51706133, 172144.13101751, 182183.62385131,
+       192422.4817756 , 202847.12609302, 213439.40369906, 224176.0441148 ,
+       235028.09700579, 245960.35340382, 256930.74920982, 267889.78813298,
+       278779.98255274, 289535.3250959 , 300080.85417748, 310332.28190128,
+       320195.7747272 , 329567.88205726, 338335.65948832, 346377.05566628,
+       353561.55523284, 359751.15839784, 364801.71644541, 368564.65556759,
+       370889.11213738, 371624.48807912, 370623.42555164, 367745.16090416,
+       362859.21976135, 355849.3740771 , 346617.76168522, 335089.04316257,
+       321214.44979619, 304975.53523023, 286387.47953206, 265501.72154231,
+       242407.79727187, 217234.1549834 , 190147.87443106, 161353.19363733,
+       131088.78692734,  99623.86102295,  67253.11818438,  34290.76361513,
+         1063.77035377,      0.        ,      0.        ,      0.        ,
+            0.        ,      0.        ,      0.        ,      0.        ,
+            0.        ,      0.        ,      0.        ,      0.        ,
+            0.        ,      0.        ,      0.        ,      0.        ,
+            0.        ,      0.        ,      0.        ,      0.        ,
+            0.        ,      0.        ,      0.        ,      0.        ,
+            0.        ,      0.        ,      0.        ,      0.        ,
+            0.        ,      0.        ,      0.        ,      0.        ,
+            0.        ,      0.        ,      0.        ,      0.        ,
+            0.        ,      0.        ,      0.        ,      0.        ,
+            0.        ,      0.        ,      0.        ,      0.        ,
+            0.        ,      0.        ,      0.        ,      0.        ,
+            0.        ,      0.        ,      0.        ,      0.        ,
+            0.        ,      0.        ,      0.        ,      0.        ,
+            0.        ,      0.        ,      0.        ,      0.        ,
+            0.        ,      0.        ,      0.        ,      0.        ])
 </pre></div></div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[18]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
 <span></span># Plotting pressure along theta in a chosen z
 
-show(plot_pressure_theta(my_fluid_flow, z=int(nz/2)))
+plot_pressure_theta(my_fluid_flow, z=int(nz/2))
 </pre></div>
 </div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area stderr docutils container">
-<div class="highlight"><pre>
-BokehDeprecationWarning: &#39;legend&#39; keyword is deprecated, use explicit &#39;legend_label&#39;, &#39;legend_field&#39;, or &#39;legend_group&#39; keywords instead
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area rendered_html docutils container">
-<div class="bk-root" id="47d33727-7d1a-45c3-960c-12b87090f5a9" data-root-id="1002"></div></div>
 </div>
 <div class="nboutput nblast docutils container">
 <div class="prompt empty docutils container">
 </div>
-<div class="output_area docutils container">
-<div class="output_javascript"></div>
-<script type="text/javascript">
-var element = document.currentScript.previousSibling.previousSibling;
-(function(root) {
-  function embed_document(root) {
+<div class="output_area rendered_html docutils container">
+<div>
 
-  var docs_json = {"166115b3-f21c-4baf-b0fd-bc817971e27c":{"roots":{"references":[{"attributes":{"below":[{"id":"1013","type":"LinearAxis"}],"center":[{"id":"1017","type":"Grid"},{"id":"1022","type":"Grid"},{"id":"1047","type":"Legend"}],"left":[{"id":"1018","type":"LinearAxis"}],"renderers":[{"id":"1039","type":"GlyphRenderer"}],"title":{"id":"1003","type":"Title"},"toolbar":{"id":"1029","type":"Toolbar"},"x_range":{"id":"1005","type":"DataRange1d"},"x_scale":{"id":"1009","type":"LinearScale"},"y_range":{"id":"1007","type":"DataRange1d"},"y_scale":{"id":"1011","type":"LinearScale"}},"id":"1002","subtype":"Figure","type":"Plot"},{"attributes":{"axis_label":"Points along Theta","formatter":{"id":"1044","type":"BasicTickFormatter"},"ticker":{"id":"1014","type":"BasicTicker"}},"id":"1013","type":"LinearAxis"},{"attributes":{"callback":null,"data":{"x":{"__ndarray__":"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","dtype":"float64","shape":[528]},"y":{"__ndarray__":"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AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA","dtype":"float64","shape":[528]}},"selected":{"id":"1055","type":"Selection"},"selection_policy":{"id":"1056","type":"UnionRenderers"}},"id":"1036","type":"ColumnDataSource"},{"attributes":{"callback":null},"id":"1007","type":"DataRange1d"},{"attributes":{},"id":"1014","type":"BasicTicker"},{"attributes":{"data_source":{"id":"1036","type":"ColumnDataSource"},"glyph":{"id":"1037","type":"Line"},"hover_glyph":null,"muted_glyph":null,"nonselection_glyph":{"id":"1038","type":"Line"},"selection_glyph":null,"view":{"id":"1040","type":"CDSView"}},"id":"1039","type":"GlyphRenderer"},{"attributes":{"ticker":{"id":"1014","type":"BasicTicker"}},"id":"1017","type":"Grid"},{"attributes":{},"id":"1009","type":"LinearScale"},{"attributes":{},"id":"1028","type":"HelpTool"},{"attributes":{"text":"Pressure along Theta; Z=15"},"id":"1003","type":"Title"},{"attributes":{"line_alpha":0.1,"line_color":"#1f77b4","line_width":2,"x":{"field":"x"},"y":{"field":"y"}},"id":"1038","type":"Line"},{"attributes":{"line_color":"blue","line_width":2,"x":{"field":"x"},"y":{"field":"y"}},"id":"1037","type":"Line"},{"attributes":{},"id":"1042","type":"BasicTickFormatter"},{"attributes":{"callback":null},"id":"1005","type":"DataRange1d"},{"attributes":{"dimension":1,"ticker":{"id":"1019","type":"BasicTicker"}},"id":"1022","type":"Grid"},{"attributes":{},"id":"1011","type":"LinearScale"},{"attributes":{},"id":"1056","type":"UnionRenderers"},{"attributes":{},"id":"1026","type":"SaveTool"},{"attributes":{"bottom_units":"screen","fill_alpha":{"value":0.5},"fill_color":{"value":"lightgrey"},"left_units":"screen","level":"overlay","line_alpha":{"value":1.0},"line_color":{"value":"black"},"line_dash":[4,4],"line_width":{"value":2},"render_mode":"css","right_units":"screen","top_units":"screen"},"id":"1046","type":"BoxAnnotation"},{"attributes":{"active_drag":"auto","active_inspect":"auto","active_multi":null,"active_scroll":"auto","active_tap":"auto","tools":[{"id":"1023","type":"PanTool"},{"id":"1024","type":"WheelZoomTool"},{"id":"1025","type":"BoxZoomTool"},{"id":"1026","type":"SaveTool"},{"id":"1027","type":"ResetTool"},{"id":"1028","type":"HelpTool"}]},"id":"1029","type":"Toolbar"},{"attributes":{},"id":"1023","type":"PanTool"},{"attributes":{"axis_label":"Pressure","formatter":{"id":"1042","type":"BasicTickFormatter"},"ticker":{"id":"1019","type":"BasicTicker"}},"id":"1018","type":"LinearAxis"},{"attributes":{"overlay":{"id":"1046","type":"BoxAnnotation"}},"id":"1025","type":"BoxZoomTool"},{"attributes":{},"id":"1044","type":"BasicTickFormatter"},{"attributes":{},"id":"1027","type":"ResetTool"},{"attributes":{},"id":"1055","type":"Selection"},{"attributes":{"items":[{"id":"1048","type":"LegendItem"}]},"id":"1047","type":"Legend"},{"attributes":{},"id":"1024","type":"WheelZoomTool"},{"attributes":{"source":{"id":"1036","type":"ColumnDataSource"}},"id":"1040","type":"CDSView"},{"attributes":{},"id":"1019","type":"BasicTicker"},{"attributes":{"label":{"value":"Numerical pressure"},"renderers":[{"id":"1039","type":"GlyphRenderer"}]},"id":"1048","type":"LegendItem"}],"root_ids":["1002"]},"title":"Bokeh Application","version":"1.4.0"}};
-  var render_items = [{"docid":"166115b3-f21c-4baf-b0fd-bc817971e27c","roots":{"1002":"47d33727-7d1a-45c3-960c-12b87090f5a9"}}];
-  root.Bokeh.embed.embed_items_notebook(docs_json, render_items);
 
-  }
-  if (root.Bokeh !== undefined) {
-    embed_document(root);
-  } else {
-    var attempts = 0;
-    var timer = setInterval(function(root) {
-      if (root.Bokeh !== undefined) {
-        clearInterval(timer);
-        embed_document(root);
-      } else {
-        attempts++;
-        if (attempts > 100) {
-          clearInterval(timer);
-          console.log("Bokeh: ERROR: Unable to run BokehJS code because BokehJS library is missing");
-        }
-      }
-    }, 10, root)
-  }
-})(window);
-</script></div>
+            <div id="04e8358d-65d1-4420-8ac5-4b4019ba3b84" class="plotly-graph-div" style="height:525px; width:100%;"></div>
+            <script type="text/javascript">
+                require(["plotly"], function(Plotly) {
+                    window.PLOTLYENV=window.PLOTLYENV || {};
+
+                if (document.getElementById("04e8358d-65d1-4420-8ac5-4b4019ba3b84")) {
+                    Plotly.newPlot(
+                        '04e8358d-65d1-4420-8ac5-4b4019ba3b84',
+                        [{"hovertemplate": "<b>Theta: %{x:.2f}</b><br><b>Numerical pressure: %{y:.2f}</b>", "line": {"color": "#1f77b4"}, "mode": "lines", "name": "<b>Numerical pressure</b>", "showlegend": true, "type": "scatter", "x": [2.790451836661912, 2.8399257367184445, 2.8893996367749764, 2.9388735368315086, 2.988347436888041, 3.0378213369445732, 3.087295237001105, 3.1367691370576374, 3.1862430371141697, 3.235716937170702, 3.285190837227234, 3.334664737283766, 3.3841386373402984, 3.4336125373968303, 3.4830864374533625, 3.532560337509895, 3.582034237566427, 3.6315081376229594, 3.6809820376794913, 3.7304559377360236, 3.779929837792556, 3.8294037378490877, 3.87887763790562, 3.9283515379621523, 3.9778254380186846, 4.027299338075217, 4.076773238131748, 4.1262471381882815, 4.175721038244813, 4.225194938301345, 4.2746688383578775, 4.32414273841441, 4.373616638470942, 4.4230905385274735, 4.472564438584007, 4.522038338640538, 4.57151223869707, 4.620986138753603, 4.670460038810135, 4.719933938866667, 4.7694078389231995, 4.818881738979732, 4.868355639036263, 4.917829539092796, 4.967303439149328, 5.01677733920586, 5.066251239262392, 5.115725139318925, 5.165199039375457, 5.214672939431988, 5.264146839488522, 5.313620739545053, 5.363094639601585, 5.412568539658118, 5.46204243971465, 5.511516339771182, 5.560990239827714, 5.610464139884247, 5.659938039940778, 5.7094119399973104, 5.758885840053843, 5.808359740110375, 5.857833640166907, 5.907307540223439, 5.956781440279972, 6.006255340336503, 6.055729240393036, 6.105203140449568, 6.1546770405061, 6.2041509405626325, 6.253624840619164, 6.303098740675697, 6.3525726407322285, 6.402046540788762, 6.451520440845293, 6.500994340901825, 6.550468240958358, 6.59994214101489, 6.649416041071422, 6.698889941127954, 6.748363841184487, 6.797837741241018, 6.8473116412975505, 6.896785541354083, 6.946259441410615, 6.995733341467147, 7.04520724152368, 7.094681141580211, 7.144155041636743, 7.193628941693276, 7.243102841749808, 7.29257674180634, 7.342050641862873, 7.391524541919405, 7.440998441975937, 7.490472342032469, 7.539946242089001, 7.589420142145533, 7.6388940422020655, 7.688367942258598, 7.73784184231513, 7.787315742371662, 7.836789642428194, 7.886263542484726, 7.935737442541258, 7.985211342597791, 8.034685242654323, 8.084159142710856, 8.133633042767388, 8.183106942823919, 8.232580842880452, 8.282054742936984, 8.331528642993515, 8.381002543050048, 8.430476443106581, 8.479950343163113, 8.529424243219644, 8.578898143276177, 8.628372043332709, 8.67784594338924, 8.727319843445773, 8.776793743502306, 8.826267643558838, 8.87574154361537, 8.925215443671902, 8.974689343728434, 9.024163243784965, 9.073637143841498], "y": [0.0, 3918.6956768748905, 10727.260805887643, 17581.379870386838, 24493.197185517405, 31474.86735178072, 38538.69550310925, 45697.1444941214, 52962.77611312143, 60348.15793612962, 67865.75020670786, 75527.78318710563, 83346.12683986087, 91332.14644513067, 99496.54923553167, 107849.21126723601, 116398.98425179173, 125153.48403454029, 134118.85019191715, 143299.47549671365, 152697.70696762574, 162313.51706133469, 172144.13101750665, 182183.6238513145, 192422.48177559918, 202847.1260930199, 213439.40369906137, 224176.0441148039, 235028.09700579292, 245960.35340382336, 256930.74920982102, 267889.7881329812, 278779.98255274, 289535.32509589515, 300080.8541774783, 310332.281901284, 320195.7747272006, 329567.88205726276, 338335.65948832367, 346377.0556662833, 353561.5552328411, 359751.1583978366, 364801.7164454061, 368564.65556759085, 370889.1121373767, 371624.4880791151, 370623.4255516444, 367745.16090416425, 362859.2197613511, 355849.3740771044, 346617.76168521505, 335089.0431625691, 321214.44979618536, 304975.53523022955, 286387.4795320606, 265501.7215423055, 242407.79727186728, 217234.15498339557, 190147.87443106034, 161353.193637326, 131088.78692734183, 99623.86102295358, 67253.11818438022, 34290.763615130316, 1063.770353770966, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]}],
+                        {"template": {"data": {"bar": [{"error_x": {"color": "#2a3f5f"}, "error_y": {"color": "#2a3f5f"}, "marker": {"line": {"color": "white", "width": 0.5}}, "type": "bar"}], "barpolar": [{"marker": {"line": {"color": "white", "width": 0.5}}, "type": "barpolar"}], "carpet": [{"aaxis": {"endlinecolor": "#2a3f5f", "gridcolor": "#C8D4E3", "linecolor": "#C8D4E3", "minorgridcolor": "#C8D4E3", "startlinecolor": "#2a3f5f"}, "baxis": {"endlinecolor": "#2a3f5f", "gridcolor": "#C8D4E3", "linecolor": "#C8D4E3", "minorgridcolor": "#C8D4E3", "startlinecolor": "#2a3f5f"}, "type": "carpet"}], "choropleth": [{"colorbar": {"outlinewidth": 0, "ticks": ""}, "type": "choropleth"}], "contour": [{"colorbar": {"outlinewidth": 0, "ticks": ""}, "colorscale": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]], "type": "contour"}], "contourcarpet": [{"colorbar": {"outlinewidth": 0, "ticks": ""}, "type": "contourcarpet"}], "heatmap": [{"colorbar": {"outlinewidth": 0, "ticks": ""}, "colorscale": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]], "type": "heatmap"}], "heatmapgl": [{"colorbar": {"outlinewidth": 0, "ticks": ""}, "colorscale": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]], "type": "heatmapgl"}], "histogram": [{"marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "type": "histogram"}], "histogram2d": [{"colorbar": {"outlinewidth": 0, "ticks": ""}, "colorscale": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]], "type": "histogram2d"}], "histogram2dcontour": [{"colorbar": {"outlinewidth": 0, "ticks": ""}, "colorscale": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]], "type": "histogram2dcontour"}], "mesh3d": [{"colorbar": {"outlinewidth": 0, "ticks": ""}, "type": "mesh3d"}], "parcoords": [{"line": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "type": "parcoords"}], "pie": [{"automargin": true, "type": "pie"}], "scatter": [{"marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "type": "scatter"}], "scatter3d": [{"line": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "type": "scatter3d"}], "scattercarpet": [{"marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "type": "scattercarpet"}], "scattergeo": [{"marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "type": "scattergeo"}], "scattergl": [{"marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "type": "scattergl"}], "scattermapbox": [{"marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "type": "scattermapbox"}], "scatterpolar": [{"marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "type": "scatterpolar"}], "scatterpolargl": [{"marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "type": "scatterpolargl"}], "scatterternary": [{"marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "type": "scatterternary"}], "surface": [{"colorbar": {"outlinewidth": 0, "ticks": ""}, "colorscale": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]], "type": "surface"}], "table": [{"cells": {"fill": {"color": "#EBF0F8"}, "line": {"color": "white"}}, "header": {"fill": {"color": "#C8D4E3"}, "line": {"color": "white"}}, "type": "table"}]}, "layout": {"annotationdefaults": {"arrowcolor": "#2a3f5f", "arrowhead": 0, "arrowwidth": 1}, "coloraxis": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "colorscale": {"diverging": [[0, "#8e0152"], [0.1, "#c51b7d"], [0.2, "#de77ae"], [0.3, "#f1b6da"], [0.4, "#fde0ef"], [0.5, "#f7f7f7"], [0.6, "#e6f5d0"], [0.7, "#b8e186"], [0.8, "#7fbc41"], [0.9, "#4d9221"], [1, "#276419"]], "sequential": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]], "sequentialminus": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]]}, "colorway": ["#1f77b4", "#ff7f0e", "#2ca02c", "#d62728", "#9467bd", "#8c564b", "#e377c2", "#7f7f7f", "#bcbd22", "#17becf"], "font": {"color": "#2a3f5f"}, "geo": {"bgcolor": "white", "lakecolor": "white", "landcolor": "white", "showlakes": true, "showland": true, "subunitcolor": "#C8D4E3"}, "hoverlabel": {"align": "left"}, "hovermode": "closest", "mapbox": {"style": "light"}, "paper_bgcolor": "white", "plot_bgcolor": "white", "polar": {"angularaxis": {"gridcolor": "#EBF0F8", "linecolor": "#EBF0F8", "ticks": ""}, "bgcolor": "white", "radialaxis": {"gridcolor": "#EBF0F8", "linecolor": "#EBF0F8", "ticks": ""}}, "scene": {"camera": {"center": {"x": 0, "y": 0, "z": 0}, "eye": {"x": 2.0, "y": 2.0, "z": 2.0}, "up": {"x": 0, "y": 0, "z": 1}}, "xaxis": {"backgroundcolor": "white", "gridcolor": "#DFE8F3", "gridwidth": 2, "linecolor": "#EBF0F8", "showbackground": true, "showspikes": false, "ticks": "", "zerolinecolor": "#EBF0F8"}, "yaxis": {"backgroundcolor": "white", "gridcolor": "#DFE8F3", "gridwidth": 2, "linecolor": "#EBF0F8", "showbackground": true, "showspikes": false, "ticks": "", "zerolinecolor": "#EBF0F8"}, "zaxis": {"backgroundcolor": "white", "gridcolor": "#DFE8F3", "gridwidth": 2, "linecolor": "#EBF0F8", "showbackground": true, "showspikes": false, "ticks": "", "zerolinecolor": "#EBF0F8"}}, "shapedefaults": {"line": {"color": "#2a3f5f"}}, "ternary": {"aaxis": {"gridcolor": "#DFE8F3", "linecolor": "#A2B1C6", "ticks": ""}, "baxis": {"gridcolor": "#DFE8F3", "linecolor": "#A2B1C6", "ticks": ""}, "bgcolor": "white", "caxis": {"gridcolor": "#DFE8F3", "linecolor": "#A2B1C6", "ticks": ""}}, "title": {"x": 0.05}, "xaxis": {"automargin": true, "gridcolor": "#EBF0F8", "linecolor": "black", "linewidth": 2.0, "mirror": true, "showline": true, "ticks": "", "title": {"standoff": 15}, "zeroline": false, "zerolinecolor": "#EBF0F8", "zerolinewidth": 2}, "yaxis": {"automargin": true, "gridcolor": "#EBF0F8", "linecolor": "black", "linewidth": 2.0, "mirror": true, "showline": true, "ticks": "", "title": {"standoff": 15}, "zeroline": false, "zerolinecolor": "#EBF0F8", "zerolinewidth": 2}}}, "title": {"text": "<b>Pressure along Theta | Z=4<b>"}, "xaxis": {"title": {"text": "<b>Theta value</b>"}}, "yaxis": {"title": {"text": "<b>Pressure</b>"}}},
+                        {"responsive": true}
+                    ).then(function(){
+
+var gd = document.getElementById('04e8358d-65d1-4420-8ac5-4b4019ba3b84');
+var x = new MutationObserver(function (mutations, observer) {{
+        var display = window.getComputedStyle(gd).display;
+        if (!display || display === 'none') {{
+            console.log([gd, 'removed!']);
+            Plotly.purge(gd);
+            observer.disconnect();
+        }}
+}});
+
+// Listen for the removal of the full notebook cells
+var notebookContainer = gd.closest('#notebook-container');
+if (notebookContainer) {{
+    x.observe(notebookContainer, {childList: true});
+}}
+
+// Listen for the clearing of the current output cell
+var outputEl = gd.closest('.output');
+if (outputEl) {{
+    x.observe(outputEl, {childList: true});
+}}
+
+                        })
+                };
+                });
+            </script>
+        </div></div>
 </div>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:

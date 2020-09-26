@@ -4,7 +4,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>ross.bearing_seal_element &#8212; ross 0.4.0 documentation</title>
+    <title>ross.bearing_seal_element &#8212; ross 0.4.1 documentation</title>
     <link rel="stylesheet" href="../../_static/bootstrap-sphinx.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx_copybutton.css" />
@@ -1081,7 +1081,6 @@
         <span class="n">n</span><span class="p">,</span>
         <span class="n">nz</span><span class="p">,</span>
         <span class="n">ntheta</span><span class="p">,</span>
-        <span class="n">nradius</span><span class="p">,</span>
         <span class="n">length</span><span class="p">,</span>
         <span class="n">omega</span><span class="p">,</span>
         <span class="n">p_in</span><span class="p">,</span>
@@ -1152,26 +1151,24 @@
 <span class="sd">        --------</span>
 <span class="sd">        &gt;&gt;&gt; nz = 30</span>
 <span class="sd">        &gt;&gt;&gt; ntheta = 20</span>
-<span class="sd">        &gt;&gt;&gt; nradius = 11</span>
 <span class="sd">        &gt;&gt;&gt; length = 0.03</span>
 <span class="sd">        &gt;&gt;&gt; omega = 157.1</span>
 <span class="sd">        &gt;&gt;&gt; p_in = 0.</span>
 <span class="sd">        &gt;&gt;&gt; p_out = 0.</span>
 <span class="sd">        &gt;&gt;&gt; radius_rotor = 0.0499</span>
 <span class="sd">        &gt;&gt;&gt; radius_stator = 0.05</span>
-<span class="sd">        &gt;&gt;&gt; eccentricity = (radius_stator - radius_rotor)*0.2663</span>
+<span class="sd">        &gt;&gt;&gt; load = 525</span>
 <span class="sd">        &gt;&gt;&gt; visc = 0.1</span>
 <span class="sd">        &gt;&gt;&gt; rho = 860.</span>
-<span class="sd">        &gt;&gt;&gt; BearingElement.from_fluid_flow(0, nz, ntheta, nradius, length, omega, p_in,</span>
+<span class="sd">        &gt;&gt;&gt; BearingElement.from_fluid_flow(0, nz, ntheta, length, omega, p_in,</span>
 <span class="sd">        ...                                p_out, radius_rotor, radius_stator,</span>
-<span class="sd">        ...                                visc, rho, eccentricity=eccentricity) # doctest: +ELLIPSIS</span>
+<span class="sd">        ...                                visc, rho, load=load) # doctest: +ELLIPSIS</span>
 <span class="sd">        BearingElement(n=0, n_link=None,</span>
 <span class="sd">         kxx=[...</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">fluid_flow</span> <span class="o">=</span> <span class="n">flow</span><span class="o">.</span><span class="n">FluidFlow</span><span class="p">(</span>
             <span class="n">nz</span><span class="p">,</span>
             <span class="n">ntheta</span><span class="p">,</span>
-            <span class="n">nradius</span><span class="p">,</span>
             <span class="n">length</span><span class="p">,</span>
             <span class="n">omega</span><span class="p">,</span>
             <span class="n">p_in</span><span class="p">,</span>
