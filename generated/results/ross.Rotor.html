@@ -5,8 +5,8 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>ross.Rotor &#8212; ross 0.4.1 documentation</title>
-    <link rel="stylesheet" href="../../_static/bootstrap-sphinx.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/bootstrap-sphinx.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx_copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/style.css" />
     <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
@@ -360,6 +360,33 @@ Default is 0.</p>
 <span class="go">       [ 0., 46., -6.,  0.],</span>
 <span class="go">       [ 0., -6.,  1.,  0.],</span>
 <span class="go">       [ 6.,  0.,  0.,  1.]])</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt id="ross.Rotor.Kst">
+<code class="sig-name descname">Kst</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/rotor_assembly.html#Rotor.Kst"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.Rotor.Kst" title="Permalink to this definition">¶</a></dt>
+<dd><p>Dynamic stiffness matrix for an instance of a rotor.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>Kst0</strong><span class="classifier">np.ndarray</span></dt><dd><p>Dynamic stiffness matrix for the rotor.
+This matris IS OMEGA dependent
+Only useable to the 6 DoF model.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">rotor</span> <span class="o">=</span> <span class="n">rotor_example_6dof</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">rotor</span><span class="o">.</span><span class="n">Kst</span><span class="p">()[:</span><span class="mi">6</span><span class="p">,</span> <span class="p">:</span><span class="mi">6</span><span class="p">]</span><span class="o">*</span><span class="mf">1e6</span><span class="p">)</span>
+<span class="go">array([[     0., -23002.,      0.,   -479.,      0.,      0.],</span>
+<span class="go">       [     0.,      0.,      0.,      0.,      0.,      0.],</span>
+<span class="go">       [     0.,      0.,      0.,      0.,      0.,      0.],</span>
+<span class="go">       [     0.,      0.,      0.,      0.,      0.,      0.],</span>
+<span class="go">       [     0.,    479.,      0.,    160.,      0.,      0.],</span>
+<span class="go">       [     0.,      0.,      0.,      0.,      0.,      0.]])</span>
 </pre></div>
 </div>
 </dd></dl>
@@ -805,6 +832,95 @@ how many points to add just before and after each critical speed.</p>
 </dd></dl>
 
 <dl class="py method">
+<dt id="ross.Rotor.run_misalignment">
+<code class="sig-name descname">run_misalignment</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">coupling='flex'</em>, <em class="sig-param">\*\*kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/rotor_assembly.html#Rotor.run_misalignment"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.Rotor.run_misalignment" title="Permalink to this definition">¶</a></dt>
+<dd><p>Execute the misalignment defect and generates the misalignment object on the back-end. There are two types of coupling, flexible (flex) and rigid, which have different entries. These entries are provided via <a href="#id7"><span class="problematic" id="id8">**</span></a>kwargs to the specific method.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>coupling</strong><span class="classifier">str</span></dt><dd><p>Coupling type. The avaible types are: flex, by default; and rigid.</p>
+</dd>
+<dt><strong>**kwargs: dictionary</strong></dt><dd><dl class="simple">
+<dt>In the case of coupling = “flex”, <a href="#id9"><span class="problematic" id="id10">**</span></a>kwargs receives:</dt><dd><dl class="simple">
+<dt>dt<span class="classifier">float</span></dt><dd><p>Time step.</p>
+</dd>
+<dt>tI<span class="classifier">float</span></dt><dd><p>Initial time.</p>
+</dd>
+<dt>tF<span class="classifier">float</span></dt><dd><p>Final time.</p>
+</dd>
+<dt>kd<span class="classifier">float</span></dt><dd><p>Radial stiffness of flexible coupling.</p>
+</dd>
+<dt>ks<span class="classifier">float</span></dt><dd><p>Bending stiffness of flexible coupling.</p>
+</dd>
+<dt>eCOUPx<span class="classifier">float</span></dt><dd><p>Parallel misalignment offset between driving rotor and driven rotor along X direction.</p>
+</dd>
+<dt>eCOUPy<span class="classifier">float</span></dt><dd><p>Parallel misalignment offset between driving rotor and driven rotor along Y direction.</p>
+</dd>
+<dt>misalignment_angle<span class="classifier">float</span></dt><dd><p>Angular misalignment angle.</p>
+</dd>
+<dt>TD<span class="classifier">float</span></dt><dd><p>Driving torque.</p>
+</dd>
+<dt>TL<span class="classifier">float</span></dt><dd><p>Driven torque.</p>
+</dd>
+<dt>n1<span class="classifier">float</span></dt><dd><p>Node where the misalignment is ocurring.</p>
+</dd>
+<dt>speed<span class="classifier">float</span></dt><dd><p>Operational speed of the machine.</p>
+</dd>
+<dt>massunb<span class="classifier">array</span></dt><dd><p>Array with the unbalance magnitude. The unit is kg.m.</p>
+</dd>
+<dt>phaseunb<span class="classifier">array</span></dt><dd><p>Array with the unbalance phase. The unit is rad.</p>
+</dd>
+<dt>mis_type: string</dt><dd><p>String containing the misalignment type choosed. The avaible types are: parallel, by default; angular; combined.</p>
+</dd>
+<dt>print_progress<span class="classifier">bool</span></dt><dd><p>Set it True, to print the time iterations and the total time spent.
+False by default.</p>
+</dd>
+</dl>
+</dd>
+<dt>In the case of coupling = “rigid”, <a href="#id11"><span class="problematic" id="id12">**</span></a>kwargs receives:</dt><dd><dl class="simple">
+<dt>dt<span class="classifier">float</span></dt><dd><p>Time step.</p>
+</dd>
+<dt>tI<span class="classifier">float</span></dt><dd><p>Initial time.</p>
+</dd>
+<dt>tF<span class="classifier">float</span></dt><dd><p>Final time.</p>
+</dd>
+<dt>eCOUP<span class="classifier">float</span></dt><dd><p>Parallel misalignment offset between driving rotor and driven rotor along X direction.</p>
+</dd>
+<dt>TD<span class="classifier">float</span></dt><dd><p>Driving torque.</p>
+</dd>
+<dt>TL<span class="classifier">float</span></dt><dd><p>Driven torque.</p>
+</dd>
+<dt>n1<span class="classifier">float</span></dt><dd><p>Node where the misalignment is ocurring.</p>
+</dd>
+<dt>speed<span class="classifier">float</span></dt><dd><p>Operational speed of the machine.</p>
+</dd>
+<dt>massunb<span class="classifier">array</span></dt><dd><p>Array with the unbalance magnitude. The unit is kg.m.</p>
+</dd>
+<dt>phaseunb<span class="classifier">array</span></dt><dd><p>Array with the unbalance phase. The unit is rad.</p>
+</dd>
+<dt>print_progress<span class="classifier">bool</span></dt><dd><p>Set it True, to print the time iterations and the total time spent.
+False by default.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">ross.defects.misalignment</span> <span class="kn">import</span> <span class="n">misalignment_flex_parallel_example</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">probe1</span> <span class="o">=</span> <span class="p">(</span><span class="mi">14</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">probe2</span> <span class="o">=</span> <span class="p">(</span><span class="mi">22</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">response</span> <span class="o">=</span> <span class="n">misalignment_flex_parallel_example</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">results</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">run_time_response</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">fig</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">plot_dfft</span><span class="p">(</span><span class="n">probe</span><span class="o">=</span><span class="p">[</span><span class="n">probe1</span><span class="p">,</span> <span class="n">probe2</span><span class="p">],</span> <span class="n">range_freq</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">],</span> <span class="n">yaxis_type</span><span class="o">=</span><span class="s2">&quot;log&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># fig.show()</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
 <dt id="ross.Rotor.run_modal">
 <code class="sig-name descname">run_modal</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">speed</span></em>, <em class="sig-param"><span class="n">num_modes</span><span class="o">=</span><span class="default_value">12</span></em>, <em class="sig-param"><span class="n">sparse</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/rotor_assembly.html#Rotor.run_modal"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.Rotor.run_modal" title="Permalink to this definition">¶</a></dt>
 <dd><p>Run modal analysis.</p>
@@ -845,6 +961,59 @@ Default is True.</p>
 </dd>
 <dt><strong>log_dec</strong><span class="classifier">array</span></dt><dd><p>Logarithmic decrement array</p>
 </dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="ross.Rotor.run_rubbing">
+<code class="sig-name descname">run_rubbing</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">\*\*kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/rotor_assembly.html#Rotor.run_rubbing"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.Rotor.run_rubbing" title="Permalink to this definition">¶</a></dt>
+<dd><p>Execute the rubbing defect and generates the rubbing object on the back-end.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>**kwargs: dictionary</strong></dt><dd><dl class="simple">
+<dt><a href="#id13"><span class="problematic" id="id14">**</span></a>kwargs receives:</dt><dd><dl class="simple">
+<dt>dt<span class="classifier">float</span></dt><dd><p>Time step.</p>
+</dd>
+<dt>tI<span class="classifier">float</span></dt><dd><p>Initial time.</p>
+</dd>
+<dt>tF<span class="classifier">float</span></dt><dd><p>Final time.</p>
+</dd>
+<dt>deltaRUB<span class="classifier">float</span></dt><dd><p>Distance between the housing and shaft surface.</p>
+</dd>
+<dt>kRUB<span class="classifier">float</span></dt><dd><p>Contact stiffness.</p>
+</dd>
+<dt>cRUB<span class="classifier">float</span></dt><dd><p>Contact damping.</p>
+</dd>
+<dt>miRUB<span class="classifier">float</span></dt><dd><p>Friction coefficient.</p>
+</dd>
+<dt>posRUB<span class="classifier">int</span></dt><dd><p>Node where the rubbing is ocurring.</p>
+</dd>
+<dt>speed<span class="classifier">float</span></dt><dd><p>Operational speed of the machine.</p>
+</dd>
+<dt>massunb<span class="classifier">array</span></dt><dd><p>Array with the unbalance magnitude. The unit is kg.m.</p>
+</dd>
+<dt>phaseunb<span class="classifier">array</span></dt><dd><p>Array with the unbalance phase. The unit is rad.</p>
+</dd>
+<dt>torque<span class="classifier">bool</span></dt><dd><p>Set it as True to consider the torque provided by the rubbing, by default False.</p>
+</dd>
+<dt>print_progress<span class="classifier">bool</span></dt><dd><p>Set it True, to print the time iterations and the total time spent, by default False.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd>
+<dt><strong>Examples</strong></dt><dd></dd>
+<dt><strong>——–</strong></dt><dd></dd>
+<dt><strong>&gt;&gt;&gt; from ross.defects.rubbing import rubbing_example</strong></dt><dd></dd>
+<dt><strong>&gt;&gt;&gt; probe1 = (14, 0)</strong></dt><dd></dd>
+<dt><strong>&gt;&gt;&gt; probe2 = (22, 0)</strong></dt><dd></dd>
+<dt><strong>&gt;&gt;&gt; response = rubbing_example()</strong></dt><dd></dd>
+<dt><strong>&gt;&gt;&gt; results = response.run_time_response()</strong></dt><dd></dd>
+<dt><strong>&gt;&gt;&gt; fig = response.plot_dfft(probe=[probe1, probe2], range_freq=[0, 100], yaxis_type=”log”)</strong></dt><dd></dd>
+<dt><strong>&gt;&gt;&gt; # fig.show()</strong></dt><dd></dd>
 </dl>
 </dd>
 </dl>
@@ -1154,8 +1323,8 @@ given a force, time and initial conditions.</p>
       
     </p>
     <p>
-        &copy; Copyright 2019, Team ROSS.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.2.1.<br/>
+        &copy; Copyright 2020, Team ROSS.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.3.1.<br/>
     </p>
   </div>
 </footer>

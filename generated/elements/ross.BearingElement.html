@@ -5,8 +5,8 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>ross.BearingElement &#8212; ross 0.4.1 documentation</title>
-    <link rel="stylesheet" href="../../_static/bootstrap-sphinx.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/bootstrap-sphinx.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx_copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/style.css" />
     <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
@@ -410,84 +410,6 @@ y_0 - vertical translation</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="ross.BearingElement.from_fluid_flow">
-<em class="property">classmethod </em><code class="sig-name descname">from_fluid_flow</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">n</span></em>, <em class="sig-param"><span class="n">nz</span></em>, <em class="sig-param"><span class="n">ntheta</span></em>, <em class="sig-param"><span class="n">length</span></em>, <em class="sig-param"><span class="n">omega</span></em>, <em class="sig-param"><span class="n">p_in</span></em>, <em class="sig-param"><span class="n">p_out</span></em>, <em class="sig-param"><span class="n">radius_rotor</span></em>, <em class="sig-param"><span class="n">radius_stator</span></em>, <em class="sig-param"><span class="n">visc</span></em>, <em class="sig-param"><span class="n">rho</span></em>, <em class="sig-param"><span class="n">eccentricity</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">load</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/bearing_seal_element.html#BearingElement.from_fluid_flow"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.BearingElement.from_fluid_flow" title="Permalink to this definition">¶</a></dt>
-<dd><p>Instantiate a bearing using inputs from its fluid flow.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>n</strong><span class="classifier">int</span></dt><dd><p>The node in which the bearing will be located in the rotor.</p>
-</dd>
-<dt><strong>Grid related</strong></dt><dd></dd>
-<dt><strong>^^^^^^^^^^^^</strong></dt><dd></dd>
-<dt><strong>Describes the discretization of the problem</strong></dt><dd></dd>
-<dt><strong>nz: int</strong></dt><dd><p>Number of points along the Z direction (direction of flow).</p>
-</dd>
-<dt><strong>ntheta: int</strong></dt><dd><p>Number of points along the direction theta. NOTE: ntheta must be odd.</p>
-</dd>
-<dt><strong>nradius: int</strong></dt><dd><p>Number of points along the direction r.</p>
-</dd>
-<dt><strong>length: float</strong></dt><dd><p>Length in the Z direction (m).</p>
-</dd>
-<dt><strong>Operation conditions</strong></dt><dd></dd>
-<dt><strong>^^^^^^^^^^^^^^^^^^^^</strong></dt><dd></dd>
-<dt><strong>Describes the operation conditions.</strong></dt><dd></dd>
-<dt><strong>omega: float</strong></dt><dd><p>Rotation of the rotor (rad/s).</p>
-</dd>
-<dt><strong>p_in: float</strong></dt><dd><p>Input Pressure (Pa).</p>
-</dd>
-<dt><strong>p_out: float</strong></dt><dd><p>Output Pressure (Pa).</p>
-</dd>
-<dt><strong>load: float</strong></dt><dd><p>Load applied to the rotor (N).</p>
-</dd>
-<dt><strong>Geometric data of the problem</strong></dt><dd></dd>
-<dt><strong>^^^^^^^^^^^^^^^^^^^^^^^^^^^^^</strong></dt><dd></dd>
-<dt><strong>Describes the geometric data of the problem.</strong></dt><dd></dd>
-<dt><strong>radius_rotor: float</strong></dt><dd><p>Rotor radius (m).</p>
-</dd>
-<dt><strong>radius_stator: float</strong></dt><dd><p>Stator Radius (m).</p>
-</dd>
-<dt><strong>eccentricity: float</strong></dt><dd><p>Eccentricity (m) is the euclidean distance between rotor and stator centers.
-The center of the stator is in position (0,0).</p>
-</dd>
-<dt><strong>Fluid characteristics</strong></dt><dd></dd>
-<dt><strong>^^^^^^^^^^^^^^^^^^^^^</strong></dt><dd></dd>
-<dt><strong>Describes the fluid characteristics.</strong></dt><dd></dd>
-<dt><strong>visc: float</strong></dt><dd><p>Viscosity (Pa.s).</p>
-</dd>
-<dt><strong>rho: float</strong></dt><dd><p>Fluid density(Kg/m^3).</p>
-</dd>
-</dl>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><dl class="simple">
-<dt>bearing: rs.BearingElement</dt><dd><p>A bearing object.</p>
-</dd>
-</dl>
-</dd>
-</dl>
-<p class="rubric">Examples</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">nz</span> <span class="o">=</span> <span class="mi">30</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">ntheta</span> <span class="o">=</span> <span class="mi">20</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">length</span> <span class="o">=</span> <span class="mf">0.03</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">omega</span> <span class="o">=</span> <span class="mf">157.1</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">p_in</span> <span class="o">=</span> <span class="mf">0.</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">p_out</span> <span class="o">=</span> <span class="mf">0.</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">radius_rotor</span> <span class="o">=</span> <span class="mf">0.0499</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">radius_stator</span> <span class="o">=</span> <span class="mf">0.05</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">load</span> <span class="o">=</span> <span class="mi">525</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">visc</span> <span class="o">=</span> <span class="mf">0.1</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">rho</span> <span class="o">=</span> <span class="mf">860.</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">BearingElement</span><span class="o">.</span><span class="n">from_fluid_flow</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">nz</span><span class="p">,</span> <span class="n">ntheta</span><span class="p">,</span> <span class="n">length</span><span class="p">,</span> <span class="n">omega</span><span class="p">,</span> <span class="n">p_in</span><span class="p">,</span>
-<span class="gp">... </span>                               <span class="n">p_out</span><span class="p">,</span> <span class="n">radius_rotor</span><span class="p">,</span> <span class="n">radius_stator</span><span class="p">,</span>
-<span class="gp">... </span>                               <span class="n">visc</span><span class="p">,</span> <span class="n">rho</span><span class="p">,</span> <span class="n">load</span><span class="o">=</span><span class="n">load</span><span class="p">)</span> 
-<span class="go">BearingElement(n=0, n_link=None,</span>
-<span class="go"> kxx=[...</span>
-</pre></div>
-</div>
-</dd></dl>
-
-<dl class="py method">
 <dt id="ross.BearingElement.from_table">
 <em class="property">classmethod </em><code class="sig-name descname">from_table</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">n</span></em>, <em class="sig-param"><span class="n">file</span></em>, <em class="sig-param"><span class="n">sheet_name</span><span class="o">=</span><span class="default_value">0</span></em>, <em class="sig-param"><span class="n">tag</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">n_link</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">scale_factor</span><span class="o">=</span><span class="default_value">1</span></em>, <em class="sig-param"><span class="n">color</span><span class="o">=</span><span class="default_value">'#355d7a'</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/bearing_seal_element.html#BearingElement.from_table"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.BearingElement.from_table" title="Permalink to this definition">¶</a></dt>
 <dd><p>Instantiate a bearing using inputs from an Excel table.</p>
@@ -687,8 +609,8 @@ save to a toml file that can be later loaded by ross.</p>
       
     </p>
     <p>
-        &copy; Copyright 2019, Team ROSS.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.2.1.<br/>
+        &copy; Copyright 2020, Team ROSS.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.3.1.<br/>
     </p>
   </div>
 </footer>

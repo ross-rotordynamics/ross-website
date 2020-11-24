@@ -20,6 +20,7 @@ ross.Rotor
    .. automethod:: C
    .. automethod:: G
    .. automethod:: K
+   .. automethod:: Kst
    .. automethod:: M
    .. automethod:: __init__
    .. automethod:: convergence
@@ -32,7 +33,9 @@ ross.Rotor
    .. automethod:: run_campbell
    .. automethod:: run_critical_speed
    .. automethod:: run_freq_response
+   .. automethod:: run_misalignment
    .. automethod:: run_modal
+   .. automethod:: run_rubbing
    .. automethod:: run_static
    .. automethod:: run_time_response
    .. automethod:: run_unbalance_response

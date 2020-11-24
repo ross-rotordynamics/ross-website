@@ -23,7 +23,6 @@ ross.SealElement
    .. automethod:: __init__
    .. automethod:: dof_local_index
    .. automethod:: dof_mapping
-   .. automethod:: from_fluid_flow
    .. automethod:: from_table
    .. automethod:: load
    .. automethod:: read_toml_data

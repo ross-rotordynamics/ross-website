@@ -5,8 +5,8 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>ross.rotor_assembly &#8212; ross 0.4.1 documentation</title>
-    <link rel="stylesheet" href="../../_static/bootstrap-sphinx.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/bootstrap-sphinx.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx_copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/style.css" />
     <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
@@ -187,6 +187,8 @@
                                        <span class="n">BearingElement6DoF</span><span class="p">,</span>
                                        <span class="n">MagneticBearingElement</span><span class="p">,</span>
                                        <span class="n">RollerBearingElement</span><span class="p">,</span> <span class="n">SealElement</span><span class="p">)</span>
+<span class="kn">from</span> <span class="nn">ross.defects</span> <span class="kn">import</span> <span class="n">MisalignmentFlex</span><span class="p">,</span> <span class="n">MisalignmentRigid</span><span class="p">,</span> <span class="n">Rubbing</span>
+<span class="c1"># from ross.defects import Crack, MisalignmentFlex, MisalignmentRigid, Rubbing</span>
 <span class="kn">from</span> <span class="nn">ross.disk_element</span> <span class="kn">import</span> <span class="n">DiskElement</span><span class="p">,</span> <span class="n">DiskElement6DoF</span>
 <span class="kn">from</span> <span class="nn">ross.materials</span> <span class="kn">import</span> <span class="n">steel</span>
 <span class="kn">from</span> <span class="nn">ross.point_mass</span> <span class="kn">import</span> <span class="n">PointMass</span>
@@ -516,29 +518,33 @@
             <span class="n">global_dof_mapping</span> <span class="o">=</span> <span class="p">{}</span>
             <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">dof_mapping</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
                 <span class="n">dof_letter</span><span class="p">,</span> <span class="n">dof_number</span> <span class="o">=</span> <span class="n">k</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;_&quot;</span><span class="p">)</span>
-                <span class="n">global_dof_mapping</span><span class="p">[</span><span class="n">dof_letter</span> <span class="o">+</span> <span class="s2">&quot;_&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">dof_number</span><span class="p">)</span> <span class="o">+</span> <span class="n">elm</span><span class="o">.</span><span class="n">n</span><span class="p">)]</span> <span class="o">=</span> <span class="n">v</span>
+                <span class="n">global_dof_mapping</span><span class="p">[</span>
+                    <span class="n">dof_letter</span> <span class="o">+</span> <span class="s2">&quot;_&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">dof_number</span><span class="p">)</span> <span class="o">+</span> <span class="n">elm</span><span class="o">.</span><span class="n">n</span><span class="p">)</span>
+                <span class="p">]</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
             <span class="n">dof_tuple</span> <span class="o">=</span> <span class="n">namedtuple</span><span class="p">(</span><span class="s2">&quot;GlobalIndex&quot;</span><span class="p">,</span> <span class="n">global_dof_mapping</span><span class="p">)</span>
 
             <span class="k">if</span> <span class="n">elm</span><span class="o">.</span><span class="n">n</span> <span class="o">&lt;=</span> <span class="n">n_last</span> <span class="o">+</span> <span class="mi">1</span><span class="p">:</span>
                 <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">global_dof_mapping</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
-                    <span class="n">global_dof_mapping</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">number_dof</span> <span class="o">*</span> <span class="n">elm</span><span class="o">.</span><span class="n">n</span> <span class="o">+</span> <span class="n">v</span>
+                    <span class="n">global_dof_mapping</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">number_dof</span> <span class="o">*</span> <span class="n">elm</span><span class="o">.</span><span class="n">n</span> <span class="o">+</span> <span class="n">v</span><span class="p">)</span>
             <span class="k">else</span><span class="p">:</span>
                 <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">global_dof_mapping</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
-                    <span class="n">global_dof_mapping</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span>
+                    <span class="n">global_dof_mapping</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span>
                         <span class="mi">2</span> <span class="o">*</span> <span class="n">n_last</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">number_dof</span> <span class="o">/</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">elm</span><span class="o">.</span><span class="n">n</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">number_dof</span> <span class="o">+</span> <span class="n">v</span>
                     <span class="p">)</span>
 
             <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">elm</span><span class="p">,</span> <span class="s2">&quot;n_link&quot;</span><span class="p">)</span> <span class="ow">and</span> <span class="n">elm</span><span class="o">.</span><span class="n">n_link</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
                 <span class="k">if</span> <span class="n">elm</span><span class="o">.</span><span class="n">n_link</span> <span class="o">&lt;=</span> <span class="n">n_last</span> <span class="o">+</span> <span class="mi">1</span><span class="p">:</span>
-                    <span class="n">global_dof_mapping</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;x_</span><span class="si">{</span><span class="n">elm</span><span class="o">.</span><span class="n">n_link</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">number_dof</span> <span class="o">*</span> <span class="n">elm</span><span class="o">.</span><span class="n">n_link</span>
-                    <span class="n">global_dof_mapping</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;y_</span><span class="si">{</span><span class="n">elm</span><span class="o">.</span><span class="n">n_link</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span>
+                    <span class="n">global_dof_mapping</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;x_</span><span class="si">{</span><span class="n">elm</span><span class="o">.</span><span class="n">n_link</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">number_dof</span> <span class="o">*</span> <span class="n">elm</span><span class="o">.</span><span class="n">n_link</span>
+                    <span class="p">)</span>
+                    <span class="n">global_dof_mapping</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;y_</span><span class="si">{</span><span class="n">elm</span><span class="o">.</span><span class="n">n_link</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span>
                         <span class="bp">self</span><span class="o">.</span><span class="n">number_dof</span> <span class="o">*</span> <span class="n">elm</span><span class="o">.</span><span class="n">n_link</span> <span class="o">+</span> <span class="mi">1</span>
                     <span class="p">)</span>
                 <span class="k">else</span><span class="p">:</span>
-                    <span class="n">global_dof_mapping</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;x_</span><span class="si">{</span><span class="n">elm</span><span class="o">.</span><span class="n">n_link</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span>
+                    <span class="n">global_dof_mapping</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;x_</span><span class="si">{</span><span class="n">elm</span><span class="o">.</span><span class="n">n_link</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span>
                         <span class="mi">2</span> <span class="o">*</span> <span class="n">n_last</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">elm</span><span class="o">.</span><span class="n">n_link</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">number_dof</span>
                     <span class="p">)</span>
-                    <span class="n">global_dof_mapping</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;y_</span><span class="si">{</span><span class="n">elm</span><span class="o">.</span><span class="n">n_link</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span>
+                    <span class="n">global_dof_mapping</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;y_</span><span class="si">{</span><span class="n">elm</span><span class="o">.</span><span class="n">n_link</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span>
                         <span class="mi">2</span> <span class="o">*</span> <span class="n">n_last</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">elm</span><span class="o">.</span><span class="n">n_link</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">number_dof</span> <span class="o">+</span> <span class="mi">1</span>
                     <span class="p">)</span>
 
@@ -1038,6 +1044,41 @@
 
         <span class="k">return</span> <span class="n">K0</span></div>
 
+<div class="viewcode-block" id="Rotor.Kst"><a class="viewcode-back" href="../../generated/results/ross.Rotor.html#ross.Rotor.Kst">[docs]</a>    <span class="k">def</span> <span class="nf">Kst</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Dynamic stiffness matrix for an instance of a rotor.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        Kst0 : np.ndarray</span>
+<span class="sd">            Dynamic stiffness matrix for the rotor.</span>
+<span class="sd">            This matris IS OMEGA dependent</span>
+<span class="sd">            Only useable to the 6 DoF model.</span>
+
+<span class="sd">        Examples</span>
+<span class="sd">        --------</span>
+<span class="sd">        &gt;&gt;&gt; rotor = rotor_example_6dof()</span>
+<span class="sd">        &gt;&gt;&gt; np.round(rotor.Kst()[:6, :6]*1e6)</span>
+<span class="sd">        array([[     0., -23002.,      0.,   -479.,      0.,      0.],</span>
+<span class="sd">               [     0.,      0.,      0.,      0.,      0.,      0.],</span>
+<span class="sd">               [     0.,      0.,      0.,      0.,      0.,      0.],</span>
+<span class="sd">               [     0.,      0.,      0.,      0.,      0.,      0.],</span>
+<span class="sd">               [     0.,    479.,      0.,    160.,      0.,      0.],</span>
+<span class="sd">               [     0.,      0.,      0.,      0.,      0.,      0.]])</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">Kst0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">ndof</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">ndof</span><span class="p">))</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">number_dof</span> <span class="o">==</span> <span class="mi">6</span><span class="p">:</span>
+
+            <span class="k">for</span> <span class="n">elm</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">shaft_elements</span><span class="p">:</span>
+                <span class="n">dofs</span> <span class="o">=</span> <span class="n">elm</span><span class="o">.</span><span class="n">dof_global_index</span>
+                <span class="k">try</span><span class="p">:</span>
+                    <span class="n">Kst0</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ix_</span><span class="p">(</span><span class="n">dofs</span><span class="p">,</span> <span class="n">dofs</span><span class="p">)]</span> <span class="o">+=</span> <span class="n">elm</span><span class="o">.</span><span class="n">Kst</span><span class="p">()</span>
+                <span class="k">except</span> <span class="ne">TypeError</span><span class="p">:</span>
+                    <span class="n">Kst0</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ix_</span><span class="p">(</span><span class="n">dofs</span><span class="p">,</span> <span class="n">dofs</span><span class="p">)]</span> <span class="o">+=</span> <span class="n">elm</span><span class="o">.</span><span class="n">Kst</span><span class="p">()</span>
+
+        <span class="k">return</span> <span class="n">Kst0</span></div>
+
 <div class="viewcode-block" id="Rotor.C"><a class="viewcode-back" href="../../generated/results/ross.Rotor.html#ross.Rotor.C">[docs]</a>    <span class="k">def</span> <span class="nf">C</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">frequency</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Damping matrix for an instance of a rotor.</span>
 
@@ -1133,7 +1174,7 @@
         <span class="c1"># fmt: off</span>
         <span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">(</span>
             <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">([</span><span class="n">Z</span><span class="p">,</span> <span class="n">I</span><span class="p">]),</span>
-             <span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">([</span><span class="n">la</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">M</span><span class="p">(),</span> <span class="bp">self</span><span class="o">.</span><span class="n">K</span><span class="p">(</span><span class="n">frequency</span><span class="p">)),</span> <span class="n">la</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">M</span><span class="p">(),</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">C</span><span class="p">(</span><span class="n">frequency</span><span class="p">)</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">G</span><span class="p">()</span> <span class="o">*</span> <span class="n">speed</span><span class="p">))])])</span>
+             <span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">([</span><span class="n">la</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">M</span><span class="p">(),</span> <span class="bp">self</span><span class="o">.</span><span class="n">K</span><span class="p">(</span><span class="n">frequency</span><span class="p">)</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">Kst</span><span class="p">()</span><span class="o">*</span><span class="n">speed</span><span class="p">),</span> <span class="n">la</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">M</span><span class="p">(),</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">C</span><span class="p">(</span><span class="n">frequency</span><span class="p">)</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">G</span><span class="p">()</span> <span class="o">*</span> <span class="n">speed</span><span class="p">))])])</span>
         <span class="c1"># fmt: on</span>
 
         <span class="k">return</span> <span class="n">A</span></div>
@@ -2067,7 +2108,7 @@
         <span class="n">results</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">([</span><span class="nb">len</span><span class="p">(</span><span class="n">speed_range</span><span class="p">),</span> <span class="n">frequencies</span><span class="p">,</span> <span class="mi">5</span><span class="p">])</span>
 
         <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">w</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">speed_range</span><span class="p">):</span>
-            <span class="n">modal</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">run_modal</span><span class="p">(</span><span class="n">speed</span><span class="o">=</span><span class="n">w</span><span class="p">,</span> <span class="n">num_modes</span><span class="o">=</span><span class="mi">36</span><span class="p">)</span>
+            <span class="n">modal</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">run_modal</span><span class="p">(</span><span class="n">speed</span><span class="o">=</span><span class="n">w</span><span class="p">,</span> <span class="n">num_modes</span><span class="o">=</span><span class="mi">2</span> <span class="o">*</span> <span class="n">frequencies</span><span class="p">)</span>
 
             <span class="k">if</span> <span class="n">frequency_type</span> <span class="o">==</span> <span class="s2">&quot;wd&quot;</span><span class="p">:</span>
                 <span class="n">results</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="p">:,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">modal</span><span class="o">.</span><span class="n">wd</span><span class="p">[:</span><span class="n">frequencies</span><span class="p">]</span>
@@ -2493,6 +2534,151 @@
         <span class="p">)</span>
 
         <span class="k">return</span> <span class="n">results</span></div>
+
+<div class="viewcode-block" id="Rotor.run_misalignment"><a class="viewcode-back" href="../../generated/results/ross.Rotor.html#ross.Rotor.run_misalignment">[docs]</a>    <span class="k">def</span> <span class="nf">run_misalignment</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">coupling</span><span class="o">=</span><span class="s2">&quot;flex&quot;</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Execute the misalignment defect and generates the misalignment object on the back-end. There are two types of coupling, flexible (flex) and rigid, which have different entries. These entries are provided via **kwargs to the specific method.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        coupling : str</span>
+<span class="sd">            Coupling type. The avaible types are: flex, by default; and rigid.</span>
+
+<span class="sd">        **kwargs: dictionary</span>
+
+<span class="sd">            In the case of coupling = &quot;flex&quot;, **kwargs receives:</span>
+<span class="sd">                dt : float</span>
+<span class="sd">                    Time step.</span>
+<span class="sd">                tI : float</span>
+<span class="sd">                    Initial time.</span>
+<span class="sd">                tF : float</span>
+<span class="sd">                    Final time.</span>
+<span class="sd">                kd : float</span>
+<span class="sd">                    Radial stiffness of flexible coupling.</span>
+<span class="sd">                ks : float</span>
+<span class="sd">                    Bending stiffness of flexible coupling.</span>
+<span class="sd">                eCOUPx : float</span>
+<span class="sd">                    Parallel misalignment offset between driving rotor and driven rotor along X direction.</span>
+<span class="sd">                eCOUPy : float</span>
+<span class="sd">                    Parallel misalignment offset between driving rotor and driven rotor along Y direction.</span>
+<span class="sd">                misalignment_angle : float</span>
+<span class="sd">                    Angular misalignment angle.</span>
+<span class="sd">                TD : float</span>
+<span class="sd">                    Driving torque.</span>
+<span class="sd">                TL : float</span>
+<span class="sd">                    Driven torque.</span>
+<span class="sd">                n1 : float</span>
+<span class="sd">                    Node where the misalignment is ocurring.</span>
+<span class="sd">                speed : float</span>
+<span class="sd">                    Operational speed of the machine.</span>
+<span class="sd">                massunb : array</span>
+<span class="sd">                    Array with the unbalance magnitude. The unit is kg.m.</span>
+<span class="sd">                phaseunb : array</span>
+<span class="sd">                    Array with the unbalance phase. The unit is rad.</span>
+<span class="sd">                mis_type: string</span>
+<span class="sd">                    String containing the misalignment type choosed. The avaible types are: parallel, by default; angular; combined.</span>
+<span class="sd">                print_progress : bool</span>
+<span class="sd">                    Set it True, to print the time iterations and the total time spent.</span>
+<span class="sd">                    False by default.</span>
+
+<span class="sd">            In the case of coupling = &quot;rigid&quot;, **kwargs receives:</span>
+<span class="sd">                dt : float</span>
+<span class="sd">                    Time step.</span>
+<span class="sd">                tI : float</span>
+<span class="sd">                    Initial time.</span>
+<span class="sd">                tF : float</span>
+<span class="sd">                    Final time.</span>
+<span class="sd">                eCOUP : float</span>
+<span class="sd">                    Parallel misalignment offset between driving rotor and driven rotor along X direction.</span>
+<span class="sd">                TD : float</span>
+<span class="sd">                    Driving torque.</span>
+<span class="sd">                TL : float</span>
+<span class="sd">                    Driven torque.</span>
+<span class="sd">                n1 : float</span>
+<span class="sd">                    Node where the misalignment is ocurring.</span>
+<span class="sd">                speed : float</span>
+<span class="sd">                    Operational speed of the machine.</span>
+<span class="sd">                massunb : array</span>
+<span class="sd">                    Array with the unbalance magnitude. The unit is kg.m.</span>
+<span class="sd">                phaseunb : array</span>
+<span class="sd">                    Array with the unbalance phase. The unit is rad.</span>
+<span class="sd">                print_progress : bool</span>
+<span class="sd">                    Set it True, to print the time iterations and the total time spent.</span>
+<span class="sd">                    False by default.</span>
+
+<span class="sd">        Examples</span>
+<span class="sd">        --------</span>
+<span class="sd">        &gt;&gt;&gt; from ross.defects.misalignment import misalignment_flex_parallel_example</span>
+<span class="sd">        &gt;&gt;&gt; probe1 = (14, 0)</span>
+<span class="sd">        &gt;&gt;&gt; probe2 = (22, 0)</span>
+<span class="sd">        &gt;&gt;&gt; response = misalignment_flex_parallel_example()</span>
+<span class="sd">        &gt;&gt;&gt; results = response.run_time_response()</span>
+<span class="sd">        &gt;&gt;&gt; fig = response.plot_dfft(probe=[probe1, probe2], range_freq=[0, 100], yaxis_type=&quot;log&quot;)</span>
+<span class="sd">        &gt;&gt;&gt; # fig.show()</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="n">coupling</span> <span class="o">==</span> <span class="s2">&quot;flex&quot;</span> <span class="ow">or</span> <span class="n">coupling</span> <span class="o">==</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">defect</span> <span class="o">=</span> <span class="n">MisalignmentFlex</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">coupling</span> <span class="o">==</span> <span class="s2">&quot;rigid&quot;</span><span class="p">:</span>
+            <span class="n">defect</span> <span class="o">=</span> <span class="n">MisalignmentRigid</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;Check the choosed coupling type!&quot;</span><span class="p">)</span>
+
+        <span class="n">defect</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">defect</span></div>
+
+<div class="viewcode-block" id="Rotor.run_rubbing"><a class="viewcode-back" href="../../generated/results/ross.Rotor.html#ross.Rotor.run_rubbing">[docs]</a>    <span class="k">def</span> <span class="nf">run_rubbing</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Execute the rubbing defect and generates the rubbing object on the back-end.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        **kwargs: dictionary</span>
+<span class="sd">        </span>
+<span class="sd">            **kwargs receives:</span>
+<span class="sd">                dt : float</span>
+<span class="sd">                    Time step.</span>
+<span class="sd">                tI : float</span>
+<span class="sd">                    Initial time.</span>
+<span class="sd">                tF : float</span>
+<span class="sd">                    Final time.</span>
+<span class="sd">                deltaRUB : float</span>
+<span class="sd">                    Distance between the housing and shaft surface.</span>
+<span class="sd">                kRUB : float</span>
+<span class="sd">                    Contact stiffness.</span>
+<span class="sd">                cRUB : float</span>
+<span class="sd">                    Contact damping.</span>
+<span class="sd">                miRUB : float</span>
+<span class="sd">                    Friction coefficient.</span>
+<span class="sd">                posRUB : int</span>
+<span class="sd">                    Node where the rubbing is ocurring.</span>
+<span class="sd">                speed : float</span>
+<span class="sd">                    Operational speed of the machine.</span>
+<span class="sd">                massunb : array</span>
+<span class="sd">                    Array with the unbalance magnitude. The unit is kg.m.</span>
+<span class="sd">                phaseunb : array</span>
+<span class="sd">                    Array with the unbalance phase. The unit is rad.</span>
+<span class="sd">                torque : bool</span>
+<span class="sd">                    Set it as True to consider the torque provided by the rubbing, by default False.</span>
+<span class="sd">                print_progress : bool</span>
+<span class="sd">                    Set it True, to print the time iterations and the total time spent, by default False.</span>
+<span class="sd">        Examples</span>
+<span class="sd">        --------</span>
+<span class="sd">        &gt;&gt;&gt; from ross.defects.rubbing import rubbing_example</span>
+<span class="sd">        &gt;&gt;&gt; probe1 = (14, 0)</span>
+<span class="sd">        &gt;&gt;&gt; probe2 = (22, 0)</span>
+<span class="sd">        &gt;&gt;&gt; response = rubbing_example()</span>
+<span class="sd">        &gt;&gt;&gt; results = response.run_time_response()</span>
+<span class="sd">        &gt;&gt;&gt; fig = response.plot_dfft(probe=[probe1, probe2], range_freq=[0, 100], yaxis_type=&quot;log&quot;)</span>
+<span class="sd">        &gt;&gt;&gt; # fig.show()</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">defect</span> <span class="o">=</span> <span class="n">Rubbing</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="n">defect</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">defect</span></div>
+
+    <span class="c1"># def run_crack(self, **kwargs):</span>
+    <span class="c1">#     defect = Crack(**kwargs)</span>
+    <span class="c1">#     defect.run(self)</span>
+    <span class="c1">#     return defect</span>
 
 <div class="viewcode-block" id="Rotor.save_mat"><a class="viewcode-back" href="../../generated/results/ross.Rotor.html#ross.Rotor.save_mat">[docs]</a>    <span class="k">def</span> <span class="nf">save_mat</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">file</span><span class="p">,</span> <span class="n">speed</span><span class="p">,</span> <span class="n">frequency</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Save matrices and rotor model to a .mat file.</span>
@@ -3815,8 +4001,8 @@
       
     </p>
     <p>
-        &copy; Copyright 2019, Team ROSS.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.2.1.<br/>
+        &copy; Copyright 2020, Team ROSS.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.3.1.<br/>
     </p>
   </div>
 </footer>
