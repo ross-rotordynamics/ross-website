@@ -70,16 +70,10 @@
 <li class="toctree-l2"><a class="reference internal" href="installation.html#install-ross">Install ROSS</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="examples/tutorial.html">Tutorial</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="examples/tutorial.html#Table-of-Contents">Table of Contents</a></li>
-<li class="toctree-l2"><a class="reference internal" href="examples/tutorial.html#Section-1:-Material-Class">Section 1: Material Class</a></li>
-<li class="toctree-l2"><a class="reference internal" href="examples/tutorial.html#Section-2:-ShaftElement-Class">Section 2: ShaftElement Class</a></li>
-<li class="toctree-l2"><a class="reference internal" href="examples/tutorial.html#Section-3:-DiskElement-Class">Section 3: DiskElement Class</a></li>
-<li class="toctree-l2"><a class="reference internal" href="examples/tutorial.html#Section-4:-Bearing-and-Seal-Classes">Section 4: Bearing and Seal Classes</a></li>
-<li class="toctree-l2"><a class="reference internal" href="examples/tutorial.html#Section-5:-PointMass-Class">Section 5: PointMass Class</a></li>
-<li class="toctree-l2"><a class="reference internal" href="examples/tutorial.html#Section-6:-Rotor-Class">Section 6: Rotor Class</a></li>
-<li class="toctree-l2"><a class="reference internal" href="examples/tutorial.html#Section-7:-ROSS-Units-System">Section 7: ROSS Units System</a></li>
-<li class="toctree-l2"><a class="reference internal" href="examples/tutorial.html#Section-8:-Rotor-Analyses">Section 8: Rotor Analyses</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorials.html">Tutorials</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="examples/tutorial_part_1.html">Tutorial - Modeling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples/tutorial_part_2.html">Tutorial - Running Analyzes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples/tutorial_part_3.html">STOCHASTIC ROSS - Tutorial</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="examples.html">Examples</a><ul>
@@ -91,7 +85,9 @@
 <li class="toctree-l2"><a class="reference internal" href="examples/example_6.html">Example 6 - Isotropic bearings with damping.</a></li>
 <li class="toctree-l2"><a class="reference internal" href="examples/example_7.html">Example 7 - Hydrodinamic Bearings</a></li>
 <li class="toctree-l2"><a class="reference internal" href="examples/example_8.html">Example 8 - Overhung rotor.</a></li>
-<li class="toctree-l2"><a class="reference internal" href="examples/example_stochastic_ross.html">STOCHASTIC ROSS - Tutorial</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples/example_9.html">Example 9 - Hydrodinamic Journal Bearings (using Fluid Flow methods)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples/example_10.html">Example 10 - Example of rotor connected by a rigid mechanical coupling with parallel misalignment.</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples/example_11.html">Example 10 - Example of rotor connected by a flexible mechanical coupling with parallel, agular or combined misalignment.</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="download.html">Download notebooks</a></li>
@@ -183,12 +179,22 @@
 <h2 id="_">_</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="generated/elements/ross.BearingElement.html#id0">__init__() (ross.BearingElement method)</a>, <a href="generated/elements/ross.BearingElement.html#ross.BearingElement.__init__">[1]</a>
+      <li><a href="generated/elements/ross.BallBearingElement.html#id0">__init__() (ross.BallBearingElement method)</a>, <a href="generated/elements/ross.BallBearingElement.html#ross.BallBearingElement.__init__">[1]</a>
 
       <ul>
+        <li><a href="generated/elements/ross.BearingElement.html#id0">(ross.BearingElement method)</a>, <a href="generated/elements/ross.BearingElement.html#ross.BearingElement.__init__">[1]</a>
+</li>
+        <li><a href="generated/elements/ross.BearingElement6DoF.html#id0">(ross.BearingElement6DoF method)</a>, <a href="generated/elements/ross.BearingElement6DoF.html#ross.BearingElement6DoF.__init__">[1]</a>
+</li>
+        <li><a href="generated/elements/ross.BearingFluidFlow.html#id0">(ross.BearingFluidFlow method)</a>, <a href="generated/elements/ross.BearingFluidFlow.html#ross.BearingFluidFlow.__init__">[1]</a>
+</li>
         <li><a href="generated/elements/ross.DiskElement.html#id0">(ross.DiskElement method)</a>, <a href="generated/elements/ross.DiskElement.html#ross.DiskElement.__init__">[1]</a>
 </li>
+        <li><a href="generated/elements/ross.MagneticBearingElement.html#id0">(ross.MagneticBearingElement method)</a>, <a href="generated/elements/ross.MagneticBearingElement.html#ross.MagneticBearingElement.__init__">[1]</a>
+</li>
         <li><a href="generated/material/ross.Material.html#id0">(ross.Material method)</a>, <a href="generated/material/ross.Material.html#ross.Material.__init__">[1]</a>
+</li>
+        <li><a href="generated/elements/ross.RollerBearingElement.html#id0">(ross.RollerBearingElement method)</a>, <a href="generated/elements/ross.RollerBearingElement.html#ross.RollerBearingElement.__init__">[1]</a>
 </li>
         <li><a href="generated/results/ross.Rotor.html#id0">(ross.Rotor method)</a>, <a href="generated/results/ross.Rotor.html#ross.Rotor.__init__">[1]</a>
 </li>
@@ -215,7 +221,15 @@
 <h2 id="B">B</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="generated/elements/ross.BallBearingElement.html#ross.BallBearingElement">BallBearingElement (class in ross)</a>
+</li>
       <li><a href="generated/elements/ross.BearingElement.html#ross.BearingElement">BearingElement (class in ross)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="generated/elements/ross.BearingElement6DoF.html#ross.BearingElement6DoF">BearingElement6DoF (class in ross)</a>
+</li>
+      <li><a href="generated/elements/ross.BearingFluidFlow.html#ross.BearingFluidFlow">BearingFluidFlow (class in ross)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -223,10 +237,20 @@
 <h2 id="C">C</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="generated/elements/ross.BearingElement.html#ross.BearingElement.C">C() (ross.BearingElement method)</a>
+      <li><a href="generated/elements/ross.BallBearingElement.html#ross.BallBearingElement.C">C() (ross.BallBearingElement method)</a>
 
       <ul>
+        <li><a href="generated/elements/ross.BearingElement.html#ross.BearingElement.C">(ross.BearingElement method)</a>
+</li>
+        <li><a href="generated/elements/ross.BearingElement6DoF.html#ross.BearingElement6DoF.C">(ross.BearingElement6DoF method)</a>
+</li>
+        <li><a href="generated/elements/ross.BearingFluidFlow.html#ross.BearingFluidFlow.C">(ross.BearingFluidFlow method)</a>
+</li>
         <li><a href="generated/elements/ross.DiskElement.html#ross.DiskElement.C">(ross.DiskElement method)</a>
+</li>
+        <li><a href="generated/elements/ross.MagneticBearingElement.html#ross.MagneticBearingElement.C">(ross.MagneticBearingElement method)</a>
+</li>
+        <li><a href="generated/elements/ross.RollerBearingElement.html#ross.RollerBearingElement.C">(ross.RollerBearingElement method)</a>
 </li>
         <li><a href="generated/results/ross.Rotor.html#ross.Rotor.C">(ross.Rotor method)</a>
 </li>
@@ -247,10 +271,20 @@
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="generated/elements/ross.DiskElement.html#ross.DiskElement">DiskElement (class in ross)</a>
 </li>
-      <li><a href="generated/elements/ross.BearingElement.html#ross.BearingElement.dof_local_index">dof_local_index() (ross.BearingElement method)</a>
+      <li><a href="generated/elements/ross.BallBearingElement.html#ross.BallBearingElement.dof_local_index">dof_local_index() (ross.BallBearingElement method)</a>
 
       <ul>
+        <li><a href="generated/elements/ross.BearingElement.html#ross.BearingElement.dof_local_index">(ross.BearingElement method)</a>
+</li>
+        <li><a href="generated/elements/ross.BearingElement6DoF.html#ross.BearingElement6DoF.dof_local_index">(ross.BearingElement6DoF method)</a>
+</li>
+        <li><a href="generated/elements/ross.BearingFluidFlow.html#ross.BearingFluidFlow.dof_local_index">(ross.BearingFluidFlow method)</a>
+</li>
         <li><a href="generated/elements/ross.DiskElement.html#ross.DiskElement.dof_local_index">(ross.DiskElement method)</a>
+</li>
+        <li><a href="generated/elements/ross.MagneticBearingElement.html#ross.MagneticBearingElement.dof_local_index">(ross.MagneticBearingElement method)</a>
+</li>
+        <li><a href="generated/elements/ross.RollerBearingElement.html#ross.RollerBearingElement.dof_local_index">(ross.RollerBearingElement method)</a>
 </li>
         <li><a href="generated/elements/ross.SealElement.html#ross.SealElement.dof_local_index">(ross.SealElement method)</a>
 </li>
@@ -259,10 +293,20 @@
       </ul></li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="generated/elements/ross.BearingElement.html#ross.BearingElement.dof_mapping">dof_mapping() (ross.BearingElement method)</a>
+      <li><a href="generated/elements/ross.BallBearingElement.html#ross.BallBearingElement.dof_mapping">dof_mapping() (ross.BallBearingElement method)</a>
 
       <ul>
+        <li><a href="generated/elements/ross.BearingElement.html#ross.BearingElement.dof_mapping">(ross.BearingElement method)</a>
+</li>
+        <li><a href="generated/elements/ross.BearingElement6DoF.html#ross.BearingElement6DoF.dof_mapping">(ross.BearingElement6DoF method)</a>
+</li>
+        <li><a href="generated/elements/ross.BearingFluidFlow.html#ross.BearingFluidFlow.dof_mapping">(ross.BearingFluidFlow method)</a>
+</li>
         <li><a href="generated/elements/ross.DiskElement.html#ross.DiskElement.dof_mapping">(ross.DiskElement method)</a>
+</li>
+        <li><a href="generated/elements/ross.MagneticBearingElement.html#ross.MagneticBearingElement.dof_mapping">(ross.MagneticBearingElement method)</a>
+</li>
+        <li><a href="generated/elements/ross.RollerBearingElement.html#ross.RollerBearingElement.dof_mapping">(ross.RollerBearingElement method)</a>
 </li>
         <li><a href="generated/elements/ross.SealElement.html#ross.SealElement.dof_mapping">(ross.SealElement method)</a>
 </li>
@@ -283,12 +327,20 @@
 </li>
       <li><a href="generated/results/ross.Rotor.html#ross.Rotor.from_section">from_section() (ross.Rotor class method)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="generated/elements/ross.BearingElement.html#ross.BearingElement.from_table">from_table() (ross.BearingElement class method)</a>
+      <li><a href="generated/elements/ross.BallBearingElement.html#ross.BallBearingElement.from_table">from_table() (ross.BallBearingElement class method)</a>
 
       <ul>
+        <li><a href="generated/elements/ross.BearingElement.html#ross.BearingElement.from_table">(ross.BearingElement class method)</a>
+</li>
+        <li><a href="generated/elements/ross.BearingElement6DoF.html#ross.BearingElement6DoF.from_table">(ross.BearingElement6DoF class method)</a>
+</li>
+        <li><a href="generated/elements/ross.BearingFluidFlow.html#ross.BearingFluidFlow.from_table">(ross.BearingFluidFlow class method)</a>
+</li>
         <li><a href="generated/elements/ross.DiskElement.html#ross.DiskElement.from_table">(ross.DiskElement class method)</a>
+</li>
+        <li><a href="generated/elements/ross.MagneticBearingElement.html#ross.MagneticBearingElement.from_table">(ross.MagneticBearingElement class method)</a>
+</li>
+        <li><a href="generated/elements/ross.RollerBearingElement.html#ross.RollerBearingElement.from_table">(ross.RollerBearingElement class method)</a>
 </li>
         <li><a href="generated/elements/ross.SealElement.html#ross.SealElement.from_table">(ross.SealElement class method)</a>
 </li>
@@ -301,10 +353,20 @@
 <h2 id="G">G</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="generated/elements/ross.BearingElement.html#ross.BearingElement.G">G() (ross.BearingElement method)</a>
+      <li><a href="generated/elements/ross.BallBearingElement.html#ross.BallBearingElement.G">G() (ross.BallBearingElement method)</a>
 
       <ul>
+        <li><a href="generated/elements/ross.BearingElement.html#ross.BearingElement.G">(ross.BearingElement method)</a>
+</li>
+        <li><a href="generated/elements/ross.BearingElement6DoF.html#ross.BearingElement6DoF.G">(ross.BearingElement6DoF method)</a>
+</li>
+        <li><a href="generated/elements/ross.BearingFluidFlow.html#ross.BearingFluidFlow.G">(ross.BearingFluidFlow method)</a>
+</li>
         <li><a href="generated/elements/ross.DiskElement.html#ross.DiskElement.G">(ross.DiskElement method)</a>
+</li>
+        <li><a href="generated/elements/ross.MagneticBearingElement.html#ross.MagneticBearingElement.G">(ross.MagneticBearingElement method)</a>
+</li>
+        <li><a href="generated/elements/ross.RollerBearingElement.html#ross.RollerBearingElement.G">(ross.RollerBearingElement method)</a>
 </li>
         <li><a href="generated/results/ross.Rotor.html#ross.Rotor.G">(ross.Rotor method)</a>
 </li>
@@ -323,10 +385,20 @@
 <h2 id="K">K</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="generated/elements/ross.BearingElement.html#ross.BearingElement.K">K() (ross.BearingElement method)</a>
+      <li><a href="generated/elements/ross.BallBearingElement.html#ross.BallBearingElement.K">K() (ross.BallBearingElement method)</a>
 
       <ul>
+        <li><a href="generated/elements/ross.BearingElement.html#ross.BearingElement.K">(ross.BearingElement method)</a>
+</li>
+        <li><a href="generated/elements/ross.BearingElement6DoF.html#ross.BearingElement6DoF.K">(ross.BearingElement6DoF method)</a>
+</li>
+        <li><a href="generated/elements/ross.BearingFluidFlow.html#ross.BearingFluidFlow.K">(ross.BearingFluidFlow method)</a>
+</li>
         <li><a href="generated/elements/ross.DiskElement.html#ross.DiskElement.K">(ross.DiskElement method)</a>
+</li>
+        <li><a href="generated/elements/ross.MagneticBearingElement.html#ross.MagneticBearingElement.K">(ross.MagneticBearingElement method)</a>
+</li>
+        <li><a href="generated/elements/ross.RollerBearingElement.html#ross.RollerBearingElement.K">(ross.RollerBearingElement method)</a>
 </li>
         <li><a href="generated/results/ross.Rotor.html#ross.Rotor.K">(ross.Rotor method)</a>
 </li>
@@ -345,10 +417,20 @@
 <h2 id="L">L</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="generated/elements/ross.BearingElement.html#ross.BearingElement.load">load() (ross.BearingElement class method)</a>
+      <li><a href="generated/elements/ross.BallBearingElement.html#ross.BallBearingElement.load">load() (ross.BallBearingElement class method)</a>
 
       <ul>
+        <li><a href="generated/elements/ross.BearingElement.html#ross.BearingElement.load">(ross.BearingElement class method)</a>
+</li>
+        <li><a href="generated/elements/ross.BearingElement6DoF.html#ross.BearingElement6DoF.load">(ross.BearingElement6DoF class method)</a>
+</li>
+        <li><a href="generated/elements/ross.BearingFluidFlow.html#ross.BearingFluidFlow.load">(ross.BearingFluidFlow class method)</a>
+</li>
         <li><a href="generated/elements/ross.DiskElement.html#ross.DiskElement.load">(ross.DiskElement class method)</a>
+</li>
+        <li><a href="generated/elements/ross.MagneticBearingElement.html#ross.MagneticBearingElement.load">(ross.MagneticBearingElement class method)</a>
+</li>
+        <li><a href="generated/elements/ross.RollerBearingElement.html#ross.RollerBearingElement.load">(ross.RollerBearingElement class method)</a>
 </li>
         <li><a href="generated/results/ross.Rotor.html#ross.Rotor.load">(ross.Rotor class method)</a>
 </li>
@@ -367,10 +449,20 @@
 <h2 id="M">M</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="generated/elements/ross.BearingElement.html#ross.BearingElement.M">M() (ross.BearingElement method)</a>
+      <li><a href="generated/elements/ross.BallBearingElement.html#ross.BallBearingElement.M">M() (ross.BallBearingElement method)</a>
 
       <ul>
+        <li><a href="generated/elements/ross.BearingElement.html#ross.BearingElement.M">(ross.BearingElement method)</a>
+</li>
+        <li><a href="generated/elements/ross.BearingElement6DoF.html#ross.BearingElement6DoF.M">(ross.BearingElement6DoF method)</a>
+</li>
+        <li><a href="generated/elements/ross.BearingFluidFlow.html#ross.BearingFluidFlow.M">(ross.BearingFluidFlow method)</a>
+</li>
         <li><a href="generated/elements/ross.DiskElement.html#ross.DiskElement.M">(ross.DiskElement method)</a>
+</li>
+        <li><a href="generated/elements/ross.MagneticBearingElement.html#ross.MagneticBearingElement.M">(ross.MagneticBearingElement method)</a>
+</li>
+        <li><a href="generated/elements/ross.RollerBearingElement.html#ross.RollerBearingElement.M">(ross.RollerBearingElement method)</a>
 </li>
         <li><a href="generated/results/ross.Rotor.html#ross.Rotor.M">(ross.Rotor method)</a>
 </li>
@@ -381,6 +473,8 @@
       </ul></li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="generated/elements/ross.MagneticBearingElement.html#ross.MagneticBearingElement">MagneticBearingElement (class in ross)</a>
+</li>
       <li><a href="generated/material/ross.Material.html#ross.Material">Material (class in ross)</a>
 </li>
   </ul></td>
@@ -403,10 +497,20 @@
 <h2 id="R">R</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="generated/elements/ross.BearingElement.html#ross.BearingElement.read_toml_data">read_toml_data() (ross.BearingElement class method)</a>
+      <li><a href="generated/elements/ross.BallBearingElement.html#ross.BallBearingElement.read_toml_data">read_toml_data() (ross.BallBearingElement class method)</a>
 
       <ul>
+        <li><a href="generated/elements/ross.BearingElement.html#ross.BearingElement.read_toml_data">(ross.BearingElement class method)</a>
+</li>
+        <li><a href="generated/elements/ross.BearingElement6DoF.html#ross.BearingElement6DoF.read_toml_data">(ross.BearingElement6DoF class method)</a>
+</li>
+        <li><a href="generated/elements/ross.BearingFluidFlow.html#ross.BearingFluidFlow.read_toml_data">(ross.BearingFluidFlow class method)</a>
+</li>
         <li><a href="generated/elements/ross.DiskElement.html#ross.DiskElement.read_toml_data">(ross.DiskElement class method)</a>
+</li>
+        <li><a href="generated/elements/ross.MagneticBearingElement.html#ross.MagneticBearingElement.read_toml_data">(ross.MagneticBearingElement class method)</a>
+</li>
+        <li><a href="generated/elements/ross.RollerBearingElement.html#ross.RollerBearingElement.read_toml_data">(ross.RollerBearingElement class method)</a>
 </li>
         <li><a href="generated/elements/ross.SealElement.html#ross.SealElement.read_toml_data">(ross.SealElement class method)</a>
 </li>
@@ -415,12 +519,14 @@
       </ul></li>
       <li><a href="generated/material/ross.Material.html#ross.Material.remove_material">remove_material() (ross.Material static method)</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="generated/elements/ross.RollerBearingElement.html#ross.RollerBearingElement">RollerBearingElement (class in ross)</a>
+</li>
       <li><a href="generated/results/ross.Rotor.html#ross.Rotor">Rotor (class in ross)</a>
 </li>
       <li><a href="generated/results/ross.Rotor.html#ross.Rotor.run_campbell">run_campbell() (ross.Rotor method)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="generated/results/ross.Rotor.html#ross.Rotor.run_critical_speed">run_critical_speed() (ross.Rotor method)</a>
 </li>
       <li><a href="generated/results/ross.Rotor.html#ross.Rotor.run_freq_response">run_freq_response() (ross.Rotor method)</a>
@@ -443,10 +549,20 @@
 <h2 id="S">S</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="generated/elements/ross.BearingElement.html#ross.BearingElement.save">save() (ross.BearingElement method)</a>
+      <li><a href="generated/elements/ross.BallBearingElement.html#ross.BallBearingElement.save">save() (ross.BallBearingElement method)</a>
 
       <ul>
+        <li><a href="generated/elements/ross.BearingElement.html#ross.BearingElement.save">(ross.BearingElement method)</a>
+</li>
+        <li><a href="generated/elements/ross.BearingElement6DoF.html#ross.BearingElement6DoF.save">(ross.BearingElement6DoF method)</a>
+</li>
+        <li><a href="generated/elements/ross.BearingFluidFlow.html#ross.BearingFluidFlow.save">(ross.BearingFluidFlow method)</a>
+</li>
         <li><a href="generated/elements/ross.DiskElement.html#ross.DiskElement.save">(ross.DiskElement method)</a>
+</li>
+        <li><a href="generated/elements/ross.MagneticBearingElement.html#ross.MagneticBearingElement.save">(ross.MagneticBearingElement method)</a>
+</li>
+        <li><a href="generated/elements/ross.RollerBearingElement.html#ross.RollerBearingElement.save">(ross.RollerBearingElement method)</a>
 </li>
         <li><a href="generated/results/ross.Rotor.html#ross.Rotor.save">(ross.Rotor method)</a>
 </li>
@@ -467,10 +583,20 @@
 </li>
       <li><a href="generated/elements/ross.ShaftElement.html#ross.ShaftElement">ShaftElement (class in ross)</a>
 </li>
-      <li><a href="generated/elements/ross.BearingElement.html#ross.BearingElement.summary">summary() (ross.BearingElement method)</a>
+      <li><a href="generated/elements/ross.BallBearingElement.html#ross.BallBearingElement.summary">summary() (ross.BallBearingElement method)</a>
 
       <ul>
+        <li><a href="generated/elements/ross.BearingElement.html#ross.BearingElement.summary">(ross.BearingElement method)</a>
+</li>
+        <li><a href="generated/elements/ross.BearingElement6DoF.html#ross.BearingElement6DoF.summary">(ross.BearingElement6DoF method)</a>
+</li>
+        <li><a href="generated/elements/ross.BearingFluidFlow.html#ross.BearingFluidFlow.summary">(ross.BearingFluidFlow method)</a>
+</li>
         <li><a href="generated/elements/ross.DiskElement.html#ross.DiskElement.summary">(ross.DiskElement method)</a>
+</li>
+        <li><a href="generated/elements/ross.MagneticBearingElement.html#ross.MagneticBearingElement.summary">(ross.MagneticBearingElement method)</a>
+</li>
+        <li><a href="generated/elements/ross.RollerBearingElement.html#ross.RollerBearingElement.summary">(ross.RollerBearingElement method)</a>
 </li>
         <li><a href="generated/results/ross.Rotor.html#ross.Rotor.summary">(ross.Rotor method)</a>
 </li>
@@ -485,9 +611,19 @@
 <h2 id="T">T</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="generated/elements/ross.BearingElement.html#ross.BearingElement.table_to_toml">table_to_toml() (ross.BearingElement class method)</a>
+      <li><a href="generated/elements/ross.BallBearingElement.html#ross.BallBearingElement.table_to_toml">table_to_toml() (ross.BallBearingElement class method)</a>
 
       <ul>
+        <li><a href="generated/elements/ross.BearingElement.html#ross.BearingElement.table_to_toml">(ross.BearingElement class method)</a>
+</li>
+        <li><a href="generated/elements/ross.BearingElement6DoF.html#ross.BearingElement6DoF.table_to_toml">(ross.BearingElement6DoF class method)</a>
+</li>
+        <li><a href="generated/elements/ross.BearingFluidFlow.html#ross.BearingFluidFlow.table_to_toml">(ross.BearingFluidFlow class method)</a>
+</li>
+        <li><a href="generated/elements/ross.MagneticBearingElement.html#ross.MagneticBearingElement.table_to_toml">(ross.MagneticBearingElement class method)</a>
+</li>
+        <li><a href="generated/elements/ross.RollerBearingElement.html#ross.RollerBearingElement.table_to_toml">(ross.RollerBearingElement class method)</a>
+</li>
         <li><a href="generated/elements/ross.SealElement.html#ross.SealElement.table_to_toml">(ross.SealElement class method)</a>
 </li>
       </ul></li>

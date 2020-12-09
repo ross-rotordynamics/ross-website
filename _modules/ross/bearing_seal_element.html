@@ -70,16 +70,10 @@
 <li class="toctree-l2"><a class="reference internal" href="../../installation.html#install-ross">Install ROSS</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../../examples/tutorial.html">Tutorial</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../examples/tutorial.html#Table-of-Contents">Table of Contents</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../examples/tutorial.html#Section-1:-Material-Class">Section 1: Material Class</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../examples/tutorial.html#Section-2:-ShaftElement-Class">Section 2: ShaftElement Class</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../examples/tutorial.html#Section-3:-DiskElement-Class">Section 3: DiskElement Class</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../examples/tutorial.html#Section-4:-Bearing-and-Seal-Classes">Section 4: Bearing and Seal Classes</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../examples/tutorial.html#Section-5:-PointMass-Class">Section 5: PointMass Class</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../examples/tutorial.html#Section-6:-Rotor-Class">Section 6: Rotor Class</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../examples/tutorial.html#Section-7:-ROSS-Units-System">Section 7: ROSS Units System</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../examples/tutorial.html#Section-8:-Rotor-Analyses">Section 8: Rotor Analyses</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tutorials.html">Tutorials</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/tutorial_part_1.html">Tutorial - Modeling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/tutorial_part_2.html">Tutorial - Running Analyzes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/tutorial_part_3.html">STOCHASTIC ROSS - Tutorial</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../examples.html">Examples</a><ul>
@@ -91,7 +85,9 @@
 <li class="toctree-l2"><a class="reference internal" href="../../examples/example_6.html">Example 6 - Isotropic bearings with damping.</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../examples/example_7.html">Example 7 - Hydrodinamic Bearings</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../examples/example_8.html">Example 8 - Overhung rotor.</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../examples/example_stochastic_ross.html">STOCHASTIC ROSS - Tutorial</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/example_9.html">Example 9 - Hydrodinamic Journal Bearings (using Fluid Flow methods)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/example_10.html">Example 10 - Example of rotor connected by a rigid mechanical coupling with parallel misalignment.</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/example_11.html">Example 10 - Example of rotor connected by a flexible mechanical coupling with parallel, agular or combined misalignment.</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../download.html">Download notebooks</a></li>
@@ -1077,7 +1073,7 @@
         <span class="p">)</span></div></div>
 
 
-<span class="k">class</span> <span class="nc">BearingFluidFlow</span><span class="p">(</span><span class="n">BearingElement</span><span class="p">):</span>
+<div class="viewcode-block" id="BearingFluidFlow"><a class="viewcode-back" href="../../generated/elements/ross.BearingFluidFlow.html#ross.BearingFluidFlow">[docs]</a><span class="k">class</span> <span class="nc">BearingFluidFlow</span><span class="p">(</span><span class="n">BearingElement</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Instantiate a bearing using inputs from its fluid flow.</span>
 
 <span class="sd">    This method always creates elements with frequency-dependent coefficients.</span>
@@ -1171,7 +1167,7 @@
 <span class="sd">     kxx=array([145...</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+<div class="viewcode-block" id="BearingFluidFlow.__init__"><a class="viewcode-back" href="../../generated/elements/ross.BearingFluidFlow.html#ross.BearingFluidFlow.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">n</span><span class="p">,</span>
         <span class="n">nz</span><span class="p">,</span>
@@ -1226,7 +1222,7 @@
             <span class="n">n_link</span><span class="o">=</span><span class="n">n_link</span><span class="p">,</span>
             <span class="n">scale_factor</span><span class="o">=</span><span class="n">scale_factor</span><span class="p">,</span>
             <span class="n">color</span><span class="o">=</span><span class="n">color</span><span class="p">,</span>
-        <span class="p">)</span>
+        <span class="p">)</span></div></div>
 
 
 <div class="viewcode-block" id="SealElement"><a class="viewcode-back" href="../../generated/elements/ross.SealElement.html#ross.SealElement">[docs]</a><span class="k">class</span> <span class="nc">SealElement</span><span class="p">(</span><span class="n">BearingElement</span><span class="p">):</span>
@@ -1350,7 +1346,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">seal_leakage</span> <span class="o">=</span> <span class="n">seal_leakage</span></div></div>
 
 
-<span class="k">class</span> <span class="nc">BallBearingElement</span><span class="p">(</span><span class="n">BearingElement</span><span class="p">):</span>
+<div class="viewcode-block" id="BallBearingElement"><a class="viewcode-back" href="../../generated/elements/ross.BallBearingElement.html#ross.BallBearingElement">[docs]</a><span class="k">class</span> <span class="nc">BallBearingElement</span><span class="p">(</span><span class="n">BearingElement</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;A bearing element for ball bearings.</span>
 
 <span class="sd">    This class will create a bearing element based on some geometric and</span>
@@ -1401,7 +1397,7 @@
 <span class="sd">           [0.00000000e+00, 1.00906269e+08]])</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+<div class="viewcode-block" id="BallBearingElement.__init__"><a class="viewcode-back" href="../../generated/elements/ross.BallBearingElement.html#ross.BallBearingElement.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">n</span><span class="p">,</span>
         <span class="n">n_balls</span><span class="p">,</span>
@@ -1455,10 +1451,10 @@
             <span class="n">scale_factor</span><span class="o">=</span><span class="n">scale_factor</span><span class="p">,</span>
         <span class="p">)</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">color</span> <span class="o">=</span> <span class="s2">&quot;#77ACA2&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">color</span> <span class="o">=</span> <span class="s2">&quot;#77ACA2&quot;</span></div></div>
 
 
-<span class="k">class</span> <span class="nc">RollerBearingElement</span><span class="p">(</span><span class="n">BearingElement</span><span class="p">):</span>
+<div class="viewcode-block" id="RollerBearingElement"><a class="viewcode-back" href="../../generated/elements/ross.RollerBearingElement.html#ross.RollerBearingElement">[docs]</a><span class="k">class</span> <span class="nc">RollerBearingElement</span><span class="p">(</span><span class="n">BearingElement</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;A bearing element for roller bearings.</span>
 
 <span class="sd">    This class will create a bearing element based on some geometric and</span>
@@ -1509,7 +1505,7 @@
 <span class="sd">           [0.00000000e+00, 5.56779444e+08]])</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+<div class="viewcode-block" id="RollerBearingElement.__init__"><a class="viewcode-back" href="../../generated/elements/ross.RollerBearingElement.html#ross.RollerBearingElement.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">n</span><span class="p">,</span>
         <span class="n">n_rollers</span><span class="p">,</span>
@@ -1563,10 +1559,10 @@
             <span class="n">scale_factor</span><span class="o">=</span><span class="n">scale_factor</span><span class="p">,</span>
         <span class="p">)</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">color</span> <span class="o">=</span> <span class="s2">&quot;#77ACA2&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">color</span> <span class="o">=</span> <span class="s2">&quot;#77ACA2&quot;</span></div></div>
 
 
-<span class="k">class</span> <span class="nc">MagneticBearingElement</span><span class="p">(</span><span class="n">BearingElement</span><span class="p">):</span>
+<div class="viewcode-block" id="MagneticBearingElement"><a class="viewcode-back" href="../../generated/elements/ross.MagneticBearingElement.html#ross.MagneticBearingElement">[docs]</a><span class="k">class</span> <span class="nc">MagneticBearingElement</span><span class="p">(</span><span class="n">BearingElement</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Magnetic bearing.</span>
 
 <span class="sd">    This class creates a magnetic bearing element.</span>
@@ -1632,7 +1628,7 @@
 <span class="sd">    [-4640.623377181318]</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+<div class="viewcode-block" id="MagneticBearingElement.__init__"><a class="viewcode-back" href="../../generated/elements/ross.MagneticBearingElement.html#ross.MagneticBearingElement.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">n</span><span class="p">,</span>
         <span class="n">g0</span><span class="p">,</span>
@@ -1727,10 +1723,10 @@
             <span class="n">tag</span><span class="o">=</span><span class="n">tag</span><span class="p">,</span>
             <span class="n">n_link</span><span class="o">=</span><span class="n">n_link</span><span class="p">,</span>
             <span class="n">scale_factor</span><span class="o">=</span><span class="n">scale_factor</span><span class="p">,</span>
-        <span class="p">)</span>
+        <span class="p">)</span></div></div>
 
 
-<span class="k">class</span> <span class="nc">BearingElement6DoF</span><span class="p">(</span><span class="n">BearingElement</span><span class="p">):</span>
+<div class="viewcode-block" id="BearingElement6DoF"><a class="viewcode-back" href="../../generated/elements/ross.BearingElement6DoF.html#ross.BearingElement6DoF">[docs]</a><span class="k">class</span> <span class="nc">BearingElement6DoF</span><span class="p">(</span><span class="n">BearingElement</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;A generalistic 6 DoF bearing element.</span>
 
 <span class="sd">    This class will create a bearing</span>
@@ -1794,7 +1790,7 @@
 <span class="sd">           [       0.,        0.,   500000.]])</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="nd">@check_units</span>
+<div class="viewcode-block" id="BearingElement6DoF.__init__"><a class="viewcode-back" href="../../generated/elements/ross.BearingElement6DoF.html#ross.BearingElement6DoF.__init__">[docs]</a>    <span class="nd">@check_units</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">n</span><span class="p">,</span>
@@ -1861,7 +1857,7 @@
                 <span class="p">)</span>
 
         <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">coefficients</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
-            <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span>
+            <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span></div>
 
     <span class="k">def</span> <span class="fm">__hash__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="nb">hash</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">tag</span><span class="p">)</span>
@@ -1936,7 +1932,7 @@
             <span class="p">)</span>
         <span class="k">return</span> <span class="kc">False</span>
 
-    <span class="k">def</span> <span class="nf">save</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">file</span><span class="p">):</span>
+<div class="viewcode-block" id="BearingElement6DoF.save"><a class="viewcode-back" href="../../generated/elements/ross.BearingElement6DoF.html#ross.BearingElement6DoF.save">[docs]</a>    <span class="k">def</span> <span class="nf">save</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">file</span><span class="p">):</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="n">data</span> <span class="o">=</span> <span class="n">toml</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">file</span><span class="p">)</span>
         <span class="k">except</span> <span class="ne">FileNotFoundError</span><span class="p">:</span>
@@ -1966,9 +1962,9 @@
         <span class="n">data</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">tag</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">args</span>
 
         <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">file</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
-            <span class="n">toml</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span>
+            <span class="n">toml</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span></div>
 
-    <span class="k">def</span> <span class="nf">dof_mapping</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="BearingElement6DoF.dof_mapping"><a class="viewcode-back" href="../../generated/elements/ross.BearingElement6DoF.html#ross.BearingElement6DoF.dof_mapping">[docs]</a>    <span class="k">def</span> <span class="nf">dof_mapping</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Degrees of freedom mapping.</span>
 
 <span class="sd">        Returns a dictionary with a mapping between degree of freedom and its index.</span>
@@ -1992,9 +1988,9 @@
 <span class="sd">        &gt;&gt;&gt; bearing.dof_mapping()</span>
 <span class="sd">        {&#39;x_0&#39;: 0, &#39;y_0&#39;: 1, &#39;z_0&#39;: 2}</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="nb">dict</span><span class="p">(</span><span class="n">x_0</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">y_0</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">z_0</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+        <span class="k">return</span> <span class="nb">dict</span><span class="p">(</span><span class="n">x_0</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">y_0</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">z_0</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span></div>
 
-    <span class="k">def</span> <span class="nf">K</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">frequency</span><span class="p">):</span>
+<div class="viewcode-block" id="BearingElement6DoF.K"><a class="viewcode-back" href="../../generated/elements/ross.BearingElement6DoF.html#ross.BearingElement6DoF.K">[docs]</a>    <span class="k">def</span> <span class="nf">K</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">frequency</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Stiffness matrix for an instance of a bearing element.</span>
 
 <span class="sd">        This method returns the stiffness matrix for an instance of a bearing element.</span>
@@ -2025,9 +2021,9 @@
 
         <span class="n">K</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="n">kxx</span><span class="p">,</span> <span class="n">kxy</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="n">kyx</span><span class="p">,</span> <span class="n">kyy</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">kzz</span><span class="p">]])</span>
 
-        <span class="k">return</span> <span class="n">K</span>
+        <span class="k">return</span> <span class="n">K</span></div>
 
-    <span class="k">def</span> <span class="nf">C</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">frequency</span><span class="p">):</span>
+<div class="viewcode-block" id="BearingElement6DoF.C"><a class="viewcode-back" href="../../generated/elements/ross.BearingElement6DoF.html#ross.BearingElement6DoF.C">[docs]</a>    <span class="k">def</span> <span class="nf">C</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">frequency</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Damping matrix for an instance of a bearing element.</span>
 
 <span class="sd">        This method returns the damping matrix for an instance of a bearing element.</span>
@@ -2058,7 +2054,7 @@
 
         <span class="n">C</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="n">cxx</span><span class="p">,</span> <span class="n">cxy</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="n">cyx</span><span class="p">,</span> <span class="n">cyy</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">czz</span><span class="p">]])</span>
 
-        <span class="k">return</span> <span class="n">C</span>
+        <span class="k">return</span> <span class="n">C</span></div></div>
 
 
 <span class="k">def</span> <span class="nf">bearing_example</span><span class="p">():</span>
