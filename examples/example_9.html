@@ -13,7 +13,6 @@
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
-    <script src="../_static/language_data.js"></script>
     <script src="../_static/sphinx_copybutton.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js"></script>
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
@@ -89,7 +88,12 @@
 <li class="toctree-l2"><a class="reference internal" href="example_8.html">Example 8 - Overhung rotor.</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Example 9 - Hydrodinamic Journal Bearings (using Fluid Flow methods)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="example_10.html">Example 10 - Example of rotor connected by a rigid mechanical coupling with parallel misalignment.</a></li>
-<li class="toctree-l2"><a class="reference internal" href="example_11.html">Example 10 - Example of rotor connected by a flexible mechanical coupling with parallel, agular or combined misalignment.</a></li>
+<li class="toctree-l2"><a class="reference internal" href="example_11.html">Example 11 - Example of rotor connected by a flexible mechanical coupling with parallel, agular or combined misalignment.</a></li>
+<li class="toctree-l2"><a class="reference internal" href="example_12.html">Example 12 - Example of impact phenomena in rotor-casing dynamical systems.</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fluid_flow_theory.html">Fluid-flow theory</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fluid_flow_elliptical_bearing.html">Fluid-flow: Elliptical Bearing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fluid_flow_wear_bearing.html">Fluid-flow: Wear Bearing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fluid_flow_short_bearing.html">Fluid-flow: Short Bearing</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../download.html">Download notebooks</a></li>
@@ -104,7 +108,6 @@
 <li class="toctree-l2"><a class="reference internal" href="../contributing.html#version-control-system-git">Version-control system: Git</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../contributing.html#code-style-black">Code style: Black</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../contributing.html#documentation">Documentation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../contributing.html#integrated-development-environment-pycharm">Integrated development environment: PyCharm</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../contributing.html#how-to-contribute-to-ross-using-git">How to contribute to ROSS using git</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../contributing.html#making-new-releases">Making new releases</a></li>
 </ul>
@@ -423,12 +426,12 @@ both. The one not parameter not given is them calculated based on the other one.
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>from ross.fluid_flow import fluid_flow as flow
-from ross.fluid_flow.fluid_flow_geometry import sommerfeld_number, modified_sommerfeld_number
-from ross.fluid_flow.fluid_flow_graphics import plot_eccentricity, plot_pressure_theta
-from ross.fluid_flow.fluid_flow_coefficients import calculate_stiffness_and_damping_coefficients
+<span></span><span class="kn">from</span> <span class="nn">ross.fluid_flow</span> <span class="kn">import</span> <span class="n">fluid_flow</span> <span class="k">as</span> <span class="n">flow</span>
+<span class="kn">from</span> <span class="nn">ross.fluid_flow.fluid_flow_geometry</span> <span class="kn">import</span> <span class="n">sommerfeld_number</span><span class="p">,</span> <span class="n">modified_sommerfeld_number</span>
+<span class="kn">from</span> <span class="nn">ross.fluid_flow.fluid_flow_graphics</span> <span class="kn">import</span> <span class="n">plot_eccentricity</span><span class="p">,</span> <span class="n">plot_pressure_theta</span>
+<span class="kn">from</span> <span class="nn">ross.fluid_flow.fluid_flow_coefficients</span> <span class="kn">import</span> <span class="n">calculate_stiffness_and_damping_coefficients</span>
 
-import numpy as np
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 
 </pre></div>
 </div>
@@ -438,21 +441,21 @@ import numpy as np
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span># Instantiating a Pressure Matrix
-nz = 8
-ntheta = 128
-length = 0.03
-omega = 157.1
-p_in = 0.
-p_out = 0.
-radius_rotor = 0.0499
-radius_stator = 0.05
-load = 525
-visc = 0.1
-rho = 860.
-my_fluid_flow = flow.FluidFlow(nz, ntheta, length, omega, p_in,
-                               p_out, radius_rotor, radius_stator,
-                               visc, rho, load=load)
+<span></span><span class="c1"># Instantiating a Pressure Matrix</span>
+<span class="n">nz</span> <span class="o">=</span> <span class="mi">8</span>
+<span class="n">ntheta</span> <span class="o">=</span> <span class="mi">128</span>
+<span class="n">length</span> <span class="o">=</span> <span class="mf">0.03</span>
+<span class="n">omega</span> <span class="o">=</span> <span class="mf">157.1</span>
+<span class="n">p_in</span> <span class="o">=</span> <span class="mf">0.</span>
+<span class="n">p_out</span> <span class="o">=</span> <span class="mf">0.</span>
+<span class="n">radius_rotor</span> <span class="o">=</span> <span class="mf">0.0499</span>
+<span class="n">radius_stator</span> <span class="o">=</span> <span class="mf">0.05</span>
+<span class="n">load</span> <span class="o">=</span> <span class="mi">525</span>
+<span class="n">visc</span> <span class="o">=</span> <span class="mf">0.1</span>
+<span class="n">rho</span> <span class="o">=</span> <span class="mf">860.</span>
+<span class="n">my_fluid_flow</span> <span class="o">=</span> <span class="n">flow</span><span class="o">.</span><span class="n">FluidFlow</span><span class="p">(</span><span class="n">nz</span><span class="p">,</span> <span class="n">ntheta</span><span class="p">,</span> <span class="n">length</span><span class="p">,</span> <span class="n">omega</span><span class="p">,</span> <span class="n">p_in</span><span class="p">,</span>
+                               <span class="n">p_out</span><span class="p">,</span> <span class="n">radius_rotor</span><span class="p">,</span> <span class="n">radius_stator</span><span class="p">,</span>
+                               <span class="n">visc</span><span class="p">,</span> <span class="n">rho</span><span class="p">,</span> <span class="n">load</span><span class="o">=</span><span class="n">load</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -461,9 +464,9 @@ my_fluid_flow = flow.FluidFlow(nz, ntheta, length, omega, p_in,
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span># Getting the eccentricity
+<span></span><span class="c1"># Getting the eccentricity</span>
 
-my_fluid_flow.eccentricity
+<span class="n">my_fluid_flow</span><span class="o">.</span><span class="n">eccentricity</span>
 </pre></div>
 </div>
 </div>
@@ -481,22 +484,22 @@ my_fluid_flow.eccentricity
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span># Calculating the modified sommerfeld number and the sommerfeld number
+<span></span><span class="c1"># Calculating the modified sommerfeld number and the sommerfeld number</span>
 
-modified_s = modified_sommerfeld_number(
-    my_fluid_flow.radius_stator,
-    my_fluid_flow.omega,
-    my_fluid_flow.viscosity,
-    my_fluid_flow.length,
-    my_fluid_flow.load,
-    my_fluid_flow.radial_clearance
-)
+<span class="n">modified_s</span> <span class="o">=</span> <span class="n">modified_sommerfeld_number</span><span class="p">(</span>
+    <span class="n">my_fluid_flow</span><span class="o">.</span><span class="n">radius_stator</span><span class="p">,</span>
+    <span class="n">my_fluid_flow</span><span class="o">.</span><span class="n">omega</span><span class="p">,</span>
+    <span class="n">my_fluid_flow</span><span class="o">.</span><span class="n">viscosity</span><span class="p">,</span>
+    <span class="n">my_fluid_flow</span><span class="o">.</span><span class="n">length</span><span class="p">,</span>
+    <span class="n">my_fluid_flow</span><span class="o">.</span><span class="n">load</span><span class="p">,</span>
+    <span class="n">my_fluid_flow</span><span class="o">.</span><span class="n">radial_clearance</span>
+<span class="p">)</span>
 
-sommerfeld_number(
-    modified_s,
-    my_fluid_flow.radius_stator,
-    my_fluid_flow.length
-)
+<span class="n">sommerfeld_number</span><span class="p">(</span>
+    <span class="n">modified_s</span><span class="p">,</span>
+    <span class="n">my_fluid_flow</span><span class="o">.</span><span class="n">radius_stator</span><span class="p">,</span>
+    <span class="n">my_fluid_flow</span><span class="o">.</span><span class="n">length</span>
+<span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -514,9 +517,9 @@ sommerfeld_number(
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span># Plotting the eccentricity
+<span></span><span class="c1"># Plotting the eccentricity</span>
 
-plot_eccentricity(my_fluid_flow, scale_factor=0.5)
+<span class="n">plot_eccentricity</span><span class="p">(</span><span class="n">my_fluid_flow</span><span class="p">,</span> <span class="n">scale_factor</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -574,9 +577,9 @@ if (outputEl) {{
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span># Getting the stiffness and damping matrices
+<span></span><span class="c1"># Getting the stiffness and damping matrices</span>
 
-K, C = calculate_stiffness_and_damping_coefficients(my_fluid_flow)
+<span class="n">K</span><span class="p">,</span> <span class="n">C</span> <span class="o">=</span> <span class="n">calculate_stiffness_and_damping_coefficients</span><span class="p">(</span><span class="n">my_fluid_flow</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -585,8 +588,8 @@ K, C = calculate_stiffness_and_damping_coefficients(my_fluid_flow)
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>print(f&quot;Kxx, Kxy, Kyx, Kyy = {K}&quot;)
-print(f&quot;Cxx, Cxy, Cyx, Cyy = {C}&quot;)
+<span></span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Kxx, Kxy, Kyx, Kyy = </span><span class="si">{</span><span class="n">K</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Cxx, Cxy, Cyx, Cyy = </span><span class="si">{</span><span class="n">C</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -605,9 +608,9 @@ Cxx, Cxy, Cyx, Cyy = [231998.5397491176, -85019.62210425804, -80904.90677967668,
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span># Calculating pressure matrix
+<span></span><span class="c1"># Calculating pressure matrix</span>
 
-my_fluid_flow.calculate_pressure_matrix_numerical()[int(nz/2)]
+<span class="n">my_fluid_flow</span><span class="o">.</span><span class="n">calculate_pressure_matrix_numerical</span><span class="p">()[</span><span class="nb">int</span><span class="p">(</span><span class="n">nz</span><span class="o">/</span><span class="mi">2</span><span class="p">)]</span>
 </pre></div>
 </div>
 </div>
@@ -656,9 +659,9 @@ array([     0.        ,   3918.69567687,  10727.26080589,  17581.37987039,
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span># Plotting pressure along theta in a chosen z
+<span></span><span class="c1"># Plotting pressure along theta in a chosen z</span>
 
-plot_pressure_theta(my_fluid_flow, z=int(nz/2))
+<span class="n">plot_pressure_theta</span><span class="p">(</span><span class="n">my_fluid_flow</span><span class="p">,</span> <span class="n">z</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="n">nz</span><span class="o">/</span><span class="mi">2</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -735,7 +738,7 @@ if (outputEl) {{
     </p>
     <p>
         &copy; Copyright 2020, Team ROSS.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.3.1.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.4.3.<br/>
     </p>
   </div>
 </footer>

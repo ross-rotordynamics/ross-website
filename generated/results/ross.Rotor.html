@@ -13,7 +13,6 @@
     <script src="../../_static/jquery.js"></script>
     <script src="../../_static/underscore.js"></script>
     <script src="../../_static/doctools.js"></script>
-    <script src="../../_static/language_data.js"></script>
     <script src="../../_static/sphinx_copybutton.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js"></script>
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
@@ -89,7 +88,12 @@
 <li class="toctree-l2"><a class="reference internal" href="../../examples/example_8.html">Example 8 - Overhung rotor.</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../examples/example_9.html">Example 9 - Hydrodinamic Journal Bearings (using Fluid Flow methods)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../examples/example_10.html">Example 10 - Example of rotor connected by a rigid mechanical coupling with parallel misalignment.</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../examples/example_11.html">Example 10 - Example of rotor connected by a flexible mechanical coupling with parallel, agular or combined misalignment.</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/example_11.html">Example 11 - Example of rotor connected by a flexible mechanical coupling with parallel, agular or combined misalignment.</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/example_12.html">Example 12 - Example of impact phenomena in rotor-casing dynamical systems.</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/fluid_flow_theory.html">Fluid-flow theory</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/fluid_flow_elliptical_bearing.html">Fluid-flow: Elliptical Bearing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/fluid_flow_wear_bearing.html">Fluid-flow: Wear Bearing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/fluid_flow_short_bearing.html">Fluid-flow: Short Bearing</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../download.html">Download notebooks</a></li>
@@ -104,7 +108,6 @@
 <li class="toctree-l2"><a class="reference internal" href="../../contributing.html#version-control-system-git">Version-control system: Git</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../contributing.html#code-style-black">Code style: Black</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../contributing.html#documentation">Documentation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../contributing.html#integrated-development-environment-pycharm">Integrated development environment: PyCharm</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../contributing.html#how-to-contribute-to-ross-using-git">How to contribute to ROSS using git</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../contributing.html#making-new-releases">Making new releases</a></li>
 </ul>
@@ -435,9 +438,15 @@ Default is 1e-02</p>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><dl class="simple">
-<dt>Lists containing the information about:</dt><dd><p>The number or elements in each run;
-The relative error calculated in each run;
-The natural frequency calculated in each run.</p>
+<dt><strong>results</strong><span class="classifier">An instance of ConvergenceResults class, which is used to post-process</span></dt><dd></dd>
+<dt>results. Attributes stored:</dt><dd><dl class="simple">
+<dt>el_num<span class="classifier">array</span></dt><dd><p>Array with number of elements in each iteraction</p>
+</dd>
+<dt>eigv_arr<span class="classifier">array</span></dt><dd><p>Array with the n’th natural frequency in each iteraction</p>
+</dd>
+<dt>error_arr<span class="classifier">array</span></dt><dd><p>Array with the relative error in each iteraction</p>
+</dd>
+</dl>
 </dd>
 </dl>
 </dd>
@@ -451,7 +460,18 @@ The natural frequency calculated in each run.</p>
 <p>This method returns the unbalanced response for a mdof system
 given magnitude and phase of the unbalance, the node where it’s
 applied and a frequency range.</p>
-<dl class="field-list simple">
+<dl class="simple">
+<dt>Available plotting methods:</dt><dd><p>.plot()
+.plot_magnitude()
+.plot_phase()
+.plot_polar_bode()
+.plot_deflected_shape()
+.plot_bending_moment()
+.plot_deflected_shape_3d()
+.plot_deflected_shape_2d()</p>
+</dd>
+</dl>
+<dl class="field-list">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>force</strong><span class="classifier">list, array</span></dt><dd><p>Unbalance force in each degree of freedom for each value in omega</p>
@@ -490,14 +510,21 @@ Default is 0.005 (0.5%).</p>
 </dl>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><dl class="simple">
-<dt><strong>forced_resp</strong><span class="classifier">array</span></dt><dd><p>Array with the force response for each node for each frequency</p>
+<dd class="field-even"><dl>
+<dt><strong>forced_resp</strong><span class="classifier">object</span></dt><dd><p>An instance of ForcedResponseResult class, which is used to post-process
+results. Attributes stored:
+forced_resp : array</p>
+<blockquote>
+<div><p>Array with the forced response for each node for each frequency.</p>
+</div></blockquote>
+<dl class="simple">
+<dt>speed_range<span class="classifier">array</span></dt><dd><p>Array with the frequencies.</p>
 </dd>
-<dt><strong>speed_range</strong><span class="classifier">array</span></dt><dd><p>Array with the frequencies</p>
+<dt>velc_resp<span class="classifier">array</span></dt><dd><p>Array with the velocity response for each node for each frequency.</p>
 </dd>
-<dt><strong>velc_resp</strong><span class="classifier">array</span></dt><dd><p>Array with the velocity response for each node for each frequency</p>
+<dt>accl_resp<span class="classifier">array</span></dt><dd><p>Array with the acceleration response for each node for each frequency.</p>
 </dd>
-<dt><strong>accl_resp</strong><span class="classifier">array</span></dt><dd><p>Array with the acceleration response for each node for each frequency</p>
+</dl>
 </dd>
 </dl>
 </dd>
@@ -723,6 +750,10 @@ Default is rad/s</p>
 <dd><p>Calculate the Campbell diagram.</p>
 <p>This function will calculate the damped natural frequencies
 for a speed range.</p>
+<dl class="simple">
+<dt>Available plotting methods:</dt><dd><p>.plot()</p>
+</dd>
+</dl>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
@@ -748,15 +779,13 @@ It will be returned if plot=False.</p>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">camp</span> <span class="o">=</span> <span class="n">rotor1</span><span class="o">.</span><span class="n">run_campbell</span><span class="p">(</span><span class="n">speed</span><span class="p">)</span>
 </pre></div>
 </div>
-<p># plot Campbell Diagram</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">fig</span> <span class="o">=</span> <span class="n">camp</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
-</pre></div>
-</div>
+<p>Plotting Campbell Diagram
+&gt;&gt;&gt; fig = camp.plot()</p>
 </dd></dl>
 
 <dl class="py method">
 <dt id="ross.Rotor.run_critical_speed">
-<code class="sig-name descname">run_critical_speed</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">num_modes</span><span class="o">=</span><span class="default_value">12</span></em>, <em class="sig-param"><span class="n">sparse</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">rtol</span><span class="o">=</span><span class="default_value">0.005</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/rotor_assembly.html#Rotor.run_critical_speed"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.Rotor.run_critical_speed" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">run_critical_speed</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">speed_range</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">num_modes</span><span class="o">=</span><span class="default_value">12</span></em>, <em class="sig-param"><span class="n">rtol</span><span class="o">=</span><span class="default_value">0.005</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/rotor_assembly.html#Rotor.run_critical_speed"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.Rotor.run_critical_speed" title="Permalink to this definition">¶</a></dt>
 <dd><p>Calculate the critical speeds and damping ratios for the rotor model.</p>
 <p>This function runs an iterative method over “run_modal()” to minimize
 (using scipy.optimize.newton) the error between the rotor speed and the rotor
@@ -772,18 +801,15 @@ calculate the log dec and damping ratios for each critical speed.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
+<dt><strong>speed_range</strong><span class="classifier">tuple</span></dt><dd><p>Tuple (start, end) with the desired range of frequencies (rad/s).
+The function returns all eigenvalues within this range.</p>
+</dd>
 <dt><strong>num_modes</strong><span class="classifier">int, optional</span></dt><dd><p>The number of eigenvalues and eigenvectors to be calculated using ARPACK.
 If sparse=True, it determines the number of eigenvalues and eigenvectors
 to be calculated. It must be smaller than Rotor.ndof - 1. It is not
 possible to compute all eigenvectors of a matrix with ARPACK.
-If sparse=False, num_modes does not have any effect over the method.
+If speed_range is not None, num_modes is overrided.
 Default is 12.</p>
-</dd>
-<dt><strong>sparse</strong><span class="classifier">bool, optional</span></dt><dd><p>If True, ARPACK is used to calculate a desired number (according to
-num_modes) or eigenvalues and eigenvectors.
-If False, scipy.linalg.eig() is used to calculate all the eigenvalues and
-eigenvectors.
-Default is True.</p>
 </dd>
 <dt><strong>rtol</strong><span class="classifier">float, optional</span></dt><dd><p>Tolerance (relative) for termination. Applied to scipy.optimize.newton.
 Default is 0.005 (0.5%).</p>
@@ -792,23 +818,37 @@ Default is 0.005 (0.5%).</p>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><dl class="simple">
-<dt><strong>CriticalSpeedResults</strong><span class="classifier">array</span></dt><dd><p>CriticalSpeedResults.wn : undamped critical speeds.
-CriticalSpeedResults.wd : damped critical speeds.
+<dt><strong>CriticalSpeedResults</strong><span class="classifier">An instance of CriticalSpeedResults class, which is</span></dt><dd></dd>
+<dt>used to post-process results. Attributes stored:</dt><dd><p>CriticalSpeedResults.wn() : undamped critical speeds.
+CriticalSpeedResults.wd(): damped critical speeds.
 CriticalSpeedResults.log_dec : log_dec for each critical speed.
-CriticalSpeedResults.damping_ratio : damping ratio for each critical speed.</p>
+CriticalSpeedResults.damping_ratio : damping ratio for each critical speed.
+CriticalSpeedResults.whirl_direction : whirl dir. for each critical speed.</p>
 </dd>
 </dl>
 </dd>
 </dl>
 <p class="rubric">Examples</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">rotor</span> <span class="o">=</span> <span class="n">rotor_example</span><span class="p">()</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">results</span> <span class="o">=</span> <span class="n">rotor</span><span class="o">.</span><span class="n">run_critical_speed</span><span class="p">(</span><span class="n">num_modes</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">results</span><span class="o">.</span><span class="n">wd</span><span class="p">)</span>
-<span class="go">array([ 92.,  96., 271., 300.])</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">results</span><span class="o">.</span><span class="n">wn</span><span class="p">)</span>
-<span class="go">array([ 92.,  96., 271., 300.])</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">ross</span> <span class="k">as</span> <span class="nn">rs</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">rotor</span> <span class="o">=</span> <span class="n">rs</span><span class="o">.</span><span class="n">rotor_example</span><span class="p">()</span>
 </pre></div>
 </div>
+<p>Finding the first Nth critical speeds
+&gt;&gt;&gt; results = rotor.run_critical_speed(num_modes=8)
+&gt;&gt;&gt; np.round(results.wd())
+array([ 92.,  96., 271., 300.])
+&gt;&gt;&gt; np.round(results.wn())
+array([ 92.,  96., 271., 300.])</p>
+<p>Finding the first critical speeds within a speed range
+&gt;&gt;&gt; results = rotor.run_critical_speed(speed_range=(100, 1000))
+&gt;&gt;&gt; np.round(results.wd())
+array([271., 300., 636., 867.])</p>
+<p>Changing output units
+&gt;&gt;&gt; np.round(results.wd(“rpm”))
+array([2590., 2868., 6074., 8278.])</p>
+<p>Retrieving whirl directions
+&gt;&gt;&gt; results.whirl_direction # doctest: +ELLIPSIS
+array([…</p>
 </dd></dl>
 
 <dl class="py method">
@@ -817,7 +857,14 @@ CriticalSpeedResults.damping_ratio : damping ratio for each critical speed.</p>
 <dd><p>Frequency response for a mdof system.</p>
 <p>This method returns the frequency response for a mdof system given a range of
 frequencies and the modes that will be used.</p>
-<dl class="field-list simple">
+<dl class="simple">
+<dt>Available plotting methods:</dt><dd><p>.plot()
+.plot_magnitude()
+.plot_phase()
+.plot_polar_bode()</p>
+</dd>
+</dl>
+<dl class="field-list">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>speed_range</strong><span class="classifier">array, optional</span></dt><dd><p>Array with the desired range of frequencies.
@@ -850,11 +897,24 @@ Default is 0.005 (0.5%).</p>
 </dl>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><dl class="simple">
-<dt><strong>results</strong><span class="classifier">array</span></dt><dd><p>Array with the frequencies, magnitude (dB) of the frequency
-response for each pair input/output, and
-phase of the frequency response for each pair input/output.
-It will be returned if plot=False.</p>
+<dd class="field-even"><dl>
+<dt><strong>results</strong><span class="classifier">object</span></dt><dd><p>An instance of ForcedResponseResult class, which is used to post-process
+results. Attributes stored:
+freq_resp : array</p>
+<blockquote>
+<div><p>Array with the frequency response for each node for each pair
+input/output.</p>
+</div></blockquote>
+<dl class="simple">
+<dt>speed_range<span class="classifier">array</span></dt><dd><p>Array with the frequencies.</p>
+</dd>
+<dt>velc_resp<span class="classifier">array</span></dt><dd><p>Array with the velocity response for each node for each pair
+input/output.</p>
+</dd>
+<dt>accl_resp<span class="classifier">array</span></dt><dd><p>Array with the acceleration response for each node for each pair
+input/output.</p>
+</dd>
+</dl>
 </dd>
 </dl>
 </dd>
@@ -863,10 +923,14 @@ It will be returned if plot=False.</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">rotor</span> <span class="o">=</span> <span class="n">rotor_example</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">speed</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1000</span><span class="p">,</span> <span class="mi">101</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">response</span> <span class="o">=</span> <span class="n">rotor</span><span class="o">.</span><span class="n">run_freq_response</span><span class="p">(</span><span class="n">speed_range</span><span class="o">=</span><span class="n">speed</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="nb">abs</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">freq_resp</span><span class="p">)</span> 
-<span class="go">array([[[1.00000000e-06, 1.00261725e-06, 1.01076952e-06, ...</span>
 </pre></div>
 </div>
+<p>Return the response amplitude
+&gt;&gt;&gt; abs(response.freq_resp) # doctest: +ELLIPSIS
+array([[[1.00000000e-06, 1.00261725e-06, 1.01076952e-06, …</p>
+<p>Return the response phase
+&gt;&gt;&gt; np.angle(response.freq_resp) # doctest: +ELLIPSIS
+array([[[…</p>
 <p>Using clustered points option.
 Set <cite>cluster_points=True</cite> and choose how many modes the method must search and
 how many points to add just before and after each critical speed.</p>
@@ -875,17 +939,15 @@ how many points to add just before and after each critical speed.</p>
 <span class="go">(61,)</span>
 </pre></div>
 </div>
-<p># plot frequency response function:
+<p>Plotting frequency response function:
 &gt;&gt;&gt; fig = response.plot(inp=13, out=13)</p>
 <p>To plot velocity and acceleration responses, you must change amplitude_units
 from “[length]/[force]” units to “[speed]/[force]” or “[acceleration]/[force]”
-respectively
-&gt;&gt;&gt; # Plotting velocity response
+respectively</p>
+<p>Plotting velocity response
 &gt;&gt;&gt; fig = response.plot(inp=13, out=13, amplitude_units=”m/s/N”)</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># Plotting acceleration response</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">fig</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">inp</span><span class="o">=</span><span class="mi">13</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="mi">13</span><span class="p">,</span> <span class="n">amplitude_units</span><span class="o">=</span><span class="s2">&quot;m/s**2/N&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
+<p>Plotting acceleration response
+&gt;&gt;&gt; fig = response.plot(inp=13, out=13, amplitude_units=”m/s**2/N”)</p>
 </dd></dl>
 
 <dl class="py method">
@@ -986,6 +1048,11 @@ Tthe natural frequencies and dampings ratios are calculated for a given
 rotor speed. It means that for each speed input there’s a different set of
 eigenvalues and eigenvectors, hence, different natural frequencies and damping
 ratios are returned.</p>
+<dl class="simple">
+<dt>Available plotting methods:</dt><dd><p>.plot_mode_2d()
+.plot_mode_3d()</p>
+</dd>
+</dl>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
@@ -1062,18 +1129,19 @@ Default is True.</p>
 </dd>
 </dl>
 </dd>
-<dt><strong>Examples</strong></dt><dd></dd>
-<dt><strong>——–</strong></dt><dd></dd>
-<dt><strong>&gt;&gt;&gt; from ross.defects.rubbing import rubbing_example</strong></dt><dd></dd>
-<dt><strong>&gt;&gt;&gt; probe1 = (14, 0)</strong></dt><dd></dd>
-<dt><strong>&gt;&gt;&gt; probe2 = (22, 0)</strong></dt><dd></dd>
-<dt><strong>&gt;&gt;&gt; response = rubbing_example()</strong></dt><dd></dd>
-<dt><strong>&gt;&gt;&gt; results = response.run_time_response()</strong></dt><dd></dd>
-<dt><strong>&gt;&gt;&gt; fig = response.plot_dfft(probe=[probe1, probe2], range_freq=[0, 100], yaxis_type=”log”)</strong></dt><dd></dd>
-<dt><strong>&gt;&gt;&gt; # fig.show()</strong></dt><dd></dd>
 </dl>
 </dd>
 </dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">ross.defects.rubbing</span> <span class="kn">import</span> <span class="n">rubbing_example</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">probe1</span> <span class="o">=</span> <span class="p">(</span><span class="mi">14</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">probe2</span> <span class="o">=</span> <span class="p">(</span><span class="mi">22</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">response</span> <span class="o">=</span> <span class="n">rubbing_example</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">results</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">run_time_response</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">fig</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">plot_dfft</span><span class="p">(</span><span class="n">probe</span><span class="o">=</span><span class="p">[</span><span class="n">probe1</span><span class="p">,</span> <span class="n">probe2</span><span class="p">],</span> <span class="n">range_freq</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">],</span> <span class="n">yaxis_type</span><span class="o">=</span><span class="s2">&quot;log&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># fig.show()</span>
+</pre></div>
+</div>
 </dd></dl>
 
 <dl class="py method">
@@ -1082,6 +1150,13 @@ Default is True.</p>
 <dd><p>Run static analysis.</p>
 <p>Static analysis calculates free-body diagram, deformed shaft, shearing
 force diagram and bending moment diagram.</p>
+<dl class="simple">
+<dt>Available plotting methods:</dt><dd><p>.plot_deformation()
+.plot_bending_moment()
+.plot_shearing_force()
+.plot_free_body_diagram()</p>
+</dd>
+</dl>
 <dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
 <dd class="field-odd"><dl class="simple">
@@ -1124,6 +1199,12 @@ force diagram and bending moment diagram.</p>
 <dd><p>Calculate the time response.</p>
 <p>This function will take a rotor object and calculate its time response
 given a force and a time.</p>
+<dl class="simple">
+<dt>Available plotting methods:</dt><dd><p>.plot_1d()
+.plot_2d()
+.plot_3d()</p>
+</dd>
+</dl>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
@@ -1176,7 +1257,18 @@ It will be returned if plot=False.</p>
 <p>This method returns the unbalanced response for a mdof system
 given magnitide and phase of the unbalance, the node where it’s
 applied and a frequency range.</p>
-<dl class="field-list simple">
+<dl class="simple">
+<dt>Available plotting methods:</dt><dd><p>.plot()
+.plot_magnitude()
+.plot_phase()
+.plot_polar_bode()
+.plot_deflected_shape()
+.plot_bending_moment()
+.plot_deflected_shape_3d()
+.plot_deflected_shape_2d()</p>
+</dd>
+</dl>
+<dl class="field-list">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>node</strong><span class="classifier">list, int</span></dt><dd><p>Node where the unbalance is applied.</p>
@@ -1214,14 +1306,21 @@ Default is 0.005 (0.5%).</p>
 </dl>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><dl class="simple">
-<dt><strong>forced_resp</strong><span class="classifier">array</span></dt><dd><p>Array with the forced response for each node for each frequency</p>
+<dd class="field-even"><dl>
+<dt><strong>forced_response</strong><span class="classifier">object</span></dt><dd><p>An instance of ForcedResponseResult class, which is used to post-process
+results. Attributes stored:
+forced_resp : array</p>
+<blockquote>
+<div><p>Array with the forced response for each node for each frequency.</p>
+</div></blockquote>
+<dl class="simple">
+<dt>speed_range<span class="classifier">array</span></dt><dd><p>Array with the frequencies.</p>
 </dd>
-<dt><strong>speed_range</strong><span class="classifier">array</span></dt><dd><p>Array with the frequencies</p>
+<dt>velc_resp<span class="classifier">array</span></dt><dd><p>Array with the velocity response for each node for each frequency.</p>
 </dd>
-<dt><strong>velc_resp</strong><span class="classifier">array</span></dt><dd><p>Array with the velocity response for each node for each frequency</p>
+<dt>accl_resp<span class="classifier">array</span></dt><dd><p>Array with the acceleration response for each node for each frequency.</p>
 </dd>
-<dt><strong>accl_resp</strong><span class="classifier">array</span></dt><dd><p>Array with the acceleration response for each node for each frequency</p>
+</dl>
 </dd>
 </dl>
 </dd>
@@ -1234,10 +1333,14 @@ Default is 0.005 (0.5%).</p>
 <span class="gp">... </span>                                        <span class="n">unbalance_magnitude</span><span class="o">=</span><span class="mf">10.0</span><span class="p">,</span>
 <span class="gp">... </span>                                        <span class="n">unbalance_phase</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span>
 <span class="gp">... </span>                                        <span class="n">frequency</span><span class="o">=</span><span class="n">speed</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="nb">abs</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">forced_resp</span><span class="p">)</span> 
-<span class="go">array([[0.00000000e+00, 5.06073311e-04, 2.10044826e-03, ...</span>
 </pre></div>
 </div>
+<p>Return the response amplitude
+&gt;&gt;&gt; abs(response.forced_resp) # doctest: +ELLIPSIS
+array([[0.00000000e+00, 5.06073311e-04, 2.10044826e-03, …</p>
+<p>Return the response phase
+&gt;&gt;&gt; np.angle(response.forced_resp) # doctest: +ELLIPSIS
+array([[ 0.00000000e+00, …</p>
 <p>Using clustered points option.
 Set <cite>cluster_points=True</cite> and choose how many modes the method must search and
 how many points to add just before and after each critical speed.</p>
@@ -1261,19 +1364,18 @@ how many points to add just before and after each critical speed.</p>
 &gt;&gt;&gt; fig = response.plot(probe=[(probe_node, probe_angle, probe_tag)])</p>
 <p>To plot velocity and acceleration responses, you must change amplitude_units
 from “[length]” units to “[length]/[time]” or “[length]/[time] ** 2” respectively
-&gt;&gt;&gt; # Plotting velocity response
+Plotting velocity response
 &gt;&gt;&gt; fig = response.plot(
-…     probe=[(probe_node, probe_angle, probe_tag)],
+…     probe=[(probe_node, probe_angle)],
 …     amplitude_units=”m/s”
 … )</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># Plotting acceleration response</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">fig</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
-<span class="gp">... </span>    <span class="n">probe</span><span class="o">=</span><span class="p">[(</span><span class="n">probe_node</span><span class="p">,</span> <span class="n">probe_angle</span><span class="p">,</span> <span class="n">probe_tag</span><span class="p">)],</span>
-<span class="gp">... </span>    <span class="n">amplitude_units</span><span class="o">=</span><span class="s2">&quot;m/s&quot;</span>
-<span class="gp">... </span><span class="p">)</span>
-</pre></div>
-</div>
-<p>plot deflected shape configuration
+<p>Plotting acceleration response
+&gt;&gt;&gt; fig = response.plot(
+…     probe=[(probe_node, probe_angle)],
+…     amplitude_units=”m/s**2”
+… )</p>
+<p>Plotting deflected shape configuration
+Speed value must be in speed_range.
 &gt;&gt;&gt; value = 600
 &gt;&gt;&gt; fig = response.plot_deflected_shape(speed=value)</p>
 </dd></dl>
@@ -1422,7 +1524,7 @@ given a force, time and initial conditions.</p>
     </p>
     <p>
         &copy; Copyright 2020, Team ROSS.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.3.1.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.4.3.<br/>
     </p>
   </div>
 </footer>

@@ -13,7 +13,6 @@
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
-    <script src="../_static/language_data.js"></script>
     <script src="../_static/sphinx_copybutton.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js"></script>
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
@@ -89,7 +88,12 @@
 <li class="toctree-l2"><a class="reference internal" href="example_8.html">Example 8 - Overhung rotor.</a></li>
 <li class="toctree-l2"><a class="reference internal" href="example_9.html">Example 9 - Hydrodinamic Journal Bearings (using Fluid Flow methods)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="example_10.html">Example 10 - Example of rotor connected by a rigid mechanical coupling with parallel misalignment.</a></li>
-<li class="toctree-l2"><a class="reference internal" href="example_11.html">Example 10 - Example of rotor connected by a flexible mechanical coupling with parallel, agular or combined misalignment.</a></li>
+<li class="toctree-l2"><a class="reference internal" href="example_11.html">Example 11 - Example of rotor connected by a flexible mechanical coupling with parallel, agular or combined misalignment.</a></li>
+<li class="toctree-l2"><a class="reference internal" href="example_12.html">Example 12 - Example of impact phenomena in rotor-casing dynamical systems.</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fluid_flow_theory.html">Fluid-flow theory</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fluid_flow_elliptical_bearing.html">Fluid-flow: Elliptical Bearing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fluid_flow_wear_bearing.html">Fluid-flow: Wear Bearing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fluid_flow_short_bearing.html">Fluid-flow: Short Bearing</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../download.html">Download notebooks</a></li>
@@ -104,7 +108,6 @@
 <li class="toctree-l2"><a class="reference internal" href="../contributing.html#version-control-system-git">Version-control system: Git</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../contributing.html#code-style-black">Code style: Black</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../contributing.html#documentation">Documentation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../contributing.html#integrated-development-environment-pycharm">Integrated development environment: PyCharm</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../contributing.html#how-to-contribute-to-ross-using-git">How to contribute to ROSS using git</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../contributing.html#making-new-releases">Making new releases</a></li>
 </ul>
@@ -422,8 +425,8 @@ div.rendered_html tbody tr:hover {
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>import ross as rs
-import numpy as np
+<span></span><span class="kn">import</span> <span class="nn">ross</span> <span class="k">as</span> <span class="nn">rs</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 </pre></div>
 </div>
 </div>
@@ -432,37 +435,37 @@ import numpy as np
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>#Classic Instantiation of the rotor
-shaft_elements = []
-bearing_seal_elements = []
-disk_elements = []
-steel = rs.steel
-for i in range(6):
-    shaft_elements.append(rs.ShaftElement(L=0.25, material=steel, n=i, idl=0, odl=0.05))
+<span></span><span class="c1">#Classic Instantiation of the rotor</span>
+<span class="n">shaft_elements</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">bearing_seal_elements</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">disk_elements</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">steel</span> <span class="o">=</span> <span class="n">rs</span><span class="o">.</span><span class="n">steel</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">6</span><span class="p">):</span>
+    <span class="n">shaft_elements</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">rs</span><span class="o">.</span><span class="n">ShaftElement</span><span class="p">(</span><span class="n">L</span><span class="o">=</span><span class="mf">0.25</span><span class="p">,</span> <span class="n">material</span><span class="o">=</span><span class="n">steel</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="n">i</span><span class="p">,</span> <span class="n">idl</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">odl</span><span class="o">=</span><span class="mf">0.05</span><span class="p">))</span>
 
-disk_elements.append(rs.DiskElement.from_geometry(n=2,
-                                                  material=steel,
-                                                  width=0.07,
-                                                  i_d=0.05,
-                                                  o_d=0.28
-                                                 )
-                    )
+<span class="n">disk_elements</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">rs</span><span class="o">.</span><span class="n">DiskElement</span><span class="o">.</span><span class="n">from_geometry</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+                                                  <span class="n">material</span><span class="o">=</span><span class="n">steel</span><span class="p">,</span>
+                                                  <span class="n">width</span><span class="o">=</span><span class="mf">0.07</span><span class="p">,</span>
+                                                  <span class="n">i_d</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span>
+                                                  <span class="n">o_d</span><span class="o">=</span><span class="mf">0.28</span>
+                                                 <span class="p">)</span>
+                    <span class="p">)</span>
 
-disk_elements.append(rs.DiskElement.from_geometry(n=4,
-                                                  material=steel,
-                                                  width=0.07,
-                                                  i_d=0.05,
-                                                  o_d=0.35
-                                                 )
-                    )
-bearing_seal_elements.append(rs.BearingElement(n=0, kxx=1e6, kyy=1e6, cxx=3e3, cyy=3e3))
-bearing_seal_elements.append(rs.BearingElement(n=6, kxx=1e6, kyy=1e6, cxx=3e3, cyy=3e3))
+<span class="n">disk_elements</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">rs</span><span class="o">.</span><span class="n">DiskElement</span><span class="o">.</span><span class="n">from_geometry</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span>
+                                                  <span class="n">material</span><span class="o">=</span><span class="n">steel</span><span class="p">,</span>
+                                                  <span class="n">width</span><span class="o">=</span><span class="mf">0.07</span><span class="p">,</span>
+                                                  <span class="n">i_d</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span>
+                                                  <span class="n">o_d</span><span class="o">=</span><span class="mf">0.35</span>
+                                                 <span class="p">)</span>
+                    <span class="p">)</span>
+<span class="n">bearing_seal_elements</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">rs</span><span class="o">.</span><span class="n">BearingElement</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">kxx</span><span class="o">=</span><span class="mf">1e6</span><span class="p">,</span> <span class="n">kyy</span><span class="o">=</span><span class="mf">1e6</span><span class="p">,</span> <span class="n">cxx</span><span class="o">=</span><span class="mf">3e3</span><span class="p">,</span> <span class="n">cyy</span><span class="o">=</span><span class="mf">3e3</span><span class="p">))</span>
+<span class="n">bearing_seal_elements</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">rs</span><span class="o">.</span><span class="n">BearingElement</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span> <span class="n">kxx</span><span class="o">=</span><span class="mf">1e6</span><span class="p">,</span> <span class="n">kyy</span><span class="o">=</span><span class="mf">1e6</span><span class="p">,</span> <span class="n">cxx</span><span class="o">=</span><span class="mf">3e3</span><span class="p">,</span> <span class="n">cyy</span><span class="o">=</span><span class="mf">3e3</span><span class="p">))</span>
 
-rotor595c = rs.Rotor(shaft_elements=shaft_elements,
-                     bearing_elements=bearing_seal_elements,
-                     disk_elements=disk_elements)
+<span class="n">rotor595c</span> <span class="o">=</span> <span class="n">rs</span><span class="o">.</span><span class="n">Rotor</span><span class="p">(</span><span class="n">shaft_elements</span><span class="o">=</span><span class="n">shaft_elements</span><span class="p">,</span>
+                     <span class="n">bearing_elements</span><span class="o">=</span><span class="n">bearing_seal_elements</span><span class="p">,</span>
+                     <span class="n">disk_elements</span><span class="o">=</span><span class="n">disk_elements</span><span class="p">)</span>
 
-rotor595c.plot_rotor()
+<span class="n">rotor595c</span><span class="o">.</span><span class="n">plot_rotor</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -519,36 +522,36 @@ if (outputEl) {{
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>#From_section class method instantiation.
-bearing_seal_elements = []
-disk_elements = []
-shaft_length_data = 3*[0.5]
-i_d = 3*[0]
-o_d = 3*[0.05]
+<span></span><span class="c1">#From_section class method instantiation.</span>
+<span class="n">bearing_seal_elements</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">disk_elements</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">shaft_length_data</span> <span class="o">=</span> <span class="mi">3</span><span class="o">*</span><span class="p">[</span><span class="mf">0.5</span><span class="p">]</span>
+<span class="n">i_d</span> <span class="o">=</span> <span class="mi">3</span><span class="o">*</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">o_d</span> <span class="o">=</span> <span class="mi">3</span><span class="o">*</span><span class="p">[</span><span class="mf">0.05</span><span class="p">]</span>
 
-disk_elements.append(rs.DiskElement.from_geometry(n=1,
-                                                  material=steel,
-                                                  width=0.07,
-                                                  i_d=0.05,
-                                                  o_d=0.28
-                                                 )
-                    )
+<span class="n">disk_elements</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">rs</span><span class="o">.</span><span class="n">DiskElement</span><span class="o">.</span><span class="n">from_geometry</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+                                                  <span class="n">material</span><span class="o">=</span><span class="n">steel</span><span class="p">,</span>
+                                                  <span class="n">width</span><span class="o">=</span><span class="mf">0.07</span><span class="p">,</span>
+                                                  <span class="n">i_d</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span>
+                                                  <span class="n">o_d</span><span class="o">=</span><span class="mf">0.28</span>
+                                                 <span class="p">)</span>
+                    <span class="p">)</span>
 
-disk_elements.append(rs.DiskElement.from_geometry(n=2,
-                                                  material=steel,
-                                                  width=0.07,
-                                                  i_d=0.05,
-                                                  o_d=0.35
-                                                 )
-                    )
-bearing_seal_elements.append(rs.BearingElement(n=0, kxx=1e6, kyy=1e6, cxx=3e3, cyy=3e3))
-bearing_seal_elements.append(rs.BearingElement(n=3, kxx=1e6, kyy=1e6, cxx=3e3, cyy=3e3))
+<span class="n">disk_elements</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">rs</span><span class="o">.</span><span class="n">DiskElement</span><span class="o">.</span><span class="n">from_geometry</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+                                                  <span class="n">material</span><span class="o">=</span><span class="n">steel</span><span class="p">,</span>
+                                                  <span class="n">width</span><span class="o">=</span><span class="mf">0.07</span><span class="p">,</span>
+                                                  <span class="n">i_d</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span>
+                                                  <span class="n">o_d</span><span class="o">=</span><span class="mf">0.35</span>
+                                                 <span class="p">)</span>
+                    <span class="p">)</span>
+<span class="n">bearing_seal_elements</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">rs</span><span class="o">.</span><span class="n">BearingElement</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">kxx</span><span class="o">=</span><span class="mf">1e6</span><span class="p">,</span> <span class="n">kyy</span><span class="o">=</span><span class="mf">1e6</span><span class="p">,</span> <span class="n">cxx</span><span class="o">=</span><span class="mf">3e3</span><span class="p">,</span> <span class="n">cyy</span><span class="o">=</span><span class="mf">3e3</span><span class="p">))</span>
+<span class="n">bearing_seal_elements</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">rs</span><span class="o">.</span><span class="n">BearingElement</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">kxx</span><span class="o">=</span><span class="mf">1e6</span><span class="p">,</span> <span class="n">kyy</span><span class="o">=</span><span class="mf">1e6</span><span class="p">,</span> <span class="n">cxx</span><span class="o">=</span><span class="mf">3e3</span><span class="p">,</span> <span class="n">cyy</span><span class="o">=</span><span class="mf">3e3</span><span class="p">))</span>
 
-rotor595fs = rs.Rotor.from_section(brg_seal_data=bearing_seal_elements,
-                                   disk_data=disk_elements,leng_data=shaft_length_data,
-                                   idl_data=i_d,odl_data=o_d, material_data=steel
-                                  )
-rotor595fs.plot_rotor()
+<span class="n">rotor595fs</span> <span class="o">=</span> <span class="n">rs</span><span class="o">.</span><span class="n">Rotor</span><span class="o">.</span><span class="n">from_section</span><span class="p">(</span><span class="n">brg_seal_data</span><span class="o">=</span><span class="n">bearing_seal_elements</span><span class="p">,</span>
+                                   <span class="n">disk_data</span><span class="o">=</span><span class="n">disk_elements</span><span class="p">,</span><span class="n">leng_data</span><span class="o">=</span><span class="n">shaft_length_data</span><span class="p">,</span>
+                                   <span class="n">idl_data</span><span class="o">=</span><span class="n">i_d</span><span class="p">,</span><span class="n">odl_data</span><span class="o">=</span><span class="n">o_d</span><span class="p">,</span> <span class="n">material_data</span><span class="o">=</span><span class="n">steel</span>
+                                  <span class="p">)</span>
+<span class="n">rotor595fs</span><span class="o">.</span><span class="n">plot_rotor</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -605,14 +608,14 @@ if (outputEl) {{
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>#Obtaining results for w=0
+<span></span><span class="c1">#Obtaining results for w=0</span>
 
-modal595c = rotor595c.run_modal(0)
-modal595fs = rotor595fs.run_modal(0)
+<span class="n">modal595c</span> <span class="o">=</span> <span class="n">rotor595c</span><span class="o">.</span><span class="n">run_modal</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">modal595fs</span> <span class="o">=</span> <span class="n">rotor595fs</span><span class="o">.</span><span class="n">run_modal</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
 
-print(&#39;Normal Instantiation =&#39;, modal595c.wn * 60 /(2*np.pi),&#39;[RPM]&#39;)
-print(&#39;\n&#39;)
-print(&#39;From Section Instantiation =&#39;, modal595fs.wn * 60 /(2*np.pi),&#39;[RPM]&#39;)
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Normal Instantiation =&#39;</span><span class="p">,</span> <span class="n">modal595c</span><span class="o">.</span><span class="n">wn</span> <span class="o">*</span> <span class="mi">60</span> <span class="o">/</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">),</span><span class="s1">&#39;[RPM]&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;From Section Instantiation =&#39;</span><span class="p">,</span> <span class="n">modal595fs</span><span class="o">.</span><span class="n">wn</span> <span class="o">*</span> <span class="mi">60</span> <span class="o">/</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">),</span><span class="s1">&#39;[RPM]&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -634,10 +637,10 @@ From Section Instantiation = [ 834.33341919  834.33341919 2891.57258897 2891.572
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>#Obtaining results for w=4000RPM
+<span></span><span class="c1">#Obtaining results for w=4000RPM</span>
 
-modal595c = rotor595c.run_modal(4000*np.pi/30)  # speed input in rad/s
-print(&#39;Normal Instantiation =&#39;, modal595c.wn * 60 /(2*np.pi),&#39;[RPM]&#39;)
+<span class="n">modal595c</span> <span class="o">=</span> <span class="n">rotor595c</span><span class="o">.</span><span class="n">run_modal</span><span class="p">(</span><span class="mi">4000</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mi">30</span><span class="p">)</span>  <span class="c1"># speed input in rad/s</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Normal Instantiation =&#39;</span><span class="p">,</span> <span class="n">modal595c</span><span class="o">.</span><span class="n">wn</span> <span class="o">*</span> <span class="mi">60</span> <span class="o">/</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">),</span><span class="s1">&#39;[RPM]&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -655,10 +658,10 @@ Normal Instantiation = [ 821.83844862  845.51158264 2616.47783213 3130.72229886 
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span># The input units must be according to your unit standard system
-campbell = rotor595c.run_campbell(np.linspace(0, 4000*np.pi/30, 50))
-# Plotting frequency in RPM
-campbell.plot(frequency_units=&quot;rpm&quot;)
+<span></span><span class="c1"># The input units must be according to your unit standard system</span>
+<span class="n">campbell</span> <span class="o">=</span> <span class="n">rotor595c</span><span class="o">.</span><span class="n">run_campbell</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">4000</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mi">30</span><span class="p">,</span> <span class="mi">50</span><span class="p">))</span>
+<span class="c1"># Plotting frequency in RPM</span>
+<span class="n">campbell</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">frequency_units</span><span class="o">=</span><span class="s2">&quot;rpm&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -726,7 +729,7 @@ if (outputEl) {{
     </p>
     <p>
         &copy; Copyright 2020, Team ROSS.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.3.1.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.4.3.<br/>
     </p>
   </div>
 </footer>

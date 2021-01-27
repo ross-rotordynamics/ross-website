@@ -13,7 +13,6 @@
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
-    <script src="../_static/language_data.js"></script>
     <script src="../_static/sphinx_copybutton.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js"></script>
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
@@ -89,7 +88,12 @@
 <li class="toctree-l2"><a class="reference internal" href="example_8.html">Example 8 - Overhung rotor.</a></li>
 <li class="toctree-l2"><a class="reference internal" href="example_9.html">Example 9 - Hydrodinamic Journal Bearings (using Fluid Flow methods)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="example_10.html">Example 10 - Example of rotor connected by a rigid mechanical coupling with parallel misalignment.</a></li>
-<li class="toctree-l2"><a class="reference internal" href="example_11.html">Example 10 - Example of rotor connected by a flexible mechanical coupling with parallel, agular or combined misalignment.</a></li>
+<li class="toctree-l2"><a class="reference internal" href="example_11.html">Example 11 - Example of rotor connected by a flexible mechanical coupling with parallel, agular or combined misalignment.</a></li>
+<li class="toctree-l2"><a class="reference internal" href="example_12.html">Example 12 - Example of impact phenomena in rotor-casing dynamical systems.</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fluid_flow_theory.html">Fluid-flow theory</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fluid_flow_elliptical_bearing.html">Fluid-flow: Elliptical Bearing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fluid_flow_wear_bearing.html">Fluid-flow: Wear Bearing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fluid_flow_short_bearing.html">Fluid-flow: Short Bearing</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../download.html">Download notebooks</a></li>
@@ -104,7 +108,6 @@
 <li class="toctree-l2"><a class="reference internal" href="../contributing.html#version-control-system-git">Version-control system: Git</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../contributing.html#code-style-black">Code style: Black</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../contributing.html#documentation">Documentation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../contributing.html#integrated-development-environment-pycharm">Integrated development environment: PyCharm</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../contributing.html#how-to-contribute-to-ross-using-git">How to contribute to ROSS using git</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../contributing.html#making-new-releases">Making new releases</a></li>
 </ul>
@@ -421,9 +424,9 @@ div.rendered_html tbody tr:hover {
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>import numpy as np
-import matplotlib.pyplot as plt
-import ross as rs
+<span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">ross</span> <span class="k">as</span> <span class="nn">rs</span>
 </pre></div>
 </div>
 </div>
@@ -432,7 +435,7 @@ import ross as rs
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>steel = rs.materials.steel
+<span></span><span class="n">steel</span> <span class="o">=</span> <span class="n">rs</span><span class="o">.</span><span class="n">materials</span><span class="o">.</span><span class="n">steel</span>
 </pre></div>
 </div>
 </div>
@@ -441,7 +444,7 @@ import ross as rs
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>number_of_elements = [2, 3, 4, 5, 6, 7, 8]
+<span></span><span class="n">number_of_elements</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
@@ -450,24 +453,24 @@ import ross as rs
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>def create_rotor(n_el, R, shear_effects=False, rotary_inertia=False):
-    &quot;&quot;&quot;Create example rotor with given number of elements and R ration.&quot;&quot;&quot;
-    L_total = 1
-    D = R * L_total
+<span></span><span class="k">def</span> <span class="nf">create_rotor</span><span class="p">(</span><span class="n">n_el</span><span class="p">,</span> <span class="n">R</span><span class="p">,</span> <span class="n">shear_effects</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">rotary_inertia</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Create example rotor with given number of elements and R ration.&quot;&quot;&quot;</span>
+    <span class="n">L_total</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="n">D</span> <span class="o">=</span> <span class="n">R</span> <span class="o">*</span> <span class="n">L_total</span>
 
-    shaft = [
-        rs.ShaftElement(1./(n_el), idl=0, odl=D, material=steel,
-                        shear_effects=shear_effects,
-                        rotary_inertia=rotary_inertia)
-        for i in range(n_el)
-    ]
+    <span class="n">shaft</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="n">rs</span><span class="o">.</span><span class="n">ShaftElement</span><span class="p">(</span><span class="mf">1.</span><span class="o">/</span><span class="p">(</span><span class="n">n_el</span><span class="p">),</span> <span class="n">idl</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">odl</span><span class="o">=</span><span class="n">D</span><span class="p">,</span> <span class="n">material</span><span class="o">=</span><span class="n">steel</span><span class="p">,</span>
+                        <span class="n">shear_effects</span><span class="o">=</span><span class="n">shear_effects</span><span class="p">,</span>
+                        <span class="n">rotary_inertia</span><span class="o">=</span><span class="n">rotary_inertia</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_el</span><span class="p">)</span>
+    <span class="p">]</span>
 
-    bearings = [
-        rs.BearingElement(0, kxx=1e15, cxx=0),
-        rs.BearingElement(n_el, kxx=1e15, cxx=0)
-    ]
+    <span class="n">bearings</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="n">rs</span><span class="o">.</span><span class="n">BearingElement</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">kxx</span><span class="o">=</span><span class="mf">1e15</span><span class="p">,</span> <span class="n">cxx</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span>
+        <span class="n">rs</span><span class="o">.</span><span class="n">BearingElement</span><span class="p">(</span><span class="n">n_el</span><span class="p">,</span> <span class="n">kxx</span><span class="o">=</span><span class="mf">1e15</span><span class="p">,</span> <span class="n">cxx</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="p">]</span>
 
-    return rs.Rotor(shaft_elements=shaft, bearing_elements=bearings)
+    <span class="k">return</span> <span class="n">rs</span><span class="o">.</span><span class="n">Rotor</span><span class="p">(</span><span class="n">shaft_elements</span><span class="o">=</span><span class="n">shaft</span><span class="p">,</span> <span class="n">bearing_elements</span><span class="o">=</span><span class="n">bearings</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -476,26 +479,26 @@ import ross as rs
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span># create reference rotor with 80 elements
-n_eigen = 8
-R = 0.04
-rotor_80 = create_rotor(80, R)
-modal_80 = rotor_80.run_modal(speed=0, num_modes=2*n_eigen)
+<span></span><span class="c1"># create reference rotor with 80 elements</span>
+<span class="n">n_eigen</span> <span class="o">=</span> <span class="mi">8</span>
+<span class="n">R</span> <span class="o">=</span> <span class="mf">0.04</span>
+<span class="n">rotor_80</span> <span class="o">=</span> <span class="n">create_rotor</span><span class="p">(</span><span class="mi">80</span><span class="p">,</span> <span class="n">R</span><span class="p">)</span>
+<span class="n">modal_80</span> <span class="o">=</span> <span class="n">rotor_80</span><span class="o">.</span><span class="n">run_modal</span><span class="p">(</span><span class="n">speed</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">num_modes</span><span class="o">=</span><span class="mi">2</span><span class="o">*</span><span class="n">n_eigen</span><span class="p">)</span>
 
-errors = np.zeros([len(number_of_elements), n_eigen])
+<span class="n">errors</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">([</span><span class="nb">len</span><span class="p">(</span><span class="n">number_of_elements</span><span class="p">),</span> <span class="n">n_eigen</span><span class="p">])</span>
 
-for i, n_el in enumerate(number_of_elements):
-    rotor = create_rotor(n_el, R)
-    modal = rotor.run_modal(speed=0, num_modes=2*n_eigen)
-    errors[i, :] = abs(
-        100 * (modal.wn[:n_eigen] - modal_80.wn[:n_eigen])
-        / modal_80.wn[:n_eigen])
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">n_el</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">number_of_elements</span><span class="p">):</span>
+    <span class="n">rotor</span> <span class="o">=</span> <span class="n">create_rotor</span><span class="p">(</span><span class="n">n_el</span><span class="p">,</span> <span class="n">R</span><span class="p">)</span>
+    <span class="n">modal</span> <span class="o">=</span> <span class="n">rotor</span><span class="o">.</span><span class="n">run_modal</span><span class="p">(</span><span class="n">speed</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">num_modes</span><span class="o">=</span><span class="mi">2</span><span class="o">*</span><span class="n">n_eigen</span><span class="p">)</span>
+    <span class="n">errors</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="p">:]</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span>
+        <span class="mi">100</span> <span class="o">*</span> <span class="p">(</span><span class="n">modal</span><span class="o">.</span><span class="n">wn</span><span class="p">[:</span><span class="n">n_eigen</span><span class="p">]</span> <span class="o">-</span> <span class="n">modal_80</span><span class="o">.</span><span class="n">wn</span><span class="p">[:</span><span class="n">n_eigen</span><span class="p">])</span>
+        <span class="o">/</span> <span class="n">modal_80</span><span class="o">.</span><span class="n">wn</span><span class="p">[:</span><span class="n">n_eigen</span><span class="p">])</span>
 
-fig, ax = plt.subplots()
-ax.set_xlabel(&#39;number of elements&#39;)
-ax.set_ylabel(&#39;Natural Frequency error(%)&#39;)
-for i in range(n_eigen):
-    ax.semilogy(number_of_elements, errors[:, i])
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;number of elements&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Natural Frequency error(%)&#39;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_eigen</span><span class="p">):</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">semilogy</span><span class="p">(</span><span class="n">number_of_elements</span><span class="p">,</span> <span class="n">errors</span><span class="p">[:,</span> <span class="n">i</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
@@ -511,29 +514,29 @@ for i in range(n_eigen):
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span># create reference rotor with 80 elements
-n_el = 6
-R_list = np.linspace(1e-4, 0.15, 10)
+<span></span><span class="c1"># create reference rotor with 80 elements</span>
+<span class="n">n_el</span> <span class="o">=</span> <span class="mi">6</span>
+<span class="n">R_list</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">1e-4</span><span class="p">,</span> <span class="mf">0.15</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
 
-n_eigen = 6
-errors = np.zeros([len(R_list), n_eigen])
+<span class="n">n_eigen</span> <span class="o">=</span> <span class="mi">6</span>
+<span class="n">errors</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">([</span><span class="nb">len</span><span class="p">(</span><span class="n">R_list</span><span class="p">),</span> <span class="n">n_eigen</span><span class="p">])</span>
 
-for i, R in enumerate(R_list):
-    rotor_ref = create_rotor(100, R,
-                             shear_effects=True, rotary_inertia=True)
-    modal_ref = rotor_ref.run_modal(speed=0)
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">R</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">R_list</span><span class="p">):</span>
+    <span class="n">rotor_ref</span> <span class="o">=</span> <span class="n">create_rotor</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="n">R</span><span class="p">,</span>
+                             <span class="n">shear_effects</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">rotary_inertia</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">modal_ref</span> <span class="o">=</span> <span class="n">rotor_ref</span><span class="o">.</span><span class="n">run_modal</span><span class="p">(</span><span class="n">speed</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 
-    rotor = create_rotor(n_el, R)
-    modal = rotor.run_modal(speed=0, num_modes=2*n_eigen)
-    errors[i, :] = abs(
-        100 * (modal.wn[:n_eigen] - modal_ref.wn[:n_eigen])
-        / modal_ref.wn[:n_eigen])
+    <span class="n">rotor</span> <span class="o">=</span> <span class="n">create_rotor</span><span class="p">(</span><span class="n">n_el</span><span class="p">,</span> <span class="n">R</span><span class="p">)</span>
+    <span class="n">modal</span> <span class="o">=</span> <span class="n">rotor</span><span class="o">.</span><span class="n">run_modal</span><span class="p">(</span><span class="n">speed</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">num_modes</span><span class="o">=</span><span class="mi">2</span><span class="o">*</span><span class="n">n_eigen</span><span class="p">)</span>
+    <span class="n">errors</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="p">:]</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span>
+        <span class="mi">100</span> <span class="o">*</span> <span class="p">(</span><span class="n">modal</span><span class="o">.</span><span class="n">wn</span><span class="p">[:</span><span class="n">n_eigen</span><span class="p">]</span> <span class="o">-</span> <span class="n">modal_ref</span><span class="o">.</span><span class="n">wn</span><span class="p">[:</span><span class="n">n_eigen</span><span class="p">])</span>
+        <span class="o">/</span> <span class="n">modal_ref</span><span class="o">.</span><span class="n">wn</span><span class="p">[:</span><span class="n">n_eigen</span><span class="p">])</span>
 
-fig, ax = plt.subplots()
-ax.set_xlabel(&#39;Slenderness ratio&#39;)
-ax.set_ylabel(&#39;Natural Frequency error(%)&#39;)
-for i in range(n_eigen):
-    ax.semilogy(R_list, errors[:, i])
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Slenderness ratio&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Natural Frequency error(%)&#39;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_eigen</span><span class="p">):</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">semilogy</span><span class="p">(</span><span class="n">R_list</span><span class="p">,</span> <span class="n">errors</span><span class="p">[:,</span> <span class="n">i</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
@@ -560,7 +563,7 @@ for i in range(n_eigen):
     </p>
     <p>
         &copy; Copyright 2020, Team ROSS.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.3.1.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.4.3.<br/>
     </p>
   </div>
 </footer>

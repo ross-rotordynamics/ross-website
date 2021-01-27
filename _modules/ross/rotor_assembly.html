@@ -13,7 +13,6 @@
     <script src="../../_static/jquery.js"></script>
     <script src="../../_static/underscore.js"></script>
     <script src="../../_static/doctools.js"></script>
-    <script src="../../_static/language_data.js"></script>
     <script src="../../_static/sphinx_copybutton.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js"></script>
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
@@ -87,7 +86,12 @@
 <li class="toctree-l2"><a class="reference internal" href="../../examples/example_8.html">Example 8 - Overhung rotor.</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../examples/example_9.html">Example 9 - Hydrodinamic Journal Bearings (using Fluid Flow methods)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../examples/example_10.html">Example 10 - Example of rotor connected by a rigid mechanical coupling with parallel misalignment.</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../examples/example_11.html">Example 10 - Example of rotor connected by a flexible mechanical coupling with parallel, agular or combined misalignment.</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/example_11.html">Example 11 - Example of rotor connected by a flexible mechanical coupling with parallel, agular or combined misalignment.</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/example_12.html">Example 12 - Example of impact phenomena in rotor-casing dynamical systems.</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/fluid_flow_theory.html">Fluid-flow theory</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/fluid_flow_elliptical_bearing.html">Fluid-flow: Elliptical Bearing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/fluid_flow_wear_bearing.html">Fluid-flow: Wear Bearing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/fluid_flow_short_bearing.html">Fluid-flow: Short Bearing</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../download.html">Download notebooks</a></li>
@@ -102,7 +106,6 @@
 <li class="toctree-l2"><a class="reference internal" href="../../contributing.html#version-control-system-git">Version-control system: Git</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../contributing.html#code-style-black">Code style: Black</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../contributing.html#documentation">Documentation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../contributing.html#integrated-development-environment-pycharm">Integrated development environment: PyCharm</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../contributing.html#how-to-contribute-to-ross-using-git">How to contribute to ROSS using git</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../contributing.html#making-new-releases">Making new releases</a></li>
 </ul>
@@ -730,6 +733,10 @@
 <span class="sd">        eigenvalues and eigenvectors, hence, different natural frequencies and damping</span>
 <span class="sd">        ratios are returned.</span>
 
+<span class="sd">        Available plotting methods:</span>
+<span class="sd">            .plot_mode_2d()</span>
+<span class="sd">            .plot_mode_3d()</span>
+
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
 <span class="sd">        speed : float</span>
@@ -763,13 +770,21 @@
 
 <span class="sd">        Example</span>
 <span class="sd">        -------</span>
-<span class="sd">        &gt;&gt;&gt; rotor = rotor_example()</span>
+<span class="sd">        &gt;&gt;&gt; import ross as rs</span>
+<span class="sd">        &gt;&gt;&gt; rotor = rs.rotor_example()</span>
 <span class="sd">        &gt;&gt;&gt; modal = rotor.run_modal(speed=0, sparse=False)</span>
 <span class="sd">        &gt;&gt;&gt; modal.wn[:2]</span>
 <span class="sd">        array([91.79655318, 96.28899977])</span>
 <span class="sd">        &gt;&gt;&gt; modal.wd[:2]</span>
 <span class="sd">        array([91.79655318, 96.28899977])</span>
-<span class="sd">        &gt;&gt;&gt; fig = modal.plot_mode_3d(0)</span>
+
+<span class="sd">        Plotting 3D mode shape</span>
+<span class="sd">        &gt;&gt;&gt; mode1 = 0  # First mode</span>
+<span class="sd">        &gt;&gt;&gt; fig = modal.plot_mode_3d(mode1)</span>
+
+<span class="sd">        Plotting 2D mode shape</span>
+<span class="sd">        &gt;&gt;&gt; mode2 = 1  # Second mode</span>
+<span class="sd">        &gt;&gt;&gt; fig = modal.plot_mode_2d(mode2)</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">evalues</span><span class="p">,</span> <span class="n">evectors</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_eigen</span><span class="p">(</span><span class="n">speed</span><span class="p">,</span> <span class="n">num_modes</span><span class="o">=</span><span class="n">num_modes</span><span class="p">,</span> <span class="n">sparse</span><span class="o">=</span><span class="n">sparse</span><span class="p">)</span>
         <span class="n">wn_len</span> <span class="o">=</span> <span class="n">num_modes</span> <span class="o">//</span> <span class="mi">2</span>
@@ -796,7 +811,7 @@
 
         <span class="k">return</span> <span class="n">modal_results</span></div>
 
-<div class="viewcode-block" id="Rotor.run_critical_speed"><a class="viewcode-back" href="../../generated/results/ross.Rotor.html#ross.Rotor.run_critical_speed">[docs]</a>    <span class="k">def</span> <span class="nf">run_critical_speed</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">num_modes</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span> <span class="n">sparse</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">rtol</span><span class="o">=</span><span class="mf">0.005</span><span class="p">):</span>
+<div class="viewcode-block" id="Rotor.run_critical_speed"><a class="viewcode-back" href="../../generated/results/ross.Rotor.html#ross.Rotor.run_critical_speed">[docs]</a>    <span class="k">def</span> <span class="nf">run_critical_speed</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">speed_range</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">num_modes</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span> <span class="n">rtol</span><span class="o">=</span><span class="mf">0.005</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Calculate the critical speeds and damping ratios for the rotor model.</span>
 
 <span class="sd">        This function runs an iterative method over &quot;run_modal()&quot; to minimize</span>
@@ -816,60 +831,91 @@
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
+<span class="sd">        speed_range : tuple</span>
+<span class="sd">            Tuple (start, end) with the desired range of frequencies (rad/s).</span>
+<span class="sd">            The function returns all eigenvalues within this range.</span>
 <span class="sd">        num_modes : int, optional</span>
 <span class="sd">            The number of eigenvalues and eigenvectors to be calculated using ARPACK.</span>
 <span class="sd">            If sparse=True, it determines the number of eigenvalues and eigenvectors</span>
 <span class="sd">            to be calculated. It must be smaller than Rotor.ndof - 1. It is not</span>
 <span class="sd">            possible to compute all eigenvectors of a matrix with ARPACK.</span>
-<span class="sd">            If sparse=False, num_modes does not have any effect over the method.</span>
+<span class="sd">            If speed_range is not None, num_modes is overrided.</span>
 <span class="sd">            Default is 12.</span>
-<span class="sd">        sparse : bool, optional</span>
-<span class="sd">            If True, ARPACK is used to calculate a desired number (according to</span>
-<span class="sd">            num_modes) or eigenvalues and eigenvectors.</span>
-<span class="sd">            If False, scipy.linalg.eig() is used to calculate all the eigenvalues and</span>
-<span class="sd">            eigenvectors.</span>
-<span class="sd">            Default is True.</span>
 <span class="sd">        rtol : float, optional</span>
 <span class="sd">            Tolerance (relative) for termination. Applied to scipy.optimize.newton.</span>
 <span class="sd">            Default is 0.005 (0.5%).</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        CriticalSpeedResults : array</span>
-<span class="sd">            CriticalSpeedResults.wn : undamped critical speeds.</span>
-<span class="sd">            CriticalSpeedResults.wd : damped critical speeds.</span>
+<span class="sd">        CriticalSpeedResults : An instance of CriticalSpeedResults class, which is</span>
+<span class="sd">        used to post-process results. Attributes stored:</span>
+<span class="sd">            CriticalSpeedResults.wn() : undamped critical speeds.</span>
+<span class="sd">            CriticalSpeedResults.wd(): damped critical speeds.</span>
 <span class="sd">            CriticalSpeedResults.log_dec : log_dec for each critical speed.</span>
 <span class="sd">            CriticalSpeedResults.damping_ratio : damping ratio for each critical speed.</span>
+<span class="sd">            CriticalSpeedResults.whirl_direction : whirl dir. for each critical speed.</span>
 
 <span class="sd">        Examples</span>
 <span class="sd">        --------</span>
-<span class="sd">        &gt;&gt;&gt; rotor = rotor_example()</span>
+<span class="sd">        &gt;&gt;&gt; import ross as rs</span>
+<span class="sd">        &gt;&gt;&gt; rotor = rs.rotor_example()</span>
+
+<span class="sd">        Finding the first Nth critical speeds</span>
 <span class="sd">        &gt;&gt;&gt; results = rotor.run_critical_speed(num_modes=8)</span>
-<span class="sd">        &gt;&gt;&gt; np.round(results.wd)</span>
+<span class="sd">        &gt;&gt;&gt; np.round(results.wd())</span>
 <span class="sd">        array([ 92.,  96., 271., 300.])</span>
-<span class="sd">        &gt;&gt;&gt; np.round(results.wn)</span>
+<span class="sd">        &gt;&gt;&gt; np.round(results.wn())</span>
 <span class="sd">        array([ 92.,  96., 271., 300.])</span>
+
+<span class="sd">        Finding the first critical speeds within a speed range</span>
+<span class="sd">        &gt;&gt;&gt; results = rotor.run_critical_speed(speed_range=(100, 1000))</span>
+<span class="sd">        &gt;&gt;&gt; np.round(results.wd())</span>
+<span class="sd">        array([271., 300., 636., 867.])</span>
+
+<span class="sd">        Changing output units</span>
+<span class="sd">        &gt;&gt;&gt; np.round(results.wd(&quot;rpm&quot;))</span>
+<span class="sd">        array([2590., 2868., 6074., 8278.])</span>
+
+<span class="sd">        Retrieving whirl directions</span>
+<span class="sd">        &gt;&gt;&gt; results.whirl_direction # doctest: +ELLIPSIS</span>
+<span class="sd">        array([...</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">_wn</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">run_modal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">num_modes</span><span class="p">,</span> <span class="n">sparse</span><span class="p">)</span><span class="o">.</span><span class="n">wn</span>
+        <span class="n">num_modes</span> <span class="o">=</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ndof</span> <span class="o">-</span> <span class="mi">4</span><span class="p">)</span> <span class="o">*</span> <span class="mi">2</span> <span class="k">if</span> <span class="n">speed_range</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">num_modes</span>
+
+        <span class="n">modal</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">run_modal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">num_modes</span><span class="p">)</span>
+        <span class="n">_wn</span> <span class="o">=</span> <span class="n">modal</span><span class="o">.</span><span class="n">wn</span>
+        <span class="n">_wd</span> <span class="o">=</span> <span class="n">modal</span><span class="o">.</span><span class="n">wd</span>
         <span class="n">wn</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">_wn</span><span class="p">)</span>
-        <span class="n">wd</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">_wn</span><span class="p">)</span>
-        <span class="n">log_dec</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">_wn</span><span class="p">)</span>
-        <span class="n">damping_ratio</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">_wn</span><span class="p">)</span>
+        <span class="n">wd</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">_wd</span><span class="p">)</span>
 
         <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">wn</span><span class="p">)):</span>
-            <span class="n">wn_func</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">s</span><span class="p">:</span> <span class="p">(</span><span class="n">s</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">run_modal</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">num_modes</span><span class="p">,</span> <span class="n">sparse</span><span class="p">)</span><span class="o">.</span><span class="n">wn</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+            <span class="n">wn_func</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">s</span><span class="p">:</span> <span class="p">(</span><span class="n">s</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">run_modal</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">num_modes</span><span class="p">)</span><span class="o">.</span><span class="n">wn</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
             <span class="n">wn</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">newton</span><span class="p">(</span><span class="n">func</span><span class="o">=</span><span class="n">wn_func</span><span class="p">,</span> <span class="n">x0</span><span class="o">=</span><span class="n">_wn</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">rtol</span><span class="o">=</span><span class="n">rtol</span><span class="p">)</span>
 
-        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">wn</span><span class="p">)):</span>
-            <span class="n">wd_func</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">s</span><span class="p">:</span> <span class="p">(</span><span class="n">s</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">run_modal</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">num_modes</span><span class="p">,</span> <span class="n">sparse</span><span class="p">)</span><span class="o">.</span><span class="n">wd</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
-            <span class="n">wd</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">newton</span><span class="p">(</span><span class="n">func</span><span class="o">=</span><span class="n">wd_func</span><span class="p">,</span> <span class="n">x0</span><span class="o">=</span><span class="n">wn</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">rtol</span><span class="o">=</span><span class="n">rtol</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">wd</span><span class="p">)):</span>
+            <span class="n">wd_func</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">s</span><span class="p">:</span> <span class="p">(</span><span class="n">s</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">run_modal</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">num_modes</span><span class="p">)</span><span class="o">.</span><span class="n">wd</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+            <span class="n">wd</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">newton</span><span class="p">(</span><span class="n">func</span><span class="o">=</span><span class="n">wd_func</span><span class="p">,</span> <span class="n">x0</span><span class="o">=</span><span class="n">_wd</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">rtol</span><span class="o">=</span><span class="n">rtol</span><span class="p">)</span>
 
+        <span class="n">log_dec</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">wn</span><span class="p">)</span>
+        <span class="n">damping_ratio</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">wn</span><span class="p">)</span>
+        <span class="n">whirl_direction</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">wn</span><span class="p">))</span>
         <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">s</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">wd</span><span class="p">):</span>
-            <span class="n">modal</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">run_modal</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">num_modes</span><span class="p">,</span> <span class="n">sparse</span><span class="p">)</span>
+            <span class="n">modal</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">run_modal</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">num_modes</span><span class="p">)</span>
             <span class="n">log_dec</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">modal</span><span class="o">.</span><span class="n">log_dec</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
             <span class="n">damping_ratio</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">modal</span><span class="o">.</span><span class="n">damping_ratio</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+            <span class="n">whirl_direction</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">modal</span><span class="o">.</span><span class="n">whirl_direction</span><span class="p">()[</span><span class="n">i</span><span class="p">]</span>
 
-        <span class="k">return</span> <span class="n">CriticalSpeedResults</span><span class="p">(</span><span class="n">wn</span><span class="p">,</span> <span class="n">wd</span><span class="p">,</span> <span class="n">log_dec</span><span class="p">,</span> <span class="n">damping_ratio</span><span class="p">)</span></div>
+        <span class="n">whirl_direction</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">whirl_direction</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">speed_range</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">vmin</span><span class="p">,</span> <span class="n">vmax</span> <span class="o">=</span> <span class="n">speed_range</span>
+            <span class="n">idx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">((</span><span class="n">wd</span> <span class="o">&gt;=</span> <span class="n">vmin</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">wd</span> <span class="o">&lt;=</span> <span class="n">vmax</span><span class="p">))</span>
+            <span class="n">wn</span> <span class="o">=</span> <span class="n">wn</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span>
+            <span class="n">wd</span> <span class="o">=</span> <span class="n">wd</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span>
+            <span class="n">log_dec</span> <span class="o">=</span> <span class="n">log_dec</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span>
+            <span class="n">damping_ratio</span> <span class="o">=</span> <span class="n">damping_ratio</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span>
+            <span class="n">whirl_direction</span> <span class="o">=</span> <span class="n">whirl_direction</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span>
+
+        <span class="k">return</span> <span class="n">CriticalSpeedResults</span><span class="p">(</span><span class="n">wn</span><span class="p">,</span> <span class="n">wd</span><span class="p">,</span> <span class="n">log_dec</span><span class="p">,</span> <span class="n">damping_ratio</span><span class="p">,</span> <span class="n">whirl_direction</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="Rotor.convergence"><a class="viewcode-back" href="../../generated/results/ross.Rotor.html#ross.Rotor.convergence">[docs]</a>    <span class="k">def</span> <span class="nf">convergence</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n_eigval</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">err_max</span><span class="o">=</span><span class="mf">1e-02</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Run convergence analysis.</span>
@@ -888,10 +934,14 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        Lists containing the information about:</span>
-<span class="sd">            The number or elements in each run;</span>
-<span class="sd">            The relative error calculated in each run;</span>
-<span class="sd">            The natural frequency calculated in each run.</span>
+<span class="sd">        results : An instance of ConvergenceResults class, which is used to post-process</span>
+<span class="sd">        results. Attributes stored:</span>
+<span class="sd">            el_num : array</span>
+<span class="sd">                Array with number of elements in each iteraction</span>
+<span class="sd">            eigv_arr : array</span>
+<span class="sd">                Array with the n&#39;th natural frequency in each iteraction</span>
+<span class="sd">            error_arr : array</span>
+<span class="sd">                Array with the relative error in each iteraction</span>
 
 <span class="sd">        Example</span>
 <span class="sd">        -------</span>
@@ -913,6 +963,9 @@
 <span class="sd">        &gt;&gt;&gt; convergence = rotor0.convergence(n_eigval=0, err_max=1e-08)</span>
 <span class="sd">        &gt;&gt;&gt; len(rotor0.shaft_elements)</span>
 <span class="sd">        96</span>
+
+<span class="sd">        Plotting convergence graphics</span>
+<span class="sd">        &gt;&gt;&gt; fig = convergence.plot()</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">el_num</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">shaft_elements</span><span class="p">)])</span>
         <span class="n">eigv_arr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([])</span>
@@ -1257,7 +1310,7 @@
 <span class="sd">        (61,)</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">critical_speeds</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">run_critical_speed</span><span class="p">(</span><span class="n">num_modes</span><span class="o">=</span><span class="n">num_modes</span><span class="p">,</span> <span class="n">rtol</span><span class="o">=</span><span class="n">rtol</span><span class="p">)</span>
-        <span class="n">omega</span> <span class="o">=</span> <span class="n">critical_speeds</span><span class="o">.</span><span class="n">wd</span>
+        <span class="n">omega</span> <span class="o">=</span> <span class="n">critical_speeds</span><span class="o">.</span><span class="n">_wd</span>
         <span class="n">damping</span> <span class="o">=</span> <span class="n">critical_speeds</span><span class="o">.</span><span class="n">damping_ratio</span>
         <span class="n">damping</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">d</span> <span class="k">if</span> <span class="n">d</span> <span class="o">&gt;=</span> <span class="mf">0.005</span> <span class="k">else</span> <span class="mf">0.005</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">damping</span><span class="p">])</span>
 
@@ -1335,14 +1388,14 @@
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-<span class="sd">        speed: float</span>
+<span class="sd">        speed : float</span>
 <span class="sd">            Rotor speed.</span>
 <span class="sd">        frequency: float</span>
 <span class="sd">            Excitation frequency.</span>
-<span class="sd">        sorted_: bool, optional</span>
+<span class="sd">        sorted_ : bool, optional</span>
 <span class="sd">            Sort considering the imaginary part (wd)</span>
 <span class="sd">            Default is True</span>
-<span class="sd">        A: np.array, optional</span>
+<span class="sd">        A : np.array, optional</span>
 <span class="sd">            Matrix for which eig will be calculated.</span>
 <span class="sd">            Defaul is the rotor A matrix.</span>
 <span class="sd">        sparse : bool, optional</span>
@@ -1510,6 +1563,12 @@
 <span class="sd">        This method returns the frequency response for a mdof system given a range of</span>
 <span class="sd">        frequencies and the modes that will be used.</span>
 
+<span class="sd">        Available plotting methods:</span>
+<span class="sd">            .plot()</span>
+<span class="sd">            .plot_magnitude()</span>
+<span class="sd">            .plot_phase()</span>
+<span class="sd">            .plot_polar_bode()</span>
+
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
 <span class="sd">        speed_range : array, optional</span>
@@ -1542,19 +1601,34 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        results : array</span>
-<span class="sd">            Array with the frequencies, magnitude (dB) of the frequency</span>
-<span class="sd">            response for each pair input/output, and</span>
-<span class="sd">            phase of the frequency response for each pair input/output.</span>
-<span class="sd">            It will be returned if plot=False.</span>
+<span class="sd">        results : object</span>
+<span class="sd">            An instance of ForcedResponseResult class, which is used to post-process</span>
+<span class="sd">            results. Attributes stored:</span>
+<span class="sd">            freq_resp : array</span>
+<span class="sd">                Array with the frequency response for each node for each pair</span>
+<span class="sd">                input/output.</span>
+<span class="sd">            speed_range : array</span>
+<span class="sd">                Array with the frequencies.</span>
+<span class="sd">            velc_resp : array</span>
+<span class="sd">                Array with the velocity response for each node for each pair</span>
+<span class="sd">                input/output.</span>
+<span class="sd">            accl_resp : array</span>
+<span class="sd">                Array with the acceleration response for each node for each pair</span>
+<span class="sd">                input/output.</span>
 
 <span class="sd">        Examples</span>
 <span class="sd">        --------</span>
 <span class="sd">        &gt;&gt;&gt; rotor = rotor_example()</span>
 <span class="sd">        &gt;&gt;&gt; speed = np.linspace(0, 1000, 101)</span>
 <span class="sd">        &gt;&gt;&gt; response = rotor.run_freq_response(speed_range=speed)</span>
+
+<span class="sd">        Return the response amplitude</span>
 <span class="sd">        &gt;&gt;&gt; abs(response.freq_resp) # doctest: +ELLIPSIS</span>
 <span class="sd">        array([[[1.00000000e-06, 1.00261725e-06, 1.01076952e-06, ...</span>
+
+<span class="sd">        Return the response phase</span>
+<span class="sd">        &gt;&gt;&gt; np.angle(response.freq_resp) # doctest: +ELLIPSIS</span>
+<span class="sd">        array([[[...</span>
 
 <span class="sd">        Using clustered points option.</span>
 <span class="sd">        Set `cluster_points=True` and choose how many modes the method must search and</span>
@@ -1564,16 +1638,17 @@
 <span class="sd">        &gt;&gt;&gt; response.speed_range.shape</span>
 <span class="sd">        (61,)</span>
 
-<span class="sd">        # plot frequency response function:</span>
+<span class="sd">        Plotting frequency response function:</span>
 <span class="sd">        &gt;&gt;&gt; fig = response.plot(inp=13, out=13)</span>
 
 <span class="sd">        To plot velocity and acceleration responses, you must change amplitude_units</span>
 <span class="sd">        from &quot;[length]/[force]&quot; units to &quot;[speed]/[force]&quot; or &quot;[acceleration]/[force]&quot;</span>
 <span class="sd">        respectively</span>
-<span class="sd">        &gt;&gt;&gt; # Plotting velocity response</span>
+
+<span class="sd">        Plotting velocity response</span>
 <span class="sd">        &gt;&gt;&gt; fig = response.plot(inp=13, out=13, amplitude_units=&quot;m/s/N&quot;)</span>
 
-<span class="sd">        &gt;&gt;&gt; # Plotting acceleration response</span>
+<span class="sd">        Plotting acceleration response</span>
 <span class="sd">        &gt;&gt;&gt; fig = response.plot(inp=13, out=13, amplitude_units=&quot;m/s**2/N&quot;)</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">speed_range</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
@@ -1595,7 +1670,7 @@
             <span class="n">H</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">transfer_matrix</span><span class="p">(</span><span class="n">speed</span><span class="o">=</span><span class="n">speed</span><span class="p">,</span> <span class="n">modes</span><span class="o">=</span><span class="n">modes</span><span class="p">)</span>
             <span class="n">freq_resp</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">H</span>
             <span class="n">velc_resp</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span><span class="n">j</span> <span class="o">*</span> <span class="n">speed</span> <span class="o">*</span> <span class="n">H</span>
-            <span class="n">accl_resp</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span> <span class="n">speed</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">H</span>
+            <span class="n">accl_resp</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="p">(</span><span class="n">speed</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span> <span class="o">*</span> <span class="n">H</span>
 
         <span class="n">results</span> <span class="o">=</span> <span class="n">FrequencyResponseResults</span><span class="p">(</span>
             <span class="n">freq_resp</span><span class="o">=</span><span class="n">freq_resp</span><span class="p">,</span>
@@ -1623,6 +1698,16 @@
 <span class="sd">        This method returns the unbalanced response for a mdof system</span>
 <span class="sd">        given magnitude and phase of the unbalance, the node where it&#39;s</span>
 <span class="sd">        applied and a frequency range.</span>
+
+<span class="sd">        Available plotting methods:</span>
+<span class="sd">            .plot()</span>
+<span class="sd">            .plot_magnitude()</span>
+<span class="sd">            .plot_phase()</span>
+<span class="sd">            .plot_polar_bode()</span>
+<span class="sd">            .plot_deflected_shape()</span>
+<span class="sd">            .plot_bending_moment()</span>
+<span class="sd">            .plot_deflected_shape_3d()</span>
+<span class="sd">            .plot_deflected_shape_2d()</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -1662,14 +1747,17 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        forced_resp : array</span>
-<span class="sd">            Array with the force response for each node for each frequency</span>
-<span class="sd">        speed_range : array</span>
-<span class="sd">            Array with the frequencies</span>
-<span class="sd">        velc_resp : array</span>
-<span class="sd">            Array with the velocity response for each node for each frequency</span>
-<span class="sd">        accl_resp : array</span>
-<span class="sd">            Array with the acceleration response for each node for each frequency</span>
+<span class="sd">        forced_resp : object</span>
+<span class="sd">            An instance of ForcedResponseResult class, which is used to post-process</span>
+<span class="sd">            results. Attributes stored:</span>
+<span class="sd">            forced_resp : array</span>
+<span class="sd">                Array with the forced response for each node for each frequency.</span>
+<span class="sd">            speed_range : array</span>
+<span class="sd">                Array with the frequencies.</span>
+<span class="sd">            velc_resp : array</span>
+<span class="sd">                Array with the velocity response for each node for each frequency.</span>
+<span class="sd">            accl_resp : array</span>
+<span class="sd">                Array with the acceleration response for each node for each frequency.</span>
 
 <span class="sd">        Examples</span>
 <span class="sd">        --------</span>
@@ -1703,12 +1791,8 @@
         <span class="n">forced_resp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span>
             <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ndof</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">freq_resp</span><span class="o">.</span><span class="n">speed_range</span><span class="p">)),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">complex</span>
         <span class="p">)</span>
-        <span class="n">velc_resp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span>
-            <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ndof</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">freq_resp</span><span class="o">.</span><span class="n">speed_range</span><span class="p">)),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">complex</span>
-        <span class="p">)</span>
-        <span class="n">accl_resp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span>
-            <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ndof</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">freq_resp</span><span class="o">.</span><span class="n">speed_range</span><span class="p">)),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">complex</span>
-        <span class="p">)</span>
+        <span class="n">velc_resp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">ndof</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">freq_resp</span><span class="o">.</span><span class="n">speed_range</span><span class="p">)),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">complex</span><span class="p">)</span>
+        <span class="n">accl_resp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">ndof</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">freq_resp</span><span class="o">.</span><span class="n">speed_range</span><span class="p">)),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">complex</span><span class="p">)</span>
 
         <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">freq_resp</span><span class="o">.</span><span class="n">speed_range</span><span class="p">)):</span>
             <span class="n">forced_resp</span><span class="p">[:,</span> <span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">freq_resp</span><span class="o">.</span><span class="n">freq_resp</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="n">i</span><span class="p">]</span> <span class="o">@</span> <span class="n">force</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="n">i</span><span class="p">]</span>
@@ -1789,6 +1873,16 @@
 <span class="sd">        given magnitide and phase of the unbalance, the node where it&#39;s</span>
 <span class="sd">        applied and a frequency range.</span>
 
+<span class="sd">        Available plotting methods:</span>
+<span class="sd">            .plot()</span>
+<span class="sd">            .plot_magnitude()</span>
+<span class="sd">            .plot_phase()</span>
+<span class="sd">            .plot_polar_bode()</span>
+<span class="sd">            .plot_deflected_shape()</span>
+<span class="sd">            .plot_bending_moment()</span>
+<span class="sd">            .plot_deflected_shape_3d()</span>
+<span class="sd">            .plot_deflected_shape_2d()</span>
+
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
 <span class="sd">        node : list, int</span>
@@ -1826,14 +1920,17 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        forced_resp : array</span>
-<span class="sd">            Array with the forced response for each node for each frequency</span>
-<span class="sd">        speed_range : array</span>
-<span class="sd">            Array with the frequencies</span>
-<span class="sd">        velc_resp : array</span>
-<span class="sd">            Array with the velocity response for each node for each frequency</span>
-<span class="sd">        accl_resp : array</span>
-<span class="sd">            Array with the acceleration response for each node for each frequency</span>
+<span class="sd">        forced_response : object</span>
+<span class="sd">            An instance of ForcedResponseResult class, which is used to post-process</span>
+<span class="sd">            results. Attributes stored:</span>
+<span class="sd">            forced_resp : array</span>
+<span class="sd">                Array with the forced response for each node for each frequency.</span>
+<span class="sd">            speed_range : array</span>
+<span class="sd">                Array with the frequencies.</span>
+<span class="sd">            velc_resp : array</span>
+<span class="sd">                Array with the velocity response for each node for each frequency.</span>
+<span class="sd">            accl_resp : array</span>
+<span class="sd">                Array with the acceleration response for each node for each frequency.</span>
 
 <span class="sd">        Examples</span>
 <span class="sd">        --------</span>
@@ -1844,8 +1941,14 @@
 <span class="sd">        ...                                         unbalance_magnitude=10.0,</span>
 <span class="sd">        ...                                         unbalance_phase=0.0,</span>
 <span class="sd">        ...                                         frequency=speed)</span>
+
+<span class="sd">        Return the response amplitude</span>
 <span class="sd">        &gt;&gt;&gt; abs(response.forced_resp) # doctest: +ELLIPSIS</span>
 <span class="sd">        array([[0.00000000e+00, 5.06073311e-04, 2.10044826e-03, ...</span>
+
+<span class="sd">        Return the response phase</span>
+<span class="sd">        &gt;&gt;&gt; np.angle(response.forced_resp) # doctest: +ELLIPSIS</span>
+<span class="sd">        array([[ 0.00000000e+00, ...</span>
 
 <span class="sd">        Using clustered points option.</span>
 <span class="sd">        Set `cluster_points=True` and choose how many modes the method must search and</span>
@@ -1872,19 +1975,20 @@
 
 <span class="sd">        To plot velocity and acceleration responses, you must change amplitude_units</span>
 <span class="sd">        from &quot;[length]&quot; units to &quot;[length]/[time]&quot; or &quot;[length]/[time] ** 2&quot; respectively</span>
-<span class="sd">        &gt;&gt;&gt; # Plotting velocity response</span>
+<span class="sd">        Plotting velocity response</span>
 <span class="sd">        &gt;&gt;&gt; fig = response.plot(</span>
-<span class="sd">        ...     probe=[(probe_node, probe_angle, probe_tag)],</span>
+<span class="sd">        ...     probe=[(probe_node, probe_angle)],</span>
 <span class="sd">        ...     amplitude_units=&quot;m/s&quot;</span>
 <span class="sd">        ... )</span>
 
-<span class="sd">        &gt;&gt;&gt; # Plotting acceleration response</span>
+<span class="sd">        Plotting acceleration response</span>
 <span class="sd">        &gt;&gt;&gt; fig = response.plot(</span>
-<span class="sd">        ...     probe=[(probe_node, probe_angle, probe_tag)],</span>
-<span class="sd">        ...     amplitude_units=&quot;m/s&quot;</span>
+<span class="sd">        ...     probe=[(probe_node, probe_angle)],</span>
+<span class="sd">        ...     amplitude_units=&quot;m/s**2&quot;</span>
 <span class="sd">        ... )</span>
 
-<span class="sd">        plot deflected shape configuration</span>
+<span class="sd">        Plotting deflected shape configuration</span>
+<span class="sd">        Speed value must be in speed_range.</span>
 <span class="sd">        &gt;&gt;&gt; value = 600</span>
 <span class="sd">        &gt;&gt;&gt; fig = response.plot_deflected_shape(speed=value)</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -2109,6 +2213,9 @@
 <span class="sd">        This function will calculate the damped natural frequencies</span>
 <span class="sd">        for a speed range.</span>
 
+<span class="sd">        Available plotting methods:</span>
+<span class="sd">            .plot()</span>
+
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
 <span class="sd">        speed_range : array</span>
@@ -2130,8 +2237,7 @@
 <span class="sd">        &gt;&gt;&gt; speed = np.linspace(0, 400, 101)</span>
 <span class="sd">        &gt;&gt;&gt; camp = rotor1.run_campbell(speed)</span>
 
-<span class="sd">        # plot Campbell Diagram</span>
-
+<span class="sd">        Plotting Campbell Diagram</span>
 <span class="sd">        &gt;&gt;&gt; fig = camp.plot()</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="c1"># store in results [speeds(x axis), frequencies[0] or logdec[1] or</span>
@@ -2518,6 +2624,11 @@
 <span class="sd">        This function will take a rotor object and calculate its time response</span>
 <span class="sd">        given a force and a time.</span>
 
+<span class="sd">        Available plotting methods:</span>
+<span class="sd">            .plot_1d()</span>
+<span class="sd">            .plot_2d()</span>
+<span class="sd">            .plot_3d()</span>
+
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
 <span class="sd">        speed : float</span>
@@ -2691,6 +2802,7 @@
 <span class="sd">                    Set it as True to consider the torque provided by the rubbing, by default False.</span>
 <span class="sd">                print_progress : bool</span>
 <span class="sd">                    Set it True, to print the time iterations and the total time spent, by default False.</span>
+
 <span class="sd">        Examples</span>
 <span class="sd">        --------</span>
 <span class="sd">        &gt;&gt;&gt; from ross.defects.rubbing import rubbing_example</span>
@@ -2830,6 +2942,12 @@
 <span class="sd">        Static analysis calculates free-body diagram, deformed shaft, shearing</span>
 <span class="sd">        force diagram and bending moment diagram.</span>
 
+<span class="sd">        Available plotting methods:</span>
+<span class="sd">            .plot_deformation()</span>
+<span class="sd">            .plot_bending_moment()</span>
+<span class="sd">            .plot_shearing_force()</span>
+<span class="sd">            .plot_free_body_diagram()</span>
+
 <span class="sd">        Attributes</span>
 <span class="sd">        ----------</span>
 <span class="sd">        shaft_weight: float</span>
@@ -2861,15 +2979,25 @@
 
 <span class="sd">        Example</span>
 <span class="sd">        -------</span>
-<span class="sd">        &gt;&gt;&gt; rotor = rotor_example()</span>
+<span class="sd">        &gt;&gt;&gt; import ross as rs</span>
+<span class="sd">        &gt;&gt;&gt; rotor = rs.rotor_example()</span>
 <span class="sd">        &gt;&gt;&gt; static = rotor.run_static()</span>
 <span class="sd">        &gt;&gt;&gt; rotor.bearing_forces_nodal</span>
 <span class="sd">        {&#39;node_0&#39;: 432.4, &#39;node_6&#39;: 432.4}</span>
 <span class="sd">        &gt;&gt;&gt; rotor.bearing_forces_tag</span>
 <span class="sd">        {&#39;Bearing 0&#39;: 432.4, &#39;Bearing 1&#39;: 432.4}</span>
 
-<span class="sd">        # plotting static deformation</span>
+<span class="sd">        Plotting static deformation</span>
 <span class="sd">        &gt;&gt;&gt; fig = static.plot_deformation()</span>
+
+<span class="sd">        Plotting bending moment</span>
+<span class="sd">        &gt;&gt;&gt; fig = static.plot_bending_moment()</span>
+
+<span class="sd">        Plotting shearing force</span>
+<span class="sd">        &gt;&gt;&gt; fig = static.plot_shearing_force()</span>
+
+<span class="sd">        Plotting free-body diagram</span>
+<span class="sd">        &gt;&gt;&gt; fig = static.plot_free_body_diagram()</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">df_bearings</span><span class="p">):</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Rotor has no bearings&quot;</span><span class="p">)</span>
@@ -4033,7 +4161,7 @@
     </p>
     <p>
         &copy; Copyright 2020, Team ROSS.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.3.1.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.4.3.<br/>
     </p>
   </div>
 </footer>

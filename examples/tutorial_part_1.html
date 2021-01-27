@@ -13,7 +13,6 @@
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
-    <script src="../_static/language_data.js"></script>
     <script src="../_static/sphinx_copybutton.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js"></script>
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
@@ -89,7 +88,12 @@
 <li class="toctree-l2"><a class="reference internal" href="example_8.html">Example 8 - Overhung rotor.</a></li>
 <li class="toctree-l2"><a class="reference internal" href="example_9.html">Example 9 - Hydrodinamic Journal Bearings (using Fluid Flow methods)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="example_10.html">Example 10 - Example of rotor connected by a rigid mechanical coupling with parallel misalignment.</a></li>
-<li class="toctree-l2"><a class="reference internal" href="example_11.html">Example 10 - Example of rotor connected by a flexible mechanical coupling with parallel, agular or combined misalignment.</a></li>
+<li class="toctree-l2"><a class="reference internal" href="example_11.html">Example 11 - Example of rotor connected by a flexible mechanical coupling with parallel, agular or combined misalignment.</a></li>
+<li class="toctree-l2"><a class="reference internal" href="example_12.html">Example 12 - Example of impact phenomena in rotor-casing dynamical systems.</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fluid_flow_theory.html">Fluid-flow theory</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fluid_flow_elliptical_bearing.html">Fluid-flow: Elliptical Bearing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fluid_flow_wear_bearing.html">Fluid-flow: Wear Bearing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fluid_flow_short_bearing.html">Fluid-flow: Short Bearing</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../download.html">Download notebooks</a></li>
@@ -104,7 +108,6 @@
 <li class="toctree-l2"><a class="reference internal" href="../contributing.html#version-control-system-git">Version-control system: Git</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../contributing.html#code-style-black">Code style: Black</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../contributing.html#documentation">Documentation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../contributing.html#integrated-development-environment-pycharm">Integrated development environment: PyCharm</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../contributing.html#how-to-contribute-to-ross-using-git">How to contribute to ROSS using git</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../contributing.html#making-new-releases">Making new releases</a></li>
 </ul>
@@ -591,10 +594,10 @@ div.rendered_html tbody tr:hover {
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>import os
-from pathlib import Path
-import ross as rs
-import numpy as np
+<span></span><span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
+<span class="kn">import</span> <span class="nn">ross</span> <span class="k">as</span> <span class="nn">rs</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 </pre></div>
 </div>
 </div>
@@ -610,19 +613,19 @@ import numpy as np
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span># from E and G_s
-steel = rs.Material(name=&quot;Steel&quot;, rho=7810, E=211e9, G_s=81.2e9)
-# from E and Poisson
-steel2 = rs.Material(name=&quot;Steel&quot;, rho=7810, E=211e9, Poisson=0.3)
-# from G_s and Poisson
-steel3 = rs.Material(name=&quot;Steel&quot;, rho=7810, G_s=81.2e9, Poisson=0.3)
+<span></span><span class="c1"># from E and G_s</span>
+<span class="n">steel</span> <span class="o">=</span> <span class="n">rs</span><span class="o">.</span><span class="n">Material</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;Steel&quot;</span><span class="p">,</span> <span class="n">rho</span><span class="o">=</span><span class="mi">7810</span><span class="p">,</span> <span class="n">E</span><span class="o">=</span><span class="mf">211e9</span><span class="p">,</span> <span class="n">G_s</span><span class="o">=</span><span class="mf">81.2e9</span><span class="p">)</span>
+<span class="c1"># from E and Poisson</span>
+<span class="n">steel2</span> <span class="o">=</span> <span class="n">rs</span><span class="o">.</span><span class="n">Material</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;Steel&quot;</span><span class="p">,</span> <span class="n">rho</span><span class="o">=</span><span class="mi">7810</span><span class="p">,</span> <span class="n">E</span><span class="o">=</span><span class="mf">211e9</span><span class="p">,</span> <span class="n">Poisson</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
+<span class="c1"># from G_s and Poisson</span>
+<span class="n">steel3</span> <span class="o">=</span> <span class="n">rs</span><span class="o">.</span><span class="n">Material</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;Steel&quot;</span><span class="p">,</span> <span class="n">rho</span><span class="o">=</span><span class="mi">7810</span><span class="p">,</span> <span class="n">G_s</span><span class="o">=</span><span class="mf">81.2e9</span><span class="p">,</span> <span class="n">Poisson</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
 
-print(steel)
+<span class="nb">print</span><span class="p">(</span><span class="n">steel</span><span class="p">)</span>
 
-# returning attributes
-print(&quot;=&quot;*36)
-print(f&quot;Young&#39;s Modulus: {steel.E}&quot;)
-print(f&quot;Shear Modulus:    {steel.G_s}&quot;)
+<span class="c1"># returning attributes</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;=&quot;</span><span class="o">*</span><span class="mi">36</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Young&#39;s Modulus: </span><span class="si">{</span><span class="n">steel</span><span class="o">.</span><span class="n">E</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Shear Modulus:    </span><span class="si">{</span><span class="n">steel</span><span class="o">.</span><span class="n">G_s</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -652,7 +655,7 @@ Shear Modulus:    81200000000.0
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>steel.save_material()
+<span></span><span class="n">steel</span><span class="o">.</span><span class="n">save_material</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -678,7 +681,7 @@ Shear Modulus:    81200000000.0
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>rs.Material.available_materials()
+<span></span><span class="n">rs</span><span class="o">.</span><span class="n">Material</span><span class="o">.</span><span class="n">available_materials</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -700,7 +703,7 @@ Shear Modulus:    81200000000.0
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>steel5 = rs.Material.load_material(&#39;Steel&#39;)
+<span></span><span class="n">steel5</span> <span class="o">=</span> <span class="n">rs</span><span class="o">.</span><span class="n">Material</span><span class="o">.</span><span class="n">load_material</span><span class="p">(</span><span class="s1">&#39;Steel&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -731,21 +734,21 @@ Shear Modulus:    81200000000.0
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span># Cylindrical shaft element
-L = 0.25
-i_d = 0
-o_d = 0.05
-cy_elem = rs.ShaftElement(
-    L=L,
-    idl=i_d,
-    odl=o_d,
-    material=steel,
-    shear_effects=True,
-    rotary_inertia=True,
-    gyroscopic=True,
-)
+<span></span><span class="c1"># Cylindrical shaft element</span>
+<span class="n">L</span> <span class="o">=</span> <span class="mf">0.25</span>
+<span class="n">i_d</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">o_d</span> <span class="o">=</span> <span class="mf">0.05</span>
+<span class="n">cy_elem</span> <span class="o">=</span> <span class="n">rs</span><span class="o">.</span><span class="n">ShaftElement</span><span class="p">(</span>
+    <span class="n">L</span><span class="o">=</span><span class="n">L</span><span class="p">,</span>
+    <span class="n">idl</span><span class="o">=</span><span class="n">i_d</span><span class="p">,</span>
+    <span class="n">odl</span><span class="o">=</span><span class="n">o_d</span><span class="p">,</span>
+    <span class="n">material</span><span class="o">=</span><span class="n">steel</span><span class="p">,</span>
+    <span class="n">shear_effects</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">rotary_inertia</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">gyroscopic</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<span class="p">)</span>
 
-print(cy_elem)
+<span class="nb">print</span><span class="p">(</span><span class="n">cy_elem</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -778,24 +781,24 @@ Poisson coefficient     :  0.29926108
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span># Conical shaft element
-L = 0.25
-idl = 0
-idr = 0
-odl = 0.05
-odr = 0.07
-co_elem = rs.ShaftElement(
-    L=L,
-    idl=idl,
-    idr=idr,
-    odl=odl,
-    odr=odr,
-    material=steel,
-    shear_effects=True,
-    rotary_inertia=True,
-    gyroscopic=True,
-)
-print(co_elem)
+<span></span><span class="c1"># Conical shaft element</span>
+<span class="n">L</span> <span class="o">=</span> <span class="mf">0.25</span>
+<span class="n">idl</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">idr</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">odl</span> <span class="o">=</span> <span class="mf">0.05</span>
+<span class="n">odr</span> <span class="o">=</span> <span class="mf">0.07</span>
+<span class="n">co_elem</span> <span class="o">=</span> <span class="n">rs</span><span class="o">.</span><span class="n">ShaftElement</span><span class="p">(</span>
+    <span class="n">L</span><span class="o">=</span><span class="n">L</span><span class="p">,</span>
+    <span class="n">idl</span><span class="o">=</span><span class="n">idl</span><span class="p">,</span>
+    <span class="n">idr</span><span class="o">=</span><span class="n">idr</span><span class="p">,</span>
+    <span class="n">odl</span><span class="o">=</span><span class="n">odl</span><span class="p">,</span>
+    <span class="n">odr</span><span class="o">=</span><span class="n">odr</span><span class="p">,</span>
+    <span class="n">material</span><span class="o">=</span><span class="n">steel</span><span class="p">,</span>
+    <span class="n">shear_effects</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">rotary_inertia</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">gyroscopic</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">co_elem</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -828,19 +831,19 @@ Poisson coefficient     :  0.29926108
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span># Mass matrix
-# cy_elem.M()
+<span></span><span class="c1"># Mass matrix</span>
+<span class="c1"># cy_elem.M()</span>
 
-# Stiffness matrix
-# frequency = 0
-# cy_elem.K(frequency)
+<span class="c1"># Stiffness matrix</span>
+<span class="c1"># frequency = 0</span>
+<span class="c1"># cy_elem.K(frequency)</span>
 
-# Damping matrix
-# frequency = 0
-# cy_elem.C(frequency)
+<span class="c1"># Damping matrix</span>
+<span class="c1"># frequency = 0</span>
+<span class="c1"># cy_elem.C(frequency)</span>
 
-# Gyroscopic matrix
-# cy_elem.G()
+<span class="c1"># Gyroscopic matrix</span>
+<span class="c1"># cy_elem.G()</span>
 </pre></div>
 </div>
 </div>
@@ -854,24 +857,24 @@ Poisson coefficient     :  0.29926108
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span># Creating a list of shaft elements
-L = 0.25
-i_d = 0
-o_d = 0.05
-N = 6
-shaft_elements = [
-    rs.ShaftElement(
-        L=L,
-        idl=i_d,
-        odl=o_d,
-        material=steel,
-        shear_effects=True,
-        rotary_inertia=True,
-        gyroscopic=True,
-    )
-    for _ in range(N)
-]
-shaft_elements
+<span></span><span class="c1"># Creating a list of shaft elements</span>
+<span class="n">L</span> <span class="o">=</span> <span class="mf">0.25</span>
+<span class="n">i_d</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">o_d</span> <span class="o">=</span> <span class="mf">0.05</span>
+<span class="n">N</span> <span class="o">=</span> <span class="mi">6</span>
+<span class="n">shaft_elements</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">rs</span><span class="o">.</span><span class="n">ShaftElement</span><span class="p">(</span>
+        <span class="n">L</span><span class="o">=</span><span class="n">L</span><span class="p">,</span>
+        <span class="n">idl</span><span class="o">=</span><span class="n">i_d</span><span class="p">,</span>
+        <span class="n">odl</span><span class="o">=</span><span class="n">o_d</span><span class="p">,</span>
+        <span class="n">material</span><span class="o">=</span><span class="n">steel</span><span class="p">,</span>
+        <span class="n">shear_effects</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="n">rotary_inertia</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="n">gyroscopic</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">N</span><span class="p">)</span>
+<span class="p">]</span>
+<span class="n">shaft_elements</span>
 </pre></div>
 </div>
 </div>
@@ -900,24 +903,24 @@ shaft_elements
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span># OPTION No.1:
-# Using zip() method
-L =   [0.20, 0.20, 0.10, 0.10, 0.20, 0.20]
-i_d = [0.01,    0,    0,    0,    0, 0.01]
-o_d = [0.05, 0.05, 0.06, 0.06, 0.05, 0.05]
-shaft_elements = [
-    rs.ShaftElement(
-        L=l,
-        idl=idl,
-        odl=odl,
-        material=steel,
-        shear_effects=True,
-        rotary_inertia=True,
-        gyroscopic=True,
-    )
-    for l, idl, odl in zip(L, i_d, o_d)
-]
-shaft_elements
+<span></span><span class="c1"># OPTION No.1:</span>
+<span class="c1"># Using zip() method</span>
+<span class="n">L</span> <span class="o">=</span>   <span class="p">[</span><span class="mf">0.20</span><span class="p">,</span> <span class="mf">0.20</span><span class="p">,</span> <span class="mf">0.10</span><span class="p">,</span> <span class="mf">0.10</span><span class="p">,</span> <span class="mf">0.20</span><span class="p">,</span> <span class="mf">0.20</span><span class="p">]</span>
+<span class="n">i_d</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.01</span><span class="p">,</span>    <span class="mi">0</span><span class="p">,</span>    <span class="mi">0</span><span class="p">,</span>    <span class="mi">0</span><span class="p">,</span>    <span class="mi">0</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">]</span>
+<span class="n">o_d</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.06</span><span class="p">,</span> <span class="mf">0.06</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">]</span>
+<span class="n">shaft_elements</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">rs</span><span class="o">.</span><span class="n">ShaftElement</span><span class="p">(</span>
+        <span class="n">L</span><span class="o">=</span><span class="n">l</span><span class="p">,</span>
+        <span class="n">idl</span><span class="o">=</span><span class="n">idl</span><span class="p">,</span>
+        <span class="n">odl</span><span class="o">=</span><span class="n">odl</span><span class="p">,</span>
+        <span class="n">material</span><span class="o">=</span><span class="n">steel</span><span class="p">,</span>
+        <span class="n">shear_effects</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="n">rotary_inertia</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="n">gyroscopic</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="k">for</span> <span class="n">l</span><span class="p">,</span> <span class="n">idl</span><span class="p">,</span> <span class="n">odl</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">L</span><span class="p">,</span> <span class="n">i_d</span><span class="p">,</span> <span class="n">o_d</span><span class="p">)</span>
+<span class="p">]</span>
+<span class="n">shaft_elements</span>
 </pre></div>
 </div>
 </div>
@@ -940,25 +943,25 @@ shaft_elements
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span># OPTION No.2:
-# Using list index
-L =   [0.20, 0.20, 0.10, 0.10, 0.20, 0.20]
-i_d = [0.01,    0,    0,    0,    0, 0.01]
-o_d = [0.05, 0.05, 0.06, 0.06, 0.05, 0.05]
-N = len(L)
-shaft_elements = [
-    rs.ShaftElement(
-        L=L[i],
-        idl=i_d[i],
-        odl=o_d[i],
-        material=steel,
-        shear_effects=True,
-        rotary_inertia=True,
-        gyroscopic=True,
-    )
-    for i in range(N)
-]
-shaft_elements
+<span></span><span class="c1"># OPTION No.2:</span>
+<span class="c1"># Using list index</span>
+<span class="n">L</span> <span class="o">=</span>   <span class="p">[</span><span class="mf">0.20</span><span class="p">,</span> <span class="mf">0.20</span><span class="p">,</span> <span class="mf">0.10</span><span class="p">,</span> <span class="mf">0.10</span><span class="p">,</span> <span class="mf">0.20</span><span class="p">,</span> <span class="mf">0.20</span><span class="p">]</span>
+<span class="n">i_d</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.01</span><span class="p">,</span>    <span class="mi">0</span><span class="p">,</span>    <span class="mi">0</span><span class="p">,</span>    <span class="mi">0</span><span class="p">,</span>    <span class="mi">0</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">]</span>
+<span class="n">o_d</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.06</span><span class="p">,</span> <span class="mf">0.06</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">]</span>
+<span class="n">N</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">L</span><span class="p">)</span>
+<span class="n">shaft_elements</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">rs</span><span class="o">.</span><span class="n">ShaftElement</span><span class="p">(</span>
+        <span class="n">L</span><span class="o">=</span><span class="n">L</span><span class="p">[</span><span class="n">i</span><span class="p">],</span>
+        <span class="n">idl</span><span class="o">=</span><span class="n">i_d</span><span class="p">[</span><span class="n">i</span><span class="p">],</span>
+        <span class="n">odl</span><span class="o">=</span><span class="n">o_d</span><span class="p">[</span><span class="n">i</span><span class="p">],</span>
+        <span class="n">material</span><span class="o">=</span><span class="n">steel</span><span class="p">,</span>
+        <span class="n">shear_effects</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="n">rotary_inertia</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="n">gyroscopic</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">N</span><span class="p">)</span>
+<span class="p">]</span>
+<span class="n">shaft_elements</span>
 </pre></div>
 </div>
 </div>
@@ -1008,14 +1011,14 @@ shaft_elements
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>disk = rs.DiskElement(
-    n=0,
-    m=32.58,
-    Ip=0.178,
-    Id=0.329,
-    tag=&quot;Disk&quot;
-)
-disk
+<span></span><span class="n">disk</span> <span class="o">=</span> <span class="n">rs</span><span class="o">.</span><span class="n">DiskElement</span><span class="p">(</span>
+    <span class="n">n</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+    <span class="n">m</span><span class="o">=</span><span class="mf">32.58</span><span class="p">,</span>
+    <span class="n">Ip</span><span class="o">=</span><span class="mf">0.178</span><span class="p">,</span>
+    <span class="n">Id</span><span class="o">=</span><span class="mf">0.329</span><span class="p">,</span>
+    <span class="n">tag</span><span class="o">=</span><span class="s2">&quot;Disk&quot;</span>
+<span class="p">)</span>
+<span class="n">disk</span>
 </pre></div>
 </div>
 </div>
@@ -1037,22 +1040,22 @@ DiskElement(Id=0.329, Ip=0.178, m=32.58, color=&#39;Firebrick&#39;, n=0, tag=&#3
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span># OPTION No.1:
-# Using zip() method
-n_list = [2, 4]
-m_list = [32.6, 35.8]
-Id_list = [0.17808928, 0.17808928]
-Ip_list = [0.32956362, 0.38372842]
-disk_elements = [
-    rs.DiskElement(
-        n=n,
-        m=m,
-        Id=Id,
-        Ip=Ip,
-    )
-    for n, m, Id, Ip in zip(n_list, m_list, Id_list, Ip_list)
-]
-disk_elements
+<span></span><span class="c1"># OPTION No.1:</span>
+<span class="c1"># Using zip() method</span>
+<span class="n">n_list</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span>
+<span class="n">m_list</span> <span class="o">=</span> <span class="p">[</span><span class="mf">32.6</span><span class="p">,</span> <span class="mf">35.8</span><span class="p">]</span>
+<span class="n">Id_list</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.17808928</span><span class="p">,</span> <span class="mf">0.17808928</span><span class="p">]</span>
+<span class="n">Ip_list</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.32956362</span><span class="p">,</span> <span class="mf">0.38372842</span><span class="p">]</span>
+<span class="n">disk_elements</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">rs</span><span class="o">.</span><span class="n">DiskElement</span><span class="p">(</span>
+        <span class="n">n</span><span class="o">=</span><span class="n">n</span><span class="p">,</span>
+        <span class="n">m</span><span class="o">=</span><span class="n">m</span><span class="p">,</span>
+        <span class="n">Id</span><span class="o">=</span><span class="n">Id</span><span class="p">,</span>
+        <span class="n">Ip</span><span class="o">=</span><span class="n">Ip</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="k">for</span> <span class="n">n</span><span class="p">,</span> <span class="n">m</span><span class="p">,</span> <span class="n">Id</span><span class="p">,</span> <span class="n">Ip</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">n_list</span><span class="p">,</span> <span class="n">m_list</span><span class="p">,</span> <span class="n">Id_list</span><span class="p">,</span> <span class="n">Ip_list</span><span class="p">)</span>
+<span class="p">]</span>
+<span class="n">disk_elements</span>
 </pre></div>
 </div>
 </div>
@@ -1071,23 +1074,23 @@ disk_elements
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span># OPTION No.2:
-# Using list index
-n_list = [2, 4]
-m_list = [32.6, 35.8]
-Id_list = [0.17808928, 0.17808928]
-Ip_list = [0.32956362, 0.38372842]
-N = len(n_list)
-disk_elements = [
-    rs.DiskElement(
-        n=n_list[i],
-        m=m_list[i],
-        Id=Id_list[i],
-        Ip=Ip_list[i],
-    )
-    for i in range(N)
-]
-disk_elements
+<span></span><span class="c1"># OPTION No.2:</span>
+<span class="c1"># Using list index</span>
+<span class="n">n_list</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span>
+<span class="n">m_list</span> <span class="o">=</span> <span class="p">[</span><span class="mf">32.6</span><span class="p">,</span> <span class="mf">35.8</span><span class="p">]</span>
+<span class="n">Id_list</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.17808928</span><span class="p">,</span> <span class="mf">0.17808928</span><span class="p">]</span>
+<span class="n">Ip_list</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.32956362</span><span class="p">,</span> <span class="mf">0.38372842</span><span class="p">]</span>
+<span class="n">N</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">n_list</span><span class="p">)</span>
+<span class="n">disk_elements</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">rs</span><span class="o">.</span><span class="n">DiskElement</span><span class="p">(</span>
+        <span class="n">n</span><span class="o">=</span><span class="n">n_list</span><span class="p">[</span><span class="n">i</span><span class="p">],</span>
+        <span class="n">m</span><span class="o">=</span><span class="n">m_list</span><span class="p">[</span><span class="n">i</span><span class="p">],</span>
+        <span class="n">Id</span><span class="o">=</span><span class="n">Id_list</span><span class="p">[</span><span class="n">i</span><span class="p">],</span>
+        <span class="n">Ip</span><span class="o">=</span><span class="n">Ip_list</span><span class="p">[</span><span class="n">i</span><span class="p">],</span>
+    <span class="p">)</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">N</span><span class="p">)</span>
+<span class="p">]</span>
+<span class="n">disk_elements</span>
 </pre></div>
 </div>
 </div>
@@ -1115,19 +1118,19 @@ disk_elements
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>disk1 = rs.DiskElement.from_geometry(
-    n=4,
-    material=steel,
-    width=0.07,
-    i_d=0.05,
-    o_d=0.28
-)
-print(disk1)
+<span></span><span class="n">disk1</span> <span class="o">=</span> <span class="n">rs</span><span class="o">.</span><span class="n">DiskElement</span><span class="o">.</span><span class="n">from_geometry</span><span class="p">(</span>
+    <span class="n">n</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span>
+    <span class="n">material</span><span class="o">=</span><span class="n">steel</span><span class="p">,</span>
+    <span class="n">width</span><span class="o">=</span><span class="mf">0.07</span><span class="p">,</span>
+    <span class="n">i_d</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span>
+    <span class="n">o_d</span><span class="o">=</span><span class="mf">0.28</span>
+<span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">disk1</span><span class="p">)</span>
 
-print(&quot;=&quot;*76)
-print(f&quot;Disk mass:              {disk1.m}&quot;)
-print(f&quot;Disk polar inertia:     {disk1.Ip}&quot;)
-print(f&quot;Disk diametral inertia: {disk1.Id}&quot;)
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;=&quot;</span><span class="o">*</span><span class="mi">76</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Disk mass:              </span><span class="si">{</span><span class="n">disk1</span><span class="o">.</span><span class="n">m</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Disk polar inertia:     </span><span class="si">{</span><span class="n">disk1</span><span class="o">.</span><span class="n">Ip</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Disk diametral inertia: </span><span class="si">{</span><span class="n">disk1</span><span class="o">.</span><span class="n">Id</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1156,23 +1159,23 @@ Disk diametral inertia: 0.17808928257067666
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span># OPTION No.1:
-# Using zip() method
-n_list = [2, 4]
-width_list = [0.7, 0.7]
-i_d_list = [0.05, 0.05]
-o_d_list = [0.15, 0.18]
-disk_elements = [
-    rs.DiskElement.from_geometry(
-        n=n,
-        material=steel,
-        width=width,
-        i_d=i_d,
-        o_d=o_d,
-    )
-    for n, width, i_d, o_d in zip(n_list, width_list, i_d_list, o_d_list)
-]
-disk_elements
+<span></span><span class="c1"># OPTION No.1:</span>
+<span class="c1"># Using zip() method</span>
+<span class="n">n_list</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span>
+<span class="n">width_list</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.7</span><span class="p">,</span> <span class="mf">0.7</span><span class="p">]</span>
+<span class="n">i_d_list</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">]</span>
+<span class="n">o_d_list</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.15</span><span class="p">,</span> <span class="mf">0.18</span><span class="p">]</span>
+<span class="n">disk_elements</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">rs</span><span class="o">.</span><span class="n">DiskElement</span><span class="o">.</span><span class="n">from_geometry</span><span class="p">(</span>
+        <span class="n">n</span><span class="o">=</span><span class="n">n</span><span class="p">,</span>
+        <span class="n">material</span><span class="o">=</span><span class="n">steel</span><span class="p">,</span>
+        <span class="n">width</span><span class="o">=</span><span class="n">width</span><span class="p">,</span>
+        <span class="n">i_d</span><span class="o">=</span><span class="n">i_d</span><span class="p">,</span>
+        <span class="n">o_d</span><span class="o">=</span><span class="n">o_d</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="k">for</span> <span class="n">n</span><span class="p">,</span> <span class="n">width</span><span class="p">,</span> <span class="n">i_d</span><span class="p">,</span> <span class="n">o_d</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">n_list</span><span class="p">,</span> <span class="n">width_list</span><span class="p">,</span> <span class="n">i_d_list</span><span class="p">,</span> <span class="n">o_d_list</span><span class="p">)</span>
+<span class="p">]</span>
+<span class="n">disk_elements</span>
 </pre></div>
 </div>
 </div>
@@ -1191,24 +1194,24 @@ disk_elements
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span># OPTION No.2:
-# Using list index
-n_list = [2, 4]
-width_list = [0.7, 0.7]
-i_d_list = [0.05, 0.05]
-o_d_list = [0.15, 0.18]
-N = len(n_list)
-disk_elements = [
-    rs.DiskElement.from_geometry(
-        n=n_list[i],
-        material=steel,
-        width=width_list[i],
-        i_d=i_d_list[i],
-        o_d=o_d_list[i],
-    )
-    for i in range(N)
-]
-disk_elements
+<span></span><span class="c1"># OPTION No.2:</span>
+<span class="c1"># Using list index</span>
+<span class="n">n_list</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span>
+<span class="n">width_list</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.7</span><span class="p">,</span> <span class="mf">0.7</span><span class="p">]</span>
+<span class="n">i_d_list</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">]</span>
+<span class="n">o_d_list</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.15</span><span class="p">,</span> <span class="mf">0.18</span><span class="p">]</span>
+<span class="n">N</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">n_list</span><span class="p">)</span>
+<span class="n">disk_elements</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">rs</span><span class="o">.</span><span class="n">DiskElement</span><span class="o">.</span><span class="n">from_geometry</span><span class="p">(</span>
+        <span class="n">n</span><span class="o">=</span><span class="n">n_list</span><span class="p">[</span><span class="n">i</span><span class="p">],</span>
+        <span class="n">material</span><span class="o">=</span><span class="n">steel</span><span class="p">,</span>
+        <span class="n">width</span><span class="o">=</span><span class="n">width_list</span><span class="p">[</span><span class="n">i</span><span class="p">],</span>
+        <span class="n">i_d</span><span class="o">=</span><span class="n">i_d_list</span><span class="p">[</span><span class="n">i</span><span class="p">],</span>
+        <span class="n">o_d</span><span class="o">=</span><span class="n">o_d_list</span><span class="p">[</span><span class="n">i</span><span class="p">],</span>
+    <span class="p">)</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">N</span><span class="p">)</span>
+<span class="p">]</span>
+<span class="n">disk_elements</span>
 </pre></div>
 </div>
 </div>
@@ -1235,9 +1238,9 @@ disk_elements
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>file_path = Path(&quot;shaft_si.xls&quot;)
-list_of_disks = rs.DiskElement.from_table(file=file_path, sheet_name=&quot;More&quot;)
-list_of_disks
+<span></span><span class="n">file_path</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s2">&quot;shaft_si.xls&quot;</span><span class="p">)</span>
+<span class="n">list_of_disks</span> <span class="o">=</span> <span class="n">rs</span><span class="o">.</span><span class="n">DiskElement</span><span class="o">.</span><span class="n">from_table</span><span class="p">(</span><span class="n">file</span><span class="o">=</span><span class="n">file_path</span><span class="p">,</span> <span class="n">sheet_name</span><span class="o">=</span><span class="s2">&quot;More&quot;</span><span class="p">)</span>
+<span class="n">list_of_disks</span>
 </pre></div>
 </div>
 </div>
@@ -1304,14 +1307,14 @@ list_of_disks
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>stfx = 1e6
-stfy = 0.8e6
-bearing1 = rs.BearingElement(n=0, kxx=stfx, kyy=stfy, cxx=1e3)
-print(bearing1)
+<span></span><span class="n">stfx</span> <span class="o">=</span> <span class="mf">1e6</span>
+<span class="n">stfy</span> <span class="o">=</span> <span class="mf">0.8e6</span>
+<span class="n">bearing1</span> <span class="o">=</span> <span class="n">rs</span><span class="o">.</span><span class="n">BearingElement</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">kxx</span><span class="o">=</span><span class="n">stfx</span><span class="p">,</span> <span class="n">kyy</span><span class="o">=</span><span class="n">stfy</span><span class="p">,</span> <span class="n">cxx</span><span class="o">=</span><span class="mf">1e3</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">bearing1</span><span class="p">)</span>
 
-print(&quot;=&quot;*55)
-print(f&quot;Kxx coefficient - array of strings format: {bearing1.kxx}&quot;)
-print(f&quot;Kxx coefficient - array of floats format:  {bearing1.kxx.coefficient}&quot;)
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;=&quot;</span><span class="o">*</span><span class="mi">55</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Kxx coefficient - array of strings format: </span><span class="si">{</span><span class="n">bearing1</span><span class="o">.</span><span class="n">kxx</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Kxx coefficient - array of floats format:  </span><span class="si">{</span><span class="n">bearing1</span><span class="o">.</span><span class="n">kxx</span><span class="o">.</span><span class="n">coefficient</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1341,18 +1344,18 @@ Kxx coefficient - array of floats format:  [1000000.0]
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>bearing2 = rs.BearingElement(
-    n=0,
-    kxx=np.array([0.5e6, 1.0e6, 2.5e6]),
-    kyy=np.array([1.5e6, 2.0e6, 3.5e6]),
-    cxx=np.array([0.5e3, 1.0e3, 1.5e3]),
-    frequency=np.array([0, 1000, 2000]),
-)
+<span></span><span class="n">bearing2</span> <span class="o">=</span> <span class="n">rs</span><span class="o">.</span><span class="n">BearingElement</span><span class="p">(</span>
+    <span class="n">n</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+    <span class="n">kxx</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.5e6</span><span class="p">,</span> <span class="mf">1.0e6</span><span class="p">,</span> <span class="mf">2.5e6</span><span class="p">]),</span>
+    <span class="n">kyy</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">1.5e6</span><span class="p">,</span> <span class="mf">2.0e6</span><span class="p">,</span> <span class="mf">3.5e6</span><span class="p">]),</span>
+    <span class="n">cxx</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.5e3</span><span class="p">,</span> <span class="mf">1.0e3</span><span class="p">,</span> <span class="mf">1.5e3</span><span class="p">]),</span>
+    <span class="n">frequency</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1000</span><span class="p">,</span> <span class="mi">2000</span><span class="p">]),</span>
+<span class="p">)</span>
 
-print(bearing2)
-print(&quot;=&quot;*79)
-print(f&quot;Kxx coefficient - array of strings format: {bearing2.kxx}&quot;)
-print(f&quot;Kxx coefficient - array of floats format:  {bearing2.kxx.coefficient}&quot;)
+<span class="nb">print</span><span class="p">(</span><span class="n">bearing2</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;=&quot;</span><span class="o">*</span><span class="mi">79</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Kxx coefficient - array of strings format: </span><span class="si">{</span><span class="n">bearing2</span><span class="o">.</span><span class="n">kxx</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Kxx coefficient - array of floats format:  </span><span class="si">{</span><span class="n">bearing2</span><span class="o">.</span><span class="n">kxx</span><span class="o">.</span><span class="n">coefficient</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1393,12 +1396,12 @@ Kxx coefficient - array of floats format:  [ 500000. 1000000. 2500000.]
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>stfx = 1e6
-stfy = 0.8e6
-bearing3 = rs.BearingElement(n=0, kxx=stfx, kyy=stfy, cxx=1e3, n_link=1, tag=&quot;journal_bearing&quot;)
-bearing4 = rs.BearingElement(n=1, kxx=1e7, kyy=1e9, cxx=10, tag=&quot;support&quot;)
-print(bearing3)
-print(bearing4)
+<span></span><span class="n">stfx</span> <span class="o">=</span> <span class="mf">1e6</span>
+<span class="n">stfy</span> <span class="o">=</span> <span class="mf">0.8e6</span>
+<span class="n">bearing3</span> <span class="o">=</span> <span class="n">rs</span><span class="o">.</span><span class="n">BearingElement</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">kxx</span><span class="o">=</span><span class="n">stfx</span><span class="p">,</span> <span class="n">kyy</span><span class="o">=</span><span class="n">stfy</span><span class="p">,</span> <span class="n">cxx</span><span class="o">=</span><span class="mf">1e3</span><span class="p">,</span> <span class="n">n_link</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">tag</span><span class="o">=</span><span class="s2">&quot;journal_bearing&quot;</span><span class="p">)</span>
+<span class="n">bearing4</span> <span class="o">=</span> <span class="n">rs</span><span class="o">.</span><span class="n">BearingElement</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">kxx</span><span class="o">=</span><span class="mf">1e7</span><span class="p">,</span> <span class="n">kyy</span><span class="o">=</span><span class="mf">1e9</span><span class="p">,</span> <span class="n">cxx</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">tag</span><span class="o">=</span><span class="s2">&quot;support&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">bearing3</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">bearing4</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1431,7 +1434,7 @@ BearingElement(n=1, n_link=None,
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>bearing2.kyy.plot()
+<span></span><span class="n">bearing2</span><span class="o">.</span><span class="n">kyy</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -1566,7 +1569,7 @@ if (outputEl) {{
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>bearing2.cyy.plot()
+<span></span><span class="n">bearing2</span><span class="o">.</span><span class="n">cyy</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -1629,10 +1632,10 @@ if (outputEl) {{
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>stfx = 1e6
-stfy = 0.8e6
-seal = rs.SealElement(n=0, kxx=stfx, kyy=stfy, cxx=1e3, cyy=0.8e3)
-seal
+<span></span><span class="n">stfx</span> <span class="o">=</span> <span class="mf">1e6</span>
+<span class="n">stfy</span> <span class="o">=</span> <span class="mf">0.8e6</span>
+<span class="n">seal</span> <span class="o">=</span> <span class="n">rs</span><span class="o">.</span><span class="n">SealElement</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">kxx</span><span class="o">=</span><span class="n">stfx</span><span class="p">,</span> <span class="n">kyy</span><span class="o">=</span><span class="n">stfy</span><span class="p">,</span> <span class="n">cxx</span><span class="o">=</span><span class="mf">1e3</span><span class="p">,</span> <span class="n">cyy</span><span class="o">=</span><span class="mf">0.8e3</span><span class="p">)</span>
+<span class="n">seal</span>
 </pre></div>
 </div>
 </div>
@@ -1660,21 +1663,21 @@ SealElement(n=0, n_link=None,
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>n = 0
-n_balls= 8
-d_balls = 0.03
-fs = 500.0
-alpha = np.pi / 6
-tag = &quot;ballbearing&quot;
-ballbearing = rs.BallBearingElement(
-    n=n,
-    n_balls=n_balls,
-    d_balls=d_balls,
-    fs=fs,
-    alpha=alpha,
-    tag=tag,
-)
-ballbearing
+<span></span><span class="n">n</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">n_balls</span><span class="o">=</span> <span class="mi">8</span>
+<span class="n">d_balls</span> <span class="o">=</span> <span class="mf">0.03</span>
+<span class="n">fs</span> <span class="o">=</span> <span class="mf">500.0</span>
+<span class="n">alpha</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">/</span> <span class="mi">6</span>
+<span class="n">tag</span> <span class="o">=</span> <span class="s2">&quot;ballbearing&quot;</span>
+<span class="n">ballbearing</span> <span class="o">=</span> <span class="n">rs</span><span class="o">.</span><span class="n">BallBearingElement</span><span class="p">(</span>
+    <span class="n">n</span><span class="o">=</span><span class="n">n</span><span class="p">,</span>
+    <span class="n">n_balls</span><span class="o">=</span><span class="n">n_balls</span><span class="p">,</span>
+    <span class="n">d_balls</span><span class="o">=</span><span class="n">d_balls</span><span class="p">,</span>
+    <span class="n">fs</span><span class="o">=</span><span class="n">fs</span><span class="p">,</span>
+    <span class="n">alpha</span><span class="o">=</span><span class="n">alpha</span><span class="p">,</span>
+    <span class="n">tag</span><span class="o">=</span><span class="n">tag</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="n">ballbearing</span>
 </pre></div>
 </div>
 </div>
@@ -1702,21 +1705,21 @@ BallBearingElement(n=0, n_link=None,
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>n = 0
-n_rollers= 8
-l_rollers = 0.03
-fs = 500.0
-alpha = np.pi / 6
-tag = &quot;rollerbearing&quot;
-rollerbearing = rs.RollerBearingElement(
-    n=n,
-    n_rollers=n_rollers,
-    l_rollers=l_rollers,
-    fs=fs,
-    alpha=alpha,
-    tag=tag
-)
-rollerbearing
+<span></span><span class="n">n</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">n_rollers</span><span class="o">=</span> <span class="mi">8</span>
+<span class="n">l_rollers</span> <span class="o">=</span> <span class="mf">0.03</span>
+<span class="n">fs</span> <span class="o">=</span> <span class="mf">500.0</span>
+<span class="n">alpha</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">/</span> <span class="mi">6</span>
+<span class="n">tag</span> <span class="o">=</span> <span class="s2">&quot;rollerbearing&quot;</span>
+<span class="n">rollerbearing</span> <span class="o">=</span> <span class="n">rs</span><span class="o">.</span><span class="n">RollerBearingElement</span><span class="p">(</span>
+    <span class="n">n</span><span class="o">=</span><span class="n">n</span><span class="p">,</span>
+    <span class="n">n_rollers</span><span class="o">=</span><span class="n">n_rollers</span><span class="p">,</span>
+    <span class="n">l_rollers</span><span class="o">=</span><span class="n">l_rollers</span><span class="p">,</span>
+    <span class="n">fs</span><span class="o">=</span><span class="n">fs</span><span class="p">,</span>
+    <span class="n">alpha</span><span class="o">=</span><span class="n">alpha</span><span class="p">,</span>
+    <span class="n">tag</span><span class="o">=</span><span class="n">tag</span>
+<span class="p">)</span>
+<span class="n">rollerbearing</span>
 </pre></div>
 </div>
 </div>
@@ -1746,21 +1749,21 @@ RollerBearingElement(n=0, n_link=None,
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>n = 0
-g0 = 1e-3
-i0 = 1.0
-ag = 1e-4
-nw = 200
-alpha = 0.392
-kp_pid = 1.0
-kd_pid = 1.0
-k_amp = 1.0
-k_sense = 1.0
-tag = &quot;magneticbearing&quot;
-mbearing = rs.MagneticBearingElement(
-    n=n,g0=g0,i0=i0,ag=ag,nw=nw,alpha=alpha, kp_pid=kp_pid,kd_pid=kd_pid, k_amp=k_amp, k_sense=k_sense, tag=tag
-)
-mbearing
+<span></span><span class="n">n</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">g0</span> <span class="o">=</span> <span class="mf">1e-3</span>
+<span class="n">i0</span> <span class="o">=</span> <span class="mf">1.0</span>
+<span class="n">ag</span> <span class="o">=</span> <span class="mf">1e-4</span>
+<span class="n">nw</span> <span class="o">=</span> <span class="mi">200</span>
+<span class="n">alpha</span> <span class="o">=</span> <span class="mf">0.392</span>
+<span class="n">kp_pid</span> <span class="o">=</span> <span class="mf">1.0</span>
+<span class="n">kd_pid</span> <span class="o">=</span> <span class="mf">1.0</span>
+<span class="n">k_amp</span> <span class="o">=</span> <span class="mf">1.0</span>
+<span class="n">k_sense</span> <span class="o">=</span> <span class="mf">1.0</span>
+<span class="n">tag</span> <span class="o">=</span> <span class="s2">&quot;magneticbearing&quot;</span>
+<span class="n">mbearing</span> <span class="o">=</span> <span class="n">rs</span><span class="o">.</span><span class="n">MagneticBearingElement</span><span class="p">(</span>
+    <span class="n">n</span><span class="o">=</span><span class="n">n</span><span class="p">,</span><span class="n">g0</span><span class="o">=</span><span class="n">g0</span><span class="p">,</span><span class="n">i0</span><span class="o">=</span><span class="n">i0</span><span class="p">,</span><span class="n">ag</span><span class="o">=</span><span class="n">ag</span><span class="p">,</span><span class="n">nw</span><span class="o">=</span><span class="n">nw</span><span class="p">,</span><span class="n">alpha</span><span class="o">=</span><span class="n">alpha</span><span class="p">,</span> <span class="n">kp_pid</span><span class="o">=</span><span class="n">kp_pid</span><span class="p">,</span><span class="n">kd_pid</span><span class="o">=</span><span class="n">kd_pid</span><span class="p">,</span> <span class="n">k_amp</span><span class="o">=</span><span class="n">k_amp</span><span class="p">,</span> <span class="n">k_sense</span><span class="o">=</span><span class="n">k_sense</span><span class="p">,</span> <span class="n">tag</span><span class="o">=</span><span class="n">tag</span>
+<span class="p">)</span>
+<span class="n">mbearing</span>
 </pre></div>
 </div>
 </div>
@@ -1798,10 +1801,10 @@ sheet_name: int or str, optional
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span># single bearing element
-file_path = Path(&quot;bearing_seal_si.xls&quot;)
-bearing = rs.BearingElement.from_table(n=0, file=file_path)
-bearing
+<span></span><span class="c1"># single bearing element</span>
+<span class="n">file_path</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s2">&quot;bearing_seal_si.xls&quot;</span><span class="p">)</span>
+<span class="n">bearing</span> <span class="o">=</span> <span class="n">rs</span><span class="o">.</span><span class="n">BearingElement</span><span class="o">.</span><span class="n">from_table</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">file</span><span class="o">=</span><span class="n">file_path</span><span class="p">)</span>
+<span class="n">bearing</span>
 </pre></div>
 </div>
 </div>
@@ -1835,11 +1838,11 @@ BearingElement(n=0, n_link=None,
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span># list of bearing elements
+<span></span><span class="c1"># list of bearing elements</span>
 
-# nodes = list with the bearing elements nodes number
-# file_path = Path(&quot;bearing_seal_si.xls&quot;)
-# bearings = [rs.BearingElement.from_table(n, file_path, sheet_name=i) for i, n in enumerate(nodes)]
+<span class="c1"># nodes = list with the bearing elements nodes number</span>
+<span class="c1"># file_path = Path(&quot;bearing_seal_si.xls&quot;)</span>
+<span class="c1"># bearings = [rs.BearingElement.from_table(n, file_path, sheet_name=i) for i, n in enumerate(nodes)]</span>
 </pre></div>
 </div>
 </div>
@@ -1856,9 +1859,9 @@ BearingElement(n=0, n_link=None,
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span># inputting m
-p0 = rs.PointMass(n=0, m=2)
-p0.M() # returns de mass matrices for the element
+<span></span><span class="c1"># inputting m</span>
+<span class="n">p0</span> <span class="o">=</span> <span class="n">rs</span><span class="o">.</span><span class="n">PointMass</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">m</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">p0</span><span class="o">.</span><span class="n">M</span><span class="p">()</span> <span class="c1"># returns de mass matrices for the element</span>
 </pre></div>
 </div>
 </div>
@@ -1877,9 +1880,9 @@ array([[2., 0.],
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span># inputting mx and my
-p1 = rs.PointMass(n=0, mx=2, my=3)
-p1.M()
+<span></span><span class="c1"># inputting mx and my</span>
+<span class="n">p1</span> <span class="o">=</span> <span class="n">rs</span><span class="o">.</span><span class="n">PointMass</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">mx</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">my</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">p1</span><span class="o">.</span><span class="n">M</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -1908,47 +1911,47 @@ array([[2., 0.],
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>n = 6
+<span></span><span class="n">n</span> <span class="o">=</span> <span class="mi">6</span>
 
-shaft_elem = [
-    rs.ShaftElement(
-        L=0.25,
-        idl=0.0,
-        odl=0.05,
-        material=steel,
-        shear_effects=True,
-        rotary_inertia=True,
-        gyroscopic=True,
-    )
-    for _ in range(n)
-]
+<span class="n">shaft_elem</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">rs</span><span class="o">.</span><span class="n">ShaftElement</span><span class="p">(</span>
+        <span class="n">L</span><span class="o">=</span><span class="mf">0.25</span><span class="p">,</span>
+        <span class="n">idl</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span>
+        <span class="n">odl</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span>
+        <span class="n">material</span><span class="o">=</span><span class="n">steel</span><span class="p">,</span>
+        <span class="n">shear_effects</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="n">rotary_inertia</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="n">gyroscopic</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+<span class="p">]</span>
 
-disk0 = rs.DiskElement.from_geometry(
-    n=2, material=steel, width=0.07, i_d=0.05, o_d=0.28
-)
-disk1 = rs.DiskElement.from_geometry(
-    n=4, material=steel, width=0.07, i_d=0.05, o_d=0.28
-)
-disks = [disk0, disk1]
+<span class="n">disk0</span> <span class="o">=</span> <span class="n">rs</span><span class="o">.</span><span class="n">DiskElement</span><span class="o">.</span><span class="n">from_geometry</span><span class="p">(</span>
+    <span class="n">n</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">material</span><span class="o">=</span><span class="n">steel</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mf">0.07</span><span class="p">,</span> <span class="n">i_d</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span> <span class="n">o_d</span><span class="o">=</span><span class="mf">0.28</span>
+<span class="p">)</span>
+<span class="n">disk1</span> <span class="o">=</span> <span class="n">rs</span><span class="o">.</span><span class="n">DiskElement</span><span class="o">.</span><span class="n">from_geometry</span><span class="p">(</span>
+    <span class="n">n</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">material</span><span class="o">=</span><span class="n">steel</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mf">0.07</span><span class="p">,</span> <span class="n">i_d</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span> <span class="n">o_d</span><span class="o">=</span><span class="mf">0.28</span>
+<span class="p">)</span>
+<span class="n">disks</span> <span class="o">=</span> <span class="p">[</span><span class="n">disk0</span><span class="p">,</span> <span class="n">disk1</span><span class="p">]</span>
 
-stfx = 1e6
-stfy = 0.8e6
-bearing0 = rs.BearingElement(0, kxx=stfx, kyy=stfy, cxx=0, n_link=7)
-bearing1 = rs.BearingElement(6, kxx=stfx, kyy=stfy, cxx=0)
-bearing2 = rs.BearingElement(7, kxx=stfx, kyy=stfy, cxx=0)
+<span class="n">stfx</span> <span class="o">=</span> <span class="mf">1e6</span>
+<span class="n">stfy</span> <span class="o">=</span> <span class="mf">0.8e6</span>
+<span class="n">bearing0</span> <span class="o">=</span> <span class="n">rs</span><span class="o">.</span><span class="n">BearingElement</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">kxx</span><span class="o">=</span><span class="n">stfx</span><span class="p">,</span> <span class="n">kyy</span><span class="o">=</span><span class="n">stfy</span><span class="p">,</span> <span class="n">cxx</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">n_link</span><span class="o">=</span><span class="mi">7</span><span class="p">)</span>
+<span class="n">bearing1</span> <span class="o">=</span> <span class="n">rs</span><span class="o">.</span><span class="n">BearingElement</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="n">kxx</span><span class="o">=</span><span class="n">stfx</span><span class="p">,</span> <span class="n">kyy</span><span class="o">=</span><span class="n">stfy</span><span class="p">,</span> <span class="n">cxx</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">bearing2</span> <span class="o">=</span> <span class="n">rs</span><span class="o">.</span><span class="n">BearingElement</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="n">kxx</span><span class="o">=</span><span class="n">stfx</span><span class="p">,</span> <span class="n">kyy</span><span class="o">=</span><span class="n">stfy</span><span class="p">,</span> <span class="n">cxx</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 
-bearings = [bearing0, bearing1, bearing2]
+<span class="n">bearings</span> <span class="o">=</span> <span class="p">[</span><span class="n">bearing0</span><span class="p">,</span> <span class="n">bearing1</span><span class="p">,</span> <span class="n">bearing2</span><span class="p">]</span>
 
-pm0 = rs.PointMass(n=7, m=30)
-pointmass = [pm0]
+<span class="n">pm0</span> <span class="o">=</span> <span class="n">rs</span><span class="o">.</span><span class="n">PointMass</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">7</span><span class="p">,</span> <span class="n">m</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span>
+<span class="n">pointmass</span> <span class="o">=</span> <span class="p">[</span><span class="n">pm0</span><span class="p">]</span>
 
-rotor1 = rs.Rotor(shaft_elem, disks, bearings, pointmass)
+<span class="n">rotor1</span> <span class="o">=</span> <span class="n">rs</span><span class="o">.</span><span class="n">Rotor</span><span class="p">(</span><span class="n">shaft_elem</span><span class="p">,</span> <span class="n">disks</span><span class="p">,</span> <span class="n">bearings</span><span class="p">,</span> <span class="n">pointmass</span><span class="p">)</span>
 
-print(&quot;Rotor total mass = &quot;, np.round(rotor1.m, 2))
-print(&quot;Rotor center of gravity =&quot;, np.round(rotor1.CG, 2))
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Rotor total mass = &quot;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">rotor1</span><span class="o">.</span><span class="n">m</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Rotor center of gravity =&quot;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">rotor1</span><span class="o">.</span><span class="n">CG</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
 
-# plotting the rotor model
-rotor1.plot_rotor()
+<span class="c1"># plotting the rotor model</span>
+<span class="n">rotor1</span><span class="o">.</span><span class="n">plot_rotor</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -2020,60 +2023,60 @@ if (outputEl) {{
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>i_d = 0
-o_d = 0.05
+<span></span><span class="n">i_d</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">o_d</span> <span class="o">=</span> <span class="mf">0.05</span>
 
-# inner diameter of each section
-i_ds_data = [0, 0, 0]
-# outer diameter of each section
-o_ds_data = [0.05, 0.05, 0.05]
-# length of each section
-leng_data = [0.5, 0.5, 0.5]
+<span class="c1"># inner diameter of each section</span>
+<span class="n">i_ds_data</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
+<span class="c1"># outer diameter of each section</span>
+<span class="n">o_ds_data</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">]</span>
+<span class="c1"># length of each section</span>
+<span class="n">leng_data</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">]</span>
 
-material_data = [steel, steel, steel]
-# material_data = steel
-stfx = 1e6
-stfy = 0.8e6
+<span class="n">material_data</span> <span class="o">=</span> <span class="p">[</span><span class="n">steel</span><span class="p">,</span> <span class="n">steel</span><span class="p">,</span> <span class="n">steel</span><span class="p">]</span>
+<span class="c1"># material_data = steel</span>
+<span class="n">stfx</span> <span class="o">=</span> <span class="mf">1e6</span>
+<span class="n">stfy</span> <span class="o">=</span> <span class="mf">0.8e6</span>
 
-# n = 0 refers to the section 0, first node
-bearing0 = rs.BearingElement(n=0, kxx=stfx, kyy=stfy, cxx=1e3)
+<span class="c1"># n = 0 refers to the section 0, first node</span>
+<span class="n">bearing0</span> <span class="o">=</span> <span class="n">rs</span><span class="o">.</span><span class="n">BearingElement</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">kxx</span><span class="o">=</span><span class="n">stfx</span><span class="p">,</span> <span class="n">kyy</span><span class="o">=</span><span class="n">stfy</span><span class="p">,</span> <span class="n">cxx</span><span class="o">=</span><span class="mf">1e3</span><span class="p">)</span>
 
-# n = 3 refers to the section 2, last node
-bearing1 = rs.BearingElement(n=3, kxx=stfx, kyy=stfy, cxx=1e3)
-bearings = [bearing0, bearing1]
+<span class="c1"># n = 3 refers to the section 2, last node</span>
+<span class="n">bearing1</span> <span class="o">=</span> <span class="n">rs</span><span class="o">.</span><span class="n">BearingElement</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">kxx</span><span class="o">=</span><span class="n">stfx</span><span class="p">,</span> <span class="n">kyy</span><span class="o">=</span><span class="n">stfy</span><span class="p">,</span> <span class="n">cxx</span><span class="o">=</span><span class="mf">1e3</span><span class="p">)</span>
+<span class="n">bearings</span> <span class="o">=</span> <span class="p">[</span><span class="n">bearing0</span><span class="p">,</span> <span class="n">bearing1</span><span class="p">]</span>
 
-# n = 1 refers to the section 1, first node
-disk0 = rs.DiskElement.from_geometry(
-    n=1,
-    material=steel,
-    width=0.07,
-    i_d=0.05,
-    o_d=0.28
-)
+<span class="c1"># n = 1 refers to the section 1, first node</span>
+<span class="n">disk0</span> <span class="o">=</span> <span class="n">rs</span><span class="o">.</span><span class="n">DiskElement</span><span class="o">.</span><span class="n">from_geometry</span><span class="p">(</span>
+    <span class="n">n</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+    <span class="n">material</span><span class="o">=</span><span class="n">steel</span><span class="p">,</span>
+    <span class="n">width</span><span class="o">=</span><span class="mf">0.07</span><span class="p">,</span>
+    <span class="n">i_d</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span>
+    <span class="n">o_d</span><span class="o">=</span><span class="mf">0.28</span>
+<span class="p">)</span>
 
-# n = 2 refers to the section 2, first node
-disk1 = rs.DiskElement.from_geometry(
-    n=2,
-    material=steel,
-    width=0.07,
-    i_d=0.05,
-    o_d=0.28
-)
-disks = [disk0,disk1]
+<span class="c1"># n = 2 refers to the section 2, first node</span>
+<span class="n">disk1</span> <span class="o">=</span> <span class="n">rs</span><span class="o">.</span><span class="n">DiskElement</span><span class="o">.</span><span class="n">from_geometry</span><span class="p">(</span>
+    <span class="n">n</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+    <span class="n">material</span><span class="o">=</span><span class="n">steel</span><span class="p">,</span>
+    <span class="n">width</span><span class="o">=</span><span class="mf">0.07</span><span class="p">,</span>
+    <span class="n">i_d</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span>
+    <span class="n">o_d</span><span class="o">=</span><span class="mf">0.28</span>
+<span class="p">)</span>
+<span class="n">disks</span> <span class="o">=</span> <span class="p">[</span><span class="n">disk0</span><span class="p">,</span><span class="n">disk1</span><span class="p">]</span>
 
-rotor2 = rs.Rotor.from_section(
-    brg_seal_data=bearings,
-    disk_data=disks,
-    idl_data=i_ds_data,
-    leng_data=leng_data,
-    odl_data=o_ds_data,
-    nel_r=4,
-    material_data=steel,
-)
+<span class="n">rotor2</span> <span class="o">=</span> <span class="n">rs</span><span class="o">.</span><span class="n">Rotor</span><span class="o">.</span><span class="n">from_section</span><span class="p">(</span>
+    <span class="n">brg_seal_data</span><span class="o">=</span><span class="n">bearings</span><span class="p">,</span>
+    <span class="n">disk_data</span><span class="o">=</span><span class="n">disks</span><span class="p">,</span>
+    <span class="n">idl_data</span><span class="o">=</span><span class="n">i_ds_data</span><span class="p">,</span>
+    <span class="n">leng_data</span><span class="o">=</span><span class="n">leng_data</span><span class="p">,</span>
+    <span class="n">odl_data</span><span class="o">=</span><span class="n">o_ds_data</span><span class="p">,</span>
+    <span class="n">nel_r</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span>
+    <span class="n">material_data</span><span class="o">=</span><span class="n">steel</span><span class="p">,</span>
+<span class="p">)</span>
 
-print(&quot;Rotor total mass = &quot;, np.round(rotor2.m, 2))
-print(&quot;Rotor center of gravity =&quot;, np.round(rotor2.CG, 2))
-rotor2.plot_rotor()
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Rotor total mass = &quot;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">rotor2</span><span class="o">.</span><span class="n">m</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Rotor center of gravity =&quot;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">rotor2</span><span class="o">.</span><span class="n">CG</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+<span class="n">rotor2</span><span class="o">.</span><span class="n">plot_rotor</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -2146,7 +2149,7 @@ if (outputEl) {{
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>rotor1.plot_rotor()
+<span></span><span class="n">rotor1</span><span class="o">.</span><span class="n">plot_rotor</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -2204,20 +2207,20 @@ if (outputEl) {{
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>shaft_file = Path(&quot;shaft_si.xls&quot;)
-shaft = rs.ShaftElement.from_table(
-    file=shaft_file, sheet_type=&quot;Model&quot;, sheet_name=&quot;Model&quot;
-)
+<span></span><span class="n">shaft_file</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s2">&quot;shaft_si.xls&quot;</span><span class="p">)</span>
+<span class="n">shaft</span> <span class="o">=</span> <span class="n">rs</span><span class="o">.</span><span class="n">ShaftElement</span><span class="o">.</span><span class="n">from_table</span><span class="p">(</span>
+    <span class="n">file</span><span class="o">=</span><span class="n">shaft_file</span><span class="p">,</span> <span class="n">sheet_type</span><span class="o">=</span><span class="s2">&quot;Model&quot;</span><span class="p">,</span> <span class="n">sheet_name</span><span class="o">=</span><span class="s2">&quot;Model&quot;</span>
+<span class="p">)</span>
 
-file_path = Path(&quot;shaft_si.xls&quot;)
-list_of_disks = rs.DiskElement.from_table(file=file_path, sheet_name=&quot;More&quot;)
+<span class="n">file_path</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s2">&quot;shaft_si.xls&quot;</span><span class="p">)</span>
+<span class="n">list_of_disks</span> <span class="o">=</span> <span class="n">rs</span><span class="o">.</span><span class="n">DiskElement</span><span class="o">.</span><span class="n">from_table</span><span class="p">(</span><span class="n">file</span><span class="o">=</span><span class="n">file_path</span><span class="p">,</span> <span class="n">sheet_name</span><span class="o">=</span><span class="s2">&quot;More&quot;</span><span class="p">)</span>
 
-bearing1 = rs.BearingElement.from_table(n=7, file=&quot;bearing_seal_si.xls&quot;, scale_factor=0.5)
-bearing2 = rs.BearingElement.from_table(n=48, file=&quot;bearing_seal_si.xls&quot;, scale_factor=0.5)
+<span class="n">bearing1</span> <span class="o">=</span> <span class="n">rs</span><span class="o">.</span><span class="n">BearingElement</span><span class="o">.</span><span class="n">from_table</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">7</span><span class="p">,</span> <span class="n">file</span><span class="o">=</span><span class="s2">&quot;bearing_seal_si.xls&quot;</span><span class="p">,</span> <span class="n">scale_factor</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="n">bearing2</span> <span class="o">=</span> <span class="n">rs</span><span class="o">.</span><span class="n">BearingElement</span><span class="o">.</span><span class="n">from_table</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">48</span><span class="p">,</span> <span class="n">file</span><span class="o">=</span><span class="s2">&quot;bearing_seal_si.xls&quot;</span><span class="p">,</span> <span class="n">scale_factor</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
 
-bearings = [bearing1, bearing2]
+<span class="n">bearings</span> <span class="o">=</span> <span class="p">[</span><span class="n">bearing1</span><span class="p">,</span> <span class="n">bearing2</span><span class="p">]</span>
 
-rotor3 = rs.Rotor(shaft, list_of_disks, bearings)
+<span class="n">rotor3</span> <span class="o">=</span> <span class="n">rs</span><span class="o">.</span><span class="n">Rotor</span><span class="p">(</span><span class="n">shaft</span><span class="p">,</span> <span class="n">list_of_disks</span><span class="p">,</span> <span class="n">bearings</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -2226,8 +2229,8 @@ rotor3 = rs.Rotor(shaft, list_of_disks, bearings)
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>node_increment = 5
-rotor3.plot_rotor(nodes=node_increment)
+<span></span><span class="n">node_increment</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="n">rotor3</span><span class="o">.</span><span class="n">plot_rotor</span><span class="p">(</span><span class="n">nodes</span><span class="o">=</span><span class="n">node_increment</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -2290,7 +2293,7 @@ if (outputEl) {{
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>rotor2.save(&#39;rotor2.toml&#39;)
+<span></span><span class="n">rotor2</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s1">&#39;rotor2.toml&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -2305,8 +2308,8 @@ if (outputEl) {{
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>rotor2_1 = rs.Rotor.load(&#39;rotor2.toml&#39;)
-rotor2_1 == rotor2
+<span></span><span class="n">rotor2_1</span> <span class="o">=</span> <span class="n">rs</span><span class="o">.</span><span class="n">Rotor</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;rotor2.toml&#39;</span><span class="p">)</span>
+<span class="n">rotor2_1</span> <span class="o">==</span> <span class="n">rotor2</span>
 </pre></div>
 </div>
 </div>
@@ -2337,13 +2340,13 @@ True
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>from ross.units import Q_
+<span></span><span class="kn">from</span> <span class="nn">ross.units</span> <span class="kn">import</span> <span class="n">Q_</span>
 
-rho = Q_(487.56237, &quot;lb/foot**3&quot;)  # Imperial System
-E = Q_(211.e9, &quot;N/m**2&quot;)           # International System
-G_s=Q_(81.2e9, &quot;N/m**2&quot;)           # International System
+<span class="n">rho</span> <span class="o">=</span> <span class="n">Q_</span><span class="p">(</span><span class="mf">487.56237</span><span class="p">,</span> <span class="s2">&quot;lb/foot**3&quot;</span><span class="p">)</span>  <span class="c1"># Imperial System</span>
+<span class="n">E</span> <span class="o">=</span> <span class="n">Q_</span><span class="p">(</span><span class="mf">211.e9</span><span class="p">,</span> <span class="s2">&quot;N/m**2&quot;</span><span class="p">)</span>           <span class="c1"># International System</span>
+<span class="n">G_s</span><span class="o">=</span><span class="n">Q_</span><span class="p">(</span><span class="mf">81.2e9</span><span class="p">,</span> <span class="s2">&quot;N/m**2&quot;</span><span class="p">)</span>           <span class="c1"># International System</span>
 
-steel4 = rs.Material(name=&quot;steel&quot;, rho=rho, E=E, G_s=G_s)
+<span class="n">steel4</span> <span class="o">=</span> <span class="n">rs</span><span class="o">.</span><span class="n">Material</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;steel&quot;</span><span class="p">,</span> <span class="n">rho</span><span class="o">=</span><span class="n">rho</span><span class="p">,</span> <span class="n">E</span><span class="o">=</span><span class="n">E</span><span class="p">,</span> <span class="n">G_s</span><span class="o">=</span><span class="n">G_s</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -2353,7 +2356,7 @@ steel4 = rs.Material(name=&quot;steel&quot;, rho=rho, E=E, G_s=G_s)
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>print(steel4)
+<span></span><span class="nb">print</span><span class="p">(</span><span class="n">steel4</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -2378,12 +2381,12 @@ Poisson coefficient     :  0.29926108
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>L = Q_(10, &quot;in&quot;)
-i_d = Q_(0., &quot;meter&quot;)
-o_d = Q_(0.05, &quot;meter&quot;)
+<span></span><span class="n">L</span> <span class="o">=</span> <span class="n">Q_</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="s2">&quot;in&quot;</span><span class="p">)</span>
+<span class="n">i_d</span> <span class="o">=</span> <span class="n">Q_</span><span class="p">(</span><span class="mf">0.</span><span class="p">,</span> <span class="s2">&quot;meter&quot;</span><span class="p">)</span>
+<span class="n">o_d</span> <span class="o">=</span> <span class="n">Q_</span><span class="p">(</span><span class="mf">0.05</span><span class="p">,</span> <span class="s2">&quot;meter&quot;</span><span class="p">)</span>
 
-elem_pint = rs.ShaftElement(L=L, idl=i_d, odl=o_d, material=steel)
-print(elem_pint)
+<span class="n">elem_pint</span> <span class="o">=</span> <span class="n">rs</span><span class="o">.</span><span class="n">ShaftElement</span><span class="p">(</span><span class="n">L</span><span class="o">=</span><span class="n">L</span><span class="p">,</span> <span class="n">idl</span><span class="o">=</span><span class="n">i_d</span><span class="p">,</span> <span class="n">odl</span><span class="o">=</span><span class="n">o_d</span><span class="p">,</span> <span class="n">material</span><span class="o">=</span><span class="n">steel</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">elem_pint</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -2415,11 +2418,11 @@ Poisson coefficient     :  0.29926108
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>kxx = Q_(2.54e4, &quot;N/in&quot;)
-cxx = Q_(1e2, &quot;N*s/m&quot;)
+<span></span><span class="n">kxx</span> <span class="o">=</span> <span class="n">Q_</span><span class="p">(</span><span class="mf">2.54e4</span><span class="p">,</span> <span class="s2">&quot;N/in&quot;</span><span class="p">)</span>
+<span class="n">cxx</span> <span class="o">=</span> <span class="n">Q_</span><span class="p">(</span><span class="mf">1e2</span><span class="p">,</span> <span class="s2">&quot;N*s/m&quot;</span><span class="p">)</span>
 
-brg_pint = rs.BearingElement(n=0, kxx=kxx, cxx=cxx)
-print(brg_pint)
+<span class="n">brg_pint</span> <span class="o">=</span> <span class="n">rs</span><span class="o">.</span><span class="n">BearingElement</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">kxx</span><span class="o">=</span><span class="n">kxx</span><span class="p">,</span> <span class="n">cxx</span><span class="o">=</span><span class="n">cxx</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">brg_pint</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -2477,10 +2480,10 @@ BearingElement(n=0, n_link=None,
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>samples = 31
-speed_range = np.linspace(315, 1150, samples)
+<span></span><span class="n">samples</span> <span class="o">=</span> <span class="mi">31</span>
+<span class="n">speed_range</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">315</span><span class="p">,</span> <span class="mi">1150</span><span class="p">,</span> <span class="n">samples</span><span class="p">)</span>
 
-campbell = rotor3.run_campbell(speed_range)
+<span class="n">campbell</span> <span class="o">=</span> <span class="n">rotor3</span><span class="o">.</span><span class="n">run_campbell</span><span class="p">(</span><span class="n">speed_range</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -2490,7 +2493,7 @@ campbell = rotor3.run_campbell(speed_range)
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>campbell.plot()
+<span></span><span class="n">campbell</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -2549,7 +2552,7 @@ if (outputEl) {{
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>campbell.plot(frequency_units=&quot;RPM&quot;)
+<span></span><span class="n">campbell</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">frequency_units</span><span class="o">=</span><span class="s2">&quot;RPM&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -2619,7 +2622,7 @@ if (outputEl) {{
     </p>
     <p>
         &copy; Copyright 2020, Team ROSS.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.3.1.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.4.3.<br/>
     </p>
   </div>
 </footer>
