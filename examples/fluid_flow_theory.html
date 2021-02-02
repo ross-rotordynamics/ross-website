@@ -422,7 +422,7 @@ div.rendered_html tbody tr:hover {
 </div>
 <p><strong>PROBLEM DESCRIPTION</strong></p>
 <p>Fluid flow occurs in the annular space between the shaft and the bearing, both of $ L $ length. These structures are called rotor and stator, respectively. The stator is fixed with radius <span class="math notranslate nohighlight">\(R_{o}\)</span> and the rotor, with radius $R_{i} $, is a rigid body with rotation speed <span class="math notranslate nohighlight">\(\omega\)</span>, as shown in the figure below.</p>
-<p><img alt="4b482a8f982b4dd2821e61a9bd109d69" class="no-scaled-link" src="https://docs.google.com/uc?id=1ZVqsNZEBQ8PhKZ5v4IlXHpwUTkgO4sM8" style="width: 350px;" /></p>
+<p><img alt="c456796a41c64883b98e10af485ea206" class="no-scaled-link" src="https://docs.google.com/uc?id=1ZVqsNZEBQ8PhKZ5v4IlXHpwUTkgO4sM8" style="width: 350px;" /></p>
 <p>Due to the rotation of the rotor, a pressure field is set in the lubricating oil film, developing fluid forces that act on the rotor surface. For a constant speed of rotation, these forces displace the rotor to a location inside the stator called the <em>equilibrium position</em>. In this position, the stator and rotor are eccentric, with a distance between centers <span class="math notranslate nohighlight">\(e\)</span> and an attitude angle <span class="math notranslate nohighlight">\(\beta\)</span>, formed between the axis connecting both centers and the vertical axis.</p>
 <p>Based on the eccentricity and attitude angle, the cosine law can be used to describe the position of the rotor surface <span class="math notranslate nohighlight">\(R_{\theta}\)</span> with respect to the center of the stator:</p>
 <div class="math notranslate nohighlight">
@@ -742,7 +742,7 @@ U\hat{u} \dfrac{\partial{U\hat{u}}}{\partial{L\hat{z}}}
 <div class="math notranslate nohighlight">
 \[v_{rot} = v_{rad}\,e_{r} + v_{tan}\,e_{\theta},\]</div>
 <p>where <span class="math notranslate nohighlight">\(e_{r}\)</span> and <span class="math notranslate nohighlight">\(e_{\theta}\)</span> are unit vectors of the cylindrical coordinate system. This is shown in the figure below.</p>
-<p><img alt="72c80b950b7843eea056c93020d421f9" class="no-scaled-link" src="https://docs.google.com/uc?id=1M9hvJYa6Hg_-PD8HpP9AriD59vR64e-P" style="width: 350px;" /></p>
+<p><img alt="5a698d9109924301a7a8ecf897e16f0c" class="no-scaled-link" src="https://docs.google.com/uc?id=1M9hvJYa6Hg_-PD8HpP9AriD59vR64e-P" style="width: 350px;" /></p>
 <p>Now, consider the position vector <span class="math notranslate nohighlight">\(a=R_{\theta} e_r\)</span>, from the stator center to any point in the rotor surface. Its time derivative, relative to an inertial frame, is the total speed <span class="math notranslate nohighlight">\(v_{tot}\)</span>:</p>
 <div class="math notranslate nohighlight">
 \[v_{rot}=\omega \dfrac{\partial R_{\theta}}{\partial \theta}\,e_r
@@ -820,7 +820,7 @@ U\hat{u} \dfrac{\partial{U\hat{u}}}{\partial{L\hat{z}}}
 <p>This is a elliptic partial differential equation and its solution detemines the pressure field <span class="math notranslate nohighlight">\(p\)</span>.</p>
 <p><strong>NUMERICAL SOLUTION</strong></p>
 <p>The partial differential equation is solved using finite centered differences method. It is applied to a regular rectangular mesh with <span class="math notranslate nohighlight">\(𝑁_{z}\)</span> nodes in the axial direction and <span class="math notranslate nohighlight">\(𝑁_{\theta}\)</span> nodes in the tangential direction, as shown in the figure below.</p>
-<p><img alt="54278ca24de94c689da2cdbb6b2fc7f9" class="no-scaled-link" src="https://docs.google.com/uc?id=1PTvlpNx6QlZq7wPWfwjKLsOa9M_qR9pp" style="width: 350px;" /></p>
+<p><img alt="ee1f74fb169c49cf9d560ed6793824af" class="no-scaled-link" src="https://docs.google.com/uc?id=1PTvlpNx6QlZq7wPWfwjKLsOa9M_qR9pp" style="width: 350px;" /></p>
 <p>The discretized equation is given by</p>
 <div class="math notranslate nohighlight">
 \[p_{i-1,j}\frac{(\mathbf{C_{2(i-1,j)}})}{\Delta z^{2}} +  p_{i,j-1}\frac{(\mathbf{C_{1(i,j-1)}})}{\Delta\theta^{2}} - p_{i,j}\left(\frac{(\mathbf{C_{1(i,j)}} + \mathbf{C_{1(i,j-1)}})}{\Delta\theta^{2}} + \frac{(\mathbf{C_{2(i,j)}} + \mathbf{C_{2(i-1,j)}})}{\Delta z^{2}} \right) + p_{i,j+1} \frac{(\mathbf{C_{1(i,j)}})}{\Delta\theta^{2}} + p_{i+1,j}\frac{(\mathbf{C_{2(i,j)}})}{\Delta z^{2}} = \frac{1}{\Delta\theta}\left[\mathbf{C_{0W(i,j)}}-\mathbf{C_{0W(i,j-1)}}\right],\nonumber\]</div>
@@ -835,7 +835,7 @@ U\hat{u} \dfrac{\partial{U\hat{u}}}{\partial{L\hat{z}}}
 <p>According to DOWNSON and TAYLOR (1979) [1], cavitation can be defined as the phenomenon that describes the discontinuity of a fluid due to the existence of gases or steam. This is a characteristic phenomenon in hydrodynamic bearings.</p>
 <p>It is important to note that this change in pressure behavior due to cavitation does not necessarily start at the point of least thickness in the annular space. Several studies seek to establish the appropriate boundary conditions to describe the beginning of cavitation in the fluid. ISHIDA and YAMAMOTO (2012) [2] indicate that the condition of Gumbel is widely used because of its simplicity. Using the argument that lubricant evaporation and axial air flow from both ends can occur, the pressure
 in the region <span class="math notranslate nohighlight">\(\pi &lt; \theta &lt; 2\pi\)</span> is considered to be almost zero (that is, the atmospheric pressure ). $p = 0 $ is then defined across the divergent region.</p>
-<p><img alt="26a50c16a5bc41a5a74a46427239e3d2" class="no-scaled-link" src="https://docs.google.com/uc?id=1pmKtHS0sW4t6kW0qq3sxwNIlBMJRQUaz" style="width: 250px;" /></p>
+<p><img alt="e666e99c76b849efb132d9ba2371aa6a" class="no-scaled-link" src="https://docs.google.com/uc?id=1pmKtHS0sW4t6kW0qq3sxwNIlBMJRQUaz" style="width: 250px;" /></p>
 <p>In addition, according to SANTOS (1995) [3], although it violates mass conservation, this condition presents acceptable errors in the global parameters of the bearing. For these reasons, the present study adopts the Gumbel boundary condition to describe the phenomenon of cavitation.</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
@@ -1098,7 +1098,7 @@ fy= 525.0000139450291
 \[f_{y_0} = W\]</div>
 <p>Knowing the external load $ W $, it is possible to reach the equilibrium position using an iterative method. Starting at an initial position, the residues between the forces at the current position and external forces are calculated. If the residue is greater than a defined tolerance, the position of the rotor is varied systematically, inside the fourth quadrant, until the desired tolerance is reached. In other words, a local minimum of the forces function is reached. The Python tool
 <em>optimize.least_squares</em> was used for this purpose. The method is shown in the image below.</p>
-<p><img alt="979f5b739afa4035a15a4d66905b6acb" class="no-scaled-link" src="https://docs.google.com/uc?id=1KQImAbLR8uyFHpl1pGL-sJ4BCiUT0Ok3" style="height: 300px;" /></p>
+<p><img alt="88b57a2c9078484eb3706f275c7ec34a" class="no-scaled-link" src="https://docs.google.com/uc?id=1KQImAbLR8uyFHpl1pGL-sJ4BCiUT0Ok3" style="height: 300px;" /></p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
 </pre></div>
