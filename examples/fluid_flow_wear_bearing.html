@@ -120,10 +120,7 @@
       role="menu"
       aria-labelledby="dLabelLocalToc"><ul>
 <li><a class="reference internal" href="#">Fluid-flow: Wear Bearing</a><ul>
-<li><a class="reference internal" href="#Based-on-MOTA-(2020),-where-is-the-complete-theory-used-by-FluidFlow.">Based on MOTA (2020), where is the complete theory used by <em>FluidFlow</em>.</a><ul>
-<li><a class="reference internal" href="#Mota,-J.-A.;-Estudo-da-teoria-de-lubrificação-com-parametrização-diferenciada-da-geometria-e-aplicações-em-mancais-hidrodinâmicos.-Dissertação-de-Mestrado---Programa-de-Pós-Graduação-em-Informática,-Universidade-Federal-do-Rio-de-Janeiro,-Rio-de-Janeiro,-2020">Mota, J. A.; <strong>Estudo da teoria de lubrificação com parametrização diferenciada da geometria e aplicações em mancais hidrodinâmicos.</strong> Dissertação de Mestrado - Programa de Pós-Graduação em Informática, Universidade Federal do Rio de Janeiro, Rio de Janeiro, 2020</a></li>
-</ul>
-</li>
+<li><a class="reference internal" href="#Based-on-MOTA-(2020),-where-is-the-complete-theory-used-by-FluidFlow:">Based on MOTA (2020), where is the complete theory used by <em>FluidFlow</em>:</a></li>
 </ul>
 </li>
 </ul>
@@ -413,12 +410,12 @@ div.rendered_html tbody tr:hover {
 <h1>Fluid-flow: Wear Bearing<a class="headerlink" href="#Fluid-flow:-Wear-Bearing" title="Permalink to this headline">¶</a></h1>
 <p><strong>WEAR BEARINGS</strong></p>
 <p>Although lubrication reduces the friction between the metal surfaces of the bearing, these structures usually suffer wear after a long operating period or else due to a certain number of repetitions of the starting cycles.</p>
-<p><img alt="12a4abc401b1488aa2b6d90d45bc2d62" class="no-scaled-link" src="https://docs.google.com/uc?id=1ZGYl4aCO3WTx-hp_Bkh9PpQMEWCKOwsL" style="width: 350px; height: 350px;" /></p>
-<p>The wear geometry that will be used in the FluidFlow has been adapted from the version presented by MACHADO; CAVALCA (2015) [1]. To include wear in the geometry, it is necessary to make some adaptations to the stator radius. Considering that the fault starts at the angular position $ <span class="math">\theta `= :nbsphinx-math:</span>theta`_s $ and ends at $ <span class="math">\theta `= :nbsphinx-math:</span>theta`_f $, the stator description from the origin is defined as:</p>
+<p><img alt="e1ba5baf8b024fe28317c39328c883f9" class="no-scaled-link" src="https://docs.google.com/uc?id=1ZGYl4aCO3WTx-hp_Bkh9PpQMEWCKOwsL" style="width: 350px;" /></p>
+<p>The wear geometry that will be used in the FluidFlow has been adapted from the version presented by MACHADO; CAVALCA (2015) [1]. To include wear in the geometry, it is necessary to make some adaptations to the stator radius. Considering that the fault starts at the angular position <span class="math notranslate nohighlight">\(\theta = \theta_{s}\)</span> and ends at <span class="math notranslate nohighlight">\(\theta = \theta_{f}\)</span>, the stator description from the origin is defined as:</p>
 <div class="math notranslate nohighlight">
 \[R_o^* = R_o + d_{\theta}\]</div>
-<p>where <span class="math notranslate nohighlight">\(d_{\theta} =\)</span> <span class="math notranslate nohighlight">\(\begin{cases}  0 \text{,}  &amp;\mbox{if}  \quad 0 \leq \theta \leq \theta_s\text{,} \quad  \theta_f \leq \theta \leq 2\pi \\  d_0 - F \left(1 + \cos{\left(\theta - \pi/2\right)} \right) \text{,}  &amp;\mbox{if}  \quad \theta_s &lt; \theta &lt; \theta_f \end{cases}\)</span>.</p>
-<p>In $ <span class="math">\theta</span>_s $ and $ <span class="math">\theta</span>_f $, the wear depth is zero, so the location of the edges can be defined as follows:</p>
+<p>where <span class="math notranslate nohighlight">\(d_{\theta} =\begin{cases}  0 \text{,}  &amp;\mbox{if}  \quad 0 \leq \theta \leq \theta_s\text{,} \quad  \theta_f \leq \theta \leq 2\pi \\  d_0 - F \left(1 + \cos{\left(\theta - \pi/2\right)} \right) \text{,}  &amp;\mbox{if}  \quad \theta_s &lt; \theta &lt; \theta_f \end{cases}\)</span>.</p>
+<p>In <span class="math notranslate nohighlight">\(\theta_{s}\)</span> and <span class="math notranslate nohighlight">\(\theta_{f}\)</span>, the wear depth is zero, so the location of the edges can be defined as follows:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}\theta_s = \pi/2 + \cos^{-1}{\left(d_0/F -1\right)} + \gamma \nonumber\\
     \theta_f = \pi/2 - \cos^{-1}{\left(d_0/F -1\right)} + \gamma\end{split}\]</div>
@@ -654,13 +651,11 @@ Damping coefficients:
 cxx, cxy, cyx, cyy 25997.06674114378 -10920.94258413261 -5961.894424650818 20748.395142083988
 </pre></div></div>
 </div>
-<div class="section" id="Based-on-MOTA-(2020),-where-is-the-complete-theory-used-by-FluidFlow.">
-<h2>Based on MOTA (2020), where is the complete theory used by <em>FluidFlow</em>.<a class="headerlink" href="#Based-on-MOTA-(2020),-where-is-the-complete-theory-used-by-FluidFlow." title="Permalink to this headline">¶</a></h2>
-<div class="section" id="Mota,-J.-A.;-Estudo-da-teoria-de-lubrificação-com-parametrização-diferenciada-da-geometria-e-aplicações-em-mancais-hidrodinâmicos.-Dissertação-de-Mestrado---Programa-de-Pós-Graduação-em-Informática,-Universidade-Federal-do-Rio-de-Janeiro,-Rio-de-Janeiro,-2020">
-<h3>Mota, J. A.; <strong>Estudo da teoria de lubrificação com parametrização diferenciada da geometria e aplicações em mancais hidrodinâmicos.</strong> Dissertação de Mestrado - Programa de Pós-Graduação em Informática, Universidade Federal do Rio de Janeiro, Rio de Janeiro, 2020<a class="headerlink" href="#Mota,-J.-A.;-Estudo-da-teoria-de-lubrificação-com-parametrização-diferenciada-da-geometria-e-aplicações-em-mancais-hidrodinâmicos.-Dissertação-de-Mestrado---Programa-de-Pós-Graduação-em-Informática,-Universidade-Federal-do-Rio-de-Janeiro,-Rio-de-Janeiro,-2020" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="Based-on-MOTA-(2020),-where-is-the-complete-theory-used-by-FluidFlow:">
+<h2>Based on MOTA (2020), where is the complete theory used by <em>FluidFlow</em>:<a class="headerlink" href="#Based-on-MOTA-(2020),-where-is-the-complete-theory-used-by-FluidFlow:" title="Permalink to this headline">¶</a></h2>
+<p>Mota, J. A.; <strong>Estudo da teoria de lubrificação com parametrização diferenciada da geometria e aplicações em mancais hidrodinâmicos.</strong> Dissertação de Mestrado - Programa de Pós-Graduação em Informática, Universidade Federal do Rio de Janeiro, Rio de Janeiro, 2020</p>
 <p><strong>REFERENCES CITED IN THE TEXT</strong></p>
 <p>[1] MACHADO, T. H.; CAVALCA, K. L. Modeling of hydrodynamic bearing wear in rotor-bearing systems. <strong>Mechanics Research Communications</strong> - Elsevier, [S.l.],v. 69, p. 15–23, 2015.</p>
-</div>
 </div>
 </div>
 
