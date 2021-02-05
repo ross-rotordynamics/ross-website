@@ -31,6 +31,7 @@ ross.Rotor
    .. automethod:: plot_rotor
    .. automethod:: plot_ucs
    .. automethod:: run_campbell
+   .. automethod:: run_crack
    .. automethod:: run_critical_speed
    .. automethod:: run_freq_response
    .. automethod:: run_misalignment

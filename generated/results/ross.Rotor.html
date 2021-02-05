@@ -771,6 +771,53 @@ It will be returned if plot=False.</p>
 </dd></dl>
 
 <dl class="py method">
+<dt id="ross.Rotor.run_crack">
+<code class="sig-name descname">run_crack</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">\*\*kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/rotor_assembly.html#Rotor.run_crack"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.Rotor.run_crack" title="Permalink to this definition">¶</a></dt>
+<dd><p>Execute the crack defect and generates the crack object on the back-end.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>**kwargs: dictionary</strong></dt><dd><dl class="simple">
+<dt><a href="#id7"><span class="problematic" id="id8">**</span></a>kwargs receives:</dt><dd><dl class="simple">
+<dt>dt<span class="classifier">float</span></dt><dd><p>Time step</p>
+</dd>
+<dt>tI<span class="classifier">float</span></dt><dd><p>Initial time</p>
+</dd>
+<dt>tF<span class="classifier">float</span></dt><dd><p>Final time</p>
+</dd>
+<dt>cd<span class="classifier">float</span></dt><dd><p>Crack depth</p>
+</dd>
+<dt>n_crack<span class="classifier">float</span></dt><dd><p>Element where the crack is located</p>
+</dd>
+<dt>speed<span class="classifier">float</span></dt><dd><p>Operational speed of the machine</p>
+</dd>
+<dt>massunb<span class="classifier">array</span></dt><dd><p>Array with the unbalance magnitude. The unit is kg.m.</p>
+</dd>
+<dt>phaseunb<span class="classifier">array</span></dt><dd><p>Array with the unbalance phase. The unit is rad.</p>
+</dd>
+<dt>crack_type<span class="classifier">string</span></dt><dd><p>String containing type of crack model chosed. The avaible types are: Mayes and Gasch.</p>
+</dd>
+<dt>print_progress<span class="classifier">bool</span></dt><dd><p>Set it True, to print the time iterations and the total time spent, by default False.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd>
+<dt><strong>Examples</strong></dt><dd></dd>
+<dt><strong>——–</strong></dt><dd></dd>
+<dt><strong>&gt;&gt;&gt; from ross.defects.crack import crack_example</strong></dt><dd></dd>
+<dt><strong>&gt;&gt;&gt; probe1 = (14, 0)</strong></dt><dd></dd>
+<dt><strong>&gt;&gt;&gt; probe2 = (22, 0)</strong></dt><dd></dd>
+<dt><strong>&gt;&gt;&gt; response = crack_example()</strong></dt><dd></dd>
+<dt><strong>&gt;&gt;&gt; results = response.run_time_response()</strong></dt><dd></dd>
+<dt><strong>&gt;&gt;&gt; fig = response.plot_dfft(probe=[probe1, probe2], range_freq=[0, 100], yaxis_type=”log”)</strong></dt><dd></dd>
+<dt><strong>&gt;&gt;&gt; # fig.show()</strong></dt><dd></dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
 <dt id="ross.Rotor.run_critical_speed">
 <code class="sig-name descname">run_critical_speed</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">speed_range</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">num_modes</span><span class="o">=</span><span class="default_value">12</span></em>, <em class="sig-param"><span class="n">rtol</span><span class="o">=</span><span class="default_value">0.005</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/rotor_assembly.html#Rotor.run_critical_speed"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.Rotor.run_critical_speed" title="Permalink to this definition">¶</a></dt>
 <dd><p>Calculate the critical speeds and damping ratios for the rotor model.</p>
@@ -940,14 +987,14 @@ respectively</p>
 <dl class="py method">
 <dt id="ross.Rotor.run_misalignment">
 <code class="sig-name descname">run_misalignment</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">coupling='flex'</em>, <em class="sig-param">\*\*kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/rotor_assembly.html#Rotor.run_misalignment"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.Rotor.run_misalignment" title="Permalink to this definition">¶</a></dt>
-<dd><p>Execute the misalignment defect and generates the misalignment object on the back-end. There are two types of coupling, flexible (flex) and rigid, which have different entries. These entries are provided via <a href="#id7"><span class="problematic" id="id8">**</span></a>kwargs to the specific method.</p>
+<dd><p>Execute the misalignment defect and generates the misalignment object on the back-end. There are two types of coupling, flexible (flex) and rigid, which have different entries. These entries are provided via <a href="#id9"><span class="problematic" id="id10">**</span></a>kwargs to the specific method.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>coupling</strong><span class="classifier">str</span></dt><dd><p>Coupling type. The avaible types are: flex, by default; and rigid.</p>
 </dd>
 <dt><strong>**kwargs: dictionary</strong></dt><dd><dl class="simple">
-<dt>In the case of coupling = “flex”, <a href="#id9"><span class="problematic" id="id10">**</span></a>kwargs receives:</dt><dd><dl class="simple">
+<dt>In the case of coupling = “flex”, <a href="#id11"><span class="problematic" id="id12">**</span></a>kwargs receives:</dt><dd><dl class="simple">
 <dt>dt<span class="classifier">float</span></dt><dd><p>Time step.</p>
 </dd>
 <dt>tI<span class="classifier">float</span></dt><dd><p>Initial time.</p>
@@ -983,7 +1030,7 @@ False by default.</p>
 </dd>
 </dl>
 </dd>
-<dt>In the case of coupling = “rigid”, <a href="#id11"><span class="problematic" id="id12">**</span></a>kwargs receives:</dt><dd><dl class="simple">
+<dt>In the case of coupling = “rigid”, <a href="#id13"><span class="problematic" id="id14">**</span></a>kwargs receives:</dt><dd><dl class="simple">
 <dt>dt<span class="classifier">float</span></dt><dd><p>Time step.</p>
 </dd>
 <dt>tI<span class="classifier">float</span></dt><dd><p>Initial time.</p>
@@ -1085,7 +1132,7 @@ Default is True.</p>
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>**kwargs: dictionary</strong></dt><dd><dl class="simple">
-<dt><a href="#id13"><span class="problematic" id="id14">**</span></a>kwargs receives:</dt><dd><dl class="simple">
+<dt><a href="#id15"><span class="problematic" id="id16">**</span></a>kwargs receives:</dt><dd><dl class="simple">
 <dt>dt<span class="classifier">float</span></dt><dd><p>Time step.</p>
 </dd>
 <dt>tI<span class="classifier">float</span></dt><dd><p>Initial time.</p>
