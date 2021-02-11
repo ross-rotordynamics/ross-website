@@ -484,13 +484,6 @@
         <span class="n">Ip_dsk</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">([</span><span class="n">disk</span><span class="o">.</span><span class="n">Ip</span> <span class="k">for</span> <span class="n">disk</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">disk_elements</span><span class="p">])</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">Ip</span> <span class="o">=</span> <span class="n">Ip_sh</span> <span class="o">+</span> <span class="n">Ip_dsk</span>
 
-        <span class="c1"># values for evalues and evectors will be calculated by self.run_modal</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">evalues</span> <span class="o">=</span> <span class="kc">None</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">evectors</span> <span class="o">=</span> <span class="kc">None</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">wn</span> <span class="o">=</span> <span class="kc">None</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">wd</span> <span class="o">=</span> <span class="kc">None</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">lti</span> <span class="o">=</span> <span class="kc">None</span>
-
         <span class="bp">self</span><span class="o">.</span><span class="n">_v0</span> <span class="o">=</span> <span class="kc">None</span>  <span class="c1"># used to call eigs</span>
 
         <span class="c1"># number of dofs</span>
@@ -3756,13 +3749,6 @@
         <span class="n">Ip_dsk</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">([</span><span class="n">disk</span><span class="o">.</span><span class="n">Ip</span> <span class="k">for</span> <span class="n">disk</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">disk_elements</span><span class="p">])</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">Ip</span> <span class="o">=</span> <span class="n">Ip_sh</span> <span class="o">+</span> <span class="n">Ip_dsk</span>
 
-        <span class="c1"># values for evalues and evectors will be calculated by self.run_modal</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">evalues</span> <span class="o">=</span> <span class="kc">None</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">evectors</span> <span class="o">=</span> <span class="kc">None</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">wn</span> <span class="o">=</span> <span class="kc">None</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">wd</span> <span class="o">=</span> <span class="kc">None</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">lti</span> <span class="o">=</span> <span class="kc">None</span>
-
         <span class="bp">self</span><span class="o">.</span><span class="n">_v0</span> <span class="o">=</span> <span class="kc">None</span>  <span class="c1"># used to call eigs</span>
 
         <span class="c1"># number of dofs</span>
@@ -3819,6 +3805,13 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">df_point_mass</span> <span class="o">=</span> <span class="n">df_point_mass</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">df_seals</span> <span class="o">=</span> <span class="n">df_seals</span>
 
+        <span class="k">if</span> <span class="s2">&quot;n_link&quot;</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span> <span class="ow">and</span> <span class="n">df_point_mass</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">size</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">aux_link</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;n_link&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">))</span>
+            <span class="n">aux_node</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">df_point_mass</span><span class="p">[</span><span class="s2">&quot;n&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">))</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">link_nodes</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">aux_link</span><span class="p">)</span> <span class="o">&amp;</span> <span class="nb">set</span><span class="p">(</span><span class="n">aux_node</span><span class="p">))</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">link_nodes</span> <span class="o">=</span> <span class="p">[]</span>
+
         <span class="c1"># global indexes for dofs</span>
         <span class="n">n_last</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">shaft_elements</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">n</span>
         <span class="k">for</span> <span class="n">elm</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">elements</span><span class="p">:</span>
@@ -3852,11 +3845,6 @@
             <span class="n">df</span><span class="o">.</span><span class="n">at</span><span class="p">[</span>
                 <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="o">.</span><span class="n">tag</span> <span class="o">==</span> <span class="n">elm</span><span class="o">.</span><span class="n">tag</span><span class="p">]</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="s2">&quot;dof_global_index&quot;</span>
             <span class="p">]</span> <span class="o">=</span> <span class="n">elm</span><span class="o">.</span><span class="n">dof_global_index</span>
-
-        <span class="c1">#  values for static analysis will be calculated by def static</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">Vx</span> <span class="o">=</span> <span class="kc">None</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">Bm</span> <span class="o">=</span> <span class="kc">None</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">disp_y</span> <span class="o">=</span> <span class="kc">None</span>
 
         <span class="c1"># define positions for disks</span>
         <span class="k">for</span> <span class="n">disk</span> <span class="ow">in</span> <span class="n">disk_elements</span><span class="p">:</span>
