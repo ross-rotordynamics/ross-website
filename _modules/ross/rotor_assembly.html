@@ -16,8 +16,6 @@
     <script src="../../_static/sphinx_copybutton.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js"></script>
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
     <link rel="shortcut icon" href="../../_static/ross-logo.ico"/>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -1597,7 +1595,8 @@
 
 <span class="sd">        Examples</span>
 <span class="sd">        --------</span>
-<span class="sd">        &gt;&gt;&gt; rotor = rotor_example()</span>
+<span class="sd">        &gt;&gt;&gt; import ross as rs</span>
+<span class="sd">        &gt;&gt;&gt; rotor = rs.rotor_example()</span>
 <span class="sd">        &gt;&gt;&gt; speed = np.linspace(0, 1000, 101)</span>
 <span class="sd">        &gt;&gt;&gt; response = rotor.run_freq_response(speed_range=speed)</span>
 
@@ -1616,6 +1615,11 @@
 <span class="sd">        &gt;&gt;&gt; response = rotor.run_freq_response(cluster_points=True, num_points=5)</span>
 <span class="sd">        &gt;&gt;&gt; response.speed_range.shape</span>
 <span class="sd">        (61,)</span>
+
+<span class="sd">        Selecting the disirable modes, if you want a reduced model:</span>
+<span class="sd">        &gt;&gt;&gt; response = rotor.run_freq_response(speed_range=speed, modes=[0, 1, 2])</span>
+<span class="sd">        &gt;&gt;&gt; abs(response.freq_resp) # doctest: +ELLIPSIS</span>
+<span class="sd">        array([[[2.00154633e-07, 2.02422522e-07, 2.09522044e-07, ...</span>
 
 <span class="sd">        Plotting frequency response function:</span>
 <span class="sd">        &gt;&gt;&gt; fig = response.plot(inp=13, out=13)</span>
@@ -2202,6 +2206,10 @@
 <span class="sd">        frequencies : int, optional</span>
 <span class="sd">            Number of frequencies that will be calculated.</span>
 <span class="sd">            Default is 6.</span>
+<span class="sd">        frequency_type : str, optional</span>
+<span class="sd">            Choose between displaying results related to the undamped natural</span>
+<span class="sd">            frequencies (&quot;wn&quot;) or damped natural frequencies (&quot;wd&quot;).</span>
+<span class="sd">            The default is &quot;wd&quot;.</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
@@ -2212,8 +2220,14 @@
 
 <span class="sd">        Examples</span>
 <span class="sd">        --------</span>
-<span class="sd">        &gt;&gt;&gt; rotor1 = rotor_example()</span>
+<span class="sd">        &gt;&gt;&gt; import ross as rs</span>
+<span class="sd">        &gt;&gt;&gt; rotor1 = rs.rotor_example()</span>
 <span class="sd">        &gt;&gt;&gt; speed = np.linspace(0, 400, 101)</span>
+
+<span class="sd">        Diagram with undamped natural frequencies</span>
+<span class="sd">        &gt;&gt;&gt; camp = rotor1.run_campbell(speed, frequency_type=&quot;wn&quot;)</span>
+
+<span class="sd">        Diagram with damped natural frequencies</span>
 <span class="sd">        &gt;&gt;&gt; camp = rotor1.run_campbell(speed)</span>
 
 <span class="sd">        Plotting Campbell Diagram</span>
@@ -4045,7 +4059,12 @@
 
 <span class="sd">    Examples</span>
 <span class="sd">    --------</span>
-<span class="sd">    &gt;&gt;&gt; rotor = coaxrotor_example()</span>
+<span class="sd">    &gt;&gt;&gt; import ross as rs</span>
+<span class="sd">    &gt;&gt;&gt; rotor = rs.coaxrotor_example()</span>
+
+<span class="sd">    Plotting rotor model</span>
+<span class="sd">    &gt;&gt;&gt; fig = rotor.plot_rotor()</span>
+
 <span class="sd">    &gt;&gt;&gt; modal = rotor.run_modal(speed=0)</span>
 <span class="sd">    &gt;&gt;&gt; np.round(modal.wd[:4])</span>
 <span class="sd">    array([39., 39., 99., 99.])</span>
@@ -4065,16 +4084,16 @@
     <span class="n">coaxial_shaft</span> <span class="o">=</span> <span class="p">[</span><span class="n">ShaftElement</span><span class="p">(</span><span class="n">l</span><span class="p">,</span> <span class="n">i_d</span><span class="p">,</span> <span class="n">o_d</span><span class="p">,</span> <span class="n">material</span><span class="o">=</span><span class="n">steel</span><span class="p">)</span> <span class="k">for</span> <span class="n">l</span> <span class="ow">in</span> <span class="n">L</span><span class="p">]</span>
 
     <span class="n">disk0</span> <span class="o">=</span> <span class="n">DiskElement</span><span class="o">.</span><span class="n">from_geometry</span><span class="p">(</span>
-        <span class="n">n</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">material</span><span class="o">=</span><span class="n">steel</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mf">0.07</span><span class="p">,</span> <span class="n">i_d</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span> <span class="n">o_d</span><span class="o">=</span><span class="mf">0.28</span>
+        <span class="n">n</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">material</span><span class="o">=</span><span class="n">steel</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mf">0.07</span><span class="p">,</span> <span class="n">i_d</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span> <span class="n">o_d</span><span class="o">=</span><span class="mf">0.28</span><span class="p">,</span> <span class="n">scale_factor</span><span class="o">=</span><span class="mf">0.8</span>
     <span class="p">)</span>
     <span class="n">disk1</span> <span class="o">=</span> <span class="n">DiskElement</span><span class="o">.</span><span class="n">from_geometry</span><span class="p">(</span>
-        <span class="n">n</span><span class="o">=</span><span class="mi">9</span><span class="p">,</span> <span class="n">material</span><span class="o">=</span><span class="n">steel</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mf">0.07</span><span class="p">,</span> <span class="n">i_d</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span> <span class="n">o_d</span><span class="o">=</span><span class="mf">0.28</span>
+        <span class="n">n</span><span class="o">=</span><span class="mi">9</span><span class="p">,</span> <span class="n">material</span><span class="o">=</span><span class="n">steel</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mf">0.07</span><span class="p">,</span> <span class="n">i_d</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span> <span class="n">o_d</span><span class="o">=</span><span class="mf">0.28</span><span class="p">,</span> <span class="n">scale_factor</span><span class="o">=</span><span class="mf">0.8</span>
     <span class="p">)</span>
     <span class="n">disk2</span> <span class="o">=</span> <span class="n">DiskElement</span><span class="o">.</span><span class="n">from_geometry</span><span class="p">(</span>
-        <span class="n">n</span><span class="o">=</span><span class="mi">13</span><span class="p">,</span> <span class="n">material</span><span class="o">=</span><span class="n">steel</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mf">0.07</span><span class="p">,</span> <span class="n">i_d</span><span class="o">=</span><span class="mf">0.20</span><span class="p">,</span> <span class="n">o_d</span><span class="o">=</span><span class="mf">0.48</span>
+        <span class="n">n</span><span class="o">=</span><span class="mi">13</span><span class="p">,</span> <span class="n">material</span><span class="o">=</span><span class="n">steel</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mf">0.07</span><span class="p">,</span> <span class="n">i_d</span><span class="o">=</span><span class="mf">0.20</span><span class="p">,</span> <span class="n">o_d</span><span class="o">=</span><span class="mf">0.48</span><span class="p">,</span> <span class="n">scale_factor</span><span class="o">=</span><span class="mf">0.8</span>
     <span class="p">)</span>
     <span class="n">disk3</span> <span class="o">=</span> <span class="n">DiskElement</span><span class="o">.</span><span class="n">from_geometry</span><span class="p">(</span>
-        <span class="n">n</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span> <span class="n">material</span><span class="o">=</span><span class="n">steel</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mf">0.07</span><span class="p">,</span> <span class="n">i_d</span><span class="o">=</span><span class="mf">0.20</span><span class="p">,</span> <span class="n">o_d</span><span class="o">=</span><span class="mf">0.48</span>
+        <span class="n">n</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span> <span class="n">material</span><span class="o">=</span><span class="n">steel</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mf">0.07</span><span class="p">,</span> <span class="n">i_d</span><span class="o">=</span><span class="mf">0.20</span><span class="p">,</span> <span class="n">o_d</span><span class="o">=</span><span class="mf">0.48</span><span class="p">,</span> <span class="n">scale_factor</span><span class="o">=</span><span class="mf">0.8</span>
     <span class="p">)</span>
 
     <span class="n">shaft</span> <span class="o">=</span> <span class="p">[</span><span class="n">axial_shaft</span><span class="p">,</span> <span class="n">coaxial_shaft</span><span class="p">]</span>
@@ -4082,13 +4101,23 @@
 
     <span class="n">stfx</span> <span class="o">=</span> <span class="mf">1e6</span>
     <span class="n">stfy</span> <span class="o">=</span> <span class="mf">1e6</span>
-    <span class="n">bearing0</span> <span class="o">=</span> <span class="n">BearingElement</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">kxx</span><span class="o">=</span><span class="n">stfx</span><span class="p">,</span> <span class="n">kyy</span><span class="o">=</span><span class="n">stfy</span><span class="p">,</span> <span class="n">cxx</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
-    <span class="n">bearing1</span> <span class="o">=</span> <span class="n">BearingElement</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="n">kxx</span><span class="o">=</span><span class="n">stfx</span><span class="p">,</span> <span class="n">kyy</span><span class="o">=</span><span class="n">stfy</span><span class="p">,</span> <span class="n">cxx</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
-    <span class="n">bearing2</span> <span class="o">=</span> <span class="n">BearingElement</span><span class="p">(</span><span class="mi">11</span><span class="p">,</span> <span class="n">kxx</span><span class="o">=</span><span class="n">stfx</span><span class="p">,</span> <span class="n">kyy</span><span class="o">=</span><span class="n">stfy</span><span class="p">,</span> <span class="n">cxx</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
-    <span class="n">bearing3</span> <span class="o">=</span> <span class="n">BearingElement</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="n">n_link</span><span class="o">=</span><span class="mi">17</span><span class="p">,</span> <span class="n">kxx</span><span class="o">=</span><span class="n">stfx</span><span class="p">,</span> <span class="n">kyy</span><span class="o">=</span><span class="n">stfy</span><span class="p">,</span> <span class="n">cxx</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
-    <span class="n">bearings</span> <span class="o">=</span> <span class="p">[</span><span class="n">bearing0</span><span class="p">,</span> <span class="n">bearing1</span><span class="p">,</span> <span class="n">bearing2</span><span class="p">,</span> <span class="n">bearing3</span><span class="p">]</span>
+    <span class="n">bearing0</span> <span class="o">=</span> <span class="n">BearingElement</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">n_link</span><span class="o">=</span><span class="mi">18</span><span class="p">,</span> <span class="n">kxx</span><span class="o">=</span><span class="n">stfx</span><span class="p">,</span> <span class="n">kyy</span><span class="o">=</span><span class="n">stfy</span><span class="p">,</span> <span class="n">cxx</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">scale_factor</span><span class="o">=</span><span class="mf">0.4</span><span class="p">)</span>
+    <span class="n">bearing1</span> <span class="o">=</span> <span class="n">BearingElement</span><span class="p">(</span>
+        <span class="mi">10</span><span class="p">,</span> <span class="n">n_link</span><span class="o">=</span><span class="mi">19</span><span class="p">,</span> <span class="n">kxx</span><span class="o">=</span><span class="n">stfx</span><span class="p">,</span> <span class="n">kyy</span><span class="o">=</span><span class="n">stfy</span><span class="p">,</span> <span class="n">cxx</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">scale_factor</span><span class="o">=</span><span class="mf">0.4</span>
+    <span class="p">)</span>
+    <span class="n">bearing2</span> <span class="o">=</span> <span class="n">BearingElement</span><span class="p">(</span><span class="mi">11</span><span class="p">,</span> <span class="n">kxx</span><span class="o">=</span><span class="n">stfx</span><span class="p">,</span> <span class="n">kyy</span><span class="o">=</span><span class="n">stfy</span><span class="p">,</span> <span class="n">cxx</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">scale_factor</span><span class="o">=</span><span class="mf">0.4</span><span class="p">)</span>
+    <span class="n">bearing3</span> <span class="o">=</span> <span class="n">BearingElement</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="n">n_link</span><span class="o">=</span><span class="mi">17</span><span class="p">,</span> <span class="n">kxx</span><span class="o">=</span><span class="n">stfx</span><span class="p">,</span> <span class="n">kyy</span><span class="o">=</span><span class="n">stfy</span><span class="p">,</span> <span class="n">cxx</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">scale_factor</span><span class="o">=</span><span class="mf">0.4</span><span class="p">)</span>
 
-    <span class="k">return</span> <span class="n">CoAxialRotor</span><span class="p">(</span><span class="n">shaft</span><span class="p">,</span> <span class="n">disks</span><span class="p">,</span> <span class="n">bearings</span><span class="p">)</span>
+    <span class="n">base0</span> <span class="o">=</span> <span class="n">BearingElement</span><span class="p">(</span><span class="mi">18</span><span class="p">,</span> <span class="n">kxx</span><span class="o">=</span><span class="mf">1e8</span><span class="p">,</span> <span class="n">kyy</span><span class="o">=</span><span class="mf">1e8</span><span class="p">,</span> <span class="n">cxx</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">scale_factor</span><span class="o">=</span><span class="mf">0.4</span><span class="p">)</span>
+    <span class="n">base1</span> <span class="o">=</span> <span class="n">BearingElement</span><span class="p">(</span><span class="mi">19</span><span class="p">,</span> <span class="n">kxx</span><span class="o">=</span><span class="mf">1e8</span><span class="p">,</span> <span class="n">kyy</span><span class="o">=</span><span class="mf">1e8</span><span class="p">,</span> <span class="n">cxx</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">scale_factor</span><span class="o">=</span><span class="mf">0.4</span><span class="p">)</span>
+
+    <span class="n">pointmass0</span> <span class="o">=</span> <span class="n">PointMass</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">18</span><span class="p">,</span> <span class="n">m</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+    <span class="n">pointmass1</span> <span class="o">=</span> <span class="n">PointMass</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">19</span><span class="p">,</span> <span class="n">m</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+
+    <span class="n">bearings</span> <span class="o">=</span> <span class="p">[</span><span class="n">bearing0</span><span class="p">,</span> <span class="n">bearing1</span><span class="p">,</span> <span class="n">bearing2</span><span class="p">,</span> <span class="n">bearing3</span><span class="p">,</span> <span class="n">base0</span><span class="p">,</span> <span class="n">base1</span><span class="p">]</span>
+    <span class="n">pointmasses</span> <span class="o">=</span> <span class="p">[</span><span class="n">pointmass0</span><span class="p">,</span> <span class="n">pointmass1</span><span class="p">]</span>
+
+    <span class="k">return</span> <span class="n">CoAxialRotor</span><span class="p">(</span><span class="n">shaft</span><span class="p">,</span> <span class="n">disks</span><span class="p">,</span> <span class="n">bearings</span><span class="p">,</span> <span class="n">pointmasses</span><span class="p">)</span>
 
 
 <span class="k">def</span> <span class="nf">rotor_example_6dof</span><span class="p">():</span>
@@ -4172,7 +4201,7 @@
     </p>
     <p>
         &copy; Copyright 2020, Team ROSS.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.4.3.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.5.1.<br/>
     </p>
   </div>
 </footer>

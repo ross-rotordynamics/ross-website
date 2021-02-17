@@ -16,8 +16,6 @@
     <script src="../../_static/sphinx_copybutton.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js"></script>
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
     <link rel="shortcut icon" href="../../_static/ross-logo.ico"/>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -160,7 +158,7 @@
 <h1>ross.DiskElement<a class="headerlink" href="#ross-diskelement" title="Permalink to this headline">¶</a></h1>
 <dl class="py class">
 <dt id="ross.DiskElement">
-<em class="property">class </em><code class="sig-prename descclassname">ross.</code><code class="sig-name descname">DiskElement</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">n</span></em>, <em class="sig-param"><span class="n">m</span></em>, <em class="sig-param"><span class="n">Id</span></em>, <em class="sig-param"><span class="n">Ip</span></em>, <em class="sig-param"><span class="n">tag</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">scale_factor</span><span class="o">=</span><span class="default_value">1.0</span></em>, <em class="sig-param"><span class="n">color</span><span class="o">=</span><span class="default_value">'Firebrick'</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/disk_element.html#DiskElement"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.DiskElement" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">ross.</span></code><code class="sig-name descname"><span class="pre">DiskElement</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">m</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Ip</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tag</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scale_factor</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">color</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Firebrick'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/disk_element.html#DiskElement"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ross.DiskElement" title="Permalink to this definition">¶</a></dt>
 <dd><p>A disk element.</p>
 <p>This class creates a disk element from input data of inertia and mass.</p>
 <dl class="field-list simple">
@@ -194,14 +192,14 @@ Default is ‘Firebrick’.</p>
 </div>
 <dl class="py method">
 <dt id="ross.DiskElement.__init__">
-<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">n</span></em>, <em class="sig-param"><span class="n">m</span></em>, <em class="sig-param"><span class="n">Id</span></em>, <em class="sig-param"><span class="n">Ip</span></em>, <em class="sig-param"><span class="n">tag</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">scale_factor</span><span class="o">=</span><span class="default_value">1.0</span></em>, <em class="sig-param"><span class="n">color</span><span class="o">=</span><span class="default_value">'Firebrick'</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/disk_element.html#DiskElement.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.DiskElement.__init__" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">__init__</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">m</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Ip</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tag</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scale_factor</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">color</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Firebrick'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/disk_element.html#DiskElement.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ross.DiskElement.__init__" title="Permalink to this definition">¶</a></dt>
 <dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
 </dd></dl>
 
 <p class="rubric">Methods</p>
 <dl class="py method">
 <dt id="ross.DiskElement.C">
-<code class="sig-name descname">C</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/disk_element.html#DiskElement.C"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.DiskElement.C" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">C</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/disk_element.html#DiskElement.C"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ross.DiskElement.C" title="Permalink to this definition">¶</a></dt>
 <dd><p>Damping matrix for an instance of a disk element.</p>
 <p>This method will return the damping matrix for an instance of a disk
 element.</p>
@@ -226,7 +224,7 @@ element.</p>
 
 <dl class="py method">
 <dt id="ross.DiskElement.G">
-<code class="sig-name descname">G</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/disk_element.html#DiskElement.G"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.DiskElement.G" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">G</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/disk_element.html#DiskElement.G"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ross.DiskElement.G" title="Permalink to this definition">¶</a></dt>
 <dd><p>Gyroscopic matrix for an instance of a disk element.</p>
 <p>This method will return the gyroscopic matrix for an instance of a disk
 element.</p>
@@ -251,7 +249,7 @@ element.</p>
 
 <dl class="py method">
 <dt id="ross.DiskElement.K">
-<code class="sig-name descname">K</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/disk_element.html#DiskElement.K"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.DiskElement.K" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">K</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/disk_element.html#DiskElement.K"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ross.DiskElement.K" title="Permalink to this definition">¶</a></dt>
 <dd><p>Stiffness matrix for an instance of a disk element.</p>
 <p>This method will return the stiffness matrix for an instance of a disk
 element.</p>
@@ -276,7 +274,7 @@ element.</p>
 
 <dl class="py method">
 <dt id="ross.DiskElement.M">
-<code class="sig-name descname">M</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/disk_element.html#DiskElement.M"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.DiskElement.M" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">M</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/disk_element.html#DiskElement.M"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ross.DiskElement.M" title="Permalink to this definition">¶</a></dt>
 <dd><p>Mass matrix for an instance of a disk element.</p>
 <p>This method will return the mass matrix for an instance of a disk element.</p>
 <dl class="field-list simple">
@@ -300,13 +298,13 @@ element.</p>
 
 <dl class="py method">
 <dt id="id0">
-<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">n</span></em>, <em class="sig-param"><span class="n">m</span></em>, <em class="sig-param"><span class="n">Id</span></em>, <em class="sig-param"><span class="n">Ip</span></em>, <em class="sig-param"><span class="n">tag</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">scale_factor</span><span class="o">=</span><span class="default_value">1.0</span></em>, <em class="sig-param"><span class="n">color</span><span class="o">=</span><span class="default_value">'Firebrick'</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/disk_element.html#DiskElement.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#id0" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">__init__</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">m</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Ip</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tag</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scale_factor</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">color</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Firebrick'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/disk_element.html#DiskElement.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id0" title="Permalink to this definition">¶</a></dt>
 <dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt id="ross.DiskElement.dof_local_index">
-<code class="sig-name descname">dof_local_index</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em><span class="sig-paren">)</span><a class="headerlink" href="#ross.DiskElement.dof_local_index" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">dof_local_index</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ross.DiskElement.dof_local_index" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get the local index for a element specific degree of freedom.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
@@ -328,7 +326,7 @@ element.</p>
 
 <dl class="py method">
 <dt id="ross.DiskElement.dof_mapping">
-<code class="sig-name descname">dof_mapping</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/disk_element.html#DiskElement.dof_mapping"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.DiskElement.dof_mapping" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">dof_mapping</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/disk_element.html#DiskElement.dof_mapping"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ross.DiskElement.dof_mapping" title="Permalink to this definition">¶</a></dt>
 <dd><p>Degrees of freedom mapping.</p>
 <p>Returns a dictionary with a mapping between degree of freedom and its index.</p>
 <dl class="field-list simple">
@@ -355,7 +353,7 @@ beta_0  - rotation around vertical</p>
 
 <dl class="py method">
 <dt id="ross.DiskElement.from_geometry">
-<em class="property">classmethod </em><code class="sig-name descname">from_geometry</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">n</span></em>, <em class="sig-param"><span class="n">material</span></em>, <em class="sig-param"><span class="n">width</span></em>, <em class="sig-param"><span class="n">i_d</span></em>, <em class="sig-param"><span class="n">o_d</span></em>, <em class="sig-param"><span class="n">tag</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">scale_factor</span><span class="o">=</span><span class="default_value">1.0</span></em>, <em class="sig-param"><span class="n">color</span><span class="o">=</span><span class="default_value">'Firebrick'</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/disk_element.html#DiskElement.from_geometry"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.DiskElement.from_geometry" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">classmethod</span> </em><code class="sig-name descname"><span class="pre">from_geometry</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">material</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">width</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">i_d</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">o_d</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tag</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scale_factor</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">color</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Firebrick'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/disk_element.html#DiskElement.from_geometry"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ross.DiskElement.from_geometry" title="Permalink to this definition">¶</a></dt>
 <dd><p>Create a disk element from geometry properties.</p>
 <p>This class method will create a disk element from geometry data.</p>
 <dl class="field-list simple">
@@ -406,7 +404,7 @@ Default is ‘Firebrick’ (Cardinal).</p>
 
 <dl class="py method">
 <dt id="ross.DiskElement.from_table">
-<em class="property">classmethod </em><code class="sig-name descname">from_table</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">file</span></em>, <em class="sig-param"><span class="n">sheet_name</span><span class="o">=</span><span class="default_value">0</span></em>, <em class="sig-param"><span class="n">tag</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">scale_factor</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">color</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/disk_element.html#DiskElement.from_table"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ross.DiskElement.from_table" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">classmethod</span> </em><code class="sig-name descname"><span class="pre">from_table</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sheet_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tag</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scale_factor</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">color</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/disk_element.html#DiskElement.from_table"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ross.DiskElement.from_table" title="Permalink to this definition">¶</a></dt>
 <dd><p>Instantiate one or more disks using inputs from an Excel table.</p>
 <p>A header with the names of the columns is required. These names should
 match the names expected by the routine (usually the names of the
@@ -451,12 +449,12 @@ Default is ‘Firebrick’.</p>
 
 <dl class="py method">
 <dt id="ross.DiskElement.load">
-<em class="property">classmethod </em><code class="sig-name descname">load</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">file</span></em><span class="sig-paren">)</span><a class="headerlink" href="#ross.DiskElement.load" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">classmethod</span> </em><code class="sig-name descname"><span class="pre">load</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ross.DiskElement.load" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt id="ross.DiskElement.read_toml_data">
-<em class="property">classmethod </em><code class="sig-name descname">read_toml_data</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">data</span></em><span class="sig-paren">)</span><a class="headerlink" href="#ross.DiskElement.read_toml_data" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">classmethod</span> </em><code class="sig-name descname"><span class="pre">read_toml_data</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ross.DiskElement.read_toml_data" title="Permalink to this definition">¶</a></dt>
 <dd><p>Read and parse data stored in a .toml file.</p>
 <p>The data passed to this method needs to be according to the
 format saved in the .toml file by the .save() method.</p>
@@ -492,7 +490,7 @@ format saved in the .toml file by the .save() method.</p>
 
 <dl class="py method">
 <dt id="ross.DiskElement.save">
-<code class="sig-name descname">save</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">file</span></em><span class="sig-paren">)</span><a class="headerlink" href="#ross.DiskElement.save" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">save</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ross.DiskElement.save" title="Permalink to this definition">¶</a></dt>
 <dd><p>Save the element in a .toml file.</p>
 <p>This function will save the element to a .toml file.
 The file will have all the argument’s names and values that are needed to
@@ -520,7 +518,7 @@ reinstantiate the element.</p>
 
 <dl class="py method">
 <dt id="ross.DiskElement.summary">
-<code class="sig-name descname">summary</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em><span class="sig-paren">)</span><a class="headerlink" href="#ross.DiskElement.summary" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">summary</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ross.DiskElement.summary" title="Permalink to this definition">¶</a></dt>
 <dd><p>Present a summary for the element.</p>
 <p>A pandas series with the element properties as variables.</p>
 <dl class="field-list simple">
@@ -560,7 +558,7 @@ reinstantiate the element.</p>
     </p>
     <p>
         &copy; Copyright 2020, Team ROSS.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.4.3.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.5.1.<br/>
     </p>
   </div>
 </footer>
