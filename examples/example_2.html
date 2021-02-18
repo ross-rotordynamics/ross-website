@@ -404,8 +404,8 @@ div.rendered_html tbody tr:hover {
 <div class="section" id="Example-2---Effect-of-varying-slenderness-ratio">
 <h1>Example 2 - Effect of varying slenderness ratio<a class="headerlink" href="#Example-2---Effect-of-varying-slenderness-ratio" title="Permalink to this headline">¶</a></h1>
 <p>In this example, we use the rotor seen in Example 5.8.2 from ‘Dynamics of Rotating Machinery’ by MI Friswell, JET Penny, SD Garvey &amp; AW Lees, published by Cambridge University Press, 2010.</p>
-<div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -415,8 +415,23 @@ div.rendered_html tbody tr:hover {
 </pre></div>
 </div>
 </div>
-<div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">ModuleNotFoundError</span>                       Traceback (most recent call last)
+<span class="ansi-green-fg">&lt;ipython-input-1-d5b423dbc569&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
+<span class="ansi-green-intense-fg ansi-bold">      1</span> <span class="ansi-green-fg">import</span> numpy <span class="ansi-green-fg">as</span> np
+<span class="ansi-green-fg">----&gt; 2</span><span class="ansi-red-fg"> </span><span class="ansi-green-fg">import</span> matplotlib<span class="ansi-blue-fg">.</span>pyplot <span class="ansi-green-fg">as</span> plt
+<span class="ansi-green-intense-fg ansi-bold">      3</span> <span class="ansi-green-fg">import</span> ross <span class="ansi-green-fg">as</span> rs
+
+<span class="ansi-red-fg">ModuleNotFoundError</span>: No module named &#39;matplotlib&#39;
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -424,8 +439,21 @@ div.rendered_html tbody tr:hover {
 </pre></div>
 </div>
 </div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
+<span class="ansi-green-fg">&lt;ipython-input-1-52dcca325623&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
+<span class="ansi-green-fg">----&gt; 1</span><span class="ansi-red-fg"> </span>steel <span class="ansi-blue-fg">=</span> rs<span class="ansi-blue-fg">.</span>materials<span class="ansi-blue-fg">.</span>steel
+
+<span class="ansi-red-fg">NameError</span>: name &#39;rs&#39; is not defined
+</pre></div></div>
+</div>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -434,7 +462,7 @@ div.rendered_html tbody tr:hover {
 </div>
 </div>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -460,7 +488,7 @@ div.rendered_html tbody tr:hover {
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -491,11 +519,35 @@ div.rendered_html tbody tr:hover {
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../_images/examples_example_2_5_0.png" src="../_images/examples_example_2_5_0.png" />
-</div>
+<div class="highlight"><pre>
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
+<span class="ansi-green-fg">&lt;ipython-input-1-70b52b94bcbe&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
+<span class="ansi-green-intense-fg ansi-bold">      2</span> n_eigen <span class="ansi-blue-fg">=</span> <span class="ansi-cyan-fg">8</span>
+<span class="ansi-green-intense-fg ansi-bold">      3</span> R <span class="ansi-blue-fg">=</span> <span class="ansi-cyan-fg">0.04</span>
+<span class="ansi-green-fg">----&gt; 4</span><span class="ansi-red-fg"> </span>rotor_80 <span class="ansi-blue-fg">=</span> create_rotor<span class="ansi-blue-fg">(</span><span class="ansi-cyan-fg">80</span><span class="ansi-blue-fg">,</span> R<span class="ansi-blue-fg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">      5</span> modal_80 <span class="ansi-blue-fg">=</span> rotor_80<span class="ansi-blue-fg">.</span>run_modal<span class="ansi-blue-fg">(</span>speed<span class="ansi-blue-fg">=</span><span class="ansi-cyan-fg">0</span><span class="ansi-blue-fg">,</span> num_modes<span class="ansi-blue-fg">=</span><span class="ansi-cyan-fg">2</span><span class="ansi-blue-fg">*</span>n_eigen<span class="ansi-blue-fg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">      6</span>
+
+<span class="ansi-green-fg">&lt;ipython-input-1-d8087136a9f1&gt;</span> in <span class="ansi-cyan-fg">create_rotor</span><span class="ansi-blue-fg">(n_el, R, shear_effects, rotary_inertia)</span>
+<span class="ansi-green-intense-fg ansi-bold">      4</span>     D <span class="ansi-blue-fg">=</span> R <span class="ansi-blue-fg">*</span> L_total
+<span class="ansi-green-intense-fg ansi-bold">      5</span>
+<span class="ansi-green-fg">----&gt; 6</span><span class="ansi-red-fg">     shaft = [
+</span><span class="ansi-green-intense-fg ansi-bold">      7</span>         rs.ShaftElement(1./(n_el), idl=0, odl=D, material=steel,
+<span class="ansi-green-intense-fg ansi-bold">      8</span>                         shear_effects<span class="ansi-blue-fg">=</span>shear_effects<span class="ansi-blue-fg">,</span>
+
+<span class="ansi-green-fg">&lt;ipython-input-1-d8087136a9f1&gt;</span> in <span class="ansi-cyan-fg">&lt;listcomp&gt;</span><span class="ansi-blue-fg">(.0)</span>
+<span class="ansi-green-intense-fg ansi-bold">      5</span>
+<span class="ansi-green-intense-fg ansi-bold">      6</span>     shaft = [
+<span class="ansi-green-fg">----&gt; 7</span><span class="ansi-red-fg">         rs.ShaftElement(1./(n_el), idl=0, odl=D, material=steel,
+</span><span class="ansi-green-intense-fg ansi-bold">      8</span>                         shear_effects<span class="ansi-blue-fg">=</span>shear_effects<span class="ansi-blue-fg">,</span>
+<span class="ansi-green-intense-fg ansi-bold">      9</span>                         rotary_inertia=rotary_inertia)
+
+<span class="ansi-red-fg">NameError</span>: name &#39;rs&#39; is not defined
+</pre></div></div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -529,8 +581,32 @@ div.rendered_html tbody tr:hover {
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../_images/examples_example_2_6_0.png" src="../_images/examples_example_2_6_0.png" />
-</div>
+<div class="highlight"><pre>
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
+<span class="ansi-green-fg">&lt;ipython-input-1-ecc2aea7c88c&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
+<span class="ansi-green-intense-fg ansi-bold">      7</span>
+<span class="ansi-green-intense-fg ansi-bold">      8</span> <span class="ansi-green-fg">for</span> i<span class="ansi-blue-fg">,</span> R <span class="ansi-green-fg">in</span> enumerate<span class="ansi-blue-fg">(</span>R_list<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">:</span>
+<span class="ansi-green-fg">----&gt; 9</span><span class="ansi-red-fg">     rotor_ref = create_rotor(100, R,
+</span><span class="ansi-green-intense-fg ansi-bold">     10</span>                              shear_effects=True, rotary_inertia=True)
+<span class="ansi-green-intense-fg ansi-bold">     11</span>     modal_ref <span class="ansi-blue-fg">=</span> rotor_ref<span class="ansi-blue-fg">.</span>run_modal<span class="ansi-blue-fg">(</span>speed<span class="ansi-blue-fg">=</span><span class="ansi-cyan-fg">0</span><span class="ansi-blue-fg">)</span>
+
+<span class="ansi-green-fg">&lt;ipython-input-1-d8087136a9f1&gt;</span> in <span class="ansi-cyan-fg">create_rotor</span><span class="ansi-blue-fg">(n_el, R, shear_effects, rotary_inertia)</span>
+<span class="ansi-green-intense-fg ansi-bold">      4</span>     D <span class="ansi-blue-fg">=</span> R <span class="ansi-blue-fg">*</span> L_total
+<span class="ansi-green-intense-fg ansi-bold">      5</span>
+<span class="ansi-green-fg">----&gt; 6</span><span class="ansi-red-fg">     shaft = [
+</span><span class="ansi-green-intense-fg ansi-bold">      7</span>         rs.ShaftElement(1./(n_el), idl=0, odl=D, material=steel,
+<span class="ansi-green-intense-fg ansi-bold">      8</span>                         shear_effects<span class="ansi-blue-fg">=</span>shear_effects<span class="ansi-blue-fg">,</span>
+
+<span class="ansi-green-fg">&lt;ipython-input-1-d8087136a9f1&gt;</span> in <span class="ansi-cyan-fg">&lt;listcomp&gt;</span><span class="ansi-blue-fg">(.0)</span>
+<span class="ansi-green-intense-fg ansi-bold">      5</span>
+<span class="ansi-green-intense-fg ansi-bold">      6</span>     shaft = [
+<span class="ansi-green-fg">----&gt; 7</span><span class="ansi-red-fg">         rs.ShaftElement(1./(n_el), idl=0, odl=D, material=steel,
+</span><span class="ansi-green-intense-fg ansi-bold">      8</span>                         shear_effects<span class="ansi-blue-fg">=</span>shear_effects<span class="ansi-blue-fg">,</span>
+<span class="ansi-green-intense-fg ansi-bold">      9</span>                         rotary_inertia=rotary_inertia)
+
+<span class="ansi-red-fg">NameError</span>: name &#39;rs&#39; is not defined
+</pre></div></div>
 </div>
 </div>
 

@@ -407,8 +407,8 @@ div.rendered_html tbody tr:hover {
 <h1>Example 1 - Number of DOF influence in Natural Frequency<a class="headerlink" href="#Example-1---Number-of-DOF-influence-in-Natural-Frequency" title="Permalink to this headline">¶</a></h1>
 <p>In this example, we use the rotor seen in Example 5.8.1 from ‘Dynamics of Rotating Machinery’ by MI Friswell, JET Penny, SD Garvey &amp; AW Lees, published by Cambridge University Press, 2010. Which is a symmetric rotor with a single disk in the center. The shaft is hollow with an outside diameter of <span class="math notranslate nohighlight">\(80 mm\)</span>, an inside diameter of <span class="math notranslate nohighlight">\(30 mm\)</span>, and a length of <span class="math notranslate nohighlight">\(1.2 m\)</span> and it is modeled using Euler-Bernoulli elements, with no internal shaft damping. The bearings are rigid and short and
 the disk has a diameter of <span class="math notranslate nohighlight">\(400 mm\)</span> and a thickness of <span class="math notranslate nohighlight">\(80 mm\)</span>. The disk and shaft elements are made of steel.</p>
-<div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -418,8 +418,23 @@ the disk has a diameter of <span class="math notranslate nohighlight">\(400 mm\)
 </pre></div>
 </div>
 </div>
-<div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">ModuleNotFoundError</span>                       Traceback (most recent call last)
+<span class="ansi-green-fg">&lt;ipython-input-1-d5b423dbc569&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
+<span class="ansi-green-intense-fg ansi-bold">      1</span> <span class="ansi-green-fg">import</span> numpy <span class="ansi-green-fg">as</span> np
+<span class="ansi-green-fg">----&gt; 2</span><span class="ansi-red-fg"> </span><span class="ansi-green-fg">import</span> matplotlib<span class="ansi-blue-fg">.</span>pyplot <span class="ansi-green-fg">as</span> plt
+<span class="ansi-green-intense-fg ansi-bold">      3</span> <span class="ansi-green-fg">import</span> ross <span class="ansi-green-fg">as</span> rs
+
+<span class="ansi-red-fg">ModuleNotFoundError</span>: No module named &#39;matplotlib&#39;
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -427,8 +442,21 @@ the disk has a diameter of <span class="math notranslate nohighlight">\(400 mm\)
 </pre></div>
 </div>
 </div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
+<span class="ansi-green-fg">&lt;ipython-input-1-52dcca325623&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
+<span class="ansi-green-fg">----&gt; 1</span><span class="ansi-red-fg"> </span>steel <span class="ansi-blue-fg">=</span> rs<span class="ansi-blue-fg">.</span>materials<span class="ansi-blue-fg">.</span>steel
+
+<span class="ansi-red-fg">NameError</span>: name &#39;rs&#39; is not defined
+</pre></div></div>
+</div>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -437,7 +465,7 @@ the disk has a diameter of <span class="math notranslate nohighlight">\(400 mm\)
 </div>
 </div>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -463,7 +491,7 @@ the disk has a diameter of <span class="math notranslate nohighlight">\(400 mm\)
 </div>
 </div>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[17]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -492,7 +520,7 @@ the disk has a diameter of <span class="math notranslate nohighlight">\(400 mm\)
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[18]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -504,11 +532,38 @@ the disk has a diameter of <span class="math notranslate nohighlight">\(400 mm\)
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../_images/examples_example_1_6_0.png" src="../_images/examples_example_1_6_0.png" />
-</div>
+<div class="highlight"><pre>
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
+<span class="ansi-green-fg">&lt;ipython-input-1-219b0d82b35d&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
+<span class="ansi-green-fg">----&gt; 1</span><span class="ansi-red-fg"> </span>analysis<span class="ansi-blue-fg">(</span>speed<span class="ansi-blue-fg">=</span><span class="ansi-cyan-fg">0</span><span class="ansi-blue-fg">)</span>
+
+<span class="ansi-green-fg">&lt;ipython-input-1-e367eba930c4&gt;</span> in <span class="ansi-cyan-fg">analysis</span><span class="ansi-blue-fg">(speed)</span>
+<span class="ansi-green-intense-fg ansi-bold">      3</span>     <span class="ansi-red-fg"># create reference rotor with 80 elements</span>
+<span class="ansi-green-intense-fg ansi-bold">      4</span>     n_eigen <span class="ansi-blue-fg">=</span> <span class="ansi-cyan-fg">8</span>
+<span class="ansi-green-fg">----&gt; 5</span><span class="ansi-red-fg">     </span>rotor_80 <span class="ansi-blue-fg">=</span> create_rotor<span class="ansi-blue-fg">(</span><span class="ansi-cyan-fg">80</span><span class="ansi-blue-fg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">      6</span>     modal_80 <span class="ansi-blue-fg">=</span> rotor_80<span class="ansi-blue-fg">.</span>run_modal<span class="ansi-blue-fg">(</span>speed<span class="ansi-blue-fg">,</span> num_modes<span class="ansi-blue-fg">=</span><span class="ansi-cyan-fg">2</span><span class="ansi-blue-fg">*</span>n_eigen<span class="ansi-blue-fg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">      7</span>
+
+<span class="ansi-green-fg">&lt;ipython-input-1-b5a2b7ea9cbd&gt;</span> in <span class="ansi-cyan-fg">create_rotor</span><span class="ansi-blue-fg">(n_el)</span>
+<span class="ansi-green-intense-fg ansi-bold">      1</span> <span class="ansi-green-fg">def</span> create_rotor<span class="ansi-blue-fg">(</span>n_el<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">:</span>
+<span class="ansi-green-intense-fg ansi-bold">      2</span>     <span class="ansi-blue-fg">&#34;&#34;&#34;Create example rotor with given number of elements.&#34;&#34;&#34;</span>
+<span class="ansi-green-fg">----&gt; 3</span><span class="ansi-red-fg">     shaft = [
+</span><span class="ansi-green-intense-fg ansi-bold">      4</span>         rs<span class="ansi-blue-fg">.</span>ShaftElement<span class="ansi-blue-fg">(</span><span class="ansi-cyan-fg">1.2</span><span class="ansi-blue-fg">/</span><span class="ansi-blue-fg">(</span>n_el<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">,</span> idl<span class="ansi-blue-fg">=</span><span class="ansi-cyan-fg">0.03</span><span class="ansi-blue-fg">,</span> odl<span class="ansi-blue-fg">=</span><span class="ansi-cyan-fg">0.08</span><span class="ansi-blue-fg">,</span> material<span class="ansi-blue-fg">=</span>steel<span class="ansi-blue-fg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">      5</span>         <span class="ansi-green-fg">for</span> i <span class="ansi-green-fg">in</span> range<span class="ansi-blue-fg">(</span>n_el<span class="ansi-blue-fg">)</span>
+
+<span class="ansi-green-fg">&lt;ipython-input-1-b5a2b7ea9cbd&gt;</span> in <span class="ansi-cyan-fg">&lt;listcomp&gt;</span><span class="ansi-blue-fg">(.0)</span>
+<span class="ansi-green-intense-fg ansi-bold">      2</span>     <span class="ansi-blue-fg">&#34;&#34;&#34;Create example rotor with given number of elements.&#34;&#34;&#34;</span>
+<span class="ansi-green-intense-fg ansi-bold">      3</span>     shaft = [
+<span class="ansi-green-fg">----&gt; 4</span><span class="ansi-red-fg">         </span>rs<span class="ansi-blue-fg">.</span>ShaftElement<span class="ansi-blue-fg">(</span><span class="ansi-cyan-fg">1.2</span><span class="ansi-blue-fg">/</span><span class="ansi-blue-fg">(</span>n_el<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">,</span> idl<span class="ansi-blue-fg">=</span><span class="ansi-cyan-fg">0.03</span><span class="ansi-blue-fg">,</span> odl<span class="ansi-blue-fg">=</span><span class="ansi-cyan-fg">0.08</span><span class="ansi-blue-fg">,</span> material<span class="ansi-blue-fg">=</span>steel<span class="ansi-blue-fg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">      5</span>         <span class="ansi-green-fg">for</span> i <span class="ansi-green-fg">in</span> range<span class="ansi-blue-fg">(</span>n_el<span class="ansi-blue-fg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">      6</span>     ]
+
+<span class="ansi-red-fg">NameError</span>: name &#39;rs&#39; is not defined
+</pre></div></div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[19]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -520,8 +575,35 @@ the disk has a diameter of <span class="math notranslate nohighlight">\(400 mm\)
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../_images/examples_example_1_7_0.png" src="../_images/examples_example_1_7_0.png" />
-</div>
+<div class="highlight"><pre>
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
+<span class="ansi-green-fg">&lt;ipython-input-1-f40c53096c8c&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
+<span class="ansi-green-fg">----&gt; 1</span><span class="ansi-red-fg"> </span>analysis<span class="ansi-blue-fg">(</span>speed<span class="ansi-blue-fg">=</span><span class="ansi-cyan-fg">5000</span><span class="ansi-blue-fg">*</span>np<span class="ansi-blue-fg">.</span>pi<span class="ansi-blue-fg">/</span><span class="ansi-cyan-fg">30</span><span class="ansi-blue-fg">)</span>
+
+<span class="ansi-green-fg">&lt;ipython-input-1-e367eba930c4&gt;</span> in <span class="ansi-cyan-fg">analysis</span><span class="ansi-blue-fg">(speed)</span>
+<span class="ansi-green-intense-fg ansi-bold">      3</span>     <span class="ansi-red-fg"># create reference rotor with 80 elements</span>
+<span class="ansi-green-intense-fg ansi-bold">      4</span>     n_eigen <span class="ansi-blue-fg">=</span> <span class="ansi-cyan-fg">8</span>
+<span class="ansi-green-fg">----&gt; 5</span><span class="ansi-red-fg">     </span>rotor_80 <span class="ansi-blue-fg">=</span> create_rotor<span class="ansi-blue-fg">(</span><span class="ansi-cyan-fg">80</span><span class="ansi-blue-fg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">      6</span>     modal_80 <span class="ansi-blue-fg">=</span> rotor_80<span class="ansi-blue-fg">.</span>run_modal<span class="ansi-blue-fg">(</span>speed<span class="ansi-blue-fg">,</span> num_modes<span class="ansi-blue-fg">=</span><span class="ansi-cyan-fg">2</span><span class="ansi-blue-fg">*</span>n_eigen<span class="ansi-blue-fg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">      7</span>
+
+<span class="ansi-green-fg">&lt;ipython-input-1-b5a2b7ea9cbd&gt;</span> in <span class="ansi-cyan-fg">create_rotor</span><span class="ansi-blue-fg">(n_el)</span>
+<span class="ansi-green-intense-fg ansi-bold">      1</span> <span class="ansi-green-fg">def</span> create_rotor<span class="ansi-blue-fg">(</span>n_el<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">:</span>
+<span class="ansi-green-intense-fg ansi-bold">      2</span>     <span class="ansi-blue-fg">&#34;&#34;&#34;Create example rotor with given number of elements.&#34;&#34;&#34;</span>
+<span class="ansi-green-fg">----&gt; 3</span><span class="ansi-red-fg">     shaft = [
+</span><span class="ansi-green-intense-fg ansi-bold">      4</span>         rs<span class="ansi-blue-fg">.</span>ShaftElement<span class="ansi-blue-fg">(</span><span class="ansi-cyan-fg">1.2</span><span class="ansi-blue-fg">/</span><span class="ansi-blue-fg">(</span>n_el<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">,</span> idl<span class="ansi-blue-fg">=</span><span class="ansi-cyan-fg">0.03</span><span class="ansi-blue-fg">,</span> odl<span class="ansi-blue-fg">=</span><span class="ansi-cyan-fg">0.08</span><span class="ansi-blue-fg">,</span> material<span class="ansi-blue-fg">=</span>steel<span class="ansi-blue-fg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">      5</span>         <span class="ansi-green-fg">for</span> i <span class="ansi-green-fg">in</span> range<span class="ansi-blue-fg">(</span>n_el<span class="ansi-blue-fg">)</span>
+
+<span class="ansi-green-fg">&lt;ipython-input-1-b5a2b7ea9cbd&gt;</span> in <span class="ansi-cyan-fg">&lt;listcomp&gt;</span><span class="ansi-blue-fg">(.0)</span>
+<span class="ansi-green-intense-fg ansi-bold">      2</span>     <span class="ansi-blue-fg">&#34;&#34;&#34;Create example rotor with given number of elements.&#34;&#34;&#34;</span>
+<span class="ansi-green-intense-fg ansi-bold">      3</span>     shaft = [
+<span class="ansi-green-fg">----&gt; 4</span><span class="ansi-red-fg">         </span>rs<span class="ansi-blue-fg">.</span>ShaftElement<span class="ansi-blue-fg">(</span><span class="ansi-cyan-fg">1.2</span><span class="ansi-blue-fg">/</span><span class="ansi-blue-fg">(</span>n_el<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">,</span> idl<span class="ansi-blue-fg">=</span><span class="ansi-cyan-fg">0.03</span><span class="ansi-blue-fg">,</span> odl<span class="ansi-blue-fg">=</span><span class="ansi-cyan-fg">0.08</span><span class="ansi-blue-fg">,</span> material<span class="ansi-blue-fg">=</span>steel<span class="ansi-blue-fg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">      5</span>         <span class="ansi-green-fg">for</span> i <span class="ansi-green-fg">in</span> range<span class="ansi-blue-fg">(</span>n_el<span class="ansi-blue-fg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">      6</span>     ]
+
+<span class="ansi-red-fg">NameError</span>: name &#39;rs&#39; is not defined
+</pre></div></div>
 </div>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
