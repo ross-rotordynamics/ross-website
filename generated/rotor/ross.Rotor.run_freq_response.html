@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ross.Rotor.run_freq_response &#8212; ross 0.4.1 documentation</title>
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/bootstrap-sphinx.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx_copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/style.css" />
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/sphinx_copybutton.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <link rel="shortcut icon" href="../../_static/ross-logo.ico"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="ross.Rotor.forced_response" href="ross.Rotor.forced_response.html" />
+    <link rel="prev" title="ross.Rotor.run_critical_speed" href="ross.Rotor.run_critical_speed.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<script type="text/javascript" src="../../_static/js/jquery-1.11.0.min.js "></script>
+<script type="text/javascript" src="../../_static/js/jquery-fix.js "></script>
+<script type="text/javascript" src="../../_static/bootstrap-3.3.7/js/bootstrap.min.js "></script>
+<script type="text/javascript" src="../../_static/bootstrap-sphinx.js "></script>
+
+  </head><body>
+
+  <div id="navbar" class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="../../index.html"><span><img src="../../_static/ross-logo.svg"></span>
+          ROSS</a>
+        <span class="navbar-text navbar-version pull-left"><b>0.4</b></span>
+      </div>
+
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            
+                <li><a href="../../tutorials.html">Tutorial</a></li>
+                <li><a href="../../examples.html">Examples</a></li>
+                <li><a href="../../api.html">API</a></li>
+            
+            
+              <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="../../index.html">Site <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"><p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../installation.html">Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../installation.html#install-python">Install Python</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../installation.html#install-ross">Install ROSS</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../tutorials.html">Tutorials</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/tutorial_part_1.html">Tutorial - Modeling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/tutorial_part_2.html">Tutorial - Running Analyzes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/tutorial_part_3.html">Tutorial - Stochastic ROSS</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples.html">Examples</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../examples.html#ross-examples">ROSS Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples.html#fluidflow-examples">FluidFlow Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples.html#stochastic-ross-examples">Stochastic ROSS Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../download.html">Download notebooks</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../api.html">API Reference</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../api.html#material">Material</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../api.html#elements">Elements</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../../api.html#rotor-and-results">Rotor and Results</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../api.html#results">Results</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../contributing.html">Contributing</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../contributing.html#feedback-and-contribution">Feedback and Contribution</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../contributing.html#version-control-system-git">Version-control system: Git</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../contributing.html#code-style-black">Code style: Black</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../contributing.html#documentation">Documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../contributing.html#how-to-contribute-to-ross-using-git">How to contribute to ROSS using git</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../contributing.html#making-new-releases">Making new releases</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../release_notes.html">Release notes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../release_notes.html#version-0-4-0">Version 0.4.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../release_notes.html#version-0-3-0">Version 0.3.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../release_notes.html#version-0-2-0-beta-release">Version 0.2.0 (beta release)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../release_notes.html#version-0-1-0-alpha-release">Version 0.1.0 (alpha release)</a></li>
+</ul>
+</li>
+</ul>
+</ul>
+</li>
+              
+                <li class="dropdown">
+  <a role="button"
+     id="dLabelLocalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="#">Page <b class="caret"></b></a>
+  <ul class="dropdown-menu localtoc"
+      role="menu"
+      aria-labelledby="dLabelLocalToc"><ul>
+<li><a class="reference internal" href="#">ross.Rotor.run_freq_response</a></li>
+</ul>
+</ul>
+</li>
+              
+            
+            
+            
+            
+            
+              <li class="hidden-sm">
+<div id="sourcelink">
+  <a href="../../_sources/generated/rotor/ross.Rotor.run_freq_response.rst.txt"
+     rel="nofollow">Source</a>
+</div></li>
+            
+          </ul>
+
+          
+            
+<form class="navbar-form navbar-right" action="../../search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+        </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="body col-md-12 content" role="main">
+      
+  </div>
+<div class=col-md-9 content><div class="section" id="ross-rotor-run-freq-response">
+<h1>ross.Rotor.run_freq_response<a class="headerlink" href="#ross-rotor-run-freq-response" title="Permalink to this headline">¶</a></h1>
+<dl class="py method">
+<dt id="ross.Rotor.run_freq_response">
+<code class="sig-prename descclassname"><span class="pre">Rotor.</span></code><code class="sig-name descname"><span class="pre">run_freq_response</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">speed_range</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">modes</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cluster_points</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_modes</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">12</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_points</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rtol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.005</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/rotor_assembly.html#Rotor.run_freq_response"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ross.Rotor.run_freq_response" title="Permalink to this definition">¶</a></dt>
+<dd><p>Frequency response for a mdof system.</p>
+<p>This method returns the frequency response for a mdof system given a range of
+frequencies and the modes that will be used.</p>
+<dl class="simple">
+<dt>Available plotting methods:</dt><dd><p>.plot()
+.plot_magnitude()
+.plot_phase()
+.plot_polar_bode()</p>
+</dd>
+</dl>
+<dl class="field-list">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>speed_range</strong><span class="classifier">array, optional</span></dt><dd><p>Array with the desired range of frequencies.
+Default is 0 to 1.5 x highest damped natural frequency.</p>
+</dd>
+<dt><strong>modes</strong><span class="classifier">list, optional</span></dt><dd><p>Modes that will be used to calculate the frequency response
+(all modes will be used if a list is not given).</p>
+</dd>
+<dt><strong>cluster_points</strong><span class="classifier">bool, optional</span></dt><dd><p>boolean to activate the automatic frequency spacing method. If True, the
+method uses _clustering_points() to create an speed_range.
+Default is False</p>
+</dd>
+<dt><strong>num_points</strong><span class="classifier">int, optional</span></dt><dd><p>The number of points generated per critical speed.
+The method set the same number of points for slightly less and slightly
+higher than the natural circular frequency. It means there’ll be num_points
+greater and num_points smaller than a given critical speed.
+num_points may be between 2 and 12. Anything above this range defaults
+to 10 and anything below this range defaults to 4.
+The default is 10.</p>
+</dd>
+<dt><strong>num_modes</strong></dt><dd><p>The number of eigenvalues and eigenvectors to be calculated using ARPACK.
+It also defines the range for the output array, since the method generates
+points only for the critical speed calculated by run_critical_speed().
+Default is 12.</p>
+</dd>
+<dt><strong>rtol</strong><span class="classifier">float, optional</span></dt><dd><p>Tolerance (relative) for termination. Applied to scipy.optimize.newton to
+calculate the approximated critical speeds.
+Default is 0.005 (0.5%).</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl>
+<dt><strong>results</strong><span class="classifier">object</span></dt><dd><p>An instance of ForcedResponseResult class, which is used to post-process
+results. Attributes stored:
+freq_resp : array</p>
+<blockquote>
+<div><p>Array with the frequency response for each node for each pair
+input/output.</p>
+</div></blockquote>
+<dl class="simple">
+<dt>speed_range<span class="classifier">array</span></dt><dd><p>Array with the frequencies.</p>
+</dd>
+<dt>velc_resp<span class="classifier">array</span></dt><dd><p>Array with the velocity response for each node for each pair
+input/output.</p>
+</dd>
+<dt>accl_resp<span class="classifier">array</span></dt><dd><p>Array with the acceleration response for each node for each pair
+input/output.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">ross</span> <span class="k">as</span> <span class="nn">rs</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">rotor</span> <span class="o">=</span> <span class="n">rs</span><span class="o">.</span><span class="n">rotor_example</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">speed</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1000</span><span class="p">,</span> <span class="mi">101</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">response</span> <span class="o">=</span> <span class="n">rotor</span><span class="o">.</span><span class="n">run_freq_response</span><span class="p">(</span><span class="n">speed_range</span><span class="o">=</span><span class="n">speed</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Return the response amplitude
+&gt;&gt;&gt; abs(response.freq_resp) # doctest: +ELLIPSIS
+array([[[1.00000000e-06, 1.00261725e-06, 1.01076952e-06, …</p>
+<p>Return the response phase
+&gt;&gt;&gt; np.angle(response.freq_resp) # doctest: +ELLIPSIS
+array([[[…</p>
+<p>Using clustered points option.
+Set <cite>cluster_points=True</cite> and choose how many modes the method must search and
+how many points to add just before and after each critical speed.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">response</span> <span class="o">=</span> <span class="n">rotor</span><span class="o">.</span><span class="n">run_freq_response</span><span class="p">(</span><span class="n">cluster_points</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">num_points</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">response</span><span class="o">.</span><span class="n">speed_range</span><span class="o">.</span><span class="n">shape</span>
+<span class="go">(61,)</span>
+</pre></div>
+</div>
+<p>Selecting the disirable modes, if you want a reduced model:
+&gt;&gt;&gt; response = rotor.run_freq_response(speed_range=speed, modes=[0, 1, 2])
+&gt;&gt;&gt; abs(response.freq_resp) # doctest: +ELLIPSIS
+array([[[2.00154633e-07, 2.02422522e-07, 2.09522044e-07, …</p>
+<p>Plotting frequency response function:
+&gt;&gt;&gt; fig = response.plot(inp=13, out=13)</p>
+<p>To plot velocity and acceleration responses, you must change amplitude_units
+from “[length]/[force]” units to “[speed]/[force]” or “[acceleration]/[force]”
+respectively</p>
+<p>Plotting velocity response
+&gt;&gt;&gt; fig = response.plot(inp=13, out=13, amplitude_units=”m/s/N”)</p>
+<p>Plotting acceleration response
+&gt;&gt;&gt; fig = response.plot(inp=13, out=13, amplitude_units=”m/s**2/N”)</p>
+</dd></dl>
+
+</div>
+
+
+    </div>
+      
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
+    </p>
+    <p>
+        &copy; Copyright 2020, Team ROSS.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.5.1.<br/>
+    </p>
+  </div>
+</footer>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-157532410-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-157532410-1');
+</script>
+
+  </body>
+</html>

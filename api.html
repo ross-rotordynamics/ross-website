@@ -85,7 +85,8 @@
 <li class="toctree-l1 current"><a class="current reference internal" href="#">API Reference</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#material">Material</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#elements">Elements</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#rotor">Rotor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#rotor-and-results">Rotor and Results</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#results">Results</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing</a><ul>
@@ -120,7 +121,8 @@
 <li><a class="reference internal" href="#">API Reference</a><ul>
 <li><a class="reference internal" href="#material">Material</a></li>
 <li><a class="reference internal" href="#elements">Elements</a></li>
-<li><a class="reference internal" href="#rotor">Rotor</a></li>
+<li><a class="reference internal" href="#rotor-and-results">Rotor and Results</a></li>
+<li><a class="reference internal" href="#results">Results</a></li>
 </ul>
 </li>
 </ul>
@@ -185,11 +187,17 @@
 <tr class="row-odd"><td><p><a class="reference internal" href="generated/elements/ross.ShaftElement.html#ross.ShaftElement" title="ross.ShaftElement"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ShaftElement</span></code></a>(L, idl, odl[, idr, odr, …])</p></td>
 <td><p>A shaft element.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="generated/elements/ross.DiskElement.html#ross.DiskElement" title="ross.DiskElement"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DiskElement</span></code></a>(n, m, Id, Ip[, tag, …])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/elements/ross.ShaftElement6DoF.html#ross.ShaftElement6DoF" title="ross.ShaftElement6DoF"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ShaftElement6DoF</span></code></a>(L, idl, odl[, idr, odr, …])</p></td>
+<td><p>A 6 Degrees of Freedom shaft element.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/elements/ross.DiskElement.html#ross.DiskElement" title="ross.DiskElement"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DiskElement</span></code></a>(n, m, Id, Ip[, tag, …])</p></td>
 <td><p>A disk element.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/elements/ross.BearingElement.html#ross.BearingElement" title="ross.BearingElement"><code class="xref py py-obj docutils literal notranslate"><span class="pre">BearingElement</span></code></a>(n, kxx, cxx[, kyy, kxy, kyx, …])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/elements/ross.BearingElement.html#ross.BearingElement" title="ross.BearingElement"><code class="xref py py-obj docutils literal notranslate"><span class="pre">BearingElement</span></code></a>(n, kxx, cxx[, kyy, kxy, kyx, …])</p></td>
 <td><p>A bearing element.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/elements/ross.BearingElement6DoF.html#ross.BearingElement6DoF" title="ross.BearingElement6DoF"><code class="xref py py-obj docutils literal notranslate"><span class="pre">BearingElement6DoF</span></code></a>(n, kxx, cxx[, kyy, cyy, …])</p></td>
+<td><p>A generalistic 6 DoF bearing element.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="generated/elements/ross.SealElement.html#ross.SealElement" title="ross.SealElement"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SealElement</span></code></a>(n, kxx, cxx[, kyy, kxy, kyx, …])</p></td>
 <td><p>A seal element.</p></td>
@@ -203,25 +211,95 @@
 <tr class="row-odd"><td><p><a class="reference internal" href="generated/elements/ross.BearingFluidFlow.html#ross.BearingFluidFlow" title="ross.BearingFluidFlow"><code class="xref py py-obj docutils literal notranslate"><span class="pre">BearingFluidFlow</span></code></a>(n, nz, ntheta, length, …)</p></td>
 <td><p>Instantiate a bearing using inputs from its fluid flow.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="generated/elements/ross.BearingElement6DoF.html#ross.BearingElement6DoF" title="ross.BearingElement6DoF"><code class="xref py py-obj docutils literal notranslate"><span class="pre">BearingElement6DoF</span></code></a>(n, kxx, cxx[, kyy, cyy, …])</p></td>
-<td><p>A generalistic 6 DoF bearing element.</p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/elements/ross.MagneticBearingElement.html#ross.MagneticBearingElement" title="ross.MagneticBearingElement"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MagneticBearingElement</span></code></a>(n, g0, i0, ag, nw, …)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/elements/ross.MagneticBearingElement.html#ross.MagneticBearingElement" title="ross.MagneticBearingElement"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MagneticBearingElement</span></code></a>(n, g0, i0, ag, nw, …)</p></td>
 <td><p>Magnetic bearing.</p></td>
 </tr>
 </tbody>
 </table>
 </div>
-<div class="section" id="rotor">
-<h2>Rotor<a class="headerlink" href="#rotor" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="rotor-and-results">
+<h2>Rotor and Results<a class="headerlink" href="#rotor-and-results" title="Permalink to this headline">¶</a></h2>
+<p>Rotor class and available methods for analysis (<cite>run_</cite> methods).</p>
 <table class="longtable docutils align-default">
 <colgroup>
 <col style="width: 10%" />
 <col style="width: 90%" />
 </colgroup>
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/results/ross.Rotor.html#ross.Rotor" title="ross.Rotor"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Rotor</span></code></a>(shaft_elements[, disk_elements, …])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/rotor/ross.Rotor.html#ross.Rotor" title="ross.Rotor"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Rotor</span></code></a>(shaft_elements[, disk_elements, …])</p></td>
 <td><p>A rotor object.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/rotor/ross.Rotor.run_modal.html#ross.Rotor.run_modal" title="ross.Rotor.run_modal"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Rotor.run_modal</span></code></a>(self, speed[, num_modes, sparse])</p></td>
+<td><p>Run modal analysis.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/rotor/ross.Rotor.run_critical_speed.html#ross.Rotor.run_critical_speed" title="ross.Rotor.run_critical_speed"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Rotor.run_critical_speed</span></code></a>(self[, …])</p></td>
+<td><p>Calculate the critical speeds and damping ratios for the rotor model.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/rotor/ross.Rotor.run_freq_response.html#ross.Rotor.run_freq_response" title="ross.Rotor.run_freq_response"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Rotor.run_freq_response</span></code></a>(self[, speed_range, …])</p></td>
+<td><p>Frequency response for a mdof system.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/rotor/ross.Rotor.forced_response.html#ross.Rotor.forced_response" title="ross.Rotor.forced_response"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Rotor.forced_response</span></code></a>(self[, force, …])</p></td>
+<td><p>Forced response for a mdof system.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/rotor/ross.Rotor.run_unbalance_response.html#ross.Rotor.run_unbalance_response" title="ross.Rotor.run_unbalance_response"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Rotor.run_unbalance_response</span></code></a>(self, node, …)</p></td>
+<td><p>Unbalanced response for a mdof system.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/rotor/ross.Rotor.run_campbell.html#ross.Rotor.run_campbell" title="ross.Rotor.run_campbell"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Rotor.run_campbell</span></code></a>(self, speed_range[, …])</p></td>
+<td><p>Calculate the Campbell diagram.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/rotor/ross.Rotor.run_time_response.html#ross.Rotor.run_time_response" title="ross.Rotor.run_time_response"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Rotor.run_time_response</span></code></a>(self, speed, F, t)</p></td>
+<td><p>Calculate the time response.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/rotor/ross.Rotor.run_static.html#ross.Rotor.run_static" title="ross.Rotor.run_static"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Rotor.run_static</span></code></a>(self)</p></td>
+<td><p>Run static analysis.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/rotor/ross.Rotor.run_misalignment.html#ross.Rotor.run_misalignment" title="ross.Rotor.run_misalignment"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Rotor.run_misalignment</span></code></a>(self[, coupling])</p></td>
+<td><p>Execute the misalignment defect and generates the misalignment object on the back-end. There are two types of coupling, flexible (flex) and rigid, which have different entries. These entries are provided via <a href="#id1"><span class="problematic" id="id2">**</span></a>kwargs to the specific method.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/rotor/ross.Rotor.run_rubbing.html#ross.Rotor.run_rubbing" title="ross.Rotor.run_rubbing"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Rotor.run_rubbing</span></code></a>(self, \*\*kwargs)</p></td>
+<td><p>Execute the rubbing defect and generates the rubbing object on the back-end.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/rotor/ross.Rotor.run_crack.html#ross.Rotor.run_crack" title="ross.Rotor.run_crack"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Rotor.run_crack</span></code></a>(self, \*\*kwargs)</p></td>
+<td><p>Execute the crack defect and generates the crack object on the back-end.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="results">
+<h2>Results<a class="headerlink" href="#results" title="Permalink to this headline">¶</a></h2>
+<p>These are classes used to store results and to provide useful methods such as plotting.</p>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/results/ross.CriticalSpeedResults.html#ross.CriticalSpeedResults" title="ross.CriticalSpeedResults"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CriticalSpeedResults</span></code></a>(_wn, _wd, log_dec, …)</p></td>
+<td><p>Class used to store results from run_critical_speed() method.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/results/ross.ModalResults.html#ross.ModalResults" title="ross.ModalResults"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ModalResults</span></code></a>(speed, evalues, evectors, wn, …)</p></td>
+<td><p>Class used to store results and provide plots for Modal Analysis.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/results/ross.CampbellResults.html#ross.CampbellResults" title="ross.CampbellResults"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CampbellResults</span></code></a>(speed_range, wd, log_dec, …)</p></td>
+<td><p>Class used to store results and provide plots for Campbell Diagram.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/results/ross.FrequencyResponseResults.html#ross.FrequencyResponseResults" title="ross.FrequencyResponseResults"><code class="xref py py-obj docutils literal notranslate"><span class="pre">FrequencyResponseResults</span></code></a>(freq_resp, …)</p></td>
+<td><p>Class used to store results and provide plots for Frequency Response.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/results/ross.ForcedResponseResults.html#ross.ForcedResponseResults" title="ross.ForcedResponseResults"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ForcedResponseResults</span></code></a>(rotor, forced_resp, …)</p></td>
+<td><p>Store results and provide plots for Unbalance and Forced Response analysis.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/results/ross.StaticResults.html#ross.StaticResults" title="ross.StaticResults"><code class="xref py py-obj docutils literal notranslate"><span class="pre">StaticResults</span></code></a>(deformation, Vx, Bm, w_shaft, …)</p></td>
+<td><p>Class used to store results and provide plots for Static Analysis.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/results/ross.SummaryResults.html#ross.SummaryResults" title="ross.SummaryResults"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SummaryResults</span></code></a>(df_shaft, df_disks, …)</p></td>
+<td><p>Class used to store results and provide plots rotor summary.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/results/ross.ConvergenceResults.html#ross.ConvergenceResults" title="ross.ConvergenceResults"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ConvergenceResults</span></code></a>(el_num, eigv_arr, error_arr)</p></td>
+<td><p>Class used to store results and provide plots for Convergence Analysis.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/results/ross.TimeResponseResults.html#ross.TimeResponseResults" title="ross.TimeResponseResults"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TimeResponseResults</span></code></a>(rotor, t, yout, xout)</p></td>
+<td><p>Class used to store results and provide plots for Time Response Analysis.</p></td>
 </tr>
 </tbody>
 </table>

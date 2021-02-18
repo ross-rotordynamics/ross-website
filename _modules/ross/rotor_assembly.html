@@ -83,7 +83,8 @@
 <li class="toctree-l1"><a class="reference internal" href="../../api.html">API Reference</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../api.html#material">Material</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../api.html#elements">Elements</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../api.html#rotor">Rotor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../api.html#rotor-and-results">Rotor and Results</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../api.html#results">Results</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../contributing.html">Contributing</a><ul>
@@ -191,7 +192,7 @@
 <span class="n">colors</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">colors</span><span class="o">.</span><span class="n">qualitative</span><span class="o">.</span><span class="n">Dark24</span>
 
 
-<div class="viewcode-block" id="Rotor"><a class="viewcode-back" href="../../generated/results/ross.Rotor.html#ross.Rotor">[docs]</a><span class="k">class</span> <span class="nc">Rotor</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<div class="viewcode-block" id="Rotor"><a class="viewcode-back" href="../../generated/rotor/ross.Rotor.html#ross.Rotor">[docs]</a><span class="k">class</span> <span class="nc">Rotor</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
     <span class="sa">r</span><span class="sd">&quot;&quot;&quot;A rotor object.</span>
 
 <span class="sd">    This class will create a rotor with the shaft,</span>
@@ -255,7 +256,7 @@
 <span class="sd">    215.3707...</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="Rotor.__init__"><a class="viewcode-back" href="../../generated/results/ross.Rotor.html#ross.Rotor.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+<div class="viewcode-block" id="Rotor.__init__"><a class="viewcode-back" href="../../generated/rotor/ross.Rotor.html#ross.Rotor.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">shaft_elements</span><span class="p">,</span>
         <span class="n">disk_elements</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
@@ -701,7 +702,7 @@
         <span class="k">else</span><span class="p">:</span>
             <span class="k">return</span> <span class="kc">False</span>
 
-<div class="viewcode-block" id="Rotor.run_modal"><a class="viewcode-back" href="../../generated/results/ross.Rotor.html#ross.Rotor.run_modal">[docs]</a>    <span class="k">def</span> <span class="nf">run_modal</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">speed</span><span class="p">,</span> <span class="n">num_modes</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span> <span class="n">sparse</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<div class="viewcode-block" id="Rotor.run_modal"><a class="viewcode-back" href="../../generated/rotor/ross.Rotor.run_modal.html#ross.Rotor.run_modal">[docs]</a>    <span class="k">def</span> <span class="nf">run_modal</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">speed</span><span class="p">,</span> <span class="n">num_modes</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span> <span class="n">sparse</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Run modal analysis.</span>
 
 <span class="sd">        Method to calculate eigenvalues and eigvectors for a given rotor system.</span>
@@ -788,7 +789,7 @@
 
         <span class="k">return</span> <span class="n">modal_results</span></div>
 
-<div class="viewcode-block" id="Rotor.run_critical_speed"><a class="viewcode-back" href="../../generated/results/ross.Rotor.html#ross.Rotor.run_critical_speed">[docs]</a>    <span class="k">def</span> <span class="nf">run_critical_speed</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">speed_range</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">num_modes</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span> <span class="n">rtol</span><span class="o">=</span><span class="mf">0.005</span><span class="p">):</span>
+<div class="viewcode-block" id="Rotor.run_critical_speed"><a class="viewcode-back" href="../../generated/rotor/ross.Rotor.run_critical_speed.html#ross.Rotor.run_critical_speed">[docs]</a>    <span class="k">def</span> <span class="nf">run_critical_speed</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">speed_range</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">num_modes</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span> <span class="n">rtol</span><span class="o">=</span><span class="mf">0.005</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Calculate the critical speeds and damping ratios for the rotor model.</span>
 
 <span class="sd">        This function runs an iterative method over &quot;run_modal()&quot; to minimize</span>
@@ -894,7 +895,7 @@
 
         <span class="k">return</span> <span class="n">CriticalSpeedResults</span><span class="p">(</span><span class="n">wn</span><span class="p">,</span> <span class="n">wd</span><span class="p">,</span> <span class="n">log_dec</span><span class="p">,</span> <span class="n">damping_ratio</span><span class="p">,</span> <span class="n">whirl_direction</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="Rotor.convergence"><a class="viewcode-back" href="../../generated/results/ross.Rotor.html#ross.Rotor.convergence">[docs]</a>    <span class="k">def</span> <span class="nf">convergence</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n_eigval</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">err_max</span><span class="o">=</span><span class="mf">1e-02</span><span class="p">):</span>
+<div class="viewcode-block" id="Rotor.convergence"><a class="viewcode-back" href="../../generated/rotor/ross.Rotor.html#ross.Rotor.convergence">[docs]</a>    <span class="k">def</span> <span class="nf">convergence</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n_eigval</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">err_max</span><span class="o">=</span><span class="mf">1e-02</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Run convergence analysis.</span>
 
 <span class="sd">        Function to analyze the eigenvalues convergence through the number of</span>
@@ -1015,7 +1016,7 @@
 
         <span class="k">return</span> <span class="n">results</span></div>
 
-<div class="viewcode-block" id="Rotor.M"><a class="viewcode-back" href="../../generated/results/ross.Rotor.html#ross.Rotor.M">[docs]</a>    <span class="k">def</span> <span class="nf">M</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Rotor.M"><a class="viewcode-back" href="../../generated/rotor/ross.Rotor.html#ross.Rotor.M">[docs]</a>    <span class="k">def</span> <span class="nf">M</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Mass matrix for an instance of a rotor.</span>
 
 <span class="sd">        Returns</span>
@@ -1040,7 +1041,7 @@
 
         <span class="k">return</span> <span class="n">M0</span></div>
 
-<div class="viewcode-block" id="Rotor.K"><a class="viewcode-back" href="../../generated/results/ross.Rotor.html#ross.Rotor.K">[docs]</a>    <span class="k">def</span> <span class="nf">K</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">frequency</span><span class="p">):</span>
+<div class="viewcode-block" id="Rotor.K"><a class="viewcode-back" href="../../generated/rotor/ross.Rotor.html#ross.Rotor.K">[docs]</a>    <span class="k">def</span> <span class="nf">K</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">frequency</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Stiffness matrix for an instance of a rotor.</span>
 
 <span class="sd">        Parameters</span>
@@ -1073,7 +1074,7 @@
 
         <span class="k">return</span> <span class="n">K0</span></div>
 
-<div class="viewcode-block" id="Rotor.Kst"><a class="viewcode-back" href="../../generated/results/ross.Rotor.html#ross.Rotor.Kst">[docs]</a>    <span class="k">def</span> <span class="nf">Kst</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Rotor.Kst"><a class="viewcode-back" href="../../generated/rotor/ross.Rotor.html#ross.Rotor.Kst">[docs]</a>    <span class="k">def</span> <span class="nf">Kst</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Dynamic stiffness matrix for an instance of a rotor.</span>
 
 <span class="sd">        Returns</span>
@@ -1108,7 +1109,7 @@
 
         <span class="k">return</span> <span class="n">Kst0</span></div>
 
-<div class="viewcode-block" id="Rotor.C"><a class="viewcode-back" href="../../generated/results/ross.Rotor.html#ross.Rotor.C">[docs]</a>    <span class="k">def</span> <span class="nf">C</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">frequency</span><span class="p">):</span>
+<div class="viewcode-block" id="Rotor.C"><a class="viewcode-back" href="../../generated/rotor/ross.Rotor.html#ross.Rotor.C">[docs]</a>    <span class="k">def</span> <span class="nf">C</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">frequency</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Damping matrix for an instance of a rotor.</span>
 
 <span class="sd">        Parameters</span>
@@ -1142,7 +1143,7 @@
 
         <span class="k">return</span> <span class="n">C0</span></div>
 
-<div class="viewcode-block" id="Rotor.G"><a class="viewcode-back" href="../../generated/results/ross.Rotor.html#ross.Rotor.G">[docs]</a>    <span class="k">def</span> <span class="nf">G</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Rotor.G"><a class="viewcode-back" href="../../generated/rotor/ross.Rotor.html#ross.Rotor.G">[docs]</a>    <span class="k">def</span> <span class="nf">G</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Gyroscopic matrix for an instance of a rotor.</span>
 
 <span class="sd">        Returns</span>
@@ -1167,7 +1168,7 @@
 
         <span class="k">return</span> <span class="n">G0</span></div>
 
-<div class="viewcode-block" id="Rotor.A"><a class="viewcode-back" href="../../generated/results/ross.Rotor.html#ross.Rotor.A">[docs]</a>    <span class="k">def</span> <span class="nf">A</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">speed</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">frequency</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="Rotor.A"><a class="viewcode-back" href="../../generated/rotor/ross.Rotor.html#ross.Rotor.A">[docs]</a>    <span class="k">def</span> <span class="nf">A</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">speed</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">frequency</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;State space matrix for an instance of a rotor.</span>
 
 <span class="sd">        Parameters</span>
@@ -1473,7 +1474,7 @@
 
         <span class="k">return</span> <span class="n">sys</span>
 
-<div class="viewcode-block" id="Rotor.transfer_matrix"><a class="viewcode-back" href="../../generated/results/ross.Rotor.html#ross.Rotor.transfer_matrix">[docs]</a>    <span class="k">def</span> <span class="nf">transfer_matrix</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">speed</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">frequency</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">modes</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="Rotor.transfer_matrix"><a class="viewcode-back" href="../../generated/rotor/ross.Rotor.html#ross.Rotor.transfer_matrix">[docs]</a>    <span class="k">def</span> <span class="nf">transfer_matrix</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">speed</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">frequency</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">modes</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Calculate the fer matrix for the frequency response function (FRF).</span>
 
 <span class="sd">        Paramenters</span>
@@ -1526,7 +1527,7 @@
 
         <span class="k">return</span> <span class="n">H</span></div>
 
-<div class="viewcode-block" id="Rotor.run_freq_response"><a class="viewcode-back" href="../../generated/results/ross.Rotor.html#ross.Rotor.run_freq_response">[docs]</a>    <span class="k">def</span> <span class="nf">run_freq_response</span><span class="p">(</span>
+<div class="viewcode-block" id="Rotor.run_freq_response"><a class="viewcode-back" href="../../generated/rotor/ross.Rotor.run_freq_response.html#ross.Rotor.run_freq_response">[docs]</a>    <span class="k">def</span> <span class="nf">run_freq_response</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">speed_range</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
         <span class="n">modes</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
@@ -1665,7 +1666,7 @@
 
         <span class="k">return</span> <span class="n">results</span></div>
 
-<div class="viewcode-block" id="Rotor.forced_response"><a class="viewcode-back" href="../../generated/results/ross.Rotor.html#ross.Rotor.forced_response">[docs]</a>    <span class="k">def</span> <span class="nf">forced_response</span><span class="p">(</span>
+<div class="viewcode-block" id="Rotor.forced_response"><a class="viewcode-back" href="../../generated/rotor/ross.Rotor.forced_response.html#ross.Rotor.forced_response">[docs]</a>    <span class="k">def</span> <span class="nf">forced_response</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">force</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
         <span class="n">speed_range</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
@@ -1837,7 +1838,7 @@
 
         <span class="k">return</span> <span class="n">F0</span>
 
-<div class="viewcode-block" id="Rotor.run_unbalance_response"><a class="viewcode-back" href="../../generated/results/ross.Rotor.html#ross.Rotor.run_unbalance_response">[docs]</a>    <span class="nd">@check_units</span>
+<div class="viewcode-block" id="Rotor.run_unbalance_response"><a class="viewcode-back" href="../../generated/rotor/ross.Rotor.run_unbalance_response.html#ross.Rotor.run_unbalance_response">[docs]</a>    <span class="nd">@check_units</span>
     <span class="k">def</span> <span class="nf">run_unbalance_response</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">node</span><span class="p">,</span>
@@ -1998,7 +1999,7 @@
 
         <span class="k">return</span> <span class="n">forced_response</span></div>
 
-<div class="viewcode-block" id="Rotor.time_response"><a class="viewcode-back" href="../../generated/results/ross.Rotor.html#ross.Rotor.time_response">[docs]</a>    <span class="k">def</span> <span class="nf">time_response</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">speed</span><span class="p">,</span> <span class="n">F</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">ic</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="Rotor.time_response"><a class="viewcode-back" href="../../generated/rotor/ross.Rotor.html#ross.Rotor.time_response">[docs]</a>    <span class="k">def</span> <span class="nf">time_response</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">speed</span><span class="p">,</span> <span class="n">F</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">ic</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Time response for a rotor.</span>
 
 <span class="sd">        This method returns the time response for a rotor</span>
@@ -2035,7 +2036,7 @@
         <span class="n">lti</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_lti</span><span class="p">(</span><span class="n">speed</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">signal</span><span class="o">.</span><span class="n">lsim</span><span class="p">(</span><span class="n">lti</span><span class="p">,</span> <span class="n">F</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">X0</span><span class="o">=</span><span class="n">ic</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="Rotor.plot_rotor"><a class="viewcode-back" href="../../generated/results/ross.Rotor.html#ross.Rotor.plot_rotor">[docs]</a>    <span class="k">def</span> <span class="nf">plot_rotor</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nodes</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">check_sld</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">length_units</span><span class="o">=</span><span class="s2">&quot;m&quot;</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<div class="viewcode-block" id="Rotor.plot_rotor"><a class="viewcode-back" href="../../generated/rotor/ross.Rotor.html#ross.Rotor.plot_rotor">[docs]</a>    <span class="k">def</span> <span class="nf">plot_rotor</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nodes</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">check_sld</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">length_units</span><span class="o">=</span><span class="s2">&quot;m&quot;</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Plot a rotor object.</span>
 
 <span class="sd">        This function will take a rotor object and plot its elements representation</span>
@@ -2190,7 +2191,7 @@
 
         <span class="k">return</span> <span class="n">fig</span></div>
 
-<div class="viewcode-block" id="Rotor.run_campbell"><a class="viewcode-back" href="../../generated/results/ross.Rotor.html#ross.Rotor.run_campbell">[docs]</a>    <span class="k">def</span> <span class="nf">run_campbell</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">speed_range</span><span class="p">,</span> <span class="n">frequencies</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span> <span class="n">frequency_type</span><span class="o">=</span><span class="s2">&quot;wd&quot;</span><span class="p">):</span>
+<div class="viewcode-block" id="Rotor.run_campbell"><a class="viewcode-back" href="../../generated/rotor/ross.Rotor.run_campbell.html#ross.Rotor.run_campbell">[docs]</a>    <span class="k">def</span> <span class="nf">run_campbell</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">speed_range</span><span class="p">,</span> <span class="n">frequencies</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span> <span class="n">frequency_type</span><span class="o">=</span><span class="s2">&quot;wd&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Calculate the Campbell diagram.</span>
 
 <span class="sd">        This function will calculate the damped natural frequencies</span>
@@ -2346,7 +2347,7 @@
 
         <span class="k">return</span> <span class="n">stiffness_log</span><span class="p">,</span> <span class="n">rotor_wn</span><span class="p">,</span> <span class="n">bearing0</span><span class="p">,</span> <span class="n">intersection_points</span>
 
-<div class="viewcode-block" id="Rotor.plot_ucs"><a class="viewcode-back" href="../../generated/results/ross.Rotor.html#ross.Rotor.plot_ucs">[docs]</a>    <span class="k">def</span> <span class="nf">plot_ucs</span><span class="p">(</span>
+<div class="viewcode-block" id="Rotor.plot_ucs"><a class="viewcode-back" href="../../generated/rotor/ross.Rotor.html#ross.Rotor.plot_ucs">[docs]</a>    <span class="k">def</span> <span class="nf">plot_ucs</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">stiffness_range</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
         <span class="n">num_modes</span><span class="o">=</span><span class="mi">16</span><span class="p">,</span>
@@ -2513,7 +2514,7 @@
 
         <span class="k">return</span> <span class="n">fig</span></div>
 
-<div class="viewcode-block" id="Rotor.plot_level1"><a class="viewcode-back" href="../../generated/results/ross.Rotor.html#ross.Rotor.plot_level1">[docs]</a>    <span class="k">def</span> <span class="nf">plot_level1</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">stiffness_range</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">num</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<div class="viewcode-block" id="Rotor.plot_level1"><a class="viewcode-back" href="../../generated/rotor/ross.Rotor.html#ross.Rotor.plot_level1">[docs]</a>    <span class="k">def</span> <span class="nf">plot_level1</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">stiffness_range</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">num</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Plot level 1 stability analysis.</span>
 
 <span class="sd">        This method will plot the stability 1 analysis for a</span>
@@ -2611,7 +2612,7 @@
 
         <span class="k">return</span> <span class="n">fig</span></div>
 
-<div class="viewcode-block" id="Rotor.run_time_response"><a class="viewcode-back" href="../../generated/results/ross.Rotor.html#ross.Rotor.run_time_response">[docs]</a>    <span class="k">def</span> <span class="nf">run_time_response</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">speed</span><span class="p">,</span> <span class="n">F</span><span class="p">,</span> <span class="n">t</span><span class="p">):</span>
+<div class="viewcode-block" id="Rotor.run_time_response"><a class="viewcode-back" href="../../generated/rotor/ross.Rotor.run_time_response.html#ross.Rotor.run_time_response">[docs]</a>    <span class="k">def</span> <span class="nf">run_time_response</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">speed</span><span class="p">,</span> <span class="n">F</span><span class="p">,</span> <span class="n">t</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Calculate the time response.</span>
 
 <span class="sd">        This function will take a rotor object and calculate its time response</span>
@@ -2670,7 +2671,7 @@
 
         <span class="k">return</span> <span class="n">results</span></div>
 
-<div class="viewcode-block" id="Rotor.run_misalignment"><a class="viewcode-back" href="../../generated/results/ross.Rotor.html#ross.Rotor.run_misalignment">[docs]</a>    <span class="k">def</span> <span class="nf">run_misalignment</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">coupling</span><span class="o">=</span><span class="s2">&quot;flex&quot;</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<div class="viewcode-block" id="Rotor.run_misalignment"><a class="viewcode-back" href="../../generated/rotor/ross.Rotor.run_misalignment.html#ross.Rotor.run_misalignment">[docs]</a>    <span class="k">def</span> <span class="nf">run_misalignment</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">coupling</span><span class="o">=</span><span class="s2">&quot;flex&quot;</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Execute the misalignment defect and generates the misalignment object on the back-end. There are two types of coupling, flexible (flex) and rigid, which have different entries. These entries are provided via **kwargs to the specific method.</span>
 
 <span class="sd">        Parameters</span>
@@ -2761,7 +2762,7 @@
         <span class="n">defect</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">defect</span></div>
 
-<div class="viewcode-block" id="Rotor.run_rubbing"><a class="viewcode-back" href="../../generated/results/ross.Rotor.html#ross.Rotor.run_rubbing">[docs]</a>    <span class="k">def</span> <span class="nf">run_rubbing</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<div class="viewcode-block" id="Rotor.run_rubbing"><a class="viewcode-back" href="../../generated/rotor/ross.Rotor.run_rubbing.html#ross.Rotor.run_rubbing">[docs]</a>    <span class="k">def</span> <span class="nf">run_rubbing</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Execute the rubbing defect and generates the rubbing object on the back-end.</span>
 
 <span class="sd">        Parameters</span>
@@ -2811,7 +2812,7 @@
         <span class="n">defect</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">defect</span></div>
 
-<div class="viewcode-block" id="Rotor.run_crack"><a class="viewcode-back" href="../../generated/results/ross.Rotor.html#ross.Rotor.run_crack">[docs]</a>    <span class="k">def</span> <span class="nf">run_crack</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<div class="viewcode-block" id="Rotor.run_crack"><a class="viewcode-back" href="../../generated/rotor/ross.Rotor.run_crack.html#ross.Rotor.run_crack">[docs]</a>    <span class="k">def</span> <span class="nf">run_crack</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Execute the crack defect and generates the crack object on the back-end.</span>
 
 <span class="sd">        Parameters</span>
@@ -2853,7 +2854,7 @@
         <span class="n">defect</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">defect</span></div>
 
-<div class="viewcode-block" id="Rotor.save_mat"><a class="viewcode-back" href="../../generated/results/ross.Rotor.html#ross.Rotor.save_mat">[docs]</a>    <span class="k">def</span> <span class="nf">save_mat</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">file</span><span class="p">,</span> <span class="n">speed</span><span class="p">,</span> <span class="n">frequency</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="Rotor.save_mat"><a class="viewcode-back" href="../../generated/rotor/ross.Rotor.html#ross.Rotor.save_mat">[docs]</a>    <span class="k">def</span> <span class="nf">save_mat</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">file</span><span class="p">,</span> <span class="n">speed</span><span class="p">,</span> <span class="n">frequency</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Save matrices and rotor model to a .mat file.</span>
 
 <span class="sd">        Parameters</span>
@@ -2888,7 +2889,7 @@
 
         <span class="n">sio</span><span class="o">.</span><span class="n">savemat</span><span class="p">(</span><span class="n">file</span><span class="p">,</span> <span class="n">dic</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="Rotor.save"><a class="viewcode-back" href="../../generated/results/ross.Rotor.html#ross.Rotor.save">[docs]</a>    <span class="k">def</span> <span class="nf">save</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">file</span><span class="p">):</span>
+<div class="viewcode-block" id="Rotor.save"><a class="viewcode-back" href="../../generated/rotor/ross.Rotor.html#ross.Rotor.save">[docs]</a>    <span class="k">def</span> <span class="nf">save</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">file</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Save the rotor to a .toml file.</span>
 
 <span class="sd">        Parameters</span>
@@ -2909,7 +2910,7 @@
         <span class="k">for</span> <span class="n">el</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">elements</span><span class="p">:</span>
             <span class="n">el</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">file</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="Rotor.load"><a class="viewcode-back" href="../../generated/results/ross.Rotor.html#ross.Rotor.load">[docs]</a>    <span class="nd">@classmethod</span>
+<div class="viewcode-block" id="Rotor.load"><a class="viewcode-back" href="../../generated/rotor/ross.Rotor.html#ross.Rotor.load">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">load</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">file</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Load rotor from toml file.</span>
 
@@ -2966,7 +2967,7 @@
             <span class="o">**</span><span class="n">parameters</span><span class="p">,</span>
         <span class="p">)</span></div>
 
-<div class="viewcode-block" id="Rotor.run_static"><a class="viewcode-back" href="../../generated/results/ross.Rotor.html#ross.Rotor.run_static">[docs]</a>    <span class="k">def</span> <span class="nf">run_static</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Rotor.run_static"><a class="viewcode-back" href="../../generated/rotor/ross.Rotor.run_static.html#ross.Rotor.run_static">[docs]</a>    <span class="k">def</span> <span class="nf">run_static</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Run static analysis.</span>
 
 <span class="sd">        Static analysis calculates free-body diagram, deformed shaft, shearing</span>
@@ -3201,7 +3202,7 @@
 
         <span class="k">return</span> <span class="n">results</span></div>
 
-<div class="viewcode-block" id="Rotor.summary"><a class="viewcode-back" href="../../generated/results/ross.Rotor.html#ross.Rotor.summary">[docs]</a>    <span class="k">def</span> <span class="nf">summary</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Rotor.summary"><a class="viewcode-back" href="../../generated/rotor/ross.Rotor.html#ross.Rotor.summary">[docs]</a>    <span class="k">def</span> <span class="nf">summary</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Plot the rotor summary.</span>
 
 <span class="sd">        This functioncreates a summary of the main parameters and attributes of the</span>
@@ -3233,7 +3234,7 @@
         <span class="p">)</span>
         <span class="k">return</span> <span class="n">results</span></div>
 
-<div class="viewcode-block" id="Rotor.from_section"><a class="viewcode-back" href="../../generated/results/ross.Rotor.html#ross.Rotor.from_section">[docs]</a>    <span class="nd">@classmethod</span>
+<div class="viewcode-block" id="Rotor.from_section"><a class="viewcode-back" href="../../generated/rotor/ross.Rotor.html#ross.Rotor.from_section">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">from_section</span><span class="p">(</span>
         <span class="bp">cls</span><span class="p">,</span>
         <span class="n">leng_data</span><span class="p">,</span>

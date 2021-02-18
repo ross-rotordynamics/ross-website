@@ -83,7 +83,8 @@
 <li class="toctree-l1"><a class="reference internal" href="api.html">API Reference</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="api.html#material">Material</a></li>
 <li class="toctree-l2"><a class="reference internal" href="api.html#elements">Elements</a></li>
-<li class="toctree-l2"><a class="reference internal" href="api.html#rotor">Rotor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.html#rotor-and-results">Rotor and Results</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.html#results">Results</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing</a><ul>
@@ -155,6 +156,7 @@
  | <a href="#D"><strong>D</strong></a>
  | <a href="#F"><strong>F</strong></a>
  | <a href="#G"><strong>G</strong></a>
+ | <a href="#H"><strong>H</strong></a>
  | <a href="#K"><strong>K</strong></a>
  | <a href="#L"><strong>L</strong></a>
  | <a href="#M"><strong>M</strong></a>
@@ -162,6 +164,7 @@
  | <a href="#R"><strong>R</strong></a>
  | <a href="#S"><strong>S</strong></a>
  | <a href="#T"><strong>T</strong></a>
+ | <a href="#W"><strong>W</strong></a>
  
 </div>
 <h2 id="_">_</h2>
@@ -176,19 +179,39 @@
 </li>
         <li><a href="generated/elements/ross.BearingFluidFlow.html#id0">(ross.BearingFluidFlow method)</a>, <a href="generated/elements/ross.BearingFluidFlow.html#ross.BearingFluidFlow.__init__">[1]</a>
 </li>
+        <li><a href="generated/results/ross.CampbellResults.html#id0">(ross.CampbellResults method)</a>, <a href="generated/results/ross.CampbellResults.html#ross.CampbellResults.__init__">[1]</a>
+</li>
+        <li><a href="generated/results/ross.ConvergenceResults.html#id0">(ross.ConvergenceResults method)</a>, <a href="generated/results/ross.ConvergenceResults.html#ross.ConvergenceResults.__init__">[1]</a>
+</li>
+        <li><a href="generated/results/ross.CriticalSpeedResults.html#id0">(ross.CriticalSpeedResults method)</a>, <a href="generated/results/ross.CriticalSpeedResults.html#ross.CriticalSpeedResults.__init__">[1]</a>
+</li>
         <li><a href="generated/elements/ross.DiskElement.html#id0">(ross.DiskElement method)</a>, <a href="generated/elements/ross.DiskElement.html#ross.DiskElement.__init__">[1]</a>
+</li>
+        <li><a href="generated/results/ross.ForcedResponseResults.html#id0">(ross.ForcedResponseResults method)</a>, <a href="generated/results/ross.ForcedResponseResults.html#ross.ForcedResponseResults.__init__">[1]</a>
+</li>
+        <li><a href="generated/results/ross.FrequencyResponseResults.html#id0">(ross.FrequencyResponseResults method)</a>, <a href="generated/results/ross.FrequencyResponseResults.html#ross.FrequencyResponseResults.__init__">[1]</a>
 </li>
         <li><a href="generated/elements/ross.MagneticBearingElement.html#id0">(ross.MagneticBearingElement method)</a>, <a href="generated/elements/ross.MagneticBearingElement.html#ross.MagneticBearingElement.__init__">[1]</a>
 </li>
         <li><a href="generated/material/ross.Material.html#id0">(ross.Material method)</a>, <a href="generated/material/ross.Material.html#ross.Material.__init__">[1]</a>
 </li>
+        <li><a href="generated/results/ross.ModalResults.html#id0">(ross.ModalResults method)</a>, <a href="generated/results/ross.ModalResults.html#ross.ModalResults.__init__">[1]</a>
+</li>
         <li><a href="generated/elements/ross.RollerBearingElement.html#id0">(ross.RollerBearingElement method)</a>, <a href="generated/elements/ross.RollerBearingElement.html#ross.RollerBearingElement.__init__">[1]</a>
 </li>
-        <li><a href="generated/results/ross.Rotor.html#id0">(ross.Rotor method)</a>, <a href="generated/results/ross.Rotor.html#ross.Rotor.__init__">[1]</a>
+        <li><a href="generated/rotor/ross.Rotor.html#id0">(ross.Rotor method)</a>, <a href="generated/rotor/ross.Rotor.html#ross.Rotor.__init__">[1]</a>
 </li>
         <li><a href="generated/elements/ross.SealElement.html#id0">(ross.SealElement method)</a>, <a href="generated/elements/ross.SealElement.html#ross.SealElement.__init__">[1]</a>
 </li>
         <li><a href="generated/elements/ross.ShaftElement.html#id0">(ross.ShaftElement method)</a>, <a href="generated/elements/ross.ShaftElement.html#ross.ShaftElement.__init__">[1]</a>
+</li>
+        <li><a href="generated/elements/ross.ShaftElement6DoF.html#id0">(ross.ShaftElement6DoF method)</a>, <a href="generated/elements/ross.ShaftElement6DoF.html#ross.ShaftElement6DoF.__init__">[1]</a>
+</li>
+        <li><a href="generated/results/ross.StaticResults.html#id0">(ross.StaticResults method)</a>, <a href="generated/results/ross.StaticResults.html#ross.StaticResults.__init__">[1]</a>
+</li>
+        <li><a href="generated/results/ross.SummaryResults.html#id0">(ross.SummaryResults method)</a>, <a href="generated/results/ross.SummaryResults.html#ross.SummaryResults.__init__">[1]</a>
+</li>
+        <li><a href="generated/results/ross.TimeResponseResults.html#id0">(ross.TimeResponseResults method)</a>, <a href="generated/results/ross.TimeResponseResults.html#ross.TimeResponseResults.__init__">[1]</a>
 </li>
       </ul></li>
   </ul></td>
@@ -197,7 +220,7 @@
 <h2 id="A">A</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="generated/results/ross.Rotor.html#ross.Rotor.A">A() (ross.Rotor method)</a>
+      <li><a href="generated/rotor/ross.Rotor.html#ross.Rotor.A">A() (ross.Rotor method)</a>
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
@@ -240,16 +263,26 @@
 </li>
         <li><a href="generated/elements/ross.RollerBearingElement.html#ross.RollerBearingElement.C">(ross.RollerBearingElement method)</a>
 </li>
-        <li><a href="generated/results/ross.Rotor.html#ross.Rotor.C">(ross.Rotor method)</a>
+        <li><a href="generated/rotor/ross.Rotor.html#ross.Rotor.C">(ross.Rotor method)</a>
 </li>
         <li><a href="generated/elements/ross.SealElement.html#ross.SealElement.C">(ross.SealElement method)</a>
 </li>
         <li><a href="generated/elements/ross.ShaftElement.html#ross.ShaftElement.C">(ross.ShaftElement method)</a>
 </li>
+        <li><a href="generated/elements/ross.ShaftElement6DoF.html#ross.ShaftElement6DoF.C">(ross.ShaftElement6DoF method)</a>
+</li>
       </ul></li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="generated/results/ross.Rotor.html#ross.Rotor.convergence">convergence() (ross.Rotor method)</a>
+      <li><a href="generated/results/ross.ModalResults.html#ross.ModalResults.calc_mode_shape">calc_mode_shape() (ross.ModalResults method)</a>
+</li>
+      <li><a href="generated/results/ross.CampbellResults.html#ross.CampbellResults">CampbellResults (class in ross)</a>
+</li>
+      <li><a href="generated/rotor/ross.Rotor.html#ross.Rotor.convergence">convergence() (ross.Rotor method)</a>
+</li>
+      <li><a href="generated/results/ross.ConvergenceResults.html#ross.ConvergenceResults">ConvergenceResults (class in ross)</a>
+</li>
+      <li><a href="generated/results/ross.CriticalSpeedResults.html#ross.CriticalSpeedResults">CriticalSpeedResults (class in ross)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -278,6 +311,8 @@
 </li>
         <li><a href="generated/elements/ross.ShaftElement.html#ross.ShaftElement.dof_local_index">(ross.ShaftElement method)</a>
 </li>
+        <li><a href="generated/elements/ross.ShaftElement6DoF.html#ross.ShaftElement6DoF.dof_local_index">(ross.ShaftElement6DoF method)</a>
+</li>
       </ul></li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
@@ -300,6 +335,8 @@
 </li>
         <li><a href="generated/elements/ross.ShaftElement.html#ross.ShaftElement.dof_mapping">(ross.ShaftElement method)</a>
 </li>
+        <li><a href="generated/elements/ross.ShaftElement6DoF.html#ross.ShaftElement6DoF.dof_mapping">(ross.ShaftElement6DoF method)</a>
+</li>
       </ul></li>
       <li><a href="generated/material/ross.Material.html#ross.Material.dump_data">dump_data() (ross.Material static method)</a>
 </li>
@@ -309,11 +346,15 @@
 <h2 id="F">F</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="generated/results/ross.Rotor.html#ross.Rotor.forced_response">forced_response() (ross.Rotor method)</a>
+      <li><a href="generated/rotor/ross.Rotor.forced_response.html#ross.Rotor.forced_response">forced_response() (ross.Rotor method)</a>, <a href="generated/rotor/ross.Rotor.html#ross.Rotor.forced_response">[1]</a>
+</li>
+      <li><a href="generated/results/ross.ForcedResponseResults.html#ross.ForcedResponseResults">ForcedResponseResults (class in ross)</a>
+</li>
+      <li><a href="generated/results/ross.FrequencyResponseResults.html#ross.FrequencyResponseResults">FrequencyResponseResults (class in ross)</a>
 </li>
       <li><a href="generated/elements/ross.DiskElement.html#ross.DiskElement.from_geometry">from_geometry() (ross.DiskElement class method)</a>
 </li>
-      <li><a href="generated/results/ross.Rotor.html#ross.Rotor.from_section">from_section() (ross.Rotor class method)</a>
+      <li><a href="generated/rotor/ross.Rotor.html#ross.Rotor.from_section">from_section() (ross.Rotor class method)</a>
 </li>
       <li><a href="generated/elements/ross.BallBearingElement.html#ross.BallBearingElement.from_table">from_table() (ross.BallBearingElement class method)</a>
 
@@ -333,6 +374,8 @@
         <li><a href="generated/elements/ross.SealElement.html#ross.SealElement.from_table">(ross.SealElement class method)</a>
 </li>
         <li><a href="generated/elements/ross.ShaftElement.html#ross.ShaftElement.from_table">(ross.ShaftElement class method)</a>
+</li>
+        <li><a href="generated/elements/ross.ShaftElement6DoF.html#ross.ShaftElement6DoF.from_table">(ross.ShaftElement6DoF class method)</a>
 </li>
       </ul></li>
   </ul></td>
@@ -356,16 +399,26 @@
 </li>
         <li><a href="generated/elements/ross.RollerBearingElement.html#ross.RollerBearingElement.G">(ross.RollerBearingElement method)</a>
 </li>
-        <li><a href="generated/results/ross.Rotor.html#ross.Rotor.G">(ross.Rotor method)</a>
+        <li><a href="generated/rotor/ross.Rotor.html#ross.Rotor.G">(ross.Rotor method)</a>
 </li>
         <li><a href="generated/elements/ross.SealElement.html#ross.SealElement.G">(ross.SealElement method)</a>
 </li>
         <li><a href="generated/elements/ross.ShaftElement.html#ross.ShaftElement.G">(ross.ShaftElement method)</a>
 </li>
+        <li><a href="generated/elements/ross.ShaftElement6DoF.html#ross.ShaftElement6DoF.G">(ross.ShaftElement6DoF method)</a>
+</li>
       </ul></li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="generated/material/ross.Material.html#ross.Material.get_data">get_data() (ross.Material static method)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="H">H</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="generated/results/ross.ModalResults.html#ross.ModalResults.H_kappa">H_kappa() (ross.ModalResults method)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -388,17 +441,27 @@
 </li>
         <li><a href="generated/elements/ross.RollerBearingElement.html#ross.RollerBearingElement.K">(ross.RollerBearingElement method)</a>
 </li>
-        <li><a href="generated/results/ross.Rotor.html#ross.Rotor.K">(ross.Rotor method)</a>
+        <li><a href="generated/rotor/ross.Rotor.html#ross.Rotor.K">(ross.Rotor method)</a>
 </li>
         <li><a href="generated/elements/ross.SealElement.html#ross.SealElement.K">(ross.SealElement method)</a>
 </li>
         <li><a href="generated/elements/ross.ShaftElement.html#ross.ShaftElement.K">(ross.ShaftElement method)</a>
 </li>
+        <li><a href="generated/elements/ross.ShaftElement6DoF.html#ross.ShaftElement6DoF.K">(ross.ShaftElement6DoF method)</a>
+</li>
       </ul></li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="generated/results/ross.Rotor.html#ross.Rotor.Kst">Kst() (ross.Rotor method)</a>
+      <li><a href="generated/results/ross.ModalResults.html#ross.ModalResults.kappa">kappa() (ross.ModalResults method)</a>
 </li>
+      <li><a href="generated/results/ross.ModalResults.html#ross.ModalResults.kappa_mode">kappa_mode() (ross.ModalResults method)</a>
+</li>
+      <li><a href="generated/rotor/ross.Rotor.html#ross.Rotor.Kst">Kst() (ross.Rotor method)</a>
+
+      <ul>
+        <li><a href="generated/elements/ross.ShaftElement6DoF.html#ross.ShaftElement6DoF.Kst">(ross.ShaftElement6DoF method)</a>
+</li>
+      </ul></li>
   </ul></td>
 </tr></table>
 
@@ -414,17 +477,37 @@
 </li>
         <li><a href="generated/elements/ross.BearingFluidFlow.html#ross.BearingFluidFlow.load">(ross.BearingFluidFlow class method)</a>
 </li>
+        <li><a href="generated/results/ross.CampbellResults.html#ross.CampbellResults.load">(ross.CampbellResults class method)</a>
+</li>
+        <li><a href="generated/results/ross.ConvergenceResults.html#ross.ConvergenceResults.load">(ross.ConvergenceResults class method)</a>
+</li>
+        <li><a href="generated/results/ross.CriticalSpeedResults.html#ross.CriticalSpeedResults.load">(ross.CriticalSpeedResults class method)</a>
+</li>
         <li><a href="generated/elements/ross.DiskElement.html#ross.DiskElement.load">(ross.DiskElement class method)</a>
+</li>
+        <li><a href="generated/results/ross.ForcedResponseResults.html#ross.ForcedResponseResults.load">(ross.ForcedResponseResults class method)</a>
+</li>
+        <li><a href="generated/results/ross.FrequencyResponseResults.html#ross.FrequencyResponseResults.load">(ross.FrequencyResponseResults class method)</a>
 </li>
         <li><a href="generated/elements/ross.MagneticBearingElement.html#ross.MagneticBearingElement.load">(ross.MagneticBearingElement class method)</a>
 </li>
+        <li><a href="generated/results/ross.ModalResults.html#ross.ModalResults.load">(ross.ModalResults class method)</a>
+</li>
         <li><a href="generated/elements/ross.RollerBearingElement.html#ross.RollerBearingElement.load">(ross.RollerBearingElement class method)</a>
 </li>
-        <li><a href="generated/results/ross.Rotor.html#ross.Rotor.load">(ross.Rotor class method)</a>
+        <li><a href="generated/rotor/ross.Rotor.html#ross.Rotor.load">(ross.Rotor class method)</a>
 </li>
         <li><a href="generated/elements/ross.SealElement.html#ross.SealElement.load">(ross.SealElement class method)</a>
 </li>
         <li><a href="generated/elements/ross.ShaftElement.html#ross.ShaftElement.load">(ross.ShaftElement class method)</a>
+</li>
+        <li><a href="generated/elements/ross.ShaftElement6DoF.html#ross.ShaftElement6DoF.load">(ross.ShaftElement6DoF class method)</a>
+</li>
+        <li><a href="generated/results/ross.StaticResults.html#ross.StaticResults.load">(ross.StaticResults class method)</a>
+</li>
+        <li><a href="generated/results/ross.SummaryResults.html#ross.SummaryResults.load">(ross.SummaryResults class method)</a>
+</li>
+        <li><a href="generated/results/ross.TimeResponseResults.html#ross.TimeResponseResults.load">(ross.TimeResponseResults class method)</a>
 </li>
       </ul></li>
   </ul></td>
@@ -452,11 +535,13 @@
 </li>
         <li><a href="generated/elements/ross.RollerBearingElement.html#ross.RollerBearingElement.M">(ross.RollerBearingElement method)</a>
 </li>
-        <li><a href="generated/results/ross.Rotor.html#ross.Rotor.M">(ross.Rotor method)</a>
+        <li><a href="generated/rotor/ross.Rotor.html#ross.Rotor.M">(ross.Rotor method)</a>
 </li>
         <li><a href="generated/elements/ross.SealElement.html#ross.SealElement.M">(ross.SealElement method)</a>
 </li>
         <li><a href="generated/elements/ross.ShaftElement.html#ross.ShaftElement.M">(ross.ShaftElement method)</a>
+</li>
+        <li><a href="generated/elements/ross.ShaftElement6DoF.html#ross.ShaftElement6DoF.M">(ross.ShaftElement6DoF method)</a>
 </li>
       </ul></li>
   </ul></td>
@@ -465,19 +550,79 @@
 </li>
       <li><a href="generated/material/ross.Material.html#ross.Material">Material (class in ross)</a>
 </li>
+      <li><a href="generated/results/ross.ModalResults.html#ross.ModalResults">ModalResults (class in ross)</a>
+</li>
   </ul></td>
 </tr></table>
 
 <h2 id="P">P</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="generated/results/ross.Rotor.html#ross.Rotor.plot_level1">plot_level1() (ross.Rotor method)</a>
+      <li><a href="generated/results/ross.CampbellResults.html#ross.CampbellResults.plot">plot() (ross.CampbellResults method)</a>
+
+      <ul>
+        <li><a href="generated/results/ross.ConvergenceResults.html#ross.ConvergenceResults.plot">(ross.ConvergenceResults method)</a>
+</li>
+        <li><a href="generated/results/ross.ForcedResponseResults.html#ross.ForcedResponseResults.plot">(ross.ForcedResponseResults method)</a>
+</li>
+        <li><a href="generated/results/ross.FrequencyResponseResults.html#ross.FrequencyResponseResults.plot">(ross.FrequencyResponseResults method)</a>
+</li>
+        <li><a href="generated/results/ross.SummaryResults.html#ross.SummaryResults.plot">(ross.SummaryResults method)</a>
+</li>
+      </ul></li>
+      <li><a href="generated/results/ross.TimeResponseResults.html#ross.TimeResponseResults.plot_1d">plot_1d() (ross.TimeResponseResults method)</a>
+</li>
+      <li><a href="generated/results/ross.TimeResponseResults.html#ross.TimeResponseResults.plot_2d">plot_2d() (ross.TimeResponseResults method)</a>
+</li>
+      <li><a href="generated/results/ross.TimeResponseResults.html#ross.TimeResponseResults.plot_3d">plot_3d() (ross.TimeResponseResults method)</a>
+</li>
+      <li><a href="generated/results/ross.ForcedResponseResults.html#ross.ForcedResponseResults.plot_bending_moment">plot_bending_moment() (ross.ForcedResponseResults method)</a>
+
+      <ul>
+        <li><a href="generated/results/ross.StaticResults.html#ross.StaticResults.plot_bending_moment">(ross.StaticResults method)</a>
+</li>
+      </ul></li>
+      <li><a href="generated/results/ross.ForcedResponseResults.html#ross.ForcedResponseResults.plot_deflected_shape">plot_deflected_shape() (ross.ForcedResponseResults method)</a>
+</li>
+      <li><a href="generated/results/ross.ForcedResponseResults.html#ross.ForcedResponseResults.plot_deflected_shape_2d">plot_deflected_shape_2d() (ross.ForcedResponseResults method)</a>
+</li>
+      <li><a href="generated/results/ross.ForcedResponseResults.html#ross.ForcedResponseResults.plot_deflected_shape_3d">plot_deflected_shape_3d() (ross.ForcedResponseResults method)</a>
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="generated/results/ross.Rotor.html#ross.Rotor.plot_rotor">plot_rotor() (ross.Rotor method)</a>
+      <li><a href="generated/results/ross.StaticResults.html#ross.StaticResults.plot_deformation">plot_deformation() (ross.StaticResults method)</a>
 </li>
-      <li><a href="generated/results/ross.Rotor.html#ross.Rotor.plot_ucs">plot_ucs() (ross.Rotor method)</a>
+      <li><a href="generated/results/ross.StaticResults.html#ross.StaticResults.plot_free_body_diagram">plot_free_body_diagram() (ross.StaticResults method)</a>
+</li>
+      <li><a href="generated/rotor/ross.Rotor.html#ross.Rotor.plot_level1">plot_level1() (ross.Rotor method)</a>
+</li>
+      <li><a href="generated/results/ross.ForcedResponseResults.html#ross.ForcedResponseResults.plot_magnitude">plot_magnitude() (ross.ForcedResponseResults method)</a>
+
+      <ul>
+        <li><a href="generated/results/ross.FrequencyResponseResults.html#ross.FrequencyResponseResults.plot_magnitude">(ross.FrequencyResponseResults method)</a>
+</li>
+      </ul></li>
+      <li><a href="generated/results/ross.ModalResults.html#ross.ModalResults.plot_mode_2d">plot_mode_2d() (ross.ModalResults method)</a>
+</li>
+      <li><a href="generated/results/ross.ModalResults.html#ross.ModalResults.plot_mode_3d">plot_mode_3d() (ross.ModalResults method)</a>
+</li>
+      <li><a href="generated/results/ross.ForcedResponseResults.html#ross.ForcedResponseResults.plot_phase">plot_phase() (ross.ForcedResponseResults method)</a>
+
+      <ul>
+        <li><a href="generated/results/ross.FrequencyResponseResults.html#ross.FrequencyResponseResults.plot_phase">(ross.FrequencyResponseResults method)</a>
+</li>
+      </ul></li>
+      <li><a href="generated/results/ross.ForcedResponseResults.html#ross.ForcedResponseResults.plot_polar_bode">plot_polar_bode() (ross.ForcedResponseResults method)</a>
+
+      <ul>
+        <li><a href="generated/results/ross.FrequencyResponseResults.html#ross.FrequencyResponseResults.plot_polar_bode">(ross.FrequencyResponseResults method)</a>
+</li>
+      </ul></li>
+      <li><a href="generated/rotor/ross.Rotor.html#ross.Rotor.plot_rotor">plot_rotor() (ross.Rotor method)</a>
+</li>
+      <li><a href="generated/results/ross.StaticResults.html#ross.StaticResults.plot_shearing_force">plot_shearing_force() (ross.StaticResults method)</a>
+</li>
+      <li><a href="generated/rotor/ross.Rotor.html#ross.Rotor.plot_ucs">plot_ucs() (ross.Rotor method)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -494,9 +639,21 @@
 </li>
         <li><a href="generated/elements/ross.BearingFluidFlow.html#ross.BearingFluidFlow.read_toml_data">(ross.BearingFluidFlow class method)</a>
 </li>
+        <li><a href="generated/results/ross.CampbellResults.html#ross.CampbellResults.read_toml_data">(ross.CampbellResults class method)</a>
+</li>
+        <li><a href="generated/results/ross.ConvergenceResults.html#ross.ConvergenceResults.read_toml_data">(ross.ConvergenceResults class method)</a>
+</li>
+        <li><a href="generated/results/ross.CriticalSpeedResults.html#ross.CriticalSpeedResults.read_toml_data">(ross.CriticalSpeedResults class method)</a>
+</li>
         <li><a href="generated/elements/ross.DiskElement.html#ross.DiskElement.read_toml_data">(ross.DiskElement class method)</a>
 </li>
+        <li><a href="generated/results/ross.ForcedResponseResults.html#ross.ForcedResponseResults.read_toml_data">(ross.ForcedResponseResults class method)</a>
+</li>
+        <li><a href="generated/results/ross.FrequencyResponseResults.html#ross.FrequencyResponseResults.read_toml_data">(ross.FrequencyResponseResults class method)</a>
+</li>
         <li><a href="generated/elements/ross.MagneticBearingElement.html#ross.MagneticBearingElement.read_toml_data">(ross.MagneticBearingElement class method)</a>
+</li>
+        <li><a href="generated/results/ross.ModalResults.html#ross.ModalResults.read_toml_data">(ross.ModalResults class method)</a>
 </li>
         <li><a href="generated/elements/ross.RollerBearingElement.html#ross.RollerBearingElement.read_toml_data">(ross.RollerBearingElement class method)</a>
 </li>
@@ -504,34 +661,42 @@
 </li>
         <li><a href="generated/elements/ross.ShaftElement.html#ross.ShaftElement.read_toml_data">(ross.ShaftElement class method)</a>
 </li>
+        <li><a href="generated/elements/ross.ShaftElement6DoF.html#ross.ShaftElement6DoF.read_toml_data">(ross.ShaftElement6DoF class method)</a>
+</li>
+        <li><a href="generated/results/ross.StaticResults.html#ross.StaticResults.read_toml_data">(ross.StaticResults class method)</a>
+</li>
+        <li><a href="generated/results/ross.SummaryResults.html#ross.SummaryResults.read_toml_data">(ross.SummaryResults class method)</a>
+</li>
+        <li><a href="generated/results/ross.TimeResponseResults.html#ross.TimeResponseResults.read_toml_data">(ross.TimeResponseResults class method)</a>
+</li>
       </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="generated/material/ross.Material.html#ross.Material.remove_material">remove_material() (ross.Material static method)</a>
 </li>
       <li><a href="generated/elements/ross.RollerBearingElement.html#ross.RollerBearingElement">RollerBearingElement (class in ross)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="generated/results/ross.Rotor.html#ross.Rotor">Rotor (class in ross)</a>
+      <li><a href="generated/rotor/ross.Rotor.html#ross.Rotor">Rotor (class in ross)</a>
 </li>
-      <li><a href="generated/results/ross.Rotor.html#ross.Rotor.run_campbell">run_campbell() (ross.Rotor method)</a>
+      <li><a href="generated/rotor/ross.Rotor.html#ross.Rotor.run_campbell">run_campbell() (ross.Rotor method)</a>, <a href="generated/rotor/ross.Rotor.run_campbell.html#ross.Rotor.run_campbell">[1]</a>
 </li>
-      <li><a href="generated/results/ross.Rotor.html#ross.Rotor.run_crack">run_crack() (ross.Rotor method)</a>
+      <li><a href="generated/rotor/ross.Rotor.html#ross.Rotor.run_crack">run_crack() (ross.Rotor method)</a>, <a href="generated/rotor/ross.Rotor.run_crack.html#ross.Rotor.run_crack">[1]</a>
 </li>
-      <li><a href="generated/results/ross.Rotor.html#ross.Rotor.run_critical_speed">run_critical_speed() (ross.Rotor method)</a>
+      <li><a href="generated/rotor/ross.Rotor.html#ross.Rotor.run_critical_speed">run_critical_speed() (ross.Rotor method)</a>, <a href="generated/rotor/ross.Rotor.run_critical_speed.html#ross.Rotor.run_critical_speed">[1]</a>
 </li>
-      <li><a href="generated/results/ross.Rotor.html#ross.Rotor.run_freq_response">run_freq_response() (ross.Rotor method)</a>
+      <li><a href="generated/rotor/ross.Rotor.html#ross.Rotor.run_freq_response">run_freq_response() (ross.Rotor method)</a>, <a href="generated/rotor/ross.Rotor.run_freq_response.html#ross.Rotor.run_freq_response">[1]</a>
 </li>
-      <li><a href="generated/results/ross.Rotor.html#ross.Rotor.run_misalignment">run_misalignment() (ross.Rotor method)</a>
+      <li><a href="generated/rotor/ross.Rotor.html#ross.Rotor.run_misalignment">run_misalignment() (ross.Rotor method)</a>, <a href="generated/rotor/ross.Rotor.run_misalignment.html#ross.Rotor.run_misalignment">[1]</a>
 </li>
-      <li><a href="generated/results/ross.Rotor.html#ross.Rotor.run_modal">run_modal() (ross.Rotor method)</a>
+      <li><a href="generated/rotor/ross.Rotor.html#ross.Rotor.run_modal">run_modal() (ross.Rotor method)</a>, <a href="generated/rotor/ross.Rotor.run_modal.html#ross.Rotor.run_modal">[1]</a>
 </li>
-      <li><a href="generated/results/ross.Rotor.html#ross.Rotor.run_rubbing">run_rubbing() (ross.Rotor method)</a>
+      <li><a href="generated/rotor/ross.Rotor.html#ross.Rotor.run_rubbing">run_rubbing() (ross.Rotor method)</a>, <a href="generated/rotor/ross.Rotor.run_rubbing.html#ross.Rotor.run_rubbing">[1]</a>
 </li>
-      <li><a href="generated/results/ross.Rotor.html#ross.Rotor.run_static">run_static() (ross.Rotor method)</a>
+      <li><a href="generated/rotor/ross.Rotor.html#ross.Rotor.run_static">run_static() (ross.Rotor method)</a>, <a href="generated/rotor/ross.Rotor.run_static.html#ross.Rotor.run_static">[1]</a>
 </li>
-      <li><a href="generated/results/ross.Rotor.html#ross.Rotor.run_time_response">run_time_response() (ross.Rotor method)</a>
+      <li><a href="generated/rotor/ross.Rotor.html#ross.Rotor.run_time_response">run_time_response() (ross.Rotor method)</a>, <a href="generated/rotor/ross.Rotor.run_time_response.html#ross.Rotor.run_time_response">[1]</a>
 </li>
-      <li><a href="generated/results/ross.Rotor.html#ross.Rotor.run_unbalance_response">run_unbalance_response() (ross.Rotor method)</a>
+      <li><a href="generated/rotor/ross.Rotor.html#ross.Rotor.run_unbalance_response">run_unbalance_response() (ross.Rotor method)</a>, <a href="generated/rotor/ross.Rotor.run_unbalance_response.html#ross.Rotor.run_unbalance_response">[1]</a>
 </li>
   </ul></td>
 </tr></table>
@@ -548,30 +713,58 @@
 </li>
         <li><a href="generated/elements/ross.BearingFluidFlow.html#ross.BearingFluidFlow.save">(ross.BearingFluidFlow method)</a>
 </li>
+        <li><a href="generated/results/ross.CampbellResults.html#ross.CampbellResults.save">(ross.CampbellResults method)</a>
+</li>
+        <li><a href="generated/results/ross.ConvergenceResults.html#ross.ConvergenceResults.save">(ross.ConvergenceResults method)</a>
+</li>
+        <li><a href="generated/results/ross.CriticalSpeedResults.html#ross.CriticalSpeedResults.save">(ross.CriticalSpeedResults method)</a>
+</li>
         <li><a href="generated/elements/ross.DiskElement.html#ross.DiskElement.save">(ross.DiskElement method)</a>
+</li>
+        <li><a href="generated/results/ross.ForcedResponseResults.html#ross.ForcedResponseResults.save">(ross.ForcedResponseResults method)</a>
+</li>
+        <li><a href="generated/results/ross.FrequencyResponseResults.html#ross.FrequencyResponseResults.save">(ross.FrequencyResponseResults method)</a>
 </li>
         <li><a href="generated/elements/ross.MagneticBearingElement.html#ross.MagneticBearingElement.save">(ross.MagneticBearingElement method)</a>
 </li>
+        <li><a href="generated/results/ross.ModalResults.html#ross.ModalResults.save">(ross.ModalResults method)</a>
+</li>
         <li><a href="generated/elements/ross.RollerBearingElement.html#ross.RollerBearingElement.save">(ross.RollerBearingElement method)</a>
 </li>
-        <li><a href="generated/results/ross.Rotor.html#ross.Rotor.save">(ross.Rotor method)</a>
+        <li><a href="generated/rotor/ross.Rotor.html#ross.Rotor.save">(ross.Rotor method)</a>
 </li>
         <li><a href="generated/elements/ross.SealElement.html#ross.SealElement.save">(ross.SealElement method)</a>
 </li>
         <li><a href="generated/elements/ross.ShaftElement.html#ross.ShaftElement.save">(ross.ShaftElement method)</a>
 </li>
+        <li><a href="generated/elements/ross.ShaftElement6DoF.html#ross.ShaftElement6DoF.save">(ross.ShaftElement6DoF method)</a>
+</li>
+        <li><a href="generated/results/ross.StaticResults.html#ross.StaticResults.save">(ross.StaticResults method)</a>
+</li>
+        <li><a href="generated/results/ross.SummaryResults.html#ross.SummaryResults.save">(ross.SummaryResults method)</a>
+</li>
+        <li><a href="generated/results/ross.TimeResponseResults.html#ross.TimeResponseResults.save">(ross.TimeResponseResults method)</a>
+</li>
       </ul></li>
-      <li><a href="generated/results/ross.Rotor.html#ross.Rotor.save_mat">save_mat() (ross.Rotor method)</a>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="generated/rotor/ross.Rotor.html#ross.Rotor.save_mat">save_mat() (ross.Rotor method)</a>
 </li>
       <li><a href="generated/material/ross.Material.html#ross.Material.save_material">save_material() (ross.Material method)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="generated/elements/ross.SealElement.html#ross.SealElement">SealElement (class in ross)</a>
 </li>
       <li><a href="generated/elements/ross.ShaftElement.html#ross.ShaftElement.section">section() (ross.ShaftElement class method)</a>
+
+      <ul>
+        <li><a href="generated/elements/ross.ShaftElement6DoF.html#ross.ShaftElement6DoF.section">(ross.ShaftElement6DoF class method)</a>
 </li>
+      </ul></li>
       <li><a href="generated/elements/ross.ShaftElement.html#ross.ShaftElement">ShaftElement (class in ross)</a>
+</li>
+      <li><a href="generated/elements/ross.ShaftElement6DoF.html#ross.ShaftElement6DoF">ShaftElement6DoF (class in ross)</a>
+</li>
+      <li><a href="generated/results/ross.StaticResults.html#ross.StaticResults">StaticResults (class in ross)</a>
 </li>
       <li><a href="generated/elements/ross.BallBearingElement.html#ross.BallBearingElement.summary">summary() (ross.BallBearingElement method)</a>
 
@@ -588,13 +781,17 @@
 </li>
         <li><a href="generated/elements/ross.RollerBearingElement.html#ross.RollerBearingElement.summary">(ross.RollerBearingElement method)</a>
 </li>
-        <li><a href="generated/results/ross.Rotor.html#ross.Rotor.summary">(ross.Rotor method)</a>
+        <li><a href="generated/rotor/ross.Rotor.html#ross.Rotor.summary">(ross.Rotor method)</a>
 </li>
         <li><a href="generated/elements/ross.SealElement.html#ross.SealElement.summary">(ross.SealElement method)</a>
 </li>
         <li><a href="generated/elements/ross.ShaftElement.html#ross.ShaftElement.summary">(ross.ShaftElement method)</a>
 </li>
+        <li><a href="generated/elements/ross.ShaftElement6DoF.html#ross.ShaftElement6DoF.summary">(ross.ShaftElement6DoF method)</a>
+</li>
       </ul></li>
+      <li><a href="generated/results/ross.SummaryResults.html#ross.SummaryResults">SummaryResults (class in ross)</a>
+</li>
   </ul></td>
 </tr></table>
 
@@ -619,9 +816,29 @@
       </ul></li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="generated/results/ross.Rotor.html#ross.Rotor.time_response">time_response() (ross.Rotor method)</a>
+      <li><a href="generated/rotor/ross.Rotor.html#ross.Rotor.time_response">time_response() (ross.Rotor method)</a>
 </li>
-      <li><a href="generated/results/ross.Rotor.html#ross.Rotor.transfer_matrix">transfer_matrix() (ross.Rotor method)</a>
+      <li><a href="generated/results/ross.TimeResponseResults.html#ross.TimeResponseResults">TimeResponseResults (class in ross)</a>
+</li>
+      <li><a href="generated/rotor/ross.Rotor.html#ross.Rotor.transfer_matrix">transfer_matrix() (ross.Rotor method)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="W">W</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="generated/results/ross.CriticalSpeedResults.html#ross.CriticalSpeedResults.wd">wd() (ross.CriticalSpeedResults method)</a>
+</li>
+      <li><a href="generated/results/ross.ModalResults.html#ross.ModalResults.whirl">whirl() (ross.ModalResults static method)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="generated/results/ross.ModalResults.html#ross.ModalResults.whirl_direction">whirl_direction() (ross.ModalResults method)</a>
+</li>
+      <li><a href="generated/results/ross.ModalResults.html#ross.ModalResults.whirl_values">whirl_values() (ross.ModalResults method)</a>
+</li>
+      <li><a href="generated/results/ross.CriticalSpeedResults.html#ross.CriticalSpeedResults.wn">wn() (ross.CriticalSpeedResults method)</a>
 </li>
   </ul></td>
 </tr></table>

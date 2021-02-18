@@ -83,7 +83,8 @@
 <li class="toctree-l1"><a class="reference internal" href="../../api.html">API Reference</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../api.html#material">Material</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../api.html#elements">Elements</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../api.html#rotor">Rotor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../api.html#rotor-and-results">Rotor and Results</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../api.html#results">Results</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../contributing.html">Contributing</a><ul>
@@ -1309,7 +1310,7 @@
         <span class="k">return</span> <span class="n">elements</span></div></div>
 
 
-<span class="k">class</span> <span class="nc">ShaftElement6DoF</span><span class="p">(</span><span class="n">ShaftElement</span><span class="p">):</span>
+<div class="viewcode-block" id="ShaftElement6DoF"><a class="viewcode-back" href="../../generated/elements/ross.ShaftElement6DoF.html#ross.ShaftElement6DoF">[docs]</a><span class="k">class</span> <span class="nc">ShaftElement6DoF</span><span class="p">(</span><span class="n">ShaftElement</span><span class="p">):</span>
     <span class="sa">r</span><span class="sd">&quot;&quot;&quot;A 6 Degrees of Freedom shaft element.</span>
 
 <span class="sd">    This class will create a shaft element that takes into</span>
@@ -1401,7 +1402,7 @@
 <span class="sd">    0.7099387976608923</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="nd">@check_units</span>
+<div class="viewcode-block" id="ShaftElement6DoF.__init__"><a class="viewcode-back" href="../../generated/elements/ross.ShaftElement6DoF.html#ross.ShaftElement6DoF.__init__">[docs]</a>    <span class="nd">@check_units</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">L</span><span class="p">,</span>
@@ -1560,7 +1561,7 @@
 
         <span class="bp">self</span><span class="o">.</span><span class="n">kappa</span> <span class="o">=</span> <span class="n">kappa</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">dof_global_index</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">dof_global_index</span> <span class="o">=</span> <span class="kc">None</span></div>
 
     <span class="k">def</span> <span class="nf">__is_circular</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">idl</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">idr</span> <span class="o">==</span> <span class="mi">0</span>
@@ -1636,7 +1637,7 @@
             <span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">material</span><span class="si">}</span><span class="s2">&quot;</span>
         <span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">save</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">file</span><span class="p">):</span>
+<div class="viewcode-block" id="ShaftElement6DoF.save"><a class="viewcode-back" href="../../generated/elements/ross.ShaftElement6DoF.html#ross.ShaftElement6DoF.save">[docs]</a>    <span class="k">def</span> <span class="nf">save</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">file</span><span class="p">):</span>
         <span class="n">signature</span> <span class="o">=</span> <span class="n">inspect</span><span class="o">.</span><span class="n">signature</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="fm">__init__</span><span class="p">)</span>
         <span class="n">args_list</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">signature</span><span class="o">.</span><span class="n">parameters</span><span class="p">)</span>
         <span class="n">args</span> <span class="o">=</span> <span class="p">{</span><span class="n">arg</span><span class="p">:</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">arg</span><span class="p">)</span> <span class="k">for</span> <span class="n">arg</span> <span class="ow">in</span> <span class="n">args_list</span><span class="p">}</span>
@@ -1658,14 +1659,14 @@
 
         <span class="n">data</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">tag</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">args</span>
         <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">file</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
-            <span class="n">toml</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span>
+            <span class="n">toml</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span></div>
 
-    <span class="nd">@classmethod</span>
+<div class="viewcode-block" id="ShaftElement6DoF.read_toml_data"><a class="viewcode-back" href="../../generated/elements/ross.ShaftElement6DoF.html#ross.ShaftElement6DoF.read_toml_data">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">read_toml_data</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
         <span class="n">data</span><span class="p">[</span><span class="s2">&quot;material&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">Material</span><span class="p">(</span><span class="o">**</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;material&quot;</span><span class="p">])</span>
-        <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="o">**</span><span class="n">data</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="o">**</span><span class="n">data</span><span class="p">)</span></div>
 
-    <span class="k">def</span> <span class="nf">dof_mapping</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="ShaftElement6DoF.dof_mapping"><a class="viewcode-back" href="../../generated/elements/ross.ShaftElement6DoF.html#ross.ShaftElement6DoF.dof_mapping">[docs]</a>    <span class="k">def</span> <span class="nf">dof_mapping</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Degrees of freedom mapping.</span>
 
 <span class="sd">        Returns a dictionary with a mapping between degree of freedom and its index.</span>
@@ -1706,9 +1707,9 @@
             <span class="n">alpha_1</span><span class="o">=</span><span class="mi">9</span><span class="p">,</span>
             <span class="n">beta_1</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
             <span class="n">theta_1</span><span class="o">=</span><span class="mi">11</span><span class="p">,</span>
-        <span class="p">)</span>
+        <span class="p">)</span></div>
 
-    <span class="k">def</span> <span class="nf">M</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="ShaftElement6DoF.M"><a class="viewcode-back" href="../../generated/elements/ross.ShaftElement6DoF.html#ross.ShaftElement6DoF.M">[docs]</a>    <span class="k">def</span> <span class="nf">M</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Mass matrix for an instance of a 6 DoF shaft element.</span>
 
 <span class="sd">        Returns</span>
@@ -1809,9 +1810,9 @@
 
         <span class="n">M</span> <span class="o">=</span> <span class="n">M</span> <span class="o">+</span> <span class="n">Ms</span> <span class="o">+</span> <span class="n">Ma</span> <span class="o">+</span> <span class="n">Mr</span>
 
-        <span class="k">return</span> <span class="n">M</span>
+        <span class="k">return</span> <span class="n">M</span></div>
 
-    <span class="k">def</span> <span class="nf">K</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="ShaftElement6DoF.K"><a class="viewcode-back" href="../../generated/elements/ross.ShaftElement6DoF.html#ross.ShaftElement6DoF.K">[docs]</a>    <span class="k">def</span> <span class="nf">K</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Stiffness matrix for an instance of a 6 DoF shaft element.</span>
 
 <span class="sd">        Returns</span>
@@ -1922,9 +1923,9 @@
 
         <span class="n">K</span> <span class="o">=</span> <span class="n">Kc_plus</span> <span class="o">+</span> <span class="n">Kf</span> <span class="o">+</span> <span class="n">Kt</span>
 
-        <span class="k">return</span> <span class="n">K</span>
+        <span class="k">return</span> <span class="n">K</span></div>
 
-    <span class="k">def</span> <span class="nf">Kst</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="ShaftElement6DoF.Kst"><a class="viewcode-back" href="../../generated/elements/ross.ShaftElement6DoF.html#ross.ShaftElement6DoF.Kst">[docs]</a>    <span class="k">def</span> <span class="nf">Kst</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Dynamic stiffness matrix for an instance of a 6 DoF shaft element.</span>
 
 <span class="sd">        Returns</span>
@@ -1977,9 +1978,9 @@
         <span class="p">])</span>
         <span class="c1"># fmt: on</span>
 
-        <span class="k">return</span> <span class="n">Kst</span>
+        <span class="k">return</span> <span class="n">Kst</span></div>
 
-    <span class="k">def</span> <span class="nf">C</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="ShaftElement6DoF.C"><a class="viewcode-back" href="../../generated/elements/ross.ShaftElement6DoF.html#ross.ShaftElement6DoF.C">[docs]</a>    <span class="k">def</span> <span class="nf">C</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Proportional damping matrix for an instance of a 6 DoF shaft element.</span>
 
 <span class="sd">        Returns</span>
@@ -1997,9 +1998,9 @@
         <span class="c1"># proportional damping matrix</span>
         <span class="n">C</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">alpha</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">M</span><span class="p">()</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">beta</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">K</span><span class="p">()</span>
 
-        <span class="k">return</span> <span class="n">C</span>
+        <span class="k">return</span> <span class="n">C</span></div>
 
-    <span class="k">def</span> <span class="nf">G</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="ShaftElement6DoF.G"><a class="viewcode-back" href="../../generated/elements/ross.ShaftElement6DoF.html#ross.ShaftElement6DoF.G">[docs]</a>    <span class="k">def</span> <span class="nf">G</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Gyroscopic matrix for an instance of a 6 DoFs shaft element.</span>
 
 <span class="sd">        Returns</span>
@@ -2050,9 +2051,9 @@
         <span class="k">else</span><span class="p">:</span>
             <span class="n">G</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">12</span><span class="p">,</span> <span class="mi">12</span><span class="p">))</span>
 
-        <span class="k">return</span> <span class="n">G</span>
+        <span class="k">return</span> <span class="n">G</span></div>
 
-    <span class="nd">@classmethod</span>
+<div class="viewcode-block" id="ShaftElement6DoF.from_table"><a class="viewcode-back" href="../../generated/elements/ross.ShaftElement6DoF.html#ross.ShaftElement6DoF.from_table">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">from_table</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">file</span><span class="p">,</span> <span class="n">sheet_type</span><span class="o">=</span><span class="s2">&quot;Simple&quot;</span><span class="p">,</span> <span class="n">sheet_name</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Instantiate one or more shafts using inputs from an Excel table.</span>
 
@@ -2127,9 +2128,9 @@
                         <span class="n">gyroscopic</span><span class="o">=</span><span class="n">parameters</span><span class="p">[</span><span class="s2">&quot;gyroscopic&quot;</span><span class="p">][</span><span class="n">i</span><span class="p">],</span>
                     <span class="p">)</span>
                 <span class="p">)</span>
-        <span class="k">return</span> <span class="n">list_of_shafts</span>
+        <span class="k">return</span> <span class="n">list_of_shafts</span></div>
 
-    <span class="nd">@classmethod</span>
+<div class="viewcode-block" id="ShaftElement6DoF.section"><a class="viewcode-back" href="../../generated/elements/ross.ShaftElement6DoF.html#ross.ShaftElement6DoF.section">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">section</span><span class="p">(</span>
         <span class="bp">cls</span><span class="p">,</span>
         <span class="n">L</span><span class="p">,</span>
@@ -2223,7 +2224,7 @@
             <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">ne</span><span class="p">)</span>
         <span class="p">]</span>
 
-        <span class="k">return</span> <span class="n">elements</span>
+        <span class="k">return</span> <span class="n">elements</span></div></div>
 </pre></div>
 
     </div>
