@@ -147,8 +147,8 @@
       
   <h1>Source code for ross.rotor_assembly</h1><div class="highlight"><pre>
 <span></span><span class="c1"># fmt: off</span>
-<span class="kn">import</span> <span class="nn">os</span>
-<span class="kn">import</span> <span class="nn">shutil</span>
+<span class="kn">import</span> <span class="nn">inspect</span>
+<span class="kn">import</span> <span class="nn">sys</span>
 <span class="kn">import</span> <span class="nn">warnings</span>
 <span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">Counter</span><span class="p">,</span> <span class="n">namedtuple</span>
 <span class="kn">from</span> <span class="nn">collections.abc</span> <span class="kn">import</span> <span class="n">Iterable</span>
@@ -169,7 +169,7 @@
 <span class="kn">from</span> <span class="nn">scipy.sparse</span> <span class="kn">import</span> <span class="n">linalg</span> <span class="k">as</span> <span class="n">las</span>
 
 <span class="kn">from</span> <span class="nn">ross.bearing_seal_element</span> <span class="kn">import</span> <span class="p">(</span><span class="n">BallBearingElement</span><span class="p">,</span> <span class="n">BearingElement</span><span class="p">,</span>
-                                       <span class="n">BearingElement6DoF</span><span class="p">,</span>
+                                       <span class="n">BearingElement6DoF</span><span class="p">,</span> <span class="n">BearingFluidFlow</span><span class="p">,</span>
                                        <span class="n">MagneticBearingElement</span><span class="p">,</span>
                                        <span class="n">RollerBearingElement</span><span class="p">,</span> <span class="n">SealElement</span><span class="p">)</span>
 <span class="kn">from</span> <span class="nn">ross.defects</span> <span class="kn">import</span> <span class="n">Crack</span><span class="p">,</span> <span class="n">MisalignmentFlex</span><span class="p">,</span> <span class="n">MisalignmentRigid</span><span class="p">,</span> <span class="n">Rubbing</span>
@@ -574,11 +574,13 @@
             <span class="k">else</span><span class="p">:</span>
                 <span class="k">break</span>
 
-        <span class="n">dfb</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span>
-            <span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">type</span> <span class="o">==</span> <span class="s2">&quot;BearingElement&quot;</span><span class="p">)</span>
-            <span class="o">|</span> <span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">type</span> <span class="o">==</span> <span class="s2">&quot;BearingElement6DoF&quot;</span><span class="p">)</span>
-            <span class="o">|</span> <span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">type</span> <span class="o">==</span> <span class="s2">&quot;SealElement&quot;</span><span class="p">)</span>
+        <span class="n">classes</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="n">_class</span>
+            <span class="k">for</span> <span class="n">_class</span><span class="p">,</span> <span class="n">_</span> <span class="ow">in</span> <span class="n">inspect</span><span class="o">.</span><span class="n">getmembers</span><span class="p">(</span>
+                <span class="n">sys</span><span class="o">.</span><span class="n">modules</span><span class="p">[</span><span class="s2">&quot;ross.bearing_seal_element&quot;</span><span class="p">],</span> <span class="n">inspect</span><span class="o">.</span><span class="n">isclass</span>
+            <span class="p">)</span>
         <span class="p">]</span>
+        <span class="n">dfb</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="o">.</span><span class="n">type</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">classes</span><span class="p">)]</span>
         <span class="n">z_positions</span> <span class="o">=</span> <span class="p">[</span><span class="n">pos</span> <span class="k">for</span> <span class="n">pos</span> <span class="ow">in</span> <span class="n">dfb</span><span class="p">[</span><span class="s2">&quot;nodes_pos_l&quot;</span><span class="p">]]</span>
         <span class="n">z_positions</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">dict</span><span class="o">.</span><span class="n">fromkeys</span><span class="p">(</span><span class="n">z_positions</span><span class="p">))</span>
         <span class="k">for</span> <span class="n">z_pos</span> <span class="ow">in</span> <span class="n">z_positions</span><span class="p">:</span>
@@ -631,11 +633,7 @@
                 <span class="n">y_pos_sup</span> <span class="o">+=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">mean_od</span> <span class="o">*</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;scale_factor&quot;</span><span class="p">][</span><span class="n">df</span><span class="o">.</span><span class="n">tag</span> <span class="o">==</span> <span class="n">t</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 
         <span class="c1"># define position for point mass elements</span>
-        <span class="n">dfb</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span>
-            <span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">type</span> <span class="o">==</span> <span class="s2">&quot;BearingElement&quot;</span><span class="p">)</span>
-            <span class="o">|</span> <span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">type</span> <span class="o">==</span> <span class="s2">&quot;BearingElement6DoF&quot;</span><span class="p">)</span>
-            <span class="o">|</span> <span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">type</span> <span class="o">==</span> <span class="s2">&quot;SealElement&quot;</span><span class="p">)</span>
-        <span class="p">]</span>
+        <span class="n">dfb</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="o">.</span><span class="n">type</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">classes</span><span class="p">)]</span>
         <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">point_mass_elements</span><span class="p">:</span>
             <span class="n">z_pos</span> <span class="o">=</span> <span class="n">dfb</span><span class="p">[</span><span class="n">dfb</span><span class="o">.</span><span class="n">n_l</span> <span class="o">==</span> <span class="n">p</span><span class="o">.</span><span class="n">n</span><span class="p">][</span><span class="s2">&quot;nodes_pos_l&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
             <span class="n">y_pos</span> <span class="o">=</span> <span class="n">dfb</span><span class="p">[</span><span class="n">dfb</span><span class="o">.</span><span class="n">n_l</span> <span class="o">==</span> <span class="n">p</span><span class="o">.</span><span class="n">n</span><span class="p">][</span><span class="s2">&quot;y_pos&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
