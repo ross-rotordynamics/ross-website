@@ -24,21 +24,21 @@ ross.Rotor
    .. automethod:: M
    .. automethod:: __init__
    .. automethod:: convergence
-   .. automethod:: forced_response
    .. automethod:: from_section
    .. automethod:: load
-   .. automethod:: plot_level1
    .. automethod:: plot_rotor
-   .. automethod:: plot_ucs
    .. automethod:: run_campbell
    .. automethod:: run_crack
    .. automethod:: run_critical_speed
+   .. automethod:: run_forced_response
    .. automethod:: run_freq_response
+   .. automethod:: run_level1
    .. automethod:: run_misalignment
    .. automethod:: run_modal
    .. automethod:: run_rubbing
    .. automethod:: run_static
    .. automethod:: run_time_response
+   .. automethod:: run_ucs
    .. automethod:: run_unbalance_response
    .. automethod:: save
    .. automethod:: save_mat

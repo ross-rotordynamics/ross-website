@@ -178,8 +178,9 @@
 <span class="kn">from</span> <span class="nn">ross.point_mass</span> <span class="kn">import</span> <span class="n">PointMass</span>
 <span class="kn">from</span> <span class="nn">ross.results</span> <span class="kn">import</span> <span class="p">(</span><span class="n">CampbellResults</span><span class="p">,</span> <span class="n">ConvergenceResults</span><span class="p">,</span>
                           <span class="n">CriticalSpeedResults</span><span class="p">,</span> <span class="n">ForcedResponseResults</span><span class="p">,</span>
-                          <span class="n">FrequencyResponseResults</span><span class="p">,</span> <span class="n">ModalResults</span><span class="p">,</span>
-                          <span class="n">StaticResults</span><span class="p">,</span> <span class="n">SummaryResults</span><span class="p">,</span> <span class="n">TimeResponseResults</span><span class="p">)</span>
+                          <span class="n">FrequencyResponseResults</span><span class="p">,</span> <span class="n">Level1Results</span><span class="p">,</span>
+                          <span class="n">ModalResults</span><span class="p">,</span> <span class="n">StaticResults</span><span class="p">,</span> <span class="n">SummaryResults</span><span class="p">,</span>
+                          <span class="n">TimeResponseResults</span><span class="p">,</span> <span class="n">UCSResults</span><span class="p">)</span>
 <span class="kn">from</span> <span class="nn">ross.shaft_element</span> <span class="kn">import</span> <span class="n">ShaftElement</span><span class="p">,</span> <span class="n">ShaftElement6DoF</span>
 <span class="kn">from</span> <span class="nn">ross.units</span> <span class="kn">import</span> <span class="n">Q_</span><span class="p">,</span> <span class="n">check_units</span>
 <span class="kn">from</span> <span class="nn">ross.utils</span> <span class="kn">import</span> <span class="n">intersection</span>
@@ -710,6 +711,8 @@
 <span class="sd">        rotor speed. It means that for each speed input there&#39;s a different set of</span>
 <span class="sd">        eigenvalues and eigenvectors, hence, different natural frequencies and damping</span>
 <span class="sd">        ratios are returned.</span>
+<span class="sd">        This method will return a ModalResults object which stores all data generated</span>
+<span class="sd">        and also provides so methods for plotting.</span>
 
 <span class="sd">        Available plotting methods:</span>
 <span class="sd">            .plot_mode_2d()</span>
@@ -735,19 +738,12 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        evalues : array</span>
-<span class="sd">            Eigenvalues array</span>
-<span class="sd">        evectors : array</span>
-<span class="sd">            Eigenvectors array</span>
-<span class="sd">        wn : array</span>
-<span class="sd">            Undamped natural frequencies array</span>
-<span class="sd">        wd : array</span>
-<span class="sd">            Damped natural frequencies array</span>
-<span class="sd">        log_dec : array</span>
-<span class="sd">            Logarithmic decrement array</span>
+<span class="sd">        results : ross.ModalResults</span>
+<span class="sd">            For more information on attributes and methods available see:</span>
+<span class="sd">            :py:class:`ross.ModalResults`</span>
 
-<span class="sd">        Example</span>
-<span class="sd">        -------</span>
+<span class="sd">        Examples</span>
+<span class="sd">        --------</span>
 <span class="sd">        &gt;&gt;&gt; import ross as rs</span>
 <span class="sd">        &gt;&gt;&gt; rotor = rs.rotor_example()</span>
 <span class="sd">        &gt;&gt;&gt; modal = rotor.run_modal(speed=0, sparse=False)</span>
@@ -755,12 +751,10 @@
 <span class="sd">        array([91.79655318, 96.28899977])</span>
 <span class="sd">        &gt;&gt;&gt; modal.wd[:2]</span>
 <span class="sd">        array([91.79655318, 96.28899977])</span>
-
-<span class="sd">        Plotting 3D mode shape</span>
+<span class="sd">        &gt;&gt;&gt; # Plotting 3D mode shape</span>
 <span class="sd">        &gt;&gt;&gt; mode1 = 0  # First mode</span>
 <span class="sd">        &gt;&gt;&gt; fig = modal.plot_mode_3d(mode1)</span>
-
-<span class="sd">        Plotting 2D mode shape</span>
+<span class="sd">        &gt;&gt;&gt; # Plotting 2D mode shape</span>
 <span class="sd">        &gt;&gt;&gt; mode2 = 1  # Second mode</span>
 <span class="sd">        &gt;&gt;&gt; fig = modal.plot_mode_2d(mode2)</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -1666,7 +1660,7 @@
 
         <span class="k">return</span> <span class="n">results</span></div>
 
-<div class="viewcode-block" id="Rotor.forced_response"><a class="viewcode-back" href="../../generated/rotor/ross.Rotor.forced_response.html#ross.Rotor.forced_response">[docs]</a>    <span class="k">def</span> <span class="nf">forced_response</span><span class="p">(</span>
+<div class="viewcode-block" id="Rotor.run_forced_response"><a class="viewcode-back" href="../../generated/rotor/ross.Rotor.run_forced_response.html#ross.Rotor.run_forced_response">[docs]</a>    <span class="k">def</span> <span class="nf">run_forced_response</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">force</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
         <span class="n">speed_range</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
@@ -1748,7 +1742,7 @@
 <span class="sd">        &gt;&gt;&gt; rotor = rotor_example()</span>
 <span class="sd">        &gt;&gt;&gt; speed = np.linspace(0, 1000, 101)</span>
 <span class="sd">        &gt;&gt;&gt; force = rotor._unbalance_force(3, 10.0, 0.0, speed)</span>
-<span class="sd">        &gt;&gt;&gt; resp = rotor.forced_response(force=force, speed_range=speed)</span>
+<span class="sd">        &gt;&gt;&gt; resp = rotor.run_forced_response(force=force, speed_range=speed)</span>
 <span class="sd">        &gt;&gt;&gt; abs(resp.forced_resp) # doctest: +ELLIPSIS</span>
 <span class="sd">        array([[0.00000000e+00, 5.06073311e-04, 2.10044826e-03, ...</span>
 
@@ -1756,7 +1750,7 @@
 <span class="sd">        Set `cluster_points=True` and choose how many modes the method must search and</span>
 <span class="sd">        how many points to add just before and after each critical speed.</span>
 
-<span class="sd">        &gt;&gt;&gt; response = rotor.forced_response(</span>
+<span class="sd">        &gt;&gt;&gt; response = rotor.run_forced_response(</span>
 <span class="sd">        ...     force=force, cluster_points=True, num_modes=12, num_points=5</span>
 <span class="sd">        ... )</span>
 <span class="sd">        &gt;&gt;&gt; response.speed_range.shape</span>
@@ -1992,7 +1986,7 @@
 
         <span class="c1"># fmt: off</span>
         <span class="n">ub</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">((</span><span class="n">node</span><span class="p">,</span> <span class="n">unbalance_magnitude</span><span class="p">,</span> <span class="n">unbalance_phase</span><span class="p">))</span>
-        <span class="n">forced_response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">forced_response</span><span class="p">(</span>
+        <span class="n">forced_response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">run_forced_response</span><span class="p">(</span>
             <span class="n">force</span><span class="p">,</span> <span class="n">frequency</span><span class="p">,</span> <span class="n">modes</span><span class="p">,</span> <span class="n">cluster_points</span><span class="p">,</span> <span class="n">num_modes</span><span class="p">,</span> <span class="n">num_points</span><span class="p">,</span> <span class="n">rtol</span><span class="p">,</span> <span class="n">ub</span>
         <span class="p">)</span>
         <span class="c1"># fmt: on</span>
@@ -2265,7 +2259,7 @@
 
         <span class="k">return</span> <span class="n">results</span></div>
 
-    <span class="k">def</span> <span class="nf">_calc_ucs</span><span class="p">(</span>
+<div class="viewcode-block" id="Rotor.run_ucs"><a class="viewcode-back" href="../../generated/rotor/ross.Rotor.run_ucs.html#ross.Rotor.run_ucs">[docs]</a>    <span class="k">def</span> <span class="nf">run_ucs</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">stiffness_range</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
         <span class="n">num_modes</span><span class="o">=</span><span class="mi">16</span><span class="p">,</span>
@@ -2274,7 +2268,27 @@
         <span class="n">synchronous</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
         <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
     <span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Run Undamped Critical Speeds analyzes.</span>
 
+<span class="sd">        This method will run the undamped critical speed analyzes for a given range</span>
+<span class="sd">        of stiffness values. If the range is not provided, the bearing</span>
+<span class="sd">        stiffness at rated speed will be used to create a range.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        stiffness_range : tuple, optional</span>
+<span class="sd">            Tuple with (start, end) for stiffness range.</span>
+<span class="sd">        num : int</span>
+<span class="sd">            Number of steps in the range.</span>
+<span class="sd">            Default is 20.</span>
+<span class="sd">        num_modes : int, optional</span>
+<span class="sd">            Number of modes to be calculated. This uses scipy.sparse.eigs method.</span>
+<span class="sd">            Default is 16.</span>
+<span class="sd">        synchronous : bool</span>
+<span class="sd">            If True a synchronous analysis is carried out and the frequency of</span>
+<span class="sd">            the first forward model will be equal to the speed.</span>
+<span class="sd">            Default is False.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">stiffness_range</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">rated_w</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
                 <span class="n">bearing</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">bearing_elements</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
@@ -2345,176 +2359,13 @@
                         <span class="c1"># pass if x/y is empty</span>
                         <span class="k">pass</span>
 
-        <span class="k">return</span> <span class="n">stiffness_log</span><span class="p">,</span> <span class="n">rotor_wn</span><span class="p">,</span> <span class="n">bearing0</span><span class="p">,</span> <span class="n">intersection_points</span>
-
-<div class="viewcode-block" id="Rotor.plot_ucs"><a class="viewcode-back" href="../../generated/rotor/ross.Rotor.html#ross.Rotor.plot_ucs">[docs]</a>    <span class="k">def</span> <span class="nf">plot_ucs</span><span class="p">(</span>
-        <span class="bp">self</span><span class="p">,</span>
-        <span class="n">stiffness_range</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-        <span class="n">num_modes</span><span class="o">=</span><span class="mi">16</span><span class="p">,</span>
-        <span class="n">num</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span>
-        <span class="n">fig</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-        <span class="n">synchronous</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-        <span class="n">stiffness_units</span><span class="o">=</span><span class="s2">&quot;N/m&quot;</span><span class="p">,</span>
-        <span class="n">frequency_units</span><span class="o">=</span><span class="s2">&quot;rad/s&quot;</span><span class="p">,</span>
-        <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
-    <span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Plot undamped critical speed map.</span>
-
-<span class="sd">        This method will plot the undamped critical speed map for a given range</span>
-<span class="sd">        of stiffness values. If the range is not provided, the bearing</span>
-<span class="sd">        stiffness at rated speed will be used to create a range.</span>
-
-<span class="sd">        Parameters</span>
-<span class="sd">        ----------</span>
-<span class="sd">        stiffness_range : tuple, optional</span>
-<span class="sd">            Tuple with (start, end) for stiffness range.</span>
-<span class="sd">        num : int</span>
-<span class="sd">            Number of steps in the range.</span>
-<span class="sd">            Default is 20.</span>
-<span class="sd">        num_modes : int, optional</span>
-<span class="sd">            Number of modes to be calculated. This uses scipy.sparse.eigs method.</span>
-<span class="sd">            Default is 16.</span>
-<span class="sd">        fig : Plotly graph_objects.Figure()</span>
-<span class="sd">            The figure object with the plot.</span>
-<span class="sd">        synchronous : bool</span>
-<span class="sd">            If True a synchronous analysis is carried out and the frequency of</span>
-<span class="sd">            the first forward model will be equal to the speed.</span>
-<span class="sd">            Default is False.</span>
-<span class="sd">        stiffness_units : str, optional</span>
-<span class="sd">            Units for the x axis.</span>
-<span class="sd">            Default is N/m.</span>
-<span class="sd">        frequency_units : str, optional</span>
-<span class="sd">            Units for th y axis.</span>
-<span class="sd">            Default is rad/s</span>
-<span class="sd">        kwargs : optional</span>
-<span class="sd">            Additional key word arguments can be passed to change the plot layout only</span>
-<span class="sd">            (e.g. width=1000, height=800, ...).</span>
-<span class="sd">            *See Plotly Python Figure Reference for more information.</span>
-
-<span class="sd">        Returns</span>
-<span class="sd">        -------</span>
-<span class="sd">        fig : Plotly graph_objects.Figure()</span>
-<span class="sd">            The figure object with the plot.</span>
-
-<span class="sd">        Example</span>
-<span class="sd">        -------</span>
-<span class="sd">        &gt;&gt;&gt; i_d = 0</span>
-<span class="sd">        &gt;&gt;&gt; o_d = 0.05</span>
-<span class="sd">        &gt;&gt;&gt; n = 6</span>
-<span class="sd">        &gt;&gt;&gt; L = [0.25 for _ in range(n)]</span>
-<span class="sd">        &gt;&gt;&gt; shaft_elem = [</span>
-<span class="sd">        ...     ShaftElement(</span>
-<span class="sd">        ...         l, i_d, o_d, material=steel, shear_effects=True,</span>
-<span class="sd">        ...         rotary_inertia=True, gyroscopic=True</span>
-<span class="sd">        ...     )</span>
-<span class="sd">        ...     for l in L</span>
-<span class="sd">        ... ]</span>
-<span class="sd">        &gt;&gt;&gt; disk0 = DiskElement.from_geometry(</span>
-<span class="sd">        ...     n=2, material=steel, width=0.07, i_d=0.05, o_d=0.28</span>
-<span class="sd">        ... )</span>
-<span class="sd">        &gt;&gt;&gt; disk1 = DiskElement.from_geometry(</span>
-<span class="sd">        ...     n=4, material=steel, width=0.07, i_d=0.05, o_d=0.28</span>
-<span class="sd">        ... )</span>
-<span class="sd">        &gt;&gt;&gt; stfx = [1e6, 2e7, 3e8]</span>
-<span class="sd">        &gt;&gt;&gt; stfy = [0.8e6, 1.6e7, 2.4e8]</span>
-<span class="sd">        &gt;&gt;&gt; bearing0 = BearingElement(0, kxx=stfx, kyy=stfy, cxx=0, frequency=[0,1000, 2000])</span>
-<span class="sd">        &gt;&gt;&gt; bearing1 = BearingElement(6, kxx=stfx, kyy=stfy, cxx=0, frequency=[0,1000, 2000])</span>
-<span class="sd">        &gt;&gt;&gt; rotor = Rotor(shaft_elem, [disk0, disk1], [bearing0, bearing1])</span>
-<span class="sd">        &gt;&gt;&gt; fig = rotor.plot_ucs()</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-
-        <span class="n">stiffness_log</span><span class="p">,</span> <span class="n">rotor_wn</span><span class="p">,</span> <span class="n">bearing0</span><span class="p">,</span> <span class="n">intersection_points</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_calc_ucs</span><span class="p">(</span>
-            <span class="n">stiffness_range</span><span class="o">=</span><span class="n">stiffness_range</span><span class="p">,</span>
-            <span class="n">num_modes</span><span class="o">=</span><span class="n">num_modes</span><span class="p">,</span>
-            <span class="n">num</span><span class="o">=</span><span class="n">num</span><span class="p">,</span>
-            <span class="n">fig</span><span class="o">=</span><span class="n">fig</span><span class="p">,</span>
-            <span class="n">synchronous</span><span class="o">=</span><span class="n">synchronous</span><span class="p">,</span>
-            <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
+        <span class="n">results</span> <span class="o">=</span> <span class="n">UCSResults</span><span class="p">(</span>
+            <span class="n">stiffness_range</span><span class="p">,</span> <span class="n">stiffness_log</span><span class="p">,</span> <span class="n">rotor_wn</span><span class="p">,</span> <span class="n">bearing0</span><span class="p">,</span> <span class="n">intersection_points</span>
         <span class="p">)</span>
 
-        <span class="k">if</span> <span class="n">fig</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="n">fig</span> <span class="o">=</span> <span class="n">go</span><span class="o">.</span><span class="n">Figure</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">results</span></div>
 
-        <span class="c1"># convert to desired units</span>
-        <span class="n">stiffness_log</span> <span class="o">=</span> <span class="n">Q_</span><span class="p">(</span><span class="n">stiffness_log</span><span class="p">,</span> <span class="s2">&quot;N/m&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">stiffness_units</span><span class="p">)</span><span class="o">.</span><span class="n">m</span>
-        <span class="n">rotor_wn</span> <span class="o">=</span> <span class="n">Q_</span><span class="p">(</span><span class="n">rotor_wn</span><span class="p">,</span> <span class="s2">&quot;rad/s&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">frequency_units</span><span class="p">)</span><span class="o">.</span><span class="n">m</span>
-        <span class="n">intersection_points</span><span class="p">[</span><span class="s2">&quot;x&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span>
-            <span class="n">Q_</span><span class="p">(</span><span class="n">intersection_points</span><span class="p">[</span><span class="s2">&quot;x&quot;</span><span class="p">],</span> <span class="s2">&quot;N/m&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">stiffness_units</span><span class="p">)</span><span class="o">.</span><span class="n">m</span>
-        <span class="p">)</span>
-        <span class="n">intersection_points</span><span class="p">[</span><span class="s2">&quot;y&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span>
-            <span class="n">Q_</span><span class="p">(</span><span class="n">intersection_points</span><span class="p">[</span><span class="s2">&quot;y&quot;</span><span class="p">],</span> <span class="s2">&quot;rad/s&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">frequency_units</span><span class="p">)</span><span class="o">.</span><span class="n">m</span>
-        <span class="p">)</span>
-        <span class="n">bearing_kxx_stiffness</span> <span class="o">=</span> <span class="p">(</span>
-            <span class="n">Q_</span><span class="p">(</span><span class="n">bearing0</span><span class="o">.</span><span class="n">kxx</span><span class="o">.</span><span class="n">interpolated</span><span class="p">(</span><span class="n">bearing0</span><span class="o">.</span><span class="n">frequency</span><span class="p">),</span> <span class="s2">&quot;N/m&quot;</span><span class="p">)</span>
-            <span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">stiffness_units</span><span class="p">)</span>
-            <span class="o">.</span><span class="n">m</span>
-        <span class="p">)</span>
-        <span class="n">bearing_kyy_stiffness</span> <span class="o">=</span> <span class="p">(</span>
-            <span class="n">Q_</span><span class="p">(</span><span class="n">bearing0</span><span class="o">.</span><span class="n">kyy</span><span class="o">.</span><span class="n">interpolated</span><span class="p">(</span><span class="n">bearing0</span><span class="o">.</span><span class="n">frequency</span><span class="p">),</span> <span class="s2">&quot;N/m&quot;</span><span class="p">)</span>
-            <span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">stiffness_units</span><span class="p">)</span>
-            <span class="o">.</span><span class="n">m</span>
-        <span class="p">)</span>
-        <span class="n">bearing_frequency</span> <span class="o">=</span> <span class="n">Q_</span><span class="p">(</span><span class="n">bearing0</span><span class="o">.</span><span class="n">frequency</span><span class="p">,</span> <span class="s2">&quot;rad/s&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">frequency_units</span><span class="p">)</span><span class="o">.</span><span class="n">m</span>
-
-        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">rotor_wn</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]):</span>
-            <span class="n">fig</span><span class="o">.</span><span class="n">add_trace</span><span class="p">(</span>
-                <span class="n">go</span><span class="o">.</span><span class="n">Scatter</span><span class="p">(</span>
-                    <span class="n">x</span><span class="o">=</span><span class="n">stiffness_log</span><span class="p">,</span>
-                    <span class="n">y</span><span class="o">=</span><span class="n">rotor_wn</span><span class="p">[</span><span class="n">j</span><span class="p">],</span>
-                    <span class="n">mode</span><span class="o">=</span><span class="s2">&quot;lines&quot;</span><span class="p">,</span>
-                    <span class="n">hoverinfo</span><span class="o">=</span><span class="s2">&quot;none&quot;</span><span class="p">,</span>
-                    <span class="n">showlegend</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-                <span class="p">)</span>
-            <span class="p">)</span>
-
-        <span class="n">fig</span><span class="o">.</span><span class="n">add_trace</span><span class="p">(</span>
-            <span class="n">go</span><span class="o">.</span><span class="n">Scatter</span><span class="p">(</span>
-                <span class="n">x</span><span class="o">=</span><span class="n">intersection_points</span><span class="p">[</span><span class="s2">&quot;x&quot;</span><span class="p">],</span>
-                <span class="n">y</span><span class="o">=</span><span class="n">intersection_points</span><span class="p">[</span><span class="s2">&quot;y&quot;</span><span class="p">],</span>
-                <span class="n">mode</span><span class="o">=</span><span class="s2">&quot;markers&quot;</span><span class="p">,</span>
-                <span class="n">marker</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">symbol</span><span class="o">=</span><span class="s2">&quot;circle-open-dot&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;red&quot;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">8</span><span class="p">),</span>
-                <span class="n">hovertemplate</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;Stiffness (</span><span class="si">{</span><span class="n">stiffness_units</span><span class="si">}</span><span class="s2">): %</span><span class="se">{{</span><span class="s2">x:.2e</span><span class="se">}}</span><span class="s2">&lt;br&gt;Frequency (</span><span class="si">{</span><span class="n">frequency_units</span><span class="si">}</span><span class="s2">): %</span><span class="se">{{</span><span class="s2">y:.2f</span><span class="se">}}</span><span class="s2">&quot;</span><span class="p">,</span>
-                <span class="n">showlegend</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-                <span class="n">name</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span>
-            <span class="p">)</span>
-        <span class="p">)</span>
-
-        <span class="n">fig</span><span class="o">.</span><span class="n">add_trace</span><span class="p">(</span>
-            <span class="n">go</span><span class="o">.</span><span class="n">Scatter</span><span class="p">(</span>
-                <span class="n">x</span><span class="o">=</span><span class="n">bearing_kxx_stiffness</span><span class="p">,</span>
-                <span class="n">y</span><span class="o">=</span><span class="n">bearing_frequency</span><span class="p">,</span>
-                <span class="n">mode</span><span class="o">=</span><span class="s2">&quot;lines&quot;</span><span class="p">,</span>
-                <span class="n">line</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">dash</span><span class="o">=</span><span class="s2">&quot;dashdot&quot;</span><span class="p">),</span>
-                <span class="n">hoverinfo</span><span class="o">=</span><span class="s2">&quot;none&quot;</span><span class="p">,</span>
-                <span class="n">name</span><span class="o">=</span><span class="s2">&quot;Kxx&quot;</span><span class="p">,</span>
-            <span class="p">)</span>
-        <span class="p">)</span>
-        <span class="n">fig</span><span class="o">.</span><span class="n">add_trace</span><span class="p">(</span>
-            <span class="n">go</span><span class="o">.</span><span class="n">Scatter</span><span class="p">(</span>
-                <span class="n">x</span><span class="o">=</span><span class="n">bearing_kyy_stiffness</span><span class="p">,</span>
-                <span class="n">y</span><span class="o">=</span><span class="n">bearing_frequency</span><span class="p">,</span>
-                <span class="n">mode</span><span class="o">=</span><span class="s2">&quot;lines&quot;</span><span class="p">,</span>
-                <span class="n">line</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">dash</span><span class="o">=</span><span class="s2">&quot;dashdot&quot;</span><span class="p">),</span>
-                <span class="n">hoverinfo</span><span class="o">=</span><span class="s2">&quot;none&quot;</span><span class="p">,</span>
-                <span class="n">name</span><span class="o">=</span><span class="s2">&quot;Kyy&quot;</span><span class="p">,</span>
-            <span class="p">)</span>
-        <span class="p">)</span>
-
-        <span class="n">fig</span><span class="o">.</span><span class="n">update_xaxes</span><span class="p">(</span>
-            <span class="n">title_text</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;Bearing Stiffness (</span><span class="si">{</span><span class="n">stiffness_units</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">,</span>
-            <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;log&quot;</span><span class="p">,</span>
-            <span class="n">exponentformat</span><span class="o">=</span><span class="s2">&quot;power&quot;</span><span class="p">,</span>
-        <span class="p">)</span>
-        <span class="n">fig</span><span class="o">.</span><span class="n">update_yaxes</span><span class="p">(</span>
-            <span class="n">title_text</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;Critical Speed (</span><span class="si">{</span><span class="n">frequency_units</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">,</span>
-            <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;log&quot;</span><span class="p">,</span>
-            <span class="n">exponentformat</span><span class="o">=</span><span class="s2">&quot;power&quot;</span><span class="p">,</span>
-        <span class="p">)</span>
-        <span class="n">fig</span><span class="o">.</span><span class="n">update_layout</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="s2">&quot;Undamped Critical Speed Map&quot;</span><span class="p">),</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-
-        <span class="k">return</span> <span class="n">fig</span></div>
-
-<div class="viewcode-block" id="Rotor.plot_level1"><a class="viewcode-back" href="../../generated/rotor/ross.Rotor.html#ross.Rotor.plot_level1">[docs]</a>    <span class="k">def</span> <span class="nf">plot_level1</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">stiffness_range</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">num</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<div class="viewcode-block" id="Rotor.run_level1"><a class="viewcode-back" href="../../generated/rotor/ross.Rotor.run_level1.html#ross.Rotor.run_level1">[docs]</a>    <span class="k">def</span> <span class="nf">run_level1</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">stiffness_range</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">num</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Plot level 1 stability analysis.</span>
 
 <span class="sd">        This method will plot the stability 1 analysis for a</span>
@@ -2563,7 +2414,8 @@
 <span class="sd">        &gt;&gt;&gt; bearing0 = BearingElement(0, kxx=stfx, kyy=stfy, cxx=0)</span>
 <span class="sd">        &gt;&gt;&gt; bearing1 = BearingElement(6, kxx=stfx, kyy=stfy, cxx=0)</span>
 <span class="sd">        &gt;&gt;&gt; rotor = Rotor(shaft_elem, [disk0, disk1], [bearing0, bearing1], rated_w=0)</span>
-<span class="sd">        &gt;&gt;&gt; fig = rotor.plot_level1(n=0, stiffness_range=(1e6, 1e11))</span>
+<span class="sd">        &gt;&gt;&gt; level1 = rotor.run_level1(n=0, stiffness_range=(1e6, 1e11))</span>
+<span class="sd">        &gt;&gt;&gt; fig = level1.plot()</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">stiffness_range</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">rated_w</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
@@ -2592,25 +2444,9 @@
             <span class="n">non_backward</span> <span class="o">=</span> <span class="n">modal</span><span class="o">.</span><span class="n">whirl_direction</span><span class="p">()</span> <span class="o">!=</span> <span class="s2">&quot;Backward&quot;</span>
             <span class="n">log_dec</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">modal</span><span class="o">.</span><span class="n">log_dec</span><span class="p">[</span><span class="n">non_backward</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
 
-        <span class="n">fig</span> <span class="o">=</span> <span class="n">go</span><span class="o">.</span><span class="n">Figure</span><span class="p">()</span>
-        <span class="n">fig</span><span class="o">.</span><span class="n">add_trace</span><span class="p">(</span>
-            <span class="n">go</span><span class="o">.</span><span class="n">Scatter</span><span class="p">(</span>
-                <span class="n">x</span><span class="o">=</span><span class="n">stiffness</span><span class="p">,</span>
-                <span class="n">y</span><span class="o">=</span><span class="n">log_dec</span><span class="p">,</span>
-                <span class="n">mode</span><span class="o">=</span><span class="s2">&quot;lines&quot;</span><span class="p">,</span>
-                <span class="n">line</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">width</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">colors</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span>
-                <span class="n">showlegend</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-                <span class="n">hovertemplate</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;Stiffness: %</span><span class="si">{x:.2e}</span><span class="s2">&lt;br&gt;&quot;</span> <span class="o">+</span> <span class="s2">&quot;Log Dec: %</span><span class="si">{y:.2f}</span><span class="s2">&quot;</span><span class="p">),</span>
-            <span class="p">)</span>
-        <span class="p">)</span>
+        <span class="n">results</span> <span class="o">=</span> <span class="n">Level1Results</span><span class="p">(</span><span class="n">stiffness</span><span class="p">,</span> <span class="n">log_dec</span><span class="p">)</span>
 
-        <span class="n">fig</span><span class="o">.</span><span class="n">update_xaxes</span><span class="p">(</span>
-            <span class="n">title_text</span><span class="o">=</span><span class="s2">&quot;Applied Cross Coupled Stiffness&quot;</span><span class="p">,</span> <span class="n">exponentformat</span><span class="o">=</span><span class="s2">&quot;power&quot;</span>
-        <span class="p">)</span>
-        <span class="n">fig</span><span class="o">.</span><span class="n">update_yaxes</span><span class="p">(</span><span class="n">title_text</span><span class="o">=</span><span class="s2">&quot;Log Dec&quot;</span><span class="p">,</span> <span class="n">exponentformat</span><span class="o">=</span><span class="s2">&quot;power&quot;</span><span class="p">)</span>
-        <span class="n">fig</span><span class="o">.</span><span class="n">update_layout</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="s2">&quot;Level 1 stability analysis&quot;</span><span class="p">),</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-
-        <span class="k">return</span> <span class="n">fig</span></div>
+        <span class="k">return</span> <span class="n">results</span></div>
 
 <div class="viewcode-block" id="Rotor.run_time_response"><a class="viewcode-back" href="../../generated/rotor/ross.Rotor.run_time_response.html#ross.Rotor.run_time_response">[docs]</a>    <span class="k">def</span> <span class="nf">run_time_response</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">speed</span><span class="p">,</span> <span class="n">F</span><span class="p">,</span> <span class="n">t</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Calculate the time response.</span>

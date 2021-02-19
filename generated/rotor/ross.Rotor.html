@@ -440,103 +440,6 @@ Default is 1e-02</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="ross.Rotor.forced_response">
-<code class="sig-name descname"><span class="pre">forced_response</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">force</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">speed_range</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">modes</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cluster_points</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_modes</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">12</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_points</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rtol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.005</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">unbalance</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/rotor_assembly.html#Rotor.forced_response"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ross.Rotor.forced_response" title="Permalink to this definition">¶</a></dt>
-<dd><p>Forced response for a mdof system.</p>
-<p>This method returns the unbalanced response for a mdof system
-given magnitude and phase of the unbalance, the node where it’s
-applied and a frequency range.</p>
-<dl class="simple">
-<dt>Available plotting methods:</dt><dd><p>.plot()
-.plot_magnitude()
-.plot_phase()
-.plot_polar_bode()
-.plot_deflected_shape()
-.plot_bending_moment()
-.plot_deflected_shape_3d()
-.plot_deflected_shape_2d()</p>
-</dd>
-</dl>
-<dl class="field-list">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>force</strong><span class="classifier">list, array</span></dt><dd><p>Unbalance force in each degree of freedom for each value in omega</p>
-</dd>
-<dt><strong>speed_range</strong><span class="classifier">list, array</span></dt><dd><p>Array with the desired range of frequencies</p>
-</dd>
-<dt><strong>modes</strong><span class="classifier">list, optional</span></dt><dd><p>Modes that will be used to calculate the frequency response
-(all modes will be used if a list is not given).</p>
-</dd>
-<dt><strong>unbalance</strong><span class="classifier">array, optional</span></dt><dd><p>Array with the unbalance data (node, magnitude and phase) to be plotted
-with deflected shape. This argument is set only if running an unbalance
-response analysis.
-Default is None.</p>
-</dd>
-<dt><strong>cluster_points</strong><span class="classifier">bool, optional</span></dt><dd><p>boolean to activate the automatic frequency spacing method. If True, the
-method uses _clustering_points() to create an speed_range.
-Default is False</p>
-</dd>
-<dt><strong>num_points</strong><span class="classifier">int, optional</span></dt><dd><p>The number of points generated per critical speed.
-The method set the same number of points for slightly less and slightly
-higher than the natural circular frequency. It means there’ll be num_points
-greater and num_points smaller than a given critical speed.
-num_points may be between 2 and 12. Anything above this range defaults
-to 10 and anything below this range defaults to 4.
-The default is 10.</p>
-</dd>
-<dt><strong>num_modes</strong></dt><dd><p>The number of eigenvalues and eigenvectors to be calculated using ARPACK.
-It also defines the range for the output array, since the method generates
-points only for the critical speed calculated by run_critical_speed().
-Default is 12.</p>
-</dd>
-<dt><strong>rtol</strong><span class="classifier">float, optional</span></dt><dd><p>Tolerance (relative) for termination. Applied to scipy.optimize.newton to
-calculate the approximated critical speeds.
-Default is 0.005 (0.5%).</p>
-</dd>
-</dl>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><dl>
-<dt><strong>forced_resp</strong><span class="classifier">object</span></dt><dd><p>An instance of ForcedResponseResult class, which is used to post-process
-results. Attributes stored:
-forced_resp : array</p>
-<blockquote>
-<div><p>Array with the forced response for each node for each frequency.</p>
-</div></blockquote>
-<dl class="simple">
-<dt>speed_range<span class="classifier">array</span></dt><dd><p>Array with the frequencies.</p>
-</dd>
-<dt>velc_resp<span class="classifier">array</span></dt><dd><p>Array with the velocity response for each node for each frequency.</p>
-</dd>
-<dt>accl_resp<span class="classifier">array</span></dt><dd><p>Array with the acceleration response for each node for each frequency.</p>
-</dd>
-</dl>
-</dd>
-</dl>
-</dd>
-</dl>
-<p class="rubric">Examples</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">rotor</span> <span class="o">=</span> <span class="n">rotor_example</span><span class="p">()</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">speed</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1000</span><span class="p">,</span> <span class="mi">101</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">force</span> <span class="o">=</span> <span class="n">rotor</span><span class="o">.</span><span class="n">_unbalance_force</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mf">10.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="n">speed</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">resp</span> <span class="o">=</span> <span class="n">rotor</span><span class="o">.</span><span class="n">forced_response</span><span class="p">(</span><span class="n">force</span><span class="o">=</span><span class="n">force</span><span class="p">,</span> <span class="n">speed_range</span><span class="o">=</span><span class="n">speed</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="nb">abs</span><span class="p">(</span><span class="n">resp</span><span class="o">.</span><span class="n">forced_resp</span><span class="p">)</span> 
-<span class="go">array([[0.00000000e+00, 5.06073311e-04, 2.10044826e-03, ...</span>
-</pre></div>
-</div>
-<p>Using clustered points option.
-Set <cite>cluster_points=True</cite> and choose how many modes the method must search and
-how many points to add just before and after each critical speed.</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">response</span> <span class="o">=</span> <span class="n">rotor</span><span class="o">.</span><span class="n">forced_response</span><span class="p">(</span>
-<span class="gp">... </span>    <span class="n">force</span><span class="o">=</span><span class="n">force</span><span class="p">,</span> <span class="n">cluster_points</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">num_modes</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span> <span class="n">num_points</span><span class="o">=</span><span class="mi">5</span>
-<span class="gp">... </span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">response</span><span class="o">.</span><span class="n">speed_range</span><span class="o">.</span><span class="n">shape</span>
-<span class="go">(61,)</span>
-</pre></div>
-</div>
-</dd></dl>
-
-<dl class="py method">
 <dt id="ross.Rotor.from_section">
 <em class="property"><span class="pre">classmethod</span> </em><code class="sig-name descname"><span class="pre">from_section</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">leng_data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">idl_data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">odl_data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">idr_data</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">odr_data</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">material_data</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">disk_data</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">brg_seal_data</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">min_w</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_w</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rated_w</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nel_r</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tag</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/rotor_assembly.html#Rotor.from_section"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ross.Rotor.from_section" title="Permalink to this definition">¶</a></dt>
 <dd><p>Build rotor from sections.</p>
@@ -622,37 +525,6 @@ Default is 1.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="ross.Rotor.plot_level1">
-<code class="sig-name descname"><span class="pre">plot_level1</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="pre">self</span></em>, <em class="sig-param"><span class="pre">n=5</span></em>, <em class="sig-param"><span class="pre">stiffness_range=None</span></em>, <em class="sig-param"><span class="pre">num=5</span></em>, <em class="sig-param"><span class="pre">\*\*kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/rotor_assembly.html#Rotor.plot_level1"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ross.Rotor.plot_level1" title="Permalink to this definition">¶</a></dt>
-<dd><p>Plot level 1 stability analysis.</p>
-<p>This method will plot the stability 1 analysis for a
-given stiffness range.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>n</strong><span class="classifier">int</span></dt><dd><p>Number of steps in the range.
-Default is 5.</p>
-</dd>
-<dt><strong>stiffness_range</strong><span class="classifier">tuple, optional</span></dt><dd><p>Tuple with (start, end) for stiffness range.
-This will be used to create an evenly numbers spaced evenly on a log scale
-to create a better visualization (see np.logspace).</p>
-</dd>
-<dt><strong>kwargs</strong><span class="classifier">optional</span></dt><dd><p>Additional key word arguments can be passed to change the plot layout only
-(e.g. width=1000, height=800, …).
-<a href="#id1"><span class="problematic" id="id2">*</span></a>See Plotly Python Figure Reference for more information.</p>
-</dd>
-</dl>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><dl class="simple">
-<dt><strong>fig</strong><span class="classifier">Plotly graph_objects.Figure()</span></dt><dd><p>The figure object with the plot.</p>
-</dd>
-</dl>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
 <dt id="ross.Rotor.plot_rotor">
 <code class="sig-name descname"><span class="pre">plot_rotor</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="pre">self</span></em>, <em class="sig-param"><span class="pre">nodes=1</span></em>, <em class="sig-param"><span class="pre">check_sld=False</span></em>, <em class="sig-param"><span class="pre">length_units='m'</span></em>, <em class="sig-param"><span class="pre">\*\*kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/rotor_assembly.html#Rotor.plot_rotor"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ross.Rotor.plot_rotor" title="Permalink to this definition">¶</a></dt>
 <dd><p>Plot a rotor object.</p>
@@ -672,58 +544,13 @@ Default is ‘m’.</p>
 </dd>
 <dt><strong>kwargs</strong><span class="classifier">optional</span></dt><dd><p>Additional key word arguments can be passed to change the plot layout only
 (e.g. width=1000, height=800, …).
-<a href="#id3"><span class="problematic" id="id4">*</span></a>See Plotly Python Figure Reference for more information.</p>
+<a href="#id1"><span class="problematic" id="id2">*</span></a>See Plotly Python Figure Reference for more information.</p>
 </dd>
 </dl>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><dl class="simple">
 <dt><strong>fig</strong><span class="classifier">plotly.graph_objects.Figure</span></dt><dd><p>The figure object with the rotor representation.</p>
-</dd>
-</dl>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt id="ross.Rotor.plot_ucs">
-<code class="sig-name descname"><span class="pre">plot_ucs</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="pre">self</span></em>, <em class="sig-param"><span class="pre">stiffness_range=None</span></em>, <em class="sig-param"><span class="pre">num_modes=16</span></em>, <em class="sig-param"><span class="pre">num=30</span></em>, <em class="sig-param"><span class="pre">fig=None</span></em>, <em class="sig-param"><span class="pre">synchronous=False</span></em>, <em class="sig-param"><span class="pre">stiffness_units='N/m'</span></em>, <em class="sig-param"><span class="pre">frequency_units='rad/s'</span></em>, <em class="sig-param"><span class="pre">\*\*kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/rotor_assembly.html#Rotor.plot_ucs"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ross.Rotor.plot_ucs" title="Permalink to this definition">¶</a></dt>
-<dd><p>Plot undamped critical speed map.</p>
-<p>This method will plot the undamped critical speed map for a given range
-of stiffness values. If the range is not provided, the bearing
-stiffness at rated speed will be used to create a range.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>stiffness_range</strong><span class="classifier">tuple, optional</span></dt><dd><p>Tuple with (start, end) for stiffness range.</p>
-</dd>
-<dt><strong>num</strong><span class="classifier">int</span></dt><dd><p>Number of steps in the range.
-Default is 20.</p>
-</dd>
-<dt><strong>num_modes</strong><span class="classifier">int, optional</span></dt><dd><p>Number of modes to be calculated. This uses scipy.sparse.eigs method.
-Default is 16.</p>
-</dd>
-<dt><strong>fig</strong><span class="classifier">Plotly graph_objects.Figure()</span></dt><dd><p>The figure object with the plot.</p>
-</dd>
-<dt><strong>synchronous</strong><span class="classifier">bool</span></dt><dd><p>If True a synchronous analysis is carried out and the frequency of
-the first forward model will be equal to the speed.
-Default is False.</p>
-</dd>
-<dt><strong>stiffness_units</strong><span class="classifier">str, optional</span></dt><dd><p>Units for the x axis.
-Default is N/m.</p>
-</dd>
-<dt><strong>frequency_units</strong><span class="classifier">str, optional</span></dt><dd><p>Units for th y axis.
-Default is rad/s</p>
-</dd>
-<dt><strong>kwargs</strong><span class="classifier">optional</span></dt><dd><p>Additional key word arguments can be passed to change the plot layout only
-(e.g. width=1000, height=800, …).
-<a href="#id5"><span class="problematic" id="id6">*</span></a>See Plotly Python Figure Reference for more information.</p>
-</dd>
-</dl>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><dl class="simple">
-<dt><strong>fig</strong><span class="classifier">Plotly graph_objects.Figure()</span></dt><dd><p>The figure object with the plot.</p>
 </dd>
 </dl>
 </dd>
@@ -785,7 +612,7 @@ It will be returned if plot=False.</p>
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>**kwargs: dictionary</strong></dt><dd><dl class="simple">
-<dt><a href="#id7"><span class="problematic" id="id8">**</span></a>kwargs receives:</dt><dd><dl class="simple">
+<dt><a href="#id3"><span class="problematic" id="id4">**</span></a>kwargs receives:</dt><dd><dl class="simple">
 <dt>dt<span class="classifier">float</span></dt><dd><p>Time step</p>
 </dd>
 <dt>tI<span class="classifier">float</span></dt><dd><p>Initial time</p>
@@ -893,6 +720,103 @@ array([…</p>
 </dd></dl>
 
 <dl class="py method">
+<dt id="ross.Rotor.run_forced_response">
+<code class="sig-name descname"><span class="pre">run_forced_response</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">force</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">speed_range</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">modes</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cluster_points</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_modes</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">12</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_points</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rtol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.005</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">unbalance</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/rotor_assembly.html#Rotor.run_forced_response"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ross.Rotor.run_forced_response" title="Permalink to this definition">¶</a></dt>
+<dd><p>Forced response for a mdof system.</p>
+<p>This method returns the unbalanced response for a mdof system
+given magnitude and phase of the unbalance, the node where it’s
+applied and a frequency range.</p>
+<dl class="simple">
+<dt>Available plotting methods:</dt><dd><p>.plot()
+.plot_magnitude()
+.plot_phase()
+.plot_polar_bode()
+.plot_deflected_shape()
+.plot_bending_moment()
+.plot_deflected_shape_3d()
+.plot_deflected_shape_2d()</p>
+</dd>
+</dl>
+<dl class="field-list">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>force</strong><span class="classifier">list, array</span></dt><dd><p>Unbalance force in each degree of freedom for each value in omega</p>
+</dd>
+<dt><strong>speed_range</strong><span class="classifier">list, array</span></dt><dd><p>Array with the desired range of frequencies</p>
+</dd>
+<dt><strong>modes</strong><span class="classifier">list, optional</span></dt><dd><p>Modes that will be used to calculate the frequency response
+(all modes will be used if a list is not given).</p>
+</dd>
+<dt><strong>unbalance</strong><span class="classifier">array, optional</span></dt><dd><p>Array with the unbalance data (node, magnitude and phase) to be plotted
+with deflected shape. This argument is set only if running an unbalance
+response analysis.
+Default is None.</p>
+</dd>
+<dt><strong>cluster_points</strong><span class="classifier">bool, optional</span></dt><dd><p>boolean to activate the automatic frequency spacing method. If True, the
+method uses _clustering_points() to create an speed_range.
+Default is False</p>
+</dd>
+<dt><strong>num_points</strong><span class="classifier">int, optional</span></dt><dd><p>The number of points generated per critical speed.
+The method set the same number of points for slightly less and slightly
+higher than the natural circular frequency. It means there’ll be num_points
+greater and num_points smaller than a given critical speed.
+num_points may be between 2 and 12. Anything above this range defaults
+to 10 and anything below this range defaults to 4.
+The default is 10.</p>
+</dd>
+<dt><strong>num_modes</strong></dt><dd><p>The number of eigenvalues and eigenvectors to be calculated using ARPACK.
+It also defines the range for the output array, since the method generates
+points only for the critical speed calculated by run_critical_speed().
+Default is 12.</p>
+</dd>
+<dt><strong>rtol</strong><span class="classifier">float, optional</span></dt><dd><p>Tolerance (relative) for termination. Applied to scipy.optimize.newton to
+calculate the approximated critical speeds.
+Default is 0.005 (0.5%).</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl>
+<dt><strong>forced_resp</strong><span class="classifier">object</span></dt><dd><p>An instance of ForcedResponseResult class, which is used to post-process
+results. Attributes stored:
+forced_resp : array</p>
+<blockquote>
+<div><p>Array with the forced response for each node for each frequency.</p>
+</div></blockquote>
+<dl class="simple">
+<dt>speed_range<span class="classifier">array</span></dt><dd><p>Array with the frequencies.</p>
+</dd>
+<dt>velc_resp<span class="classifier">array</span></dt><dd><p>Array with the velocity response for each node for each frequency.</p>
+</dd>
+<dt>accl_resp<span class="classifier">array</span></dt><dd><p>Array with the acceleration response for each node for each frequency.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">rotor</span> <span class="o">=</span> <span class="n">rotor_example</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">speed</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1000</span><span class="p">,</span> <span class="mi">101</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">force</span> <span class="o">=</span> <span class="n">rotor</span><span class="o">.</span><span class="n">_unbalance_force</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mf">10.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="n">speed</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">resp</span> <span class="o">=</span> <span class="n">rotor</span><span class="o">.</span><span class="n">run_forced_response</span><span class="p">(</span><span class="n">force</span><span class="o">=</span><span class="n">force</span><span class="p">,</span> <span class="n">speed_range</span><span class="o">=</span><span class="n">speed</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">abs</span><span class="p">(</span><span class="n">resp</span><span class="o">.</span><span class="n">forced_resp</span><span class="p">)</span> 
+<span class="go">array([[0.00000000e+00, 5.06073311e-04, 2.10044826e-03, ...</span>
+</pre></div>
+</div>
+<p>Using clustered points option.
+Set <cite>cluster_points=True</cite> and choose how many modes the method must search and
+how many points to add just before and after each critical speed.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">response</span> <span class="o">=</span> <span class="n">rotor</span><span class="o">.</span><span class="n">run_forced_response</span><span class="p">(</span>
+<span class="gp">... </span>    <span class="n">force</span><span class="o">=</span><span class="n">force</span><span class="p">,</span> <span class="n">cluster_points</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">num_modes</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span> <span class="n">num_points</span><span class="o">=</span><span class="mi">5</span>
+<span class="gp">... </span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">response</span><span class="o">.</span><span class="n">speed_range</span><span class="o">.</span><span class="n">shape</span>
+<span class="go">(61,)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
 <dt id="ross.Rotor.run_freq_response">
 <code class="sig-name descname"><span class="pre">run_freq_response</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">speed_range</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">modes</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cluster_points</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_modes</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">12</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_points</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rtol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.005</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/rotor_assembly.html#Rotor.run_freq_response"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ross.Rotor.run_freq_response" title="Permalink to this definition">¶</a></dt>
 <dd><p>Frequency response for a mdof system.</p>
@@ -997,16 +921,47 @@ respectively</p>
 </dd></dl>
 
 <dl class="py method">
+<dt id="ross.Rotor.run_level1">
+<code class="sig-name descname"><span class="pre">run_level1</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="pre">self</span></em>, <em class="sig-param"><span class="pre">n=5</span></em>, <em class="sig-param"><span class="pre">stiffness_range=None</span></em>, <em class="sig-param"><span class="pre">num=5</span></em>, <em class="sig-param"><span class="pre">\*\*kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/rotor_assembly.html#Rotor.run_level1"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ross.Rotor.run_level1" title="Permalink to this definition">¶</a></dt>
+<dd><p>Plot level 1 stability analysis.</p>
+<p>This method will plot the stability 1 analysis for a
+given stiffness range.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>n</strong><span class="classifier">int</span></dt><dd><p>Number of steps in the range.
+Default is 5.</p>
+</dd>
+<dt><strong>stiffness_range</strong><span class="classifier">tuple, optional</span></dt><dd><p>Tuple with (start, end) for stiffness range.
+This will be used to create an evenly numbers spaced evenly on a log scale
+to create a better visualization (see np.logspace).</p>
+</dd>
+<dt><strong>kwargs</strong><span class="classifier">optional</span></dt><dd><p>Additional key word arguments can be passed to change the plot layout only
+(e.g. width=1000, height=800, …).
+<a href="#id5"><span class="problematic" id="id6">*</span></a>See Plotly Python Figure Reference for more information.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>fig</strong><span class="classifier">Plotly graph_objects.Figure()</span></dt><dd><p>The figure object with the plot.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
 <dt id="ross.Rotor.run_misalignment">
 <code class="sig-name descname"><span class="pre">run_misalignment</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="pre">self</span></em>, <em class="sig-param"><span class="pre">coupling='flex'</span></em>, <em class="sig-param"><span class="pre">\*\*kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/rotor_assembly.html#Rotor.run_misalignment"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ross.Rotor.run_misalignment" title="Permalink to this definition">¶</a></dt>
-<dd><p>Execute the misalignment defect and generates the misalignment object on the back-end. There are two types of coupling, flexible (flex) and rigid, which have different entries. These entries are provided via <a href="#id9"><span class="problematic" id="id10">**</span></a>kwargs to the specific method.</p>
+<dd><p>Execute the misalignment defect and generates the misalignment object on the back-end. There are two types of coupling, flexible (flex) and rigid, which have different entries. These entries are provided via <a href="#id7"><span class="problematic" id="id8">**</span></a>kwargs to the specific method.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>coupling</strong><span class="classifier">str</span></dt><dd><p>Coupling type. The avaible types are: flex, by default; and rigid.</p>
 </dd>
 <dt><strong>**kwargs: dictionary</strong></dt><dd><dl class="simple">
-<dt>In the case of coupling = “flex”, <a href="#id11"><span class="problematic" id="id12">**</span></a>kwargs receives:</dt><dd><dl class="simple">
+<dt>In the case of coupling = “flex”, <a href="#id9"><span class="problematic" id="id10">**</span></a>kwargs receives:</dt><dd><dl class="simple">
 <dt>dt<span class="classifier">float</span></dt><dd><p>Time step.</p>
 </dd>
 <dt>tI<span class="classifier">float</span></dt><dd><p>Initial time.</p>
@@ -1042,7 +997,7 @@ False by default.</p>
 </dd>
 </dl>
 </dd>
-<dt>In the case of coupling = “rigid”, <a href="#id13"><span class="problematic" id="id14">**</span></a>kwargs receives:</dt><dd><dl class="simple">
+<dt>In the case of coupling = “rigid”, <a href="#id11"><span class="problematic" id="id12">**</span></a>kwargs receives:</dt><dd><dl class="simple">
 <dt>dt<span class="classifier">float</span></dt><dd><p>Time step.</p>
 </dd>
 <dt>tI<span class="classifier">float</span></dt><dd><p>Initial time.</p>
@@ -1093,7 +1048,9 @@ False by default.</p>
 Tthe natural frequencies and dampings ratios are calculated for a given
 rotor speed. It means that for each speed input there’s a different set of
 eigenvalues and eigenvectors, hence, different natural frequencies and damping
-ratios are returned.</p>
+ratios are returned.
+This method will return a ModalResults object which stores all data generated
+and also provides so methods for plotting.</p>
 <dl class="simple">
 <dt>Available plotting methods:</dt><dd><p>.plot_mode_2d()
 .plot_mode_3d()</p>
@@ -1121,19 +1078,28 @@ Default is True.</p>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><dl class="simple">
-<dt><strong>evalues</strong><span class="classifier">array</span></dt><dd><p>Eigenvalues array</p>
-</dd>
-<dt><strong>evectors</strong><span class="classifier">array</span></dt><dd><p>Eigenvectors array</p>
-</dd>
-<dt><strong>wn</strong><span class="classifier">array</span></dt><dd><p>Undamped natural frequencies array</p>
-</dd>
-<dt><strong>wd</strong><span class="classifier">array</span></dt><dd><p>Damped natural frequencies array</p>
-</dd>
-<dt><strong>log_dec</strong><span class="classifier">array</span></dt><dd><p>Logarithmic decrement array</p>
+<dt><strong>results</strong><span class="classifier">ross.ModalResults</span></dt><dd><p>For more information on attributes and methods available see:
+<a class="reference internal" href="../results/ross.ModalResults.html#ross.ModalResults" title="ross.ModalResults"><code class="xref py py-class docutils literal notranslate"><span class="pre">ross.ModalResults</span></code></a></p>
 </dd>
 </dl>
 </dd>
 </dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">ross</span> <span class="k">as</span> <span class="nn">rs</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">rotor</span> <span class="o">=</span> <span class="n">rs</span><span class="o">.</span><span class="n">rotor_example</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">modal</span> <span class="o">=</span> <span class="n">rotor</span><span class="o">.</span><span class="n">run_modal</span><span class="p">(</span><span class="n">speed</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">sparse</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">modal</span><span class="o">.</span><span class="n">wn</span><span class="p">[:</span><span class="mi">2</span><span class="p">]</span>
+<span class="go">array([91.79655318, 96.28899977])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">modal</span><span class="o">.</span><span class="n">wd</span><span class="p">[:</span><span class="mi">2</span><span class="p">]</span>
+<span class="go">array([91.79655318, 96.28899977])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># Plotting 3D mode shape</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mode1</span> <span class="o">=</span> <span class="mi">0</span>  <span class="c1"># First mode</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">fig</span> <span class="o">=</span> <span class="n">modal</span><span class="o">.</span><span class="n">plot_mode_3d</span><span class="p">(</span><span class="n">mode1</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># Plotting 2D mode shape</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mode2</span> <span class="o">=</span> <span class="mi">1</span>  <span class="c1"># Second mode</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">fig</span> <span class="o">=</span> <span class="n">modal</span><span class="o">.</span><span class="n">plot_mode_2d</span><span class="p">(</span><span class="n">mode2</span><span class="p">)</span>
+</pre></div>
+</div>
 </dd></dl>
 
 <dl class="py method">
@@ -1144,7 +1110,7 @@ Default is True.</p>
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>**kwargs: dictionary</strong></dt><dd><dl class="simple">
-<dt><a href="#id15"><span class="problematic" id="id16">**</span></a>kwargs receives:</dt><dd><dl class="simple">
+<dt><a href="#id13"><span class="problematic" id="id14">**</span></a>kwargs receives:</dt><dd><dl class="simple">
 <dt>dt<span class="classifier">float</span></dt><dd><p>Time step.</p>
 </dd>
 <dt>tI<span class="classifier">float</span></dt><dd><p>Initial time.</p>
@@ -1294,6 +1260,33 @@ It will be returned if plot=False.</p>
 &gt;&gt;&gt; fig2 = response.plot_2d(node=node)</p>
 <p># plot orbit response - plotting 3D orbits - full rotor model:
 &gt;&gt;&gt; fig3 = response.plot_3d()</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="ross.Rotor.run_ucs">
+<code class="sig-name descname"><span class="pre">run_ucs</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="pre">self</span></em>, <em class="sig-param"><span class="pre">stiffness_range=None</span></em>, <em class="sig-param"><span class="pre">num_modes=16</span></em>, <em class="sig-param"><span class="pre">num=20</span></em>, <em class="sig-param"><span class="pre">fig=None</span></em>, <em class="sig-param"><span class="pre">synchronous=False</span></em>, <em class="sig-param"><span class="pre">\*\*kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/rotor_assembly.html#Rotor.run_ucs"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ross.Rotor.run_ucs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Run Undamped Critical Speeds analyzes.</p>
+<p>This method will run the undamped critical speed analyzes for a given range
+of stiffness values. If the range is not provided, the bearing
+stiffness at rated speed will be used to create a range.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>stiffness_range</strong><span class="classifier">tuple, optional</span></dt><dd><p>Tuple with (start, end) for stiffness range.</p>
+</dd>
+<dt><strong>num</strong><span class="classifier">int</span></dt><dd><p>Number of steps in the range.
+Default is 20.</p>
+</dd>
+<dt><strong>num_modes</strong><span class="classifier">int, optional</span></dt><dd><p>Number of modes to be calculated. This uses scipy.sparse.eigs method.
+Default is 16.</p>
+</dd>
+<dt><strong>synchronous</strong><span class="classifier">bool</span></dt><dd><p>If True a synchronous analysis is carried out and the frequency of
+the first forward model will be equal to the speed.
+Default is False.</p>
+</dd>
+</dl>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py method">
