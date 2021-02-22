@@ -61,8 +61,7 @@
      href="#">Site <b class="caret"></b></a>
   <ul class="dropdown-menu globaltoc"
       role="menu"
-      aria-labelledby="dLabelGlobalToc"><p class="caption"><span class="caption-text">Contents:</span></p>
-<ul>
+      aria-labelledby="dLabelGlobalToc"><ul>
 <li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="installation.html#install-python">Install Python</a></li>
 <li class="toctree-l2"><a class="reference internal" href="installation.html#install-ross">Install ROSS</a></li>
@@ -97,6 +96,7 @@
 <li class="toctree-l2"><a class="reference internal" href="contributing.html#making-new-releases">Making new releases</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="citing.html">Citing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="release_notes.html">Release notes</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="release_notes.html#version-0-4-0">Version 0.4.0</a></li>
 <li class="toctree-l2"><a class="reference internal" href="release_notes.html#version-0-3-0">Version 0.3.0</a></li>
@@ -118,13 +118,9 @@
       role="menu"
       aria-labelledby="dLabelLocalToc"><ul>
 <li><a class="reference internal" href="#"> ROSS: Rotordynamic Open-Source Software</a><ul>
-<li><a class="reference internal" href="#fluidflow">FluidFlow</a></li>
-<li><a class="reference internal" href="#stochastic-ross">Stochastic ROSS</a></li>
-<li><a class="reference internal" href="#ross-machine-learning">ROSS - Machine Learning</a></li>
-<li><a class="reference internal" href="#contents">Contents</a></li>
+<li><a class="reference internal" href="#additional-packages">Additional Packages</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#indices-and-tables">Indices and tables</a></li>
 </ul>
 </ul>
 </li>
@@ -160,38 +156,42 @@
   <div class="row">
     <div class="body col-md-12 content" role="main">
       
-  <div class="section" id="ross-logo-ross-rotordynamic-open-source-software">
+  <div class="container-fluid">
+  <div class="row"><div class="section" id="ross-logo-ross-rotordynamic-open-source-software">
 <h1><img alt="ross-logo" src="_images/ross-logo.svg" /> ROSS: Rotordynamic Open-Source Software<a class="headerlink" href="#ross-logo-ross-rotordynamic-open-source-software" title="Permalink to this headline">¶</a></h1>
-<p>ROSS is a library written in Python for rotordynamic analysis. The source is
+  </div>
+</div>
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-9"><p>ROSS is a library written in Python for rotordynamic analysis. The source code is
 available at <a class="reference external" href="https://github.com/ross-rotordynamics/ross">github</a>.</p>
-<p>ROSS presents other packages that will allow you to improve your rotodynamic analysis:</p>
-<div class="section" id="fluidflow">
-<h2>FluidFlow<a class="headerlink" href="#fluidflow" title="Permalink to this headline">¶</a></h2>
-<p>FluidFlow is a fluid dynamics package from ROSS.</p>
-<p>Create your bearings from geometrical and fluid parameters.</p>
-<p>Check for bearing pressure field, equilibrium position, create cylindrical or elliptical
-geometries, evaluate the effect of wear on bearing coefficients and more.</p>
+<p>For a fast introduction to the library you can check out the <a class="reference internal" href="tutorials.html"><span class="doc">tutorials</span></a>
+and <a class="reference internal" href="examples.html"><span class="doc">examples</span></a>. These are also available on <a class="reference external" href="https://mybinder.org/v2/gh/ross-rotordynamics/ross/0.4?filepath=%2Fdocs%2Fexamples">binder</a>.</p>
+<div class="section" id="additional-packages">
+<h2>Additional Packages<a class="headerlink" href="#additional-packages" title="Permalink to this headline">¶</a></h2>
+<p>ROSS has a core library in which you can create elements (shaft, disks, bearings etc.)
+and assemble these elements in a rotor object where you can run analysis. Additional
+packages are also available:</p>
+<p><strong>FluidFlow</strong> is a fluid dynamics package where you can create bearings from
+geometrical and fluid parameters and check the bearing pressure field,
+equilibrium position, evaluate the effect of wear on bearing coefficients and more.</p>
+<p><strong>ROSS-Stochastic</strong> enables you to add statistical analysis to your project by
+You can create rotor models with uncertainties to any parameter of any element
+and evaluate how these uncertainties impact your model, running the same analyzes
+presented on ROSS, and checking for percentiles and confidence intervals.</p>
+<p><strong>ROSS-Machine Learning</strong> is a Deep Learning package from ROSS, based in Keras and Scikit-Learn
+where you can create your own surrogate models using data from both experimental or computational models.
+This package returns a .h5 file that can be used in ROSS, Stochastic ROSS or any other
+package written in python.</p>
+  </div>
 </div>
-<div class="section" id="stochastic-ross">
-<h2>Stochastic ROSS<a class="headerlink" href="#stochastic-ross" title="Permalink to this headline">¶</a></h2>
-<p>Stochastic ROSS package brings statistical analysis to your project.</p>
-<p>Create rotor models with uncertainties to any parameter of any element and evaluate how these
-uncertainties impact your modeling, running the same analyzes presented on ROSS, and checking
-for percentiles and confidence intervals.</p>
-</div>
-<div class="section" id="ross-machine-learning">
-<h2>ROSS - Machine Learning<a class="headerlink" href="#ross-machine-learning" title="Permalink to this headline">¶</a></h2>
-<p><a class="reference external" href="https://github.com/ross-rotordynamics/ross-ml">ROSS-ML</a> is a Deep Learning package from ROSS, based in Keras and Scikit-Learn</p>
-<p>Create your own surrogate models using data from both experimental or computational models.</p>
-<p>This package returns a .h5 file that can be used in ROSS, Stochastic ROSS or any other
-package writen in python.</p>
-</div>
-<div class="section" id="contents">
-<h2>Contents<a class="headerlink" href="#contents" title="Permalink to this headline">¶</a></h2>
-<p>You can check the tutorial and examples on <a class="reference external" href="https://mybinder.org/v2/gh/ross-rotordynamics/ross/0.3?filepath=%2Fdocs%2Fexamples">binder</a>.</p>
-<p>Please, cite our <a class="reference external" href="https://joss.theoj.org/papers/10.21105/joss.02120">paper</a> published in JOSS - Journal of Open Source Software.</p>
-<div class="toctree-wrapper compound">
-<p class="caption"><span class="caption-text">Contents:</span></p>
+<div class="col-md-3">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title">Contents</h3>
+    </div>
+    <div class="panel-body"><div class="toctree-wrapper compound">
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="tutorials.html">Tutorials</a></li>
@@ -199,18 +199,13 @@ package writen in python.</p>
 <li class="toctree-l1"><a class="reference internal" href="download.html">Download notebooks</a></li>
 <li class="toctree-l1"><a class="reference internal" href="api.html">API Reference</a></li>
 <li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="citing.html">Citing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="release_notes.html">Release notes</a></li>
 </ul>
 </div>
-</div>
-</div>
-<div class="section" id="indices-and-tables">
-<h1>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Permalink to this headline">¶</a></h1>
-<ul class="simple">
-<li><p><a class="reference internal" href="genindex.html"><span class="std std-ref">Index</span></a></p></li>
-<li><p><a class="reference internal" href="py-modindex.html"><span class="std std-ref">Module Index</span></a></p></li>
-<li><p><a class="reference internal" href="search.html"><span class="std std-ref">Search Page</span></a></p></li>
-</ul>
+    </div>
+  </div>
+</div></div>
 </div>
 
 
