@@ -90,10 +90,9 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="contributing.html#feedback-and-contribution">Feedback and Contribution</a></li>
-<li class="toctree-l2"><a class="reference internal" href="contributing.html#version-control-system-git">Version-control system: Git</a></li>
 <li class="toctree-l2"><a class="reference internal" href="contributing.html#code-style-black">Code style: Black</a></li>
-<li class="toctree-l2"><a class="reference internal" href="contributing.html#documentation">Documentation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="contributing.html#how-to-contribute-to-ross-using-git">How to contribute to ROSS using git</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contributing.html#documentation">Documentation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="contributing.html#making-new-releases">Making new releases</a></li>
 </ul>
 </li>
@@ -260,13 +259,13 @@
 <td><p>Run static analysis.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="generated/rotor/ross.Rotor.run_misalignment.html#ross.Rotor.run_misalignment" title="ross.Rotor.run_misalignment"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Rotor.run_misalignment</span></code></a>(self[, coupling])</p></td>
-<td><p>Execute the misalignment defect and generates the misalignment object on the back-end. There are two types of coupling, flexible (flex) and rigid, which have different entries. These entries are provided via <a href="#id1"><span class="problematic" id="id2">**</span></a>kwargs to the specific method.</p></td>
+<td><p>Run an analyzes with misalignment.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="generated/rotor/ross.Rotor.run_rubbing.html#ross.Rotor.run_rubbing" title="ross.Rotor.run_rubbing"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Rotor.run_rubbing</span></code></a>(self, \*\*kwargs)</p></td>
-<td><p>Execute the rubbing defect and generates the rubbing object on the back-end.</p></td>
+<td><p>Run an analyzes with rubbing.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="generated/rotor/ross.Rotor.run_crack.html#ross.Rotor.run_crack" title="ross.Rotor.run_crack"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Rotor.run_crack</span></code></a>(self, \*\*kwargs)</p></td>
-<td><p>Execute the crack defect and generates the crack object on the back-end.</p></td>
+<td><p>Run an analyzes with rubbing.</p></td>
 </tr>
 </tbody>
 </table>
@@ -293,7 +292,7 @@
 <td><p>Class used to store results and provide plots for Frequency Response.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="generated/results/ross.ForcedResponseResults.html#ross.ForcedResponseResults" title="ross.ForcedResponseResults"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ForcedResponseResults</span></code></a>(rotor, forced_resp, …)</p></td>
-<td><p>Store results and provide plots for Unbalance and Forced Response analysis.</p></td>
+<td><p>Class used to store results and provide plots for Forced Response analysis.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="generated/results/ross.StaticResults.html#ross.StaticResults" title="ross.StaticResults"><code class="xref py py-obj docutils literal notranslate"><span class="pre">StaticResults</span></code></a>(deformation, Vx, Bm, w_shaft, …)</p></td>
 <td><p>Class used to store results and provide plots for Static Analysis.</p></td>

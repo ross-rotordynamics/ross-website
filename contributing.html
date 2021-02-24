@@ -90,10 +90,9 @@
 </li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Contributing</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#feedback-and-contribution">Feedback and Contribution</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#version-control-system-git">Version-control system: Git</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#code-style-black">Code style: Black</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#documentation">Documentation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#how-to-contribute-to-ross-using-git">How to contribute to ROSS using git</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#documentation">Documentation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#making-new-releases">Making new releases</a></li>
 </ul>
 </li>
@@ -120,9 +119,7 @@
       aria-labelledby="dLabelLocalToc"><ul>
 <li><a class="reference internal" href="#">Contributing</a><ul>
 <li><a class="reference internal" href="#feedback-and-contribution">Feedback and Contribution</a></li>
-<li><a class="reference internal" href="#version-control-system-git">Version-control system: Git</a></li>
 <li><a class="reference internal" href="#code-style-black">Code style: Black</a></li>
-<li><a class="reference internal" href="#documentation">Documentation</a></li>
 <li><a class="reference internal" href="#how-to-contribute-to-ross-using-git">How to contribute to ROSS using git</a><ul>
 <li><a class="reference internal" href="#step-1-make-your-copy-fork-of-ross">Step 1: Make your copy (fork) of ROSS</a></li>
 <li><a class="reference internal" href="#step-2-keep-in-sync-with-changes-in-ross">Step 2: Keep in sync with changes in ROSS</a></li>
@@ -133,6 +130,7 @@
 <li><a class="reference internal" href="#step-7-push-changes-to-the-main-repo">Step 7: Push changes to the main repo</a></li>
 </ul>
 </li>
+<li><a class="reference internal" href="#documentation">Documentation</a></li>
 <li><a class="reference internal" href="#making-new-releases">Making new releases</a></li>
 </ul>
 </li>
@@ -175,17 +173,10 @@
 <h1>Contributing<a class="headerlink" href="#contributing" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="feedback-and-contribution">
 <h2>Feedback and Contribution<a class="headerlink" href="#feedback-and-contribution" title="Permalink to this headline">¶</a></h2>
-<p>We welcome any contribution via <a class="reference external" href="https://github.com/ross-rotordynamics/ross/issues">ROSS’ issue tracker</a>.
+<p>We welcome any contribution via <a class="reference external" href="https://github.com/ross-rotordynamics/ross/issues">ROSS issue tracker</a>.
 These include bug reports, problems on the documentation, feedback, enhancement proposals etc.
-The issue tracker can also be used for questions and further information since the project does not use a mailing list.</p>
-</div>
-<div class="section" id="version-control-system-git">
-<h2>Version-control system: Git<a class="headerlink" href="#version-control-system-git" title="Permalink to this headline">¶</a></h2>
-<p>Git is a version control system (VCS) for tracking changes in code during software development.
-To download the ROSS source code and contribute to its development,
-you need Git installed in your machine. Refer to the <a class="reference external" href="https://git-scm.com/">Git website</a> and follow the instructions to download and install it.
-Once you have Git installed, you will be able to follow the instructions in <a class="reference internal" href="#how-to-contribute-to-ross-using-git">How to contribute to ROSS using git</a>,
-which explains how to download and contribute to ROSS.</p>
+You can use the repository <a class="reference external" href="https://github.com/ross-rotordynamics/ross/discussions">Discussions</a>
+section for questions and further information.</p>
 </div>
 <div class="section" id="code-style-black">
 <h2>Code style: Black<a class="headerlink" href="#code-style-black" title="Permalink to this headline">¶</a></h2>
@@ -193,44 +184,14 @@ which explains how to download and contribute to ROSS.</p>
 code formatter”</em>. You can configure your development environment to use Black before a commit. More information on how
 to set this is given at <a class="reference external" href="https://black.readthedocs.io/en/stable/editor_integration.html">Black’s documentation</a>.</p>
 </div>
-<div class="section" id="documentation">
-<h2>Documentation<a class="headerlink" href="#documentation" title="Permalink to this headline">¶</a></h2>
-<p>We use <a class="reference external" href="http://www.sphinx-doc.org/en/master/">sphinx</a> to generate the project’s documentation. We keep the source
-files at ~/ross/docs, and we keep the html files used to build the website in a
-<a class="reference external" href="https://github.com/ross-rotordynamics/ross-website">separate repository</a>.
-The website tracks the documentation for the released version with the following procedure:</p>
-<ol class="arabic simple">
-<li><p>Travis runs the deploy_docs.sh file (‘after_success’ phase);</p></li>
-<li><p>The deploy_docs script checks if the branch being updated has the same name as the current released ROSS’ version (ross.__version__);</p></li>
-<li><p>If 2 is True, the script will build the docs for that branch and push to the ross-website repo.</p></li>
-</ol>
-<p>So, if you want to modify the documentation website, modify the source files and then make a pull request
-to the branch named as the current released version.</p>
-<p>If you want to test the documentation locally:</p>
-<ul>
-<li><p>Install <a class="reference external" href="https://pandoc.org/installing.html">pandoc</a>, which is needed to convert the notebook files;</p></li>
-<li><p>Clone the ross-website to <code class="docutils literal notranslate"><span class="pre">&lt;some-path&gt;/ross-website/html</span></code>:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">clone</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">ross</span><span class="o">-</span><span class="n">rotordynamics</span><span class="o">/</span><span class="n">ross</span><span class="o">-</span><span class="n">website</span> <span class="o">&lt;</span><span class="n">some</span><span class="o">-</span><span class="n">path</span><span class="o">&gt;/</span><span class="n">ross</span><span class="o">-</span><span class="n">website</span><span class="o">/</span><span class="n">html</span>
-</pre></div>
-</div>
-</li>
-<li><p>From the docs source directory &lt;/ross/docs/&gt; run sphinx:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">make</span> <span class="n">html</span> <span class="n">BUILDDIR</span><span class="o">=&lt;</span><span class="n">some</span><span class="o">-</span><span class="n">path</span><span class="o">&gt;/</span><span class="n">ross</span><span class="o">-</span><span class="n">website</span>
-</pre></div>
-</div>
-</li>
-<li><p>Go to the builddir and run a html server:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="o">&lt;</span><span class="n">some</span><span class="o">-</span><span class="n">path</span><span class="o">&gt;/</span><span class="n">ross</span><span class="o">-</span><span class="n">website</span><span class="o">/</span><span class="n">html</span>
-<span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="n">http</span><span class="o">.</span><span class="n">server</span>
-</pre></div>
-</div>
-</li>
-</ul>
-<p>After that you can access your local server (<a class="reference external" href="http://0.0.0.0:8000/">http://0.0.0.0:8000/</a>) and see the generated docs.</p>
-</div>
 <div class="section" id="how-to-contribute-to-ross-using-git">
-<h2>How to contribute to ROSS using git<a class="headerlink" href="#how-to-contribute-to-ross-using-git" title="Permalink to this headline">¶</a></h2>
-<p id="git-configuration">To use git to contribute to ROSS project, follow the steps below:
+<span id="git-configuration"></span><h2>How to contribute to ROSS using git<a class="headerlink" href="#how-to-contribute-to-ross-using-git" title="Permalink to this headline">¶</a></h2>
+<p>Git is a version control system (VCS) for tracking changes in code during software development.
+To download the ROSS source code and contribute to its development,
+you need Git installed in your machine. Refer to the <a class="reference external" href="https://git-scm.com/">Git website</a> and follow the instructions to download and install it.
+Once you have Git installed, you will be able to follow the instructions in <a class="reference internal" href="#how-to-contribute-to-ross-using-git">How to contribute to ROSS using git</a>,
+which explains how to download and contribute to ROSS.</p>
+<p>To use git to contribute to ROSS project, follow the steps below:
 <em>For Windows users: commands provided here can be executed using Git Bash instead of Git GUI.</em></p>
 <div class="section" id="step-1-make-your-copy-fork-of-ross">
 <h3>Step 1: Make your copy (fork) of ROSS<a class="headerlink" href="#step-1-make-your-copy-fork-of-ross" title="Permalink to this headline">¶</a></h3>
@@ -272,7 +233,7 @@ It should look like this:</p>
 <p>The part <code class="code docutils literal notranslate"><span class="pre">fetch</span> <span class="pre">=</span> <span class="pre">+refs/pull/*/head:refs/remotes/upstream/pr/*</span></code> will make pull requests available.</p>
 </div>
 <div class="section" id="step-3-set-up-development-environment">
-<h3>Step 3: Set up development environment<a class="headerlink" href="#step-3-set-up-development-environment" title="Permalink to this headline">¶</a></h3>
+<span id="setup-environment"></span><h3>Step 3: Set up development environment<a class="headerlink" href="#step-3-set-up-development-environment" title="Permalink to this headline">¶</a></h3>
 <p>To set up a development environment you can <a class="reference external" href="https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html">create a conda environment</a>
 or a virtualenv:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python3</span> <span class="o">-</span><span class="n">m</span> <span class="n">venv</span> <span class="n">env</span>
@@ -300,7 +261,7 @@ If you want to run all the tests you can do it with (from the <cite>~/ross/ross<
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pytest</span>
 </pre></div>
 </div>
-<p>Code is only merged to master if tests pass. This is checked by services such as Travis CI and Appveyor, so make sure
+<p>Code is only merged to master if tests pass. This is checked by services GitHub Actions, so make sure
 tests are passing before pushing your code to github.</p>
 </div>
 <div class="section" id="step-6-push-changes-to-your-git-repository">
@@ -319,6 +280,33 @@ tests are passing before pushing your code to github.</p>
 <h3>Step 7: Push changes to the main repo<a class="headerlink" href="#step-7-push-changes-to-the-main-repo" title="Permalink to this headline">¶</a></h3>
 <p>To create a Pull Request (PR), refer to <a class="reference external" href="https://help.github.com/articles/about-pull-requests/">the github PR guide</a>.</p>
 </div>
+</div>
+<div class="section" id="documentation">
+<h2>Documentation<a class="headerlink" href="#documentation" title="Permalink to this headline">¶</a></h2>
+<p>We use <a class="reference external" href="http://www.sphinx-doc.org/en/master/">sphinx</a> to generate the project’s documentation. We keep the source
+files at ~/ross/docs, and we keep the html files used to build the website in a
+<a class="reference external" href="https://github.com/ross-rotordynamics/ross-website">separate repository</a>.
+The website tracks the documentation for the released version with the ‘Docs’
+GitHub Action.</p>
+<p>If you want to test the documentation locally:</p>
+<ul class="simple">
+<li><p>Install <a class="reference external" href="https://pandoc.org/installing.html">pandoc</a>, which is needed to convert the notebook files;</p></li>
+<li><p>Install ROSS development version so that you have all packages required to build the documentation (see <a class="reference internal" href="#setup-environment"><span class="std std-ref">Step 3: Set up development environment</span></a>).</p></li>
+</ul>
+<p>Go to the ~/ross/docs folder and run:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">make</span> <span class="n">html</span>
+</pre></div>
+</div>
+<p>Optionally, if you don’t want run all notebooks you can use:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">make</span> <span class="n">NBSPHINX_EXECUTE</span><span class="o">=</span><span class="s1">&#39;never&#39;</span> <span class="n">html</span>
+</pre></div>
+</div>
+<p>After building the docs, go to the _build/html directory (~/ross/docs/_build/html)
+and start a python http server:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="n">http</span><span class="o">.</span><span class="n">server</span>
+</pre></div>
+</div>
+<p>After that you can access your local server (<a class="reference external" href="http://0.0.0.0:8000/">http://0.0.0.0:8000/</a>) and see the generated docs.</p>
 </div>
 <div class="section" id="making-new-releases">
 <h2>Making new releases<a class="headerlink" href="#making-new-releases" title="Permalink to this headline">¶</a></h2>

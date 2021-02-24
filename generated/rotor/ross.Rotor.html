@@ -90,10 +90,9 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../contributing.html">Contributing</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../contributing.html#feedback-and-contribution">Feedback and Contribution</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../contributing.html#version-control-system-git">Version-control system: Git</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../contributing.html#code-style-black">Code style: Black</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../contributing.html#documentation">Documentation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../contributing.html#how-to-contribute-to-ross-using-git">How to contribute to ROSS using git</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../contributing.html#documentation">Documentation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../contributing.html#making-new-releases">Making new releases</a></li>
 </ul>
 </li>
@@ -607,7 +606,8 @@ It will be returned if plot=False.</p>
 <dl class="py method">
 <dt id="ross.Rotor.run_crack">
 <code class="sig-name descname"><span class="pre">run_crack</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="pre">self</span></em>, <em class="sig-param"><span class="pre">\*\*kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/rotor_assembly.html#Rotor.run_crack"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ross.Rotor.run_crack" title="Permalink to this definition">¶</a></dt>
-<dd><p>Execute the crack defect and generates the crack object on the back-end.</p>
+<dd><p>Run an analyzes with rubbing.</p>
+<p>Execute the crack defect and generates the crack object on the back-end.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
@@ -954,7 +954,11 @@ to create a better visualization (see np.logspace).</p>
 <dl class="py method">
 <dt id="ross.Rotor.run_misalignment">
 <code class="sig-name descname"><span class="pre">run_misalignment</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="pre">self</span></em>, <em class="sig-param"><span class="pre">coupling='flex'</span></em>, <em class="sig-param"><span class="pre">\*\*kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/rotor_assembly.html#Rotor.run_misalignment"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ross.Rotor.run_misalignment" title="Permalink to this definition">¶</a></dt>
-<dd><p>Execute the misalignment defect and generates the misalignment object on the back-end. There are two types of coupling, flexible (flex) and rigid, which have different entries. These entries are provided via <a href="#id7"><span class="problematic" id="id8">**</span></a>kwargs to the specific method.</p>
+<dd><p>Run an analyzes with misalignment.</p>
+<p>Execute the misalignment defect and generates the misalignment object
+on the back-end. There are two types of coupling, flexible (flex)
+and rigid, which have different entries. These entries are provided
+via <a href="#id7"><span class="problematic" id="id8">**</span></a>kwargs to the specific method.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
@@ -1105,7 +1109,8 @@ Default is True.</p>
 <dl class="py method">
 <dt id="ross.Rotor.run_rubbing">
 <code class="sig-name descname"><span class="pre">run_rubbing</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="pre">self</span></em>, <em class="sig-param"><span class="pre">\*\*kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/rotor_assembly.html#Rotor.run_rubbing"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ross.Rotor.run_rubbing" title="Permalink to this definition">¶</a></dt>
-<dd><p>Execute the rubbing defect and generates the rubbing object on the back-end.</p>
+<dd><p>Run an analyzes with rubbing.</p>
+<p>Execute the rubbing defect and generates the rubbing object on the back-end.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">

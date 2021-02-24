@@ -88,10 +88,9 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../contributing.html">Contributing</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../contributing.html#feedback-and-contribution">Feedback and Contribution</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../contributing.html#version-control-system-git">Version-control system: Git</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../contributing.html#code-style-black">Code style: Black</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../contributing.html#documentation">Documentation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../contributing.html#how-to-contribute-to-ross-using-git">How to contribute to ROSS using git</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../contributing.html#documentation">Documentation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../contributing.html#making-new-releases">Making new releases</a></li>
 </ul>
 </li>
@@ -2506,7 +2505,12 @@
         <span class="k">return</span> <span class="n">results</span></div>
 
 <div class="viewcode-block" id="Rotor.run_misalignment"><a class="viewcode-back" href="../../generated/rotor/ross.Rotor.run_misalignment.html#ross.Rotor.run_misalignment">[docs]</a>    <span class="k">def</span> <span class="nf">run_misalignment</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">coupling</span><span class="o">=</span><span class="s2">&quot;flex&quot;</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Execute the misalignment defect and generates the misalignment object on the back-end. There are two types of coupling, flexible (flex) and rigid, which have different entries. These entries are provided via **kwargs to the specific method.</span>
+        <span class="sd">&quot;&quot;&quot;Run an analyzes with misalignment.</span>
+
+<span class="sd">        Execute the misalignment defect and generates the misalignment object</span>
+<span class="sd">        on the back-end. There are two types of coupling, flexible (flex)</span>
+<span class="sd">        and rigid, which have different entries. These entries are provided</span>
+<span class="sd">        via **kwargs to the specific method.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -2597,7 +2601,9 @@
         <span class="k">return</span> <span class="n">defect</span></div>
 
 <div class="viewcode-block" id="Rotor.run_rubbing"><a class="viewcode-back" href="../../generated/rotor/ross.Rotor.run_rubbing.html#ross.Rotor.run_rubbing">[docs]</a>    <span class="k">def</span> <span class="nf">run_rubbing</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Execute the rubbing defect and generates the rubbing object on the back-end.</span>
+        <span class="sd">&quot;&quot;&quot;Run an analyzes with rubbing.</span>
+
+<span class="sd">        Execute the rubbing defect and generates the rubbing object on the back-end.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -2647,7 +2653,9 @@
         <span class="k">return</span> <span class="n">defect</span></div>
 
 <div class="viewcode-block" id="Rotor.run_crack"><a class="viewcode-back" href="../../generated/rotor/ross.Rotor.run_crack.html#ross.Rotor.run_crack">[docs]</a>    <span class="k">def</span> <span class="nf">run_crack</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Execute the crack defect and generates the crack object on the back-end.</span>
+        <span class="sd">&quot;&quot;&quot;Run an analyzes with rubbing.</span>
+
+<span class="sd">        Execute the crack defect and generates the crack object on the back-end.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
