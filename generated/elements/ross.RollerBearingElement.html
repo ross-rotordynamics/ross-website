@@ -163,6 +163,10 @@
 <p>This class will create a bearing element based on some geometric and
 constructive parameters of roller bearings. The main difference is that
 cross-coupling stiffness and damping are not modeled in this case.</p>
+<p>The theory used to calculate the stiffness coeficients is based on
+<a class="bibtex reference internal" href="ross.ShaftElement6DoF.html#friswell2010dynamics" id="id1">[Fri10]</a> (pages 182-185). Damping is low in rolling-element
+bearings and the direct damping coefficient is typically in the range of
+(0.25 ~ 2.5) x 10e-5 x Kxx (or Kyy).</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
@@ -177,10 +181,10 @@ cross-coupling stiffness and damping are not modeled in this case.</p>
 <dt><strong>alpha</strong><span class="classifier">float, optional</span></dt><dd><p>Contact angle between the steel sphere and the inner / outer raceway.</p>
 </dd>
 <dt><strong>cxx</strong><span class="classifier">float, optional</span></dt><dd><p>Direct stiffness in the x direction.
-Default is None.</p>
+Default is 1.25*10e-5 * kxx.</p>
 </dd>
 <dt><strong>cyy</strong><span class="classifier">float, optional</span></dt><dd><p>Direct damping in the y direction.
-Defaults is None.</p>
+Default is 1.25*10e-5 * kyy.</p>
 </dd>
 <dt><strong>tag</strong><span class="classifier">str, optional</span></dt><dd><p>A tag to name the element
 Default is None.</p>
@@ -195,6 +199,13 @@ Default is 1.</p>
 </dl>
 </dd>
 </dl>
+<p class="rubric">References</p>
+<p id="bibtex-bibliography-generated/elements/ross.RollerBearingElement-0"><dl class="citation">
+<dt class="bibtex label" id="friswell2010dynamics"><span class="brackets"><a class="fn-backref" href="#id1">Fri10</a></span></dt>
+<dd><p>Michael I Friswell. <em>Dynamics of rotating machines</em>. Cambridge University Press, 2010.</p>
+</dd>
+</dl>
+</p>
 <p class="rubric">Examples</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">n</span> <span class="o">=</span> <span class="mi">0</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">n_rollers</span> <span class="o">=</span> <span class="mi">8</span>

@@ -1341,6 +1341,11 @@
 <span class="sd">    constructive parameters of ball bearings. The main difference is that</span>
 <span class="sd">    cross-coupling stiffness and damping are not modeled in this case.</span>
 
+<span class="sd">    The theory used to calculate the stiffness coeficients is based on</span>
+<span class="sd">    :cite:`friswell2010dynamics` (pages 182-185). Damping is low in rolling-element</span>
+<span class="sd">    bearings and the direct damping coefficient is typically in the range of</span>
+<span class="sd">    (0.25 ~ 2.5) x 10e-5 x Kxx (or Kyy).</span>
+
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
 <span class="sd">    n : int</span>
@@ -1355,10 +1360,10 @@
 <span class="sd">        Contact angle between the steel sphere and the inner / outer raceway.</span>
 <span class="sd">    cxx : float, optional</span>
 <span class="sd">        Direct stiffness in the x direction.</span>
-<span class="sd">        Default is None.</span>
+<span class="sd">        Default is 1.25*10e-5 * kxx.</span>
 <span class="sd">    cyy : float, optional</span>
 <span class="sd">        Direct damping in the y direction.</span>
-<span class="sd">        Defaults is None.</span>
+<span class="sd">        Default is 1.25*10e-5 * kyy.</span>
 <span class="sd">    tag : str, optional</span>
 <span class="sd">        A tag to name the element</span>
 <span class="sd">        Default is None.</span>
@@ -1369,6 +1374,10 @@
 <span class="sd">    scale_factor : float, optional</span>
 <span class="sd">        The scale factor is used to scale the bearing drawing.</span>
 <span class="sd">        Default is 1.</span>
+
+<span class="sd">    References</span>
+<span class="sd">    ----------</span>
+<span class="sd">    .. bibliography:: ../../../docs/refs.bib</span>
 
 <span class="sd">    Examples</span>
 <span class="sd">    --------</span>
@@ -1415,8 +1424,8 @@
         <span class="k">if</span> <span class="n">n_balls</span> <span class="ow">in</span> <span class="n">dict_ratio</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
             <span class="n">kxx</span> <span class="o">=</span> <span class="n">dict_ratio</span><span class="p">[</span><span class="n">n_balls</span><span class="p">]</span> <span class="o">*</span> <span class="n">kyy</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="n">f</span> <span class="o">=</span> <span class="n">interpolate</span><span class="o">.</span><span class="n">interp1d</span><span class="p">(</span><span class="n">nb</span><span class="p">,</span> <span class="n">ratio</span><span class="p">,</span> <span class="n">kind</span><span class="o">=</span><span class="s2">&quot;quadratic&quot;</span><span class="p">)</span>
-            <span class="n">kxx</span> <span class="o">=</span> <span class="n">f</span><span class="p">(</span><span class="n">n_balls</span><span class="p">)</span>
+            <span class="n">f</span> <span class="o">=</span> <span class="n">interpolate</span><span class="o">.</span><span class="n">interp1d</span><span class="p">(</span><span class="n">nb</span><span class="p">,</span> <span class="n">ratio</span><span class="p">,</span> <span class="s2">&quot;quadratic&quot;</span><span class="p">,</span> <span class="n">fill_value</span><span class="o">=</span><span class="s2">&quot;extrapolate&quot;</span><span class="p">)</span>
+            <span class="n">kxx</span> <span class="o">=</span> <span class="n">f</span><span class="p">(</span><span class="n">n_balls</span><span class="p">)</span> <span class="o">*</span> <span class="n">kyy</span>
 
         <span class="k">if</span> <span class="n">cxx</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">cxx</span> <span class="o">=</span> <span class="mf">1.25e-5</span> <span class="o">*</span> <span class="n">kxx</span>
@@ -1449,6 +1458,11 @@
 <span class="sd">    constructive parameters of roller bearings. The main difference is that</span>
 <span class="sd">    cross-coupling stiffness and damping are not modeled in this case.</span>
 
+<span class="sd">    The theory used to calculate the stiffness coeficients is based on</span>
+<span class="sd">    :cite:`friswell2010dynamics` (pages 182-185). Damping is low in rolling-element</span>
+<span class="sd">    bearings and the direct damping coefficient is typically in the range of</span>
+<span class="sd">    (0.25 ~ 2.5) x 10e-5 x Kxx (or Kyy).</span>
+
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
 <span class="sd">    n : int</span>
@@ -1463,10 +1477,10 @@
 <span class="sd">        Contact angle between the steel sphere and the inner / outer raceway.</span>
 <span class="sd">    cxx : float, optional</span>
 <span class="sd">        Direct stiffness in the x direction.</span>
-<span class="sd">        Default is None.</span>
+<span class="sd">        Default is 1.25*10e-5 * kxx.</span>
 <span class="sd">    cyy : float, optional</span>
 <span class="sd">        Direct damping in the y direction.</span>
-<span class="sd">        Defaults is None.</span>
+<span class="sd">        Default is 1.25*10e-5 * kyy.</span>
 <span class="sd">    tag : str, optional</span>
 <span class="sd">        A tag to name the element</span>
 <span class="sd">        Default is None.</span>
@@ -1477,6 +1491,10 @@
 <span class="sd">    scale_factor : float, optional</span>
 <span class="sd">        The scale factor is used to scale the bearing drawing.</span>
 <span class="sd">        Default is 1.</span>
+
+<span class="sd">    References</span>
+<span class="sd">    ----------</span>
+<span class="sd">    .. bibliography:: ../../../docs/refs.bib</span>
 
 <span class="sd">    Examples</span>
 <span class="sd">    --------</span>
@@ -1523,8 +1541,8 @@
         <span class="k">if</span> <span class="n">n_rollers</span> <span class="ow">in</span> <span class="n">dict_ratio</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
             <span class="n">kxx</span> <span class="o">=</span> <span class="n">dict_ratio</span><span class="p">[</span><span class="n">n_rollers</span><span class="p">]</span> <span class="o">*</span> <span class="n">kyy</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="n">f</span> <span class="o">=</span> <span class="n">interpolate</span><span class="o">.</span><span class="n">interp1d</span><span class="p">(</span><span class="n">nr</span><span class="p">,</span> <span class="n">ratio</span><span class="p">,</span> <span class="n">kind</span><span class="o">=</span><span class="s2">&quot;quadratic&quot;</span><span class="p">)</span>
-            <span class="n">kxx</span> <span class="o">=</span> <span class="n">f</span><span class="p">(</span><span class="n">n_rollers</span><span class="p">)</span>
+            <span class="n">f</span> <span class="o">=</span> <span class="n">interpolate</span><span class="o">.</span><span class="n">interp1d</span><span class="p">(</span><span class="n">nr</span><span class="p">,</span> <span class="n">ratio</span><span class="p">,</span> <span class="s2">&quot;quadratic&quot;</span><span class="p">,</span> <span class="n">fill_value</span><span class="o">=</span><span class="s2">&quot;extrapolate&quot;</span><span class="p">)</span>
+            <span class="n">kxx</span> <span class="o">=</span> <span class="n">f</span><span class="p">(</span><span class="n">n_rollers</span><span class="p">)</span> <span class="o">*</span> <span class="n">kyy</span>
 
         <span class="k">if</span> <span class="n">cxx</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">cxx</span> <span class="o">=</span> <span class="mf">1.25e-5</span> <span class="o">*</span> <span class="n">kxx</span>
