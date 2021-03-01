@@ -4,7 +4,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Release notes &#8212; ross 1.0.0rc3 documentation</title>
+    <title>Release notes &#8212; ross 1.0.0 documentation</title>
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="_static/bootstrap-sphinx.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx_copybutton.css" />
@@ -97,6 +97,7 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="citing.html">Citing</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Release notes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#version-v1-0-0">Version v1.0.0</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#version-0-4-0">Version 0.4.0</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#version-0-3-0">Version 0.3.0</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#version-0-2-0-beta-release">Version 0.2.0 (beta release)</a></li>
@@ -117,8 +118,28 @@
       role="menu"
       aria-labelledby="dLabelLocalToc"><ul>
 <li><a class="reference internal" href="#">Release notes</a><ul>
-<li><a class="reference internal" href="#version-0-4-0">Version 0.4.0</a><ul>
+<li><a class="reference internal" href="#version-v1-0-0">Version v1.0.0</a><ul>
 <li><a class="reference internal" href="#enhancements">Enhancements</a><ul>
+<li><a class="reference internal" href="#add-loop-to-calculate-frequency-depedent-coefficients-in-from-fluid-flow">Add loop to calculate frequency-depedent coefficients in from_fluid_flow()</a></li>
+<li><a class="reference internal" href="#extract-fluid-flow">Extract fluid flow</a></li>
+<li><a class="reference internal" href="#add-minor-and-major-axes-to-response-plots">Add minor and major axes to response plots</a></li>
+<li><a class="reference internal" href="#add-units-to-stochastic-ross-module">Add units to stochastic ross module</a></li>
+<li><a class="reference internal" href="#crack-rubbing-and-misalignment-simulation">Crack, rubbing and misalignment simulation</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#api-changes">API changes</a><ul>
+<li><a class="reference internal" href="#change-methods-to-run">Change methods to <cite>run_</cite></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#bug-fixes">Bug fixes</a><ul>
+<li><a class="reference internal" href="#fix-globalindex-with-non-integer-values">Fix GlobalIndex with non integer values</a></li>
+<li><a class="reference internal" href="#fix-dof-error-when-using-n-link">Fix DoF error when using “n_link”</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#version-0-4-0">Version 0.4.0</a><ul>
+<li><a class="reference internal" href="#id1">Enhancements</a><ul>
 <li><a class="reference internal" href="#class-magneticbearingelement-was-created">Class MagneticBearingElement was created</a></li>
 <li><a class="reference internal" href="#stochastic-ross-module">Stochastic Ross module</a></li>
 <li><a class="reference internal" href="#dof-assembly">6dof assembly</a></li>
@@ -130,10 +151,10 @@
 <li><a class="reference internal" href="#replace-interp1d-by-line-shape-from-plotly">Replace interp1d by line_shape from Plotly</a></li>
 <li><a class="reference internal" href="#add-probe-argument-to-forcedresponseresults">Add probe argument to ForcedResponseResults</a></li>
 <li><a class="reference internal" href="#change-use-material-to-load-material">Change .use_material() to .load_material()</a></li>
-<li><a class="reference internal" href="#id3">Move “sparse” argument to run_modal()</a></li>
+<li><a class="reference internal" href="#id4">Move “sparse” argument to run_modal()</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#bug-fixes">Bug fixes</a><ul>
+<li><a class="reference internal" href="#id5">Bug fixes</a><ul>
 <li><a class="reference internal" href="#fix-issue-with-check-units">Fix issue with check_units</a></li>
 <li><a class="reference internal" href="#fix-missing-parameters-in-st-shaftelement">Fix missing parameters in ST_ShaftElement</a></li>
 <li><a class="reference internal" href="#fix-missing-y-pos-and-y-pos-sup-in-df-seals">Fix missing y_pos and y_pos_sup in df_seals</a></li>
@@ -143,13 +164,13 @@
 </ul>
 </li>
 <li><a class="reference internal" href="#version-0-3-0">Version 0.3.0</a><ul>
-<li><a class="reference internal" href="#id4">Enhancements</a><ul>
+<li><a class="reference internal" href="#id6">Enhancements</a><ul>
 <li><a class="reference internal" href="#remove-shaftelement-and-replace-with-the-shafttaperedelement">Remove ShaftElement and replace with the ShaftTaperedElement</a></li>
 <li><a class="reference internal" href="#allow-user-choose-material-in-rotor-from-section">Allow user choose material in “Rotor.from_section()”</a></li>
 <li><a class="reference internal" href="#coaxialrotor-class">CoAxialRotor class</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#id5">Bug fixes</a><ul>
+<li><a class="reference internal" href="#id7">Bug fixes</a><ul>
 <li><a class="reference internal" href="#fix-links-not-working-for-more-than-one-support">Fix links not working for more than one support</a></li>
 <li><a class="reference internal" href="#fix-bearing-position-bug">Fix bearing position bug</a></li>
 </ul>
@@ -157,7 +178,7 @@
 </ul>
 </li>
 <li><a class="reference internal" href="#version-0-2-0-beta-release">Version 0.2.0 (beta release)</a><ul>
-<li><a class="reference internal" href="#id6">Enhancements</a><ul>
+<li><a class="reference internal" href="#id8">Enhancements</a><ul>
 <li><a class="reference internal" href="#improvements-for-plotting-results">Improvements for plotting results</a></li>
 <li><a class="reference internal" href="#index-method">Index method</a></li>
 <li><a class="reference internal" href="#interactions-with-rotor-plotting">interactions with rotor plotting</a></li>
@@ -188,22 +209,22 @@
 <li><a class="reference internal" href="#d-plots-for-orbit-response">3D plots for orbit response</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#api-changes">API changes</a></li>
-<li><a class="reference internal" href="#id7">Bug fixes</a><ul>
+<li><a class="reference internal" href="#id9">API changes</a></li>
+<li><a class="reference internal" href="#id10">Bug fixes</a><ul>
 <li><a class="reference internal" href="#fix-equality-for-bearing-element">Fix equality for bearing element</a></li>
 <li><a class="reference internal" href="#add-import-to-axes3d">Add import to Axes3d</a></li>
 <li><a class="reference internal" href="#fix-bearing-type-definition-and-add-new-test">Fix bearing type definition and add new test</a></li>
-<li><a class="reference internal" href="#id8">Improvements for plotting results</a></li>
+<li><a class="reference internal" href="#id11">Improvements for plotting results</a></li>
 <li><a class="reference internal" href="#fix-bug-plotting-unbalance-response">Fix bug - plotting unbalance response</a></li>
-<li><a class="reference internal" href="#id9">Make Free-Body Diagram more readable</a></li>
+<li><a class="reference internal" href="#id12">Make Free-Body Diagram more readable</a></li>
 <li><a class="reference internal" href="#fix-typo-in-repr">Fix typo in __repr__</a></li>
 <li><a class="reference internal" href="#fix-inconsistencies-in-the-stiffness-matrix">Fix inconsistencies in the stiffness matrix</a></li>
 <li><a class="reference internal" href="#fixing-doctests">Fixing doctests</a></li>
 <li><a class="reference internal" href="#adapt-convergence-analysis-to-shafttaperedelement">Adapt convergence analysis to ShaftTaperedElement</a></li>
-<li><a class="reference internal" href="#id10">Add separated DataFrame to seals</a></li>
+<li><a class="reference internal" href="#id13">Add separated DataFrame to seals</a></li>
 <li><a class="reference internal" href="#fix-warning-when-changing-number-of-nodes-to-be-plotted">Fix warning when changing number of nodes to be plotted</a></li>
 <li><a class="reference internal" href="#remove-unit-conversion-factor">Remove unit conversion factor</a></li>
-<li><a class="reference internal" href="#id11">Improvements to Static Analysis Documentation</a></li>
+<li><a class="reference internal" href="#id14">Improvements to Static Analysis Documentation</a></li>
 <li><a class="reference internal" href="#fix-bearings-not-connecting-to-tapered-elements">Fix bearings not connecting to tapered elements</a></li>
 <li><a class="reference internal" href="#fix-bug-when-plotting-bearings">Fix bug when plotting bearings</a></li>
 <li><a class="reference internal" href="#fix-bug-in-run-freq-response">Fix bug in .run_freq_response()</a></li>
@@ -212,7 +233,7 @@
 </ul>
 </li>
 <li><a class="reference internal" href="#version-0-1-0-alpha-release">Version 0.1.0 (alpha release)</a><ul>
-<li><a class="reference internal" href="#id12">Enhancements</a><ul>
+<li><a class="reference internal" href="#id15">Enhancements</a><ul>
 <li><a class="reference internal" href="#implementation-of-the-material-class">Implementation of the Material class</a></li>
 <li><a class="reference internal" href="#create-shaftelement-diskelement-and-bearingsealelement">Create ShaftElement, DiskElement and BearingSealElement</a></li>
 <li><a class="reference internal" href="#add-rotor-assembly-and-results">Add rotor assembly and results</a></li>
@@ -231,16 +252,16 @@
 <li><a class="reference internal" href="#adds-a-binder-badge">Adds a binder badge</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#id13">API changes</a><ul>
+<li><a class="reference internal" href="#id16">API changes</a><ul>
 <li><a class="reference internal" href="#add-run-modal-method">Add run_modal method</a></li>
 <li><a class="reference internal" href="#change-methods-names">Change methods’ names</a></li>
 <li><a class="reference internal" href="#remove-show-from-convergence-and-static">Remove show() from convergence and static</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#id14">Bug fixes</a><ul>
+<li><a class="reference internal" href="#id17">Bug fixes</a><ul>
 <li><a class="reference internal" href="#added-interpolate-to-rotor-assembly-py">Added interpolate to rotor_assembly.py</a></li>
 <li><a class="reference internal" href="#fix-eccentricity-ratio-function">Fix eccentricity ratio function</a></li>
-<li><a class="reference internal" href="#id15">Improving plot_rotor</a></li>
+<li><a class="reference internal" href="#id18">Improving plot_rotor</a></li>
 </ul>
 </li>
 </ul>
@@ -284,17 +305,86 @@
       
   <div class="section" id="release-notes">
 <h1>Release notes<a class="headerlink" href="#release-notes" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="version-0-4-0">
-<h2>Version 0.4.0<a class="headerlink" href="#version-0-4-0" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="version-v1-0-0">
+<h2>Version v1.0.0<a class="headerlink" href="#version-v1-0-0" title="Permalink to this headline">¶</a></h2>
 <p>The following enhancements and bug fixes were implemented for this release:</p>
 <div class="section" id="enhancements">
 <h3>Enhancements<a class="headerlink" href="#enhancements" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="add-loop-to-calculate-frequency-depedent-coefficients-in-from-fluid-flow">
+<h4>Add loop to calculate frequency-depedent coefficients in from_fluid_flow()<a class="headerlink" href="#add-loop-to-calculate-frequency-depedent-coefficients-in-from-fluid-flow" title="Permalink to this headline">¶</a></h4>
+<p>Users will be able to input as many frequency values as needed and <code class="docutils literal notranslate"><span class="pre">from_fluid_flow()</span></code> will run a loop calculating a set of coefficients for each given frequency.
+Now, <code class="docutils literal notranslate"><span class="pre">omega</span></code> argument must be a list of frequencies.
+It also changes the main function used to calculate the coefficients. <code class="docutils literal notranslate"><span class="pre">calculate_stiffness_and_damping_coefficients()</span></code> is now used to do it numerically.</p>
+</div>
+<div class="section" id="extract-fluid-flow">
+<h4>Extract fluid flow<a class="headerlink" href="#extract-fluid-flow" title="Permalink to this headline">¶</a></h4>
+<p>The .from_fluid_flow method has been extracted from the BearingElement to a class
+called BearingFluidFlow.
+This is more in line with how we have all the Bearing classes, and
+makes it easier for the user to find it.</p>
+</div>
+<div class="section" id="add-minor-and-major-axes-to-response-plots">
+<h4>Add minor and major axes to response plots<a class="headerlink" href="#add-minor-and-major-axes-to-response-plots" title="Permalink to this headline">¶</a></h4>
+<p>We can now select the major and minor axis when plotting responses:</p>
+<hr class="docutils" />
+<p>The method <code class="docutils literal notranslate"><span class="pre">run_freq_response()</span></code> now returns, not only the displacement results,
+but also the velocity and acceleration. The data is then input to
+<code class="docutils literal notranslate"><span class="pre">FrequecyResponseResults</span></code> and <code class="docutils literal notranslate"><span class="pre">ForcedResponseResults</span></code> classes.</p>
+<dl class="simple">
+<dt>The user is able to choose the response by changing the amplitude_units argument.</dt><dd><ul class="simple">
+<li><p>Inputing ‘[length]/[force]’, it displays the displacement;</p></li>
+<li><p>Inputing ‘[speed]/[force]’, it displays the velocity;</p></li>
+<li><p>Inputing ‘[acceleration]/[force]’, it displays the acceleration.</p></li>
+</ul>
+</dd>
+</dl>
+</div>
+<div class="section" id="add-units-to-stochastic-ross-module">
+<h4>Add units to stochastic ross module<a class="headerlink" href="#add-units-to-stochastic-ross-module" title="Permalink to this headline">¶</a></h4>
+<p>Units use is now possible in the stochastic module.</p>
+</div>
+<div class="section" id="crack-rubbing-and-misalignment-simulation">
+<h4>Crack, rubbing and misalignment simulation<a class="headerlink" href="#crack-rubbing-and-misalignment-simulation" title="Permalink to this headline">¶</a></h4>
+<p>It is now possible to run simulations for some defects such as cracks, rubbing
+and misalingment.</p>
+</div>
+</div>
+<div class="section" id="api-changes">
+<h3>API changes<a class="headerlink" href="#api-changes" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="change-methods-to-run">
+<h4>Change methods to <cite>run_</cite><a class="headerlink" href="#change-methods-to-run" title="Permalink to this headline">¶</a></h4>
+<p>The plot_level1 and plot_ucs methods were refactore so that they behave as other run methods.
+Now we the run* prefix to call them and they will return Results objects.</p>
+</div>
+</div>
+<div class="section" id="bug-fixes">
+<h3>Bug fixes<a class="headerlink" href="#bug-fixes" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="fix-globalindex-with-non-integer-values">
+<h4>Fix GlobalIndex with non integer values<a class="headerlink" href="#fix-globalindex-with-non-integer-values" title="Permalink to this headline">¶</a></h4>
+<p><code class="docutils literal notranslate"><span class="pre">PointMass</span></code> and <code class="docutils literal notranslate"><span class="pre">BearingElements</span></code> with <code class="docutils literal notranslate"><span class="pre">n_link</span></code> argument were getting non integer values.
+Matrices would not be built, once these values are used as reference to array indexes
+(which must be integers).</p>
+</div>
+<div class="section" id="fix-dof-error-when-using-n-link">
+<h4>Fix DoF error when using “n_link”<a class="headerlink" href="#fix-dof-error-when-using-n-link" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li><p>Add <code class="docutils literal notranslate"><span class="pre">link_nodes</span></code> attribute to Rotor object that holds the nodes created using <code class="docutils literal notranslate"><span class="pre">n_link</span></code></p></li>
+<li><p>Correct DoFs with <code class="docutils literal notranslate"><span class="pre">link_nodes</span></code> in <code class="docutils literal notranslate"><span class="pre">ForcedResponseResults</span></code> and <code class="docutils literal notranslate"><span class="pre">TimeResponseResults</span></code></p></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="section" id="version-0-4-0">
+<h2>Version 0.4.0<a class="headerlink" href="#version-0-4-0" title="Permalink to this headline">¶</a></h2>
+<p>The following enhancements and bug fixes were implemented for this release:</p>
+<div class="section" id="id1">
+<h3>Enhancements<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
 <div class="section" id="class-magneticbearingelement-was-created">
 <h4>Class MagneticBearingElement was created<a class="headerlink" href="#class-magneticbearingelement-was-created" title="Permalink to this headline">¶</a></h4>
 <p>This class creates a magnetic bearing element.
 The element can be created by:</p>
 <ul class="simple">
-<li><p>defining directly the stifness and damping coefficients with the method <strong>**init</strong><a href="#id1"><span class="problematic" id="id2">**</span></a>;</p></li>
+<li><p>defining directly the stifness and damping coefficients with the method <strong>**init</strong><a href="#id2"><span class="problematic" id="id3">**</span></a>;</p></li>
 <li><p>defining the magnetic parameters g0, i0, ag, nw, alpha and the porportional and derivative gains of a PID controller  kp_pid, kd_pid with the method <strong>param_to_coef</strong>.</p></li>
 </ul>
 <p>The reference for the equations is:
@@ -368,13 +458,13 @@ avoid repetitive legend marks on graphs</p>
 <p>We have change most methods to use the word ‘save’ and ‘load’
 instead of ‘get’, ‘use’ etc.</p>
 </div>
-<div class="section" id="id3">
-<h4>Move “sparse” argument to run_modal()<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id4">
+<h4>Move “sparse” argument to run_modal()<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h4>
 <p>The eigenvalue / eigenvector solver is chosen when running the run_modal() method, and not anymore an parameter from the rotor model</p>
 </div>
 </div>
-<div class="section" id="bug-fixes">
-<h3>Bug fixes<a class="headerlink" href="#bug-fixes" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id5">
+<h3>Bug fixes<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h3>
 <div class="section" id="fix-issue-with-check-units">
 <h4>Fix issue with check_units<a class="headerlink" href="#fix-issue-with-check-units" title="Permalink to this headline">¶</a></h4>
 <p>Related to Issue #511</p>
@@ -401,8 +491,8 @@ instead of ‘get’, ‘use’ etc.</p>
 <div class="section" id="version-0-3-0">
 <h2>Version 0.3.0<a class="headerlink" href="#version-0-3-0" title="Permalink to this headline">¶</a></h2>
 <p>The following enhancements and bug fixes were implemented for this release:</p>
-<div class="section" id="id4">
-<h3>Enhancements<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id6">
+<h3>Enhancements<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h3>
 <div class="section" id="remove-shaftelement-and-replace-with-the-shafttaperedelement">
 <h4>Remove ShaftElement and replace with the ShaftTaperedElement<a class="headerlink" href="#remove-shaftelement-and-replace-with-the-shafttaperedelement" title="Permalink to this headline">¶</a></h4>
 <p>Now we only have one class for the shaft element which is capable of handling
@@ -419,8 +509,8 @@ Now, the user has the option to instantiate tapered sections.</p>
 <p>A class is now available for modeling coaxial rotors.</p>
 </div>
 </div>
-<div class="section" id="id5">
-<h3>Bug fixes<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id7">
+<h3>Bug fixes<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h3>
 <div class="section" id="fix-links-not-working-for-more-than-one-support">
 <h4>Fix links not working for more than one support<a class="headerlink" href="#fix-links-not-working-for-more-than-one-support" title="Permalink to this headline">¶</a></h4>
 <p>Related to Issue #382.</p>
@@ -440,8 +530,8 @@ Now, each element has an attribute that keeps those index, instead of calling a 
 <h2>Version 0.2.0 (beta release)<a class="headerlink" href="#version-0-2-0-beta-release" title="Permalink to this headline">¶</a></h2>
 <p>The following enhancements and bug fixes were implemented
 for this release:</p>
-<div class="section" id="id6">
-<h3>Enhancements<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id8">
+<h3>Enhancements<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h3>
 <div class="section" id="improvements-for-plotting-results">
 <h4>Improvements for plotting results<a class="headerlink" href="#improvements-for-plotting-results" title="Permalink to this headline">¶</a></h4>
 <p>This PR make some modifications in results.py</p>
@@ -923,11 +1013,11 @@ The next step is to implement the Level 2 analysis. Once I get to work on it, I�
 <p>Related to PR #385.</p>
 </div>
 </div>
-<div class="section" id="api-changes">
-<h3>API changes<a class="headerlink" href="#api-changes" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id9">
+<h3>API changes<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h3>
 </div>
-<div class="section" id="id7">
-<h3>Bug fixes<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id10">
+<h3>Bug fixes<a class="headerlink" href="#id10" title="Permalink to this headline">¶</a></h3>
 <blockquote>
 <div><p>Fix Campbell’s strange behavior for precession</p>
 </div></blockquote>
@@ -953,8 +1043,8 @@ if this import is removed.</p>
 <p>Fix the bearing type definition and also add a new test that checks if a second analytical way to calculate the pressure matrix matches the numerical way.
 Close #175</p>
 </div>
-<div class="section" id="id8">
-<h4>Improvements for plotting results<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id11">
+<h4>Improvements for plotting results<a class="headerlink" href="#id11" title="Permalink to this headline">¶</a></h4>
 <p>This PR make some modifications in results.py</p>
 <ul class="simple">
 <li><p>Add show(camp) to show campbell bokeh plotting</p></li>
@@ -971,8 +1061,8 @@ Close #175</p>
 <h4>Fix bug - plotting unbalance response<a class="headerlink" href="#fix-bug-plotting-unbalance-response" title="Permalink to this headline">¶</a></h4>
 <p>Unbalance response was not plotting when calling it using matplotlib</p>
 </div>
-<div class="section" id="id9">
-<h4>Make Free-Body Diagram more readable<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id12">
+<h4>Make Free-Body Diagram more readable<a class="headerlink" href="#id12" title="Permalink to this headline">¶</a></h4>
 <p>Pull Request to fix Issue #243</p>
 <ul class="simple">
 <li><p>Slightly increases the size of the figures</p></li>
@@ -1018,8 +1108,8 @@ Close #175</p>
 <p>Now the convergence analysis uses the class ShaftTaperedElement to generate shaft elements since it’s more generic.
 This should solve issue #280.</p>
 </div>
-<div class="section" id="id10">
-<h4>Add separated DataFrame to seals<a class="headerlink" href="#id10" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id13">
+<h4>Add separated DataFrame to seals<a class="headerlink" href="#id13" title="Permalink to this headline">¶</a></h4>
 <p>This splits bearings from seals in two different dataframes:</p>
 <ul class="simple">
 <li><p>df_bearings for bearings</p></li>
@@ -1043,8 +1133,8 @@ It uses axuliar bearings with high stiffness, considering almost zero displaceme
 So the x and y axis units get to be the same.</p>
 <p>Related to Issue #312</p>
 </div>
-<div class="section" id="id11">
-<h4>Improvements to Static Analysis Documentation<a class="headerlink" href="#id11" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id14">
+<h4>Improvements to Static Analysis Documentation<a class="headerlink" href="#id14" title="Permalink to this headline">¶</a></h4>
 <ul class="simple">
 <li><p>Related to Issue #327</p></li>
 <li><p>Remove force_data dictionary</p></li>
@@ -1092,8 +1182,8 @@ So the x and y axis units get to be the same.</p>
 important analyses have been implemented.</p>
 <p>The following gives a list of enhancements, api changes and bug fixes that were
 implemented for this release:</p>
-<div class="section" id="id12">
-<h3>Enhancements<a class="headerlink" href="#id12" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id15">
+<h3>Enhancements<a class="headerlink" href="#id15" title="Permalink to this headline">¶</a></h3>
 <div class="section" id="implementation-of-the-material-class">
 <h4>Implementation of the Material class<a class="headerlink" href="#implementation-of-the-material-class" title="Permalink to this headline">¶</a></h4>
 <p>A class has been implemented to represent any material that can be used when
@@ -1192,8 +1282,8 @@ documentation page.</p>
 <p>Binder is available to test the library in a cloud virtual environment.</p>
 </div>
 </div>
-<div class="section" id="id13">
-<h3>API changes<a class="headerlink" href="#id13" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id16">
+<h3>API changes<a class="headerlink" href="#id16" title="Permalink to this headline">¶</a></h3>
 <div class="section" id="add-run-modal-method">
 <h4>Add run_modal method<a class="headerlink" href="#add-run-modal-method" title="Permalink to this headline">¶</a></h4>
 <p>The modal analysis changed from <code class="docutils literal notranslate"><span class="pre">.run()</span></code> to <code class="docutils literal notranslate"><span class="pre">.run_modal()</span></code>.</p>
@@ -1226,8 +1316,8 @@ plot that if wanted. As an example:</p>
 </div>
 </div>
 </div>
-<div class="section" id="id14">
-<h3>Bug fixes<a class="headerlink" href="#id14" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id17">
+<h3>Bug fixes<a class="headerlink" href="#id17" title="Permalink to this headline">¶</a></h3>
 <div class="section" id="added-interpolate-to-rotor-assembly-py">
 <h4>Added interpolate to rotor_assembly.py<a class="headerlink" href="#added-interpolate-to-rotor-assembly-py" title="Permalink to this headline">¶</a></h4>
 <p>The function interp1d was used but the interpolate function was not
@@ -1239,8 +1329,8 @@ being  imported.</p>
 sommerfeld number instead of the modified one, as it was supposed to
 use.</p>
 </div>
-<div class="section" id="id15">
-<h4>Improving plot_rotor<a class="headerlink" href="#id15" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id18">
+<h4>Improving plot_rotor<a class="headerlink" href="#id18" title="Permalink to this headline">¶</a></h4>
 <p>There was an error that shaft elements were plotting with 2 times their
 respective radius.  I enlarged the plot window size and distributed the
 axis size so that the rotor is presented with the correct proportions in

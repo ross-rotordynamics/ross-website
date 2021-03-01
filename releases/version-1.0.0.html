@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Version v1.0.0 &#8212; ross 1.0.0 documentation</title>
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/bootstrap-sphinx.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx_copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/style.css" />
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_copybutton.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <link rel="shortcut icon" href="../_static/ross-logo.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<script type="text/javascript" src="../_static/js/jquery-1.11.0.min.js "></script>
+<script type="text/javascript" src="../_static/js/jquery-fix.js "></script>
+<script type="text/javascript" src="../_static/bootstrap-3.3.7/js/bootstrap.min.js "></script>
+<script type="text/javascript" src="../_static/bootstrap-sphinx.js "></script>
+
+  </head><body>
+
+  <div id="navbar" class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="../index.html"><span><img src="../_static/ross-logo.svg"></span>
+          ROSS</a>
+        <span class="navbar-text navbar-version pull-left"><b>1.0</b></span>
+      </div>
+
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            
+                <li><a href="../tutorials.html">Tutorial</a></li>
+                <li><a href="../examples.html">Examples</a></li>
+                <li><a href="../api.html">API</a></li>
+            
+            
+              <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="../index.html">Site <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"><ul>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../installation.html#install-python">Install Python</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation.html#install-ross">Install ROSS</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials.html">Tutorials</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../examples/tutorial_part_1.html">Tutorial - Modeling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/tutorial_part_2.html">Tutorial - Running Analyzes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/tutorial_part_3.html">Tutorial - Stochastic ROSS</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../examples.html">Examples</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../examples.html#ross-examples">ROSS Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples.html#fluidflow-examples">FluidFlow Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples.html#stochastic-ross-examples">Stochastic ROSS Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../download.html">Download notebooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api.html">API Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../api.html#material">Material</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api.html#elements">Elements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api.html#rotor-and-results">Rotor and Results</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api.html#results">Results</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing.html">Contributing</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../contributing.html#feedback-and-contribution">Feedback and Contribution</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../contributing.html#code-style-black">Code style: Black</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../contributing.html#how-to-contribute-to-ross-using-git">How to contribute to ROSS using git</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../contributing.html#documentation">Documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../contributing.html#making-new-releases">Making new releases</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../citing.html">Citing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../release_notes.html">Release notes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../release_notes.html#version-v1-0-0">Version v1.0.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../release_notes.html#version-0-4-0">Version 0.4.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../release_notes.html#version-0-3-0">Version 0.3.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../release_notes.html#version-0-2-0-beta-release">Version 0.2.0 (beta release)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../release_notes.html#version-0-1-0-alpha-release">Version 0.1.0 (alpha release)</a></li>
+</ul>
+</li>
+</ul>
+</ul>
+</li>
+              
+                <li class="dropdown">
+  <a role="button"
+     id="dLabelLocalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="#">Page <b class="caret"></b></a>
+  <ul class="dropdown-menu localtoc"
+      role="menu"
+      aria-labelledby="dLabelLocalToc"><ul>
+<li><a class="reference internal" href="#">Version v1.0.0</a><ul>
+<li><a class="reference internal" href="#enhancements">Enhancements</a><ul>
+<li><a class="reference internal" href="#add-loop-to-calculate-frequency-depedent-coefficients-in-from-fluid-flow">Add loop to calculate frequency-depedent coefficients in from_fluid_flow()</a></li>
+<li><a class="reference internal" href="#extract-fluid-flow">Extract fluid flow</a></li>
+<li><a class="reference internal" href="#add-minor-and-major-axes-to-response-plots">Add minor and major axes to response plots</a></li>
+<li><a class="reference internal" href="#add-units-to-stochastic-ross-module">Add units to stochastic ross module</a></li>
+<li><a class="reference internal" href="#crack-rubbing-and-misalignment-simulation">Crack, rubbing and misalignment simulation</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#api-changes">API changes</a><ul>
+<li><a class="reference internal" href="#change-methods-to-run">Change methods to <cite>run_</cite></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#bug-fixes">Bug fixes</a><ul>
+<li><a class="reference internal" href="#fix-globalindex-with-non-integer-values">Fix GlobalIndex with non integer values</a></li>
+<li><a class="reference internal" href="#fix-dof-error-when-using-n-link">Fix DoF error when using “n_link”</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</ul>
+</li>
+              
+            
+            
+            
+            
+            
+              <li class="hidden-sm">
+<div id="sourcelink">
+  <a href="../_sources/releases/version-1.0.0.rst.txt"
+     rel="nofollow">Source</a>
+</div></li>
+            
+          </ul>
+
+          
+            
+<form class="navbar-form navbar-right" action="../search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+        </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="body col-md-12 content" role="main">
+      
+  <div class="section" id="version-v1-0-0">
+<h1>Version v1.0.0<a class="headerlink" href="#version-v1-0-0" title="Permalink to this headline">¶</a></h1>
+<p>The following enhancements and bug fixes were implemented for this release:</p>
+<div class="section" id="enhancements">
+<h2>Enhancements<a class="headerlink" href="#enhancements" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="add-loop-to-calculate-frequency-depedent-coefficients-in-from-fluid-flow">
+<h3>Add loop to calculate frequency-depedent coefficients in from_fluid_flow()<a class="headerlink" href="#add-loop-to-calculate-frequency-depedent-coefficients-in-from-fluid-flow" title="Permalink to this headline">¶</a></h3>
+<p>Users will be able to input as many frequency values as needed and <code class="docutils literal notranslate"><span class="pre">from_fluid_flow()</span></code> will run a loop calculating a set of coefficients for each given frequency.
+Now, <code class="docutils literal notranslate"><span class="pre">omega</span></code> argument must be a list of frequencies.
+It also changes the main function used to calculate the coefficients. <code class="docutils literal notranslate"><span class="pre">calculate_stiffness_and_damping_coefficients()</span></code> is now used to do it numerically.</p>
+</div>
+<div class="section" id="extract-fluid-flow">
+<h3>Extract fluid flow<a class="headerlink" href="#extract-fluid-flow" title="Permalink to this headline">¶</a></h3>
+<p>The .from_fluid_flow method has been extracted from the BearingElement to a class
+called BearingFluidFlow.
+This is more in line with how we have all the Bearing classes, and
+makes it easier for the user to find it.</p>
+</div>
+<div class="section" id="add-minor-and-major-axes-to-response-plots">
+<h3>Add minor and major axes to response plots<a class="headerlink" href="#add-minor-and-major-axes-to-response-plots" title="Permalink to this headline">¶</a></h3>
+<p>We can now select the major and minor axis when plotting responses:</p>
+<hr class="docutils" />
+<p>The method <code class="docutils literal notranslate"><span class="pre">run_freq_response()</span></code> now returns, not only the displacement results,
+but also the velocity and acceleration. The data is then input to
+<code class="docutils literal notranslate"><span class="pre">FrequecyResponseResults</span></code> and <code class="docutils literal notranslate"><span class="pre">ForcedResponseResults</span></code> classes.</p>
+<dl class="simple">
+<dt>The user is able to choose the response by changing the amplitude_units argument.</dt><dd><ul class="simple">
+<li><p>Inputing ‘[length]/[force]’, it displays the displacement;</p></li>
+<li><p>Inputing ‘[speed]/[force]’, it displays the velocity;</p></li>
+<li><p>Inputing ‘[acceleration]/[force]’, it displays the acceleration.</p></li>
+</ul>
+</dd>
+</dl>
+</div>
+<div class="section" id="add-units-to-stochastic-ross-module">
+<h3>Add units to stochastic ross module<a class="headerlink" href="#add-units-to-stochastic-ross-module" title="Permalink to this headline">¶</a></h3>
+<p>Units use is now possible in the stochastic module.</p>
+</div>
+<div class="section" id="crack-rubbing-and-misalignment-simulation">
+<h3>Crack, rubbing and misalignment simulation<a class="headerlink" href="#crack-rubbing-and-misalignment-simulation" title="Permalink to this headline">¶</a></h3>
+<p>It is now possible to run simulations for some defects such as cracks, rubbing
+and misalingment.</p>
+</div>
+</div>
+<div class="section" id="api-changes">
+<h2>API changes<a class="headerlink" href="#api-changes" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="change-methods-to-run">
+<h3>Change methods to <cite>run_</cite><a class="headerlink" href="#change-methods-to-run" title="Permalink to this headline">¶</a></h3>
+<p>The plot_level1 and plot_ucs methods were refactore so that they behave as other run methods.
+Now we the run* prefix to call them and they will return Results objects.</p>
+</div>
+</div>
+<div class="section" id="bug-fixes">
+<h2>Bug fixes<a class="headerlink" href="#bug-fixes" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="fix-globalindex-with-non-integer-values">
+<h3>Fix GlobalIndex with non integer values<a class="headerlink" href="#fix-globalindex-with-non-integer-values" title="Permalink to this headline">¶</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">PointMass</span></code> and <code class="docutils literal notranslate"><span class="pre">BearingElements</span></code> with <code class="docutils literal notranslate"><span class="pre">n_link</span></code> argument were getting non integer values.
+Matrices would not be built, once these values are used as reference to array indexes
+(which must be integers).</p>
+</div>
+<div class="section" id="fix-dof-error-when-using-n-link">
+<h3>Fix DoF error when using “n_link”<a class="headerlink" href="#fix-dof-error-when-using-n-link" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Add <code class="docutils literal notranslate"><span class="pre">link_nodes</span></code> attribute to Rotor object that holds the nodes created using <code class="docutils literal notranslate"><span class="pre">n_link</span></code></p></li>
+<li><p>Correct DoFs with <code class="docutils literal notranslate"><span class="pre">link_nodes</span></code> in <code class="docutils literal notranslate"><span class="pre">ForcedResponseResults</span></code> and <code class="docutils literal notranslate"><span class="pre">TimeResponseResults</span></code></p></li>
+</ul>
+</div>
+</div>
+</div>
+
+
+    </div>
+      
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
+    </p>
+    <p>
+        &copy; Copyright 2020, Team ROSS.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.5.1.<br/>
+    </p>
+  </div>
+</footer>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-157532410-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-157532410-1');
+</script>
+
+  </body>
+</html>
