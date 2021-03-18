@@ -17,6 +17,8 @@ ross.ForcedResponseResults
 
    
    .. automethod:: __init__
+   .. automethod:: data_magnitude
+   .. automethod:: data_phase
    .. automethod:: load
    .. automethod:: plot
    .. automethod:: plot_bending_moment

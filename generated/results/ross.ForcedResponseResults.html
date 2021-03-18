@@ -202,6 +202,103 @@ Default is None.</p>
 </dd></dl>
 
 <dl class="py method">
+<dt id="ross.ForcedResponseResults.data_magnitude">
+<code class="sig-name descname"><span class="pre">data_magnitude</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">probe</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">probe_units</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'rad'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">frequency_units</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'rad/s'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">amplitude_units</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'m'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/results.html#ForcedResponseResults.data_magnitude"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ross.ForcedResponseResults.data_magnitude" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the forced response (magnitude) in DataFrame format.</p>
+<dl class="field-list">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl>
+<dt><strong>probe</strong><span class="classifier">list of tuples</span></dt><dd><p>List with tuples (node, orientation angle, tag).
+node : int</p>
+<blockquote>
+<div><p>indicate the node where the probe is located.</p>
+</div></blockquote>
+<dl class="simple">
+<dt>orientation<span class="classifier">float</span></dt><dd><p>probe orientation angle about the shaft. The 0 refers to +X direction.</p>
+</dd>
+<dt>tag<span class="classifier">str, optional</span></dt><dd><p>probe tag to be add a DataFrame column title.</p>
+</dd>
+</dl>
+</dd>
+<dt><strong>probe_units</strong><span class="classifier">str, option</span></dt><dd><p>Units for probe orientation.
+Default is “rad”.</p>
+</dd>
+<dt><strong>frequency_units</strong><span class="classifier">str, optional</span></dt><dd><p>Units for the frequency range.
+Default is “rad/s”</p>
+</dd>
+<dt><strong>amplitude_units</strong><span class="classifier">str, optional</span></dt><dd><p>Units for the response magnitude.
+Acceptable units dimensionality are:</p>
+<blockquote>
+<div><p>‘[length]’ - Displays the displacement;
+‘[speed]’ - Displays the velocity;
+‘[acceleration]’ - Displays the acceleration.</p>
+</div></blockquote>
+<p>Default is “m” 0 to peak.
+To use peak to peak use the prefix ‘<a href="#id29"><span class="problematic" id="id30">pkpk_</span></a>’ (e.g. pkpk_m)</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>df</strong><span class="classifier">pd.DataFrame</span></dt><dd><p>DataFrame storing magnitude data arrays. They columns are set based on the
+probe’s tag.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="ross.ForcedResponseResults.data_phase">
+<code class="sig-name descname"><span class="pre">data_phase</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">probe</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">probe_units</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'rad'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">frequency_units</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'rad/s'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">amplitude_units</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'m'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">phase_units</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'rad'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/results.html#ForcedResponseResults.data_phase"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ross.ForcedResponseResults.data_phase" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the forced response (phase) in DataFrame format.</p>
+<dl class="field-list">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl>
+<dt><strong>probe</strong><span class="classifier">list of tuples</span></dt><dd><p>List with tuples (node, orientation angle, tag).
+node : int</p>
+<blockquote>
+<div><p>indicate the node where the probe is located.</p>
+</div></blockquote>
+<dl class="simple">
+<dt>orientation<span class="classifier">float</span></dt><dd><p>probe orientation angle about the shaft. The 0 refers to +X direction.</p>
+</dd>
+<dt>tag<span class="classifier">str, optional</span></dt><dd><p>probe tag to be add a DataFrame column title.</p>
+</dd>
+</dl>
+</dd>
+<dt><strong>probe_units</strong><span class="classifier">str, option</span></dt><dd><p>Units for probe orientation.
+Default is “rad”.</p>
+</dd>
+<dt><strong>frequency_units</strong><span class="classifier">str, optional</span></dt><dd><p>Units for the x axis.
+Default is “rad/s”</p>
+</dd>
+<dt><strong>amplitude_units</strong><span class="classifier">str, optional</span></dt><dd><p>Units for the y axis.
+Acceptable units dimensionality are:</p>
+<blockquote>
+<div><p>‘[length]’ - Displays the displacement;
+‘[speed]’ - Displays the velocity;
+‘[acceleration]’ - Displays the acceleration.</p>
+</div></blockquote>
+<p>Default is “m” 0 to peak.
+To use peak to peak use the prefix ‘<a href="#id31"><span class="problematic" id="id32">pkpk_</span></a>’ (e.g. pkpk_m)</p>
+</dd>
+<dt><strong>phase_units</strong><span class="classifier">str, optional</span></dt><dd><p>Units for the x axis.
+Default is “rad”</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>df</strong><span class="classifier">pd.DataFrame</span></dt><dd><p>DataFrame storing phase data arrays. They columns are set based on the
+probe’s tag.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
 <dt id="ross.ForcedResponseResults.load">
 <em class="property"><span class="pre">classmethod</span> </em><code class="sig-name descname"><span class="pre">load</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ross.ForcedResponseResults.load" title="Permalink to this definition">¶</a></dt>
 <dd><p>Load results from a .toml file.</p>
@@ -286,7 +383,7 @@ Acceptable units dimensionality are:</p>
 ‘[acceleration]’ - Displays the acceleration.</p>
 </div></blockquote>
 <p>Default is “m” 0 to peak.
-To use peak to peak use the prefix ‘<a href="#id29"><span class="problematic" id="id30">pkpk_</span></a>’ (e.g. pkpk_m)</p>
+To use peak to peak use the prefix ‘<a href="#id33"><span class="problematic" id="id34">pkpk_</span></a>’ (e.g. pkpk_m)</p>
 </dd>
 <dt><strong>phase_units</strong><span class="classifier">str, optional</span></dt><dd><p>Phase units.
 Default is “rad”</p>
@@ -388,7 +485,7 @@ Acceptable units dimensionality are:</p>
 ‘[acceleration]’ - Displays the acceleration.</p>
 </div></blockquote>
 <p>Default is “m” 0 to peak.
-To use peak to peak use the prefix ‘<a href="#id31"><span class="problematic" id="id32">pkpk_</span></a>’ (e.g. pkpk_m)</p>
+To use peak to peak use the prefix ‘<a href="#id35"><span class="problematic" id="id36">pkpk_</span></a>’ (e.g. pkpk_m)</p>
 </dd>
 <dt><strong>rotor_length_units</strong><span class="classifier">str, optional</span></dt><dd><p>Rotor length units.
 Default is ‘m’.</p>
@@ -446,7 +543,7 @@ Acceptable units dimensionality are:</p>
 ‘[acceleration]’ - Displays the acceleration.</p>
 </div></blockquote>
 <p>Default is “m” 0 to peak.
-To use peak to peak use the prefix ‘<a href="#id33"><span class="problematic" id="id34">pkpk_</span></a>’ (e.g. pkpk_m)</p>
+To use peak to peak use the prefix ‘<a href="#id37"><span class="problematic" id="id38">pkpk_</span></a>’ (e.g. pkpk_m)</p>
 </dd>
 <dt><strong>rotor_length_units</strong><span class="classifier">str, optional</span></dt><dd><p>Displacement units.
 Default is ‘m’.</p>
@@ -492,7 +589,7 @@ Acceptable units dimensionality are:</p>
 ‘[acceleration]’ - Displays the acceleration.</p>
 </div></blockquote>
 <p>Default is “m” 0 to peak.
-To use peak to peak use the prefix ‘<a href="#id35"><span class="problematic" id="id36">pkpk_</span></a>’ (e.g. pkpk_m)</p>
+To use peak to peak use the prefix ‘<a href="#id39"><span class="problematic" id="id40">pkpk_</span></a>’ (e.g. pkpk_m)</p>
 </dd>
 <dt><strong>rotor_length_units</strong><span class="classifier">str, optional</span></dt><dd><p>Rotor Length units.
 Default is ‘m’.</p>
@@ -547,7 +644,7 @@ Acceptable units dimensionality are:</p>
 ‘[acceleration]’ - Displays the acceleration.</p>
 </div></blockquote>
 <p>Default is “m” 0 to peak.
-To use peak to peak use the prefix ‘<a href="#id37"><span class="problematic" id="id38">pkpk_</span></a>’ (e.g. pkpk_m)</p>
+To use peak to peak use the prefix ‘<a href="#id41"><span class="problematic" id="id42">pkpk_</span></a>’ (e.g. pkpk_m)</p>
 </dd>
 <dt><strong>fig</strong><span class="classifier">Plotly graph_objects.Figure()</span></dt><dd><p>The figure object with the plot.</p>
 </dd>
@@ -599,7 +696,7 @@ Acceptable units dimensionality are:</p>
 ‘[acceleration]’ - Displays the acceleration.</p>
 </div></blockquote>
 <p>Default is “m” 0 to peak.
-To use peak to peak use the prefix ‘<a href="#id39"><span class="problematic" id="id40">pkpk_</span></a>’ (e.g. pkpk_m)</p>
+To use peak to peak use the prefix ‘<a href="#id43"><span class="problematic" id="id44">pkpk_</span></a>’ (e.g. pkpk_m)</p>
 </dd>
 <dt><strong>phase_units</strong><span class="classifier">str, optional</span></dt><dd><p>Units for the x axis.
 Default is “rad”</p>
@@ -654,7 +751,7 @@ Acceptable units dimensionality are:</p>
 ‘[acceleration]’ - Displays the acceleration.</p>
 </div></blockquote>
 <p>Default is “m” 0 to peak.
-To use peak to peak use the prefix ‘<a href="#id41"><span class="problematic" id="id42">pkpk_</span></a>’ (e.g. pkpk_m)</p>
+To use peak to peak use the prefix ‘<a href="#id45"><span class="problematic" id="id46">pkpk_</span></a>’ (e.g. pkpk_m)</p>
 </dd>
 <dt><strong>phase_units</strong><span class="classifier">str, optional</span></dt><dd><p>Units for the x axis.
 Default is “rad”</p>
@@ -753,7 +850,7 @@ reinstantiate the class.</p>
     </p>
     <p>
         &copy; Copyright 2020, Team ROSS.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.5.1.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.5.2.<br/>
     </p>
   </div>
 </footer>
