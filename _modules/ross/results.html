@@ -1327,7 +1327,7 @@
 <span class="sd">                &#39;[speed]/[force]&#39; - Displays the velocity;</span>
 <span class="sd">                &#39;[acceleration]/[force]&#39; - Displays the acceleration.</span>
 <span class="sd">            Default is &quot;m/N&quot; 0 to peak.</span>
-<span class="sd">            To use peak to peak use the prefix &#39;pkpk_&#39; (e.g. pkpk_m/N)</span>
+<span class="sd">            To use peak to peak use &#39;&lt;units&gt; pkpk&#39; (e.g. &#39;m/N pkpk&#39;)</span>
 <span class="sd">        fig : Plotly graph_objects.Figure()</span>
 <span class="sd">            The figure object with the plot.</span>
 <span class="sd">        mag_kwargs : optional</span>
@@ -1422,7 +1422,7 @@
 <span class="sd">                &#39;[speed]/[force]&#39; - Displays the velocity;</span>
 <span class="sd">                &#39;[acceleration]/[force]&#39; - Displays the acceleration.</span>
 <span class="sd">            Default is &quot;m/N&quot; 0 to peak.</span>
-<span class="sd">            To use peak to peak use the prefix &#39;pkpk_&#39; (e.g. pkpk_m/N)</span>
+<span class="sd">            To use peak to peak use &#39;&lt;units&gt; pkpk&#39; (e.g. &#39;m/N pkpk&#39;)</span>
 <span class="sd">        phase_units : str, optional</span>
 <span class="sd">            Units for the x axis.</span>
 <span class="sd">            Default is &quot;rad&quot;</span>
@@ -1525,7 +1525,7 @@
 <span class="sd">                &#39;[speed]/[force]&#39; - Displays the velocity;</span>
 <span class="sd">                &#39;[acceleration]/[force]&#39; - Displays the acceleration.</span>
 <span class="sd">            Default is &quot;m/N&quot; 0 to peak.</span>
-<span class="sd">            To use peak to peak use the prefix &#39;pkpk_&#39; (e.g. pkpk_m/N)</span>
+<span class="sd">            To use peak to peak use &#39;&lt;units&gt; pkpk&#39; (e.g. &#39;m/N pkpk&#39;)</span>
 <span class="sd">        phase_units : str, optional</span>
 <span class="sd">            Units for the x axis.</span>
 <span class="sd">            Default is &quot;rad&quot;</span>
@@ -1655,7 +1655,7 @@
 <span class="sd">                &#39;[speed]/[force]&#39; - Displays the velocity;</span>
 <span class="sd">                &#39;[acceleration]/[force]&#39; - Displays the acceleration.</span>
 <span class="sd">            Default is &quot;m/N&quot; 0 to peak.</span>
-<span class="sd">            To use peak to peak use the prefix &#39;pkpk_&#39; (e.g. pkpk_m/N)</span>
+<span class="sd">            To use peak to peak use &#39;&lt;units&gt; pkpk&#39; (e.g. &#39;m/N pkpk&#39;)</span>
 <span class="sd">        phase_units : str, optional</span>
 <span class="sd">            Units for the x axis.</span>
 <span class="sd">            Default is &quot;rad&quot;</span>
@@ -1798,11 +1798,13 @@
 <span class="sd">        probe : list of tuples</span>
 <span class="sd">            List with tuples (node, orientation angle, tag).</span>
 <span class="sd">            node : int</span>
-<span class="sd">                indicate the node where the probe is located.</span>
+<span class="sd">                Indicate the node where the probe is located.</span>
 <span class="sd">            orientation : float</span>
-<span class="sd">                probe orientation angle about the shaft. The 0 refers to +X direction.</span>
+<span class="sd">                Probe orientation angle about the shaft. The 0 refers to +X direction.</span>
+<span class="sd">                The strings &#39;major&#39; and &#39;minor&#39; can also be used to reference the major</span>
+<span class="sd">                and minor axis.</span>
 <span class="sd">            tag : str, optional</span>
-<span class="sd">                probe tag to be add a DataFrame column title.</span>
+<span class="sd">                Probe tag to be add a DataFrame column title.</span>
 <span class="sd">        probe_units : str, option</span>
 <span class="sd">            Units for probe orientation.</span>
 <span class="sd">            Default is &quot;rad&quot;.</span>
@@ -1816,7 +1818,7 @@
 <span class="sd">                &#39;[speed]&#39; - Displays the velocity;</span>
 <span class="sd">                &#39;[acceleration]&#39; - Displays the acceleration.</span>
 <span class="sd">            Default is &quot;m&quot; 0 to peak.</span>
-<span class="sd">            To use peak to peak use the prefix &#39;pkpk_&#39; (e.g. pkpk_m)</span>
+<span class="sd">            To use peak to peak use &#39;&lt;unit&gt; pkpk&#39; (e.g. &#39;m pkpk&#39;)</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
@@ -1868,11 +1870,13 @@
 <span class="sd">        probe : list of tuples</span>
 <span class="sd">            List with tuples (node, orientation angle, tag).</span>
 <span class="sd">            node : int</span>
-<span class="sd">                indicate the node where the probe is located.</span>
+<span class="sd">                Indicate the node where the probe is located.</span>
 <span class="sd">            orientation : float</span>
-<span class="sd">                probe orientation angle about the shaft. The 0 refers to +X direction.</span>
+<span class="sd">                Probe orientation angle about the shaft. The 0 refers to +X direction.</span>
+<span class="sd">                The strings &#39;major&#39; and &#39;minor&#39; can also be used to reference the major</span>
+<span class="sd">                and minor axis.</span>
 <span class="sd">            tag : str, optional</span>
-<span class="sd">                probe tag to be add a DataFrame column title.</span>
+<span class="sd">                Probe tag to be add a DataFrame column title.</span>
 <span class="sd">        probe_units : str, option</span>
 <span class="sd">            Units for probe orientation.</span>
 <span class="sd">            Default is &quot;rad&quot;.</span>
@@ -1886,7 +1890,7 @@
 <span class="sd">                &#39;[speed]&#39; - Displays the velocity;</span>
 <span class="sd">                &#39;[acceleration]&#39; - Displays the acceleration.</span>
 <span class="sd">            Default is &quot;m&quot; 0 to peak.</span>
-<span class="sd">            To use peak to peak use the prefix &#39;pkpk_&#39; (e.g. pkpk_m)</span>
+<span class="sd">            To use peak to peak use &#39;&lt;unit&gt; pkpk&#39; (e.g. &#39;m pkpk&#39;)</span>
 <span class="sd">        phase_units : str, optional</span>
 <span class="sd">            Units for the x axis.</span>
 <span class="sd">            Default is &quot;rad&quot;</span>
@@ -1939,11 +1943,13 @@
 <span class="sd">        probe : list of tuples</span>
 <span class="sd">            List with tuples (node, orientation angle, tag).</span>
 <span class="sd">            node : int</span>
-<span class="sd">                indicate the node where the probe is located.</span>
+<span class="sd">                Indicate the node where the probe is located.</span>
 <span class="sd">            orientation : float</span>
-<span class="sd">                probe orientation angle about the shaft. The 0 refers to +X direction.</span>
+<span class="sd">                Probe orientation angle about the shaft. The 0 refers to +X direction.</span>
+<span class="sd">                The strings &#39;major&#39; and &#39;minor&#39; can also be used to reference the major</span>
+<span class="sd">                and minor axis.</span>
 <span class="sd">            tag : str, optional</span>
-<span class="sd">                probe tag to be displayed at the legend.</span>
+<span class="sd">                Probe tag to be displayed at the legend.</span>
 <span class="sd">        probe_units : str, option</span>
 <span class="sd">            Units for probe orientation.</span>
 <span class="sd">            Default is &quot;rad&quot;.</span>
@@ -1957,7 +1963,7 @@
 <span class="sd">                &#39;[speed]&#39; - Displays the velocity;</span>
 <span class="sd">                &#39;[acceleration]&#39; - Displays the acceleration.</span>
 <span class="sd">            Default is &quot;m&quot; 0 to peak.</span>
-<span class="sd">            To use peak to peak use the prefix &#39;pkpk_&#39; (e.g. pkpk_m)</span>
+<span class="sd">            To use peak to peak use &#39;&lt;unit&gt; pkpk&#39; (e.g. &#39;m pkpk&#39;)</span>
 <span class="sd">        fig : Plotly graph_objects.Figure()</span>
 <span class="sd">            The figure object with the plot.</span>
 <span class="sd">        kwargs : optional</span>
@@ -2017,11 +2023,13 @@
 <span class="sd">        probe : list of tuples</span>
 <span class="sd">            List with tuples (node, orientation angle, tag).</span>
 <span class="sd">            node : int</span>
-<span class="sd">                indicate the node where the probe is located.</span>
+<span class="sd">                Indicate the node where the probe is located.</span>
 <span class="sd">            orientation : float</span>
-<span class="sd">                probe orientation angle about the shaft. The 0 refers to +X direction.</span>
+<span class="sd">                Probe orientation angle about the shaft. The 0 refers to +X direction.</span>
+<span class="sd">                The strings &#39;major&#39; and &#39;minor&#39; can also be used to reference the major</span>
+<span class="sd">                and minor axis.</span>
 <span class="sd">            tag : str, optional</span>
-<span class="sd">                probe tag to be displayed at the legend.</span>
+<span class="sd">                Probe tag to be displayed at the legend.</span>
 <span class="sd">        probe_units : str, option</span>
 <span class="sd">            Units for probe orientation.</span>
 <span class="sd">            Default is &quot;rad&quot;.</span>
@@ -2035,7 +2043,7 @@
 <span class="sd">                &#39;[speed]&#39; - Displays the velocity;</span>
 <span class="sd">                &#39;[acceleration]&#39; - Displays the acceleration.</span>
 <span class="sd">            Default is &quot;m&quot; 0 to peak.</span>
-<span class="sd">            To use peak to peak use the prefix &#39;pkpk_&#39; (e.g. pkpk_m)</span>
+<span class="sd">            To use peak to peak use &#39;&lt;unit&gt; pkpk&#39; (e.g. &#39;m pkpk&#39;)</span>
 <span class="sd">        phase_units : str, optional</span>
 <span class="sd">            Units for the x axis.</span>
 <span class="sd">            Default is &quot;rad&quot;</span>
@@ -2098,11 +2106,13 @@
 <span class="sd">        probe : list of tuples</span>
 <span class="sd">            List with tuples (node, orientation angle, tag).</span>
 <span class="sd">            node : int</span>
-<span class="sd">                indicate the node where the probe is located.</span>
+<span class="sd">                Indicate the node where the probe is located.</span>
 <span class="sd">            orientation : float</span>
-<span class="sd">                probe orientation angle about the shaft. The 0 refers to +X direction.</span>
+<span class="sd">                Probe orientation angle about the shaft. The 0 refers to +X direction.</span>
+<span class="sd">                The strings &#39;major&#39; and &#39;minor&#39; can also be used to reference the major</span>
+<span class="sd">                and minor axis.</span>
 <span class="sd">            tag : str, optional</span>
-<span class="sd">                probe tag to be displayed at the legend.</span>
+<span class="sd">                Probe tag to be displayed at the legend.</span>
 <span class="sd">        probe_units : str, option</span>
 <span class="sd">            Units for probe orientation.</span>
 <span class="sd">            Default is &quot;rad&quot;.</span>
@@ -2116,7 +2126,7 @@
 <span class="sd">                &#39;[speed]&#39; - Displays the velocity;</span>
 <span class="sd">                &#39;[acceleration]&#39; - Displays the acceleration.</span>
 <span class="sd">            Default is &quot;m&quot; 0 to peak.</span>
-<span class="sd">            To use peak to peak use the prefix &#39;pkpk_&#39; (e.g. pkpk_m)</span>
+<span class="sd">            To use peak to peak use &#39;&lt;unit&gt; pkpk&#39; (e.g. &#39;m pkpk&#39;)</span>
 <span class="sd">        phase_units : str, optional</span>
 <span class="sd">            Units for the x axis.</span>
 <span class="sd">            Default is &quot;rad&quot;</span>
@@ -2199,11 +2209,13 @@
 <span class="sd">        probe : list of tuples</span>
 <span class="sd">            List with tuples (node, orientation angle, tag).</span>
 <span class="sd">            node : int</span>
-<span class="sd">                indicate the node where the probe is located.</span>
+<span class="sd">                Indicate the node where the probe is located.</span>
 <span class="sd">            orientation : float</span>
-<span class="sd">                probe orientation angle about the shaft. The 0 refers to +X direction.</span>
+<span class="sd">                Probe orientation angle about the shaft. The 0 refers to +X direction.</span>
+<span class="sd">                The strings &#39;major&#39; and &#39;minor&#39; can also be used to reference the major</span>
+<span class="sd">                and minor axis.</span>
 <span class="sd">            tag : str, optional</span>
-<span class="sd">                probe tag to be displayed at the legend.</span>
+<span class="sd">                Probe tag to be displayed at the legend.</span>
 <span class="sd">        probe_units : str, option</span>
 <span class="sd">            Units for probe orientation.</span>
 <span class="sd">            Default is &quot;rad&quot;.</span>
@@ -2217,7 +2229,7 @@
 <span class="sd">                &#39;[speed]&#39; - Displays the velocity;</span>
 <span class="sd">                &#39;[acceleration]&#39; - Displays the acceleration.</span>
 <span class="sd">            Default is &quot;m&quot; 0 to peak.</span>
-<span class="sd">            To use peak to peak use the prefix &#39;pkpk_&#39; (e.g. pkpk_m)</span>
+<span class="sd">            To use peak to peak use &#39;&lt;unit&gt; pkpk&#39; (e.g. &#39;m pkpk&#39;)</span>
 <span class="sd">        phase_units : str, optional</span>
 <span class="sd">            Phase units.</span>
 <span class="sd">            Default is &quot;rad&quot;</span>
@@ -2311,7 +2323,7 @@
 <span class="sd">                &#39;[speed]&#39; - Displays the velocity;</span>
 <span class="sd">                &#39;[acceleration]&#39; - Displays the acceleration.</span>
 <span class="sd">            Default is &quot;m&quot; 0 to peak.</span>
-<span class="sd">            To use peak to peak use the prefix &#39;pkpk_&#39; (e.g. pkpk_m)</span>
+<span class="sd">            To use peak to peak use &#39;&lt;unit&gt; pkpk&#39; (e.g. &#39;m pkpk&#39;)</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
@@ -2402,7 +2414,7 @@
 <span class="sd">                &#39;[speed]&#39; - Displays the velocity;</span>
 <span class="sd">                &#39;[acceleration]&#39; - Displays the acceleration.</span>
 <span class="sd">            Default is &quot;m&quot; 0 to peak.</span>
-<span class="sd">            To use peak to peak use the prefix &#39;pkpk_&#39; (e.g. pkpk_m)</span>
+<span class="sd">            To use peak to peak use &#39;&lt;unit&gt; pkpk&#39; (e.g. &#39;m pkpk&#39;)</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
@@ -2560,7 +2572,7 @@
 <span class="sd">                &#39;[speed]&#39; - Displays the velocity;</span>
 <span class="sd">                &#39;[acceleration]&#39; - Displays the acceleration.</span>
 <span class="sd">            Default is &quot;m&quot; 0 to peak.</span>
-<span class="sd">            To use peak to peak use the prefix &#39;pkpk_&#39; (e.g. pkpk_m)</span>
+<span class="sd">            To use peak to peak use &#39;&lt;unit&gt; pkpk&#39; (e.g. &#39;m pkpk&#39;)</span>
 <span class="sd">        rotor_length_units : str, optional</span>
 <span class="sd">            Displacement units.</span>
 <span class="sd">            Default is &#39;m&#39;.</span>
@@ -2656,7 +2668,7 @@
 <span class="sd">                &#39;[speed]&#39; - Displays the velocity;</span>
 <span class="sd">                &#39;[acceleration]&#39; - Displays the acceleration.</span>
 <span class="sd">            Default is &quot;m&quot; 0 to peak.</span>
-<span class="sd">            To use peak to peak use the prefix &#39;pkpk_&#39; (e.g. pkpk_m)</span>
+<span class="sd">            To use peak to peak use &#39;&lt;unit&gt; pkpk&#39; (e.g. &#39;m pkpk&#39;)</span>
 <span class="sd">        rotor_length_units : str, optional</span>
 <span class="sd">            Rotor Length units.</span>
 <span class="sd">            Default is &#39;m&#39;.</span>
@@ -2953,7 +2965,7 @@
 <span class="sd">                &#39;[speed]&#39; - Displays the velocity;</span>
 <span class="sd">                &#39;[acceleration]&#39; - Displays the acceleration.</span>
 <span class="sd">            Default is &quot;m&quot; 0 to peak.</span>
-<span class="sd">            To use peak to peak use the prefix &#39;pkpk_&#39; (e.g. pkpk_m)</span>
+<span class="sd">            To use peak to peak use &#39;&lt;units&gt; pkpk&#39; (e.g. &#39;m/N pkpk&#39;)</span>
 <span class="sd">        rotor_length_units : str, optional</span>
 <span class="sd">            Rotor length units.</span>
 <span class="sd">            Default is &#39;m&#39;.</span>
@@ -3850,11 +3862,13 @@
 <span class="sd">        probe : list of tuples</span>
 <span class="sd">            List with tuples (node, orientation angle, tag).</span>
 <span class="sd">            node : int</span>
-<span class="sd">                indicate the node where the probe is located.</span>
+<span class="sd">                Indicate the node where the probe is located.</span>
 <span class="sd">            orientation : float</span>
-<span class="sd">                probe orientation angle about the shaft. The 0 refers to +X direction.</span>
+<span class="sd">                Probe orientation angle about the shaft. The 0 refers to +X direction.</span>
+<span class="sd">                The strings &#39;major&#39; and &#39;minor&#39; can also be used to reference the major</span>
+<span class="sd">                and minor axis.</span>
 <span class="sd">            tag : str, optional</span>
-<span class="sd">                probe tag to be displayed at the legend.</span>
+<span class="sd">                Probe tag to be displayed at the legend.</span>
 <span class="sd">        probe_units : str, option</span>
 <span class="sd">            Units for probe orientation.</span>
 <span class="sd">            Default is &quot;rad&quot;.</span>
@@ -4287,7 +4301,7 @@
     </p>
     <p>
         &copy; Copyright 2020, Team ROSS.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.5.2.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.5.4.<br/>
     </p>
   </div>
 </footer>

@@ -211,12 +211,14 @@ Default is None.</p>
 <dt><strong>probe</strong><span class="classifier">list of tuples</span></dt><dd><p>List with tuples (node, orientation angle, tag).
 node : int</p>
 <blockquote>
-<div><p>indicate the node where the probe is located.</p>
+<div><p>Indicate the node where the probe is located.</p>
 </div></blockquote>
 <dl class="simple">
-<dt>orientation<span class="classifier">float</span></dt><dd><p>probe orientation angle about the shaft. The 0 refers to +X direction.</p>
+<dt>orientation<span class="classifier">float</span></dt><dd><p>Probe orientation angle about the shaft. The 0 refers to +X direction.
+The strings ‘major’ and ‘minor’ can also be used to reference the major
+and minor axis.</p>
 </dd>
-<dt>tag<span class="classifier">str, optional</span></dt><dd><p>probe tag to be add a DataFrame column title.</p>
+<dt>tag<span class="classifier">str, optional</span></dt><dd><p>Probe tag to be add a DataFrame column title.</p>
 </dd>
 </dl>
 </dd>
@@ -234,7 +236,7 @@ Acceptable units dimensionality are:</p>
 ‘[acceleration]’ - Displays the acceleration.</p>
 </div></blockquote>
 <p>Default is “m” 0 to peak.
-To use peak to peak use the prefix ‘<a href="#id29"><span class="problematic" id="id30">pkpk_</span></a>’ (e.g. pkpk_m)</p>
+To use peak to peak use ‘&lt;unit&gt; pkpk’ (e.g. ‘m pkpk’)</p>
 </dd>
 </dl>
 </dd>
@@ -258,12 +260,14 @@ probe’s tag.</p>
 <dt><strong>probe</strong><span class="classifier">list of tuples</span></dt><dd><p>List with tuples (node, orientation angle, tag).
 node : int</p>
 <blockquote>
-<div><p>indicate the node where the probe is located.</p>
+<div><p>Indicate the node where the probe is located.</p>
 </div></blockquote>
 <dl class="simple">
-<dt>orientation<span class="classifier">float</span></dt><dd><p>probe orientation angle about the shaft. The 0 refers to +X direction.</p>
+<dt>orientation<span class="classifier">float</span></dt><dd><p>Probe orientation angle about the shaft. The 0 refers to +X direction.
+The strings ‘major’ and ‘minor’ can also be used to reference the major
+and minor axis.</p>
 </dd>
-<dt>tag<span class="classifier">str, optional</span></dt><dd><p>probe tag to be add a DataFrame column title.</p>
+<dt>tag<span class="classifier">str, optional</span></dt><dd><p>Probe tag to be add a DataFrame column title.</p>
 </dd>
 </dl>
 </dd>
@@ -281,7 +285,7 @@ Acceptable units dimensionality are:</p>
 ‘[acceleration]’ - Displays the acceleration.</p>
 </div></blockquote>
 <p>Default is “m” 0 to peak.
-To use peak to peak use the prefix ‘<a href="#id31"><span class="problematic" id="id32">pkpk_</span></a>’ (e.g. pkpk_m)</p>
+To use peak to peak use ‘&lt;unit&gt; pkpk’ (e.g. ‘m pkpk’)</p>
 </dd>
 <dt><strong>phase_units</strong><span class="classifier">str, optional</span></dt><dd><p>Units for the x axis.
 Default is “rad”</p>
@@ -360,12 +364,14 @@ reinstantiate the class.</p>
 <dt><strong>probe</strong><span class="classifier">list of tuples</span></dt><dd><p>List with tuples (node, orientation angle, tag).
 node : int</p>
 <blockquote>
-<div><p>indicate the node where the probe is located.</p>
+<div><p>Indicate the node where the probe is located.</p>
 </div></blockquote>
 <dl class="simple">
-<dt>orientation<span class="classifier">float</span></dt><dd><p>probe orientation angle about the shaft. The 0 refers to +X direction.</p>
+<dt>orientation<span class="classifier">float</span></dt><dd><p>Probe orientation angle about the shaft. The 0 refers to +X direction.
+The strings ‘major’ and ‘minor’ can also be used to reference the major
+and minor axis.</p>
 </dd>
-<dt>tag<span class="classifier">str, optional</span></dt><dd><p>probe tag to be displayed at the legend.</p>
+<dt>tag<span class="classifier">str, optional</span></dt><dd><p>Probe tag to be displayed at the legend.</p>
 </dd>
 </dl>
 </dd>
@@ -383,7 +389,7 @@ Acceptable units dimensionality are:</p>
 ‘[acceleration]’ - Displays the acceleration.</p>
 </div></blockquote>
 <p>Default is “m” 0 to peak.
-To use peak to peak use the prefix ‘<a href="#id33"><span class="problematic" id="id34">pkpk_</span></a>’ (e.g. pkpk_m)</p>
+To use peak to peak use ‘&lt;unit&gt; pkpk’ (e.g. ‘m pkpk’)</p>
 </dd>
 <dt><strong>phase_units</strong><span class="classifier">str, optional</span></dt><dd><p>Phase units.
 Default is “rad”</p>
@@ -485,7 +491,7 @@ Acceptable units dimensionality are:</p>
 ‘[acceleration]’ - Displays the acceleration.</p>
 </div></blockquote>
 <p>Default is “m” 0 to peak.
-To use peak to peak use the prefix ‘<a href="#id35"><span class="problematic" id="id36">pkpk_</span></a>’ (e.g. pkpk_m)</p>
+To use peak to peak use ‘&lt;units&gt; pkpk’ (e.g. ‘m/N pkpk’)</p>
 </dd>
 <dt><strong>rotor_length_units</strong><span class="classifier">str, optional</span></dt><dd><p>Rotor length units.
 Default is ‘m’.</p>
@@ -543,7 +549,7 @@ Acceptable units dimensionality are:</p>
 ‘[acceleration]’ - Displays the acceleration.</p>
 </div></blockquote>
 <p>Default is “m” 0 to peak.
-To use peak to peak use the prefix ‘<a href="#id37"><span class="problematic" id="id38">pkpk_</span></a>’ (e.g. pkpk_m)</p>
+To use peak to peak use ‘&lt;unit&gt; pkpk’ (e.g. ‘m pkpk’)</p>
 </dd>
 <dt><strong>rotor_length_units</strong><span class="classifier">str, optional</span></dt><dd><p>Displacement units.
 Default is ‘m’.</p>
@@ -589,7 +595,7 @@ Acceptable units dimensionality are:</p>
 ‘[acceleration]’ - Displays the acceleration.</p>
 </div></blockquote>
 <p>Default is “m” 0 to peak.
-To use peak to peak use the prefix ‘<a href="#id39"><span class="problematic" id="id40">pkpk_</span></a>’ (e.g. pkpk_m)</p>
+To use peak to peak use ‘&lt;unit&gt; pkpk’ (e.g. ‘m pkpk’)</p>
 </dd>
 <dt><strong>rotor_length_units</strong><span class="classifier">str, optional</span></dt><dd><p>Rotor Length units.
 Default is ‘m’.</p>
@@ -621,12 +627,14 @@ plot layout only (e.g. width=1000, height=800, …).
 <dt><strong>probe</strong><span class="classifier">list of tuples</span></dt><dd><p>List with tuples (node, orientation angle, tag).
 node : int</p>
 <blockquote>
-<div><p>indicate the node where the probe is located.</p>
+<div><p>Indicate the node where the probe is located.</p>
 </div></blockquote>
 <dl class="simple">
-<dt>orientation<span class="classifier">float</span></dt><dd><p>probe orientation angle about the shaft. The 0 refers to +X direction.</p>
+<dt>orientation<span class="classifier">float</span></dt><dd><p>Probe orientation angle about the shaft. The 0 refers to +X direction.
+The strings ‘major’ and ‘minor’ can also be used to reference the major
+and minor axis.</p>
 </dd>
-<dt>tag<span class="classifier">str, optional</span></dt><dd><p>probe tag to be displayed at the legend.</p>
+<dt>tag<span class="classifier">str, optional</span></dt><dd><p>Probe tag to be displayed at the legend.</p>
 </dd>
 </dl>
 </dd>
@@ -644,7 +652,7 @@ Acceptable units dimensionality are:</p>
 ‘[acceleration]’ - Displays the acceleration.</p>
 </div></blockquote>
 <p>Default is “m” 0 to peak.
-To use peak to peak use the prefix ‘<a href="#id41"><span class="problematic" id="id42">pkpk_</span></a>’ (e.g. pkpk_m)</p>
+To use peak to peak use ‘&lt;unit&gt; pkpk’ (e.g. ‘m pkpk’)</p>
 </dd>
 <dt><strong>fig</strong><span class="classifier">Plotly graph_objects.Figure()</span></dt><dd><p>The figure object with the plot.</p>
 </dd>
@@ -673,12 +681,14 @@ To use peak to peak use the prefix ‘<a href="#id41"><span class="problematic" 
 <dt><strong>probe</strong><span class="classifier">list of tuples</span></dt><dd><p>List with tuples (node, orientation angle, tag).
 node : int</p>
 <blockquote>
-<div><p>indicate the node where the probe is located.</p>
+<div><p>Indicate the node where the probe is located.</p>
 </div></blockquote>
 <dl class="simple">
-<dt>orientation<span class="classifier">float</span></dt><dd><p>probe orientation angle about the shaft. The 0 refers to +X direction.</p>
+<dt>orientation<span class="classifier">float</span></dt><dd><p>Probe orientation angle about the shaft. The 0 refers to +X direction.
+The strings ‘major’ and ‘minor’ can also be used to reference the major
+and minor axis.</p>
 </dd>
-<dt>tag<span class="classifier">str, optional</span></dt><dd><p>probe tag to be displayed at the legend.</p>
+<dt>tag<span class="classifier">str, optional</span></dt><dd><p>Probe tag to be displayed at the legend.</p>
 </dd>
 </dl>
 </dd>
@@ -696,7 +706,7 @@ Acceptable units dimensionality are:</p>
 ‘[acceleration]’ - Displays the acceleration.</p>
 </div></blockquote>
 <p>Default is “m” 0 to peak.
-To use peak to peak use the prefix ‘<a href="#id43"><span class="problematic" id="id44">pkpk_</span></a>’ (e.g. pkpk_m)</p>
+To use peak to peak use ‘&lt;unit&gt; pkpk’ (e.g. ‘m pkpk’)</p>
 </dd>
 <dt><strong>phase_units</strong><span class="classifier">str, optional</span></dt><dd><p>Units for the x axis.
 Default is “rad”</p>
@@ -728,12 +738,14 @@ Default is “rad”</p>
 <dt><strong>probe</strong><span class="classifier">list of tuples</span></dt><dd><p>List with tuples (node, orientation angle, tag).
 node : int</p>
 <blockquote>
-<div><p>indicate the node where the probe is located.</p>
+<div><p>Indicate the node where the probe is located.</p>
 </div></blockquote>
 <dl class="simple">
-<dt>orientation<span class="classifier">float</span></dt><dd><p>probe orientation angle about the shaft. The 0 refers to +X direction.</p>
+<dt>orientation<span class="classifier">float</span></dt><dd><p>Probe orientation angle about the shaft. The 0 refers to +X direction.
+The strings ‘major’ and ‘minor’ can also be used to reference the major
+and minor axis.</p>
 </dd>
-<dt>tag<span class="classifier">str, optional</span></dt><dd><p>probe tag to be displayed at the legend.</p>
+<dt>tag<span class="classifier">str, optional</span></dt><dd><p>Probe tag to be displayed at the legend.</p>
 </dd>
 </dl>
 </dd>
@@ -751,7 +763,7 @@ Acceptable units dimensionality are:</p>
 ‘[acceleration]’ - Displays the acceleration.</p>
 </div></blockquote>
 <p>Default is “m” 0 to peak.
-To use peak to peak use the prefix ‘<a href="#id45"><span class="problematic" id="id46">pkpk_</span></a>’ (e.g. pkpk_m)</p>
+To use peak to peak use ‘&lt;unit&gt; pkpk’ (e.g. ‘m pkpk’)</p>
 </dd>
 <dt><strong>phase_units</strong><span class="classifier">str, optional</span></dt><dd><p>Units for the x axis.
 Default is “rad”</p>
@@ -850,7 +862,7 @@ reinstantiate the class.</p>
     </p>
     <p>
         &copy; Copyright 2020, Team ROSS.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.5.2.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.5.4.<br/>
     </p>
   </div>
 </footer>
