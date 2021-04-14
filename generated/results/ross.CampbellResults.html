@@ -4,7 +4,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>ross.CampbellResults &#8212; ross 1.0.0 documentation</title>
+    <title>ross.CampbellResults &#8212; ross 1.0.1 documentation</title>
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/bootstrap-sphinx.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx_copybutton.css" />
@@ -159,7 +159,7 @@
 <h1>ross.CampbellResults<a class="headerlink" href="#ross-campbellresults" title="Permalink to this headline">¶</a></h1>
 <dl class="py class">
 <dt id="ross.CampbellResults">
-<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">ross.</span></code><code class="sig-name descname"><span class="pre">CampbellResults</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">speed_range</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wd</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">log_dec</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">whirl_values</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/results.html#CampbellResults"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ross.CampbellResults" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">ross.</span></code><code class="sig-name descname"><span class="pre">CampbellResults</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">speed_range</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wd</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">log_dec</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">damping_ratio</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">whirl_values</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/results.html#CampbellResults"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ross.CampbellResults" title="Permalink to this definition">¶</a></dt>
 <dd><p>Class used to store results and provide plots for Campbell Diagram.</p>
 <p>It’s possible to visualize multiples harmonics in a single plot to check
 other speeds which also excite a specific natural frequency.</p>
@@ -185,14 +185,14 @@ other speeds which also excite a specific natural frequency.</p>
 </dl>
 <dl class="py method">
 <dt id="ross.CampbellResults.__init__">
-<code class="sig-name descname"><span class="pre">__init__</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">speed_range</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wd</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">log_dec</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">whirl_values</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/results.html#CampbellResults.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ross.CampbellResults.__init__" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">__init__</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">speed_range</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wd</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">log_dec</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">damping_ratio</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">whirl_values</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/results.html#CampbellResults.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ross.CampbellResults.__init__" title="Permalink to this definition">¶</a></dt>
 <dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
 </dd></dl>
 
 <p class="rubric">Methods</p>
 <dl class="py method">
 <dt id="id0">
-<code class="sig-name descname"><span class="pre">__init__</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">speed_range</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wd</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">log_dec</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">whirl_values</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/results.html#CampbellResults.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id0" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">__init__</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">speed_range</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wd</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">log_dec</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">damping_ratio</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">whirl_values</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/results.html#CampbellResults.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id0" title="Permalink to this definition">¶</a></dt>
 <dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
 </dd></dl>
 
@@ -242,7 +242,7 @@ reinstantiate the class.</p>
 
 <dl class="py method">
 <dt id="ross.CampbellResults.plot">
-<code class="sig-name descname"><span class="pre">plot</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="pre">self,</span> <span class="pre">harmonics=[1],</span> <span class="pre">frequency_units='rad/s',</span> <span class="pre">fig=None,</span> <span class="pre">\*\*kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/results.html#CampbellResults.plot"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ross.CampbellResults.plot" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">plot</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="pre">self,</span> <span class="pre">harmonics=[1],</span> <span class="pre">frequency_units='rad/s',</span> <span class="pre">damping_parameter='log_dec',</span> <span class="pre">frequency_range=None,</span> <span class="pre">damping_range=None,</span> <span class="pre">fig=None,</span> <span class="pre">\*\*kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/results.html#CampbellResults.plot"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ross.CampbellResults.plot" title="Permalink to this definition">¶</a></dt>
 <dd><p>Create Campbell Diagram figure using Plotly.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -252,6 +252,18 @@ The default is to plot 1x.</p>
 </dd>
 <dt><strong>frequency_units</strong><span class="classifier">str, optional</span></dt><dd><p>Frequency units.
 Default is “rad/s”</p>
+</dd>
+<dt><strong>damping_parameter</strong><span class="classifier">str, optional</span></dt><dd><p>Define which value to show for damping. We can use “log_dec” or “damping_ratio”.
+Default is “log_dec”.</p>
+</dd>
+<dt><strong>frequency_range</strong><span class="classifier">tuple, pint.Quantity(tuple), optional</span></dt><dd><p>Tuple with (min, max) values for the frequencies that will be plotted.
+Frequencies that are not within the range are filtered out and are not plotted.
+It is possible to use a pint Quantity (e.g. Q_((2000, 1000), “RPM”)).
+Default is None (no filter).</p>
+</dd>
+<dt><strong>damping_range</strong><span class="classifier">tuple, optional</span></dt><dd><p>Tuple with (min, max) values for the damping parameter that will be plotted.
+Damping values that are not within the range are filtered out and are not plotted.
+Default is None (no filter).</p>
 </dd>
 <dt><strong>fig</strong><span class="classifier">Plotly graph_objects.Figure()</span></dt><dd><p>The figure object with the plot.</p>
 </dd>
@@ -268,6 +280,22 @@ Default is “rad/s”</p>
 </dl>
 </dd>
 </dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">ross</span> <span class="k">as</span> <span class="nn">rs</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Q_</span> <span class="o">=</span> <span class="n">rs</span><span class="o">.</span><span class="n">Q_</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">rotor</span> <span class="o">=</span> <span class="n">rs</span><span class="o">.</span><span class="n">rotor_example</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">speed</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">400</span><span class="p">,</span> <span class="mi">101</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">camp</span> <span class="o">=</span> <span class="n">rotor</span><span class="o">.</span><span class="n">run_campbell</span><span class="p">(</span><span class="n">speed</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">fig</span> <span class="o">=</span> <span class="n">camp</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
+<span class="gp">... </span>    <span class="n">harmonics</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span>
+<span class="gp">... </span>    <span class="n">damping_parameter</span><span class="o">=</span><span class="s2">&quot;damping_ratio&quot;</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">frequency_range</span><span class="o">=</span><span class="n">Q_</span><span class="p">((</span><span class="mi">2000</span><span class="p">,</span> <span class="mi">10000</span><span class="p">),</span> <span class="s2">&quot;RPM&quot;</span><span class="p">),</span>
+<span class="gp">... </span>    <span class="n">damping_range</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mf">0.1</span><span class="p">,</span> <span class="mi">100</span><span class="p">),</span>
+<span class="gp">... </span>    <span class="n">frequency_units</span><span class="o">=</span><span class="s2">&quot;RPM&quot;</span><span class="p">,</span>
+<span class="gp">... </span><span class="p">)</span>
+</pre></div>
+</div>
 </dd></dl>
 
 <dl class="py method">
