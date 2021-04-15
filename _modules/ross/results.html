@@ -177,6 +177,8 @@
     <span class="s2">&quot;SummaryResults&quot;</span><span class="p">,</span>
     <span class="s2">&quot;ConvergenceResults&quot;</span><span class="p">,</span>
     <span class="s2">&quot;TimeResponseResults&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;UCSResults&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Level1Results&quot;</span><span class="p">,</span>
 <span class="p">]</span>
 
 
@@ -272,7 +274,6 @@
 <span class="sd">        &gt;&gt;&gt; from tempfile import tempdir</span>
 <span class="sd">        &gt;&gt;&gt; from pathlib import Path</span>
 <span class="sd">        &gt;&gt;&gt; import ross as rs</span>
-
 <span class="sd">        &gt;&gt;&gt; # Running an example</span>
 <span class="sd">        &gt;&gt;&gt; rotor = rs.rotor_example()</span>
 <span class="sd">        &gt;&gt;&gt; freq_range = np.linspace(0, 500, 31)</span>
@@ -280,11 +281,9 @@
 <span class="sd">        &gt;&gt;&gt; m = 0.01</span>
 <span class="sd">        &gt;&gt;&gt; p = 0.0</span>
 <span class="sd">        &gt;&gt;&gt; results = rotor.run_unbalance_response(n, m, p, freq_range)</span>
-
 <span class="sd">        &gt;&gt;&gt; # create path for a temporary file</span>
 <span class="sd">        &gt;&gt;&gt; file = Path(tempdir) / &#39;unb_resp.toml&#39;</span>
 <span class="sd">        &gt;&gt;&gt; results.save(file)</span>
-
 <span class="sd">        &gt;&gt;&gt; # Loading file</span>
 <span class="sd">        &gt;&gt;&gt; results2 = rs.ForcedResponseResults.load(file)</span>
 <span class="sd">        &gt;&gt;&gt; abs(results2.forced_resp).all() == abs(results.forced_resp).all()</span>
@@ -1397,13 +1396,17 @@
 <span class="sd">            Units for the x axis.</span>
 <span class="sd">            Default is &quot;rad/s&quot;</span>
 <span class="sd">        amplitude_units : str, optional</span>
-<span class="sd">            Units for the y axis.</span>
-<span class="sd">            Acceptable units are:</span>
-<span class="sd">                &#39;[length]/[force]&#39; - Displays the displacement;</span>
-<span class="sd">                &#39;[speed]/[force]&#39; - Displays the velocity;</span>
-<span class="sd">                &#39;[acceleration]/[force]&#39; - Displays the acceleration.</span>
+<span class="sd">            Units for the response magnitude.</span>
+<span class="sd">            Acceptable units dimensionality are:</span>
+
+<span class="sd">            &#39;[length]&#39; - Displays the displacement;</span>
+
+<span class="sd">            &#39;[speed]&#39; - Displays the velocity;</span>
+
+<span class="sd">            &#39;[acceleration]&#39; - Displays the acceleration.</span>
+
 <span class="sd">            Default is &quot;m/N&quot; 0 to peak.</span>
-<span class="sd">            To use peak to peak use &#39;&lt;units&gt; pkpk&#39; (e.g. &#39;m/N pkpk&#39;)</span>
+<span class="sd">            To use peak to peak use &#39;&lt;unit&gt; pkpk&#39; (e.g. &#39;m/N pkpk&#39;)</span>
 <span class="sd">        fig : Plotly graph_objects.Figure()</span>
 <span class="sd">            The figure object with the plot.</span>
 <span class="sd">        mag_kwargs : optional</span>
@@ -1492,13 +1495,17 @@
 <span class="sd">            Units for the x axis.</span>
 <span class="sd">            Default is &quot;rad/s&quot;</span>
 <span class="sd">        amplitude_units : str, optional</span>
-<span class="sd">            Units for the y axis.</span>
-<span class="sd">            Acceptable units are:</span>
-<span class="sd">                &#39;[length]/[force]&#39; - Displays the displacement;</span>
-<span class="sd">                &#39;[speed]/[force]&#39; - Displays the velocity;</span>
-<span class="sd">                &#39;[acceleration]/[force]&#39; - Displays the acceleration.</span>
+<span class="sd">            Units for the response magnitude.</span>
+<span class="sd">            Acceptable units dimensionality are:</span>
+
+<span class="sd">            &#39;[length]&#39; - Displays the displacement;</span>
+
+<span class="sd">            &#39;[speed]&#39; - Displays the velocity;</span>
+
+<span class="sd">            &#39;[acceleration]&#39; - Displays the acceleration.</span>
+
 <span class="sd">            Default is &quot;m/N&quot; 0 to peak.</span>
-<span class="sd">            To use peak to peak use &#39;&lt;units&gt; pkpk&#39; (e.g. &#39;m/N pkpk&#39;)</span>
+<span class="sd">            To use peak to peak use &#39;&lt;unit&gt; pkpk&#39; (e.g. &#39;m/N pkpk&#39;)</span>
 <span class="sd">        phase_units : str, optional</span>
 <span class="sd">            Units for the x axis.</span>
 <span class="sd">            Default is &quot;rad&quot;</span>
@@ -1595,13 +1602,17 @@
 <span class="sd">            Units for the x axis.</span>
 <span class="sd">            Default is &quot;rad/s&quot;</span>
 <span class="sd">        amplitude_units : str, optional</span>
-<span class="sd">            Units for the y axis.</span>
-<span class="sd">            Acceptable units are:</span>
-<span class="sd">                &#39;[length]/[force]&#39; - Displays the displacement;</span>
-<span class="sd">                &#39;[speed]/[force]&#39; - Displays the velocity;</span>
-<span class="sd">                &#39;[acceleration]/[force]&#39; - Displays the acceleration.</span>
+<span class="sd">            Units for the response magnitude.</span>
+<span class="sd">            Acceptable units dimensionality are:</span>
+
+<span class="sd">            &#39;[length]&#39; - Displays the displacement;</span>
+
+<span class="sd">            &#39;[speed]&#39; - Displays the velocity;</span>
+
+<span class="sd">            &#39;[acceleration]&#39; - Displays the acceleration.</span>
+
 <span class="sd">            Default is &quot;m/N&quot; 0 to peak.</span>
-<span class="sd">            To use peak to peak use &#39;&lt;units&gt; pkpk&#39; (e.g. &#39;m/N pkpk&#39;)</span>
+<span class="sd">            To use peak to peak use &#39;&lt;unit&gt; pkpk&#39; (e.g. &#39;m/N pkpk&#39;)</span>
 <span class="sd">        phase_units : str, optional</span>
 <span class="sd">            Units for the x axis.</span>
 <span class="sd">            Default is &quot;rad&quot;</span>
@@ -1725,13 +1736,17 @@
 <span class="sd">            Units for the x axis.</span>
 <span class="sd">            Default is &quot;rad/s&quot;</span>
 <span class="sd">        amplitude_units : str, optional</span>
-<span class="sd">            Units for the y axis.</span>
-<span class="sd">            Acceptable units are:</span>
-<span class="sd">                &#39;[length]/[force]&#39; - Displays the displacement;</span>
-<span class="sd">                &#39;[speed]/[force]&#39; - Displays the velocity;</span>
-<span class="sd">                &#39;[acceleration]/[force]&#39; - Displays the acceleration.</span>
+<span class="sd">            Units for the response magnitude.</span>
+<span class="sd">            Acceptable units dimensionality are:</span>
+
+<span class="sd">            &#39;[length]&#39; - Displays the displacement;</span>
+
+<span class="sd">            &#39;[speed]&#39; - Displays the velocity;</span>
+
+<span class="sd">            &#39;[acceleration]&#39; - Displays the acceleration.</span>
+
 <span class="sd">            Default is &quot;m/N&quot; 0 to peak.</span>
-<span class="sd">            To use peak to peak use &#39;&lt;units&gt; pkpk&#39; (e.g. &#39;m/N pkpk&#39;)</span>
+<span class="sd">            To use peak to peak use &#39;&lt;unit&gt; pkpk&#39; (e.g. &#39;m/N pkpk&#39;)</span>
 <span class="sd">        phase_units : str, optional</span>
 <span class="sd">            Units for the x axis.</span>
 <span class="sd">            Default is &quot;rad&quot;</span>
@@ -1871,16 +1886,17 @@
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-<span class="sd">        probe : list of tuples</span>
+<span class="sd">        probe : list</span>
 <span class="sd">            List with tuples (node, orientation angle, tag).</span>
-<span class="sd">            node : int</span>
-<span class="sd">                Indicate the node where the probe is located.</span>
-<span class="sd">            orientation : float</span>
-<span class="sd">                Probe orientation angle about the shaft. The 0 refers to +X direction.</span>
-<span class="sd">                The strings &#39;major&#39; and &#39;minor&#39; can also be used to reference the major</span>
-<span class="sd">                and minor axis.</span>
-<span class="sd">            tag : str, optional</span>
-<span class="sd">                Probe tag to be add a DataFrame column title.</span>
+
+<span class="sd">            node : int -&gt; Indicate the node where the probe is located.</span>
+
+<span class="sd">            orientation : float -&gt; Probe orientation angle about the shaft.</span>
+<span class="sd">            The 0 refers to +X direction.</span>
+<span class="sd">            The strings &#39;major&#39; and &#39;minor&#39; can also be used to reference the major</span>
+<span class="sd">            and minor axis.</span>
+
+<span class="sd">            tag : str, optional -&gt; Probe tag to be add a DataFrame column title.</span>
 <span class="sd">        probe_units : str, option</span>
 <span class="sd">            Units for probe orientation.</span>
 <span class="sd">            Default is &quot;rad&quot;.</span>
@@ -1890,16 +1906,20 @@
 <span class="sd">        amplitude_units : str, optional</span>
 <span class="sd">            Units for the response magnitude.</span>
 <span class="sd">            Acceptable units dimensionality are:</span>
-<span class="sd">                &#39;[length]&#39; - Displays the displacement;</span>
-<span class="sd">                &#39;[speed]&#39; - Displays the velocity;</span>
-<span class="sd">                &#39;[acceleration]&#39; - Displays the acceleration.</span>
+
+<span class="sd">            &#39;[length]&#39; - Displays the displacement;</span>
+
+<span class="sd">            &#39;[speed]&#39; - Displays the velocity;</span>
+
+<span class="sd">            &#39;[acceleration]&#39; - Displays the acceleration.</span>
+
 <span class="sd">            Default is &quot;m&quot; 0 to peak.</span>
 <span class="sd">            To use peak to peak use &#39;&lt;unit&gt; pkpk&#39; (e.g. &#39;m pkpk&#39;)</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
 <span class="sd">        df : pd.DataFrame</span>
-<span class="sd">            DataFrame storing magnitude data arrays. They columns are set based on the</span>
+<span class="sd">            DataFrame storing magnitude data arrays. The columns are set based on the</span>
 <span class="sd">            probe&#39;s tag.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">frequency_range</span> <span class="o">=</span> <span class="n">Q_</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">speed_range</span><span class="p">,</span> <span class="s2">&quot;rad/s&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">frequency_units</span><span class="p">)</span><span class="o">.</span><span class="n">m</span>
@@ -1943,16 +1963,17 @@
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-<span class="sd">        probe : list of tuples</span>
+<span class="sd">        probe : list</span>
 <span class="sd">            List with tuples (node, orientation angle, tag).</span>
-<span class="sd">            node : int</span>
-<span class="sd">                Indicate the node where the probe is located.</span>
-<span class="sd">            orientation : float</span>
-<span class="sd">                Probe orientation angle about the shaft. The 0 refers to +X direction.</span>
-<span class="sd">                The strings &#39;major&#39; and &#39;minor&#39; can also be used to reference the major</span>
-<span class="sd">                and minor axis.</span>
-<span class="sd">            tag : str, optional</span>
-<span class="sd">                Probe tag to be add a DataFrame column title.</span>
+
+<span class="sd">            node : int -&gt; Indicate the node where the probe is located.</span>
+
+<span class="sd">            orientation : float -&gt; Probe orientation angle about the shaft.</span>
+<span class="sd">            The 0 refers to +X direction.</span>
+<span class="sd">            The strings &#39;major&#39; and &#39;minor&#39; can also be used to reference the major</span>
+<span class="sd">            and minor axis.</span>
+
+<span class="sd">            tag : str, optional -&gt; Probe tag to be add a DataFrame column title.</span>
 <span class="sd">        probe_units : str, option</span>
 <span class="sd">            Units for probe orientation.</span>
 <span class="sd">            Default is &quot;rad&quot;.</span>
@@ -1960,11 +1981,15 @@
 <span class="sd">            Units for the x axis.</span>
 <span class="sd">            Default is &quot;rad/s&quot;</span>
 <span class="sd">        amplitude_units : str, optional</span>
-<span class="sd">            Units for the y axis.</span>
+<span class="sd">            Units for the response magnitude.</span>
 <span class="sd">            Acceptable units dimensionality are:</span>
-<span class="sd">                &#39;[length]&#39; - Displays the displacement;</span>
-<span class="sd">                &#39;[speed]&#39; - Displays the velocity;</span>
-<span class="sd">                &#39;[acceleration]&#39; - Displays the acceleration.</span>
+
+<span class="sd">            &#39;[length]&#39; - Displays the displacement;</span>
+
+<span class="sd">            &#39;[speed]&#39; - Displays the velocity;</span>
+
+<span class="sd">            &#39;[acceleration]&#39; - Displays the acceleration.</span>
+
 <span class="sd">            Default is &quot;m&quot; 0 to peak.</span>
 <span class="sd">            To use peak to peak use &#39;&lt;unit&gt; pkpk&#39; (e.g. &#39;m pkpk&#39;)</span>
 <span class="sd">        phase_units : str, optional</span>
@@ -2016,16 +2041,17 @@
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-<span class="sd">        probe : list of tuples</span>
+<span class="sd">        probe : list</span>
 <span class="sd">            List with tuples (node, orientation angle, tag).</span>
-<span class="sd">            node : int</span>
-<span class="sd">                Indicate the node where the probe is located.</span>
-<span class="sd">            orientation : float</span>
-<span class="sd">                Probe orientation angle about the shaft. The 0 refers to +X direction.</span>
-<span class="sd">                The strings &#39;major&#39; and &#39;minor&#39; can also be used to reference the major</span>
-<span class="sd">                and minor axis.</span>
-<span class="sd">            tag : str, optional</span>
-<span class="sd">                Probe tag to be displayed at the legend.</span>
+
+<span class="sd">            node : int -&gt; Indicate the node where the probe is located.</span>
+
+<span class="sd">            orientation : float -&gt; Probe orientation angle about the shaft.</span>
+<span class="sd">            The 0 refers to +X direction.</span>
+<span class="sd">            The strings &#39;major&#39; and &#39;minor&#39; can also be used to reference the major</span>
+<span class="sd">            and minor axis.</span>
+
+<span class="sd">            tag : str, optional -&gt; Probe tag to be add a DataFrame column title.</span>
 <span class="sd">        probe_units : str, option</span>
 <span class="sd">            Units for probe orientation.</span>
 <span class="sd">            Default is &quot;rad&quot;.</span>
@@ -2033,11 +2059,15 @@
 <span class="sd">            Units for the x axis.</span>
 <span class="sd">            Default is &quot;rad/s&quot;</span>
 <span class="sd">        amplitude_units : str, optional</span>
-<span class="sd">            Units for the y axis.</span>
+<span class="sd">            Units for the response magnitude.</span>
 <span class="sd">            Acceptable units dimensionality are:</span>
-<span class="sd">                &#39;[length]&#39; - Displays the displacement;</span>
-<span class="sd">                &#39;[speed]&#39; - Displays the velocity;</span>
-<span class="sd">                &#39;[acceleration]&#39; - Displays the acceleration.</span>
+
+<span class="sd">            &#39;[length]&#39; - Displays the displacement;</span>
+
+<span class="sd">            &#39;[speed]&#39; - Displays the velocity;</span>
+
+<span class="sd">            &#39;[acceleration]&#39; - Displays the acceleration.</span>
+
 <span class="sd">            Default is &quot;m&quot; 0 to peak.</span>
 <span class="sd">            To use peak to peak use &#39;&lt;unit&gt; pkpk&#39; (e.g. &#39;m pkpk&#39;)</span>
 <span class="sd">        fig : Plotly graph_objects.Figure()</span>
@@ -2096,16 +2126,17 @@
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-<span class="sd">        probe : list of tuples</span>
+<span class="sd">        probe : list</span>
 <span class="sd">            List with tuples (node, orientation angle, tag).</span>
-<span class="sd">            node : int</span>
-<span class="sd">                Indicate the node where the probe is located.</span>
-<span class="sd">            orientation : float</span>
-<span class="sd">                Probe orientation angle about the shaft. The 0 refers to +X direction.</span>
-<span class="sd">                The strings &#39;major&#39; and &#39;minor&#39; can also be used to reference the major</span>
-<span class="sd">                and minor axis.</span>
-<span class="sd">            tag : str, optional</span>
-<span class="sd">                Probe tag to be displayed at the legend.</span>
+
+<span class="sd">            node : int -&gt; Indicate the node where the probe is located.</span>
+
+<span class="sd">            orientation : float -&gt; Probe orientation angle about the shaft.</span>
+<span class="sd">            The 0 refers to +X direction.</span>
+<span class="sd">            The strings &#39;major&#39; and &#39;minor&#39; can also be used to reference the major</span>
+<span class="sd">            and minor axis.</span>
+
+<span class="sd">            tag : str, optional -&gt; Probe tag to be add a DataFrame column title.</span>
 <span class="sd">        probe_units : str, option</span>
 <span class="sd">            Units for probe orientation.</span>
 <span class="sd">            Default is &quot;rad&quot;.</span>
@@ -2113,11 +2144,15 @@
 <span class="sd">            Units for the x axis.</span>
 <span class="sd">            Default is &quot;rad/s&quot;</span>
 <span class="sd">        amplitude_units : str, optional</span>
-<span class="sd">            Units for the y axis.</span>
+<span class="sd">            Units for the response magnitude.</span>
 <span class="sd">            Acceptable units dimensionality are:</span>
-<span class="sd">                &#39;[length]&#39; - Displays the displacement;</span>
-<span class="sd">                &#39;[speed]&#39; - Displays the velocity;</span>
-<span class="sd">                &#39;[acceleration]&#39; - Displays the acceleration.</span>
+
+<span class="sd">            &#39;[length]&#39; - Displays the displacement;</span>
+
+<span class="sd">            &#39;[speed]&#39; - Displays the velocity;</span>
+
+<span class="sd">            &#39;[acceleration]&#39; - Displays the acceleration.</span>
+
 <span class="sd">            Default is &quot;m&quot; 0 to peak.</span>
 <span class="sd">            To use peak to peak use &#39;&lt;unit&gt; pkpk&#39; (e.g. &#39;m pkpk&#39;)</span>
 <span class="sd">        phase_units : str, optional</span>
@@ -2179,16 +2214,17 @@
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-<span class="sd">        probe : list of tuples</span>
+<span class="sd">        probe : list</span>
 <span class="sd">            List with tuples (node, orientation angle, tag).</span>
-<span class="sd">            node : int</span>
-<span class="sd">                Indicate the node where the probe is located.</span>
-<span class="sd">            orientation : float</span>
-<span class="sd">                Probe orientation angle about the shaft. The 0 refers to +X direction.</span>
-<span class="sd">                The strings &#39;major&#39; and &#39;minor&#39; can also be used to reference the major</span>
-<span class="sd">                and minor axis.</span>
-<span class="sd">            tag : str, optional</span>
-<span class="sd">                Probe tag to be displayed at the legend.</span>
+
+<span class="sd">            node : int -&gt; Indicate the node where the probe is located.</span>
+
+<span class="sd">            orientation : float -&gt; Probe orientation angle about the shaft.</span>
+<span class="sd">            The 0 refers to +X direction.</span>
+<span class="sd">            The strings &#39;major&#39; and &#39;minor&#39; can also be used to reference the major</span>
+<span class="sd">            and minor axis.</span>
+
+<span class="sd">            tag : str, optional -&gt; Probe tag to be add a DataFrame column title.</span>
 <span class="sd">        probe_units : str, option</span>
 <span class="sd">            Units for probe orientation.</span>
 <span class="sd">            Default is &quot;rad&quot;.</span>
@@ -2196,11 +2232,15 @@
 <span class="sd">            Units for the x axis.</span>
 <span class="sd">            Default is &quot;rad/s&quot;</span>
 <span class="sd">        amplitude_units : str, optional</span>
-<span class="sd">            Units for the y axis.</span>
+<span class="sd">            Units for the response magnitude.</span>
 <span class="sd">            Acceptable units dimensionality are:</span>
-<span class="sd">                &#39;[length]&#39; - Displays the displacement;</span>
-<span class="sd">                &#39;[speed]&#39; - Displays the velocity;</span>
-<span class="sd">                &#39;[acceleration]&#39; - Displays the acceleration.</span>
+
+<span class="sd">            &#39;[length]&#39; - Displays the displacement;</span>
+
+<span class="sd">            &#39;[speed]&#39; - Displays the velocity;</span>
+
+<span class="sd">            &#39;[acceleration]&#39; - Displays the acceleration.</span>
+
 <span class="sd">            Default is &quot;m&quot; 0 to peak.</span>
 <span class="sd">            To use peak to peak use &#39;&lt;unit&gt; pkpk&#39; (e.g. &#39;m pkpk&#39;)</span>
 <span class="sd">        phase_units : str, optional</span>
@@ -2282,16 +2322,17 @@
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-<span class="sd">        probe : list of tuples</span>
+<span class="sd">        probe : list</span>
 <span class="sd">            List with tuples (node, orientation angle, tag).</span>
-<span class="sd">            node : int</span>
-<span class="sd">                Indicate the node where the probe is located.</span>
-<span class="sd">            orientation : float</span>
-<span class="sd">                Probe orientation angle about the shaft. The 0 refers to +X direction.</span>
-<span class="sd">                The strings &#39;major&#39; and &#39;minor&#39; can also be used to reference the major</span>
-<span class="sd">                and minor axis.</span>
-<span class="sd">            tag : str, optional</span>
-<span class="sd">                Probe tag to be displayed at the legend.</span>
+
+<span class="sd">            node : int -&gt; Indicate the node where the probe is located.</span>
+
+<span class="sd">            orientation : float -&gt; Probe orientation angle about the shaft.</span>
+<span class="sd">            The 0 refers to +X direction.</span>
+<span class="sd">            The strings &#39;major&#39; and &#39;minor&#39; can also be used to reference the major</span>
+<span class="sd">            and minor axis.</span>
+
+<span class="sd">            tag : str, optional -&gt; Probe tag to be add a DataFrame column title.</span>
 <span class="sd">        probe_units : str, option</span>
 <span class="sd">            Units for probe orientation.</span>
 <span class="sd">            Default is &quot;rad&quot;.</span>
@@ -2299,11 +2340,15 @@
 <span class="sd">            Frequency units.</span>
 <span class="sd">            Default is &quot;rad/s&quot;</span>
 <span class="sd">        amplitude_units : str, optional</span>
-<span class="sd">            Units for the y axis.</span>
+<span class="sd">            Units for the response magnitude.</span>
 <span class="sd">            Acceptable units dimensionality are:</span>
-<span class="sd">                &#39;[length]&#39; - Displays the displacement;</span>
-<span class="sd">                &#39;[speed]&#39; - Displays the velocity;</span>
-<span class="sd">                &#39;[acceleration]&#39; - Displays the acceleration.</span>
+
+<span class="sd">            &#39;[length]&#39; - Displays the displacement;</span>
+
+<span class="sd">            &#39;[speed]&#39; - Displays the velocity;</span>
+
+<span class="sd">            &#39;[acceleration]&#39; - Displays the acceleration.</span>
+
 <span class="sd">            Default is &quot;m&quot; 0 to peak.</span>
 <span class="sd">            To use peak to peak use &#39;&lt;unit&gt; pkpk&#39; (e.g. &#39;m pkpk&#39;)</span>
 <span class="sd">        phase_units : str, optional</span>
@@ -2389,15 +2434,23 @@
 <span class="sd">        angle : float, str</span>
 <span class="sd">            The orientation angle of the axis.</span>
 <span class="sd">            Options are:</span>
-<span class="sd">                float : angle in rad capture the response in a probe orientation;</span>
-<span class="sd">                str : &quot;major&quot; to capture the response for the major axis;</span>
-<span class="sd">                str : &quot;minor&quot; to capture the response for the minor axis.</span>
+
+<span class="sd">            float : angle in rad capture the response in a probe orientation;</span>
+
+<span class="sd">            str : &quot;major&quot; to capture the response for the major axis;</span>
+
+<span class="sd">            str : &quot;minor&quot; to capture the response for the minor axis.</span>
+
 <span class="sd">        amplitude_units : str, optional</span>
-<span class="sd">            Units for the y axis.</span>
+<span class="sd">            Units for the response magnitude.</span>
 <span class="sd">            Acceptable units dimensionality are:</span>
-<span class="sd">                &#39;[length]&#39; - Displays the displacement;</span>
-<span class="sd">                &#39;[speed]&#39; - Displays the velocity;</span>
-<span class="sd">                &#39;[acceleration]&#39; - Displays the acceleration.</span>
+
+<span class="sd">            &#39;[length]&#39; - Displays the displacement;</span>
+
+<span class="sd">            &#39;[speed]&#39; - Displays the velocity;</span>
+
+<span class="sd">            &#39;[acceleration]&#39; - Displays the acceleration.</span>
+
 <span class="sd">            Default is &quot;m&quot; 0 to peak.</span>
 <span class="sd">            To use peak to peak use &#39;&lt;unit&gt; pkpk&#39; (e.g. &#39;m pkpk&#39;)</span>
 
@@ -2484,11 +2537,15 @@
 <span class="sd">            The rotor rotation speed. Must be an element from the speed_range argument</span>
 <span class="sd">            passed to the class (rad/s).</span>
 <span class="sd">        amplitude_units : str, optional</span>
-<span class="sd">            Units for the y axis.</span>
+<span class="sd">            Units for the response magnitude.</span>
 <span class="sd">            Acceptable units dimensionality are:</span>
-<span class="sd">                &#39;[length]&#39; - Displays the displacement;</span>
-<span class="sd">                &#39;[speed]&#39; - Displays the velocity;</span>
-<span class="sd">                &#39;[acceleration]&#39; - Displays the acceleration.</span>
+
+<span class="sd">            &#39;[length]&#39; - Displays the displacement;</span>
+
+<span class="sd">            &#39;[speed]&#39; - Displays the velocity;</span>
+
+<span class="sd">            &#39;[acceleration]&#39; - Displays the acceleration.</span>
+
 <span class="sd">            Default is &quot;m&quot; 0 to peak.</span>
 <span class="sd">            To use peak to peak use &#39;&lt;unit&gt; pkpk&#39; (e.g. &#39;m pkpk&#39;)</span>
 
@@ -2642,11 +2699,15 @@
 <span class="sd">            Frequency units.</span>
 <span class="sd">            Default is &quot;rad/s&quot;</span>
 <span class="sd">        amplitude_units : str, optional</span>
-<span class="sd">            Units for the y axis.</span>
+<span class="sd">            Units for the response magnitude.</span>
 <span class="sd">            Acceptable units dimensionality are:</span>
-<span class="sd">                &#39;[length]&#39; - Displays the displacement;</span>
-<span class="sd">                &#39;[speed]&#39; - Displays the velocity;</span>
-<span class="sd">                &#39;[acceleration]&#39; - Displays the acceleration.</span>
+
+<span class="sd">            &#39;[length]&#39; - Displays the displacement;</span>
+
+<span class="sd">            &#39;[speed]&#39; - Displays the velocity;</span>
+
+<span class="sd">            &#39;[acceleration]&#39; - Displays the acceleration.</span>
+
 <span class="sd">            Default is &quot;m&quot; 0 to peak.</span>
 <span class="sd">            To use peak to peak use &#39;&lt;unit&gt; pkpk&#39; (e.g. &#39;m pkpk&#39;)</span>
 <span class="sd">        rotor_length_units : str, optional</span>
@@ -2738,11 +2799,15 @@
 <span class="sd">            Frequency units.</span>
 <span class="sd">            Default is &quot;rad/s&quot;</span>
 <span class="sd">        amplitude_units : str, optional</span>
-<span class="sd">            Units for the y axis.</span>
+<span class="sd">            Units for the response magnitude.</span>
 <span class="sd">            Acceptable units dimensionality are:</span>
-<span class="sd">                &#39;[length]&#39; - Displays the displacement;</span>
-<span class="sd">                &#39;[speed]&#39; - Displays the velocity;</span>
-<span class="sd">                &#39;[acceleration]&#39; - Displays the acceleration.</span>
+
+<span class="sd">            &#39;[length]&#39; - Displays the displacement;</span>
+
+<span class="sd">            &#39;[speed]&#39; - Displays the velocity;</span>
+
+<span class="sd">            &#39;[acceleration]&#39; - Displays the acceleration.</span>
+
 <span class="sd">            Default is &quot;m&quot; 0 to peak.</span>
 <span class="sd">            To use peak to peak use &#39;&lt;unit&gt; pkpk&#39; (e.g. &#39;m pkpk&#39;)</span>
 <span class="sd">        rotor_length_units : str, optional</span>
@@ -3035,13 +3100,17 @@
 <span class="sd">            Frequency units.</span>
 <span class="sd">            Default is &quot;rad/s&quot;</span>
 <span class="sd">        amplitude_units : str, optional</span>
-<span class="sd">            Units for the y axis.</span>
+<span class="sd">            Units for the response magnitude.</span>
 <span class="sd">            Acceptable units dimensionality are:</span>
-<span class="sd">                &#39;[length]&#39; - Displays the displacement;</span>
-<span class="sd">                &#39;[speed]&#39; - Displays the velocity;</span>
-<span class="sd">                &#39;[acceleration]&#39; - Displays the acceleration.</span>
-<span class="sd">            Default is &quot;m&quot; 0 to peak.</span>
-<span class="sd">            To use peak to peak use &#39;&lt;units&gt; pkpk&#39; (e.g. &#39;m/N pkpk&#39;)</span>
+
+<span class="sd">            &#39;[length]&#39; - Displays the displacement;</span>
+
+<span class="sd">            &#39;[speed]&#39; - Displays the velocity;</span>
+
+<span class="sd">            &#39;[acceleration]&#39; - Displays the acceleration.</span>
+
+<span class="sd">            Default is &quot;m/N&quot; 0 to peak.</span>
+<span class="sd">            To use peak to peak use &#39;&lt;unit&gt; pkpk&#39; (e.g. &#39;m/N pkpk&#39;)</span>
 <span class="sd">        rotor_length_units : str, optional</span>
 <span class="sd">            Rotor length units.</span>
 <span class="sd">            Default is &#39;m&#39;.</span>
@@ -3935,16 +4004,17 @@
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-<span class="sd">        probe : list of tuples</span>
+<span class="sd">        probe : list</span>
 <span class="sd">            List with tuples (node, orientation angle, tag).</span>
-<span class="sd">            node : int</span>
-<span class="sd">                Indicate the node where the probe is located.</span>
-<span class="sd">            orientation : float</span>
-<span class="sd">                Probe orientation angle about the shaft. The 0 refers to +X direction.</span>
-<span class="sd">                The strings &#39;major&#39; and &#39;minor&#39; can also be used to reference the major</span>
-<span class="sd">                and minor axis.</span>
-<span class="sd">            tag : str, optional</span>
-<span class="sd">                Probe tag to be displayed at the legend.</span>
+
+<span class="sd">            node : int -&gt; Indicate the node where the probe is located.</span>
+
+<span class="sd">            orientation : float -&gt; Probe orientation angle about the shaft.</span>
+<span class="sd">            The 0 refers to +X direction.</span>
+<span class="sd">            The strings &#39;major&#39; and &#39;minor&#39; can also be used to reference the major</span>
+<span class="sd">            and minor axis.</span>
+
+<span class="sd">            tag : str, optional -&gt; Probe tag to be add a DataFrame column title.</span>
 <span class="sd">        probe_units : str, option</span>
 <span class="sd">            Units for probe orientation.</span>
 <span class="sd">            Default is &quot;rad&quot;.</span>
@@ -4154,7 +4224,7 @@
         <span class="k">return</span> <span class="n">fig</span></div></div>
 
 
-<span class="k">class</span> <span class="nc">UCSResults</span><span class="p">(</span><span class="n">Results</span><span class="p">):</span>
+<div class="viewcode-block" id="UCSResults"><a class="viewcode-back" href="../../generated/results/ross.UCSResults.html#ross.UCSResults">[docs]</a><span class="k">class</span> <span class="nc">UCSResults</span><span class="p">(</span><span class="n">Results</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Class used to store results and provide plots for UCS Analysis.</span>
 
 <span class="sd">    Parameters</span>
@@ -4173,16 +4243,16 @@
 <span class="sd">        the bearing stiffness.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+<div class="viewcode-block" id="UCSResults.__init__"><a class="viewcode-back" href="../../generated/results/ross.UCSResults.html#ross.UCSResults.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">stiffness_range</span><span class="p">,</span> <span class="n">stiffness_log</span><span class="p">,</span> <span class="n">wn</span><span class="p">,</span> <span class="n">bearing</span><span class="p">,</span> <span class="n">intersection_points</span>
     <span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">stiffness_range</span> <span class="o">=</span> <span class="n">stiffness_range</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">stiffness_log</span> <span class="o">=</span> <span class="n">stiffness_log</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">wn</span> <span class="o">=</span> <span class="n">wn</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">bearing</span> <span class="o">=</span> <span class="n">bearing</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">intersection_points</span> <span class="o">=</span> <span class="n">intersection_points</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">intersection_points</span> <span class="o">=</span> <span class="n">intersection_points</span></div>
 
-    <span class="k">def</span> <span class="nf">plot</span><span class="p">(</span>
+<div class="viewcode-block" id="UCSResults.plot"><a class="viewcode-back" href="../../generated/results/ross.UCSResults.html#ross.UCSResults.plot">[docs]</a>    <span class="k">def</span> <span class="nf">plot</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">fig</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
         <span class="n">stiffness_units</span><span class="o">=</span><span class="s2">&quot;N/m&quot;</span><span class="p">,</span>
@@ -4301,10 +4371,10 @@
         <span class="p">)</span>
         <span class="n">fig</span><span class="o">.</span><span class="n">update_layout</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="s2">&quot;Undamped Critical Speed Map&quot;</span><span class="p">),</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
-        <span class="k">return</span> <span class="n">fig</span>
+        <span class="k">return</span> <span class="n">fig</span></div></div>
 
 
-<span class="k">class</span> <span class="nc">Level1Results</span><span class="p">(</span><span class="n">Results</span><span class="p">):</span>
+<div class="viewcode-block" id="Level1Results"><a class="viewcode-back" href="../../generated/results/ross.Level1Results.html#ross.Level1Results">[docs]</a><span class="k">class</span> <span class="nc">Level1Results</span><span class="p">(</span><span class="n">Results</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Class used to store results and provide plots for Level 1 Stability Analysis.</span>
 
 <span class="sd">    Parameters</span>
@@ -4315,11 +4385,11 @@
 <span class="sd">        Calculated log dec array for each cross coupling.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">stiffness_range</span><span class="p">,</span> <span class="n">log_dec</span><span class="p">):</span>
+<div class="viewcode-block" id="Level1Results.__init__"><a class="viewcode-back" href="../../generated/results/ross.Level1Results.html#ross.Level1Results.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">stiffness_range</span><span class="p">,</span> <span class="n">log_dec</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">stiffness_range</span> <span class="o">=</span> <span class="n">stiffness_range</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">log_dec</span> <span class="o">=</span> <span class="n">log_dec</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">log_dec</span> <span class="o">=</span> <span class="n">log_dec</span></div>
 
-    <span class="k">def</span> <span class="nf">plot</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">fig</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<div class="viewcode-block" id="Level1Results.plot"><a class="viewcode-back" href="../../generated/results/ross.Level1Results.html#ross.Level1Results.plot">[docs]</a>    <span class="k">def</span> <span class="nf">plot</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">fig</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Plot level 1 stability analysis.</span>
 
 <span class="sd">        This method will plot the stability 1 analysis for a</span>
@@ -4361,7 +4431,7 @@
             <span class="n">title_text</span><span class="o">=</span><span class="s2">&quot;Applied Cross Coupled Stiffness&quot;</span><span class="p">,</span> <span class="n">exponentformat</span><span class="o">=</span><span class="s2">&quot;power&quot;</span>
         <span class="p">)</span>
         <span class="n">fig</span><span class="o">.</span><span class="n">update_yaxes</span><span class="p">(</span><span class="n">title_text</span><span class="o">=</span><span class="s2">&quot;Log Dec&quot;</span><span class="p">,</span> <span class="n">exponentformat</span><span class="o">=</span><span class="s2">&quot;power&quot;</span><span class="p">)</span>
-        <span class="n">fig</span><span class="o">.</span><span class="n">update_layout</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="s2">&quot;Level 1 stability analysis&quot;</span><span class="p">),</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="n">fig</span><span class="o">.</span><span class="n">update_layout</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="s2">&quot;Level 1 stability analysis&quot;</span><span class="p">),</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div></div>
 </pre></div>
 
     </div>
@@ -4376,7 +4446,7 @@
       
     </p>
     <p>
-        &copy; Copyright 2020, Team ROSS.<br/>
+        &copy; Copyright 2021, Team ROSS.<br/>
       Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.5.4.<br/>
     </p>
   </div>

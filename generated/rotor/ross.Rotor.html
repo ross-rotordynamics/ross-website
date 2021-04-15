@@ -583,9 +583,8 @@ The default is “wd”.</p>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><dl class="simple">
-<dt><strong>results</strong><span class="classifier">array</span></dt><dd><p>Array with the damped natural frequencies, log dec and precessions
-corresponding to each speed of the speed_rad array.
-It will be returned if plot=False.</p>
+<dt><strong>results</strong><span class="classifier">ross.CampbellResults</span></dt><dd><p>For more information on attributes and methods available see:
+<a class="reference internal" href="../results/ross.CampbellResults.html#ross.CampbellResults" title="ross.CampbellResults"><code class="xref py py-class docutils literal notranslate"><span class="pre">ross.CampbellResults</span></code></a></p>
 </dd>
 </dl>
 </dd>
@@ -687,12 +686,8 @@ Default is 0.005 (0.5%).</p>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><dl class="simple">
-<dt><strong>CriticalSpeedResults</strong><span class="classifier">An instance of CriticalSpeedResults class, which is</span></dt><dd></dd>
-<dt>used to post-process results. Attributes stored:</dt><dd><p>CriticalSpeedResults.wn() : undamped critical speeds.
-CriticalSpeedResults.wd(): damped critical speeds.
-CriticalSpeedResults.log_dec : log_dec for each critical speed.
-CriticalSpeedResults.damping_ratio : damping ratio for each critical speed.
-CriticalSpeedResults.whirl_direction : whirl dir. for each critical speed.</p>
+<dt><strong>results</strong><span class="classifier">ross.CriticalSpeedResults</span></dt><dd><p>For more information on attributes and methods available see:
+<a class="reference internal" href="../results/ross.CriticalSpeedResults.html#ross.CriticalSpeedResults" title="ross.CriticalSpeedResults"><code class="xref py py-class docutils literal notranslate"><span class="pre">ross.CriticalSpeedResults</span></code></a></p>
 </dd>
 </dl>
 </dd>
@@ -738,7 +733,7 @@ applied and a frequency range.</p>
 .plot_deflected_shape_2d()</p>
 </dd>
 </dl>
-<dl class="field-list">
+<dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>force</strong><span class="classifier">list, array</span></dt><dd><p>Unbalance force in each degree of freedom for each value in omega</p>
@@ -777,21 +772,9 @@ Default is 0.005 (0.5%).</p>
 </dl>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><dl>
-<dt><strong>forced_resp</strong><span class="classifier">object</span></dt><dd><p>An instance of ForcedResponseResult class, which is used to post-process
-results. Attributes stored:
-forced_resp : array</p>
-<blockquote>
-<div><p>Array with the forced response for each node for each frequency.</p>
-</div></blockquote>
-<dl class="simple">
-<dt>speed_range<span class="classifier">array</span></dt><dd><p>Array with the frequencies.</p>
-</dd>
-<dt>velc_resp<span class="classifier">array</span></dt><dd><p>Array with the velocity response for each node for each frequency.</p>
-</dd>
-<dt>accl_resp<span class="classifier">array</span></dt><dd><p>Array with the acceleration response for each node for each frequency.</p>
-</dd>
-</dl>
+<dd class="field-even"><dl class="simple">
+<dt><strong>results</strong><span class="classifier">ross.ForcedResponseResult</span></dt><dd><p>For more information on attributes and methods available see:
+<code class="xref py py-class docutils literal notranslate"><span class="pre">ross.ForcedResponseResult</span></code></p>
 </dd>
 </dl>
 </dd>
@@ -830,7 +813,7 @@ frequencies and the modes that will be used.</p>
 .plot_polar_bode()</p>
 </dd>
 </dl>
-<dl class="field-list">
+<dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>speed_range</strong><span class="classifier">array, optional</span></dt><dd><p>Array with the desired range of frequencies.
@@ -863,24 +846,9 @@ Default is 0.005 (0.5%).</p>
 </dl>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><dl>
-<dt><strong>results</strong><span class="classifier">object</span></dt><dd><p>An instance of ForcedResponseResult class, which is used to post-process
-results. Attributes stored:
-freq_resp : array</p>
-<blockquote>
-<div><p>Array with the frequency response for each node for each pair
-input/output.</p>
-</div></blockquote>
-<dl class="simple">
-<dt>speed_range<span class="classifier">array</span></dt><dd><p>Array with the frequencies.</p>
-</dd>
-<dt>velc_resp<span class="classifier">array</span></dt><dd><p>Array with the velocity response for each node for each pair
-input/output.</p>
-</dd>
-<dt>accl_resp<span class="classifier">array</span></dt><dd><p>Array with the acceleration response for each node for each pair
-input/output.</p>
-</dd>
-</dl>
+<dd class="field-even"><dl class="simple">
+<dt><strong>results</strong><span class="classifier">ross.FrequencyResponseResults</span></dt><dd><p>For more information on attributes and methods available see:
+<a class="reference internal" href="../results/ross.FrequencyResponseResults.html#ross.FrequencyResponseResults" title="ross.FrequencyResponseResults"><code class="xref py py-class docutils literal notranslate"><span class="pre">ross.FrequencyResponseResults</span></code></a></p>
 </dd>
 </dl>
 </dd>
@@ -945,7 +913,8 @@ to create a better visualization (see np.logspace).</p>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><dl class="simple">
-<dt><strong>fig</strong><span class="classifier">Plotly graph_objects.Figure()</span></dt><dd><p>The figure object with the plot.</p>
+<dt><strong>results</strong><span class="classifier">ross.Level1Results</span></dt><dd><p>For more information on attributes and methods available see:
+<a class="reference internal" href="../results/ross.Level1Results.html#ross.Level1Results" title="ross.Level1Results"><code class="xref py py-class docutils literal notranslate"><span class="pre">ross.Level1Results</span></code></a></p>
 </dd>
 </dl>
 </dd>
@@ -1178,7 +1147,8 @@ force diagram and bending moment diagram.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
 <dd class="field-odd"><dl class="simple">
-<dt>results: object</dt><dd><p>An instance of StaticResult class, which is used to create plots.</p>
+<dt><strong>results</strong><span class="classifier">ross.StaticResults</span></dt><dd><p>For more information on attributes and methods available see:
+<a class="reference internal" href="../results/ross.StaticResults.html#ross.StaticResults" title="ross.StaticResults"><code class="xref py py-class docutils literal notranslate"><span class="pre">ross.StaticResults</span></code></a></p>
 </dd>
 </dl>
 </dd>
@@ -1237,9 +1207,8 @@ Each column corresponds to a dof and each row to a time.</p>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><dl class="simple">
-<dt><strong>results</strong><span class="classifier">array</span></dt><dd><p>Array containing the time array, the system response, and the
-time evolution of the state vector.
-It will be returned if plot=False.</p>
+<dt><strong>results</strong><span class="classifier">ross.TimeResponseResults</span></dt><dd><p>For more information on attributes and methods available see:
+<a class="reference internal" href="../results/ross.TimeResponseResults.html#ross.TimeResponseResults" title="ross.TimeResponseResults"><code class="xref py py-class docutils literal notranslate"><span class="pre">ross.TimeResponseResults</span></code></a></p>
 </dd>
 </dl>
 </dd>
@@ -1258,14 +1227,14 @@ It will be returned if plot=False.</p>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">dof</span> <span class="o">=</span> <span class="mi">13</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">response</span><span class="o">.</span><span class="n">yout</span><span class="p">[:,</span> <span class="n">dof</span><span class="p">]</span> 
 <span class="go">array([ 0.00000000e+00,  1.86686693e-07,  8.39130663e-07, ...</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># plot time response for a given probe:</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">fig1</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">plot_1d</span><span class="p">(</span><span class="n">probe</span><span class="o">=</span><span class="p">[</span><span class="n">probe1</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># plot orbit response - plotting 2D nodal orbit:</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">fig2</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">plot_2d</span><span class="p">(</span><span class="n">node</span><span class="o">=</span><span class="n">node</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># plot orbit response - plotting 3D orbits - full rotor model:</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">fig3</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">plot_3d</span><span class="p">()</span>
 </pre></div>
 </div>
-<p># plot time response for a given probe:
-&gt;&gt;&gt; fig1 = response.plot_1d(probe=[probe1])</p>
-<p># plot orbit response - plotting 2D nodal orbit:
-&gt;&gt;&gt; fig2 = response.plot_2d(node=node)</p>
-<p># plot orbit response - plotting 3D orbits - full rotor model:
-&gt;&gt;&gt; fig3 = response.plot_3d()</p>
 </dd></dl>
 
 <dl class="py method">
@@ -1292,6 +1261,13 @@ Default is False.</p>
 </dd>
 </dl>
 </dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>results</strong><span class="classifier">ross.UCSResults</span></dt><dd><p>For more information on attributes and methods available see:
+<a class="reference internal" href="../results/ross.UCSResults.html#ross.UCSResults" title="ross.UCSResults"><code class="xref py py-class docutils literal notranslate"><span class="pre">ross.UCSResults</span></code></a></p>
+</dd>
+</dl>
+</dd>
 </dl>
 </dd></dl>
 
@@ -1313,7 +1289,7 @@ applied and a frequency range.</p>
 .plot_deflected_shape_2d()</p>
 </dd>
 </dl>
-<dl class="field-list">
+<dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>node</strong><span class="classifier">list, int</span></dt><dd><p>Node where the unbalance is applied.</p>
@@ -1351,21 +1327,9 @@ Default is 0.005 (0.5%).</p>
 </dl>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><dl>
-<dt><strong>forced_response</strong><span class="classifier">object</span></dt><dd><p>An instance of ForcedResponseResult class, which is used to post-process
-results. Attributes stored:
-forced_resp : array</p>
-<blockquote>
-<div><p>Array with the forced response for each node for each frequency.</p>
-</div></blockquote>
-<dl class="simple">
-<dt>speed_range<span class="classifier">array</span></dt><dd><p>Array with the frequencies.</p>
-</dd>
-<dt>velc_resp<span class="classifier">array</span></dt><dd><p>Array with the velocity response for each node for each frequency.</p>
-</dd>
-<dt>accl_resp<span class="classifier">array</span></dt><dd><p>Array with the acceleration response for each node for each frequency.</p>
-</dd>
-</dl>
+<dd class="field-even"><dl class="simple">
+<dt><strong>results</strong><span class="classifier">ross.ForcedResponseResult</span></dt><dd><p>For more information on attributes and methods available see:
+<code class="xref py py-class docutils literal notranslate"><span class="pre">ross.ForcedResponseResult</span></code></p>
 </dd>
 </dl>
 </dd>
@@ -1568,7 +1532,7 @@ given a force, time and initial conditions.</p>
       
     </p>
     <p>
-        &copy; Copyright 2020, Team ROSS.<br/>
+        &copy; Copyright 2021, Team ROSS.<br/>
       Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.5.4.<br/>
     </p>
   </div>

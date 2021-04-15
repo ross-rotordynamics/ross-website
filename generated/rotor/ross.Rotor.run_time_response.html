@@ -183,9 +183,8 @@ Each column corresponds to a dof and each row to a time.</p>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><dl class="simple">
-<dt><strong>results</strong><span class="classifier">array</span></dt><dd><p>Array containing the time array, the system response, and the
-time evolution of the state vector.
-It will be returned if plot=False.</p>
+<dt><strong>results</strong><span class="classifier">ross.TimeResponseResults</span></dt><dd><p>For more information on attributes and methods available see:
+<a class="reference internal" href="../results/ross.TimeResponseResults.html#ross.TimeResponseResults" title="ross.TimeResponseResults"><code class="xref py py-class docutils literal notranslate"><span class="pre">ross.TimeResponseResults</span></code></a></p>
 </dd>
 </dl>
 </dd>
@@ -204,14 +203,14 @@ It will be returned if plot=False.</p>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">dof</span> <span class="o">=</span> <span class="mi">13</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">response</span><span class="o">.</span><span class="n">yout</span><span class="p">[:,</span> <span class="n">dof</span><span class="p">]</span> 
 <span class="go">array([ 0.00000000e+00,  1.86686693e-07,  8.39130663e-07, ...</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># plot time response for a given probe:</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">fig1</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">plot_1d</span><span class="p">(</span><span class="n">probe</span><span class="o">=</span><span class="p">[</span><span class="n">probe1</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># plot orbit response - plotting 2D nodal orbit:</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">fig2</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">plot_2d</span><span class="p">(</span><span class="n">node</span><span class="o">=</span><span class="n">node</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># plot orbit response - plotting 3D orbits - full rotor model:</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">fig3</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">plot_3d</span><span class="p">()</span>
 </pre></div>
 </div>
-<p># plot time response for a given probe:
-&gt;&gt;&gt; fig1 = response.plot_1d(probe=[probe1])</p>
-<p># plot orbit response - plotting 2D nodal orbit:
-&gt;&gt;&gt; fig2 = response.plot_2d(node=node)</p>
-<p># plot orbit response - plotting 3D orbits - full rotor model:
-&gt;&gt;&gt; fig3 = response.plot_3d()</p>
 </dd></dl>
 
 </div>
@@ -229,7 +228,7 @@ It will be returned if plot=False.</p>
       
     </p>
     <p>
-        &copy; Copyright 2020, Team ROSS.<br/>
+        &copy; Copyright 2021, Team ROSS.<br/>
       Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.5.4.<br/>
     </p>
   </div>

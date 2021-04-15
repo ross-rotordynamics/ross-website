@@ -208,19 +208,13 @@ Default is None.</p>
 <dl class="field-list">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl>
-<dt><strong>probe</strong><span class="classifier">list of tuples</span></dt><dd><p>List with tuples (node, orientation angle, tag).
-node : int</p>
-<blockquote>
-<div><p>Indicate the node where the probe is located.</p>
-</div></blockquote>
-<dl class="simple">
-<dt>orientation<span class="classifier">float</span></dt><dd><p>Probe orientation angle about the shaft. The 0 refers to +X direction.
+<dt><strong>probe</strong><span class="classifier">list</span></dt><dd><p>List with tuples (node, orientation angle, tag).</p>
+<p>node : int -&gt; Indicate the node where the probe is located.</p>
+<p>orientation : float -&gt; Probe orientation angle about the shaft.
+The 0 refers to +X direction.
 The strings ‘major’ and ‘minor’ can also be used to reference the major
 and minor axis.</p>
-</dd>
-<dt>tag<span class="classifier">str, optional</span></dt><dd><p>Probe tag to be add a DataFrame column title.</p>
-</dd>
-</dl>
+<p>tag : str, optional -&gt; Probe tag to be add a DataFrame column title.</p>
 </dd>
 <dt><strong>probe_units</strong><span class="classifier">str, option</span></dt><dd><p>Units for probe orientation.
 Default is “rad”.</p>
@@ -230,11 +224,9 @@ Default is “rad/s”</p>
 </dd>
 <dt><strong>amplitude_units</strong><span class="classifier">str, optional</span></dt><dd><p>Units for the response magnitude.
 Acceptable units dimensionality are:</p>
-<blockquote>
-<div><p>‘[length]’ - Displays the displacement;
-‘[speed]’ - Displays the velocity;
-‘[acceleration]’ - Displays the acceleration.</p>
-</div></blockquote>
+<p>‘[length]’ - Displays the displacement;</p>
+<p>‘[speed]’ - Displays the velocity;</p>
+<p>‘[acceleration]’ - Displays the acceleration.</p>
 <p>Default is “m” 0 to peak.
 To use peak to peak use ‘&lt;unit&gt; pkpk’ (e.g. ‘m pkpk’)</p>
 </dd>
@@ -242,7 +234,7 @@ To use peak to peak use ‘&lt;unit&gt; pkpk’ (e.g. ‘m pkpk’)</p>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><dl class="simple">
-<dt><strong>df</strong><span class="classifier">pd.DataFrame</span></dt><dd><p>DataFrame storing magnitude data arrays. They columns are set based on the
+<dt><strong>df</strong><span class="classifier">pd.DataFrame</span></dt><dd><p>DataFrame storing magnitude data arrays. The columns are set based on the
 probe’s tag.</p>
 </dd>
 </dl>
@@ -257,19 +249,13 @@ probe’s tag.</p>
 <dl class="field-list">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl>
-<dt><strong>probe</strong><span class="classifier">list of tuples</span></dt><dd><p>List with tuples (node, orientation angle, tag).
-node : int</p>
-<blockquote>
-<div><p>Indicate the node where the probe is located.</p>
-</div></blockquote>
-<dl class="simple">
-<dt>orientation<span class="classifier">float</span></dt><dd><p>Probe orientation angle about the shaft. The 0 refers to +X direction.
+<dt><strong>probe</strong><span class="classifier">list</span></dt><dd><p>List with tuples (node, orientation angle, tag).</p>
+<p>node : int -&gt; Indicate the node where the probe is located.</p>
+<p>orientation : float -&gt; Probe orientation angle about the shaft.
+The 0 refers to +X direction.
 The strings ‘major’ and ‘minor’ can also be used to reference the major
 and minor axis.</p>
-</dd>
-<dt>tag<span class="classifier">str, optional</span></dt><dd><p>Probe tag to be add a DataFrame column title.</p>
-</dd>
-</dl>
+<p>tag : str, optional -&gt; Probe tag to be add a DataFrame column title.</p>
 </dd>
 <dt><strong>probe_units</strong><span class="classifier">str, option</span></dt><dd><p>Units for probe orientation.
 Default is “rad”.</p>
@@ -277,13 +263,11 @@ Default is “rad”.</p>
 <dt><strong>frequency_units</strong><span class="classifier">str, optional</span></dt><dd><p>Units for the x axis.
 Default is “rad/s”</p>
 </dd>
-<dt><strong>amplitude_units</strong><span class="classifier">str, optional</span></dt><dd><p>Units for the y axis.
+<dt><strong>amplitude_units</strong><span class="classifier">str, optional</span></dt><dd><p>Units for the response magnitude.
 Acceptable units dimensionality are:</p>
-<blockquote>
-<div><p>‘[length]’ - Displays the displacement;
-‘[speed]’ - Displays the velocity;
-‘[acceleration]’ - Displays the acceleration.</p>
-</div></blockquote>
+<p>‘[length]’ - Displays the displacement;</p>
+<p>‘[speed]’ - Displays the velocity;</p>
+<p>‘[acceleration]’ - Displays the acceleration.</p>
 <p>Default is “m” 0 to peak.
 To use peak to peak use ‘&lt;unit&gt; pkpk’ (e.g. ‘m pkpk’)</p>
 </dd>
@@ -322,23 +306,17 @@ reinstantiate the class.</p>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">tempfile</span> <span class="kn">import</span> <span class="n">tempdir</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">ross</span> <span class="k">as</span> <span class="nn">rs</span>
-</pre></div>
-</div>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># Running an example</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># Running an example</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">rotor</span> <span class="o">=</span> <span class="n">rs</span><span class="o">.</span><span class="n">rotor_example</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">freq_range</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">500</span><span class="p">,</span> <span class="mi">31</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">n</span> <span class="o">=</span> <span class="mi">3</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">m</span> <span class="o">=</span> <span class="mf">0.01</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">p</span> <span class="o">=</span> <span class="mf">0.0</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">results</span> <span class="o">=</span> <span class="n">rotor</span><span class="o">.</span><span class="n">run_unbalance_response</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">m</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">freq_range</span><span class="p">)</span>
-</pre></div>
-</div>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># create path for a temporary file</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># create path for a temporary file</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">file</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">tempdir</span><span class="p">)</span> <span class="o">/</span> <span class="s1">&#39;unb_resp.toml&#39;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">results</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">file</span><span class="p">)</span>
-</pre></div>
-</div>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># Loading file</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># Loading file</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">results2</span> <span class="o">=</span> <span class="n">rs</span><span class="o">.</span><span class="n">ForcedResponseResults</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">file</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">abs</span><span class="p">(</span><span class="n">results2</span><span class="o">.</span><span class="n">forced_resp</span><span class="p">)</span><span class="o">.</span><span class="n">all</span><span class="p">()</span> <span class="o">==</span> <span class="nb">abs</span><span class="p">(</span><span class="n">results</span><span class="o">.</span><span class="n">forced_resp</span><span class="p">)</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
 <span class="go">True</span>
@@ -361,19 +339,13 @@ reinstantiate the class.</p>
 <dl class="field-list">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl>
-<dt><strong>probe</strong><span class="classifier">list of tuples</span></dt><dd><p>List with tuples (node, orientation angle, tag).
-node : int</p>
-<blockquote>
-<div><p>Indicate the node where the probe is located.</p>
-</div></blockquote>
-<dl class="simple">
-<dt>orientation<span class="classifier">float</span></dt><dd><p>Probe orientation angle about the shaft. The 0 refers to +X direction.
+<dt><strong>probe</strong><span class="classifier">list</span></dt><dd><p>List with tuples (node, orientation angle, tag).</p>
+<p>node : int -&gt; Indicate the node where the probe is located.</p>
+<p>orientation : float -&gt; Probe orientation angle about the shaft.
+The 0 refers to +X direction.
 The strings ‘major’ and ‘minor’ can also be used to reference the major
 and minor axis.</p>
-</dd>
-<dt>tag<span class="classifier">str, optional</span></dt><dd><p>Probe tag to be displayed at the legend.</p>
-</dd>
-</dl>
+<p>tag : str, optional -&gt; Probe tag to be add a DataFrame column title.</p>
 </dd>
 <dt><strong>probe_units</strong><span class="classifier">str, option</span></dt><dd><p>Units for probe orientation.
 Default is “rad”.</p>
@@ -381,13 +353,11 @@ Default is “rad”.</p>
 <dt><strong>frequency_units</strong><span class="classifier">str, optional</span></dt><dd><p>Frequency units.
 Default is “rad/s”</p>
 </dd>
-<dt><strong>amplitude_units</strong><span class="classifier">str, optional</span></dt><dd><p>Units for the y axis.
+<dt><strong>amplitude_units</strong><span class="classifier">str, optional</span></dt><dd><p>Units for the response magnitude.
 Acceptable units dimensionality are:</p>
-<blockquote>
-<div><p>‘[length]’ - Displays the displacement;
-‘[speed]’ - Displays the velocity;
-‘[acceleration]’ - Displays the acceleration.</p>
-</div></blockquote>
+<p>‘[length]’ - Displays the displacement;</p>
+<p>‘[speed]’ - Displays the velocity;</p>
+<p>‘[acceleration]’ - Displays the acceleration.</p>
 <p>Default is “m” 0 to peak.
 To use peak to peak use ‘&lt;unit&gt; pkpk’ (e.g. ‘m pkpk’)</p>
 </dd>
@@ -483,15 +453,13 @@ Default is 101.</p>
 <dt><strong>frequency_units</strong><span class="classifier">str, optional</span></dt><dd><p>Frequency units.
 Default is “rad/s”</p>
 </dd>
-<dt><strong>amplitude_units</strong><span class="classifier">str, optional</span></dt><dd><p>Units for the y axis.
+<dt><strong>amplitude_units</strong><span class="classifier">str, optional</span></dt><dd><p>Units for the response magnitude.
 Acceptable units dimensionality are:</p>
-<blockquote>
-<div><p>‘[length]’ - Displays the displacement;
-‘[speed]’ - Displays the velocity;
-‘[acceleration]’ - Displays the acceleration.</p>
-</div></blockquote>
-<p>Default is “m” 0 to peak.
-To use peak to peak use ‘&lt;units&gt; pkpk’ (e.g. ‘m/N pkpk’)</p>
+<p>‘[length]’ - Displays the displacement;</p>
+<p>‘[speed]’ - Displays the velocity;</p>
+<p>‘[acceleration]’ - Displays the acceleration.</p>
+<p>Default is “m/N” 0 to peak.
+To use peak to peak use ‘&lt;unit&gt; pkpk’ (e.g. ‘m/N pkpk’)</p>
 </dd>
 <dt><strong>rotor_length_units</strong><span class="classifier">str, optional</span></dt><dd><p>Rotor length units.
 Default is ‘m’.</p>
@@ -541,13 +509,11 @@ passed to the class (rad/s).</p>
 <dt><strong>frequency_units</strong><span class="classifier">str, optional</span></dt><dd><p>Frequency units.
 Default is “rad/s”</p>
 </dd>
-<dt><strong>amplitude_units</strong><span class="classifier">str, optional</span></dt><dd><p>Units for the y axis.
+<dt><strong>amplitude_units</strong><span class="classifier">str, optional</span></dt><dd><p>Units for the response magnitude.
 Acceptable units dimensionality are:</p>
-<blockquote>
-<div><p>‘[length]’ - Displays the displacement;
-‘[speed]’ - Displays the velocity;
-‘[acceleration]’ - Displays the acceleration.</p>
-</div></blockquote>
+<p>‘[length]’ - Displays the displacement;</p>
+<p>‘[speed]’ - Displays the velocity;</p>
+<p>‘[acceleration]’ - Displays the acceleration.</p>
 <p>Default is “m” 0 to peak.
 To use peak to peak use ‘&lt;unit&gt; pkpk’ (e.g. ‘m pkpk’)</p>
 </dd>
@@ -587,13 +553,11 @@ Default is 101.</p>
 <dt><strong>frequency_units</strong><span class="classifier">str, optional</span></dt><dd><p>Frequency units.
 Default is “rad/s”</p>
 </dd>
-<dt><strong>amplitude_units</strong><span class="classifier">str, optional</span></dt><dd><p>Units for the y axis.
+<dt><strong>amplitude_units</strong><span class="classifier">str, optional</span></dt><dd><p>Units for the response magnitude.
 Acceptable units dimensionality are:</p>
-<blockquote>
-<div><p>‘[length]’ - Displays the displacement;
-‘[speed]’ - Displays the velocity;
-‘[acceleration]’ - Displays the acceleration.</p>
-</div></blockquote>
+<p>‘[length]’ - Displays the displacement;</p>
+<p>‘[speed]’ - Displays the velocity;</p>
+<p>‘[acceleration]’ - Displays the acceleration.</p>
 <p>Default is “m” 0 to peak.
 To use peak to peak use ‘&lt;unit&gt; pkpk’ (e.g. ‘m pkpk’)</p>
 </dd>
@@ -624,19 +588,13 @@ plot layout only (e.g. width=1000, height=800, …).
 <dl class="field-list">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl>
-<dt><strong>probe</strong><span class="classifier">list of tuples</span></dt><dd><p>List with tuples (node, orientation angle, tag).
-node : int</p>
-<blockquote>
-<div><p>Indicate the node where the probe is located.</p>
-</div></blockquote>
-<dl class="simple">
-<dt>orientation<span class="classifier">float</span></dt><dd><p>Probe orientation angle about the shaft. The 0 refers to +X direction.
+<dt><strong>probe</strong><span class="classifier">list</span></dt><dd><p>List with tuples (node, orientation angle, tag).</p>
+<p>node : int -&gt; Indicate the node where the probe is located.</p>
+<p>orientation : float -&gt; Probe orientation angle about the shaft.
+The 0 refers to +X direction.
 The strings ‘major’ and ‘minor’ can also be used to reference the major
 and minor axis.</p>
-</dd>
-<dt>tag<span class="classifier">str, optional</span></dt><dd><p>Probe tag to be displayed at the legend.</p>
-</dd>
-</dl>
+<p>tag : str, optional -&gt; Probe tag to be add a DataFrame column title.</p>
 </dd>
 <dt><strong>probe_units</strong><span class="classifier">str, option</span></dt><dd><p>Units for probe orientation.
 Default is “rad”.</p>
@@ -644,13 +602,11 @@ Default is “rad”.</p>
 <dt><strong>frequency_units</strong><span class="classifier">str, optional</span></dt><dd><p>Units for the x axis.
 Default is “rad/s”</p>
 </dd>
-<dt><strong>amplitude_units</strong><span class="classifier">str, optional</span></dt><dd><p>Units for the y axis.
+<dt><strong>amplitude_units</strong><span class="classifier">str, optional</span></dt><dd><p>Units for the response magnitude.
 Acceptable units dimensionality are:</p>
-<blockquote>
-<div><p>‘[length]’ - Displays the displacement;
-‘[speed]’ - Displays the velocity;
-‘[acceleration]’ - Displays the acceleration.</p>
-</div></blockquote>
+<p>‘[length]’ - Displays the displacement;</p>
+<p>‘[speed]’ - Displays the velocity;</p>
+<p>‘[acceleration]’ - Displays the acceleration.</p>
 <p>Default is “m” 0 to peak.
 To use peak to peak use ‘&lt;unit&gt; pkpk’ (e.g. ‘m pkpk’)</p>
 </dd>
@@ -678,19 +634,13 @@ To use peak to peak use ‘&lt;unit&gt; pkpk’ (e.g. ‘m pkpk’)</p>
 <dl class="field-list">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl>
-<dt><strong>probe</strong><span class="classifier">list of tuples</span></dt><dd><p>List with tuples (node, orientation angle, tag).
-node : int</p>
-<blockquote>
-<div><p>Indicate the node where the probe is located.</p>
-</div></blockquote>
-<dl class="simple">
-<dt>orientation<span class="classifier">float</span></dt><dd><p>Probe orientation angle about the shaft. The 0 refers to +X direction.
+<dt><strong>probe</strong><span class="classifier">list</span></dt><dd><p>List with tuples (node, orientation angle, tag).</p>
+<p>node : int -&gt; Indicate the node where the probe is located.</p>
+<p>orientation : float -&gt; Probe orientation angle about the shaft.
+The 0 refers to +X direction.
 The strings ‘major’ and ‘minor’ can also be used to reference the major
 and minor axis.</p>
-</dd>
-<dt>tag<span class="classifier">str, optional</span></dt><dd><p>Probe tag to be displayed at the legend.</p>
-</dd>
-</dl>
+<p>tag : str, optional -&gt; Probe tag to be add a DataFrame column title.</p>
 </dd>
 <dt><strong>probe_units</strong><span class="classifier">str, option</span></dt><dd><p>Units for probe orientation.
 Default is “rad”.</p>
@@ -698,13 +648,11 @@ Default is “rad”.</p>
 <dt><strong>frequency_units</strong><span class="classifier">str, optional</span></dt><dd><p>Units for the x axis.
 Default is “rad/s”</p>
 </dd>
-<dt><strong>amplitude_units</strong><span class="classifier">str, optional</span></dt><dd><p>Units for the y axis.
+<dt><strong>amplitude_units</strong><span class="classifier">str, optional</span></dt><dd><p>Units for the response magnitude.
 Acceptable units dimensionality are:</p>
-<blockquote>
-<div><p>‘[length]’ - Displays the displacement;
-‘[speed]’ - Displays the velocity;
-‘[acceleration]’ - Displays the acceleration.</p>
-</div></blockquote>
+<p>‘[length]’ - Displays the displacement;</p>
+<p>‘[speed]’ - Displays the velocity;</p>
+<p>‘[acceleration]’ - Displays the acceleration.</p>
 <p>Default is “m” 0 to peak.
 To use peak to peak use ‘&lt;unit&gt; pkpk’ (e.g. ‘m pkpk’)</p>
 </dd>
@@ -735,19 +683,13 @@ Default is “rad”</p>
 <dl class="field-list">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl>
-<dt><strong>probe</strong><span class="classifier">list of tuples</span></dt><dd><p>List with tuples (node, orientation angle, tag).
-node : int</p>
-<blockquote>
-<div><p>Indicate the node where the probe is located.</p>
-</div></blockquote>
-<dl class="simple">
-<dt>orientation<span class="classifier">float</span></dt><dd><p>Probe orientation angle about the shaft. The 0 refers to +X direction.
+<dt><strong>probe</strong><span class="classifier">list</span></dt><dd><p>List with tuples (node, orientation angle, tag).</p>
+<p>node : int -&gt; Indicate the node where the probe is located.</p>
+<p>orientation : float -&gt; Probe orientation angle about the shaft.
+The 0 refers to +X direction.
 The strings ‘major’ and ‘minor’ can also be used to reference the major
 and minor axis.</p>
-</dd>
-<dt>tag<span class="classifier">str, optional</span></dt><dd><p>Probe tag to be displayed at the legend.</p>
-</dd>
-</dl>
+<p>tag : str, optional -&gt; Probe tag to be add a DataFrame column title.</p>
 </dd>
 <dt><strong>probe_units</strong><span class="classifier">str, option</span></dt><dd><p>Units for probe orientation.
 Default is “rad”.</p>
@@ -755,13 +697,11 @@ Default is “rad”.</p>
 <dt><strong>frequency_units</strong><span class="classifier">str, optional</span></dt><dd><p>Units for the x axis.
 Default is “rad/s”</p>
 </dd>
-<dt><strong>amplitude_units</strong><span class="classifier">str, optional</span></dt><dd><p>Units for the y axis.
+<dt><strong>amplitude_units</strong><span class="classifier">str, optional</span></dt><dd><p>Units for the response magnitude.
 Acceptable units dimensionality are:</p>
-<blockquote>
-<div><p>‘[length]’ - Displays the displacement;
-‘[speed]’ - Displays the velocity;
-‘[acceleration]’ - Displays the acceleration.</p>
-</div></blockquote>
+<p>‘[length]’ - Displays the displacement;</p>
+<p>‘[speed]’ - Displays the velocity;</p>
+<p>‘[acceleration]’ - Displays the acceleration.</p>
 <p>Default is “m” 0 to peak.
 To use peak to peak use ‘&lt;unit&gt; pkpk’ (e.g. ‘m pkpk’)</p>
 </dd>
@@ -861,7 +801,7 @@ reinstantiate the class.</p>
       
     </p>
     <p>
-        &copy; Copyright 2020, Team ROSS.<br/>
+        &copy; Copyright 2021, Team ROSS.<br/>
       Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.5.4.<br/>
     </p>
   </div>

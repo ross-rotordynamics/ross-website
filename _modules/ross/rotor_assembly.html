@@ -817,13 +817,9 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        CriticalSpeedResults : An instance of CriticalSpeedResults class, which is</span>
-<span class="sd">        used to post-process results. Attributes stored:</span>
-<span class="sd">            CriticalSpeedResults.wn() : undamped critical speeds.</span>
-<span class="sd">            CriticalSpeedResults.wd(): damped critical speeds.</span>
-<span class="sd">            CriticalSpeedResults.log_dec : log_dec for each critical speed.</span>
-<span class="sd">            CriticalSpeedResults.damping_ratio : damping ratio for each critical speed.</span>
-<span class="sd">            CriticalSpeedResults.whirl_direction : whirl dir. for each critical speed.</span>
+<span class="sd">        results : ross.CriticalSpeedResults</span>
+<span class="sd">            For more information on attributes and methods available see:</span>
+<span class="sd">            :py:class:`ross.CriticalSpeedResults`</span>
 
 <span class="sd">        Examples</span>
 <span class="sd">        --------</span>
@@ -1571,20 +1567,9 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        results : object</span>
-<span class="sd">            An instance of ForcedResponseResult class, which is used to post-process</span>
-<span class="sd">            results. Attributes stored:</span>
-<span class="sd">            freq_resp : array</span>
-<span class="sd">                Array with the frequency response for each node for each pair</span>
-<span class="sd">                input/output.</span>
-<span class="sd">            speed_range : array</span>
-<span class="sd">                Array with the frequencies.</span>
-<span class="sd">            velc_resp : array</span>
-<span class="sd">                Array with the velocity response for each node for each pair</span>
-<span class="sd">                input/output.</span>
-<span class="sd">            accl_resp : array</span>
-<span class="sd">                Array with the acceleration response for each node for each pair</span>
-<span class="sd">                input/output.</span>
+<span class="sd">        results : ross.FrequencyResponseResults</span>
+<span class="sd">            For more information on attributes and methods available see:</span>
+<span class="sd">            :py:class:`ross.FrequencyResponseResults`</span>
 
 <span class="sd">        Examples</span>
 <span class="sd">        --------</span>
@@ -1723,17 +1708,9 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        forced_resp : object</span>
-<span class="sd">            An instance of ForcedResponseResult class, which is used to post-process</span>
-<span class="sd">            results. Attributes stored:</span>
-<span class="sd">            forced_resp : array</span>
-<span class="sd">                Array with the forced response for each node for each frequency.</span>
-<span class="sd">            speed_range : array</span>
-<span class="sd">                Array with the frequencies.</span>
-<span class="sd">            velc_resp : array</span>
-<span class="sd">                Array with the velocity response for each node for each frequency.</span>
-<span class="sd">            accl_resp : array</span>
-<span class="sd">                Array with the acceleration response for each node for each frequency.</span>
+<span class="sd">        results : ross.ForcedResponseResult</span>
+<span class="sd">            For more information on attributes and methods available see:</span>
+<span class="sd">            :py:class:`ross.ForcedResponseResult`</span>
 
 <span class="sd">        Examples</span>
 <span class="sd">        --------</span>
@@ -1896,17 +1873,9 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        forced_response : object</span>
-<span class="sd">            An instance of ForcedResponseResult class, which is used to post-process</span>
-<span class="sd">            results. Attributes stored:</span>
-<span class="sd">            forced_resp : array</span>
-<span class="sd">                Array with the forced response for each node for each frequency.</span>
-<span class="sd">            speed_range : array</span>
-<span class="sd">                Array with the frequencies.</span>
-<span class="sd">            velc_resp : array</span>
-<span class="sd">                Array with the velocity response for each node for each frequency.</span>
-<span class="sd">            accl_resp : array</span>
-<span class="sd">                Array with the acceleration response for each node for each frequency.</span>
+<span class="sd">        results : ross.ForcedResponseResult</span>
+<span class="sd">            For more information on attributes and methods available see:</span>
+<span class="sd">            :py:class:`ross.ForcedResponseResult`</span>
 
 <span class="sd">        Examples</span>
 <span class="sd">        --------</span>
@@ -2206,10 +2175,9 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        results : array</span>
-<span class="sd">            Array with the damped natural frequencies, log dec and precessions</span>
-<span class="sd">            corresponding to each speed of the speed_rad array.</span>
-<span class="sd">            It will be returned if plot=False.</span>
+<span class="sd">        results : ross.CampbellResults</span>
+<span class="sd">            For more information on attributes and methods available see:</span>
+<span class="sd">            :py:class:`ross.CampbellResults`</span>
 
 <span class="sd">        Examples</span>
 <span class="sd">        --------</span>
@@ -2289,6 +2257,12 @@
 <span class="sd">            If True a synchronous analysis is carried out and the frequency of</span>
 <span class="sd">            the first forward model will be equal to the speed.</span>
 <span class="sd">            Default is False.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        results : ross.UCSResults</span>
+<span class="sd">            For more information on attributes and methods available see:</span>
+<span class="sd">            :py:class:`ross.UCSResults`</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">stiffness_range</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">rated_w</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
@@ -2388,8 +2362,9 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        fig : Plotly graph_objects.Figure()</span>
-<span class="sd">            The figure object with the plot.</span>
+<span class="sd">        results : ross.Level1Results</span>
+<span class="sd">            For more information on attributes and methods available see:</span>
+<span class="sd">            :py:class:`ross.Level1Results`</span>
 
 <span class="sd">        Example</span>
 <span class="sd">        -------</span>
@@ -2472,10 +2447,9 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        results : array</span>
-<span class="sd">            Array containing the time array, the system response, and the</span>
-<span class="sd">            time evolution of the state vector.</span>
-<span class="sd">            It will be returned if plot=False.</span>
+<span class="sd">        results : ross.TimeResponseResults</span>
+<span class="sd">            For more information on attributes and methods available see:</span>
+<span class="sd">            :py:class:`ross.TimeResponseResults`</span>
 
 <span class="sd">        Examples</span>
 <span class="sd">        --------</span>
@@ -2492,14 +2466,11 @@
 <span class="sd">        &gt;&gt;&gt; dof = 13</span>
 <span class="sd">        &gt;&gt;&gt; response.yout[:, dof] # doctest: +ELLIPSIS</span>
 <span class="sd">        array([ 0.00000000e+00,  1.86686693e-07,  8.39130663e-07, ...</span>
-
-<span class="sd">        # plot time response for a given probe:</span>
+<span class="sd">        &gt;&gt;&gt; # plot time response for a given probe:</span>
 <span class="sd">        &gt;&gt;&gt; fig1 = response.plot_1d(probe=[probe1])</span>
-
-<span class="sd">        # plot orbit response - plotting 2D nodal orbit:</span>
+<span class="sd">        &gt;&gt;&gt; # plot orbit response - plotting 2D nodal orbit:</span>
 <span class="sd">        &gt;&gt;&gt; fig2 = response.plot_2d(node=node)</span>
-
-<span class="sd">        # plot orbit response - plotting 3D orbits - full rotor model:</span>
+<span class="sd">        &gt;&gt;&gt; # plot orbit response - plotting 3D orbits - full rotor model:</span>
 <span class="sd">        &gt;&gt;&gt; fig3 = response.plot_3d()</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">t_</span><span class="p">,</span> <span class="n">yout</span><span class="p">,</span> <span class="n">xout</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">time_response</span><span class="p">(</span><span class="n">speed</span><span class="p">,</span> <span class="n">F</span><span class="p">,</span> <span class="n">t</span><span class="p">)</span>
@@ -2846,8 +2817,9 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        results: object</span>
-<span class="sd">            An instance of StaticResult class, which is used to create plots.</span>
+<span class="sd">        results : ross.StaticResults</span>
+<span class="sd">            For more information on attributes and methods available see:</span>
+<span class="sd">            :py:class:`ross.StaticResults`</span>
 
 <span class="sd">        Raises</span>
 <span class="sd">        ------</span>
@@ -4047,7 +4019,7 @@
       
     </p>
     <p>
-        &copy; Copyright 2020, Team ROSS.<br/>
+        &copy; Copyright 2021, Team ROSS.<br/>
       Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.5.4.<br/>
     </p>
   </div>

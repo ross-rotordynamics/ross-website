@@ -170,7 +170,7 @@ frequencies and the modes that will be used.</p>
 .plot_polar_bode()</p>
 </dd>
 </dl>
-<dl class="field-list">
+<dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>speed_range</strong><span class="classifier">array, optional</span></dt><dd><p>Array with the desired range of frequencies.
@@ -203,24 +203,9 @@ Default is 0.005 (0.5%).</p>
 </dl>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><dl>
-<dt><strong>results</strong><span class="classifier">object</span></dt><dd><p>An instance of ForcedResponseResult class, which is used to post-process
-results. Attributes stored:
-freq_resp : array</p>
-<blockquote>
-<div><p>Array with the frequency response for each node for each pair
-input/output.</p>
-</div></blockquote>
-<dl class="simple">
-<dt>speed_range<span class="classifier">array</span></dt><dd><p>Array with the frequencies.</p>
-</dd>
-<dt>velc_resp<span class="classifier">array</span></dt><dd><p>Array with the velocity response for each node for each pair
-input/output.</p>
-</dd>
-<dt>accl_resp<span class="classifier">array</span></dt><dd><p>Array with the acceleration response for each node for each pair
-input/output.</p>
-</dd>
-</dl>
+<dd class="field-even"><dl class="simple">
+<dt><strong>results</strong><span class="classifier">ross.FrequencyResponseResults</span></dt><dd><p>For more information on attributes and methods available see:
+<a class="reference internal" href="../results/ross.FrequencyResponseResults.html#ross.FrequencyResponseResults" title="ross.FrequencyResponseResults"><code class="xref py py-class docutils literal notranslate"><span class="pre">ross.FrequencyResponseResults</span></code></a></p>
 </dd>
 </dl>
 </dd>
@@ -276,7 +261,7 @@ respectively</p>
       
     </p>
     <p>
-        &copy; Copyright 2020, Team ROSS.<br/>
+        &copy; Copyright 2021, Team ROSS.<br/>
       Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.5.4.<br/>
     </p>
   </div>

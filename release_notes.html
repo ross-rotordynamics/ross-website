@@ -326,6 +326,16 @@ makes it easier for the user to find it.</p>
 <div class="section" id="add-minor-and-major-axes-to-response-plots">
 <h4>Add minor and major axes to response plots<a class="headerlink" href="#add-minor-and-major-axes-to-response-plots" title="Permalink to this headline">¶</a></h4>
 <p>We can now select the major and minor axis when plotting responses:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>   <span class="c1"># plot response for major or minor axis:</span>
+   <span class="o">&gt;&gt;&gt;</span> <span class="n">probe_node</span> <span class="o">=</span> <span class="mi">3</span>
+   <span class="o">&gt;&gt;&gt;</span> <span class="n">probe_angle</span> <span class="o">=</span> <span class="s2">&quot;major&quot;</span>   <span class="c1"># for major axis</span>
+   <span class="o">&gt;&gt;&gt;</span> <span class="c1"># probe_angle = &quot;minor&quot; # for minor axis</span>
+   <span class="o">&gt;&gt;&gt;</span> <span class="n">probe_tag</span> <span class="o">=</span> <span class="s2">&quot;my_probe&quot;</span>  <span class="c1"># optional</span>
+   <span class="o">&gt;&gt;&gt;</span> <span class="n">fig</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">probe</span><span class="o">=</span><span class="p">[(</span><span class="n">probe_node</span><span class="p">,</span> <span class="n">probe_angle</span><span class="p">,</span> <span class="n">probe_tag</span><span class="p">)])</span>
+
+<span class="n">Calculate</span> <span class="n">velocity</span> <span class="ow">and</span> <span class="n">acceleration</span> <span class="n">responses</span>
+</pre></div>
+</div>
 <hr class="docutils" />
 <p>The method <code class="docutils literal notranslate"><span class="pre">run_freq_response()</span></code> now returns, not only the displacement results,
 but also the velocity and acceleration. The data is then input to
@@ -355,6 +365,10 @@ and misalingment.</p>
 <h4>Change methods to <cite>run_</cite><a class="headerlink" href="#change-methods-to-run" title="Permalink to this headline">¶</a></h4>
 <p>The plot_level1 and plot_ucs methods were refactore so that they behave as other run methods.
 Now we the run* prefix to call them and they will return Results objects.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ucs</span> <span class="o">=</span> <span class="n">rotor</span><span class="o">.</span><span class="n">run_ucs</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
+<span class="n">ucs</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
+</pre></div>
+</div>
 </div>
 </div>
 <div class="section" id="bug-fixes">
@@ -1358,7 +1372,7 @@ the convergence analysis.</p>
       
     </p>
     <p>
-        &copy; Copyright 2020, Team ROSS.<br/>
+        &copy; Copyright 2021, Team ROSS.<br/>
       Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.5.4.<br/>
     </p>
   </div>

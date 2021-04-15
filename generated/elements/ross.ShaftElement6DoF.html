@@ -167,16 +167,15 @@
 account shear stress, rotary inertia and gyroscopic effects.
 The matrices will be defined considering the following local
 coordinate vector:</p>
-<p><span class="math notranslate nohighlight">\([u_0, v_0, w_0, \theta_0, \psi_0, \phi_0, u_1, v_1, w_1, \theta_1, \psi_1, \phi_1]**T\)</span></p>
+<div class="math notranslate nohighlight">
+\[[u_0, v_0, w_0, \theta_0, \psi_0, \phi_0, u_1, v_1, w_1, \theta_1, \psi_1, \phi_1]^T\]</div>
 <p>Being the following their ordering for an element:</p>
-<blockquote>
-<div><p><span class="math notranslate nohighlight">\(x_0,u_0\)</span>  - horizontal translation;
-<span class="math notranslate nohighlight">\(y_0,v_0\)</span>  - vertical translation;
-<span class="math notranslate nohighlight">\(z_0,w_0\)</span>  - axial translation;
-<span class="math notranslate nohighlight">\(\theta_0\)</span> - rotation around horizontal, bending on the yz plane;
-<span class="math notranslate nohighlight">\(\psi_0\)</span>   - rotation around vertical, bending on the xz plane;
-<span class="math notranslate nohighlight">\(\phi_0\)</span>   - torsion around axial, z direction.</p>
-</div></blockquote>
+<p><span class="math notranslate nohighlight">\(x_0,u_0\)</span>  - horizontal translation;</p>
+<p><span class="math notranslate nohighlight">\(y_0,v_0\)</span>  - vertical translation;</p>
+<p><span class="math notranslate nohighlight">\(z_0,w_0\)</span>  - axial translation;</p>
+<p><span class="math notranslate nohighlight">\(\theta_0\)</span> - rotation around horizontal, bending on the yz plane;</p>
+<p><span class="math notranslate nohighlight">\(\psi_0\)</span>   - rotation around vertical, bending on the xz plane;</p>
+<p><span class="math notranslate nohighlight">\(\phi_0\)</span>   - torsion around axial, z direction.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
@@ -192,7 +191,7 @@ Default is equal to idl value for cylindrical element.</p>
 <dt><strong>odr</strong><span class="classifier">float, pint.Quantity, optional</span></dt><dd><p>Outer diameter of the element at the right node (m).
 Default is equal to odl value for cylindrical element.</p>
 </dd>
-<dt><strong>material</strong><span class="classifier">ross.material</span></dt><dd><p>Shaft material.</p>
+<dt><strong>material</strong><span class="classifier">ross.Material</span></dt><dd><p>Shaft material.</p>
 </dd>
 <dt><strong>alpha</strong><span class="classifier">float, optional</span></dt><dd><p>Proportional damping coefficient, associated to the element Mass matrix</p>
 </dd>
@@ -225,17 +224,14 @@ Default is None.</p>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><dl class="simple">
-<dt>A 6 degrees of freedom shaft element, with available gyroscopic, shear and rotary</dt><dd></dd>
-<dt>inertia effects.</dt><dd></dd>
+<dt><strong>shaft_element</strong><span class="classifier">rs.ShaftElement6DoF</span></dt><dd><p>A 6 degrees of freedom shaft element, with available gyroscopic, shear and rotary inertia effects.</p>
+</dd>
 </dl>
 </dd>
 </dl>
 <p class="rubric">References</p>
-<p id="bibtex-bibliography-generated/elements/ross.ShaftElement6DoF-0"><dl class="citation">
-<dt class="bibtex label" id="friswell2010dynamics"><span class="brackets">Fri10</span></dt>
-<dd><p>Michael I Friswell. <em>Dynamics of rotating machines</em>. Cambridge University Press, 2010.</p>
-</dd>
-<dt class="bibtex label" id="hutchingson2001"><span class="brackets"><a class="fn-backref" href="#id1">Hut01</a></span></dt>
+<p id="id1"><dl class="citation">
+<dt class="label" id="id72"><span class="brackets">Hut01</span></dt>
 <dd><p>J. R. Hutchingson. Shear coefficients for timoshenko beam theory. <em>J. Appl. Mech.</em>, 2001.</p>
 </dd>
 </dl>
@@ -256,7 +252,7 @@ Default is None.</p>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>Poisson</strong><span class="classifier">float</span></dt><dd><p>Poisson coefficient for the element.</p>
 </dd>
-<dt><strong>kappa</strong><span class="classifier">float</span></dt><dd><p>Shear coefficient for the element, determined from <a class="bibtex reference internal" href="#hutchingson2001" id="id1">[Hut01]</a>
+<dt><strong>kappa</strong><span class="classifier">float</span></dt><dd><p>Shear coefficient for the element, determined from <span id="id74">[<a class="reference internal" href="#id72">Hut01</a>]</span>
 formulation.</p>
 </dd>
 </dl>
@@ -294,13 +290,14 @@ formulation.</p>
 <dt id="ross.ShaftElement6DoF.G">
 <code class="sig-name descname"><span class="pre">G</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/shaft_element.html#ShaftElement6DoF.G"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ross.ShaftElement6DoF.G" title="Permalink to this definition">¶</a></dt>
 <dd><p>Gyroscopic matrix for an instance of a 6 DoFs shaft element.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>G</strong><span class="classifier">np.ndarray</span></dt><dd><p>Gyroscopic matrix for the 6 DoF shaft element. Similar to the Kst
+<p>Gyroscopic matrix for the 6 DoF shaft element. Similar to the Kst
 stiffness matrix, this Gyro matrix is also multiplied by the value
 of the rotating speed Omega. It is omitted from this and must be
 added in the respective analyses.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>G</strong><span class="classifier">np.ndarray</span></dt><dd><p>Gyroscopic matrix for the 6 DoF shaft element.</p>
 </dd>
 </dl>
 </dd>
@@ -339,16 +336,17 @@ added in the respective analyses.</p>
 <dt id="ross.ShaftElement6DoF.Kst">
 <code class="sig-name descname"><span class="pre">Kst</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/shaft_element.html#ShaftElement6DoF.Kst"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ross.ShaftElement6DoF.Kst" title="Permalink to this definition">¶</a></dt>
 <dd><p>Dynamic stiffness matrix for an instance of a 6 DoF shaft element.</p>
-<dl class="field-list">
-<dt class="field-odd">Returns</dt>
-<dd class="field-odd"><dl>
-<dt><strong>Kst</strong><span class="classifier">np.ndarray</span></dt><dd><p>Dynamic stiffness matrix for the 6 DoF shaft element. This is
+<p>Dynamic stiffness matrix for the 6 DoF shaft element. This is
 directly dependent on the rotation speed Omega. It needs to be
 multiplied by the adequate Omega value when used in time depen-
 dent analyses. The matrix multiplier term is:</p>
 <p>[(Iz*Omega*rho)/(15*L)] * [Kst]</p>
 <p>and here the Omega value has been suppressed and must be added
 in the adequate analyses.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>Kst</strong><span class="classifier">np.ndarray</span></dt><dd><p>Dynamic stiffness matrix for the 6 DoF shaft element.</p>
 </dd>
 </dl>
 </dd>
@@ -662,7 +660,7 @@ Default is False.</p>
       
     </p>
     <p>
-        &copy; Copyright 2020, Team ROSS.<br/>
+        &copy; Copyright 2021, Team ROSS.<br/>
       Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.5.4.<br/>
     </p>
   </div>

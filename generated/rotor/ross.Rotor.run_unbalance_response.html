@@ -175,7 +175,7 @@ applied and a frequency range.</p>
 .plot_deflected_shape_2d()</p>
 </dd>
 </dl>
-<dl class="field-list">
+<dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>node</strong><span class="classifier">list, int</span></dt><dd><p>Node where the unbalance is applied.</p>
@@ -213,21 +213,9 @@ Default is 0.005 (0.5%).</p>
 </dl>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><dl>
-<dt><strong>forced_response</strong><span class="classifier">object</span></dt><dd><p>An instance of ForcedResponseResult class, which is used to post-process
-results. Attributes stored:
-forced_resp : array</p>
-<blockquote>
-<div><p>Array with the forced response for each node for each frequency.</p>
-</div></blockquote>
-<dl class="simple">
-<dt>speed_range<span class="classifier">array</span></dt><dd><p>Array with the frequencies.</p>
-</dd>
-<dt>velc_resp<span class="classifier">array</span></dt><dd><p>Array with the velocity response for each node for each frequency.</p>
-</dd>
-<dt>accl_resp<span class="classifier">array</span></dt><dd><p>Array with the acceleration response for each node for each frequency.</p>
-</dd>
-</dl>
+<dd class="field-even"><dl class="simple">
+<dt><strong>results</strong><span class="classifier">ross.ForcedResponseResult</span></dt><dd><p>For more information on attributes and methods available see:
+<code class="xref py py-class docutils literal notranslate"><span class="pre">ross.ForcedResponseResult</span></code></p>
 </dd>
 </dl>
 </dd>
@@ -302,7 +290,7 @@ Speed value must be in speed_range.
       
     </p>
     <p>
-        &copy; Copyright 2020, Team ROSS.<br/>
+        &copy; Copyright 2021, Team ROSS.<br/>
       Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.5.4.<br/>
     </p>
   </div>

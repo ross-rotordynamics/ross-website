@@ -177,7 +177,7 @@
 
 <span class="sd">    .. math::</span>
 
-<span class="sd">        [x_0, y_0, \alpha_0, \beta_0, x_1, y_1, \alpha_1, \beta_1]**T</span>
+<span class="sd">        [x_0, y_0, \alpha_0, \beta_0, x_1, y_1, \alpha_1, \beta_1]^T</span>
 <span class="sd">    Where :math:`\alpha_0` and :math:`\alpha_1` are the bending on the yz plane</span>
 <span class="sd">    and :math:`\beta_0` and :math:`\beta_1` are the bending on the xz plane.</span>
 
@@ -195,7 +195,7 @@
 <span class="sd">    odr : float, pint.Quantity, optional</span>
 <span class="sd">        Outer diameter of the element at the right position (m).</span>
 <span class="sd">        Default is equal to odl value (cylindrical element).</span>
-<span class="sd">    material : ross.material</span>
+<span class="sd">    material : ross.Material</span>
 <span class="sd">        Shaft material.</span>
 <span class="sd">    n : int, optional</span>
 <span class="sd">        Element number (coincident with it&#39;s first node).</span>
@@ -215,7 +215,7 @@
 <span class="sd">    gyroscopic : bool, optional</span>
 <span class="sd">        Determine if gyroscopic effects are taken into account.</span>
 <span class="sd">        Default is True.</span>
-<span class="sd">    shear_method_calc : string, optional</span>
+<span class="sd">    shear_method_calc : str, optional</span>
 <span class="sd">        Determines which shear calculation method the user will adopt</span>
 <span class="sd">        Default is &#39;cowper&#39;</span>
 <span class="sd">    tag : str, optional</span>
@@ -224,7 +224,8 @@
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
-<span class="sd">    A shaft element</span>
+<span class="sd">    shaft_element : ross.ShaftElement</span>
+<span class="sd">        A shaft_element object.</span>
 
 <span class="sd">    Attributes</span>
 <span class="sd">    ----------</span>
@@ -254,7 +255,8 @@
 
 <span class="sd">    References</span>
 <span class="sd">    ----------</span>
-<span class="sd">    .. bibliography:: ../../../docs/refs.bib</span>
+<span class="sd">    .. bibliography::</span>
+<span class="sd">        :filter: docname in docnames</span>
 
 <span class="sd">    Examples</span>
 <span class="sd">    --------</span>
@@ -800,7 +802,6 @@
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
 <span class="sd">        K : np.ndarray</span>
-
 <span class="sd">            Stiffness matrix for the shaft element.</span>
 
 <span class="sd">        Examples</span>
@@ -1318,16 +1319,22 @@
 <span class="sd">    The matrices will be defined considering the following local</span>
 <span class="sd">    coordinate vector:</span>
 
-<span class="sd">    :math:`[u_0, v_0, w_0, \theta_0, \psi_0, \phi_0, u_1, v_1, w_1, \theta_1, \psi_1, \phi_1]**T`</span>
+<span class="sd">    .. math::</span>
 
+<span class="sd">        [u_0, v_0, w_0, \theta_0, \psi_0, \phi_0, u_1, v_1, w_1, \theta_1, \psi_1, \phi_1]^T</span>
 <span class="sd">    Being the following their ordering for an element:</span>
 
-<span class="sd">        :math:`x_0,u_0`  - horizontal translation;</span>
-<span class="sd">        :math:`y_0,v_0`  - vertical translation;</span>
-<span class="sd">        :math:`z_0,w_0`  - axial translation;</span>
-<span class="sd">        :math:`\theta_0` - rotation around horizontal, bending on the yz plane;</span>
-<span class="sd">        :math:`\psi_0`   - rotation around vertical, bending on the xz plane;</span>
-<span class="sd">        :math:`\phi_0`   - torsion around axial, z direction.</span>
+<span class="sd">    :math:`x_0,u_0`  - horizontal translation;</span>
+
+<span class="sd">    :math:`y_0,v_0`  - vertical translation;</span>
+
+<span class="sd">    :math:`z_0,w_0`  - axial translation;</span>
+
+<span class="sd">    :math:`\theta_0` - rotation around horizontal, bending on the yz plane;</span>
+
+<span class="sd">    :math:`\psi_0`   - rotation around vertical, bending on the xz plane;</span>
+
+<span class="sd">    :math:`\phi_0`   - torsion around axial, z direction.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -1343,7 +1350,7 @@
 <span class="sd">    odr : float, pint.Quantity, optional</span>
 <span class="sd">        Outer diameter of the element at the right node (m).</span>
 <span class="sd">        Default is equal to odl value for cylindrical element.</span>
-<span class="sd">    material : ross.material</span>
+<span class="sd">    material : ross.Material</span>
 <span class="sd">        Shaft material.</span>
 <span class="sd">    alpha : float, optional</span>
 <span class="sd">        Proportional damping coefficient, associated to the element Mass matrix</span>
@@ -1375,8 +1382,8 @@
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
-<span class="sd">    A 6 degrees of freedom shaft element, with available gyroscopic, shear and rotary</span>
-<span class="sd">    inertia effects.</span>
+<span class="sd">    shaft_element : rs.ShaftElement6DoF</span>
+<span class="sd">        A 6 degrees of freedom shaft element, with available gyroscopic, shear and rotary inertia effects.</span>
 
 <span class="sd">    Attributes</span>
 <span class="sd">    ----------</span>
@@ -1388,7 +1395,8 @@
 
 <span class="sd">    References</span>
 <span class="sd">    ----------</span>
-<span class="sd">    .. bibliography:: ../../../docs/refs.bib</span>
+<span class="sd">    .. bibliography::</span>
+<span class="sd">        :filter: docname in docnames</span>
 
 <span class="sd">    Examples</span>
 <span class="sd">    --------</span>
@@ -1431,7 +1439,6 @@
             <span class="k">raise</span> <span class="ne">AttributeError</span><span class="p">(</span><span class="s2">&quot;Material is not defined.&quot;</span><span class="p">)</span>
 
         <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">material</span><span class="p">)</span> <span class="ow">is</span> <span class="nb">str</span><span class="p">:</span>
-            <span class="c1"># os.chdir(Path(os.path.dirname(ross.__file__)))</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">material</span> <span class="o">=</span> <span class="n">Material</span><span class="o">.</span><span class="n">load_material</span><span class="p">(</span><span class="n">material</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">material</span> <span class="o">=</span> <span class="n">material</span>
@@ -1928,18 +1935,20 @@
 <div class="viewcode-block" id="ShaftElement6DoF.Kst"><a class="viewcode-back" href="../../generated/elements/ross.ShaftElement6DoF.html#ross.ShaftElement6DoF.Kst">[docs]</a>    <span class="k">def</span> <span class="nf">Kst</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Dynamic stiffness matrix for an instance of a 6 DoF shaft element.</span>
 
+<span class="sd">        Dynamic stiffness matrix for the 6 DoF shaft element. This is</span>
+<span class="sd">        directly dependent on the rotation speed Omega. It needs to be</span>
+<span class="sd">        multiplied by the adequate Omega value when used in time depen-</span>
+<span class="sd">        dent analyses. The matrix multiplier term is:</span>
+
+<span class="sd">        [(Iz*Omega*rho)/(15*L)] * [Kst]</span>
+
+<span class="sd">        and here the Omega value has been suppressed and must be added</span>
+<span class="sd">        in the adequate analyses.</span>
+
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
 <span class="sd">        Kst : np.ndarray</span>
-<span class="sd">            Dynamic stiffness matrix for the 6 DoF shaft element. This is</span>
-<span class="sd">            directly dependent on the rotation speed Omega. It needs to be</span>
-<span class="sd">            multiplied by the adequate Omega value when used in time depen-</span>
-<span class="sd">            dent analyses. The matrix multiplier term is:</span>
-
-<span class="sd">            [(Iz*Omega*rho)/(15*L)] * [Kst]</span>
-
-<span class="sd">            and here the Omega value has been suppressed and must be added</span>
-<span class="sd">            in the adequate analyses.</span>
+<span class="sd">            Dynamic stiffness matrix for the 6 DoF shaft element.</span>
 
 <span class="sd">        Examples</span>
 <span class="sd">        --------</span>
@@ -2003,13 +2012,15 @@
 <div class="viewcode-block" id="ShaftElement6DoF.G"><a class="viewcode-back" href="../../generated/elements/ross.ShaftElement6DoF.html#ross.ShaftElement6DoF.G">[docs]</a>    <span class="k">def</span> <span class="nf">G</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Gyroscopic matrix for an instance of a 6 DoFs shaft element.</span>
 
+<span class="sd">        Gyroscopic matrix for the 6 DoF shaft element. Similar to the Kst</span>
+<span class="sd">        stiffness matrix, this Gyro matrix is also multiplied by the value</span>
+<span class="sd">        of the rotating speed Omega. It is omitted from this and must be</span>
+<span class="sd">        added in the respective analyses.</span>
+
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
 <span class="sd">        G : np.ndarray</span>
-<span class="sd">            Gyroscopic matrix for the 6 DoF shaft element. Similar to the Kst</span>
-<span class="sd">            stiffness matrix, this Gyro matrix is also multiplied by the value</span>
-<span class="sd">            of the rotating speed Omega. It is omitted from this and must be</span>
-<span class="sd">            added in the respective analyses.</span>
+<span class="sd">            Gyroscopic matrix for the 6 DoF shaft element.</span>
 
 <span class="sd">        Examples</span>
 <span class="sd">        --------</span>
@@ -2239,7 +2250,7 @@
       
     </p>
     <p>
-        &copy; Copyright 2020, Team ROSS.<br/>
+        &copy; Copyright 2021, Team ROSS.<br/>
       Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.5.4.<br/>
     </p>
   </div>
