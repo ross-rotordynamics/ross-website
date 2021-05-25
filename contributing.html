@@ -3,13 +3,14 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>Contributing &#8212; ross 1.0.1 documentation</title>
-    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="_static/bootstrap-sphinx.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/bootstrap-sphinx.css" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx_copybutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/style.css" />
-    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
     <script src="_static/doctools.js"></script>
@@ -170,22 +171,22 @@
   <div class="row">
     <div class="body col-md-12 content" role="main">
       
-  <div class="section" id="contributing">
+  <section id="contributing">
 <h1>Contributing<a class="headerlink" href="#contributing" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="feedback-and-contribution">
+<section id="feedback-and-contribution">
 <h2>Feedback and Contribution<a class="headerlink" href="#feedback-and-contribution" title="Permalink to this headline">¶</a></h2>
 <p>We welcome any contribution via <a class="reference external" href="https://github.com/ross-rotordynamics/ross/issues">ROSS issue tracker</a>.
 These include bug reports, problems on the documentation, feedback, enhancement proposals etc.
 You can use the repository <a class="reference external" href="https://github.com/ross-rotordynamics/ross/discussions">Discussions</a>
 section for questions and further information.</p>
-</div>
-<div class="section" id="code-style-black">
+</section>
+<section id="code-style-black">
 <h2>Code style: Black<a class="headerlink" href="#code-style-black" title="Permalink to this headline">¶</a></h2>
 <p>To format our code we use <a class="reference external" href="https://black.readthedocs.io/en/stable/">Black</a>, which is the <em>“uncompromising Python
 code formatter”</em>. You can configure your development environment to use Black before a commit. More information on how
 to set this is given at <a class="reference external" href="https://black.readthedocs.io/en/stable/editor_integration.html">Black’s documentation</a>.</p>
-</div>
-<div class="section" id="how-to-contribute-to-ross-using-git">
+</section>
+<section id="how-to-contribute-to-ross-using-git">
 <span id="git-configuration"></span><h2>How to contribute to ROSS using git<a class="headerlink" href="#how-to-contribute-to-ross-using-git" title="Permalink to this headline">¶</a></h2>
 <p>Git is a version control system (VCS) for tracking changes in code during software development.
 To download the ROSS source code and contribute to its development,
@@ -194,7 +195,7 @@ Once you have Git installed, you will be able to follow the instructions in <a c
 which explains how to download and contribute to ROSS.</p>
 <p>To use git to contribute to ROSS project, follow the steps below:
 <em>For Windows users: commands provided here can be executed using Git Bash instead of Git GUI.</em></p>
-<div class="section" id="step-1-make-your-copy-fork-of-ross">
+<section id="step-1-make-your-copy-fork-of-ross">
 <h3>Step 1: Make your copy (fork) of ROSS<a class="headerlink" href="#step-1-make-your-copy-fork-of-ross" title="Permalink to this headline">¶</a></h3>
 <p>Go to <a class="reference external" href="https://github.com/ross-rotordynamics/ross">https://github.com/ross-rotordynamics/ross</a>
 In the top-right corner of the page, click Fork, to fork it to your GitHub account.</p>
@@ -204,8 +205,8 @@ In the top-right corner of the page, click Fork, to fork it to your GitHub accou
 <span class="n">git</span> <span class="n">remote</span> <span class="n">add</span> <span class="n">upstream</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">ross</span><span class="o">-</span><span class="n">rotordynamics</span><span class="o">/</span><span class="n">ross</span><span class="o">.</span><span class="n">git</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="step-2-keep-in-sync-with-changes-in-ross">
+</section>
+<section id="step-2-keep-in-sync-with-changes-in-ross">
 <h3>Step 2: Keep in sync with changes in ROSS<a class="headerlink" href="#step-2-keep-in-sync-with-changes-in-ross" title="Permalink to this headline">¶</a></h3>
 <p>Setup your local repository, so it pulls from upstream by default:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">config</span> <span class="n">branch</span><span class="o">.</span><span class="n">master</span><span class="o">.</span><span class="n">remote</span> <span class="n">upstream</span>
@@ -232,8 +233,8 @@ It should look like this:</p>
 </pre></div>
 </div>
 <p>The part <code class="code docutils literal notranslate"><span class="pre">fetch</span> <span class="pre">=</span> <span class="pre">+refs/pull/*/head:refs/remotes/upstream/pr/*</span></code> will make pull requests available.</p>
-</div>
-<div class="section" id="step-3-set-up-development-environment">
+</section>
+<section id="step-3-set-up-development-environment">
 <span id="setup-environment"></span><h3>Step 3: Set up development environment<a class="headerlink" href="#step-3-set-up-development-environment" title="Permalink to this headline">¶</a></h3>
 <p>To set up a development environment you can <a class="reference external" href="https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html">create a conda environment</a>
 or a virtualenv:</p>
@@ -246,15 +247,15 @@ or a virtualenv:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="o">-</span><span class="n">e</span> <span class="s2">&quot;.[dev]&quot;</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="step-4-make-a-new-feature-branch">
+</section>
+<section id="step-4-make-a-new-feature-branch">
 <h3>Step 4: Make a new feature branch<a class="headerlink" href="#step-4-make-a-new-feature-branch" title="Permalink to this headline">¶</a></h3>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">fetch</span> <span class="n">upstream</span>
 <span class="n">git</span> <span class="n">checkout</span> <span class="o">-</span><span class="n">b</span> <span class="n">my</span><span class="o">-</span><span class="n">new</span><span class="o">-</span><span class="n">feature</span> <span class="n">upstream</span><span class="o">/</span><span class="n">master</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="step-5-testing-the-code">
+</section>
+<section id="step-5-testing-the-code">
 <h3>Step 5: Testing the code<a class="headerlink" href="#step-5-testing-the-code" title="Permalink to this headline">¶</a></h3>
 <p>We use pytest to test the code. Unit tests are placed in the <cite>~/ross/ross/tests</cite> folder. We also test our docstrings to
 assure that the examples are working.
@@ -264,8 +265,8 @@ If you want to run all the tests you can do it with (from the <cite>~/ross/ross<
 </div>
 <p>Code is only merged to master if tests pass. This is checked by services GitHub Actions, so make sure
 tests are passing before pushing your code to github.</p>
-</div>
-<div class="section" id="step-6-push-changes-to-your-git-repository">
+</section>
+<section id="step-6-push-changes-to-your-git-repository">
 <h3>Step 6: Push changes to your git repository<a class="headerlink" href="#step-6-push-changes-to-your-git-repository" title="Permalink to this headline">¶</a></h3>
 <p>After a complete working set of related changes are made:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">add</span> <span class="n">modified_file</span>
@@ -276,13 +277,13 @@ tests are passing before pushing your code to github.</p>
 <p>The following blog posts have some good information on how to write commit messages:</p>
 <p><a class="reference external" href="https://tbaggery.com/2008/04/19/a-note-about-git-commit-messages.html">A Note About Git Commit Messages</a></p>
 <p><a class="reference external" href="https://who-t.blogspot.com/2009/12/on-commit-messages.html">On commit messages</a></p>
-</div>
-<div class="section" id="step-7-push-changes-to-the-main-repo">
+</section>
+<section id="step-7-push-changes-to-the-main-repo">
 <h3>Step 7: Push changes to the main repo<a class="headerlink" href="#step-7-push-changes-to-the-main-repo" title="Permalink to this headline">¶</a></h3>
 <p>To create a Pull Request (PR), refer to <a class="reference external" href="https://help.github.com/articles/about-pull-requests/">the github PR guide</a>.</p>
-</div>
-</div>
-<div class="section" id="documentation">
+</section>
+</section>
+<section id="documentation">
 <h2>Documentation<a class="headerlink" href="#documentation" title="Permalink to this headline">¶</a></h2>
 <p>We use <a class="reference external" href="http://www.sphinx-doc.org/en/master/">sphinx</a> to generate the project’s documentation. We keep the source
 files at ~/ross/docs, and we keep the html files used to build the website in a
@@ -308,8 +309,8 @@ and start a python http server:</p>
 </pre></div>
 </div>
 <p>After that you can access your local server (<a class="reference external" href="http://0.0.0.0:8000/">http://0.0.0.0:8000/</a>) and see the generated docs.</p>
-</div>
-<div class="section" id="making-new-releases">
+</section>
+<section id="making-new-releases">
 <h2>Making new releases<a class="headerlink" href="#making-new-releases" title="Permalink to this headline">¶</a></h2>
 <p>To make a new release we need only to create a tag using git and push to GitHub:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">tag</span> <span class="o">&lt;</span><span class="n">version</span> <span class="n">number</span><span class="o">&gt;</span>
@@ -318,8 +319,8 @@ and start a python http server:</p>
 </div>
 <p>Pushing the new tag to the GitHub repository will start a new build on Travis CI. If all the tests succeed, Travis will
 upload the new package to PyPI (see the deploy command on .travis.yml).</p>
-</div>
-</div>
+</section>
+</section>
 
 
     </div>
@@ -335,7 +336,7 @@ upload the new package to PyPI (see the deploy command on .travis.yml).</p>
     </p>
     <p>
         &copy; Copyright 2021, Team ROSS.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.5.4.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.0.2.<br/>
     </p>
   </div>
 </footer>

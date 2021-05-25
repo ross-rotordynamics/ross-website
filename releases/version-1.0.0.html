@@ -3,13 +3,14 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>Version v1.0.0 &#8212; ross 1.0.1 documentation</title>
-    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/bootstrap-sphinx.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/bootstrap-sphinx.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx_copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/style.css" />
-    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
@@ -171,25 +172,25 @@
   <div class="row">
     <div class="body col-md-12 content" role="main">
       
-  <div class="section" id="version-v1-0-0">
+  <section id="version-v1-0-0">
 <h1>Version v1.0.0<a class="headerlink" href="#version-v1-0-0" title="Permalink to this headline">¶</a></h1>
 <p>The following enhancements and bug fixes were implemented for this release:</p>
-<div class="section" id="enhancements">
+<section id="enhancements">
 <h2>Enhancements<a class="headerlink" href="#enhancements" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="add-loop-to-calculate-frequency-depedent-coefficients-in-from-fluid-flow">
+<section id="add-loop-to-calculate-frequency-depedent-coefficients-in-from-fluid-flow">
 <h3>Add loop to calculate frequency-depedent coefficients in from_fluid_flow()<a class="headerlink" href="#add-loop-to-calculate-frequency-depedent-coefficients-in-from-fluid-flow" title="Permalink to this headline">¶</a></h3>
 <p>Users will be able to input as many frequency values as needed and <code class="docutils literal notranslate"><span class="pre">from_fluid_flow()</span></code> will run a loop calculating a set of coefficients for each given frequency.
 Now, <code class="docutils literal notranslate"><span class="pre">omega</span></code> argument must be a list of frequencies.
 It also changes the main function used to calculate the coefficients. <code class="docutils literal notranslate"><span class="pre">calculate_stiffness_and_damping_coefficients()</span></code> is now used to do it numerically.</p>
-</div>
-<div class="section" id="extract-fluid-flow">
+</section>
+<section id="extract-fluid-flow">
 <h3>Extract fluid flow<a class="headerlink" href="#extract-fluid-flow" title="Permalink to this headline">¶</a></h3>
 <p>The .from_fluid_flow method has been extracted from the BearingElement to a class
 called BearingFluidFlow.
 This is more in line with how we have all the Bearing classes, and
 makes it easier for the user to find it.</p>
-</div>
-<div class="section" id="add-minor-and-major-axes-to-response-plots">
+</section>
+<section id="add-minor-and-major-axes-to-response-plots">
 <h3>Add minor and major axes to response plots<a class="headerlink" href="#add-minor-and-major-axes-to-response-plots" title="Permalink to this headline">¶</a></h3>
 <p>We can now select the major and minor axis when plotting responses:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span>   <span class="c1"># plot response for major or minor axis:</span>
@@ -214,20 +215,20 @@ but also the velocity and acceleration. The data is then input to
 </ul>
 </dd>
 </dl>
-</div>
-<div class="section" id="add-units-to-stochastic-ross-module">
+</section>
+<section id="add-units-to-stochastic-ross-module">
 <h3>Add units to stochastic ross module<a class="headerlink" href="#add-units-to-stochastic-ross-module" title="Permalink to this headline">¶</a></h3>
 <p>Units use is now possible in the stochastic module.</p>
-</div>
-<div class="section" id="crack-rubbing-and-misalignment-simulation">
+</section>
+<section id="crack-rubbing-and-misalignment-simulation">
 <h3>Crack, rubbing and misalignment simulation<a class="headerlink" href="#crack-rubbing-and-misalignment-simulation" title="Permalink to this headline">¶</a></h3>
 <p>It is now possible to run simulations for some defects such as cracks, rubbing
 and misalingment.</p>
-</div>
-</div>
-<div class="section" id="api-changes">
+</section>
+</section>
+<section id="api-changes">
 <h2>API changes<a class="headerlink" href="#api-changes" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="change-methods-to-run">
+<section id="change-methods-to-run">
 <h3>Change methods to <cite>run_</cite><a class="headerlink" href="#change-methods-to-run" title="Permalink to this headline">¶</a></h3>
 <p>The plot_level1 and plot_ucs methods were refactore so that they behave as other run methods.
 Now we the run* prefix to call them and they will return Results objects.</p>
@@ -235,25 +236,25 @@ Now we the run* prefix to call them and they will return Results objects.</p>
 <span class="n">ucs</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
 </pre></div>
 </div>
-</div>
-</div>
-<div class="section" id="bug-fixes">
+</section>
+</section>
+<section id="bug-fixes">
 <h2>Bug fixes<a class="headerlink" href="#bug-fixes" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="fix-globalindex-with-non-integer-values">
+<section id="fix-globalindex-with-non-integer-values">
 <h3>Fix GlobalIndex with non integer values<a class="headerlink" href="#fix-globalindex-with-non-integer-values" title="Permalink to this headline">¶</a></h3>
 <p><code class="docutils literal notranslate"><span class="pre">PointMass</span></code> and <code class="docutils literal notranslate"><span class="pre">BearingElements</span></code> with <code class="docutils literal notranslate"><span class="pre">n_link</span></code> argument were getting non integer values.
 Matrices would not be built, once these values are used as reference to array indexes
 (which must be integers).</p>
-</div>
-<div class="section" id="fix-dof-error-when-using-n-link">
+</section>
+<section id="fix-dof-error-when-using-n-link">
 <h3>Fix DoF error when using “n_link”<a class="headerlink" href="#fix-dof-error-when-using-n-link" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>Add <code class="docutils literal notranslate"><span class="pre">link_nodes</span></code> attribute to Rotor object that holds the nodes created using <code class="docutils literal notranslate"><span class="pre">n_link</span></code></p></li>
 <li><p>Correct DoFs with <code class="docutils literal notranslate"><span class="pre">link_nodes</span></code> in <code class="docutils literal notranslate"><span class="pre">ForcedResponseResults</span></code> and <code class="docutils literal notranslate"><span class="pre">TimeResponseResults</span></code></p></li>
 </ul>
-</div>
-</div>
-</div>
+</section>
+</section>
+</section>
 
 
     </div>
@@ -269,7 +270,7 @@ Matrices would not be built, once these values are used as reference to array in
     </p>
     <p>
         &copy; Copyright 2021, Team ROSS.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.5.4.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.0.2.<br/>
     </p>
   </div>
 </footer>

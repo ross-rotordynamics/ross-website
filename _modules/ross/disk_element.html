@@ -5,11 +5,11 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>ross.disk_element &#8212; ross 1.0.1 documentation</title>
-    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../../_static/bootstrap-sphinx.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/bootstrap-sphinx.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx_copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/style.css" />
-    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
     <script src="../../_static/jquery.js"></script>
     <script src="../../_static/underscore.js"></script>
     <script src="../../_static/doctools.js"></script>
@@ -184,8 +184,12 @@
 <span class="sd">    tag : str, optional</span>
 <span class="sd">        A tag to name the element</span>
 <span class="sd">        Default is None</span>
-<span class="sd">    scale_factor: float, optional</span>
+<span class="sd">    scale_factor: float or str, optional</span>
 <span class="sd">        The scale factor is used to scale the disk drawing.</span>
+<span class="sd">        For disks it is also possible to provide &#39;mass&#39; as the scale factor.</span>
+<span class="sd">        In this case the code will calculate scale factors for each disk based</span>
+<span class="sd">        on the disk with the higher mass. Notice that in this case you have to</span>
+<span class="sd">        create all disks with the scale_factor=&#39;mass&#39;.</span>
 <span class="sd">        Default is 1.</span>
 <span class="sd">    color : str, optional</span>
 <span class="sd">        A color to be used when the element is represented.</span>
@@ -895,7 +899,7 @@
     </p>
     <p>
         &copy; Copyright 2021, Team ROSS.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.5.4.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.0.2.<br/>
     </p>
   </div>
 </footer>

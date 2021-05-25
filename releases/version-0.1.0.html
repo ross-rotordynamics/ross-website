@@ -3,13 +3,14 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>Version 0.1.0 (alpha release) &#8212; ross 1.0.1 documentation</title>
-    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/bootstrap-sphinx.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/bootstrap-sphinx.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx_copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/style.css" />
-    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
@@ -185,74 +186,74 @@
   <div class="row">
     <div class="body col-md-12 content" role="main">
       
-  <div class="section" id="version-0-1-0-alpha-release">
+  <section id="version-0-1-0-alpha-release">
 <h1>Version 0.1.0 (alpha release)<a class="headerlink" href="#version-0-1-0-alpha-release" title="Permalink to this headline">¶</a></h1>
 <p>For the alpha release, the main classes have been created and the more
 important analyses have been implemented.</p>
 <p>The following gives a list of enhancements, api changes and bug fixes that were
 implemented for this release:</p>
-<div class="section" id="enhancements">
+<section id="enhancements">
 <h2>Enhancements<a class="headerlink" href="#enhancements" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="implementation-of-the-material-class">
+<section id="implementation-of-the-material-class">
 <h3>Implementation of the Material class<a class="headerlink" href="#implementation-of-the-material-class" title="Permalink to this headline">¶</a></h3>
 <p>A class has been implemented to represent any material that can be used when
 creating an element for the analysis.</p>
-</div>
-<div class="section" id="create-shaftelement-diskelement-and-bearingsealelement">
+</section>
+<section id="create-shaftelement-diskelement-and-bearingsealelement">
 <h3>Create ShaftElement, DiskElement and BearingSealElement<a class="headerlink" href="#create-shaftelement-diskelement-and-bearingsealelement" title="Permalink to this headline">¶</a></h3>
 <p>The main classes used to create shaft elements, disk elements and bearings/seals
 elements have been implemented.</p>
-</div>
-<div class="section" id="add-rotor-assembly-and-results">
+</section>
+<section id="add-rotor-assembly-and-results">
 <h3>Add rotor assembly and results<a class="headerlink" href="#add-rotor-assembly-and-results" title="Permalink to this headline">¶</a></h3>
 <p>A Rotor class has been implemented to represent the rotor. A rotor object
 assembles the global matrices and provides methods to run the same analysis on
 the rotor. Results implemented are modal analysis, Campbell, frequency response
 and unbalance response.</p>
-</div>
-<div class="section" id="add-static-analysis-method">
+</section>
+<section id="add-static-analysis-method">
 <h3>Add static analysis method<a class="headerlink" href="#add-static-analysis-method" title="Permalink to this headline">¶</a></h3>
 <p>A method to calculate the static displacement of a rotor due to
 disks’ weight has been added.</p>
-</div>
-<div class="section" id="new-rotor-save-format">
+</section>
+<section id="new-rotor-save-format">
 <h3>New rotor save format<a class="headerlink" href="#new-rotor-save-format" title="Permalink to this headline">¶</a></h3>
 <p>A new format for saving rotors was implemented. It is based on the toml format.</p>
-</div>
-<div class="section" id="add-convergence-analysis">
+</section>
+<section id="add-convergence-analysis">
 <h3>Add convergence analysis<a class="headerlink" href="#add-convergence-analysis" title="Permalink to this headline">¶</a></h3>
 <p>Add convergence analysis as a method to the class Rotor.</p>
-</div>
-<div class="section" id="analytical-fluid-flow-short-bearings">
+</section>
+<section id="analytical-fluid-flow-short-bearings">
 <h3>Analytical fluid flow, short bearings<a class="headerlink" href="#analytical-fluid-flow-short-bearings" title="Permalink to this headline">¶</a></h3>
 <p>Add analytical fluid flow routines for short bearings.</p>
-</div>
-<div class="section" id="add-new-diagram-to-static-method">
+</section>
+<section id="add-new-diagram-to-static-method">
 <h3>Add new diagram to static method<a class="headerlink" href="#add-new-diagram-to-static-method" title="Permalink to this headline">¶</a></h3>
 <p>Add a new plot to the static method - shearing force and changes the name of some
 graphs to make it more readable.</p>
-</div>
-<div class="section" id="add-methods-to-allow-inputs-from-a-table-in-bearing-element">
+</section>
+<section id="add-methods-to-allow-inputs-from-a-table-in-bearing-element">
 <h3>Add methods to allow inputs from a table in bearing element<a class="headerlink" href="#add-methods-to-allow-inputs-from-a-table-in-bearing-element" title="Permalink to this headline">¶</a></h3>
 <p>Two methods were added to bearing element. The first one allows instantiating
 a bearing object from a table (excel format). The second one converts from
 table to dictionary, that can be saved as a toml file.</p>
-</div>
-<div class="section" id="interpolation-for-static-analysis-and-bending-moment-diagram">
+</section>
+<section id="interpolation-for-static-analysis-and-bending-moment-diagram">
 <h3>Interpolation for static analysis and Bending moment diagram<a class="headerlink" href="#interpolation-for-static-analysis-and-bending-moment-diagram" title="Permalink to this headline">¶</a></h3>
 <p>An interpolation method has been added to give a more smooth curve on
 plots generated by the static analysis.</p>
-</div>
-<div class="section" id="add-bokeh-plot-to-forcedresponse-class">
+</section>
+<section id="add-bokeh-plot-to-forcedresponse-class">
 <h3>Add bokeh plot to ForcedResponse() class<a class="headerlink" href="#add-bokeh-plot-to-forcedresponse-class" title="Permalink to this headline">¶</a></h3>
 <p>Implements plotting using bokeh to generate magnitude and
 phase plot to ForcedResponse class.</p>
-</div>
-<div class="section" id="add-bokeh-plot-to-plot-level1-and-plot-ucs">
+</section>
+<section id="add-bokeh-plot-to-plot-level1-and-plot-ucs">
 <h3>Add bokeh plot to “plot_level1” and “plot_ucs”<a class="headerlink" href="#add-bokeh-plot-to-plot-level1-and-plot-ucs" title="Permalink to this headline">¶</a></h3>
 <p>Add bokeh plotting as alternative to matplotlib to plot graphs.</p>
-</div>
-<div class="section" id="benchmark-implementation-and-some-changes-in-imports">
+</section>
+<section id="benchmark-implementation-and-some-changes-in-imports">
 <h3>Benchmark implementation and some changes in imports<a class="headerlink" href="#benchmark-implementation-and-some-changes-in-imports" title="Permalink to this headline">¶</a></h3>
 <p>Add Benchmark folder to ross(__init__) folder.  To run the
 benchmarks you only need to:  * run <cite>run_benchmarks.py,</cite> the outputs
@@ -264,14 +265,14 @@ run(within the directory of saved Benchmarks) <cite>snakeviz
 Convergence.prof</cite>.
 Those changes are some import optimization and turning static() method
 into run_static() method.</p>
-</div>
-<div class="section" id="added-user-guide-on-how-to-use-ross">
+</section>
+<section id="added-user-guide-on-how-to-use-ross">
 <h3>Added user guide on how to use ROSS<a class="headerlink" href="#added-user-guide-on-how-to-use-ross" title="Permalink to this headline">¶</a></h3>
 <p>A tutorial has been added to the documentation. This is available as a
 jupyter notebook and is also rendered in the <span class="xref std std-ref">tutorial</span>
 documentation page.</p>
-</div>
-<div class="section" id="jupyter-examples">
+</section>
+<section id="jupyter-examples">
 <h3>Jupyter examples<a class="headerlink" href="#jupyter-examples" title="Permalink to this headline">¶</a></h3>
 <dl class="simple">
 <dt>Implementation of the following examples, taken from Frisswell:</dt><dd><ul class="simple">
@@ -285,19 +286,19 @@ documentation page.</p>
 </ul>
 </dd>
 </dl>
-</div>
-<div class="section" id="adds-a-binder-badge">
+</section>
+<section id="adds-a-binder-badge">
 <h3>Adds a binder badge<a class="headerlink" href="#adds-a-binder-badge" title="Permalink to this headline">¶</a></h3>
 <p>Binder is available to test the library in a cloud virtual environment.</p>
-</div>
-</div>
-<div class="section" id="api-changes">
+</section>
+</section>
+<section id="api-changes">
 <h2>API changes<a class="headerlink" href="#api-changes" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="add-run-modal-method">
+<section id="add-run-modal-method">
 <h3>Add run_modal method<a class="headerlink" href="#add-run-modal-method" title="Permalink to this headline">¶</a></h3>
 <p>The modal analysis changed from <code class="docutils literal notranslate"><span class="pre">.run()</span></code> to <code class="docutils literal notranslate"><span class="pre">.run_modal()</span></code>.</p>
-</div>
-<div class="section" id="change-methods-names">
+</section>
+<section id="change-methods-names">
 <h3>Change methods’ names<a class="headerlink" href="#change-methods-names" title="Permalink to this headline">¶</a></h3>
 <dl class="simple">
 <dt>This is mostly to add <code class="docutils literal notranslate"><span class="pre">run_</span></code> to some Rotor methods, like:</dt><dd><ul class="simple">
@@ -312,8 +313,8 @@ documentation page.</p>
 Since our convergence analysis have shown good results even for SR &lt; 30,
 it was decided to change it to 1.6, which is equivalent to a
 length / diameter ratio of 0.5.</p>
-</div>
-<div class="section" id="remove-show-from-convergence-and-static">
+</section>
+<section id="remove-show-from-convergence-and-static">
 <h3>Remove show() from convergence and static<a class="headerlink" href="#remove-show-from-convergence-and-static" title="Permalink to this headline">¶</a></h3>
 <p>Removes bokeh show() from the convergence and static analysis.
 Automatically showing the plots is not expected when running tests or
@@ -323,22 +324,22 @@ plot that if wanted. As an example:</p>
 <span class="n">show</span><span class="p">(</span><span class="n">static_analysis</span><span class="p">)</span>
 </pre></div>
 </div>
-</div>
-</div>
-<div class="section" id="bug-fixes">
+</section>
+</section>
+<section id="bug-fixes">
 <h2>Bug fixes<a class="headerlink" href="#bug-fixes" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="added-interpolate-to-rotor-assembly-py">
+<section id="added-interpolate-to-rotor-assembly-py">
 <h3>Added interpolate to rotor_assembly.py<a class="headerlink" href="#added-interpolate-to-rotor-assembly-py" title="Permalink to this headline">¶</a></h3>
 <p>The function interp1d was used but the interpolate function was not
 being  imported.</p>
-</div>
-<div class="section" id="fix-eccentricity-ratio-function">
+</section>
+<section id="fix-eccentricity-ratio-function">
 <h3>Fix eccentricity ratio function<a class="headerlink" href="#fix-eccentricity-ratio-function" title="Permalink to this headline">¶</a></h3>
 <p>The eccentricity ratio function was being calculated wrongly, using the
 sommerfeld number instead of the modified one, as it was supposed to
 use.</p>
-</div>
-<div class="section" id="improving-plot-rotor">
+</section>
+<section id="improving-plot-rotor">
 <h3>Improving plot_rotor<a class="headerlink" href="#improving-plot-rotor" title="Permalink to this headline">¶</a></h3>
 <p>There was an error that shaft elements were plotting with 2 times their
 respective radius.  I enlarged the plot window size and distributed the
@@ -349,9 +350,9 @@ calculates the ratio using some global distance measures, rather than
 basing it upon individual element dimensions. The user is returned an
 warning message if it’s lower than a certain value, which could affect
 the convergence analysis.</p>
-</div>
-</div>
-</div>
+</section>
+</section>
+</section>
 
 
     </div>
@@ -367,7 +368,7 @@ the convergence analysis.</p>
     </p>
     <p>
         &copy; Copyright 2021, Team ROSS.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.5.4.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.0.2.<br/>
     </p>
   </div>
 </footer>

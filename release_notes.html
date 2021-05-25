@@ -3,13 +3,14 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>Release notes &#8212; ross 1.0.1 documentation</title>
-    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="_static/bootstrap-sphinx.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/bootstrap-sphinx.css" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx_copybutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/style.css" />
-    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
     <script src="_static/doctools.js"></script>
@@ -303,27 +304,27 @@
   <div class="row">
     <div class="body col-md-12 content" role="main">
       
-  <div class="section" id="release-notes">
+  <section id="release-notes">
 <h1>Release notes<a class="headerlink" href="#release-notes" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="version-v1-0-0">
+<section id="version-v1-0-0">
 <h2>Version v1.0.0<a class="headerlink" href="#version-v1-0-0" title="Permalink to this headline">¶</a></h2>
 <p>The following enhancements and bug fixes were implemented for this release:</p>
-<div class="section" id="enhancements">
+<section id="enhancements">
 <h3>Enhancements<a class="headerlink" href="#enhancements" title="Permalink to this headline">¶</a></h3>
-<div class="section" id="add-loop-to-calculate-frequency-depedent-coefficients-in-from-fluid-flow">
+<section id="add-loop-to-calculate-frequency-depedent-coefficients-in-from-fluid-flow">
 <h4>Add loop to calculate frequency-depedent coefficients in from_fluid_flow()<a class="headerlink" href="#add-loop-to-calculate-frequency-depedent-coefficients-in-from-fluid-flow" title="Permalink to this headline">¶</a></h4>
 <p>Users will be able to input as many frequency values as needed and <code class="docutils literal notranslate"><span class="pre">from_fluid_flow()</span></code> will run a loop calculating a set of coefficients for each given frequency.
 Now, <code class="docutils literal notranslate"><span class="pre">omega</span></code> argument must be a list of frequencies.
 It also changes the main function used to calculate the coefficients. <code class="docutils literal notranslate"><span class="pre">calculate_stiffness_and_damping_coefficients()</span></code> is now used to do it numerically.</p>
-</div>
-<div class="section" id="extract-fluid-flow">
+</section>
+<section id="extract-fluid-flow">
 <h4>Extract fluid flow<a class="headerlink" href="#extract-fluid-flow" title="Permalink to this headline">¶</a></h4>
 <p>The .from_fluid_flow method has been extracted from the BearingElement to a class
 called BearingFluidFlow.
 This is more in line with how we have all the Bearing classes, and
 makes it easier for the user to find it.</p>
-</div>
-<div class="section" id="add-minor-and-major-axes-to-response-plots">
+</section>
+<section id="add-minor-and-major-axes-to-response-plots">
 <h4>Add minor and major axes to response plots<a class="headerlink" href="#add-minor-and-major-axes-to-response-plots" title="Permalink to this headline">¶</a></h4>
 <p>We can now select the major and minor axis when plotting responses:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span>   <span class="c1"># plot response for major or minor axis:</span>
@@ -348,20 +349,20 @@ but also the velocity and acceleration. The data is then input to
 </ul>
 </dd>
 </dl>
-</div>
-<div class="section" id="add-units-to-stochastic-ross-module">
+</section>
+<section id="add-units-to-stochastic-ross-module">
 <h4>Add units to stochastic ross module<a class="headerlink" href="#add-units-to-stochastic-ross-module" title="Permalink to this headline">¶</a></h4>
 <p>Units use is now possible in the stochastic module.</p>
-</div>
-<div class="section" id="crack-rubbing-and-misalignment-simulation">
+</section>
+<section id="crack-rubbing-and-misalignment-simulation">
 <h4>Crack, rubbing and misalignment simulation<a class="headerlink" href="#crack-rubbing-and-misalignment-simulation" title="Permalink to this headline">¶</a></h4>
 <p>It is now possible to run simulations for some defects such as cracks, rubbing
 and misalingment.</p>
-</div>
-</div>
-<div class="section" id="api-changes">
+</section>
+</section>
+<section id="api-changes">
 <h3>API changes<a class="headerlink" href="#api-changes" title="Permalink to this headline">¶</a></h3>
-<div class="section" id="change-methods-to-run">
+<section id="change-methods-to-run">
 <h4>Change methods to <cite>run_</cite><a class="headerlink" href="#change-methods-to-run" title="Permalink to this headline">¶</a></h4>
 <p>The plot_level1 and plot_ucs methods were refactore so that they behave as other run methods.
 Now we the run* prefix to call them and they will return Results objects.</p>
@@ -369,31 +370,31 @@ Now we the run* prefix to call them and they will return Results objects.</p>
 <span class="n">ucs</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
 </pre></div>
 </div>
-</div>
-</div>
-<div class="section" id="bug-fixes">
+</section>
+</section>
+<section id="bug-fixes">
 <h3>Bug fixes<a class="headerlink" href="#bug-fixes" title="Permalink to this headline">¶</a></h3>
-<div class="section" id="fix-globalindex-with-non-integer-values">
+<section id="fix-globalindex-with-non-integer-values">
 <h4>Fix GlobalIndex with non integer values<a class="headerlink" href="#fix-globalindex-with-non-integer-values" title="Permalink to this headline">¶</a></h4>
 <p><code class="docutils literal notranslate"><span class="pre">PointMass</span></code> and <code class="docutils literal notranslate"><span class="pre">BearingElements</span></code> with <code class="docutils literal notranslate"><span class="pre">n_link</span></code> argument were getting non integer values.
 Matrices would not be built, once these values are used as reference to array indexes
 (which must be integers).</p>
-</div>
-<div class="section" id="fix-dof-error-when-using-n-link">
+</section>
+<section id="fix-dof-error-when-using-n-link">
 <h4>Fix DoF error when using “n_link”<a class="headerlink" href="#fix-dof-error-when-using-n-link" title="Permalink to this headline">¶</a></h4>
 <ul class="simple">
 <li><p>Add <code class="docutils literal notranslate"><span class="pre">link_nodes</span></code> attribute to Rotor object that holds the nodes created using <code class="docutils literal notranslate"><span class="pre">n_link</span></code></p></li>
 <li><p>Correct DoFs with <code class="docutils literal notranslate"><span class="pre">link_nodes</span></code> in <code class="docutils literal notranslate"><span class="pre">ForcedResponseResults</span></code> and <code class="docutils literal notranslate"><span class="pre">TimeResponseResults</span></code></p></li>
 </ul>
-</div>
-</div>
-</div>
-<div class="section" id="version-0-4-0">
+</section>
+</section>
+</section>
+<section id="version-0-4-0">
 <h2>Version 0.4.0<a class="headerlink" href="#version-0-4-0" title="Permalink to this headline">¶</a></h2>
 <p>The following enhancements and bug fixes were implemented for this release:</p>
-<div class="section" id="id1">
+<section id="id1">
 <h3>Enhancements<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
-<div class="section" id="class-magneticbearingelement-was-created">
+<section id="class-magneticbearingelement-was-created">
 <h4>Class MagneticBearingElement was created<a class="headerlink" href="#class-magneticbearingelement-was-created" title="Permalink to this headline">¶</a></h4>
 <p>This class creates a magnetic bearing element.
 The element can be created by:</p>
@@ -405,35 +406,35 @@ The element can be created by:</p>
 <strong>Book</strong>: Magnetic Bearings. Theory, Design, and Application to Rotating Machinery
 <strong>Authors</strong>: Gerhard Schweitzer and Eric H. Maslen
 <strong>Page</strong>: 84-95 (magnetic parameters) and 354 (PID gains)</p>
-</div>
-<div class="section" id="stochastic-ross-module">
+</section>
+<section id="stochastic-ross-module">
 <h4>Stochastic Ross module<a class="headerlink" href="#stochastic-ross-module" title="Permalink to this headline">¶</a></h4>
 <p>The files follows the hierarchy than ROSS: different files to build the elements and a main file to build the rotors.</p>
 <p>The main difference between these new files and and the element files from ROSS is that the stochastic elements files build list of elements instead a single one.</p>
 <p>The analysis will also follow the ROSS structure, but it’s not added yet.</p>
-</div>
-<div class="section" id="dof-assembly">
+</section>
+<section id="dof-assembly">
 <h4>6dof assembly<a class="headerlink" href="#dof-assembly" title="Permalink to this headline">¶</a></h4>
 <p>Generalization of the assembly and evaluation codes of ROSS for a generic “N” DoF sized formulation. This is intended to enable the 6 DoF implementation to be executed appropriately, and is made in a generalized fashion by default.</p>
-</div>
-<div class="section" id="add-scale-factor-argument-to-diskelement-class">
+</section>
+<section id="add-scale-factor-argument-to-diskelement-class">
 <h4>Add scale_factor argument to DiskElement class<a class="headerlink" href="#add-scale-factor-argument-to-diskelement-class" title="Permalink to this headline">¶</a></h4>
 <p>Argument to scale the disk patch. Used to increase (scale_factor &gt; 1.0) or reduce (scale_factor &lt; 1.0) the size of disk patches when plotting the rotor.</p>
-</div>
-<div class="section" id="add-units-to-the-diskelement-bearingelement-and-pointmass-classes">
+</section>
+<section id="add-units-to-the-diskelement-bearingelement-and-pointmass-classes">
 <h4>Add units to the DiskElement, BearingElement and PointMass classes<a class="headerlink" href="#add-units-to-the-diskelement-bearingelement-and-pointmass-classes" title="Permalink to this headline">¶</a></h4>
 <p>Arguments for these classes can be passed as pint.Quantity now.</p>
-</div>
-<div class="section" id="replacing-plotting-libraries">
+</section>
+<section id="replacing-plotting-libraries">
 <h4>Replacing plotting libraries<a class="headerlink" href="#replacing-plotting-libraries" title="Permalink to this headline">¶</a></h4>
 <p>We have replaced Matplotlib and Bokeh plotting libraries with Plotly.</p>
 <p>Add methods to plot the deflected shape</p>
-</div>
-<div class="section" id="move-sparse-argument-to-run-modal">
+</section>
+<section id="move-sparse-argument-to-run-modal">
 <h4>Move “sparse” argument to run_modal()<a class="headerlink" href="#move-sparse-argument-to-run-modal" title="Permalink to this headline">¶</a></h4>
 <p>The eigenvalue / eigenvector solver is chosen when running the run_modal() method, and not anymore an parameter from the rotor model</p>
-</div>
-<div class="section" id="set-default-values-to-log-dec-color-scale">
+</section>
+<section id="set-default-values-to-log-dec-color-scale">
 <h4>Set default values to log_dec color scale<a class="headerlink" href="#set-default-values-to-log-dec-color-scale" title="Permalink to this headline">¶</a></h4>
 <p>The color scale to represent the log_dec values ranges between 0 and 1, independently of the log_dec values calculated.
 It can be manually modified by insert 2 simple kwargs: coloraxis_cmin and coloraxis_cmax. It will change
@@ -453,12 +454,12 @@ Also adds exponentformat = “none” to X and Y axis for better visualization o
 </pre></div>
 </div>
 <a class="reference external image-reference" href="https://user-images.githubusercontent.com/45969994/87157716-06e7ed80-c295-11ea-9eff-89e5a2c6164c.png"><img alt="image" src="https://user-images.githubusercontent.com/45969994/87157716-06e7ed80-c295-11ea-9eff-89e5a2c6164c.png" /></a>
-</div>
-<div class="section" id="replace-interp1d-by-line-shape-from-plotly">
+</section>
+<section id="replace-interp1d-by-line-shape-from-plotly">
 <h4>Replace interp1d by line_shape from Plotly<a class="headerlink" href="#replace-interp1d-by-line-shape-from-plotly" title="Permalink to this headline">¶</a></h4>
 <p>It removes the need of creating sub arrays from interpolation to smooth some results in StaticResults.</p>
-</div>
-<div class="section" id="add-probe-argument-to-forcedresponseresults">
+</section>
+<section id="add-probe-argument-to-forcedresponseresults">
 <h4>Add probe argument to ForcedResponseResults<a class="headerlink" href="#add-probe-argument-to-forcedresponseresults" title="Permalink to this headline">¶</a></h4>
 <p>Replace <code class="docutils literal notranslate"><span class="pre">dof</span></code> by <code class="docutils literal notranslate"><span class="pre">probe</span></code>argument probe is a list of tuples.
 Each tuple refers to a probe, which must include de node and the
@@ -466,87 +467,87 @@ orientation.</p>
 <p>The orientation units is set by <code class="docutils literal notranslate"><span class="pre">probe_units</span></code> argument.
 in <code class="docutils literal notranslate"><span class="pre">plot()</span></code> method, <code class="docutils literal notranslate"><span class="pre">data.showlegend</span></code> is turn off to
 avoid repetitive legend marks on graphs</p>
-</div>
-<div class="section" id="change-use-material-to-load-material">
+</section>
+<section id="change-use-material-to-load-material">
 <h4>Change .use_material() to .load_material()<a class="headerlink" href="#change-use-material-to-load-material" title="Permalink to this headline">¶</a></h4>
 <p>We have change most methods to use the word ‘save’ and ‘load’
 instead of ‘get’, ‘use’ etc.</p>
-</div>
-<div class="section" id="id4">
+</section>
+<section id="id4">
 <h4>Move “sparse” argument to run_modal()<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h4>
 <p>The eigenvalue / eigenvector solver is chosen when running the run_modal() method, and not anymore an parameter from the rotor model</p>
-</div>
-</div>
-<div class="section" id="id5">
+</section>
+</section>
+<section id="id5">
 <h3>Bug fixes<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h3>
-<div class="section" id="fix-issue-with-check-units">
+<section id="fix-issue-with-check-units">
 <h4>Fix issue with check_units<a class="headerlink" href="#fix-issue-with-check-units" title="Permalink to this headline">¶</a></h4>
 <p>Related to Issue #511</p>
 <p>Add a condition to verify if the argument value is None. It allows the user to pass “None” args without getting an error with the code trying to assign a unit to a None value.</p>
-</div>
-<div class="section" id="fix-missing-parameters-in-st-shaftelement">
+</section>
+<section id="fix-missing-parameters-in-st-shaftelement">
 <h4>Fix missing parameters in ST_ShaftElement<a class="headerlink" href="#fix-missing-parameters-in-st-shaftelement" title="Permalink to this headline">¶</a></h4>
 <ul class="simple">
 <li><p>The parameters <code class="docutils literal notranslate"><span class="pre">axial_force</span></code> and <code class="docutils literal notranslate"><span class="pre">torque</span></code> were missing from the <code class="docutils literal notranslate"><span class="pre">ST_ShaftElement.__init__()</span></code>.</p></li>
 </ul>
-</div>
-<div class="section" id="fix-missing-y-pos-and-y-pos-sup-in-df-seals">
+</section>
+<section id="fix-missing-y-pos-and-y-pos-sup-in-df-seals">
 <h4>Fix missing y_pos and y_pos_sup in df_seals<a class="headerlink" href="#fix-missing-y-pos-and-y-pos-sup-in-df-seals" title="Permalink to this headline">¶</a></h4>
 <p>Related to Issue #571.</p>
 <p>Seals can be displayed in different colors than bearings</p>
 <a class="reference external image-reference" href="https://user-images.githubusercontent.com/45969994/83309725-6e177a00-a1e0-11ea-95a3-8a69ebce9eda.png"><img alt="image" src="https://user-images.githubusercontent.com/45969994/83309725-6e177a00-a1e0-11ea-95a3-8a69ebce9eda.png" /></a>
-</div>
-<div class="section" id="fix-valueerror-when-inputting-an-integer-to-disk-properties">
+</section>
+<section id="fix-valueerror-when-inputting-an-integer-to-disk-properties">
 <h4>Fix ValueError when inputting an integer to disk properties<a class="headerlink" href="#fix-valueerror-when-inputting-an-integer-to-disk-properties" title="Permalink to this headline">¶</a></h4>
 <p>Related to Issue #593.</p>
-</div>
-</div>
-</div>
-<div class="section" id="version-0-3-0">
+</section>
+</section>
+</section>
+<section id="version-0-3-0">
 <h2>Version 0.3.0<a class="headerlink" href="#version-0-3-0" title="Permalink to this headline">¶</a></h2>
 <p>The following enhancements and bug fixes were implemented for this release:</p>
-<div class="section" id="id6">
+<section id="id6">
 <h3>Enhancements<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h3>
-<div class="section" id="remove-shaftelement-and-replace-with-the-shafttaperedelement">
+<section id="remove-shaftelement-and-replace-with-the-shafttaperedelement">
 <h4>Remove ShaftElement and replace with the ShaftTaperedElement<a class="headerlink" href="#remove-shaftelement-and-replace-with-the-shafttaperedelement" title="Permalink to this headline">¶</a></h4>
 <p>Now we only have one class for the shaft element which is capable of handling
 cylindrical and tapered elements.</p>
-</div>
-<div class="section" id="allow-user-choose-material-in-rotor-from-section">
+</section>
+<section id="allow-user-choose-material-in-rotor-from-section">
 <h4>Allow user choose material in “Rotor.from_section()”<a class="headerlink" href="#allow-user-choose-material-in-rotor-from-section" title="Permalink to this headline">¶</a></h4>
 <p>As requested in Issue #401, the user will be able to define a material when using <code class="docutils literal notranslate"><span class="pre">.from_section()</span></code> classmethod.
 In addition, more modifications have been done regarding the new ShaftElement API.
 Now, the user has the option to instantiate tapered sections.</p>
-</div>
-<div class="section" id="coaxialrotor-class">
+</section>
+<section id="coaxialrotor-class">
 <h4>CoAxialRotor class<a class="headerlink" href="#coaxialrotor-class" title="Permalink to this headline">¶</a></h4>
 <p>A class is now available for modeling coaxial rotors.</p>
-</div>
-</div>
-<div class="section" id="id7">
+</section>
+</section>
+<section id="id7">
 <h3>Bug fixes<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h3>
-<div class="section" id="fix-links-not-working-for-more-than-one-support">
+<section id="fix-links-not-working-for-more-than-one-support">
 <h4>Fix links not working for more than one support<a class="headerlink" href="#fix-links-not-working-for-more-than-one-support" title="Permalink to this headline">¶</a></h4>
 <p>Related to Issue #382.</p>
 <p>We were having problems to define de global indexes for the elements using this method intenally to a element class.
 It makes more sense to use .dof_global_index() when build the rotor model.
 The routine to calculate the elements’ global indexes have been moved to rotor_assembly (<code class="docutils literal notranslate"><span class="pre">.__init__()</span></code> method).
 Now, each element has an attribute that keeps those index, instead of calling a function to this job.</p>
-</div>
-<div class="section" id="fix-bearing-position-bug">
+</section>
+<section id="fix-bearing-position-bug">
 <h4>Fix bearing position bug<a class="headerlink" href="#fix-bearing-position-bug" title="Permalink to this headline">¶</a></h4>
 <p>Fix bug mentioned in Issue #276</p>
 <p>Sorting the bearing_seal_elements make it to cycle correctly while assuming <code class="docutils literal notranslate"><span class="pre">y_pos</span></code> values to them.</p>
-</div>
-</div>
-</div>
-<div class="section" id="version-0-2-0-beta-release">
+</section>
+</section>
+</section>
+<section id="version-0-2-0-beta-release">
 <h2>Version 0.2.0 (beta release)<a class="headerlink" href="#version-0-2-0-beta-release" title="Permalink to this headline">¶</a></h2>
 <p>The following enhancements and bug fixes were implemented
 for this release:</p>
-<div class="section" id="id8">
+<section id="id8">
 <h3>Enhancements<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h3>
-<div class="section" id="improvements-for-plotting-results">
+<section id="improvements-for-plotting-results">
 <h4>Improvements for plotting results<a class="headerlink" href="#improvements-for-plotting-results" title="Permalink to this headline">¶</a></h4>
 <p>This PR make some modifications in results.py</p>
 <ul class="simple">
@@ -559,8 +560,8 @@ for this release:</p>
 <ul class="simple">
 <li><p>adds an interpolation function to highlight to the user the intersection between the critical frequency curves and the speed line</p></li>
 </ul>
-</div>
-<div class="section" id="index-method">
+</section>
+<section id="index-method">
 <h4>Index method<a class="headerlink" href="#index-method" title="Permalink to this headline">¶</a></h4>
 <p>Adds <code class="docutils literal notranslate"><span class="pre">.dof_local_index()</span></code> and <code class="docutils literal notranslate"><span class="pre">.dof_global_index()</span></code> methods to the elements.
 These methods will return namedtuples with the index for each coordinate based on the following convention:</p>
@@ -596,8 +597,8 @@ These methods will return namedtuples with the index for each coordinate based o
     <span class="n">M0</span><span class="p">[</span><span class="n">n0</span><span class="p">:</span><span class="n">n1</span><span class="p">,</span> <span class="n">n0</span><span class="p">:</span><span class="n">n1</span><span class="p">]</span> <span class="o">+=</span> <span class="n">elm</span><span class="o">.</span><span class="n">M</span><span class="p">()</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="interactions-with-rotor-plotting">
+</section>
+<section id="interactions-with-rotor-plotting">
 <h4>interactions with rotor plotting<a class="headerlink" href="#interactions-with-rotor-plotting" title="Permalink to this headline">¶</a></h4>
 <p>When plotting a rotor, the user will be able to check some parameters of the elements in the output image itself, just by moving the cursor over the desired element, for example:</p>
 <p>By moving the cursor over a shaft element the user will see this:</p>
@@ -605,16 +606,16 @@ These methods will return namedtuples with the index for each coordinate based o
 <p>And, by moving the cursor over a disk element the user will see this:</p>
 <a class="reference external image-reference" href="https://user-images.githubusercontent.com/45969994/60343980-e7349e80-998b-11e9-9e07-cb72aeea216f.png"><img alt="disk" src="https://user-images.githubusercontent.com/45969994/60343980-e7349e80-998b-11e9-9e07-cb72aeea216f.png" /></a>
 <p>I didn’t add the same functionality to bearing elements because the coefficients may vary with rotor speed, and this may cause a misunderstanding to the user.</p>
-</div>
-<div class="section" id="move-time-response-plotting-to-results">
+</section>
+<section id="move-time-response-plotting-to-results">
 <h4>Move time response plotting to results<a class="headerlink" href="#move-time-response-plotting-to-results" title="Permalink to this headline">¶</a></h4>
 <ul class="simple">
 <li><p>Removes the code related to plotting from this file. It was transfered to results.py</p></li>
 <li><p>Replaces the method name from plot_time_response to run_time_response.</p></li>
 <li><p>Fix ForcedResponseResults docstring</p></li>
 </ul>
-</div>
-<div class="section" id="add-tapered-shaft-element">
+</section>
+<section id="add-tapered-shaft-element">
 <h4>Add tapered shaft element<a class="headerlink" href="#add-tapered-shaft-element" title="Permalink to this headline">¶</a></h4>
 <ul class="simple">
 <li><p>Add new element:  tapered shaft element</p></li>
@@ -626,17 +627,17 @@ These methods will return namedtuples with the index for each coordinate based o
 <blockquote>
 <div><p>Genta, G., and Gugliotta, A. (1988). A conical element for finite element rotor dynamics, Journal of Sound and Vibration 120,175-182.</p>
 </div></blockquote>
-</div>
-<div class="section" id="improving-plot-rotor">
+</section>
+<section id="improving-plot-rotor">
 <h4>Improving plot rotor<a class="headerlink" href="#improving-plot-rotor" title="Permalink to this headline">¶</a></h4>
 <p>This PR modifies the plotting size of disks, bearings and seals. The size, previously based on shaft length, is now calculated based on the shaft diameter.</p>
-</div>
-<div class="section" id="add-check-slenderness-ratio-method">
+</section>
+<section id="add-check-slenderness-ratio-method">
 <h4>Add Check slenderness ratio method<a class="headerlink" href="#add-check-slenderness-ratio-method" title="Permalink to this headline">¶</a></h4>
 <p>Adds a method that will return the colored rotor plot if the condition to the mininum slenderness ratio is not met.</p>
 <p>Now using <code class="docutils literal notranslate"><span class="pre">.plot.rotor()</span></code> won’t display the colored rotor anymore. Instead, the user will call <code class="docutils literal notranslate"><span class="pre">.check_slenderness_ratio()</span></code> to check this attribute.</p>
-</div>
-<div class="section" id="make-free-body-diagram-more-readable">
+</section>
+<section id="make-free-body-diagram-more-readable">
 <h4>Make Free-Body Diagram more readable<a class="headerlink" href="#make-free-body-diagram-more-readable" title="Permalink to this headline">¶</a></h4>
 <p>Pull Request to fix Issue #243</p>
 <ul class="simple">
@@ -647,8 +648,8 @@ These methods will return namedtuples with the index for each coordinate based o
 <li><p>Text font size reduced to “9pt”;</p></li>
 <li><p>Y axis is hidden. The force values are only displayed only next to the arrows, without size ratio.</p></li>
 </ul>
-</div>
-<div class="section" id="replace-bearing-plot-style-remove-element-length-dependency-from-glyphs">
+</section>
+<section id="replace-bearing-plot-style-remove-element-length-dependency-from-glyphs">
 <h4>Replace bearing plot style / remove element length dependency from glyphs<a class="headerlink" href="#replace-bearing-plot-style-remove-element-length-dependency-from-glyphs" title="Permalink to this headline">¶</a></h4>
 <ul class="simple">
 <li><p>Bearing representation changes from a simple square to a spring-damper set.</p></li>
@@ -659,8 +660,8 @@ These methods will return namedtuples with the index for each coordinate based o
 <a class="reference external image-reference" href="https://user-images.githubusercontent.com/45969994/62865813-ce870a80-bce5-11e9-84ae-243a21b2006c.png"><img alt="bokeh_plot(2)" src="https://user-images.githubusercontent.com/45969994/62865813-ce870a80-bce5-11e9-84ae-243a21b2006c.png" /></a>
 <p>Matplotlib plot</p>
 <a class="reference external image-reference" href="https://user-images.githubusercontent.com/45969994/62865820-d34bbe80-bce5-11e9-81ca-4a73ad6057e2.png"><img alt="Figure_1" src="https://user-images.githubusercontent.com/45969994/62865820-d34bbe80-bce5-11e9-81ca-4a73ad6057e2.png" /></a>
-</div>
-<div class="section" id="add-api-report">
+</section>
+<section id="add-api-report">
 <h4>Add API_report<a class="headerlink" href="#add-api-report" title="Permalink to this headline">¶</a></h4>
 <p>Work in Progress</p>
 <p>This PR adds some plotting styles follwing the API reference:</p>
@@ -670,8 +671,8 @@ These methods will return namedtuples with the index for each coordinate based o
 <li><p>Table of API parameters</p></li>
 </ul>
 <p>It follows the Issue #195</p>
-</div>
-<div class="section" id="add-new-tag-attribute-to-elements">
+</section>
+<section id="add-new-tag-attribute-to-elements">
 <h4>Add new “Tag” attribute to elements<a class="headerlink" href="#add-new-tag-attribute-to-elements" title="Permalink to this headline">¶</a></h4>
 <p>Disk, bearing and seal elements now get an attribute called “Tag”.
 This allows the user to name the elements to help refer to the actual equipment (impellers, blades, labyrinth seal…)</p>
@@ -724,8 +725,8 @@ This allows the user to name the elements to help refer to the actual equipment 
 </pre></div>
 </div>
 <p>The counting for bearings and seals is not independent. I don’t see it as big deal, but I’m open to suggestions.</p>
-</div>
-<div class="section" id="add-separated-dataframe-to-seals">
+</section>
+<section id="add-separated-dataframe-to-seals">
 <h4>Add separated DataFrame to seals<a class="headerlink" href="#add-separated-dataframe-to-seals" title="Permalink to this headline">¶</a></h4>
 <p>This splits bearings from seals in two different dataframes:</p>
 <ul class="simple">
@@ -739,8 +740,8 @@ This allows the user to name the elements to help refer to the actual equipment 
 <a class="reference external image-reference" href="https://user-images.githubusercontent.com/45969994/64347738-d2e3d200-cfca-11e9-88fb-3e74144f45a4.PNG"><img alt="novo" src="https://user-images.githubusercontent.com/45969994/64347738-d2e3d200-cfca-11e9-88fb-3e74144f45a4.PNG" /></a>
 <p>Also, fix a bug when modeling too flexible bearings, displacement were getting larger than acceptable.
 It uses axuliar bearings with high stiffness, considering almost zero displacement in bearing nodes.</p>
-</div>
-<div class="section" id="split-staticresults-plot-method">
+</section>
+<section id="split-staticresults-plot-method">
 <h4>Split StaticResults plot method<a class="headerlink" href="#split-staticresults-plot-method" title="Permalink to this headline">¶</a></h4>
 <p>This commit splits the plot method in four:</p>
 <ul class="simple">
@@ -750,8 +751,8 @@ It uses axuliar bearings with high stiffness, considering almost zero displaceme
 <li><p>plot_bending_moment()
 This is related to Issue #303.</p></li>
 </ul>
-</div>
-<div class="section" id="add-ballbearing-and-rollerbearing-element">
+</section>
+<section id="add-ballbearing-and-rollerbearing-element">
 <h4>Add BallBearing and RollerBearing Element<a class="headerlink" href="#add-ballbearing-and-rollerbearing-element" title="Permalink to this headline">¶</a></h4>
 <p>This PR adds two new classes:</p>
 <ul class="simple">
@@ -810,8 +811,8 @@ However the cross-coupling coefficients are set to zero, and the coefficients ar
     <span class="p">)</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="add-condition-to-shafttaperedelement-instantiation">
+</section>
+<section id="add-condition-to-shafttaperedelement-instantiation">
 <h4>Add condition to ShaftTaperedElement instantiation<a class="headerlink" href="#add-condition-to-shafttaperedelement-instantiation" title="Permalink to this headline">¶</a></h4>
 <ul>
 <li><p>Add a condition if the user do not attribute any value to inner and outer diameters on the right side, the values are automatically set to be equal the left side.</p></li>
@@ -845,12 +846,12 @@ However the cross-coupling coefficients are set to zero, and the coefficients ar
 </div>
 </li>
 </ul>
-</div>
-<div class="section" id="patches-for-pointmass-element">
+</section>
+<section id="patches-for-pointmass-element">
 <h4>Patches for PointMass element<a class="headerlink" href="#patches-for-pointmass-element" title="Permalink to this headline">¶</a></h4>
 <p>As required by issue #310</p>
-</div>
-<div class="section" id="add-repr-eq-and-example-to-point-mass-element">
+</section>
+<section id="add-repr-eq-and-example-to-point-mass-element">
 <h4>Add __repr__, __eq__, and example() to point mass element<a class="headerlink" href="#add-repr-eq-and-example-to-point-mass-element" title="Permalink to this headline">¶</a></h4>
 <p>This commit adds the following methods to PointMass class:</p>
 <ul class="simple">
@@ -858,8 +859,8 @@ However the cross-coupling coefficients are set to zero, and the coefficients ar
 <li><p><strong>eq</strong> - comparasion method;</p></li>
 <li><p>point_mass_example() - to run some doctests.</p></li>
 </ul>
-</div>
-<div class="section" id="improvements-to-static-analysis-documentation">
+</section>
+<section id="improvements-to-static-analysis-documentation">
 <h4>Improvements to Static Analysis Documentation<a class="headerlink" href="#improvements-to-static-analysis-documentation" title="Permalink to this headline">¶</a></h4>
 <ul class="simple">
 <li><p>Related to Issue #327</p></li>
@@ -872,8 +873,8 @@ However the cross-coupling coefficients are set to zero, and the coefficients ar
 </ul>
 </li>
 </ul>
-</div>
-<div class="section" id="general-modifications-in-campbellresults">
+</section>
+<section id="general-modifications-in-campbellresults">
 <h4>General Modifications in CampbellResults<a class="headerlink" href="#general-modifications-in-campbellresults" title="Permalink to this headline">¶</a></h4>
 <p>This is related to Issues #326 and #328.</p>
 <ul class="simple">
@@ -901,15 +902,15 @@ Restructure code to increase efficiency (reduce plotting time): I could the plot
 </pre></div>
 </div>
 <p>I’ve measured the time just to run the .plot(). It was taking 2.5s for the rotor_example(). Rearranging the code, it has been reduced to 1.2s for this same example.</p>
-</div>
-<div class="section" id="add-summary-table-to-plot-rotor-information">
+</section>
+<section id="add-summary-table-to-plot-rotor-information">
 <h4>Add summary table to plot rotor information<a class="headerlink" href="#add-summary-table-to-plot-rotor-information" title="Permalink to this headline">¶</a></h4>
 <p>Related to Issue #327.</p>
 <p>It’s a first idea from what the summary will become.
 The class get the values stored in dataframes and turns them into a bokeh widget in table format.</p>
 <p>We still can build other tables to make it more complete and useful to manipulate data.</p>
-</div>
-<div class="section" id="improvements-to-summaryresults">
+</section>
+<section id="improvements-to-summaryresults">
 <h4>Improvements to SummaryResults<a class="headerlink" href="#improvements-to-summaryresults" title="Permalink to this headline">¶</a></h4>
 <p>Related to Issue #327
 Follows the PR #338</p>
@@ -927,8 +928,8 @@ tables;</p></li>
 </ul>
 </li>
 </ul>
-</div>
-<div class="section" id="add-stability-level-1-analysis">
+</section>
+<section id="add-stability-level-1-analysis">
 <h4>Add Stability Level 1 analysis<a class="headerlink" href="#add-stability-level-1-analysis" title="Permalink to this headline">¶</a></h4>
 <ul class="simple">
 <li><p>This analysis consider a anticipated cross coupling QA based on conditions at the normal operating point and the cross-coupling required to produce a zero log decrement, Q0.</p></li>
@@ -959,16 +960,16 @@ consideres the disks and shaft wheight (if overhung).</p></li>
 </ul>
 <p>This Level 1 analysis does not have the screening criteria yet.
 The next step is to implement the Level 2 analysis. Once I get to work on it, I’ll add the screening criteria. I still need to organize some ideas for the next step.</p>
-</div>
-<div class="section" id="add-bearing-summary-table">
+</section>
+<section id="add-bearing-summary-table">
 <h4>Add Bearing Summary Table<a class="headerlink" href="#add-bearing-summary-table" title="Permalink to this headline">¶</a></h4>
 <ul class="simple">
 <li><p>add a summary table for bearing elements: for now it displays only where it’s placed and the reaction forces.</p></li>
 <li><p>fix bug: when setting and disk or bearing element in the last node, the code would fail</p></li>
 <li><p>other minor changes</p></li>
 </ul>
-</div>
-<div class="section" id="improvements-to-api-report-py-add-test-api-report-py">
+</section>
+<section id="improvements-to-api-report-py-add-test-api-report-py">
 <h4>Improvements to api_report.py - Add test_api_report.py<a class="headerlink" href="#improvements-to-api-report-py-add-test-api-report-py" title="Permalink to this headline">¶</a></h4>
 <ul class="simple">
 <li><p>Add Stability level 1 screening criteria;</p></li>
@@ -976,12 +977,12 @@ The next step is to implement the Level 2 analysis. Once I get to work on it, I�
 <li><p>Add <code class="docutils literal notranslate"><span class="pre">.summary()</span></code> method;</p></li>
 <li><p>Add summary for stability level 1</p></li>
 </ul>
-</div>
-<div class="section" id="add-stability-analysis-level-2">
+</section>
+<section id="add-stability-analysis-level-2">
 <h4>Add stability analysis level 2<a class="headerlink" href="#add-stability-analysis-level-2" title="Permalink to this headline">¶</a></h4>
 <p>For the level 2 stability analysis additional sources that contribute to the rotor stability shall be considered. These sources shall replace the cross-coupling Qa, calculated in the stability analysis level 1</p>
-</div>
-<div class="section" id="visual-improvements-to-graphs">
+</section>
+<section id="visual-improvements-to-graphs">
 <h4>Visual improvements to graphs<a class="headerlink" href="#visual-improvements-to-graphs" title="Permalink to this headline">¶</a></h4>
 <p>The labels, ticks and titles font size from bokeh figure were small when putting it presentations. So I’ve increased the font size of all graphs.</p>
 <ul class="simple">
@@ -993,8 +994,8 @@ The next step is to implement the Level 2 analysis. Once I get to work on it, I�
 <li><p>In <code class="docutils literal notranslate"><span class="pre">.stability_level_1()</span></code> remove condition from returning and add it as attribute;</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">.run_modal().plot_mode()</span></code> add legend informing the whirl direction.</p></li>
 </ul>
-</div>
-<div class="section" id="add-method-to-plot-orbit">
+</section>
+<section id="add-method-to-plot-orbit">
 <h4>Add method to plot orbit<a class="headerlink" href="#add-method-to-plot-orbit" title="Permalink to this headline">¶</a></h4>
 <ul class="simple">
 <li><p>Add <code class="docutils literal notranslate"><span class="pre">.run_orbit_response()</span></code> method to rotor_assembly.py.</p>
@@ -1021,29 +1022,29 @@ The next step is to implement the Level 2 analysis. Once I get to work on it, I�
 <span class="gp">&gt;&gt;&gt; </span><span class="n">show</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">plot</span><span class="p">())</span>                                   <span class="c1"># plot orbit response</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="d-plots-for-orbit-response">
+</section>
+<section id="d-plots-for-orbit-response">
 <h4>3D plots for orbit response<a class="headerlink" href="#d-plots-for-orbit-response" title="Permalink to this headline">¶</a></h4>
 <p>Related to PR #385.</p>
-</div>
-</div>
-<div class="section" id="id9">
+</section>
+</section>
+<section id="id9">
 <h3>API changes<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h3>
-</div>
-<div class="section" id="id10">
+</section>
+<section id="id10">
 <h3>Bug fixes<a class="headerlink" href="#id10" title="Permalink to this headline">¶</a></h3>
 <blockquote>
 <div><p>Fix Campbell’s strange behavior for precession</p>
 </div></blockquote>
 <hr class="docutils" />
-<div class="section" id="fix-equality-for-bearing-element">
+<section id="fix-equality-for-bearing-element">
 <h4>Fix equality for bearing element<a class="headerlink" href="#fix-equality-for-bearing-element" title="Permalink to this headline">¶</a></h4>
 <p>Fixes the equality for bearing element, allowing the comparison with
 objects from different types, e.g. bearing == 1 will return False,
 before an AttributeError was raised since int doesn’t have .<strong>dict</strong>.
 This also removes pytest as a dependence for the user.</p>
-</div>
-<div class="section" id="add-import-to-axes3d">
+</section>
+<section id="add-import-to-axes3d">
 <h4>Add import to Axes3d<a class="headerlink" href="#add-import-to-axes3d" title="Permalink to this headline">¶</a></h4>
 <p>The import has been added to the results module because the mode shape
 plot needs this to work. Although it looks like the import is not being
@@ -1051,13 +1052,13 @@ used (this is highlighted by linters), matplotlib, for some strange
 reason, actually needs this to use the projection=’3d’.
 A doctest has been added to the mode shape plot for the tests to fail
 if this import is removed.</p>
-</div>
-<div class="section" id="fix-bearing-type-definition-and-add-new-test">
+</section>
+<section id="fix-bearing-type-definition-and-add-new-test">
 <h4>Fix bearing type definition and add new test<a class="headerlink" href="#fix-bearing-type-definition-and-add-new-test" title="Permalink to this headline">¶</a></h4>
 <p>Fix the bearing type definition and also add a new test that checks if a second analytical way to calculate the pressure matrix matches the numerical way.
 Close #175</p>
-</div>
-<div class="section" id="id11">
+</section>
+<section id="id11">
 <h4>Improvements for plotting results<a class="headerlink" href="#id11" title="Permalink to this headline">¶</a></h4>
 <p>This PR make some modifications in results.py</p>
 <ul class="simple">
@@ -1070,12 +1071,12 @@ Close #175</p>
 <ul class="simple">
 <li><p>adds an interpolation function to highlight to the user the intersection between the critical frequency curves and the speed line</p></li>
 </ul>
-</div>
-<div class="section" id="fix-bug-plotting-unbalance-response">
+</section>
+<section id="fix-bug-plotting-unbalance-response">
 <h4>Fix bug - plotting unbalance response<a class="headerlink" href="#fix-bug-plotting-unbalance-response" title="Permalink to this headline">¶</a></h4>
 <p>Unbalance response was not plotting when calling it using matplotlib</p>
-</div>
-<div class="section" id="id12">
+</section>
+<section id="id12">
 <h4>Make Free-Body Diagram more readable<a class="headerlink" href="#id12" title="Permalink to this headline">¶</a></h4>
 <p>Pull Request to fix Issue #243</p>
 <ul class="simple">
@@ -1091,12 +1092,12 @@ Close #175</p>
 </div></blockquote>
 <hr class="docutils" />
 <p>I found some problems in shaft tapered element matrices. Fow now I’ve fixed the issues on mass and gyroscopic matrices. Besides this PR modifies the tests for this class, adding tests to compare two cylindrical elements built from <code class="docutils literal notranslate"><span class="pre">ShaftElement</span></code> and <code class="docutils literal notranslate"><span class="pre">ShaftTaperedElement</span></code> classes. However, tests for stiffness matrices are skipped.</p>
-</div>
-<div class="section" id="fix-typo-in-repr">
+</section>
+<section id="fix-typo-in-repr">
 <h4>Fix typo in __repr__<a class="headerlink" href="#fix-typo-in-repr" title="Permalink to this headline">¶</a></h4>
 <p>It follows the Issue #255.</p>
-</div>
-<div class="section" id="fix-inconsistencies-in-the-stiffness-matrix">
+</section>
+<section id="fix-inconsistencies-in-the-stiffness-matrix">
 <h4>Fix inconsistencies in the stiffness matrix<a class="headerlink" href="#fix-inconsistencies-in-the-stiffness-matrix" title="Permalink to this headline">¶</a></h4>
 <ul class="simple">
 <li><p>Fix some typos in geometry coefficients;</p></li>
@@ -1110,19 +1111,19 @@ Close #175</p>
 <li><p>Fix element attribute tests ;</p></li>
 <li><p>Fix comparation tests.</p></li>
 </ul>
-</div>
-<div class="section" id="fixing-doctests">
+</section>
+<section id="fixing-doctests">
 <h4>Fixing doctests<a class="headerlink" href="#fixing-doctests" title="Permalink to this headline">¶</a></h4>
 <p>Well, since I have forgotten to add the .py extention on api_report file, the CI’s were not running the tests on it. And now that I did it, the building is failing due some tests.</p>
 <p>This PR tries to fix this problem on api_report.py and in results.py (with new docstrings on ModeShapeResults)</p>
 <p>The last PR (#272) was a failure actually.</p>
-</div>
-<div class="section" id="adapt-convergence-analysis-to-shafttaperedelement">
+</section>
+<section id="adapt-convergence-analysis-to-shafttaperedelement">
 <h4>Adapt convergence analysis to ShaftTaperedElement<a class="headerlink" href="#adapt-convergence-analysis-to-shafttaperedelement" title="Permalink to this headline">¶</a></h4>
 <p>Now the convergence analysis uses the class ShaftTaperedElement to generate shaft elements since it’s more generic.
 This should solve issue #280.</p>
-</div>
-<div class="section" id="id13">
+</section>
+<section id="id13">
 <h4>Add separated DataFrame to seals<a class="headerlink" href="#id13" title="Permalink to this headline">¶</a></h4>
 <p>This splits bearings from seals in two different dataframes:</p>
 <ul class="simple">
@@ -1136,18 +1137,18 @@ This should solve issue #280.</p>
 <a class="reference external image-reference" href="https://user-images.githubusercontent.com/45969994/64347738-d2e3d200-cfca-11e9-88fb-3e74144f45a4.PNG"><img alt="novo" src="https://user-images.githubusercontent.com/45969994/64347738-d2e3d200-cfca-11e9-88fb-3e74144f45a4.PNG" /></a>
 <p>Also, fix a bug when modeling too flexible bearings, displacement were getting larger than acceptable.
 It uses axuliar bearings with high stiffness, considering almost zero displacement in bearing nodes.</p>
-</div>
-<div class="section" id="fix-warning-when-changing-number-of-nodes-to-be-plotted">
+</section>
+<section id="fix-warning-when-changing-number-of-nodes-to-be-plotted">
 <h4>Fix warning when changing number of nodes to be plotted<a class="headerlink" href="#fix-warning-when-changing-number-of-nodes-to-be-plotted" title="Permalink to this headline">¶</a></h4>
 <p>Related to Issue #295</p>
-</div>
-<div class="section" id="remove-unit-conversion-factor">
+</section>
+<section id="remove-unit-conversion-factor">
 <h4>Remove unit conversion factor<a class="headerlink" href="#remove-unit-conversion-factor" title="Permalink to this headline">¶</a></h4>
 <p>Remove a conversion factor (meters to milimeters) from the plot_deformation() ColumnDataSource.
 So the x and y axis units get to be the same.</p>
 <p>Related to Issue #312</p>
-</div>
-<div class="section" id="id14">
+</section>
+<section id="id14">
 <h4>Improvements to Static Analysis Documentation<a class="headerlink" href="#id14" title="Permalink to this headline">¶</a></h4>
 <ul class="simple">
 <li><p>Related to Issue #327</p></li>
@@ -1160,19 +1161,19 @@ So the x and y axis units get to be the same.</p>
 </ul>
 </li>
 </ul>
-</div>
-<div class="section" id="fix-bearings-not-connecting-to-tapered-elements">
+</section>
+<section id="fix-bearings-not-connecting-to-tapered-elements">
 <h4>Fix bearings not connecting to tapered elements<a class="headerlink" href="#fix-bearings-not-connecting-to-tapered-elements" title="Permalink to this headline">¶</a></h4>
 <p>Related to Issue #332</p>
-</div>
-<div class="section" id="fix-bug-when-plotting-bearings">
+</section>
+<section id="fix-bug-when-plotting-bearings">
 <h4>Fix bug when plotting bearings<a class="headerlink" href="#fix-bug-when-plotting-bearings" title="Permalink to this headline">¶</a></h4>
 <ul class="simple">
 <li><p>Fix bug when plotting bearing elements in a given node with more than 1 shaft element on it. The bearing would not get correct starting point.</p></li>
 <li><p>Fix bug when using scale_factor with point mass. The auxiliar bearing would disattach from the first bearing.</p></li>
 </ul>
-</div>
-<div class="section" id="fix-bug-in-run-freq-response">
+</section>
+<section id="fix-bug-in-run-freq-response">
 <h4>Fix bug in .run_freq_response()<a class="headerlink" href="#fix-bug-in-run-freq-response" title="Permalink to this headline">¶</a></h4>
 <p>Fix a bug that happens when calling <code class="docutils literal notranslate"><span class="pre">.run_freq_response()</span></code> with default arguments, i.e:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">rotor</span> <span class="o">=</span> <span class="n">rotor_example</span><span class="p">()</span>
@@ -1187,77 +1188,77 @@ So the x and y axis units get to be the same.</p>
 </div>
 <p>Since running <code class="docutils literal notranslate"><span class="pre">.run_modal()</span></code> is required to create the attribute <code class="docutils literal notranslate"><span class="pre">evalues</span></code>, we need to call this function (run_modal()) before creating a default speed_range based on the evalues.</p>
 <p>This should fix it.</p>
-</div>
-</div>
-</div>
-<div class="section" id="version-0-1-0-alpha-release">
+</section>
+</section>
+</section>
+<section id="version-0-1-0-alpha-release">
 <h2>Version 0.1.0 (alpha release)<a class="headerlink" href="#version-0-1-0-alpha-release" title="Permalink to this headline">¶</a></h2>
 <p>For the alpha release, the main classes have been created and the more
 important analyses have been implemented.</p>
 <p>The following gives a list of enhancements, api changes and bug fixes that were
 implemented for this release:</p>
-<div class="section" id="id15">
+<section id="id15">
 <h3>Enhancements<a class="headerlink" href="#id15" title="Permalink to this headline">¶</a></h3>
-<div class="section" id="implementation-of-the-material-class">
+<section id="implementation-of-the-material-class">
 <h4>Implementation of the Material class<a class="headerlink" href="#implementation-of-the-material-class" title="Permalink to this headline">¶</a></h4>
 <p>A class has been implemented to represent any material that can be used when
 creating an element for the analysis.</p>
-</div>
-<div class="section" id="create-shaftelement-diskelement-and-bearingsealelement">
+</section>
+<section id="create-shaftelement-diskelement-and-bearingsealelement">
 <h4>Create ShaftElement, DiskElement and BearingSealElement<a class="headerlink" href="#create-shaftelement-diskelement-and-bearingsealelement" title="Permalink to this headline">¶</a></h4>
 <p>The main classes used to create shaft elements, disk elements and bearings/seals
 elements have been implemented.</p>
-</div>
-<div class="section" id="add-rotor-assembly-and-results">
+</section>
+<section id="add-rotor-assembly-and-results">
 <h4>Add rotor assembly and results<a class="headerlink" href="#add-rotor-assembly-and-results" title="Permalink to this headline">¶</a></h4>
 <p>A Rotor class has been implemented to represent the rotor. A rotor object
 assembles the global matrices and provides methods to run the same analysis on
 the rotor. Results implemented are modal analysis, Campbell, frequency response
 and unbalance response.</p>
-</div>
-<div class="section" id="add-static-analysis-method">
+</section>
+<section id="add-static-analysis-method">
 <h4>Add static analysis method<a class="headerlink" href="#add-static-analysis-method" title="Permalink to this headline">¶</a></h4>
 <p>A method to calculate the static displacement of a rotor due to
 disks’ weight has been added.</p>
-</div>
-<div class="section" id="new-rotor-save-format">
+</section>
+<section id="new-rotor-save-format">
 <h4>New rotor save format<a class="headerlink" href="#new-rotor-save-format" title="Permalink to this headline">¶</a></h4>
 <p>A new format for saving rotors was implemented. It is based on the toml format.</p>
-</div>
-<div class="section" id="add-convergence-analysis">
+</section>
+<section id="add-convergence-analysis">
 <h4>Add convergence analysis<a class="headerlink" href="#add-convergence-analysis" title="Permalink to this headline">¶</a></h4>
 <p>Add convergence analysis as a method to the class Rotor.</p>
-</div>
-<div class="section" id="analytical-fluid-flow-short-bearings">
+</section>
+<section id="analytical-fluid-flow-short-bearings">
 <h4>Analytical fluid flow, short bearings<a class="headerlink" href="#analytical-fluid-flow-short-bearings" title="Permalink to this headline">¶</a></h4>
 <p>Add analytical fluid flow routines for short bearings.</p>
-</div>
-<div class="section" id="add-new-diagram-to-static-method">
+</section>
+<section id="add-new-diagram-to-static-method">
 <h4>Add new diagram to static method<a class="headerlink" href="#add-new-diagram-to-static-method" title="Permalink to this headline">¶</a></h4>
 <p>Add a new plot to the static method - shearing force and changes the name of some
 graphs to make it more readable.</p>
-</div>
-<div class="section" id="add-methods-to-allow-inputs-from-a-table-in-bearing-element">
+</section>
+<section id="add-methods-to-allow-inputs-from-a-table-in-bearing-element">
 <h4>Add methods to allow inputs from a table in bearing element<a class="headerlink" href="#add-methods-to-allow-inputs-from-a-table-in-bearing-element" title="Permalink to this headline">¶</a></h4>
 <p>Two methods were added to bearing element. The first one allows instantiating
 a bearing object from a table (excel format). The second one converts from
 table to dictionary, that can be saved as a toml file.</p>
-</div>
-<div class="section" id="interpolation-for-static-analysis-and-bending-moment-diagram">
+</section>
+<section id="interpolation-for-static-analysis-and-bending-moment-diagram">
 <h4>Interpolation for static analysis and Bending moment diagram<a class="headerlink" href="#interpolation-for-static-analysis-and-bending-moment-diagram" title="Permalink to this headline">¶</a></h4>
 <p>An interpolation method has been added to give a more smooth curve on
 plots generated by the static analysis.</p>
-</div>
-<div class="section" id="add-bokeh-plot-to-forcedresponse-class">
+</section>
+<section id="add-bokeh-plot-to-forcedresponse-class">
 <h4>Add bokeh plot to ForcedResponse() class<a class="headerlink" href="#add-bokeh-plot-to-forcedresponse-class" title="Permalink to this headline">¶</a></h4>
 <p>Implements plotting using bokeh to generate magnitude and
 phase plot to ForcedResponse class.</p>
-</div>
-<div class="section" id="add-bokeh-plot-to-plot-level1-and-plot-ucs">
+</section>
+<section id="add-bokeh-plot-to-plot-level1-and-plot-ucs">
 <h4>Add bokeh plot to “plot_level1” and “plot_ucs”<a class="headerlink" href="#add-bokeh-plot-to-plot-level1-and-plot-ucs" title="Permalink to this headline">¶</a></h4>
 <p>Add bokeh plotting as alternative to matplotlib to plot graphs.</p>
-</div>
-<div class="section" id="benchmark-implementation-and-some-changes-in-imports">
+</section>
+<section id="benchmark-implementation-and-some-changes-in-imports">
 <h4>Benchmark implementation and some changes in imports<a class="headerlink" href="#benchmark-implementation-and-some-changes-in-imports" title="Permalink to this headline">¶</a></h4>
 <p>Add Benchmark folder to ross(__init__) folder.  To run the
 benchmarks you only need to:  * run <cite>run_benchmarks.py,</cite> the outputs
@@ -1269,14 +1270,14 @@ run(within the directory of saved Benchmarks) <cite>snakeviz
 Convergence.prof</cite>.
 Those changes are some import optimization and turning static() method
 into run_static() method.</p>
-</div>
-<div class="section" id="added-user-guide-on-how-to-use-ross">
+</section>
+<section id="added-user-guide-on-how-to-use-ross">
 <h4>Added user guide on how to use ROSS<a class="headerlink" href="#added-user-guide-on-how-to-use-ross" title="Permalink to this headline">¶</a></h4>
 <p>A tutorial has been added to the documentation. This is available as a
 jupyter notebook and is also rendered in the <span class="xref std std-ref">tutorial</span>
 documentation page.</p>
-</div>
-<div class="section" id="jupyter-examples">
+</section>
+<section id="jupyter-examples">
 <h4>Jupyter examples<a class="headerlink" href="#jupyter-examples" title="Permalink to this headline">¶</a></h4>
 <dl class="simple">
 <dt>Implementation of the following examples, taken from Frisswell:</dt><dd><ul class="simple">
@@ -1290,19 +1291,19 @@ documentation page.</p>
 </ul>
 </dd>
 </dl>
-</div>
-<div class="section" id="adds-a-binder-badge">
+</section>
+<section id="adds-a-binder-badge">
 <h4>Adds a binder badge<a class="headerlink" href="#adds-a-binder-badge" title="Permalink to this headline">¶</a></h4>
 <p>Binder is available to test the library in a cloud virtual environment.</p>
-</div>
-</div>
-<div class="section" id="id16">
+</section>
+</section>
+<section id="id16">
 <h3>API changes<a class="headerlink" href="#id16" title="Permalink to this headline">¶</a></h3>
-<div class="section" id="add-run-modal-method">
+<section id="add-run-modal-method">
 <h4>Add run_modal method<a class="headerlink" href="#add-run-modal-method" title="Permalink to this headline">¶</a></h4>
 <p>The modal analysis changed from <code class="docutils literal notranslate"><span class="pre">.run()</span></code> to <code class="docutils literal notranslate"><span class="pre">.run_modal()</span></code>.</p>
-</div>
-<div class="section" id="change-methods-names">
+</section>
+<section id="change-methods-names">
 <h4>Change methods’ names<a class="headerlink" href="#change-methods-names" title="Permalink to this headline">¶</a></h4>
 <dl class="simple">
 <dt>This is mostly to add <code class="docutils literal notranslate"><span class="pre">run_</span></code> to some Rotor methods, like:</dt><dd><ul class="simple">
@@ -1317,8 +1318,8 @@ documentation page.</p>
 Since our convergence analysis have shown good results even for SR &lt; 30,
 it was decided to change it to 1.6, which is equivalent to a
 length / diameter ratio of 0.5.</p>
-</div>
-<div class="section" id="remove-show-from-convergence-and-static">
+</section>
+<section id="remove-show-from-convergence-and-static">
 <h4>Remove show() from convergence and static<a class="headerlink" href="#remove-show-from-convergence-and-static" title="Permalink to this headline">¶</a></h4>
 <p>Removes bokeh show() from the convergence and static analysis.
 Automatically showing the plots is not expected when running tests or
@@ -1328,22 +1329,22 @@ plot that if wanted. As an example:</p>
 <span class="n">show</span><span class="p">(</span><span class="n">static_analysis</span><span class="p">)</span>
 </pre></div>
 </div>
-</div>
-</div>
-<div class="section" id="id17">
+</section>
+</section>
+<section id="id17">
 <h3>Bug fixes<a class="headerlink" href="#id17" title="Permalink to this headline">¶</a></h3>
-<div class="section" id="added-interpolate-to-rotor-assembly-py">
+<section id="added-interpolate-to-rotor-assembly-py">
 <h4>Added interpolate to rotor_assembly.py<a class="headerlink" href="#added-interpolate-to-rotor-assembly-py" title="Permalink to this headline">¶</a></h4>
 <p>The function interp1d was used but the interpolate function was not
 being  imported.</p>
-</div>
-<div class="section" id="fix-eccentricity-ratio-function">
+</section>
+<section id="fix-eccentricity-ratio-function">
 <h4>Fix eccentricity ratio function<a class="headerlink" href="#fix-eccentricity-ratio-function" title="Permalink to this headline">¶</a></h4>
 <p>The eccentricity ratio function was being calculated wrongly, using the
 sommerfeld number instead of the modified one, as it was supposed to
 use.</p>
-</div>
-<div class="section" id="id18">
+</section>
+<section id="id18">
 <h4>Improving plot_rotor<a class="headerlink" href="#id18" title="Permalink to this headline">¶</a></h4>
 <p>There was an error that shaft elements were plotting with 2 times their
 respective radius.  I enlarged the plot window size and distributed the
@@ -1354,10 +1355,10 @@ calculates the ratio using some global distance measures, rather than
 basing it upon individual element dimensions. The user is returned an
 warning message if it’s lower than a certain value, which could affect
 the convergence analysis.</p>
-</div>
-</div>
-</div>
-</div>
+</section>
+</section>
+</section>
+</section>
 
 
     </div>
@@ -1373,7 +1374,7 @@ the convergence analysis.</p>
     </p>
     <p>
         &copy; Copyright 2021, Team ROSS.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.5.4.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.0.2.<br/>
     </p>
   </div>
 </footer>

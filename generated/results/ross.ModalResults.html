@@ -3,21 +3,22 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>ross.ModalResults &#8212; ross 1.0.1 documentation</title>
-    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../../_static/bootstrap-sphinx.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/bootstrap-sphinx.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx_copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/style.css" />
-    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
     <script src="../../_static/jquery.js"></script>
     <script src="../../_static/underscore.js"></script>
     <script src="../../_static/doctools.js"></script>
     <script src="../../_static/sphinx_copybutton.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js"></script>
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "document", "processHtmlClass": "math|output_area"}}</script>
     <link rel="shortcut icon" href="../../_static/ross-logo.ico"/>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -157,11 +158,11 @@
     <div class="body col-md-12 content" role="main">
       
   </div>
-<div class=col-md-9 content><div class="section" id="ross-modalresults">
+<div class=col-md-9 content><section id="ross-modalresults">
 <h1>ross.ModalResults<a class="headerlink" href="#ross-modalresults" title="Permalink to this headline">¶</a></h1>
 <dl class="py class">
-<dt id="ross.ModalResults">
-<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">ross.</span></code><code class="sig-name descname"><span class="pre">ModalResults</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">speed</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">evalues</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">evectors</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wn</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wd</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">damping_ratio</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">log_dec</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ndof</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nodes</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nodes_pos</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">shaft_elements_length</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/results.html#ModalResults"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ross.ModalResults" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="ross.ModalResults">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">ross.</span></span><span class="sig-name descname"><span class="pre">ModalResults</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">speed</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">evalues</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">evectors</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wn</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wd</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">damping_ratio</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">log_dec</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ndof</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nodes</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nodes_pos</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">shaft_elements_length</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/results.html#ModalResults"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ross.ModalResults" title="Permalink to this definition">¶</a></dt>
 <dd><p>Class used to store results and provide plots for Modal Analysis.</p>
 <p>Two options for plottting are available: plot_mode3D (mode shape 3D view)
 and plot_mode2D (mode shape 2D view). The user chooses between them using
@@ -195,15 +196,15 @@ the respective methods.</p>
 </dd>
 </dl>
 <dl class="py method">
-<dt id="ross.ModalResults.__init__">
-<code class="sig-name descname"><span class="pre">__init__</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">speed</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">evalues</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">evectors</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wn</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wd</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">damping_ratio</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">log_dec</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ndof</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nodes</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nodes_pos</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">shaft_elements_length</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/results.html#ModalResults.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ross.ModalResults.__init__" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="ross.ModalResults.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">speed</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">evalues</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">evectors</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wn</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wd</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">damping_ratio</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">log_dec</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ndof</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nodes</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nodes_pos</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">shaft_elements_length</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/results.html#ModalResults.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ross.ModalResults.__init__" title="Permalink to this definition">¶</a></dt>
 <dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
 </dd></dl>
 
 <p class="rubric">Methods</p>
 <dl class="py method">
-<dt id="ross.ModalResults.H_kappa">
-<code class="sig-name descname"><span class="pre">H_kappa</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">node</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">w</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_T</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/results.html#ModalResults.H_kappa"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ross.ModalResults.H_kappa" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="ross.ModalResults.H_kappa">
+<span class="sig-name descname"><span class="pre">H_kappa</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">node</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">w</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_T</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/results.html#ModalResults.H_kappa"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ross.ModalResults.H_kappa" title="Permalink to this definition">¶</a></dt>
 <dd><p>Calculate the H matrix for a given node and natural frequency.</p>
 <p>The matrix H contains information about the whirl direction,
 the orbit minor and major axis and the orbit inclination.
@@ -268,14 +269,14 @@ values for <span class="math notranslate nohighlight">\(r_u, r_v, \eta_u, \eta_v
 </dd></dl>
 
 <dl class="py method">
-<dt id="id0">
-<code class="sig-name descname"><span class="pre">__init__</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">speed</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">evalues</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">evectors</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wn</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wd</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">damping_ratio</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">log_dec</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ndof</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nodes</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nodes_pos</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">shaft_elements_length</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/results.html#ModalResults.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id0" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="id0">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">speed</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">evalues</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">evectors</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wn</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wd</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">damping_ratio</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">log_dec</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ndof</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nodes</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nodes_pos</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">shaft_elements_length</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/results.html#ModalResults.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id0" title="Permalink to this definition">¶</a></dt>
 <dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="ross.ModalResults.calc_mode_shape">
-<code class="sig-name descname"><span class="pre">calc_mode_shape</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mode</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">evec</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/results.html#ModalResults.calc_mode_shape"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ross.ModalResults.calc_mode_shape" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="ross.ModalResults.calc_mode_shape">
+<span class="sig-name descname"><span class="pre">calc_mode_shape</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mode</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">evec</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/results.html#ModalResults.calc_mode_shape"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ross.ModalResults.calc_mode_shape" title="Permalink to this definition">¶</a></dt>
 <dd><p>Calculate the arrays describing the mode shapes.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -309,8 +310,8 @@ Default is None</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="ross.ModalResults.kappa">
-<code class="sig-name descname"><span class="pre">kappa</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">node</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">w</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wd</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/results.html#ModalResults.kappa"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ross.ModalResults.kappa" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="ross.ModalResults.kappa">
+<span class="sig-name descname"><span class="pre">kappa</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">node</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">w</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wd</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/results.html#ModalResults.kappa"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ross.ModalResults.kappa" title="Permalink to this definition">¶</a></dt>
 <dd><p>Calculate kappa for a given node and natural frequency.</p>
 <p>frequency is the the index of the natural frequency of interest.
 The function calculates the orbit parameter <span class="math notranslate nohighlight">\(\kappa\)</span>:</p>
@@ -345,8 +346,8 @@ major axis, minor axis and kappa.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="ross.ModalResults.kappa_mode">
-<code class="sig-name descname"><span class="pre">kappa_mode</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">w</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/results.html#ModalResults.kappa_mode"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ross.ModalResults.kappa_mode" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="ross.ModalResults.kappa_mode">
+<span class="sig-name descname"><span class="pre">kappa_mode</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">w</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/results.html#ModalResults.kappa_mode"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ross.ModalResults.kappa_mode" title="Permalink to this definition">¶</a></dt>
 <dd><p>Evaluate kappa values.</p>
 <p>This function evaluates kappa given the index of the natural frequency
 of interest.
@@ -371,8 +372,8 @@ to the mode/natural frequency of interest.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="ross.ModalResults.load">
-<em class="property"><span class="pre">classmethod</span> </em><code class="sig-name descname"><span class="pre">load</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ross.ModalResults.load" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="ross.ModalResults.load">
+<em class="property"><span class="pre">classmethod</span> </em><span class="sig-name descname"><span class="pre">load</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ross.ModalResults.load" title="Permalink to this definition">¶</a></dt>
 <dd><p>Load results from a .toml file.</p>
 <p>This function will load the simulation results from a .toml file.
 The file must have all the argument’s names and values that are needed to
@@ -409,8 +410,8 @@ reinstantiate the class.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="ross.ModalResults.plot_mode_2d">
-<code class="sig-name descname"><span class="pre">plot_mode_2d</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="pre">self</span></em>, <em class="sig-param"><span class="pre">mode=None</span></em>, <em class="sig-param"><span class="pre">evec=None</span></em>, <em class="sig-param"><span class="pre">fig=None</span></em>, <em class="sig-param"><span class="pre">frequency_type='wd'</span></em>, <em class="sig-param"><span class="pre">title=None</span></em>, <em class="sig-param"><span class="pre">length_units='m'</span></em>, <em class="sig-param"><span class="pre">frequency_units='rad/s'</span></em>, <em class="sig-param"><span class="pre">\*\*kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/results.html#ModalResults.plot_mode_2d"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ross.ModalResults.plot_mode_2d" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="ross.ModalResults.plot_mode_2d">
+<span class="sig-name descname"><span class="pre">plot_mode_2d</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">self</span></em>, <em class="sig-param"><span class="pre">mode=None</span></em>, <em class="sig-param"><span class="pre">evec=None</span></em>, <em class="sig-param"><span class="pre">fig=None</span></em>, <em class="sig-param"><span class="pre">frequency_type='wd'</span></em>, <em class="sig-param"><span class="pre">title=None</span></em>, <em class="sig-param"><span class="pre">length_units='m'</span></em>, <em class="sig-param"><span class="pre">frequency_units='rad/s'</span></em>, <em class="sig-param"><span class="pre">\*\*kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/results.html#ModalResults.plot_mode_2d"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ross.ModalResults.plot_mode_2d" title="Permalink to this definition">¶</a></dt>
 <dd><p>Plot (2D view) the mode shapes.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -452,8 +453,8 @@ Default is rad/s.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="ross.ModalResults.plot_mode_3d">
-<code class="sig-name descname"><span class="pre">plot_mode_3d</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="pre">self</span></em>, <em class="sig-param"><span class="pre">mode=None</span></em>, <em class="sig-param"><span class="pre">evec=None</span></em>, <em class="sig-param"><span class="pre">fig=None</span></em>, <em class="sig-param"><span class="pre">frequency_type='wd'</span></em>, <em class="sig-param"><span class="pre">title=None</span></em>, <em class="sig-param"><span class="pre">length_units='m'</span></em>, <em class="sig-param"><span class="pre">frequency_units='rad/s'</span></em>, <em class="sig-param"><span class="pre">\*\*kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/results.html#ModalResults.plot_mode_3d"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ross.ModalResults.plot_mode_3d" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="ross.ModalResults.plot_mode_3d">
+<span class="sig-name descname"><span class="pre">plot_mode_3d</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">self</span></em>, <em class="sig-param"><span class="pre">mode=None</span></em>, <em class="sig-param"><span class="pre">evec=None</span></em>, <em class="sig-param"><span class="pre">fig=None</span></em>, <em class="sig-param"><span class="pre">frequency_type='wd'</span></em>, <em class="sig-param"><span class="pre">title=None</span></em>, <em class="sig-param"><span class="pre">length_units='m'</span></em>, <em class="sig-param"><span class="pre">frequency_units='rad/s'</span></em>, <em class="sig-param"><span class="pre">\*\*kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/results.html#ModalResults.plot_mode_3d"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ross.ModalResults.plot_mode_3d" title="Permalink to this definition">¶</a></dt>
 <dd><p>Plot (3D view) the mode shapes.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -495,8 +496,8 @@ Default is rad/s.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="ross.ModalResults.read_toml_data">
-<em class="property"><span class="pre">classmethod</span> </em><code class="sig-name descname"><span class="pre">read_toml_data</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ross.ModalResults.read_toml_data" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="ross.ModalResults.read_toml_data">
+<em class="property"><span class="pre">classmethod</span> </em><span class="sig-name descname"><span class="pre">read_toml_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ross.ModalResults.read_toml_data" title="Permalink to this definition">¶</a></dt>
 <dd><p>Read and parse data stored in a .toml file.</p>
 <p>The data passed to this method needs to be according to the
 format saved in the .toml file by the .save() method.</p>
@@ -516,8 +517,8 @@ format saved in the .toml file by the .save() method.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="ross.ModalResults.save">
-<code class="sig-name descname"><span class="pre">save</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ross.ModalResults.save" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="ross.ModalResults.save">
+<span class="sig-name descname"><span class="pre">save</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ross.ModalResults.save" title="Permalink to this definition">¶</a></dt>
 <dd><p>Save results in a .toml file.</p>
 <p>This function will save the simulation results to a .toml file.
 The file will have all the argument’s names and values that are needed to
@@ -554,8 +555,8 @@ reinstantiate the class.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="ross.ModalResults.whirl">
-<em class="property"><span class="pre">static</span> </em><code class="sig-name descname"><span class="pre">whirl</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">kappa_mode</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/results.html#ModalResults.whirl"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ross.ModalResults.whirl" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="ross.ModalResults.whirl">
+<em class="property"><span class="pre">static</span> </em><span class="sig-name descname"><span class="pre">whirl</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">kappa_mode</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/results.html#ModalResults.whirl"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ross.ModalResults.whirl" title="Permalink to this definition">¶</a></dt>
 <dd><p>Evaluate the whirl of a mode.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -576,8 +577,8 @@ kappa_mode.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="ross.ModalResults.whirl_direction">
-<code class="sig-name descname"><span class="pre">whirl_direction</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/results.html#ModalResults.whirl_direction"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ross.ModalResults.whirl_direction" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="ross.ModalResults.whirl_direction">
+<span class="sig-name descname"><span class="pre">whirl_direction</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/results.html#ModalResults.whirl_direction"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ross.ModalResults.whirl_direction" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get the whirl direction for each frequency.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
@@ -592,8 +593,8 @@ of kappa_mode.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="ross.ModalResults.whirl_values">
-<code class="sig-name descname"><span class="pre">whirl_values</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/results.html#ModalResults.whirl_values"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ross.ModalResults.whirl_values" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="ross.ModalResults.whirl_values">
+<span class="sig-name descname"><span class="pre">whirl_values</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ross/results.html#ModalResults.whirl_values"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ross.ModalResults.whirl_values" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get the whirl value (0., 0.5, or 1.) for each frequency.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
@@ -621,7 +622,7 @@ of kappa_mode.</p>
 </table>
 </dd></dl>
 
-</div>
+</section>
 
 
     </div>
@@ -637,7 +638,7 @@ of kappa_mode.</p>
     </p>
     <p>
         &copy; Copyright 2021, Team ROSS.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.5.4.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.0.2.<br/>
     </p>
   </div>
 </footer>

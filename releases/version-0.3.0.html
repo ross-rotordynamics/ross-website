@@ -3,13 +3,14 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>Version 0.3.0 &#8212; ross 1.0.1 documentation</title>
-    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/bootstrap-sphinx.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/bootstrap-sphinx.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx_copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/style.css" />
-    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
@@ -165,44 +166,44 @@
   <div class="row">
     <div class="body col-md-12 content" role="main">
       
-  <div class="section" id="version-0-3-0">
+  <section id="version-0-3-0">
 <h1>Version 0.3.0<a class="headerlink" href="#version-0-3-0" title="Permalink to this headline">¶</a></h1>
 <p>The following enhancements and bug fixes were implemented for this release:</p>
-<div class="section" id="enhancements">
+<section id="enhancements">
 <h2>Enhancements<a class="headerlink" href="#enhancements" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="remove-shaftelement-and-replace-with-the-shafttaperedelement">
+<section id="remove-shaftelement-and-replace-with-the-shafttaperedelement">
 <h3>Remove ShaftElement and replace with the ShaftTaperedElement<a class="headerlink" href="#remove-shaftelement-and-replace-with-the-shafttaperedelement" title="Permalink to this headline">¶</a></h3>
 <p>Now we only have one class for the shaft element which is capable of handling
 cylindrical and tapered elements.</p>
-</div>
-<div class="section" id="allow-user-choose-material-in-rotor-from-section">
+</section>
+<section id="allow-user-choose-material-in-rotor-from-section">
 <h3>Allow user choose material in “Rotor.from_section()”<a class="headerlink" href="#allow-user-choose-material-in-rotor-from-section" title="Permalink to this headline">¶</a></h3>
 <p>As requested in Issue #401, the user will be able to define a material when using <code class="docutils literal notranslate"><span class="pre">.from_section()</span></code> classmethod.
 In addition, more modifications have been done regarding the new ShaftElement API.
 Now, the user has the option to instantiate tapered sections.</p>
-</div>
-<div class="section" id="coaxialrotor-class">
+</section>
+<section id="coaxialrotor-class">
 <h3>CoAxialRotor class<a class="headerlink" href="#coaxialrotor-class" title="Permalink to this headline">¶</a></h3>
 <p>A class is now available for modeling coaxial rotors.</p>
-</div>
-</div>
-<div class="section" id="bug-fixes">
+</section>
+</section>
+<section id="bug-fixes">
 <h2>Bug fixes<a class="headerlink" href="#bug-fixes" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="fix-links-not-working-for-more-than-one-support">
+<section id="fix-links-not-working-for-more-than-one-support">
 <h3>Fix links not working for more than one support<a class="headerlink" href="#fix-links-not-working-for-more-than-one-support" title="Permalink to this headline">¶</a></h3>
 <p>Related to Issue #382.</p>
 <p>We were having problems to define de global indexes for the elements using this method intenally to a element class.
 It makes more sense to use .dof_global_index() when build the rotor model.
 The routine to calculate the elements’ global indexes have been moved to rotor_assembly (<code class="docutils literal notranslate"><span class="pre">.__init__()</span></code> method).
 Now, each element has an attribute that keeps those index, instead of calling a function to this job.</p>
-</div>
-<div class="section" id="fix-bearing-position-bug">
+</section>
+<section id="fix-bearing-position-bug">
 <h3>Fix bearing position bug<a class="headerlink" href="#fix-bearing-position-bug" title="Permalink to this headline">¶</a></h3>
 <p>Fix bug mentioned in Issue #276</p>
 <p>Sorting the bearing_seal_elements make it to cycle correctly while assuming <code class="docutils literal notranslate"><span class="pre">y_pos</span></code> values to them.</p>
-</div>
-</div>
-</div>
+</section>
+</section>
+</section>
 
 
     </div>
@@ -218,7 +219,7 @@ Now, each element has an attribute that keeps those index, instead of calling a 
     </p>
     <p>
         &copy; Copyright 2021, Team ROSS.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.5.4.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.0.2.<br/>
     </p>
   </div>
 </footer>
